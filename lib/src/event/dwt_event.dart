@@ -1,20 +1,20 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_event;
+part of dart_web_toolkit_event;
 
 /**
  * Root of all GWT widget and dom events sourced by a {@link HandlerManager}.
  * All GWT events are considered dead and should no longer be accessed once the
  * {@link HandlerManager} which originally fired the event finishes with it.
  * That is, don't hold on to event objects outside of your handler methods.
- * <p>
+ * 
  * There is no need for an application's custom event types to extend GwtEvent.
  * Prefer {@link Event} instead.
  *
  * @param <H> handler type
  */
-abstract class UiEvent<H> extends Event<H> {
+abstract class DwtEvent<H> extends Event<H> {
 
   bool _dead = false;
 

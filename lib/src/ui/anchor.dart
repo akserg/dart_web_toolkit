@@ -1,12 +1,12 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * A widget that represents a simple [:a:] element.
  */
-class Anchor extends FocusWidget {
+class Anchor extends FocusWidget implements HasDirection, HasName, HasHtml, HasWordWrap {
 
   /**
    * The default HREF is a no-op javascript statement. We need an href to ensure

@@ -1,12 +1,12 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * Abstract base class for most widgets that can receive focus.
  */
-abstract class FocusWidget extends Widget implements HasEnabled, HasFocus {
+abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasClickHandlers {
 
   /**
    * Focus helper class Implementation.
@@ -78,4 +78,17 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus {
     }
   }
 
+  //**********************************
+  // Impementation of HasClickHandlers
+  //**********************************
+  
+  /**
+   * Adds a {@link ClickEvent} handler.
+   * 
+   * @param handler the click handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addClickHandler(ClickHandler handler) {
+    return addDomHandler(handler, ClickEvent.getType());
+  }
 }

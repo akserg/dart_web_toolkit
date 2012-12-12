@@ -5,8 +5,8 @@ library hello;
 
 import 'dart:html' as html;
 
-import 'packages/dart_mob/event.dart' as event;
-import 'packages/dart_mob/ui.dart' as ui;
+import 'package:dart_web_toolkit/event.dart' as event;
+import 'package:dart_web_toolkit/ui.dart' as ui;
 
 void main() {
   ui.Anchor anchor = new ui.Anchor.empty(useDefaultHref:true);

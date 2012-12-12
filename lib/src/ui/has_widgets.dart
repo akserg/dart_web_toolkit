@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * A widget that implements this interface contains [Widget] and can enumerate

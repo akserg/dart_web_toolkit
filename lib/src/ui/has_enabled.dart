@@ -4,7 +4,7 @@
 /**
  * DartMob Event library.
  */
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * A widget that implements this interface can be put in an "enabled"

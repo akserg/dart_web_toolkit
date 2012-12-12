@@ -4,7 +4,7 @@
 /**
  * DartMob UI library.
  */
-part of dart_mob_event;
+part of dart_web_toolkit_event;
 
 /**
  * Registration objects returned when an event handler is bound (e.g. via

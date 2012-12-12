@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * An absolute panel positions all of its children absolutely, allowing them to

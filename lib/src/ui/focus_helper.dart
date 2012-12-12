@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * Interface for creating and manipulating focusable elements

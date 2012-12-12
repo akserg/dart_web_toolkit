@@ -4,7 +4,7 @@
 /**
  * DartMob UI library.
  */
-part of dart_mob_event;
+part of dart_web_toolkit_event;
 
 /**
  * Receives low-level browser events. The implementer registers for DOM events
@@ -19,5 +19,5 @@ abstract class EventListener {
    * 
    * @param event the event received
    */
-  void onBrowserEvent(html.Event event);
+  void onBrowserEvent(dart_html.Event event);
 }

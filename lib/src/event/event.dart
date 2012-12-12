@@ -4,7 +4,7 @@
 /**
  * DartMob UI library.
  */
-part of dart_mob_event;
+part of dart_web_toolkit_event;
 
 /**
  * Base Event object.
@@ -65,7 +65,7 @@ abstract class Event<H> {
   }
 
   /**
-   * Implemented by subclasses to to invoke their handlers in a type safe
+   * Implemented by subclasses to invoke their handlers in a type safe
    * manner. Intended to be called by [EventBus#fireEvent(Event)] or
    * [EventBus#fireEventFromSource(Event, Object)].
    *

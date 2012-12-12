@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_event;
+part of dart_web_toolkit_event;
 
 /**
  * An object that implements this interface has a collection of event handlers
@@ -19,5 +19,5 @@ abstract class HasHandlers {
    * 
    * @param event the event
    */
-  void fireEvent(UiEvent event);
+  void fireEvent(DwtEvent event);
 }

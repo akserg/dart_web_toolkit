@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_mob_ui;
+part of dart_web_toolkit_ui;
 
 /**
  * The base class for the majority of user-interface objects. Widget adds
@@ -82,7 +82,7 @@ class Widget extends UiObject
    *
    * @param event the event
    */
-  void fireEvent(UiEvent event) {
+  void fireEvent(DwtEvent event) {
     if (_eventBus != null) {
       _eventBus.fireEvent(event);
     }
@@ -127,6 +127,29 @@ class Widget extends UiObject
     return _eventBus;
   }
 
+  
+  /**
+   * Adds a native event handler to the widget and sinks the corresponding
+   * native event. If you do not want to sink the native event, use the generic
+   * addHandler method instead.
+   *
+   * @param <H> the type of handler to add
+   * @param type the event key
+   * @param handler the handler
+   * @return {@link HandlerRegistration} used to remove the handler
+   */
+  HandlerRegistration addDomHandler(EventHandler handler, EventType type) {
+    assert (handler != null); // : "handler must not be null";
+    assert (type != null); // : "type must not be null";
+    int typeInt = Event.getTypeInt(type.getName());
+    if (typeInt == -1) {
+      sinkBitlessEvent(type.getName());
+    } else {
+      sinkEvents(typeInt);
+    }
+    return ensureHandlers().addHandler(type, handler);
+  }
+  
   /**
    * Creates the [SimpleEventBus] used by this Widget. You can override
    * this method to create a custom [EventBus].
@@ -283,7 +306,7 @@ class Widget extends UiObject
    * @param event the event
    * @param target fire the event on the given target
    */
-  void delegateEvent(Widget target, UiEvent event) {
+  void delegateEvent(Widget target, DwtEvent event) {
     target.fireEvent(event);
   }
 

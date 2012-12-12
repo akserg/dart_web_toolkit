@@ -4,11 +4,13 @@
 /**
  * DartMob UI library.
  */
-library dart_mob_ui;
+library dart_web_toolkit_ui;
 
 import 'dart:html' as dart_html;
 
 import 'event.dart';
+import 'i18n.dart';
+import 'shared.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -32,6 +34,10 @@ part 'src/ui/attach_detach_exception.dart';
 part 'src/ui/has_enabled.dart';
 part 'src/ui/has_focus.dart';
 part 'src/ui/has_widgets.dart';
+part 'src/ui/has_name.dart';
+part 'src/ui/has_html.dart';
+part 'src/ui/has_text.dart';
+part 'src/ui/has_word_wrap.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/dom_helper_default.dart';

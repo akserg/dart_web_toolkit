@@ -10,6 +10,8 @@ import 'dart:html' as dart_html;
 
 import 'event.dart';
 
+part 'src/shared/browser_events.dart';
+
 part 'src/shared/click_handler.dart';
 part 'src/shared/click_event.dart';
 

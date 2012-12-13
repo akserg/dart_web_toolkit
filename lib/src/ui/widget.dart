@@ -57,7 +57,9 @@ class Widget extends UiObject
 //        break;
 //    }
     //DomEvent.fireNativeEvent(event, this, this.getElement());
-
+//    ensureHandlers().
+    print("onBrowserEvent: ${event}");
+    DomEvent.fireNativeEvent(event, this, this.getElement());
   }
 
   //***************************
@@ -84,7 +86,27 @@ class Widget extends UiObject
    */
   void fireEvent(DwtEvent event) {
     if (_eventBus != null) {
-      _eventBus.fireEvent(event);
+      // If it not live we should revive it.
+      if (!event.isLive()) {
+        event.revive();
+      }
+      Object oldSource = event.getSource();
+      event.overrideSource(getElement());
+      try {
+
+        // May throw an UmbrellaException.
+        _eventBus.fireEventFromSource(event, getElement());
+      } on UmbrellaException catch (e) {
+        throw new UmbrellaException(e.causes);
+      } finally {
+        if (oldSource == null) {
+          // This was my event, so I should kill it now that I'm done.
+          event.kill();
+        } else {
+          // Restoring the source for the next handler to use.
+          event.overrideSource(oldSource);
+        }
+      }
     }
   }
 
@@ -149,8 +171,9 @@ class Widget extends UiObject
 //    }
 //    return ensureHandlers().addHandler(type, handler);
 //  }
-  HandlerRegistration addDomHandler(DomEventHandler handler, EventType type) {
-    return ensureHandlers().addHandler(type, handler);
+  HandlerRegistration addDomHandler(DomEventHandler handler, DomEventType type) {
+    getElement().on[type.eventName].add(onBrowserEvent);
+    return ensureHandlers().addHandlerToSource(type, getElement(), handler);
   }
 
   /**

@@ -3,7 +3,7 @@
 
 part of dart_web_toolkit_event;
 
-typedef void OnDomEventHandler(UiEvent event);
+typedef void OnDomEventHandler(DomEvent event);
 
 class DomEventHandler implements EventHandler {
 

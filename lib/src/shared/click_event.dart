@@ -3,16 +3,20 @@
 
 part of dart_web_toolkit_shared;
 
-class ClickEvent extends UiEvent {
+class ClickEvent extends DomEvent {
 
   /**
    * The event type.
    */
-  static EventType<ClickHandler> TYPE = new EventType<ClickHandler>();
+  static DomEventType<ClickHandler> TYPE = new DomEventType<ClickHandler>(BrowserEvents.CLICK, new ClickEvent());
 
-  EventType<ClickHandler> getAssociatedType() {
+  DomEventType<ClickHandler> getAssociatedType() {
     return TYPE;
   }
 
-  ClickEvent(dart_html.UIEvent uiEvent) : super (uiEvent);
+  ClickEvent();
+  
+  void dispatch(ClickHandler handler) {
+    handler.onClick(this);
+  }
 }

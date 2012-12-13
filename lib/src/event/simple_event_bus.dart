@@ -41,7 +41,7 @@ class SimpleEventBus<H> extends EventBus<H> {
    *         handler later
    */
   HandlerRegistration addHandler(EventType<H> type, H handler) {
-    return _doAdd(type, null, handler);
+    return _doAdd(type, new _EmptySource(), handler);
   }
 
   /**
@@ -259,7 +259,7 @@ class SimpleEventBus<H> extends EventBus<H> {
     if (map.containsKey(type)) {
       Map<Object, List> sourceMap = map[type];
       //
-      if (sourceMap.containsKey(source)) {
+      if (source != null && sourceMap.containsKey(source)) {
         return sourceMap[source];
       }
     }
@@ -285,6 +285,8 @@ class _HandlerRegistration<H> extends HandlerRegistration {
     _eventBus._doRemove(type, source, handler);
   }
 }
+
+class _EmptySource {}
 
 abstract class Command<H> {
   void execute();

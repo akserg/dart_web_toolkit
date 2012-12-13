@@ -16,6 +16,4 @@ abstract class HasClickHandlers implements HasHandlers {
    * @return {@link HandlerRegistration} used to remove this handler
    */
   HandlerRegistration addClickHandler(ClickHandler handler);
-  
-  //HandlerRegistration addClickHandler2(dart_html.EventListener eventListener);
 }

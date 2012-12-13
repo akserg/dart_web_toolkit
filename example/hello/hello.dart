@@ -3,9 +3,10 @@
 
 library hello;
 
-import 'dart:html' as html;
+import 'dart:html' as dart_html;
 
 import 'package:dart_web_toolkit/event.dart' as event;
+import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 
 void main() {
@@ -35,9 +36,12 @@ void main() {
   anchor.direction = "right";
   print("Direction: ${anchor.direction}");
   //
-  event.HandlerRegistration hd = anchor.addClickHandler(new shared.ClickHandler(f(shared.ClickEvent evt){
-    dart_html.UIEvent uiEvent = evt.uiEvent;
+  handlerRegistration = anchor.addClickHandler(new shared.ClickHandler((shared.ClickEvent evt){
+    dart_html.UIEvent uiEvent = evt.nativeEvent;
     print("Event: ${uiEvent.type}");
+    //
+    print("Direction: ${anchor.direction}");
+    handlerRegistration.removeHandler();
   }));
 
   ui.RootPanel.get("testId").add(anchor);

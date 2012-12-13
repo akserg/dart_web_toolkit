@@ -3,10 +3,11 @@
 
 library hello;
 
-import 'dart:html' as html;
+import 'dart:html' as dart_html;
 
-import 'package:dart_web_toolkit/event.dart' as event;
-import 'package:dart_web_toolkit/ui.dart' as ui;
+import '../event.dart' as event;
+import '../shared.dart' as shared;
+import '../ui.dart' as ui;
 
 void main() {
   ui.Anchor anchor = new ui.Anchor.empty(useDefaultHref:true);

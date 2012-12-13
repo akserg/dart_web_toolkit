@@ -81,14 +81,14 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasCl
   //**********************************
   // Impementation of HasClickHandlers
   //**********************************
-  
+
   /**
    * Adds a {@link ClickEvent} handler.
-   * 
+   *
    * @param handler the click handler
    * @return {@link HandlerRegistration} used to remove this handler
    */
   HandlerRegistration addClickHandler(ClickHandler handler) {
-    return addDomHandler(handler, ClickEvent.getType());
+    return addDomHandler(handler, ClickEvent.TYPE);
   }
 }

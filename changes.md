@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 13, 2012
+
+* Implemntation Event handling examples.
+
 **December 12, 2012
 
 * Panel, ComplexPanel, AbsolutePanel and RootPanel has been implemented.

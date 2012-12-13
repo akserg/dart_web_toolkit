@@ -127,7 +127,7 @@ class Widget extends UiObject
     return _eventBus;
   }
 
-  
+
   /**
    * Adds a native event handler to the widget and sinks the corresponding
    * native event. If you do not want to sink the native event, use the generic
@@ -138,18 +138,21 @@ class Widget extends UiObject
    * @param handler the handler
    * @return {@link HandlerRegistration} used to remove the handler
    */
-  HandlerRegistration addDomHandler(EventHandler handler, EventType type) {
-    assert (handler != null); // : "handler must not be null";
-    assert (type != null); // : "type must not be null";
-    int typeInt = Event.getTypeInt(type.getName());
-    if (typeInt == -1) {
-      sinkBitlessEvent(type.getName());
-    } else {
-      sinkEvents(typeInt);
-    }
+//  HandlerRegistration addDomHandler(EventHandler handler, EventType type) {
+//    assert (handler != null); // : "handler must not be null";
+//    assert (type != null); // : "type must not be null";
+//    int typeInt = Event.getTypeInt(type.getName());
+//    if (typeInt == -1) {
+//      sinkBitlessEvent(type.getName());
+//    } else {
+//      sinkEvents(typeInt);
+//    }
+//    return ensureHandlers().addHandler(type, handler);
+//  }
+  HandlerRegistration addDomHandler(DomEventHandler handler, EventType type) {
     return ensureHandlers().addHandler(type, handler);
   }
-  
+
   /**
    * Creates the [SimpleEventBus] used by this Widget. You can override
    * this method to create a custom [EventBus].

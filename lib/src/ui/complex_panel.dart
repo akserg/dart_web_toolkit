@@ -13,7 +13,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
   /**
    * The command used to orphan children.
    */
-  Command _orphanCommand;
+  AttachCommand _orphanCommand;
 
   //*****************************
   // Implementation of HasWidgets
@@ -267,7 +267,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
   }
 }
 
-class OrpahExceptionCommand implements Command {
+class OrpahExceptionCommand implements AttachCommand {
 
   Panel _panel;
 

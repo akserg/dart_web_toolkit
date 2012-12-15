@@ -35,7 +35,7 @@ class AttachDetachException extends UmbrellaException {
    * @param hasWidgets children to iterate
    * @param c the {@link Command} to try on all children
    */
-  static void tryCommand(Iterable<Widget> hasWidgets, Command c) {
+  static void tryCommand(Iterable<Widget> hasWidgets, AttachCommand c) {
     Set<Exception> caught = null;
     for (Widget w in hasWidgets) {
       try {
@@ -72,7 +72,7 @@ class AttachDetachException extends UmbrellaException {
    * @param c the {@link Command} to try on all children
    * @param widgets children to iterate, null children are ignored
    */
-  static void tryCommand2(Command c, List<IsWidget> widgets) {
+  static void tryCommand2(AttachCommand c, List<IsWidget> widgets) {
     Set<Exception> caught = null;
     for (IsWidget w in widgets) {
       try {
@@ -106,12 +106,12 @@ class AttachDetachException extends UmbrellaException {
 /**
  * The command to execute when iterating through child widgets.
  */
-abstract class Command {
+abstract class AttachCommand {
   
   void execute(Widget w);
 }
 
-class AttachExceptionCommand implements Command {
+class AttachExceptionCommand implements AttachCommand {
   
   /**
    * The singleton command used to attach widgets.
@@ -121,7 +121,7 @@ class AttachExceptionCommand implements Command {
   }
 }
 
-class DetachExceptionCommand implements Command {
+class DetachExceptionCommand implements AttachCommand {
   
   /**
    * The singleton command used to attach widgets.

@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 15, 2012
+
+* Command class renamed to AttachCommand in UI library.
+
 **December 13, 2012
 
 * Implemntation Event handling examples.

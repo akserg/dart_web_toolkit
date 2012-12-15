@@ -12,7 +12,7 @@ class RootPanel extends AbsolutePanel {
   /**
    * The singleton command used to detach widgets.
    */
-  static Command _maybeDetachCommand = new MaybeDetachExceptionCommand();
+  static AttachCommand _maybeDetachCommand = new MaybeDetachExceptionCommand();
   static Map<String, RootPanel> _rootPanels = new Map<String, RootPanel>();
   static Set<Widget> _widgetsToDetach = new Set<Widget>();
 
@@ -234,7 +234,7 @@ class DefaultRootPanel extends RootPanel {
   }
 }
 
-class MaybeDetachExceptionCommand implements Command {
+class MaybeDetachExceptionCommand implements AttachCommand {
 
   /**
    * The singleton command used to detach widgets.

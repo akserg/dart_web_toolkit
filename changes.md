@@ -4,6 +4,7 @@ DartMob Changes
 **December 15, 2012
 
 * Command class renamed to AttachCommand in UI library.
+* Added style methods to UiObject.
 
 **December 13, 2012
 

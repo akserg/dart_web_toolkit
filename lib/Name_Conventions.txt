@@ -1,0 +1,8 @@
+UiObject:
+static String getStyleName(dart_html.Element elem) : static String getElementStyleName(dart_html.Element elem)
+static void setStyleName(dart_html.Element elem, String styleName) : static void setElementStyleName(dart_html.Element elem, String styleName)
+
+static String getStylePrimaryName(dart_html.Element elem) : static String getElementStylePrimaryName(dart_html.Element elem)
+static void setStylePrimaryName(dart_html.Element elem, String style) : static void setElementStylePrimaryName(dart_html.Element elem, String style)
+
+static void setStyleName(dart_html.Element elem, String style, bool add) : static void manageElementStyleName(dart_html.Element elem, String style, bool add)

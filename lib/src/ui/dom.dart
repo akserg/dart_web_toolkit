@@ -73,6 +73,38 @@ class Dom {
   }
   
   /**
+   * Sets a property on the given element.
+   * 
+   * @param elem the element whose property is to be set
+   * @param prop the name of the property to be set
+   * @param value the new property value
+   */
+  static void setElementProperty(dart_html.Element elem, String prop, String value) {
+    elem.attributes[prop] = value;
+  }
+  
+  /**
+   * Sets an attribute on a given element.
+   * 
+   * @param elem element whose attribute is to be set
+   * @param attr the name of the attribute
+   * @param value the value to which the attribute should be set
+   */
+  static void setElementAttribute(dart_html.Element elem, String attr, String value) {
+    elem.attributes[attr] = value;
+  }
+  
+  /**
+   * Removes the named attribute from the given element.
+   * 
+   * @param elem the element whose attribute is to be removed
+   * @param attr the name of the element to remove
+   */
+  static void removeElementAttribute(dart_html.Element elem, String attr) {
+    elem.attributes.remove(attr);
+  }
+  
+  /**
    * Sets the {@link EventListener} to receive events for the given element.
    * Only one such listener may exist for a single element.
    * 
@@ -103,5 +135,17 @@ class Dom {
    */
   static int getAbsoluteTop(dart_html.Element elem) {
     return domHelper.getAbsoluteTop(elem);
+  }
+  
+  /**
+   * Sets an attribute on the given element's style.
+   * 
+   * @param elem the element whose style attribute is to be set
+   * @param attr the name of the style attribute to be set
+   * @param value the style attribute's new value
+   */
+  static void setStyleAttribute(dart_html.Element elem, String attr, String value) {
+    dart_html.CssStyleDeclaration style = elem.style;
+    style.setProperty(attr, value);
   }
 }

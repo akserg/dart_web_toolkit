@@ -1,4 +1,4 @@
-#Dart Mob
+#Dart Web Toolkit or DWT
 
 Dart Web Toolkit (DWT) is a development toolkit for building and optimizing complex browser-based applications.
 

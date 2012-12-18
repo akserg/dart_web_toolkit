@@ -469,4 +469,12 @@ class Widget extends UiObject
   }
 
 
+  /**
+   * Has this widget ever been attached?
+   *
+   * @return true if this widget ever been attached to the DOM, false otherwise
+   */
+  bool isOrWasAttached() {
+    return true;
+  }
 }

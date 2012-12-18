@@ -1,0 +1,20 @@
+//Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
+//Author: akserg
+
+/**
+ * DartMob Animation library.
+ */
+library dart_web_toolkit_animation;
+
+import 'dart:html' as dart_html;
+import 'dart:isolate' as dart_isolate;
+import 'dart:math' as dart_math;
+
+import 'util.dart';
+
+part 'src/animation/animation.dart';
+part 'src/animation/animation_scheduler.dart';
+
+part 'src/animation/impl/animation_scheduler_impl.dart';
+part 'src/animation/impl/animation_scheduler_impl_webkit.dart';
+part 'src/animation/impl/animation_scheduler_impl_timer.dart';

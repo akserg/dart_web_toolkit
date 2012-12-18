@@ -7,10 +7,15 @@
 library dart_web_toolkit_ui;
 
 import 'dart:html' as dart_html;
+import 'dart:math' as dart_math;
 
 import 'event.dart';
 import 'i18n.dart';
 import 'shared.dart';
+import 'animation.dart';
+import 'layout.dart';
+import 'util.dart';
+import 'scheduler.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -22,7 +27,6 @@ part 'src/ui/dom.dart';
 part 'src/ui/dom_helper.dart';
 part 'src/ui/focus_helper.dart';
 part 'src/ui/anchor.dart';
-part 'src/ui/style.dart';
 part 'src/ui/root_panel.dart';
 part 'src/ui/absolute_panel.dart';
 part 'src/ui/complex_panel.dart';
@@ -30,6 +34,24 @@ part 'src/ui/insert_panel.dart';
 part 'src/ui/indexed_panel.dart';
 part 'src/ui/panel.dart';
 part 'src/ui/attach_detach_exception.dart';
+part 'src/ui/button_base.dart';
+part 'src/ui/button.dart';
+part 'src/ui/reset_button.dart';
+part 'src/ui/submit_button.dart';
+part 'src/ui/composite.dart';
+part 'src/ui/is_renderable.dart';
+part 'src/ui/header_panel.dart';
+part 'src/ui/requires_resize.dart';
+part 'src/ui/simple_panel.dart';
+part 'src/ui/accepts_one_widget.dart';
+part 'src/ui/resize_layout_panel.dart';
+part 'src/ui/provides_resize.dart';
+part 'src/ui/has_resize_handlers.dart';
+part 'src/ui/resize_handler.dart';
+part 'src/ui/resize_event.dart';
+part 'src/ui/panel_iterator.dart';
+part 'src/ui/impl/resize_layout_panel_impl.dart';
+part 'src/ui/finite_widget_iterator.dart';
 
 part 'src/ui/has_enabled.dart';
 part 'src/ui/has_focus.dart';
@@ -38,6 +60,7 @@ part 'src/ui/has_name.dart';
 part 'src/ui/has_html.dart';
 part 'src/ui/has_text.dart';
 part 'src/ui/has_word_wrap.dart';
+part 'src/ui/has_one_widget.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/dom_helper_default.dart';
@@ -48,7 +71,7 @@ part 'src/ui/impl/dom_helper_default.dart';
  * deferred binding.
  */
 class UI {
- 
+
   /**
    * Returns <code>true</code> when running in production mode. Returns
    * <code>false</code> when running either in development mode, or when running

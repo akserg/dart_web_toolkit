@@ -288,10 +288,6 @@ class _HandlerRegistration<H> extends HandlerRegistration {
 
 class _EmptySource {}
 
-abstract class Command<H> {
-  void execute();
-}
-
 class _AddCommand<H> extends Command<H> {
 
   SimpleEventBus _eventBus;

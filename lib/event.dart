@@ -10,6 +10,7 @@ import 'dart:html' as dart_html;
 
 part 'src/event/event.dart';
 part 'src/event/handler_registration.dart';
+part 'src/event/command.dart';
 part 'src/event/event_bus.dart';
 part 'src/event/simple_event_bus.dart';
 part 'src/event/umbrella_exception.dart';

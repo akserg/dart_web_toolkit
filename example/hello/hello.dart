@@ -10,7 +10,7 @@ import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 
 void main() {
-  ui.Anchor anchor = new ui.Anchor.empty(useDefaultHref:true);
+  ui.Anchor anchor = new ui.Anchor(true);
   print("Href: ${anchor.href}");
   //
   anchor.tabIndex = 1;
@@ -46,4 +46,12 @@ void main() {
 //  }));
 
   ui.RootPanel.get("testId").add(anchor);
+
+  ui.HeaderPanel headerPanel = new ui.HeaderPanel();
+  headerPanel.setSize("150px", "100px");
+
+  headerPanel.setHeaderWidget(new ui.Button("Header"));
+  headerPanel.setFooterWidget(new ui.Button("Footer"));
+  headerPanel.setContentWidget(new ui.Button("Center"));
+  ui.RootPanel.get("testId").add(headerPanel);
 }

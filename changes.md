@@ -4,6 +4,7 @@ DartMob Changes
 **December 19, 2012
 
 * Fixed 'extractLengthValue' method in UiObject, and small bugs in Timer.
+* Removed 'empty' factory constructor from Anchor. HeaderPanel added to example.
 
 **December 18, 2012
 

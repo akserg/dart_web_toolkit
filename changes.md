@@ -9,6 +9,7 @@ DartMob Changes
 * Method 'getFocusHelper' using instead of factory constructor in FocusHelper. Static variable of FocusHelper removed from FocusWidget.
 * Veriable 'element' is private in Widget now. Changed Anchor and FocusManager.
 * Implemented CheckBox widget.
+* CheckBox example.
 
 **December 18, 2012
 

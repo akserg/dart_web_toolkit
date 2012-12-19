@@ -51,7 +51,7 @@ void main() {
   headerPanel.setSize("150px", "100px");
 
   headerPanel.setHeaderWidget(new ui.Button("Header"));
-  headerPanel.setFooterWidget(new ui.Button("Footer"));
+  headerPanel.setFooterWidget(new ui.CheckBox("Active Footer"));
   headerPanel.setContentWidget(new ui.Button("Center"));
   ui.RootPanel.get("testId").add(headerPanel);
 }

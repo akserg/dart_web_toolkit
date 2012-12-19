@@ -33,7 +33,7 @@ class Anchor extends FocusWidget implements HasDirection, HasName, HasHtml, HasW
    * Return [AnchorElement] class casted element.
    */
   dart_html.AnchorElement getAnchorElement() {
-    return element as dart_html.AnchorElement;
+    return getElement() as dart_html.AnchorElement;
   }
 
   //***********

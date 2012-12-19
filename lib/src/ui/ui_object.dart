@@ -19,7 +19,7 @@ abstract class UiObject implements HasVisibility {
    */
   static RegExp numberRegex = new RegExp("^(\\s*[+-]?((\\d+\\.?\\d*)|(\\.\\d+))([eE][+-]?\\d+)?)");
 
-  dart_html.Element element;
+  dart_html.Element _element;
 
   //**************
   // HasVisibility
@@ -34,7 +34,7 @@ abstract class UiObject implements HasVisibility {
    *
    * @return <code>true</code> if the object is visible
    */
-  bool get visible => element.style.display != 'none';
+  bool get visible => _element.style.display != 'none';
 
   /**
    * Sets whether this object is visible.
@@ -43,8 +43,8 @@ abstract class UiObject implements HasVisibility {
    *          hide it
    */
   void set visible(bool visible) {
-    element.style.display = visible ? '' : 'none';
-    element.attribute['aria-hidden'] = (!visible).toString();
+    _element.style.display = visible ? '' : 'none';
+    _element.attribute['aria-hidden'] = (!visible).toString();
   }
 
   //***********
@@ -59,16 +59,16 @@ abstract class UiObject implements HasVisibility {
    * @param elem the object's element
    */
   void setElement(dart_html.Element elem) {
-    assert (element == null);
-    this.element = elem;
+    assert (_element == null);
+    this._element = elem;
   }
 
   /**
    * Gets this object's browser element.
    */
   dart_html.Element getElement() {
-    assert (element != null); // : MISSING_ELEMENT_ERROR;
-    return element;
+    assert (_element != null); // : MISSING_ELEMENT_ERROR;
+    return _element;
   }
 
   /**
@@ -80,12 +80,12 @@ abstract class UiObject implements HasVisibility {
    * @param elem the object's new element
    */
   void replaceElement(dart_html.Element elem) {
-    if (element != null && element.parent != null) {
+    if (_element != null && _element.parent != null) {
       // replace this.element in its parent with elem.
-      element.parent.replaceWith(elem);
+      _element.parent.replaceWith(elem);
     }
 
-    this.element = elem;
+    this._element = elem;
   }
 
   /**

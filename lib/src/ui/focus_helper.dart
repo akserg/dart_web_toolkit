@@ -34,10 +34,15 @@ abstract class FocusHelper {
    */
   void setTabIndex(dart_html.Element elem, int index);
 
+  static FocusHelper _instance;
+
   /**
-   * Create instance of [FocusHelper] depends on broswer.
+   * Return instance of [FocusHelper] depends on broswer.
    */
-  factory FocusHelper.browserDependent() {
-    return new FocusHelperDefault();
+  static FocusHelper getFocusHelper() {
+    if (_instance == null) {
+      _instance = new FocusHelperDefault();
+    }
+    return _instance;
   }
 }

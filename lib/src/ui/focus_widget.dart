@@ -9,11 +9,6 @@ part of dart_web_toolkit_ui;
 abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasClickHandlers {
 
   /**
-   * Focus helper class Implementation.
-   */
-  static FocusHelper focusHelper = new FocusHelper.browserDependent();
-
-  /**
    * Creates a new focus widget that wraps the specified browser [element].
    */
   FocusWidget([dart_html.Element element = null]) {
@@ -30,7 +25,7 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasCl
    *
    * @return <code>true</code> if the widget is enabled
    */
-  bool get enabled => !Dom.getElementPropertyBoolean(element, "disabled");
+  bool get enabled => !Dom.getElementPropertyBoolean(getElement(), "disabled");
 
   /**
    * Sets whether this widget is enabled.
@@ -39,7 +34,7 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasCl
    *          to disable it
    */
   void set enabled(bool value) {
-    Dom.setElementPropertyBoolean(element, "disabled", !value);
+    Dom.setElementPropertyBoolean(getElement(), "disabled", !value);
   }
 
   //***************************
@@ -50,7 +45,7 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasCl
    *
    * @return the widget's tab index
    */
-  int get tabIndex => focusHelper.getTabIndex(element);
+  int get tabIndex => FocusHelper.getFocusHelper().getTabIndex(getElement());
 
   /**
    * Sets the widget's position in the tab index. If more than one widget has
@@ -61,7 +56,7 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasCl
    * @param index the widget's tab index
    */
   void set tabIndex(int index) {
-    focusHelper.setTabIndex(element, index);
+    FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
   }
 
   /**
@@ -72,9 +67,9 @@ abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasCl
    */
   void set focus(bool focused) {
     if (focused) {
-      focusHelper.focus(element);
+      FocusHelper.getFocusHelper().focus(getElement());
     } else {
-      focusHelper.blur(element);
+      FocusHelper.getFocusHelper().blur(getElement());
     }
   }
 

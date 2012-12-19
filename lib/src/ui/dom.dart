@@ -14,7 +14,7 @@ class Dom {
    * DOM helper class Implementation.
    */
   static DomHelper domHelper = new DomHelper.browserDependent();
-  
+
   /**
    * Gets any named property from an element, as a string.
    *
@@ -71,10 +71,10 @@ class Dom {
     //
     elem.attributes[prop] = value.toString();
   }
-  
+
   /**
    * Sets a property on the given element.
-   * 
+   *
    * @param elem the element whose property is to be set
    * @param prop the name of the property to be set
    * @param value the new property value
@@ -82,10 +82,10 @@ class Dom {
   static void setElementProperty(dart_html.Element elem, String prop, String value) {
     elem.attributes[prop] = value;
   }
-  
+
   /**
    * Sets an attribute on a given element.
-   * 
+   *
    * @param elem element whose attribute is to be set
    * @param attr the name of the attribute
    * @param value the value to which the attribute should be set
@@ -93,59 +93,70 @@ class Dom {
   static void setElementAttribute(dart_html.Element elem, String attr, String value) {
     elem.attributes[attr] = value;
   }
-  
+
   /**
    * Removes the named attribute from the given element.
-   * 
+   *
    * @param elem the element whose attribute is to be removed
    * @param attr the name of the element to remove
    */
   static void removeElementAttribute(dart_html.Element elem, String attr) {
     elem.attributes.remove(attr);
   }
-  
+
   /**
    * Sets the {@link EventListener} to receive events for the given element.
    * Only one such listener may exist for a single element.
-   * 
+   *
    * @param elem the element whose listener is to be set
    * @param listener the listener to receive {@link Event events}
    */
   static void setEventListener(dart_html.Element elem, EventListener listener) {
     domHelper.setEventListener(elem, listener);
   }
-  
+
   /**
    * Gets an element's absolute left coordinate in the document's coordinate
    * system.
-   * 
+   *
    * @param elem the element to be measured
    * @return the element's absolute left coordinate
    */
   static int getAbsoluteLeft(dart_html.Element elem) {
     return domHelper.getAbsoluteLeft(elem);
   }
-  
+
   /**
    * Gets an element's absolute top coordinate in the document's coordinate
    * system.
-   * 
+   *
    * @param elem the element to be measured
    * @return the element's absolute top coordinate
    */
   static int getAbsoluteTop(dart_html.Element elem) {
     return domHelper.getAbsoluteTop(elem);
   }
-  
+
   /**
    * Sets an attribute on the given element's style.
-   * 
+   *
    * @param elem the element whose style attribute is to be set
    * @param attr the name of the style attribute to be set
    * @param value the style attribute's new value
    */
   static void setStyleAttribute(dart_html.Element elem, String attr, String value) {
-//    dart_html.CssStyleDeclaration style = elem.style;
     elem.style.setProperty(attr, value);
+  }
+
+  static int uniqueId = 0;
+
+  /**
+   * Generates a unique DOM id. The id is of the form "dwt-id-<unique integer>".
+   *
+   * @return a unique DOM id
+   */
+  static String createUniqueId() {
+    //return Document.get().createUniqueId();
+    return "dwt-id-${uniqueId++}";
   }
 }

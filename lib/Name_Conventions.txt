@@ -18,3 +18,5 @@ public void setStyleName(String style)                              void clearAn
 public void setStylePrimaryName(String style)                       void setStylePrimaryName(String style)
 
 protected Element getStyleElement()     Element getStyleElement()
+
+getElement().appendChild(Element element)    getElement().append(Element element)

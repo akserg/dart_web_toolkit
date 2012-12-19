@@ -6,6 +6,9 @@ DartMob Changes
 * Fixed 'extractLengthValue' method in UiObject, and small bugs in Timer.
 * Removed 'empty' factory constructor from Anchor. HeaderPanel added to example.
 * Reviewed Style implementation in UiObject. Added styles to Anchor, Button, ResetButton, SubmitButton.
+* Method 'getFocusHelper' using instead of factory constructor in FocusHelper. Static variable of FocusHelper removed from FocusWidget.
+* Veriable 'element' is private in Widget now. Changed Anchor and FocusManager.
+* Implemented CheckBox widget.
 
 **December 18, 2012
 

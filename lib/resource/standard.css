@@ -1,13 +1,13 @@
 /**
- * The file contains styles for GWT widgets in the standard theme.
+ * The file contains styles for DWT widgets in the standard theme.
  *
  * In order to maintain cross-browser compatibility, the following syntax is
  * used to create IE6 specific style rules:
- *    .gwt-Widget {
+ *    .dwt-Widget {
  *      property: rule applies to all browsers
  *      -property: rule applies only to IE6 (overrides previous rule)
  *    }
- *    * html .gwt-Widget {
+ *    * html .dwt-Widget {
  *      property: rule applies to all versions of IE
  *    }
  */
@@ -38,13 +38,13 @@ a, a:visited, a:hover {
  * name below, and attach it to the DOM.  Use a timer to detect when the
  * element's height and width are set to 5px.
  */
-.gwt-Reference-standard {
+.dwt-Reference-standard {
   height: 5px;
   width: 5px;
   zoom: 1;
 }
 
-.gwt-Button {
+.dwt-Button {
   margin: 0;
   padding: 3px 5px;
   text-decoration: none;
@@ -54,232 +54,232 @@ a, a:visited, a:hover {
   background: url("images/hborder.png") repeat-x 0px -27px;
   border: 1px outset #ccc;
 }
-.gwt-Button:active {
+.dwt-Button:active {
   border: 1px inset #ccc;
 }
-.gwt-Button:hover {
+.dwt-Button:hover {
   border-color: #9cf #69e #69e #7af;
 }
-.gwt-Button[disabled] {
+.dwt-Button[disabled] {
   cursor: default;
   color: #888;
 }
-.gwt-Button[disabled]:hover {
+.dwt-Button[disabled]:hover {
   border: 1px outset #ccc;
 }
 
-.gwt-CheckBox {
+.dwt-CheckBox {
 }
-.gwt-CheckBox-disabled {
+.dwt-CheckBox-disabled {
   color: #888;
 }
 
-.gwt-DecoratorPanel {
+.dwt-DecoratorPanel {
 }
-.gwt-DecoratorPanel .topCenter,
-.gwt-DecoratorPanel .bottomCenter {
+.dwt-DecoratorPanel .topCenter,
+.dwt-DecoratorPanel .bottomCenter {
   background: url(images/hborder.png) repeat-x;
 }
-.gwt-DecoratorPanel .middleLeft,
-.gwt-DecoratorPanel .middleRight {
+.dwt-DecoratorPanel .middleLeft,
+.dwt-DecoratorPanel .middleRight {
   background: url(images/vborder.png) repeat-y;
 }
-.gwt-DecoratorPanel .topLeftInner,
-.gwt-DecoratorPanel .topRightInner,
-.gwt-DecoratorPanel .bottomLeftInner,
-.gwt-DecoratorPanel .bottomRightInner {
+.dwt-DecoratorPanel .topLeftInner,
+.dwt-DecoratorPanel .topRightInner,
+.dwt-DecoratorPanel .bottomLeftInner,
+.dwt-DecoratorPanel .bottomRightInner {
   width: 5px;
   height: 5px;
   zoom: 1;
 }
-.gwt-DecoratorPanel .topLeft {
+.dwt-DecoratorPanel .topLeft {
   background: url(images/corner.png) no-repeat 0px 0px;
   -background: url(images/corner_ie6.png) no-repeat 0px 0px;
 }
-.gwt-DecoratorPanel .topRight {
+.dwt-DecoratorPanel .topRight {
   background: url(images/corner.png) no-repeat -5px 0px;
   -background: url(images/corner_ie6.png) no-repeat -5px 0px;
 }
-.gwt-DecoratorPanel .bottomLeft {
+.dwt-DecoratorPanel .bottomLeft {
   background: url(images/corner.png) no-repeat 0px -5px;
   -background: url(images/corner_ie6.png) no-repeat 0px -5px;
 }
-.gwt-DecoratorPanel .bottomRight {
+.dwt-DecoratorPanel .bottomRight {
   background: url(images/corner.png) no-repeat -5px -5px;
   -background: url(images/corner_ie6.png) no-repeat -5px -5px;
 }
-* html .gwt-DecoratorPanel .topLeftInner,
-* html .gwt-DecoratorPanel .topRightInner,
-* html .gwt-DecoratorPanel .bottomLeftInner,
-* html .gwt-DecoratorPanel .bottomRightInner {
+* html .dwt-DecoratorPanel .topLeftInner,
+* html .dwt-DecoratorPanel .topRightInner,
+* html .dwt-DecoratorPanel .bottomLeftInner,
+* html .dwt-DecoratorPanel .bottomRightInner {
   width: 5px;
   height: 5px;
   overflow: hidden;
 }
 
-.gwt-DialogBox .Caption {
+.dwt-DialogBox .Caption {
   background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
   padding: 4px 4px 4px 8px;
   cursor: default;
   border-bottom: 1px solid #bbbbbb;
   border-top: 5px solid #d0e4f6;
 }
-.gwt-DialogBox .dialogContent {
+.dwt-DialogBox .dialogContent {
 }
-.gwt-DialogBox .dialogMiddleCenter {
+.dwt-DialogBox .dialogMiddleCenter {
   padding: 3px;
   background: white;
 }
-.gwt-DialogBox .dialogBottomCenter {
+.dwt-DialogBox .dialogBottomCenter {
   background: url(images/hborder.png) repeat-x 0px -4px;
   -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
 }
-.gwt-DialogBox .dialogMiddleLeft {
+.dwt-DialogBox .dialogMiddleLeft {
   background: url(images/vborder.png) repeat-y;
 }
-.gwt-DialogBox .dialogMiddleRight {
+.dwt-DialogBox .dialogMiddleRight {
   background: url(images/vborder.png) repeat-y -4px 0px;
   -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
 }
-.gwt-DialogBox .dialogTopLeftInner {
+.dwt-DialogBox .dialogTopLeftInner {
   width: 5px;
   zoom: 1;
 }
-.gwt-DialogBox .dialogTopRightInner {
+.dwt-DialogBox .dialogTopRightInner {
   width: 8px;
   zoom: 1;
 }
-.gwt-DialogBox .dialogBottomLeftInner {
+.dwt-DialogBox .dialogBottomLeftInner {
   width: 5px;
   height: 8px;
   zoom: 1;
 }
-.gwt-DialogBox .dialogBottomRightInner {
+.dwt-DialogBox .dialogBottomRightInner {
   width: 5px;
   height: 8px;
   zoom: 1;
 }
-.gwt-DialogBox .dialogTopLeft {
+.dwt-DialogBox .dialogTopLeft {
   background: url(images/corner.png) no-repeat -13px 0px;
   -background: url(images/corner_ie6.png) no-repeat -13px 0px;
 }
-.gwt-DialogBox .dialogTopRight {
+.dwt-DialogBox .dialogTopRight {
   background: url(images/corner.png) no-repeat -18px 0px;
   -background: url(images/corner_ie6.png) no-repeat -18px 0px;
 }
-.gwt-DialogBox .dialogBottomLeft {
+.dwt-DialogBox .dialogBottomLeft {
   background: url(images/corner.png) no-repeat 0px -15px;
   -background: url(images/corner_ie6.png) no-repeat 0px -15px;
 }
-.gwt-DialogBox .dialogBottomRight {
+.dwt-DialogBox .dialogBottomRight {
   background: url(images/corner.png) no-repeat -5px -15px;
   -background: url(images/corner_ie6.png) no-repeat -5px -15px;
 }
-* html .gwt-DialogBox .dialogTopLeftInner {
+* html .dwt-DialogBox .dialogTopLeftInner {
   width: 5px;
   overflow: hidden;
 }
-* html .gwt-DialogBox .dialogTopRightInner {
+* html .dwt-DialogBox .dialogTopRightInner {
   width: 8px;
   overflow: hidden;
 }
-* html .gwt-DialogBox .dialogBottomLeftInner {
+* html .dwt-DialogBox .dialogBottomLeftInner {
   width: 5px;
   height: 8px;
   overflow: hidden;
 }
-* html .gwt-DialogBox .dialogBottomRightInner {
+* html .dwt-DialogBox .dialogBottomRightInner {
   width: 8px;
   height: 8px;
   overflow: hidden;
 }
 
-.gwt-DisclosurePanel {
+.dwt-DisclosurePanel {
 }
-.gwt-DisclosurePanel-open {
+.dwt-DisclosurePanel-open {
 }
-.gwt-DisclosurePanel-closed {
+.dwt-DisclosurePanel-closed {
 }
-.gwt-DisclosurePanel .header,
-.gwt-DisclosurePanel .header a,
-.gwt-DisclosurePanel .header td {
+.dwt-DisclosurePanel .header,
+.dwt-DisclosurePanel .header a,
+.dwt-DisclosurePanel .header td {
   text-decoration: none;  /* Remove underline from header */
-  color: black; 
+  color: black;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-DisclosurePanel .content {
+.dwt-DisclosurePanel .content {
   border-left: 3px solid #e8eef7;
   padding: 4px 0px 4px 8px;
   margin-left: 6px;
 }
 
-.gwt-FileUpload {
+.dwt-FileUpload {
 }
 
-.gwt-Frame {
+.dwt-Frame {
   border-top: 2px solid #666;
   border-left: 2px solid #666;
   border-right: 2px solid #bbb;
   border-bottom: 2px solid #bbb;
 }
 
-.gwt-HorizontalSplitPanel {
+.dwt-HorizontalSplitPanel {
 }
-.gwt-HorizontalSplitPanel .hsplitter {
+.dwt-HorizontalSplitPanel .hsplitter {
   cursor: move;
-  border: 0px; 
+  border: 0px;
   background: #91c0ef url(images/vborder.png) repeat-y;
   line-height: 0px;
 }
-.gwt-VerticalSplitPanel {
+.dwt-VerticalSplitPanel {
 }
-.gwt-VerticalSplitPanel .vsplitter {
+.dwt-VerticalSplitPanel .vsplitter {
   cursor: move;
-  border: 0px; 
+  border: 0px;
   background: #91c0ef url(images/hborder.png) repeat-x;
   line-height: 0px;
 }
 
-.gwt-HTML {
+.dwt-HTML {
 }
 
-.gwt-Hyperlink {
+.dwt-Hyperlink {
   cursor: pointer;
 }
 
-.gwt-Image {
+.dwt-Image {
 }
 
-.gwt-Label {
+.dwt-Label {
 }
 
-.gwt-ListBox {
+.dwt-ListBox {
 }
 
-.gwt-MenuBar {
+.dwt-MenuBar {
   cursor: default;
 }
-.gwt-MenuBar .gwt-MenuItem {
+.dwt-MenuBar .dwt-MenuItem {
   cursor: default;
 }
-.gwt-MenuBar .gwt-MenuItem-selected {
+.dwt-MenuBar .dwt-MenuItem-selected {
   background: #E0EDFE;
 }
-.gwt-MenuBar .gwt-MenuItem-disabled {
+.dwt-MenuBar .dwt-MenuItem-disabled {
   color: #c0c0c0;
 }
-.gwt-MenuBar-horizontal {
+.dwt-MenuBar-horizontal {
   background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
   border: 1px solid #BBBBBB;
 }
-.gwt-MenuBar-horizontal .gwt-MenuItem {
+.dwt-MenuBar-horizontal .dwt-MenuItem {
   padding: 0px 10px;
   vertical-align: bottom;
   color: #666666;
   font-weight: bold;
 }
-.gwt-MenuBar-horizontal .gwt-MenuItemSeparator {
+.dwt-MenuBar-horizontal .dwt-MenuItemSeparator {
   width: 1px;
   padding: 0px;
   margin: 0px;
@@ -287,26 +287,26 @@ a, a:visited, a:hover {
   border-left: 1px solid #888888;
   background: white;
 }
-.gwt-MenuBar-horizontal .gwt-MenuItemSeparator .menuSeparatorInner {
+.dwt-MenuBar-horizontal .dwt-MenuItemSeparator .menuSeparatorInner {
   width: 1px;
   height: 1px;
-  background: white; 
+  background: white;
 }
-.gwt-MenuBar-vertical {
+.dwt-MenuBar-vertical {
   margin-top: 0px;
   margin-left: 0px;
   background: white;
 }
-.gwt-MenuBar-vertical table {
+.dwt-MenuBar-vertical table {
   border-collapse: collapse;
 }
-.gwt-MenuBar-vertical .gwt-MenuItem {
+.dwt-MenuBar-vertical .dwt-MenuItem {
   padding: 4px 14px 4px 1px;
 }
-.gwt-MenuBar-vertical .gwt-MenuItemSeparator {
+.dwt-MenuBar-vertical .dwt-MenuItemSeparator {
   padding: 2px 0px;
 }
-.gwt-MenuBar-vertical .gwt-MenuItemSeparator .menuSeparatorInner {
+.dwt-MenuBar-vertical .dwt-MenuItemSeparator .menuSeparatorInner {
   height: 1px;
   padding: 0px;
   border: 0px;
@@ -314,233 +314,233 @@ a, a:visited, a:hover {
   background: #ddddee;
   overflow: hidden;
 }
-.gwt-MenuBar-vertical .subMenuIcon {
+.dwt-MenuBar-vertical .subMenuIcon {
   padding-right: 4px;
 }
-.gwt-MenuBar-vertical .subMenuIcon-selected {
+.dwt-MenuBar-vertical .subMenuIcon-selected {
   background: #E0EDFE;
 }
-.gwt-MenuBarPopup {
+.dwt-MenuBarPopup {
   margin: 0px 0px 0px 3px;
 }
-.gwt-MenuBarPopup .menuPopupTopCenter {
+.dwt-MenuBarPopup .menuPopupTopCenter {
   background: url(images/hborder.png) 0px -12px repeat-x;
 }
-.gwt-MenuBarPopup .menuPopupBottomCenter {
+.dwt-MenuBarPopup .menuPopupBottomCenter {
   background: url(images/hborder.png) 0px -13px repeat-x;
   -background: url(images/hborder_ie6.png) 0px -13px repeat-x;
 }
-.gwt-MenuBarPopup .menuPopupMiddleLeft {
+.dwt-MenuBarPopup .menuPopupMiddleLeft {
   background: url(images/vborder.png) -12px 0px repeat-y;
   -background: url(images/vborder_ie6.png) -12px 0px repeat-y;
 }
-.gwt-MenuBarPopup .menuPopupMiddleRight {
+.dwt-MenuBarPopup .menuPopupMiddleRight {
   background: url(images/vborder.png) -13px 0px repeat-y;
   -background: url(images/vborder_ie6.png) -13px 0px repeat-y;
 }
-.gwt-MenuBarPopup .menuPopupTopLeftInner {
+.dwt-MenuBarPopup .menuPopupTopLeftInner {
   width: 5px;
   height: 5px;
   zoom: 1;
 }
-.gwt-MenuBarPopup .menuPopupTopRightInner {
+.dwt-MenuBarPopup .menuPopupTopRightInner {
   width: 8px;
   height: 5px;
   zoom: 1;
 }
-.gwt-MenuBarPopup .menuPopupBottomLeftInner {
+.dwt-MenuBarPopup .menuPopupBottomLeftInner {
   width: 5px;
   height: 8px;
   zoom: 1;
 }
-.gwt-MenuBarPopup .menuPopupBottomRightInner {
+.dwt-MenuBarPopup .menuPopupBottomRightInner {
   width: 8px;
   height: 8px;
   zoom: 1;
 }
-.gwt-MenuBarPopup .menuPopupTopLeft {
+.dwt-MenuBarPopup .menuPopupTopLeft {
   background: url(images/corner.png) no-repeat 0px -36px;
   -background: url(images/corner_ie6.png) no-repeat 0px -36px;
 }
-.gwt-MenuBarPopup .menuPopupTopRight {
+.dwt-MenuBarPopup .menuPopupTopRight {
   background: url(images/corner.png) no-repeat -5px -36px;
   -background: url(images/corner_ie6.png) no-repeat -5px -36px;
 }
-.gwt-MenuBarPopup .menuPopupBottomLeft {
+.dwt-MenuBarPopup .menuPopupBottomLeft {
   background: url(images/corner.png) no-repeat 0px -41px;
   -background: url(images/corner_ie6.png) no-repeat 0px -41px;
 }
-.gwt-MenuBarPopup .menuPopupBottomRight {
+.dwt-MenuBarPopup .menuPopupBottomRight {
   background: url(images/corner.png) no-repeat -5px -41px;
   -background: url(images/corner_ie6.png) no-repeat -5px -41px;
 }
-* html .gwt-MenuBarPopup .menuPopupTopLeftInner {
+* html .dwt-MenuBarPopup .menuPopupTopLeftInner {
   width: 5px;
   height: 5px;
   overflow: hidden;
 }
-* html .gwt-MenuBarPopup .menuPopupTopRightInner {
+* html .dwt-MenuBarPopup .menuPopupTopRightInner {
   width: 8px;
   height: 5px;
   overflow: hidden;
 }
-* html .gwt-MenuBarPopup .menuPopupBottomLeftInner {
+* html .dwt-MenuBarPopup .menuPopupBottomLeftInner {
   width: 5px;
   height: 8px;
   overflow: hidden;
 }
-* html .gwt-MenuBarPopup .menuPopupBottomRightInner {
+* html .dwt-MenuBarPopup .menuPopupBottomRightInner {
   width: 8px;
   height: 8px;
   overflow: hidden;
 }
 
-.gwt-PasswordTextBox {
+.dwt-PasswordTextBox {
   padding: 2px;
 }
-.gwt-PasswordTextBox-readonly {
+.dwt-PasswordTextBox-readonly {
   color: #888;
 }
 
-.gwt-PopupPanel {
+.dwt-PopupPanel {
   border: 3px solid #C3D9FF;
   padding: 3px;
   background: white;
 }
 
-.gwt-DecoratedPopupPanel .popupContent {
+.dwt-DecoratedPopupPanel .popupContent {
 }
-.gwt-DecoratedPopupPanel .popupMiddleCenter {
+.dwt-DecoratedPopupPanel .popupMiddleCenter {
   padding: 3px;
   background: #d0e4f6;
 }
-.gwt-DecoratedPopupPanel .popupTopCenter {
+.dwt-DecoratedPopupPanel .popupTopCenter {
   background: url(images/hborder.png) repeat-x;
 }
-.gwt-DecoratedPopupPanel .popupBottomCenter {
+.dwt-DecoratedPopupPanel .popupBottomCenter {
   background: url(images/hborder.png) repeat-x 0px -4px;
   -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
 }
-.gwt-DecoratedPopupPanel .popupMiddleLeft {
+.dwt-DecoratedPopupPanel .popupMiddleLeft {
   background: url(images/vborder.png) repeat-y;
 }
-.gwt-DecoratedPopupPanel .popupMiddleRight {
+.dwt-DecoratedPopupPanel .popupMiddleRight {
   background: url(images/vborder.png) repeat-y -4px 0px;
   -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
 }
-.gwt-DecoratedPopupPanel .popupTopLeftInner {
+.dwt-DecoratedPopupPanel .popupTopLeftInner {
   width: 5px;
   height: 5px;
   zoom: 1;
 }
-.gwt-DecoratedPopupPanel .popupTopRightInner {
+.dwt-DecoratedPopupPanel .popupTopRightInner {
   width: 8px;
   height: 5px;
   zoom: 1;
 }
-.gwt-DecoratedPopupPanel .popupBottomLeftInner {
+.dwt-DecoratedPopupPanel .popupBottomLeftInner {
   width: 5px;
   height: 8px;
   zoom: 1;
 }
-.gwt-DecoratedPopupPanel .popupBottomRightInner {
+.dwt-DecoratedPopupPanel .popupBottomRightInner {
   width: 8px;
   height: 8px;
   zoom: 1;
 }
-.gwt-DecoratedPopupPanel .popupTopLeft {
+.dwt-DecoratedPopupPanel .popupTopLeft {
   background: url(images/corner.png) no-repeat 0px -10px;
   -background: url(images/corner_ie6.png) no-repeat 0px -10px;
 }
-.gwt-DecoratedPopupPanel .popupTopRight {
+.dwt-DecoratedPopupPanel .popupTopRight {
   background: url(images/corner.png) no-repeat -5px -10px;
   -background: url(images/corner_ie6.png) no-repeat -5px -10px;
 }
-.gwt-DecoratedPopupPanel .popupBottomLeft {
+.dwt-DecoratedPopupPanel .popupBottomLeft {
   background: url(images/corner.png) no-repeat 0px -15px;
   -background: url(images/corner_ie6.png) no-repeat 0px -15px;
 }
-.gwt-DecoratedPopupPanel .popupBottomRight {
+.dwt-DecoratedPopupPanel .popupBottomRight {
   background: url(images/corner.png) no-repeat -5px -15px;
   -background: url(images/corner_ie6.png) no-repeat -5px -15px;
 }
-* html .gwt-DecoratedPopupPanel .popupTopLeftInner {
+* html .dwt-DecoratedPopupPanel .popupTopLeftInner {
   width: 5px;
   height: 5px;
   overflow: hidden;
 }
-* html .gwt-DecoratedPopupPanel .popupTopRightInner {
+* html .dwt-DecoratedPopupPanel .popupTopRightInner {
   width: 8px;
   height: 5px;
   overflow: hidden;
 }
-* html .gwt-DecoratedPopupPanel .popupBottomLeftInner {
+* html .dwt-DecoratedPopupPanel .popupBottomLeftInner {
   width: 5px;
   height: 8px;
   overflow: hidden;
 }
-* html .gwt-DecoratedPopupPanel .popupBottomRightInner {
+* html .dwt-DecoratedPopupPanel .popupBottomRightInner {
   width: 8px;
   height: 8px;
   overflow: hidden;
 }
 
-.gwt-PopupPanelGlass {
+.dwt-PopupPanelGlass {
   background-color: #000;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
 
-.gwt-PushButton-up,
-.gwt-PushButton-up-hovering,
-.gwt-PushButton-up-disabled,
-.gwt-PushButton-down,
-.gwt-PushButton-down-hovering,
-.gwt-PushButton-down-disabled {
+.dwt-PushButton-up,
+.dwt-PushButton-up-hovering,
+.dwt-PushButton-up-disabled,
+.dwt-PushButton-down,
+.dwt-PushButton-down-hovering,
+.dwt-PushButton-down-disabled {
   margin: 0;
   text-decoration: none;
   background: url("images/hborder.png") repeat-x 0px -27px;
 }
-.gwt-PushButton-up,
-.gwt-PushButton-up-hovering,
-.gwt-PushButton-up-disabled {
+.dwt-PushButton-up,
+.dwt-PushButton-up-hovering,
+.dwt-PushButton-up-disabled {
   padding: 3px 5px 3px 5px;
 }
-.gwt-PushButton-up {
+.dwt-PushButton-up {
   border: 1px outset #ccc;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-PushButton-up-hovering {
+.dwt-PushButton-up-hovering {
   border: 1px outset;
   border-color: #9cf #69e #69e #7af;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-PushButton-up-disabled {
+.dwt-PushButton-up-disabled {
   border: 1px outset #ccc;
   cursor: default;
   opacity: .5;
   filter: alpha(opacity=40);
   zoom: 1;
 }
-.gwt-PushButton-down,
-.gwt-PushButton-down-hovering,
-.gwt-PushButton-down-disabled {
+.dwt-PushButton-down,
+.dwt-PushButton-down-hovering,
+.dwt-PushButton-down-disabled {
   padding: 4px 4px 2px 6px;
 }
-.gwt-PushButton-down {
+.dwt-PushButton-down {
   border: 1px inset #666;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-PushButton-down-hovering {
+.dwt-PushButton-down-hovering {
   border: 1px inset;
   border-color: #9cf #69e #69e #7af;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-PushButton-down-disabled {
+.dwt-PushButton-down-disabled {
   border: 1px outset #ccc;
   cursor: default;
   opacity: 0.5;
@@ -548,76 +548,76 @@ a, a:visited, a:hover {
   zoom: 1;
 }
 
-.gwt-RadioButton {
+.dwt-RadioButton {
 }
-.gwt-RadioButton-disabled {
+.dwt-RadioButton-disabled {
   color: #888;
 }
 
-.gwt-RichTextArea {
+.dwt-RichTextArea {
 }
 .hasRichTextToolbar {
   border: 0px;
 }
-.gwt-RichTextToolbar {
+.dwt-RichTextToolbar {
   background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
   border-bottom: 1px solid #BBBBBB;
   padding: 3px;
   margin: 0px;
 }
-.gwt-RichTextToolbar .gwt-PushButton-up {
+.dwt-RichTextToolbar .dwt-PushButton-up {
   padding: 0px 1px 0px 0px;
   margin-right: 4px;
   margin-bottom: 4px;
-  border-width: 1px; 
+  border-width: 1px;
 }
-.gwt-RichTextToolbar .gwt-PushButton-up-hovering {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 1px 0px 0px;
-  border-width: 1px; 
-}
-.gwt-RichTextToolbar .gwt-PushButton-down {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 0px 0px 1px;
-  border-width: 1px; 
-}
-.gwt-RichTextToolbar .gwt-PushButton-down-hovering {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 0px 0px 1px;
-  border-width: 1px; 
-}
-.gwt-RichTextToolbar .gwt-ToggleButton-up {
+.dwt-RichTextToolbar .dwt-PushButton-up-hovering {
   margin-right: 4px;
   margin-bottom: 4px;
   padding: 0px 1px 0px 0px;
   border-width: 1px;
 }
-.gwt-RichTextToolbar .gwt-ToggleButton-up-hovering {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 1px 0px 0px;
-  border-width: 1px;
-}
-.gwt-RichTextToolbar .gwt-ToggleButton-down {
+.dwt-RichTextToolbar .dwt-PushButton-down {
   margin-right: 4px;
   margin-bottom: 4px;
   padding: 0px 0px 0px 1px;
   border-width: 1px;
 }
-.gwt-RichTextToolbar .gwt-ToggleButton-down-hovering {
+.dwt-RichTextToolbar .dwt-PushButton-down-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-up {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-up-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-down {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-down-hovering {
   margin-right: 4px;
   margin-bottom: 4px;
   padding: 0px 0px 0px 1px;
   border-width: 1px;
 }
 
-.gwt-StackPanel {
+.dwt-StackPanel {
   border-bottom: 1px solid #bbbbbb;
 }
-.gwt-StackPanel .gwt-StackPanelItem {
+.dwt-StackPanel .dwt-StackPanelItem {
   cursor: pointer;
   cursor: hand;
   font-weight: bold;
@@ -627,180 +627,180 @@ a, a:visited, a:hover {
   border-bottom: 0px;
   background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
 }
-.gwt-StackPanel .gwt-StackPanelContent {
+.dwt-StackPanel .dwt-StackPanelContent {
   border: 1px solid #bbbbbb;
   border-bottom: 0px;
   background: white;
   padding: 2px 2px 10px 5px;
 }
 
-.gwt-DecoratedStackPanel {
+.dwt-DecoratedStackPanel {
   border-bottom: 1px solid #bbbbbb;
 }
-.gwt-DecoratedStackPanel .gwt-StackPanelContent {
+.dwt-DecoratedStackPanel .dwt-StackPanelContent {
   border: 1px solid #bbbbbb;
   border-bottom: 0px;
   background: white;
   padding: 2px 2px 10px 5px;
 }
-.gwt-DecoratedStackPanel .gwt-StackPanelItem {
+.dwt-DecoratedStackPanel .dwt-StackPanelItem {
   cursor: pointer;
   cursor: hand;
 }
-.gwt-DecoratedStackPanel .stackItemTopLeft,
-.gwt-DecoratedStackPanel .stackItemTopRight {
+.dwt-DecoratedStackPanel .stackItemTopLeft,
+.dwt-DecoratedStackPanel .stackItemTopRight {
   height: 6px;
   width: 6px;
   zoom: 1;
 }
-.gwt-DecoratedStackPanel .stackItemTopLeft {
+.dwt-DecoratedStackPanel .stackItemTopLeft {
   border-left: 1px solid #bbbbbb;
   background: #d3def6 url(images/corner.png) no-repeat 0px -49px;
   -background: #d3def6 url(images/corner_ie6.png) no-repeat 0px -49px;
 }
-.gwt-DecoratedStackPanel .stackItemTopRight {
+.dwt-DecoratedStackPanel .stackItemTopRight {
   border-right: 1px solid #bbbbbb;
   background: #d3def6 url(images/corner.png) no-repeat -6px -49px;
   -background: #d3def6 url(images/corner_ie6.png) no-repeat -6px -49px;
 }
-.gwt-DecoratedStackPanel .stackItemTopLeftInner,
-.gwt-DecoratedStackPanel .stackItemTopRightInner {
+.dwt-DecoratedStackPanel .stackItemTopLeftInner,
+.dwt-DecoratedStackPanel .stackItemTopRightInner {
   width: 1px;
   height: 1px;
 }
-* html .gwt-DecoratedStackPanel .stackItemTopLeftInner,
-* html .gwt-DecoratedStackPanel .stackItemTopRightInner {
+* html .dwt-DecoratedStackPanel .stackItemTopLeftInner,
+* html .dwt-DecoratedStackPanel .stackItemTopRightInner {
   width: 6px;
   height: 6px;
   overflow: hidden;
 }
-.gwt-DecoratedStackPanel .stackItemTopCenter {
+.dwt-DecoratedStackPanel .stackItemTopCenter {
   background: url(images/hborder.png) 0px -21px repeat-x;
 }
-.gwt-DecoratedStackPanel .stackItemMiddleLeft {
+.dwt-DecoratedStackPanel .stackItemMiddleLeft {
   background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
   border-left: 1px solid #bbbbbb;
 }
-.gwt-DecoratedStackPanel .stackItemMiddleLeftInner,
-.gwt-DecoratedStackPanel .stackItemMiddleRightInner {
+.dwt-DecoratedStackPanel .stackItemMiddleLeftInner,
+.dwt-DecoratedStackPanel .stackItemMiddleRightInner {
   width: 1px;
   height: 1px;
 }
-.gwt-DecoratedStackPanel .stackItemMiddleRight {
+.dwt-DecoratedStackPanel .stackItemMiddleRight {
   background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
   border-right: 1px solid #bbbbbb;
 }
-.gwt-DecoratedStackPanel .stackItemMiddleCenter {
+.dwt-DecoratedStackPanel .stackItemMiddleCenter {
   font-weight: bold;
   font-size: 1.3em;
   background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
 }
-.gwt-DecoratedStackPanel .gwt-StackPanelItem-first .stackItemTopRight,
-.gwt-DecoratedStackPanel .gwt-StackPanelItem-first .stackItemTopLeft {
+.dwt-DecoratedStackPanel .dwt-StackPanelItem-first .stackItemTopRight,
+.dwt-DecoratedStackPanel .dwt-StackPanelItem-first .stackItemTopLeft {
   border: 0px;
   background-color: white;
 }
-.gwt-DecoratedStackPanel .gwt-StackPanelItem-below-selected .stackItemTopLeft,
-.gwt-DecoratedStackPanel .gwt-StackPanelItem-below-selected .stackItemTopRight {
+.dwt-DecoratedStackPanel .dwt-StackPanelItem-below-selected .stackItemTopLeft,
+.dwt-DecoratedStackPanel .dwt-StackPanelItem-below-selected .stackItemTopRight {
   background-color: white;
 }
 
-.gwt-SuggestBox {
+.dwt-SuggestBox {
   padding: 2px;
 }
-.gwt-SuggestBoxPopup {
+.dwt-SuggestBoxPopup {
   margin-left: 3px;
 }
-.gwt-SuggestBoxPopup .item {
+.dwt-SuggestBoxPopup .item {
   padding: 2px 6px;
   color: #424242;
   cursor: default;
 }
-.gwt-SuggestBoxPopup .item-selected {
+.dwt-SuggestBoxPopup .item-selected {
   background: #b7d6f6;
 }
-.gwt-SuggestBoxPopup .suggestPopupContent {
+.dwt-SuggestBoxPopup .suggestPopupContent {
   background: white;
 }
-.gwt-SuggestBoxPopup .suggestPopupTopCenter {
+.dwt-SuggestBoxPopup .suggestPopupTopCenter {
   background: url(images/hborder.png) repeat-x;
 }
-.gwt-SuggestBoxPopup .suggestPopupBottomCenter {
+.dwt-SuggestBoxPopup .suggestPopupBottomCenter {
   background: url(images/hborder.png) repeat-x 0px -4px;
   -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
 }
-.gwt-SuggestBoxPopup .suggestPopupMiddleLeft {
+.dwt-SuggestBoxPopup .suggestPopupMiddleLeft {
   background: url(images/vborder.png) repeat-y;
 }
-.gwt-SuggestBoxPopup .suggestPopupMiddleRight {
+.dwt-SuggestBoxPopup .suggestPopupMiddleRight {
   background: url(images/vborder.png) repeat-y -4px 0px;
   -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
 }
-.gwt-SuggestBoxPopup .suggestPopupTopLeftInner {
+.dwt-SuggestBoxPopup .suggestPopupTopLeftInner {
   width: 5px;
   height: 5px;
-  zoom: 1;  
+  zoom: 1;
 }
-.gwt-SuggestBoxPopup .suggestPopupTopRightInner {
+.dwt-SuggestBoxPopup .suggestPopupTopRightInner {
   width: 8px;
   height: 5px;
   zoom: 1;
 }
-.gwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
+.dwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
   width: 5px;
   height: 8px;
   zoom: 1;
 }
-.gwt-SuggestBoxPopup .suggestPopupBottomRightInner {
+.dwt-SuggestBoxPopup .suggestPopupBottomRightInner {
   width: 8px;
   height: 8px;
   zoom: 1;
 }
-.gwt-SuggestBoxPopup .suggestPopupTopLeft {
+.dwt-SuggestBoxPopup .suggestPopupTopLeft {
   background: url(images/corner.png) no-repeat 0px -23px;
   -background: url(images/corner_ie6.png) no-repeat 0px -23px;
 }
-.gwt-SuggestBoxPopup .suggestPopupTopRight {
+.dwt-SuggestBoxPopup .suggestPopupTopRight {
   background: url(images/corner.png) no-repeat -5px -23px;
   -background: url(images/corner_ie6.png) no-repeat -5px -23px;
 }
-.gwt-SuggestBoxPopup .suggestPopupBottomLeft {
+.dwt-SuggestBoxPopup .suggestPopupBottomLeft {
   background: url(images/corner.png) no-repeat 0px -28px;
   -background: url(images/corner_ie6.png) no-repeat 0px -28px;
 }
-.gwt-SuggestBoxPopup .suggestPopupBottomRight {
+.dwt-SuggestBoxPopup .suggestPopupBottomRight {
   background: url(images/corner.png) no-repeat -5px -28px;
   -background: url(images/corner_ie6.png) no-repeat -5px -28px;
 }
-* html .gwt-SuggestBoxPopup .suggestPopupTopLeftInner {
+* html .dwt-SuggestBoxPopup .suggestPopupTopLeftInner {
   width: 5px;
   height: 5px;
   overflow: hidden;
 }
-* html .gwt-SuggestBoxPopup .suggestPopupTopRightInner {
+* html .dwt-SuggestBoxPopup .suggestPopupTopRightInner {
   width: 8px;
   height: 5px;
   overflow: hidden;
 }
-* html .gwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
+* html .dwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
   width: 5px;
   height: 8px;
   overflow: hidden;
 }
-* html .gwt-SuggestBoxPopup .suggestPopupBottomRightInner {
+* html .dwt-SuggestBoxPopup .suggestPopupBottomRightInner {
   width: 8px;
   height: 8px;
   overflow: hidden;
 }
 
-.gwt-TabBar {
+.dwt-TabBar {
 }
-.gwt-TabBar .gwt-TabBarFirst {
+.dwt-TabBar .dwt-TabBarFirst {
   width: 5px;  /* first tab distance from the left */
 }
-.gwt-TabBar .gwt-TabBarRest {
+.dwt-TabBar .dwt-TabBarRest {
 }
-.gwt-TabBar .gwt-TabBarItem {
+.dwt-TabBar .dwt-TabBarItem {
   margin-left: 6px;
   padding: 3px 6px 3px 6px;
   cursor: pointer;
@@ -810,17 +810,17 @@ a, a:visited, a:hover {
   text-align: center;
   background: #d0e4f6;
 }
-.gwt-TabBar .gwt-TabBarItem-selected {
+.dwt-TabBar .dwt-TabBarItem-selected {
   cursor: default;
   background: #92c1f0;
-} 
-.gwt-TabBar .gwt-TabBarItem-disabled {
+}
+.dwt-TabBar .dwt-TabBarItem-disabled {
   cursor: default;
   color: #999999;
 }
-.gwt-TabPanel {
+.dwt-TabPanel {
 }
-.gwt-TabPanelBottom {
+.dwt-TabPanelBottom {
   border-color: #92c1f0;
   border-style: solid;
   border-width: 3px 2px 2px;
@@ -828,57 +828,57 @@ a, a:visited, a:hover {
   padding: 6px;
 }
 
-.gwt-DecoratedTabBar {
+.dwt-DecoratedTabBar {
 }
-.gwt-DecoratedTabBar .gwt-TabBarFirst {
+.dwt-DecoratedTabBar .dwt-TabBarFirst {
   width: 5px;  /* first tab distance from the left */
 }
-.gwt-DecoratedTabBar .gwt-TabBarRest {
+.dwt-DecoratedTabBar .dwt-TabBarRest {
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem {
+.dwt-DecoratedTabBar .dwt-TabBarItem {
   border-collapse: collapse;
   margin-left: 6px;
 }
-.gwt-DecoratedTabBar .tabTopCenter {
+.dwt-DecoratedTabBar .tabTopCenter {
   padding: 0px;
   background: #d0e4f6;
 }
-.gwt-DecoratedTabBar .tabTopLeft,
-.gwt-DecoratedTabBar .tabTopRight {
+.dwt-DecoratedTabBar .tabTopLeft,
+.dwt-DecoratedTabBar .tabTopRight {
   padding: 0px;
   zoom: 1;
 }
-.gwt-DecoratedTabBar .tabTopLeftInner,
-.gwt-DecoratedTabBar .tabTopRightInner {
+.dwt-DecoratedTabBar .tabTopLeftInner,
+.dwt-DecoratedTabBar .tabTopRightInner {
   width: 6px;
   height: 6px;
 }
-.gwt-DecoratedTabBar .tabTopLeft {
+.dwt-DecoratedTabBar .tabTopLeft {
   background: url(images/corner.png) no-repeat 0px -55px;
   -background: url(images/corner_ie6.png) no-repeat 0px -55px;
 }
-.gwt-DecoratedTabBar .tabTopRight {
+.dwt-DecoratedTabBar .tabTopRight {
   background: url(images/corner.png) no-repeat -6px -55px;
   -background: url(images/corner_ie6.png) no-repeat -6px -55px;
 }
-* html .gwt-DecoratedTabBar .tabTopLeftInner,
-* html .gwt-DecoratedTabBar .tabTopRightInner {
+* html .dwt-DecoratedTabBar .tabTopLeftInner,
+* html .dwt-DecoratedTabBar .tabTopRightInner {
   width: 6px;
   height: 6px;
   overflow: hidden;
 }
-.gwt-DecoratedTabBar .tabMiddleLeft,
-.gwt-DecoratedTabBar .tabMiddleRight {
+.dwt-DecoratedTabBar .tabMiddleLeft,
+.dwt-DecoratedTabBar .tabMiddleRight {
   width: 6px;
   padding: 0px;
   background: #d0e4f6;
 }
-.gwt-DecoratedTabBar .tabMiddleLeftInner,
-.gwt-DecoratedTabBar .tabMiddleRightInner {
+.dwt-DecoratedTabBar .tabMiddleLeftInner,
+.dwt-DecoratedTabBar .tabMiddleRightInner {
   width: 1px;
   height: 1px;
 }
-.gwt-DecoratedTabBar .tabMiddleCenter {
+.dwt-DecoratedTabBar .tabMiddleCenter {
   padding: 0px 4px 2px 4px;
   cursor: pointer;
   cursor: hand;
@@ -887,94 +887,94 @@ a, a:visited, a:hover {
   text-align: center;
   background: #d0e4f6;
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopCenter {
   background: #92c1f0;
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopLeft {
   background-position: 0px -61px;
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopRight {
   background-position: -6px -61px;
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
-.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleLeft,
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleRight {
   background: #92c1f0;
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleCenter {
   cursor: default;
   background: #92c1f0;
 }
-.gwt-DecoratedTabBar .gwt-TabBarItem-disabled .tabMiddleCenter {
+.dwt-DecoratedTabBar .dwt-TabBarItem-disabled .tabMiddleCenter {
   cursor: default;
   color: #999999;
 }
 
-.gwt-TextArea {
+.dwt-TextArea {
   padding: 2px;
 }
-.gwt-TextArea-readonly {
+.dwt-TextArea-readonly {
   color: #888;
 }
 
-.gwt-TextBox {
+.dwt-TextBox {
   padding: 2px;
 }
-.gwt-TextBox-readonly {
+.dwt-TextBox-readonly {
   color: #888;
 }
 
-.gwt-ToggleButton-up,
-.gwt-ToggleButton-up-hovering,
-.gwt-ToggleButton-up-disabled,
-.gwt-ToggleButton-down,
-.gwt-ToggleButton-down-hovering,
-.gwt-ToggleButton-down-disabled {
+.dwt-ToggleButton-up,
+.dwt-ToggleButton-up-hovering,
+.dwt-ToggleButton-up-disabled,
+.dwt-ToggleButton-down,
+.dwt-ToggleButton-down-hovering,
+.dwt-ToggleButton-down-disabled {
   margin: 0;
   text-decoration: none;
   background: url("images/hborder.png") repeat-x 0px -27px;
 }
-.gwt-ToggleButton-up,
-.gwt-ToggleButton-up-hovering,
-.gwt-ToggleButton-up-disabled {
+.dwt-ToggleButton-up,
+.dwt-ToggleButton-up-hovering,
+.dwt-ToggleButton-up-disabled {
   padding: 3px 5px 3px 5px;
 }
-.gwt-ToggleButton-up {
+.dwt-ToggleButton-up {
   border: 1px outset #ccc;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-ToggleButton-up-hovering {
+.dwt-ToggleButton-up-hovering {
   border: 1px outset;
   border-color: #9cf #69e #69e #7af;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-ToggleButton-up-disabled {
+.dwt-ToggleButton-up-disabled {
   border: 1px outset #ccc;
   cursor: default;
   opacity: .5;
   zoom: 1;
   filter: alpha(opacity=40);
 }
-.gwt-ToggleButton-down,
-.gwt-ToggleButton-down-hovering,
-.gwt-ToggleButton-down-disabled {
+.dwt-ToggleButton-down,
+.dwt-ToggleButton-down-hovering,
+.dwt-ToggleButton-down-disabled {
   padding: 4px 4px 2px 6px;
 }
-.gwt-ToggleButton-down {
+.dwt-ToggleButton-down {
   background-position: 0 -513px;
   border: 1px inset #ccc;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-ToggleButton-down-hovering {
+.dwt-ToggleButton-down-hovering {
   background-position: 0 -513px;
   border: 1px inset;
   border-color: #9cf #69e #69e #7af;
   cursor: pointer;
   cursor: hand;
 }
-.gwt-ToggleButton-down-disabled {
+.dwt-ToggleButton-down-disabled {
   background-position: 0 -513px;
   border: 1px inset #ccc;
   cursor: default;
@@ -983,26 +983,26 @@ a, a:visited, a:hover {
   filter: alpha(opacity=40);
 }
 
-.gwt-Tree .gwt-TreeItem {
+.dwt-Tree .dwt-TreeItem {
   padding: 1px 0px;
   margin: 0px;
   white-space: nowrap;
   cursor: hand;
   cursor: pointer;
 }
-.gwt-Tree .gwt-TreeItem-selected {
+.dwt-Tree .dwt-TreeItem-selected {
   background: #93c2f1 url(images/hborder.png) repeat-x 0px -1463px;
 }
-.gwt-TreeItem .gwt-RadioButton input,
-.gwt-TreeItem .gwt-CheckBox input {
+.dwt-TreeItem .dwt-RadioButton input,
+.dwt-TreeItem .dwt-CheckBox input {
   margin-left: 0px;
 }
-* html .gwt-TreeItem .gwt-RadioButton input,
-* html .gwt-TreeItem .gwt-CheckBox input {
+* html .dwt-TreeItem .dwt-RadioButton input,
+* html .dwt-TreeItem .dwt-CheckBox input {
   margin-left: -4px;
 }
 
-.gwt-DateBox input {
+.dwt-DateBox input {
   width: 8em;
 }
 .dateBoxFormatError {
@@ -1011,11 +1011,11 @@ a, a:visited, a:hover {
 .dateBoxPopup {
 }
 
-.gwt-DatePicker {
+.dwt-DatePicker {
   border: 1px solid #A2BBDD;
   cursor: default;
 }
-.gwt-DatePicker td,
+.dwt-DatePicker td,
 .datePickerMonthSelector td:focus {
   outline: none
 }
@@ -1087,10 +1087,10 @@ td.datePickerMonth {
   padding: 0px 4px;
 }
 
-.gwt-StackLayoutPanel {
+.dwt-StackLayoutPanel {
   border-bottom: 1px solid #bbbbbb;
 }
-.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
+.dwt-StackLayoutPanel .dwt-StackLayoutPanelHeader {
   cursor: pointer;
   cursor: hand;
   font-weight: bold;
@@ -1100,33 +1100,33 @@ td.datePickerMonth {
   border-bottom: 0px;
   background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
 }
-.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader-hovering {
+.dwt-StackLayoutPanel .dwt-StackLayoutPanelHeader-hovering {
   background: #d3def6 url(images/hborder.png) repeat-x 0px -1464px;
 }
-.gwt-StackLayoutPanel .gwt-StackLayoutPanelContent {
+.dwt-StackLayoutPanel .dwt-StackLayoutPanelContent {
   border: 1px solid #bbbbbb;
   border-bottom: 0px;
   background: white;
   padding: 2px 2px 10px 5px;
 }
 
-.gwt-TabLayoutPanel {
+.dwt-TabLayoutPanel {
 }
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelTabs {
 }
-.gwt-TabLayoutPanelContentContainer {
+.dwt-TabLayoutPanelContentContainer {
   border-color: #92c1f0;
   border-style: solid;
   border-width: 2px 1px 1px;
 }
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelContent {
   border-color: #92c1f0;
   border-style: solid;
   border-width: 1px;
   overflow: hidden;
   padding: 6px;
 }
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelTab {
   margin-left: 6px;
   padding: 3px 6px 3px 6px;
   cursor: pointer;
@@ -1136,17 +1136,17 @@ td.datePickerMonth {
   text-align: center;
   background: #d0e4f6;
 }
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelTab-selected {
   cursor: default;
   background: #92c1f0;
 }
 
-.gwt-SplitLayoutPanel-HDragger {
+.dwt-SplitLayoutPanel-HDragger {
   background: #d0e4f6 url(images/splitPanelThumb.png) center center no-repeat;
   cursor: col-resize;
 }
 
-.gwt-SplitLayoutPanel-VDragger {
+.dwt-SplitLayoutPanel-VDragger {
   background: #d0e4f6 url(images/splitPanelThumb.png) center center no-repeat;
   cursor: row-resize;
 }

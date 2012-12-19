@@ -5,17 +5,17 @@ part of dart_web_toolkit_ui;
 
 /**
  * A standard push-button widget.
- * 
+ *
  * <p>
  * <img class='gallery' src='doc-files/Button.png'/>
  * </p>
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <dl>
  * <dt>.gwt-Button</dt>
  * <dd>the outer element</dd>
  * </dl>
- * 
+ *
  * <p>
  * <h3>Example</h3>
  * {@example com.google.gwt.examples.ButtonExample}
@@ -25,11 +25,11 @@ class Button extends ButtonBase {
 
   /**
    * Creates a Button widget that wraps an existing &lt;button&gt; element.
-   * 
+   *
    * This element must already be attached to the document. If the element is
    * removed from the document, you must call
    * {@link RootPanel#detachNow(Widget)}.
-   * 
+   *
    * @param element the element to be wrapped
    */
   factory Button.wrap(dart_html.Element element) {
@@ -44,15 +44,15 @@ class Button extends ButtonBase {
 
     return button;
   }
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be a &lt;button&gt; element.
-   * 
+   *
    * @param element the element to be used
    */
   Button.fromElement(dart_html.Element element) : super(element);
-  
+
   /**
    * Creates a button with the given HTML caption and click listener.
    *
@@ -60,7 +60,7 @@ class Button extends ButtonBase {
    * @param handler the click handler
    */
   Button([String html = null, ClickHandler handler = null]) : super(new dart_html.ButtonElement()) {
-    //setStyleName("gwt-Button");
+    clearAndSetStyleName("dwt-Button");
     if (html != null) {
       this.html = html;
     }
@@ -68,10 +68,10 @@ class Button extends ButtonBase {
       addClickHandler(handler);
     }
   }
-  
+
   /**
    * Get the underlying button element.
-   * 
+   *
    * @return the {@link ButtonElement}
    */
   dart_html.ButtonElement getButtonElement() {

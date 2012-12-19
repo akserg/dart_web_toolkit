@@ -5,6 +5,7 @@ DartMob Changes
 
 * Fixed 'extractLengthValue' method in UiObject, and small bugs in Timer.
 * Removed 'empty' factory constructor from Anchor. HeaderPanel added to example.
+* Reviewed Style implementation in UiObject. Added styles to Anchor, Button, ResetButton, SubmitButton.
 
 **December 18, 2012
 

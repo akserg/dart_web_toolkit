@@ -13,6 +13,12 @@ abstract class UiObject implements HasVisibility {
   static String EMPTY_STYLENAME_MSG = "Style names cannot be empty";
   static String NULL_HANDLE_MSG = "Null widget handle. If you are creating a composite, ensure that initWidget() has been called.";
 
+  /**
+   * Stores a regular expression object to extract float values from the
+   * leading portion of an input string.
+   */
+  static RegExp numberRegex = new RegExp("^(\\s*[+-]?((\\d+\\.?\\d*)|(\\.\\d+))([eE][+-]?\\d+)?)");
+
   dart_html.Element element;
 
   //**************
@@ -166,7 +172,8 @@ abstract class UiObject implements HasVisibility {
    * @return the objects's space-separated style names
    */
   static String getElementStyleName(dart_html.Element elem) {
-    return Dom.getElementProperty(elem, "className");
+    //return Dom.getElementProperty(elem, "className");
+    return elem.$dom_className;
   }
 
   /**
@@ -176,7 +183,8 @@ abstract class UiObject implements HasVisibility {
    * @param styleName the new style name
    */
   static void setElementStyleName(dart_html.Element elem, String styleName) {
-    Dom.setElementProperty(elem, "className", styleName);
+    //Dom.setElementProperty(elem, "className", styleName);
+    elem.$dom_className = styleName;
   }
 
 
@@ -192,10 +200,18 @@ abstract class UiObject implements HasVisibility {
     // The primary style name is always the first token of the full CSS class
     // name. There can be no leading whitespace in the class name, so it's not
     // necessary to trim() it.
-    int spaceIdx = fullClassName.indexOf(' ');
-    if (spaceIdx >= 0) {
-      return fullClassName.substring(0, spaceIdx);
-    }
+//    int spaceIdx = fullClassName.indexOf(' ');
+//    if (spaceIdx >= 0) {
+//      return fullClassName.substring(0, spaceIdx);
+//    }
+
+    // The primary style name starting from 'dwt' so find it in the fullClassName
+    fullClassName.split(" ").forEach((String className) {
+      if (className.startsWith("dwt")) {
+        return className;
+      }
+    });
+
     return fullClassName;
   }
 
@@ -219,7 +235,7 @@ abstract class UiObject implements HasVisibility {
       throw new Exception(EMPTY_STYLENAME_MSG);
     }
 
-    updatePrimaryAndDependentStyleNames(elem, style);
+    _updatePrimaryAndDependentStyleNames(elem, style);
   }
 
   /**
@@ -254,15 +270,27 @@ abstract class UiObject implements HasVisibility {
   /**
    * Replaces all instances of the primary style name with newPrimaryStyleName.
    */
-  static void updatePrimaryAndDependentStyleNames(dart_html.Element elem,
+  static void _updatePrimaryAndDependentStyleNames(dart_html.Element elem,
       String newPrimaryStyle) {
     List<String> classes = new List<String>.from(elem.classes); //.className.split(/\s+/);
     if (classes.length == 0) {
       return;
     }
 
-    var oldPrimaryStyle = classes[0];
-    var oldPrimaryStyleLen = oldPrimaryStyle.length;
+    // Go through all class names and find one starting from 'dwt'
+    // and move it to first position
+    for (int i = 0; i < classes.length; i++) {
+      String className = classes[i];
+      if (className.startsWith("dwt")) {
+        String tmp = classes[0];
+        classes[0] = className;
+        classes[i] = tmp;
+        break;
+      }
+    }
+
+    String oldPrimaryStyle = classes[0];
+    int oldPrimaryStyleLen = oldPrimaryStyle.length;
 
     classes[0] = newPrimaryStyle;
     for (var i = 1, n = classes.length; i < n; i++) {
@@ -473,7 +501,7 @@ abstract class UiObject implements HasVisibility {
    * @param style the new style name
    * @see #setStylePrimaryName(String)
    */
-  void setStyleNames(String style) {
+  void clearAndSetStyleName(String style) {
     setElementStyleName(getStyleElement(), style);
   }
 
@@ -523,13 +551,11 @@ abstract class UiObject implements HasVisibility {
     if (s == "auto" || s == "inherit" || s == "") {
       return 0.0;
     } else {
-      // numberRegex is similar to java.lang.Number.floatRegex, but divides
-      // the string into a leading numeric portion followed by an arbitrary
-      // portion.
-      RegExp re = new RegExp("^(\\s*[+-]?((\\d+\\.?\\d*)|(\\.\\d+))([eE][+-]?\\d+)?)");
-      if(re.hasMatch(s)) {
-        // Extract the leading numeric portion of s
-        s = re.firstMatch(s)[0];
+      // numberRegex divides the string into a leading numeric portion
+      // followed by an arbitrary portion.
+      if(numberRegex.hasMatch(s)) {
+        // Extract the leading numeric portion of string
+        s = numberRegex.firstMatch(s)[0];
       }
       return double.parse(s);
     }

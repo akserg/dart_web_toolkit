@@ -23,7 +23,7 @@ class Anchor extends FocusWidget implements HasDirection, HasName, HasHtml, HasW
    */
   Anchor([bool useDefaultHref = false]) {
     setElement(new dart_html.AnchorElement());
-    //setStyleName("gwt-Anchor");
+    clearAndSetStyleName("dwt-Anchor");
     if (useDefaultHref) {
       href = DEFAULT_HREF;
     }

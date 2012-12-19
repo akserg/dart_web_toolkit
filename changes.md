@@ -10,6 +10,7 @@ DartMob Changes
 * Veriable 'element' is private in Widget now. Changed Anchor and FocusManager.
 * Implemented CheckBox widget.
 * CheckBox example.
+* Implemented RadioButton widget.
 
 **December 18, 2012
 

@@ -53,6 +53,7 @@ part 'src/ui/panel_iterator.dart';
 part 'src/ui/impl/resize_layout_panel_impl.dart';
 part 'src/ui/finite_widget_iterator.dart';
 part 'src/ui/check_box.dart';
+part 'src/ui/radio_button.dart';
 
 part 'src/ui/has_enabled.dart';
 part 'src/ui/has_focus.dart';

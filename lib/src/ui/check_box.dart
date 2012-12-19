@@ -66,7 +66,6 @@ class CheckBox extends ButtonBase implements HasName {
    */
   CheckBox.fromElement(dart_html.InputElement element) : super(new dart_html.SpanElement()) {
     assert(element != null);
-    assert(element.type == "checkbox");
     _initWidget(element);
   }
 
@@ -294,6 +293,13 @@ class CheckBox extends ButtonBase implements HasName {
     if (val != oldValue && fireEvents) {
       //ValueChangeEvent.fire(this, val);
     }
+  }
+
+  //*******
+  // Events
+  //*******
+  void ensureDomEventHandlers() {
+    // addClickHandler...
   }
 
   //*******

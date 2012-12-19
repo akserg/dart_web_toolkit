@@ -207,7 +207,7 @@ class RootPanel extends AbsolutePanel {
 //        detachWidgets();
 //      }
 //    });
-    dart_html.window.on.unload.add(fun(dart_html.Event event) {
+    dart_html.window.on.unload.add((dart_html.Event event) {
       detachWidgets();
     });
   }

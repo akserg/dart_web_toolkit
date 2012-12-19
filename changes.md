@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 19, 2012
+
+* Fixed 'extractLengthValue' method in UiObject, and small bugs in Timer.
+
 **December 18, 2012
 
 * Added resources and animation, layout, scheduler, command, accepts_one_widget, button, button_base, composite, finite_widget_iterator, has_one_widget, has_resize_handlers, header_panel, resize_layout_panel_impl, is_renderable, panel_iterator, provides_resize, requires_resize, reset_button, resize_event, resize_handler, resize_layout_panel, simple_panel, submit_button, util

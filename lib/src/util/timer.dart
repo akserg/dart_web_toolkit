@@ -38,14 +38,14 @@ class Timer {
 
   static int createInterval(Timer timer, int period) {
     return (dart_html.document.window as dart_html.LocalWindow).setInterval(
-      fun(){
+      (){
         timer.fire();
       }, period);
   }
 
   static int createTimeout(Timer timer, int delay) {
     return (dart_html.document.window as dart_html.LocalWindow).setTimeout(
-      fun(){
+      (){
         timer.fire();
       }, delay);
   }
@@ -60,7 +60,7 @@ class Timer {
 //        }
 //      }
 //    });
-    dart_html.window.on.unload.add(fun(dart_html.Event event) {
+    dart_html.window.on.unload.add((dart_html.Event event) {
         while (timers.length > 0) {
           timers[0].cancel();
         }

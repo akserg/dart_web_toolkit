@@ -12,7 +12,7 @@ abstract class UiObject implements HasVisibility {
 
   static String EMPTY_STYLENAME_MSG = "Style names cannot be empty";
   static String NULL_HANDLE_MSG = "Null widget handle. If you are creating a composite, ensure that initWidget() has been called.";
-  
+
   dart_html.Element element;
 
   //**************
@@ -96,15 +96,15 @@ abstract class UiObject implements HasVisibility {
   /**
    * Gets the title associated with this object. The title is the 'tool-tip'
    * displayed to users when they hover over the object.
-   * 
+   *
    * @return the object's title
    */
   String get title => Dom.getElementProperty(getElement(), "title");
-  
+
   /**
    * Sets the object's height. This height does not include decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param height the object's new height, in CSS units (e.g. "10px", "1em")
    */
   void setHeight(String height) {
@@ -113,11 +113,11 @@ abstract class UiObject implements HasVisibility {
     assert (extractLengthValue(height.trim().toLowerCase()) >= 0); // : "CSS heights should not be negative";
     Dom.setStyleAttribute(getElement(), "height", height);
   }
-  
+
   /**
    * Sets the object's width. This width does not include decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param width the object's new width, in CSS units (e.g. "10px", "1em")
    */
   void setWidth(String width) {
@@ -126,11 +126,11 @@ abstract class UiObject implements HasVisibility {
     assert (extractLengthValue(width.trim().toLowerCase()) >= 0); // : "CSS widths should not be negative";
     Dom.setStyleAttribute(getElement(), "width", width);
   }
-  
+
   /**
    * Sets the object's size, in pixels, not including decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param width the object's new width, in pixels
    * @param height the object's new height, in pixels
    */
@@ -146,7 +146,7 @@ abstract class UiObject implements HasVisibility {
   /**
    * Sets the object's size. This size does not include decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param width the object's new width, in CSS units (e.g. "10px", "1em")
    * @param height the object's new height, in CSS units (e.g. "10px", "1em")
    */
@@ -161,17 +161,17 @@ abstract class UiObject implements HasVisibility {
 
   /**
    * Gets all of the element's style names, as a space-separated list.
-   * 
+   *
    * @param elem the element whose style is to be retrieved
    * @return the objects's space-separated style names
    */
   static String getElementStyleName(dart_html.Element elem) {
     return Dom.getElementProperty(elem, "className");
   }
-  
+
   /**
    * Clears all of the element's style names and sets it to the given style.
-   * 
+   *
    * @param elem the element whose style is to be modified
    * @param styleName the new style name
    */
@@ -179,10 +179,10 @@ abstract class UiObject implements HasVisibility {
     Dom.setElementProperty(elem, "className", styleName);
   }
 
-  
+
   /**
    * Gets the element's primary style name.
-   * 
+   *
    * @param elem the element whose primary style name is to be retrieved
    * @return the element's primary style name
    */
@@ -198,11 +198,11 @@ abstract class UiObject implements HasVisibility {
     }
     return fullClassName;
   }
-  
+
   /**
    * Sets the element's primary style name and updates all dependent style
    * names.
-   * 
+   *
    * @param elem the element whose style is to be reset
    * @param style the new primary style name
    * @see #setStyleName(Element, String, boolean)
@@ -221,14 +221,14 @@ abstract class UiObject implements HasVisibility {
 
     updatePrimaryAndDependentStyleNames(elem, style);
   }
-  
+
   /**
    * This convenience method adds or removes a style name for a given element.
    * This method is typically used to add and remove secondary style names, but
    * it can be used to remove primary stylenames as well, but that is not
    * recommended. See {@link #setStyleName(String)} for a description of how
    * primary and secondary style names are used.
-   * 
+   *
    * @param elem the element whose style is to be modified
    * @param style the secondary style name to be added or removed
    * @param add <code>true</code> to add the given style, <code>false</code> to
@@ -275,18 +275,18 @@ abstract class UiObject implements HasVisibility {
     }
     elem.classes.clear();
     classes.forEach((String name) {
-      elem.classes.add(name); 
+      elem.classes.add(name);
     });
   }
-  
+
   /**
    * Adds a dependent style name by specifying the style name's suffix. The
    * actual form of the style name that is added is:
-   * 
+   *
    * <pre class="code">
    * getStylePrimaryName() + '-' + styleSuffix
    * </pre>
-   * 
+   *
    * @param styleSuffix the suffix of the dependent style to be added.
    * @see #setStylePrimaryName(String)
    * @see #removeStyleDependentName(String)
@@ -296,13 +296,13 @@ abstract class UiObject implements HasVisibility {
   void addStyleDependentName(String styleSuffix) {
     setStyleDependentName(styleSuffix, true);
   }
-  
+
   /**
    * Adds a secondary or dependent style name to this object. A secondary style
    * name is an additional style name that is, in HTML/CSS terms, included as a
    * space-separated token in the value of the CSS <code>class</code> attribute
    * for this object's root element.
-   * 
+   *
    * <p>
    * The most important use for this method is to add a special kind of
    * secondary style name called a <i>dependent style name</i>. To add a
@@ -312,32 +312,32 @@ abstract class UiObject implements HasVisibility {
    * the primary style name is <code>gwt-TextBox</code>. If the following method
    * is called as <code>obj.setReadOnly(true)</code>:
    * </p>
-   * 
+   *
    * <pre class="code">
    * public void setReadOnly(boolean readOnly) {
    *   isReadOnlyMode = readOnly;
-   *   
+   *
    *   // Create a dependent style name.
    *   String readOnlyStyle = "readonly";
-   *    
+   *
    *   if (readOnly) {
    *     addStyleDependentName(readOnlyStyle);
    *   } else {
    *     removeStyleDependentName(readOnlyStyle);
    *   }
    * }</pre>
-   * 
+   *
    * <p>
    * then both of the CSS style rules below will be applied:
    * </p>
-   * 
+   *
    * <pre class="code">
    *
    * // This rule is based on the primary style name and is always active.
    * .gwt-TextBox {
    *   font-size: 12pt;
    * }
-   * 
+   *
    * // This rule is based on a dependent style name that is only active
    * // when the widget has called addStyleName(getStylePrimaryName() +
    * // "-readonly").
@@ -356,35 +356,35 @@ abstract class UiObject implements HasVisibility {
    *   isReadOnlyMode = readOnly;
    *   setStyleDependentName("readonly", readOnly);
    * }</pre>
-   * 
+   *
    * <p>
    * Dependent style names are powerful because they are automatically updated
    * whenever the primary style name changes. Continuing with the example above,
    * if the primary style name changed due to the following call:
    * </p>
-   * 
+   *
    * <pre class="code">setStylePrimaryName("my-TextThingy");</pre>
-   * 
+   *
    * <p>
    * then the object would be re-associated with following style rules, removing
    * those that were shown above.
    * </p>
-   * 
+   *
    * <pre class="code">
    * .my-TextThingy {
    *   font-size: 20pt;
    * }
-   * 
+   *
    * .my-TextThingy-readonly {
    *   background-color: red;
    *   border: 2px solid yellow;
    * }</pre>
-   * 
+   *
    * <p>
    * Secondary style names that are not dependent style names are not
    * automatically updated when the primary style name changes.
    * </p>
-   * 
+   *
    * @param style the secondary style name to be added
    * @see UIObject
    * @see #removeStyleName(String)
@@ -392,22 +392,22 @@ abstract class UiObject implements HasVisibility {
   void addStyleName(String style) {
     setStyleName(style, true);
   }
-  
+
   /**
    * Gets all of the object's style names, as a space-separated list. If you
    * wish to retrieve only the primary style name, call
    * {@link #getStylePrimaryName()}.
-   * 
+   *
    * @return the objects's space-separated style names
    * @see #getStylePrimaryName()
    */
   String getStyleName() {
     return getElementStyleName(getStyleElement());
   }
-  
+
   /**
    * Removes a dependent style name by specifying the style name's suffix.
-   * 
+   *
    * @param styleSuffix the suffix of the dependent style to be removed
    * @see #setStylePrimaryName(Element, String)
    * @see #addStyleDependentName(String)
@@ -421,7 +421,7 @@ abstract class UiObject implements HasVisibility {
    * Removes a style name. This method is typically used to remove secondary
    * style names, but it can be used to remove primary stylenames as well. That
    * use is not recommended.
-   * 
+   *
    * @param style the secondary style name to be removed
    * @see #addStyleName(String)
    * @see #setStyleName(String, boolean)
@@ -429,15 +429,15 @@ abstract class UiObject implements HasVisibility {
   void removeStyleName(String style) {
     setStyleName(style, false);
   }
-  
+
   /**
    * Adds or removes a dependent style name by specifying the style name's
    * suffix. The actual form of the style name that is added is:
-   * 
+   *
    * <pre class="code">
    * getStylePrimaryName() + '-' + styleSuffix
    * </pre>
-   * 
+   *
    * @param styleSuffix the suffix of the dependent style to be added or removed
    * @param add <code>true</code> to add the given style, <code>false</code> to
    *          remove it
@@ -449,12 +449,12 @@ abstract class UiObject implements HasVisibility {
   void setStyleDependentName(String styleSuffix, bool add) {
     setStyleName(getStylePrimaryName().concat('-').concat(styleSuffix), add);
   }
-  
+
   /**
    * Adds or removes a style name. This method is typically used to remove
    * secondary style names, but it can be used to remove primary stylenames as
    * well. That use is not recommended.
-   * 
+   *
    * @param style the style name to be added or removed
    * @param add <code>true</code> to add the given style, <code>false</code> to
    *          remove it
@@ -464,22 +464,22 @@ abstract class UiObject implements HasVisibility {
   void setStyleName(String style, bool add) {
     manageElementStyleName(getStyleElement(), style, add);
   }
-  
+
   /**
    * Clears all of the object's style names and sets it to the given style. You
    * should normally use {@link #setStylePrimaryName(String)} unless you wish to
    * explicitly remove all existing styles.
-   * 
+   *
    * @param style the new style name
    * @see #setStylePrimaryName(String)
    */
   void setStyleNames(String style) {
     setElementStyleName(getStyleElement(), style);
   }
-  
+
   /**
    * Gets the primary style name associated with the object.
-   * 
+   *
    * @return the object's primary style name
    * @see #setStyleName(String)
    * @see #addStyleName(String)
@@ -488,10 +488,10 @@ abstract class UiObject implements HasVisibility {
   String getStylePrimaryName() {
     return getElementStylePrimaryName(getStyleElement());
   }
-  
+
   /**
    * Sets the object's primary style name and updates all dependent style names.
-   * 
+   *
    * @param style the new primary style name
    * @see #addStyleName(String)
    * @see #removeStyleName(String)
@@ -499,22 +499,22 @@ abstract class UiObject implements HasVisibility {
   void setStylePrimaryName(String style) {
     setElementStylePrimaryName(getStyleElement(), style);
   }
-  
+
   /**
    * Template method that returns the element to which style names will be
    * applied. By default it returns the root element, but this method may be
    * overridden to apply styles to a child element.
-   * 
+   *
    * @return the element to which style names will be applied
    */
   dart_html.Element getStyleElement() {
     return getElement();
   }
-  
+
   /**
    * Intended to be used to pull the value out of a CSS length. If the
    * value is "auto" or "inherit", 0 will be returned.
-   * 
+   *
    * @param s The CSS length string to extract
    * @return The leading numeric portion of <code>s</code>, or 0 if "auto" or
    *         "inherit" are passed in.
@@ -526,38 +526,39 @@ abstract class UiObject implements HasVisibility {
       // numberRegex is similar to java.lang.Number.floatRegex, but divides
       // the string into a leading numeric portion followed by an arbitrary
       // portion.
-      RegExp numberRegex = new RegExp("^(\s*[+-]?((\d+\.?\d*)|(\.\d+))([eE][+-]?\d+)?)(.*)");
-
-      // Extract the leading numeric portion of s
-      s = s.replaceFirst(numberRegex, "1");
+      RegExp re = new RegExp("^(\\s*[+-]?((\\d+\\.?\\d*)|(\\.\\d+))([eE][+-]?\\d+)?)");
+      if(re.hasMatch(s)) {
+        // Extract the leading numeric portion of s
+        s = re.firstMatch(s)[0];
+      }
       return double.parse(s);
     }
   }
-  
+
   /**
    * Gets the object's absolute left position in pixels, as measured from the
    * browser window's client area.
-   * 
+   *
    * @return the object's absolute left position
    */
   int getAbsoluteLeft() {
     return Dom.getAbsoluteLeft(getElement());
   }
-  
+
   /**
    * Gets the object's absolute top position in pixels, as measured from the
    * browser window's client area.
-   * 
+   *
    * @return the object's absolute top position
    */
   int getAbsoluteTop() {
     return Dom.getAbsoluteTop(getElement());
   }
-  
+
   /**
    * Gets the object's offset height in pixels. This is the total height of the
    * object, including decorations such as border and padding, but not margin.
-   * 
+   *
    * @return the object's offset height
    */
   int getOffsetHeight() {
@@ -567,7 +568,7 @@ abstract class UiObject implements HasVisibility {
   /**
    * Gets the object's offset width in pixels. This is the total width of the
    * object, including decorations such as border and padding, but not margin.
-   * 
+   *
    * @return the object's offset width
    */
   int getOffsetWidth() {

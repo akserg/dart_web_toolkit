@@ -145,7 +145,7 @@ class Dom {
    * @param value the style attribute's new value
    */
   static void setStyleAttribute(dart_html.Element elem, String attr, String value) {
-    dart_html.CssStyleDeclaration style = elem.style;
-    style.setProperty(attr, value);
+//    dart_html.CssStyleDeclaration style = elem.style;
+    elem.style.setProperty(attr, value);
   }
 }

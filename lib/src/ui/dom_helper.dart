@@ -18,5 +18,6 @@ abstract class DomHelper {
   int getAbsoluteLeft(dart_html.Element elem);
   
   int getAbsoluteTop(dart_html.Element elem);
-  
+ 
+  void insertChild(dart_html.Element parent, dart_html.Element child, int index);
 }

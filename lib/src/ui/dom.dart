@@ -80,9 +80,28 @@ class Dom {
    * @param value the new property value
    */
   static void setElementProperty(dart_html.Element elem, String prop, String value) {
+    assert(elem != null);
+    assert(prop != null);
+    assert(value != null);
+    //
     elem.attributes[prop] = value;
   }
 
+  /**
+   * Sets an int property on the given element.
+   * 
+   * @param elem the element whose property is to be set
+   * @param prop the name of the property to be set
+   * @param value the new property value as an int
+   */
+  static void setElementPropertyInt(dart_html.Element elem, String prop, int value) {
+    assert(elem != null);
+    assert(prop != null);
+    assert(value != null);
+    //
+    elem.attributes[prop] = value.toString();
+  }  
+  
   /**
    * Sets an attribute on a given element.
    *
@@ -158,5 +177,28 @@ class Dom {
   static String createUniqueId() {
     //return Document.get().createUniqueId();
     return "dwt-id-${uniqueId++}";
+  }
+  
+  /**
+   * Inserts an element as a child of the given parent element.
+   * <p>
+   * If the child element is a {@link com.google.gwt.user.client.ui.PotentialElement}, it is first
+   * resolved.
+   * </p>
+   * 
+   * @param parent the parent element
+   * @param child the child element to add to <code>parent</code>
+   * @param index the index before which the child will be inserted (any value
+   *          greater than the number of existing children will cause the child
+   *          to be appended)
+   * @see com.google.gwt.user.client.ui.PotentialElement#resolve(Element)
+   */
+  static void insertChild(dart_html.Element parent, dart_html.Element child, int index) {
+    //assert !PotentialElement.isPotential(parent) : "Cannot insert into a PotentialElement";
+
+    // If child isn't a PotentialElement, resolve() returns
+    // the Element itself.
+    //impl.insertChild(parent, PotentialElement.resolve(child).<Element> cast(), index);
+    domHelper.insertChild(parent, child, index);
   }
 }

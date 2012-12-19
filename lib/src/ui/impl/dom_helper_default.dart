@@ -39,4 +39,22 @@ class DomHelperDefault implements DomHelper {
     }
     return top;
   }
+  
+  void insertChild(dart_html.Element parent, dart_html.Element toAdd, int index) {
+    int count = 0;
+    dart_html.Node child = parent.$dom_firstChild;
+    dart_html.Node before;
+    while (child != null) {
+      if (child.nodeType == dart_html.Node.ELEMENT_NODE) {
+        if (count == index) {
+          before = child;
+          break;
+        }
+        ++count;
+      }
+      child = child.nextNode; //nextSibling;
+    }
+
+    parent.insertBefore(toAdd, before);
+  }
 }

@@ -8,9 +8,9 @@ DartMob Changes
 * Reviewed Style implementation in UiObject. Added styles to Anchor, Button, ResetButton, SubmitButton.
 * Method 'getFocusHelper' using instead of factory constructor in FocusHelper. Static variable of FocusHelper removed from FocusWidget.
 * Veriable 'element' is private in Widget now. Changed Anchor and FocusManager.
-* Implemented CheckBox widget.
-* CheckBox example.
-* Implemented RadioButton widget.
+* Implemented CheckBox widget. Added example
+* Implemented RadioButton widget. Added example.
+* Implemented VerticalPanel and HorizontalPanel. Added examples.
 
 **December 18, 2012
 

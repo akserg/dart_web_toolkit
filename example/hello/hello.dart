@@ -54,4 +54,34 @@ void main() {
   headerPanel.setFooterWidget(new ui.CheckBox("Active Footer"));
   headerPanel.setContentWidget(new ui.Button("Center"));
   ui.RootPanel.get("testId").add(headerPanel);
+
+  //**************
+  // VerticalPanel
+  //**************
+  
+  ui.VerticalPanel vPanel = new ui.VerticalPanel();
+  vPanel.spacing = 5;
+  
+  // Add some content to the panel
+  for (int i = 1; i < 10; i++) {
+    vPanel.add(new ui.Button("Button $i"));
+  }
+  
+  ui.RootPanel.get("testId").add(vPanel);
+  
+  //**************
+  // HorizontalPanel
+  //**************
+  
+  ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
+  hPanel.spacing = 5;
+  
+  // Add some content to the panel
+  for (int i = 1; i < 10; i++) {
+    hPanel.add(new ui.Button("Button ${i}1"));
+  }
+  
+  ui.RootPanel.get("testId").add(hPanel);
+
+
 }

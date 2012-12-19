@@ -50,7 +50,7 @@ class RadioButton extends CheckBox {
   RadioButton(String name, [String label = null, bool asHTML = false]) : super.fromElement(new dart_html.InputElement()) {
     inputElem.type = "radio";
     //super(DOM.createInputRadio(name));
-    this.name = name;
+    inputElem.name = name;
     clearAndSetStyleName("dwt-RadioButton");
 
     if (label != null) {

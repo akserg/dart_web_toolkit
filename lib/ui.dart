@@ -54,6 +54,9 @@ part 'src/ui/impl/resize_layout_panel_impl.dart';
 part 'src/ui/finite_widget_iterator.dart';
 part 'src/ui/check_box.dart';
 part 'src/ui/radio_button.dart';
+part 'src/ui/cell_panel.dart';
+part 'src/ui/vertical_panel.dart';
+part 'src/ui/horizontal_panel.dart';
 
 part 'src/ui/has_enabled.dart';
 part 'src/ui/has_focus.dart';
@@ -63,6 +66,9 @@ part 'src/ui/has_html.dart';
 part 'src/ui/has_text.dart';
 part 'src/ui/has_word_wrap.dart';
 part 'src/ui/has_one_widget.dart';
+part 'src/ui/has_horizontal_alignment.dart';
+part 'src/ui/has_vertical_alignment.dart';
+part 'src/ui/has_alignment.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/dom_helper_default.dart';

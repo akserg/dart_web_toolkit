@@ -93,8 +93,6 @@ class Unit<String> extends Enum<String> {
   static const Unit IN = const Unit(Style._UNIT_IN);
   static const Unit CM = const Unit(Style._UNIT_CM);
   static const Unit MM = const Unit(Style._UNIT_MM);
-  
-  
 }
 
 /**

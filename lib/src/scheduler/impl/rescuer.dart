@@ -13,13 +13,13 @@ class Rescuer implements RepeatingCommand {
   Rescuer(this._schedulerImpl);
 
   bool execute() {
-    if ( _schedulerImpl.flushRunning) {
+    if ( _schedulerImpl._flushRunning) {
       /*
        * Since JS is single-threaded, if we're here, then than means that
        * FLUSHER.execute() started, but did not finish. Reschedule FLUSHER.
        */
-      _schedulerImpl.scheduleFixedDelay( _schedulerImpl.flusher, SchedulerImpl.FLUSHER_DELAY);
+      _schedulerImpl.scheduleFixedDelay( _schedulerImpl.flusher, SchedulerImpl._FLUSHER_DELAY);
     }
-    return  _schedulerImpl.shouldBeRunning;
+    return  _schedulerImpl._shouldBeRunning;
   }
 }

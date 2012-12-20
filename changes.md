@@ -5,6 +5,7 @@ DartMob Changes
 
 * Implemented AnimatedLayout, DockLayoutPanel, LayoutCommand, WidgetCollection, Enum and RemoveIteraror.
 * Internal Style classes Display, Overflow, Position, Unit, WhiteSpace now extends Enum class.
+* Implemented LayoutPanel and RootLayoutPanel. Fixed small issue in Scheduler.
 
 **December 19, 2012
 

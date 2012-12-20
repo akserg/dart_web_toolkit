@@ -12,25 +12,25 @@ class SchedulerImpl extends Scheduler {
   /**
    * The delay between flushing the task queues.
    */
-  static const int FLUSHER_DELAY = 1;
+  static const int _FLUSHER_DELAY = 1;
 
   /**
    * The delay between checking up on SSW problems.
    */
-  static const int RESCUE_DELAY = 50;
+  static const int _RESCUE_DELAY = 50;
 
   /**
    * The amount of time that we're willing to spend executing
    * IncrementalCommands.
    */
-  static int TIME_SLICE = 100;
+  static int _TIME_SLICE = 100;
 
   /**
    * Provides lazy-init pattern for the task queues.
    */
-  static List<Task> push(List<Task> queue, Task task) {
+  static List<Task> _push(List<Task> queue, Task task) {
     if (queue == null) {
-      queue = createQueue();
+      queue = _createQueue();
     }
     queue.add(task);
     return queue;
@@ -39,11 +39,11 @@ class SchedulerImpl extends Scheduler {
   /**
    * Extract boilerplate code.
    */
-  static List<Task> createQueue() {
+  static List<Task> _createQueue() {
     return new List<Task>();
   }
 
-  static void scheduleFixedDelayImpl(RepeatingCommand cmd, int delayMs) {
+  static void _scheduleFixedDelayImpl(RepeatingCommand cmd, int delayMs) {
     Caleer caleer = new Caleer();
     caleer.timeoutHandler = () {
       if (cmd.execute()) {
@@ -53,7 +53,7 @@ class SchedulerImpl extends Scheduler {
     caleer.handle = (dart_html.document.window as dart_html.LocalWindow).setTimeout(caleer.timeoutHandler, delayMs);
   }
 
-  static void scheduleFixedPeriodImpl(RepeatingCommand cmd, int delayMs) {
+  static void _scheduleFixedPeriodImpl(RepeatingCommand cmd, int delayMs) {
     Caleer caleer = new Caleer();
     caleer.timeoutHandler = () {
       if (!cmd.execute()) {
@@ -106,24 +106,24 @@ class SchedulerImpl extends Scheduler {
    * These two flags are used to control the state of the flusher and rescuer
    * commands.
    */
-  bool flushRunning = false;
-  bool shouldBeRunning = false;
+  bool _flushRunning = false;
+  bool _shouldBeRunning = false;
 
   SchedulerImpl();
 
   void maybeSchedulePostEventPumpCommands() {
-    if (!shouldBeRunning) {
-      shouldBeRunning = true;
+    if (!_shouldBeRunning) {
+      _shouldBeRunning = true;
 
       if (flusher == null) {
         flusher = new Flusher(this);
       }
-      scheduleFixedDelayImpl(flusher, FLUSHER_DELAY);
+      _scheduleFixedDelayImpl(flusher, _FLUSHER_DELAY);
 
       if (rescue == null) {
         rescue = new Rescuer(this);
       }
-      scheduleFixedDelayImpl(rescue, RESCUE_DELAY);
+      _scheduleFixedDelayImpl(rescue, _RESCUE_DELAY);
     }
   }
 
@@ -135,7 +135,7 @@ class SchedulerImpl extends Scheduler {
    * A deferred command is executed after the browser event loop returns.
    */
   void scheduleDeferred(ScheduledCommand cmd) {
-    deferredCommands = push(deferredCommands, new Task.fromScheduledCommand(cmd));
+    deferredCommands = _push(deferredCommands, new Task.fromScheduledCommand(cmd));
     maybeSchedulePostEventPumpCommands();
   }
 
@@ -150,7 +150,7 @@ class SchedulerImpl extends Scheduler {
    * will be executed before control flow continues to the GWT-generated code.
    */
   void scheduleRepeatingEntry(RepeatingCommand cmd) {
-    entryCommands = push(entryCommands, new Task.fromRepeatingCommand(cmd));
+    entryCommands = _push(entryCommands, new Task.fromRepeatingCommand(cmd));
   }
 
   /**
@@ -162,7 +162,7 @@ class SchedulerImpl extends Scheduler {
    * will be executed before control flow continues to the GWT-generated code.
    */
   void scheduleEntry(ScheduledCommand cmd) {
-    entryCommands = push(entryCommands, new Task.fromScheduledCommand(cmd));
+    entryCommands = _push(entryCommands, new Task.fromScheduledCommand(cmd));
   }
 
   /**
@@ -176,7 +176,7 @@ class SchedulerImpl extends Scheduler {
    * will be executed before control flow returns to the browser.
    */
   void scheduleRepeatingFinally(RepeatingCommand cmd) {
-    finallyCommands = push(finallyCommands, new Task.fromRepeatingCommand(cmd));
+    finallyCommands = _push(finallyCommands, new Task.fromRepeatingCommand(cmd));
   }
 
   /**
@@ -201,7 +201,7 @@ class SchedulerImpl extends Scheduler {
    * @see com.google.gwt.dom.client.StyleInjector
    */
   void scheduleFinally(ScheduledCommand cmd) {
-    finallyCommands = push(finallyCommands, new Task.fromScheduledCommand(cmd));
+    finallyCommands = _push(finallyCommands, new Task.fromScheduledCommand(cmd));
   }
 
   /**
@@ -218,7 +218,7 @@ class SchedulerImpl extends Scheduler {
    *          the next invocation
    */
   void scheduleFixedDelay(RepeatingCommand cmd, int delayMs) {
-    scheduleFixedDelayImpl(cmd, delayMs);
+    _scheduleFixedDelayImpl(cmd, delayMs);
   }
 
   /**
@@ -231,7 +231,7 @@ class SchedulerImpl extends Scheduler {
    * @param delayMs the period with which the command is executed
    */
   void scheduleFixedPeriod(RepeatingCommand cmd, int delayMs) {
-    scheduleFixedPeriodImpl(cmd, delayMs);
+    _scheduleFixedPeriodImpl(cmd, delayMs);
   }
 
   /**
@@ -245,7 +245,7 @@ class SchedulerImpl extends Scheduler {
    */
   void scheduleIncremental(RepeatingCommand cmd) {
     // Push repeating commands onto the same initial queue for relative order
-    deferredCommands = push(deferredCommands, new Task.fromRepeatingCommand(cmd));
+    deferredCommands = _push(deferredCommands, new Task.fromRepeatingCommand(cmd));
     maybeSchedulePostEventPumpCommands();
   }
 
@@ -256,7 +256,7 @@ class SchedulerImpl extends Scheduler {
    * @return A replacement array that is possibly a shorter copy of
    *         <code>tasks</code>
    */
-  static List<Task> runRepeatingTasks(List<Task> tasks) {
+  static List<Task> _runRepeatingTasks(List<Task> tasks) {
     assert (tasks != null); // : "tasks";
 
     int length = tasks.length;
@@ -267,7 +267,7 @@ class SchedulerImpl extends Scheduler {
     bool canceledSomeTasks = false;
     int start = (new Date.now()).millisecond; // Duration.currentTimeMillis();
 
-    while ((new Date.now()).millisecond - start < TIME_SLICE) {
+    while ((new Date.now()).millisecond - start < _TIME_SLICE) {
       for (int i = 0; i < length; i++) {
         assert (tasks.length == length); // : "Working array length changed "  + tasks.length() + " != " + length;
         Task t = tasks[i];
@@ -285,7 +285,7 @@ class SchedulerImpl extends Scheduler {
     }
 
     if (canceledSomeTasks) {
-      List<Task> newTasks = createQueue();
+      List<Task> newTasks = _createQueue();
       // Remove tombstones
       for (int i = 0; i < length; i++) {
         if (tasks[i] != null) {
@@ -309,7 +309,7 @@ class SchedulerImpl extends Scheduler {
    * @return <code>rescheduled</code> or a newly-allocated array if
    *         <code>rescheduled</code> is null.
    */
-  static List<Task> runScheduledTasks(List<Task> tasks, List<Task> rescheduled) {
+  static List<Task> _runScheduledTasks(List<Task> tasks, List<Task> rescheduled) {
     assert (tasks != null); // : "tasks";
 
     for (int i = 0, j = tasks.length; i < j; i++) {
@@ -320,7 +320,7 @@ class SchedulerImpl extends Scheduler {
         // Move repeating commands to incremental commands queue
         if (t.isRepeating()) {
           if (t.executeRepeating()) {
-            rescheduled = push(rescheduled, t);
+            rescheduled = _push(rescheduled, t);
           }
         } else {
           t.executeScheduled();
@@ -349,13 +349,13 @@ class SchedulerImpl extends Scheduler {
 
       /* We might not have any incremental commands queued. */
       if (incrementalCommands == null) {
-        incrementalCommands = createQueue();
+        incrementalCommands = _createQueue();
       }
-      runScheduledTasks(oldDeferred, incrementalCommands);
+      _runScheduledTasks(oldDeferred, incrementalCommands);
     }
 
     if (incrementalCommands != null) {
-      incrementalCommands = runRepeatingTasks(incrementalCommands);
+      incrementalCommands = _runRepeatingTasks(incrementalCommands);
     }
   }
 }

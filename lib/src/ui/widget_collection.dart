@@ -22,7 +22,7 @@ class WidgetCollection implements Iterable {
 
   List<Widget> _array;
   HasWidgets _parent;
-  int _size;
+  int _size = 0;
 
   /**
    * Constructs a new widget collection.

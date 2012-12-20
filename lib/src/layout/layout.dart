@@ -80,56 +80,6 @@ class Layout {
     assert (elem.parent.parent == this.parentElem); // : "Element is not a child of this layout";
   }
 
-//  /**
-//   * Attaches a child element to this layout.
-//   *
-//   * <p>
-//   * This method will attach the child to the layout, removing it from its
-//   * current parent element. Use the {@link Layer} it returns to manipulate the
-//   * child.
-//   * </p>
-//   *
-//   * @param child the child to be attached
-//   * @return the {@link Layer} associated with the element
-//   */
-//  Layer attachChild(dart_html.Element child) {
-//    return attachChild(child, null);
-//  }
-//
-//  /**
-//   * Attaches a child element to this layout.
-//   *
-//   * <p>
-//   * This method will attach the child to the layout, removing it from its
-//   * current parent element. Use the {@link Layer} it returns to manipulate the
-//   * child.
-//   * </p>
-//   *
-//   * @param child the child to be attached
-//   * @param before the child element before which to insert
-//   * @return the {@link Layer} associated with the element
-//   */
-//  Layer attachChild(dart_html.Element child, dart_html.Element before) {
-//    return attachChild(child, before, null);
-//  }
-//
-//  /**
-//   * Attaches a child element to this layout.
-//   *
-//   * <p>
-//   * This method will attach the child to the layout, removing it from its
-//   * current parent element. Use the {@link Layer} it returns to manipulate the
-//   * child.
-//   * </p>
-//   *
-//   * @param child the child to be attached
-//   * @param userObject an arbitrary object to be associated with this layer
-//   * @return the {@link Layer} associated with the element
-//   */
-//  Layer attachChild(dart_html.Element child, Object userObject) {
-//    return attachChild(child, null, userObject);
-//  }
-
   /**
    * Attaches a child element to this layout.
    *
@@ -183,24 +133,6 @@ class Layout {
   }
 
   /**
-   * Updates this layout's children immediately. This method <em>must</em> be
-   * called after updating any of its children's {@link Layer layers}.
-   */
-//  void layout() {
-//    layout(0);
-//  }
-
-  /**
-   * Updates the layout by animating it over time.
-   *
-   * @param duration the duration of the animation
-   * @see #layout(int, AnimationCallback)
-   */
-//  void layout(int duration) {
-//    layout(duration, null);
-//  }
-
-  /**
    * Updates the layout by animating it over time, with a callback on each frame
    * of the animation, and upon completion.
    *
@@ -249,8 +181,8 @@ class Layout {
     }
 
     // Deal with constraint changes (e.g. left-width => right-width, etc)
-    int parentWidth = parentElem.getClientWidth();
-    int parentHeight = parentElem.getClientHeight();
+    int parentWidth = parentElem.clientWidth;
+    int parentHeight = parentElem.clientHeight;
     for (Layer l in layers) {
       adjustHorizontalConstraints(parentWidth, l);
       adjustVerticalConstraints(parentHeight, l);
@@ -421,22 +353,24 @@ class Layout {
 /**
  * Used to specify the alignment of child elements within a layer.
  */
-class Alignment {
+class Alignment<String> extends Enum<String> {
+
+  const Alignment(String type) : super (type);
 
   /**
    * Positions an element at the beginning of a given axis.
    */
-  static const String BEGIN = "BEGIN";
+  static const Alignment BEGIN = const Alignment("BEGIN");
 
   /**
    * Positions an element at the beginning of a given axis.
    */
-  static const String END = "END";
+  static const Alignment END = const Alignment("END");
 
   /**
    * Stretches an element to fill the layer on a given axis.
    */
-  static const String STRETCH = "END";
+  static const Alignment STRETCH = const Alignment("STRETCH");
 }
 
 /**
@@ -487,9 +421,9 @@ class Layer {
   dart_html.Element container, child;
   Object userObject;
 
-  bool setLeft, setRight, setTop, setBottom, setWidth, setHeight;
+  bool setLeft = false, setRight = false, setTop = false, setBottom = false, setWidth = false, setHeight = false;
   bool setTargetLeft = true, setTargetRight = true, setTargetTop = true,
-      setTargetBottom = true, setTargetWidth, setTargetHeight;
+      setTargetBottom = true, setTargetWidth = false, setTargetHeight = false;
   Unit leftUnit, topUnit, rightUnit, bottomUnit, widthUnit, heightUnit;
   Unit targetLeftUnit = Unit.PX, targetTopUnit = Unit.PX, targetRightUnit = Unit.PX,
       targetBottomUnit = Unit.PX, targetWidthUnit, targetHeightUnit;
@@ -499,7 +433,7 @@ class Layer {
   double targetLeft, targetTop, targetRight, targetBottom, targetWidth,
   targetHeight;
 
-  String hPos = Alignment.STRETCH, vPos = Alignment.STRETCH;
+  Alignment hPos = Alignment.STRETCH, vPos = Alignment.STRETCH;
   bool visible = true;
 
   Layer(dart_html.Element container, dart_html.Element child, Object userObject) {
@@ -555,7 +489,7 @@ class Layer {
    *
    * @param position
    */
-  void setChildHorizontalPosition(String position) {
+  void setChildHorizontalPosition(Alignment position) {
     this.hPos = position;
   }
 
@@ -564,7 +498,7 @@ class Layer {
    *
    * @param position
    */
-  void setChildVerticalPosition(String position) {
+  void setChildVerticalPosition(Alignment position) {
     this.vPos = position;
   }
 

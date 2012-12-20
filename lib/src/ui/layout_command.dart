@@ -14,8 +14,9 @@ part of dart_web_toolkit_ui;
  */
 class LayoutCommand implements ScheduledCommand {
   
-  bool _scheduled, _canceled;
-  int _duration;
+  bool _scheduled = false;
+  bool _canceled = false;
+  int _duration = 0;
   LayoutAnimationCallback _callback;
   Layout _layout;
 
@@ -63,7 +64,8 @@ class LayoutCommand implements ScheduledCommand {
     _canceled = false;
     if (!_scheduled) {
       _scheduled = true;
-      Scheduler.get().scheduleFinally(this);
+      //Scheduler.get().scheduleFinally(this);
+      Scheduler.get().scheduleDeferred(this);
     }
   }
 

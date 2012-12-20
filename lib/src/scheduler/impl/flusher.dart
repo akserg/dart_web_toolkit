@@ -14,14 +14,14 @@ class Flusher implements RepeatingCommand {
 
   bool execute() {
 
-    _schedulerImpl.flushRunning = true;
+    _schedulerImpl._flushRunning = true;
     _schedulerImpl.flushPostEventPumpCommands();
     /*
      * No finally here, we want this to be clear only on a normal exit. An
      * abnormal exit would indicate that an exception isn't being caught
      * correctly or that a slow script warning canceled the timer.
      */
-    _schedulerImpl.flushRunning = false;
-    return _schedulerImpl.shouldBeRunning = _schedulerImpl.isWorkQueued();
+    _schedulerImpl._flushRunning = false;
+    return _schedulerImpl._shouldBeRunning = _schedulerImpl.isWorkQueued();
   }
 }

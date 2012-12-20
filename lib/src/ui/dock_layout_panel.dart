@@ -63,11 +63,12 @@ part of dart_web_toolkit_ui;
  * </pre>
  */
 class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresResize, ProvidesResize {
-  Unit unit;
-  Widget center;
-  Layout layout;
-  LayoutCommand layoutCmd;
-  double filledWidth, filledHeight;
+  Unit _unit;
+  Widget _center;
+  Layout _layout;
+  LayoutCommand _layoutCmd;
+  double _filledWidth = 0.0;
+  double _filledHeigh = 0.0;
   
   /**
    * Creates an empty dock panel.
@@ -75,11 +76,11 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param unit the unit to be used for layout
    */
   DockLayoutPanel(Unit unit) {
-    this.unit = unit;
+    this._unit = unit;
 
     setElement(new dart_html.DivElement());
-    layout = new Layout(getElement());
-    layoutCmd = new DockAnimateCommand(this, layout);
+    _layout = new Layout(getElement());
+    _layoutCmd = new DockAnimateCommand(this, _layout);
   }
   
   //*********
@@ -291,7 +292,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
 
     // Validation.
     if (before == null) {
-      assert (center == null); // : "No widget may be added after the CENTER widget";
+      assert (_center == null); // : "No widget may be added after the CENTER widget";
     } else {
       assert (direction != Direction.CENTER); // : "A CENTER widget must always be added last";
     }
@@ -309,11 +310,11 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     }
 
     if (direction == Direction.CENTER) {
-      center = widget;
+      _center = widget;
     }
 
     // Physical attach.
-    Layer layer = layout.attachChild(widget.getElement(), before:((before != null) ? before.getElement() : null), userObject:widget);
+    Layer layer = _layout.attachChild(widget.getElement(), before:((before != null) ? before.getElement() : null), userObject:widget);
     LayoutData data = new LayoutData(direction, size, layer);
     widget.setLayoutData(data);
 
@@ -329,13 +330,13 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   //**********
   
   void animate(int duration, [LayoutAnimationCallback callback = null]) {
-    layoutCmd.schedule(duration, callback);
+    _layoutCmd.schedule(duration, callback);
   }
   
   void forceLayout() {
-    layoutCmd.cancel();
+    _layoutCmd.cancel();
     _doLayout();
-    layout.layout();
+    _layout.layout();
     onResize();
   }
   
@@ -399,13 +400,13 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   bool remove(Widget w) {
     bool removed = super.remove(w);
     if (removed) {
-      // Clear the center widget.
-      if (w == center) {
-        center = null;
+      // Clear the _center widget.
+      if (w == _center) {
+        _center = null;
       }
 
       LayoutData data = w.getLayoutData() as LayoutData;
-      layout.removeChild(data.layer);
+      _layout.removeChild(data.layer);
     }
 
     return removed;
@@ -451,15 +452,15 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   }
   
   Widget getCenter() {
-    return center;
+    return _center;
   }
 
   double getCenterHeight() {
-    return getElement().getClientHeight() / layout.getUnitSize(unit, true) - filledHeight;
+    return getElement().clientHeight / _layout.getUnitSize(_unit, true) - _filledHeigh;
   }
 
   double getCenterWidth() {
-    return getElement().getClientWidth() / layout.getUnitSize(unit, false) - filledWidth;
+    return getElement().clientWidth / _layout.getUnitSize(_unit, false) - _filledWidth;
   }
   
   /**
@@ -484,19 +485,19 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   }
   
   Unit getUnit() {
-    return unit;
+    return _unit;
   }
   
   //************
   
   void onAttach() {
     super.onAttach();
-    layout.onAttach();
+    _layout.onAttach();
   }
   
   void onDetach() {
     super.onDetach();
-    layout.onDetach();
+    _layout.onDetach();
   }
   
   void assertIsChild(Widget widget) {
@@ -524,32 +525,32 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
 
       switch (getResolvedDirection(data.direction)) {
         case Direction.NORTH:
-          layer.setLeftRight(left, unit, right, unit);
-          layer.setTopHeight(top, unit, data.size, unit);
+          layer.setLeftRight(left, _unit, right, _unit);
+          layer.setTopHeight(top, _unit, data.size, _unit);
           top += data.size;
           break;
 
         case Direction.SOUTH:
-          layer.setLeftRight(left, unit, right, unit);
-          layer.setBottomHeight(bottom, unit, data.size, unit);
+          layer.setLeftRight(left, _unit, right, _unit);
+          layer.setBottomHeight(bottom, _unit, data.size, _unit);
           bottom += data.size;
           break;
 
         case Direction.WEST:
-          layer.setTopBottom(top, unit, bottom, unit);
-          layer.setLeftWidth(left, unit, data.size, unit);
+          layer.setTopBottom(top, _unit, bottom, _unit);
+          layer.setLeftWidth(left, _unit, data.size, _unit);
           left += data.size;
           break;
 
         case Direction.EAST:
-          layer.setTopBottom(top, unit, bottom, unit);
-          layer.setRightWidth(right, unit, data.size, unit);
+          layer.setTopBottom(top, _unit, bottom, _unit);
+          layer.setRightWidth(right, _unit, data.size, _unit);
           right += data.size;
           break;
 
         case Direction.CENTER:
-          layer.setLeftRight(left, unit, right, unit);
-          layer.setTopBottom(top, unit, bottom, unit);
+          layer.setLeftRight(left, _unit, right, _unit);
+          layer.setTopBottom(top, _unit, bottom, _unit);
           break;
       }
 
@@ -557,8 +558,8 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
       layer.setVisible(true);
     }
 
-    filledWidth = left + right;
-    filledHeight = top + bottom;
+    _filledWidth = left + right;
+    _filledHeigh = top + bottom;
   }
 }
 
@@ -583,7 +584,7 @@ class LayoutData {
   int direction;
   double oldSize, size;
   double originalSize;
-  bool hidden;
+  bool hidden = false;
   Layer layer;
 
   LayoutData(int direction, double size, Layer layer) {

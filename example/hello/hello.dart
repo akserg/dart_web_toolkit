@@ -10,6 +10,30 @@ import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 
 void main() {
+  //****************
+  // DockLayoutPanel
+  //****************
+  
+  ui.DockLayoutPanel p = new ui.DockLayoutPanel(util.Unit.PX);
+  p.getElement().id = "dock";
+  //
+  ui.Button btn = new ui.Button("north");
+  btn.getElement().id = "btn";
+  p.addNorth(btn, 200.0);
+  //
+  ui.RootLayoutPanel root = ui.RootLayoutPanel.get();
+  root.getElement().id = "root";
+  root.add(p);
+  
+//  p.forceLayout();
+//  p.addSouth(new ui.Button("south"), 200.0);
+//  p.addEast(new ui.Button("east"), 200.0);
+//  p.addWest(new ui.Button("west"), 200.0);
+//  p.add(new ui.Button("center"));
+
+}
+
+void main2() {
   ui.Anchor anchor = new ui.Anchor(true);
   print("Href: ${anchor.href}");
   //

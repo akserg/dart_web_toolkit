@@ -10,3 +10,5 @@ import 'dart:html' as dart_html;
 
 part 'src/util/timer.dart';
 part 'src/util/style.dart';
+part 'src/util/remove_iterator.dart';
+part 'src/util/enum.dart';

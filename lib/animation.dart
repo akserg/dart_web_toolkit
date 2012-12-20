@@ -11,9 +11,11 @@ import 'dart:isolate' as dart_isolate;
 import 'dart:math' as dart_math;
 
 import 'util.dart';
+import 'layout.dart';
 
 part 'src/animation/animation.dart';
 part 'src/animation/animation_scheduler.dart';
+part 'src/animation/animated_layout.dart';
 
 part 'src/animation/impl/animation_scheduler_impl.dart';
 part 'src/animation/impl/animation_scheduler_impl_webkit.dart';

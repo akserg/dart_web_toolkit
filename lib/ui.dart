@@ -57,6 +57,10 @@ part 'src/ui/radio_button.dart';
 part 'src/ui/cell_panel.dart';
 part 'src/ui/vertical_panel.dart';
 part 'src/ui/horizontal_panel.dart';
+part 'src/ui/dock_layout_panel.dart';
+part 'src/ui/layout_command.dart';
+
+part 'src/ui/widget_collection.dart';
 
 part 'src/ui/has_enabled.dart';
 part 'src/ui/has_focus.dart';

@@ -11,6 +11,7 @@ import 'dart:math' as dart_math;
 
 import 'animation.dart';
 import 'util.dart';
+import 'scheduler.dart';
 
 part 'src/layout/layout.dart';
 part 'src/layout/impl/layout_impl.dart';

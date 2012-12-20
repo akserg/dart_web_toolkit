@@ -1,6 +1,11 @@
 DartMob Changes
 ==============
 
+**December 20, 2012
+
+* Implemented AnimatedLayout, DockLayoutPanel, LayoutCommand, WidgetCollection, Enum and RemoveIteraror.
+* Internal Style classes Display, Overflow, Position, Unit, WhiteSpace now extends Enum class.
+
 **December 19, 2012
 
 * Fixed 'extractLengthValue' method in UiObject, and small bugs in Timer.

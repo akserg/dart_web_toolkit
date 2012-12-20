@@ -178,7 +178,7 @@ class Layout {
    *          horizontal axis (this matters only for {@link Unit#PCT})
    * @return the unit size, in pixels
    */
-  double getUnitSize(String unit, bool vertical) {
+  double getUnitSize(Unit unit, bool vertical) {
     return impl.getUnitSizeInPixels(parentElem, unit, vertical);
   }
 
@@ -207,7 +207,7 @@ class Layout {
    * @param duration the duration of the animation
    * @param callback the animation callback
    */
-  void layout([int duration = 0, AnimationCallback callback = null]) {
+  void layout([int duration = 0, LayoutAnimationCallback callback = null]) {
     // Cancel the old animation, if there is one.
     if (animation != null) {
       animation.cancel();
@@ -443,7 +443,7 @@ class Alignment {
  * Callback interface used by {@link Layout#layout(int, AnimationCallback)}
  * to provide updates on animation progress.
  */
-abstract class AnimationCallback {
+abstract class LayoutAnimationCallback {
 
   /**
    * Called immediately after the animation is complete, and the entire layout
@@ -490,8 +490,8 @@ class Layer {
   bool setLeft, setRight, setTop, setBottom, setWidth, setHeight;
   bool setTargetLeft = true, setTargetRight = true, setTargetTop = true,
       setTargetBottom = true, setTargetWidth, setTargetHeight;
-  String leftUnit, topUnit, rightUnit, bottomUnit, widthUnit, heightUnit;
-  String targetLeftUnit = Unit.PX, targetTopUnit = Unit.PX, targetRightUnit = Unit.PX,
+  Unit leftUnit, topUnit, rightUnit, bottomUnit, widthUnit, heightUnit;
+  Unit targetLeftUnit = Unit.PX, targetTopUnit = Unit.PX, targetRightUnit = Unit.PX,
       targetBottomUnit = Unit.PX, targetWidthUnit, targetHeightUnit;
   double left, top, right, bottom, width, height;
   double sourceLeft, sourceTop, sourceRight, sourceBottom, sourceWidth,
@@ -540,8 +540,8 @@ class Layer {
    * @param height
    * @param heightUnit
    */
-  void setBottomHeight(double bottom, String bottomUnit, double height,
-                              String heightUnit) {
+  void setBottomHeight(double bottom, Unit bottomUnit, double height,
+                       Unit heightUnit) {
     this.setTargetBottom = this.setTargetHeight = true;
     this.setTargetTop = false;
     this.targetBottom = bottom;
@@ -576,8 +576,8 @@ class Layer {
    * @param right
    * @param rightUnit
    */
-  void setLeftRight(double left, String leftUnit, double right,
-                           String rightUnit) {
+  void setLeftRight(double left, Unit leftUnit, double right,
+                    Unit rightUnit) {
     this.setTargetLeft = this.setTargetRight = true;
     this.setTargetWidth = false;
     this.targetLeft = left;
@@ -594,8 +594,8 @@ class Layer {
    * @param width
    * @param widthUnit
    */
-  void setLeftWidth(double left, String leftUnit, double width,
-                           String widthUnit) {
+  void setLeftWidth(double left, Unit leftUnit, double width,
+                    Unit widthUnit) {
     this.setTargetLeft = this.setTargetWidth = true;
     this.setTargetRight = false;
     this.targetLeft = left;
@@ -612,8 +612,8 @@ class Layer {
    * @param width
    * @param widthUnit
    */
-  void setRightWidth(double right, String rightUnit, double width,
-                            String widthUnit) {
+  void setRightWidth(double right, Unit rightUnit, double width,
+                     Unit widthUnit) {
     this.setTargetRight = this.setTargetWidth = true;
     this.setTargetLeft = false;
     this.targetRight = right;
@@ -630,8 +630,8 @@ class Layer {
    * @param bottom
    * @param bottomUnit
    */
-  void setTopBottom(double top, String topUnit, double bottom,
-                           String bottomUnit) {
+  void setTopBottom(double top, Unit topUnit, double bottom,
+                    Unit bottomUnit) {
     this.setTargetTop = this.setTargetBottom = true;
     this.setTargetHeight = false;
     this.targetTop = top;
@@ -648,8 +648,8 @@ class Layer {
    * @param height
    * @param heightUnit
    */
-  void setTopHeight(double top, String topUnit, double height,
-                           String heightUnit) {
+  void setTopHeight(double top, Unit topUnit, double height,
+                    Unit heightUnit) {
     this.setTargetTop = this.setTargetHeight = true;
     this.setTargetBottom = false;
     this.targetTop = top;
@@ -672,7 +672,7 @@ class Layer {
 class LayoutAnimation extends Animation {
 
   Layout _layout;
-  AnimationCallback _callback;
+  LayoutAnimationCallback _callback;
 
   LayoutAnimation(this._layout, this._callback);
 

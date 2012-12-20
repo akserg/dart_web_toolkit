@@ -8,13 +8,17 @@ part of dart_web_toolkit_ui;
  */
 abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
 
-  List<Widget> _children = new List<Widget>();
+  WidgetCollection _children;
 
   /**
    * The command used to orphan children.
    */
   AttachCommand _orphanCommand;
 
+  ComplexPanel() {
+    _children = new WidgetCollection(this);
+  }
+  
   //*****************************
   // Implementation of HasWidgets
   //*****************************
@@ -64,7 +68,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
       // Logical detach.
       int indx = getChildren().indexOf(w);
       if (indx != -1) {
-        getChildren().removeAt(indx);
+        getChildren().remove(indx);
       }
     }
     return true;
@@ -84,7 +88,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
    * @return the child widget
    */
   Widget getWidget(int index) {
-    return getChildren()[index];
+    return getChildren().get(index);
   }
 
   /**
@@ -93,7 +97,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
    * @return the number of children
    */
   int getWidgetCount() {
-    return getChildren().length;
+    return getChildren().size();
   }
 
   /**
@@ -204,7 +208,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
    *
    * @return a collection of child widgets
    */
-  List<Widget> getChildren() {
+  WidgetCollection getChildren() {
     return _children;
   }
 
@@ -232,14 +236,12 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
     child.removeFromParent();
 
     // Logical attach.
-    //getChildren().insert(child, beforeIndex);
-    getChildren().insertRange(beforeIndex, 1); //, [child]);
-    getChildren()[beforeIndex] = child;
+    getChildren().insert(child, beforeIndex);
 
     // Physical attach.
     if (domInsert) {
       //DOM.insertChild(container, child.getElement(), beforeIndex);
-      dart_html.Element refChild = container.elements[beforeIndex];
+      dart_html.Element refChild = container.$dom_childNodes[beforeIndex];
       container.insertBefore(child.getElement(), refChild);
     } else {
       //DOM.appendChild(container, child.getElement());
@@ -262,7 +264,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
     try {
       AttachDetachException.tryCommand(this, _orphanCommand);
     } finally {
-      _children = new List<Widget>();
+      _children = new WidgetCollection(this);
     }
   }
 }

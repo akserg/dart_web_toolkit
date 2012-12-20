@@ -84,7 +84,7 @@ class Anchor extends FocusWidget implements HasDirection, HasName, HasHtml, HasW
    */
   void set wordWrap(bool value) {
     assert(value != null);
-    getAnchorElement().style.whiteSpace = value ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP;
+    getAnchorElement().style.whiteSpace = value ? WhiteSpace.NORMAL.type : WhiteSpace.NOWRAP.type;
   }
 
   /**

@@ -64,6 +64,8 @@ part 'src/ui/root_layout_panel.dart';
 part 'src/ui/split_layout_panel.dart';
 part 'src/ui/splitter.dart';
 part 'src/ui/file_upload.dart';
+part 'src/ui/hyperlink.dart';
+part 'src/ui/history.dart';
 
 part 'src/ui/widget_collection.dart';
 
@@ -81,6 +83,8 @@ part 'src/ui/has_alignment.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/dom_helper_default.dart';
+part 'src/ui/impl/hyperlink_impl.dart';
+part 'src/ui/impl/history_impl.dart';
 
 /**
  * Supports core functionality that in some cases requires direct support from

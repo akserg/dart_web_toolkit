@@ -19,3 +19,6 @@ part 'src/shared/has_click_handlers.dart';
 part 'src/shared/change_event.dart';
 part 'src/shared/change_handler.dart';
 part 'src/shared/has_change_handlers.dart';
+
+part 'src/shared/value_change_event.dart';
+part 'src/shared/has_value_change_handlers.dart';

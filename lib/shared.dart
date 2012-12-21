@@ -14,5 +14,8 @@ part 'src/shared/browser_events.dart';
 
 part 'src/shared/click_handler.dart';
 part 'src/shared/click_event.dart';
-
 part 'src/shared/has_click_handlers.dart';
+
+part 'src/shared/change_event.dart';
+part 'src/shared/change_handler.dart';
+part 'src/shared/has_change_handlers.dart';

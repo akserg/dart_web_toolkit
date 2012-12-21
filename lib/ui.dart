@@ -63,6 +63,7 @@ part 'src/ui/layout_panel.dart';
 part 'src/ui/root_layout_panel.dart';
 part 'src/ui/split_layout_panel.dart';
 part 'src/ui/splitter.dart';
+part 'src/ui/file_upload.dart';
 
 part 'src/ui/widget_collection.dart';
 

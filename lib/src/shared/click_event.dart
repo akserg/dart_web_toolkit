@@ -3,6 +3,9 @@
 
 part of dart_web_toolkit_shared;
 
+/**
+ * Represents a native click event.
+ */
 class ClickEvent extends DomEvent {
 
   /**
@@ -15,7 +18,7 @@ class ClickEvent extends DomEvent {
   }
 
   ClickEvent();
-  
+
   void dispatch(ClickHandler handler) {
     handler.onClick(this);
   }

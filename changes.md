@@ -5,6 +5,7 @@ DartMob Changes
 
 * Implemented SplitLayoutPanel and Spliters. Fixed small bug in LayoutImpl. Added example.
 * Implemented FileUpload. Added example.
+* 'run.sh' has been added into test folder.
 
 **December 20, 2012
 

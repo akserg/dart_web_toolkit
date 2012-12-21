@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 21, 2012
+
+* Implemented SplitLayoutPanel and Spliters. Fixed small bug in LayoutImpl. Added example.
+
 **December 20, 2012
 
 * Implemented AnimatedLayout, DockLayoutPanel, LayoutCommand, WidgetCollection, Enum and RemoveIteraror.

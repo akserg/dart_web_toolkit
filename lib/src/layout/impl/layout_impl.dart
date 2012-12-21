@@ -53,6 +53,13 @@ class LayoutImpl {
 
     container.style.position = Position.ABSOLUTE.type;
     container.style.overflow = Overflow.HIDDEN.type;
+    // I have added that code here because without it it doesn't show itself and children elements
+    container.style.left = "0".concat(Unit.PX.type);
+    container.style.top = "0".concat(Unit.PX.type);
+    container.style.right = "0".concat(Unit.PX.type);
+    container.style.bottom = "0".concat(Unit.PX.type);
+    //
+    container.id = "layoutContainer";
 
     fillParent(child);
 

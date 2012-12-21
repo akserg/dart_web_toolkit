@@ -61,6 +61,8 @@ part 'src/ui/dock_layout_panel.dart';
 part 'src/ui/layout_command.dart';
 part 'src/ui/layout_panel.dart';
 part 'src/ui/root_layout_panel.dart';
+part 'src/ui/split_layout_panel.dart';
+part 'src/ui/splitter.dart';
 
 part 'src/ui/widget_collection.dart';
 

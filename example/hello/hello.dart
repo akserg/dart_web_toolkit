@@ -18,7 +18,7 @@ void main() {
   ui.SplitLayoutPanel p = new ui.SplitLayoutPanel();
   p.addWest(new ui.Button("navigation"), 128.0);
   p.addNorth(new ui.Button("list"), 384.0);
-  p.add(new ui.Button("details"));
+  p.add(new ui.FileUpload());
 
   // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
   // resize events on the window to ensure that its children are informed of

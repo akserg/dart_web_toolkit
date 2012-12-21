@@ -4,7 +4,7 @@ DartMob Changes
 **December 21, 2012
 
 * Implemented SplitLayoutPanel and Spliters. Fixed small bug in LayoutImpl. Added example.
-* Implemented FileUpload.
+* Implemented FileUpload. Added example.
 
 **December 20, 2012
 

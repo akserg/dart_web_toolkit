@@ -16,6 +16,7 @@ import 'animation.dart';
 import 'layout.dart';
 import 'util.dart';
 import 'scheduler.dart';
+import 'role.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -66,6 +67,11 @@ part 'src/ui/splitter.dart';
 part 'src/ui/file_upload.dart';
 part 'src/ui/hyperlink.dart';
 part 'src/ui/history.dart';
+part 'src/ui/custom_button.dart';
+part 'src/ui/image.dart';
+part 'src/ui/focus_panel.dart';
+part 'src/ui/push_button.dart';
+part 'src/ui/toggle_button.dart';
 
 part 'src/ui/widget_collection.dart';
 

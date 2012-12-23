@@ -45,12 +45,12 @@ class HistoryImpl implements HasValueChangeHandlers<String> {
   
   String encodeFragment(String fragment) {
     // encodeURI() does *not* encode the '#' character.
-    return encodeURI(fragment).replace("#", "%23");
+    return fragment; //encodeURI(fragment).replace("#", "%23");
   }
   
   String decodeFragment(String encodedFragment) {
     // decodeURI() does *not* decode the '#' character.
-    return decodeURI(encodedFragment.replace("%23", "#"));
+    return encodedFragment; //decodeURI(encodedFragment.replace("%23", "#"));
   }
   
   void fireEvent(DwtEvent event) {

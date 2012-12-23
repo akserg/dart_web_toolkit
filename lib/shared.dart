@@ -22,3 +22,6 @@ part 'src/shared/has_change_handlers.dart';
 
 part 'src/shared/value_change_event.dart';
 part 'src/shared/has_value_change_handlers.dart';
+
+part 'src/shared/takes_value.dart';
+part 'src/shared/has_value.dart';

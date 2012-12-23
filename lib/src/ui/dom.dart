@@ -14,6 +14,7 @@ class Dom {
    * DOM helper class Implementation.
    */
   static DomHelper domHelper = new DomHelper.browserDependent();
+  static dart_html.Element _sCaptureElem;
 
   /**
    * Gets any named property from an element, as a string.
@@ -200,5 +201,46 @@ class Dom {
     // the Element itself.
     //impl.insertChild(parent, PotentialElement.resolve(child).<Element> cast(), index);
     domHelper.insertChild(parent, child, index);
+  }
+  
+  //********
+  // Capture
+  //********
+  
+  /**
+   * Gets the element that currently has mouse capture.
+   * 
+   * @return a handle to the capture element, or <code>null</code> if none
+   *         exists
+   */
+  static dart_html.Element getCaptureElement() {
+    return _sCaptureElem;
+  }
+  
+  /**
+   * Releases mouse/touch/gesture capture on the given element. Calling this
+   * method has no effect if the element does not currently have
+   * mouse/touch/gesture capture.
+   * 
+   * @param elem the element to release capture
+   * @see #setCapture(Element)
+   */
+  static void releaseCapture(dart_html.Element elem) {
+    if ((_sCaptureElem != null) && elem == _sCaptureElem) {
+      _sCaptureElem = null;
+    }
+    //domHelper.releaseCapture(elem);
+  }
+  
+  /**
+   * Sets mouse/touch/gesture capture on the given element. This element will
+   * directly receive all mouse events until {@link #releaseCapture(Element)} is
+   * called on it.
+   * 
+   * @param elem the element on which to set mouse/touch/gesture capture
+   */
+  static void setCapture(dart_html.Element elem) {
+    _sCaptureElem = elem;
+    //domHelper.setCapture(elem);
   }
 }

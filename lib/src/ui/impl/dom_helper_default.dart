@@ -57,4 +57,19 @@ class DomHelperDefault implements DomHelper {
 
     parent.insertBefore(toAdd, before);
   }
+  
+//*********
+  // Capturte
+  //*********
+  
+  void releaseCapture(dart_html.Element elem) {
+//    maybeInitializeEventSystem();
+//    releaseCaptureImpl(elem);
+  }
+
+  void setCapture(dart_html.Element elem) {
+//    maybeInitializeEventSystem();
+//    setCaptureImpl(elem);
+  }
+  
 }

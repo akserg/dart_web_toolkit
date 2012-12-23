@@ -20,4 +20,12 @@ abstract class DomHelper {
   int getAbsoluteTop(dart_html.Element elem);
  
   void insertChild(dart_html.Element parent, dart_html.Element child, int index);
+  
+  //*********
+  // Capturte
+  //*********
+  
+  void releaseCapture(dart_html.Element elem);
+
+  void setCapture(dart_html.Element elem);
 }

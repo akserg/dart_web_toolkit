@@ -185,6 +185,7 @@ abstract class UiObject implements HasVisibility {
   static void setElementStyleName(dart_html.Element elem, String styleName) {
     //Dom.setElementProperty(elem, "className", styleName);
     elem.$dom_className = styleName;
+    print("setElementStyleName: ${elem.$dom_className}");
   }
 
 
@@ -200,17 +201,10 @@ abstract class UiObject implements HasVisibility {
     // The primary style name is always the first token of the full CSS class
     // name. There can be no leading whitespace in the class name, so it's not
     // necessary to trim() it.
-//    int spaceIdx = fullClassName.indexOf(' ');
-//    if (spaceIdx >= 0) {
-//      return fullClassName.substring(0, spaceIdx);
-//    }
-
-    // The primary style name starting from 'dwt' so find it in the fullClassName
-    fullClassName.split(" ").forEach((String className) {
-      if (className.startsWith("dwt")) {
-        return className;
-      }
-    });
+    int spaceIdx = fullClassName.indexOf(' ');
+    if (spaceIdx >= 0) {
+      return fullClassName.substring(0, spaceIdx);
+    }
 
     return fullClassName;
   }
@@ -260,11 +254,73 @@ abstract class UiObject implements HasVisibility {
       throw new Exception(EMPTY_STYLENAME_MSG);
     }
 
+    String old = elem.$dom_className;
+    
     if (add) {
-      elem.classes.add(style);
+      // Get the current style string.
+      String oldClassName = elem.$dom_className;
+      int idx = oldClassName.indexOf(style);
+
+      // Calculate matching index.
+      while (idx != -1) {
+        if (idx == 0 || oldClassName.charCodeAt(idx - 1) == ' ') {
+          int last = idx + style.length;
+          int lastPos = oldClassName.length;
+          if ((last == lastPos)
+              || ((last < lastPos) && (oldClassName.charCodeAt(last) == ' '))) {
+            break;
+          }
+        }
+        idx = oldClassName.indexOf(style, idx + 1);
+      }
+
+      // Only add the style if it's not already present.
+      if (idx == -1) {
+        if (oldClassName.length > 0) {
+          oldClassName = oldClassName.concat(" ");
+        }
+        //setClassName(oldClassName + className);
+        elem.$dom_className = oldClassName.concat(style);
+      }
     } else {
-      elem.classes.remove(style);
+      // Get the current style string.
+      String oldStyle = elem.$dom_className;
+      int idx = oldStyle.indexOf(style);
+
+      // Calculate matching index.
+      while (idx != -1) {
+        if (idx == 0 || oldStyle.charCodeAt(idx - 1) == ' ') {
+          int last = idx + style.length;
+          int lastPos = oldStyle.length;
+          if ((last == lastPos)
+              || ((last < lastPos) && (oldStyle.charCodeAt(last) == ' '))) {
+            break;
+          }
+        }
+        idx = oldStyle.indexOf(style, idx + 1);
+      }
+
+      // Don't try to remove the style if it's not there.
+      if (idx != -1) {
+        // Get the leading and trailing parts, without the removed name.
+        String begin = oldStyle.substring(0, idx).trim();
+        String end = oldStyle.substring(idx + style.length).trim();
+
+        // Some contortions to make sure we don't leave extra spaces.
+        String newClassName;
+        if (begin.length == 0) {
+          newClassName = end;
+        } else if (end.length == 0) {
+          newClassName = begin;
+        } else {
+          newClassName = begin.concat(" ").concat(end);
+        }
+
+        elem.$dom_className = newClassName;
+      }
     }
+    
+    print("manageElementStyleName: '$style', '$add': '$old' -> '${elem.$dom_className}'");
   }
 
   /**
@@ -272,7 +328,7 @@ abstract class UiObject implements HasVisibility {
    */
   static void _updatePrimaryAndDependentStyleNames(dart_html.Element elem,
       String newPrimaryStyle) {
-    List<String> classes = new List<String>.from(elem.classes); //.className.split(/\s+/);
+    List<String> classes = elem.className.split(new RegExp("\s+"));
     if (classes.length == 0) {
       return;
     }
@@ -289,22 +345,19 @@ abstract class UiObject implements HasVisibility {
       }
     }
 
-    String oldPrimaryStyle = classes[0];
-    int oldPrimaryStyleLen = oldPrimaryStyle.length;
+    var oldPrimaryStyle = classes[0];
+    var oldPrimaryStyleLen = oldPrimaryStyle.length;
 
     classes[0] = newPrimaryStyle;
     for (var i = 1, n = classes.length; i < n; i++) {
       var name = classes[i];
       if (name.length > oldPrimaryStyleLen
-          && name.charCodes[oldPrimaryStyleLen] == '-'
+          && name.charCodeAt(oldPrimaryStyleLen) == '-'
           && name.indexOf(oldPrimaryStyle) == 0) {
         classes[i] = newPrimaryStyle.concat(name.substring(oldPrimaryStyleLen));
       }
     }
-    elem.classes.clear();
-    classes.forEach((String name) {
-      elem.classes.add(name);
-    });
+    elem.className = Strings.join(classes, " ");
   }
 
   /**

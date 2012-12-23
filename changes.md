@@ -1,6 +1,11 @@
 DartMob Changes
 ==============
 
+**December 23, 2012
+
+* Implemented CustomButton, PushButton and ToggleButton. Added example.
+* Implemented part of Role.
+
 **December 21, 2012
 
 * Implemented SplitLayoutPanel and Spliters. Fixed small bug in LayoutImpl. Added example.

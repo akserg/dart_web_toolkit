@@ -11,6 +11,55 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  // Create a panel to layout the widgets
+  ui.VerticalPanel vpanel = new ui.VerticalPanel();
+  ui.HorizontalPanel pushPanel = new ui.HorizontalPanel();
+  pushPanel.spacing = 10;
+  ui.HorizontalPanel togglePanel = new ui.HorizontalPanel();
+  togglePanel.spacing = 10;
+
+  // Combine all the panels
+  //vpanel.add(new HTML(constants.cwCustomButtonPush()));
+  vpanel.add(pushPanel);
+  //vpanel.add(new HTML("<br><br>" + constants.cwCustomButtonToggle()));
+  vpanel.add(togglePanel);
+
+  //************************
+  // Add a normal PushButton
+  //************************
+  
+  //ui.PushButton normalPushButton = new ui.PushButton(new Image(Showcase.images.gwtLogo()));
+  ui.PushButton normalPushButton = new ui.PushButton.fromText("Register");
+  //normalPushButton.ensureDebugId("cwCustomButton-push-normal");
+  pushPanel.add(normalPushButton);
+
+  // Add a disabled PushButton
+  //ui.PushButton disabledPushButton = new ui.PushButton(new Image(Showcase.images.gwtLogo()));
+  ui.PushButton disabledPushButton = new ui.PushButton.fromText("Logon");
+  //disabledPushButton.ensureDebugId("cwCustomButton-push-disabled");
+  disabledPushButton.enabled = false;
+  pushPanel.add(disabledPushButton);
+  
+  //**************************
+  // Add a normal ToggleButton
+  //**************************
+  
+  ui.ToggleButton normalToggleButton = new ui.ToggleButton.fromText("Toggle");
+  //normalToggleButton.ensureDebugId("cwCustomButton-toggle-normal");
+  togglePanel.add(normalToggleButton);
+
+  // Add a disabled ToggleButton
+  ui.ToggleButton disabledToggleButton = new ui.ToggleButton.fromText("Disabled toggle");
+  //disabledToggleButton.ensureDebugId("cwCustomButton-toggle-disabled");
+  disabledToggleButton.enabled = false;
+  disabledToggleButton.setDown(true);
+  togglePanel.add(disabledToggleButton);
+
+  
+  ui.RootPanel.get("testId").add(vpanel);
+}
+
+void main3() {
   //*****************
   // SplitLayoutPanel
   //*****************

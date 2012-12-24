@@ -9,6 +9,7 @@ library dart_web_toolkit_shared;
 import 'dart:html' as dart_html;
 
 import 'event.dart';
+import 'util.dart';
 
 part 'src/shared/browser_events.dart';
 
@@ -25,3 +26,5 @@ part 'src/shared/has_value_change_handlers.dart';
 
 part 'src/shared/takes_value.dart';
 part 'src/shared/has_value.dart';
+
+part 'src/shared/has_text_direction.dart';

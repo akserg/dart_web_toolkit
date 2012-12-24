@@ -72,6 +72,7 @@ part 'src/ui/image.dart';
 part 'src/ui/focus_panel.dart';
 part 'src/ui/push_button.dart';
 part 'src/ui/toggle_button.dart';
+part 'src/ui/list_box.dart';
 
 part 'src/ui/widget_collection.dart';
 

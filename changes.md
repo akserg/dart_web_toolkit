@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 24, 2012
+
+* Implemented ListBox. Added example.
+
 **December 23, 2012
 
 * Implemented CustomButton, PushButton and ToggleButton. Added example.

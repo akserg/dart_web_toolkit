@@ -11,6 +11,56 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+
+  List<String> listTypes = ["One", "Two", "Three", "4444", "555", "666"];
+  
+  // Create a panel to align the Widgets
+  ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
+  hPanel.spacing = 20;
+
+  // Add a drop box with the list types
+  ui.ListBox dropBox = new ui.ListBox();
+  //List<String> listTypes = constants.cwListBoxCategories();
+  for (int i = 0; i < listTypes.length; i++) {
+    dropBox.addItem(listTypes[i]);
+  }
+  //dropBox.ensureDebugId("cwListBox-dropBox");
+  ui.VerticalPanel dropBoxPanel = new ui.VerticalPanel();
+  dropBoxPanel.spacing = 4;
+  //dropBoxPanel.add(new HTML(constants.cwListBoxSelectCategory()));
+  dropBoxPanel.add(dropBox);
+  hPanel.add(dropBoxPanel);
+
+  // Add a list box with multiple selection enabled
+  ui.ListBox multiBox = new ui.ListBox(true);
+  //multiBox.ensureDebugId("cwListBox-multiBox");
+  multiBox.setWidth("11em");
+  multiBox.setVisibleItemCount(10);
+  for (int i = 0; i < listTypes.length; i++) {
+    multiBox.addItem(listTypes[i]);
+  }
+  ui.VerticalPanel multiBoxPanel = new ui.VerticalPanel();
+  multiBoxPanel.spacing = 4;
+  //multiBoxPanel.add(new HTML(constants.cwListBoxSelectAll()));
+  multiBoxPanel.add(multiBox);
+  hPanel.add(multiBoxPanel);
+
+  // Add a handler to handle drop box events
+//  dropBox.addChangeHandler(new ChangeHandler() {
+//    public void onChange(ChangeEvent event) {
+//      showCategory(multiBox, dropBox.getSelectedIndex());
+//      multiBox.ensureDebugId("cwListBox-multiBox");
+//    }
+//  });
+
+  // Show default category
+  //showCategory(multiBox, 0);
+  //multiBox.ensureDebugId("cwListBox-multiBox");
+  
+  ui.RootPanel.get("testId").add(hPanel);
+}
+
+void main4() {
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel = new ui.VerticalPanel();
   ui.HorizontalPanel pushPanel = new ui.HorizontalPanel();

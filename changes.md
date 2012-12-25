@@ -3,9 +3,10 @@ DartMob Changes
 
 **December 25, 2012
 
-* Housekeeping 1.
+* Housekeeping.
 * Implemented empty abstract classes.
 * Abstract classes HasAlignment, HasEnabled, HasFocus, HasHorizontalAlignment, HasHtml, HasName, HasText, HasVerticalAlignment, HasWordWrap moved to 'shared' library.
+* Abstract classes HasResizeHandlers, HasVisibility, ResizeEvent, ResizeHandler moved to 'shared' library.
 
 **December 24, 2012
 

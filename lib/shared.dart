@@ -13,6 +13,7 @@ import 'util.dart';
 
 part 'src/shared/browser_events.dart';
 
+part 'src/shared/has_visibility.dart';
 part 'src/shared/has_word_wrap.dart';
 part 'src/shared/has_html.dart';
 part 'src/shared/has_text.dart';
@@ -22,6 +23,10 @@ part 'src/shared/has_enabled.dart';
 part 'src/shared/has_alignment.dart';
 part 'src/shared/has_horizontal_alignment.dart';
 part 'src/shared/has_vertical_alignment.dart';
+
+part 'src/shared/has_resize_handlers.dart';
+part 'src/shared/resize_handler.dart';
+part 'src/shared/resize_event.dart';
 
 part 'src/shared/click_handler.dart';
 part 'src/shared/click_event.dart';

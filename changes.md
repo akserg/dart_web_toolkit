@@ -7,6 +7,7 @@ DartMob Changes
 * Implemented empty abstract classes.
 * Abstract classes HasAlignment, HasEnabled, HasFocus, HasHorizontalAlignment, HasHtml, HasName, HasText, HasVerticalAlignment, HasWordWrap moved to 'shared' library.
 * Abstract classes HasResizeHandlers, HasVisibility, ResizeEvent, ResizeHandler moved to 'shared' library.
+* Added classes HasDragEndHandlers, HasDragEnterHandlers, HasDagHandlers, HasDragLeaveHandlers, HasDragOverHandlers, HasDragStartHandlers, HasDropHandlers, HasDoubleClickHandlers, HasFocusHandlers, HasBlurHandlers, HasGestureStartHandlers, HasGestureChangeHandlers, HasGestureEndHandlers, HasAllKeyHandlers, HasKeyUpHandlers, HasKeyDownHandlers, HasKeyPressHandlers, HasAllMouseHandlers, HasMouseDownHandlers, HasMouseUpHandlers, HasMouseOutHandlers, HasMouseOverHandlers, HasMouseMoveHandlers, HasMouseWheelHandlers, HasAllTouchHandlers, HasTouchStartHandlers, HasTouchMoveHandlers, HasTouchCancelHandlers, HasDirectionEstimator, HasDirectionalSafeHtml, HasDirectionalText, HasSafeHtml, IsEditor, LeafeValueEditor, Editor, HasLoadHandlers, HasErrorHandlers to 'shared' library.
 
 **December 24, 2012
 

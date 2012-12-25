@@ -22,7 +22,7 @@ part of dart_web_toolkit_ui;
  * <h3>Example</h3> {@example com.google.gwt.examples.ToggleButtonExample}
  * </p>
  */
-class ToggleButton extends CustomButton implements HasValue {
+class ToggleButton extends CustomButton implements HasValue<bool>, IsEditor<LeafValueEditor<bool>> {
   
 static final String _STYLENAME_DEFAULT = "dwt-ToggleButton";
   

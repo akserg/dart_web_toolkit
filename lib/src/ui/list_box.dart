@@ -57,7 +57,8 @@ part of dart_web_toolkit_ui;
  * in Unicode bidi formatting characters. They can use the getOptionText and/or
  * setOptionText methods for this purpose instead.</b>
  */
-class ListBox extends FocusWidget implements HasChangeHandlers, HasName {
+class ListBox extends FocusWidget implements HasChangeHandlers, HasName, 
+  HasDirectionEstimator {
   
   static final int INSERT_AT_END = -1;
   

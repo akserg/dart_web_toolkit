@@ -6,7 +6,9 @@ part of dart_web_toolkit_ui;
 /**
  * A widget that represents a simple [:a:] element.
  */
-class Anchor extends FocusWidget implements HasDirection, HasName, HasHtml, HasWordWrap {
+class Anchor extends FocusWidget implements HasHorizontalAlignment,
+  HasName, HasHtml, HasWordWrap, HasDirection,
+  HasDirectionEstimator, HasDirectionalSafeHtml {
 
   /**
    * The default HREF is a no-op javascript statement. We need an href to ensure

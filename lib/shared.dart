@@ -107,3 +107,16 @@ part 'src/shared/has_touch_move_handlers.dart';
 part 'src/shared/has_touch_end_handlers.dart';
 
 part 'src/shared/has_touch_cancel_handlers.dart';
+
+part 'src/shared/has_direction_estimator.dart';
+
+part 'src/shared/has_directional_safe_html.dart';
+
+part 'src/shared/has_directional_text.dart';
+
+part 'src/shared/has_safe_html.dart';
+
+part 'src/shared/has_load_handlers.dart';
+
+part 'src/shared/has_error_handlers.dart';
+

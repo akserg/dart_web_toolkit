@@ -40,6 +40,15 @@ part of dart_web_toolkit_ui;
  * {@example com.google.gwt.examples.ImageExample}
  * </p>
  */
-class Image extends Widget {
+class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
+  HasClickHandlers, HasDoubleClickHandlers, HasAllDragAndDropHandlers,
+  HasAllGestureHandlers, HasAllMouseHandlers, HasAllTouchHandlers {
   
+  //***********************************
+  // Implementation of HasClickHandlers
+  //***********************************
+  
+  HandlerRegistration addClickHandler(ClickHandler handler) {
+    return addHandler(handler, ClickEvent.TYPE);
+  }
 }

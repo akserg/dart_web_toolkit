@@ -17,6 +17,7 @@ import 'layout.dart';
 import 'util.dart';
 import 'scheduler.dart';
 import 'role.dart';
+import 'editor.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -46,7 +47,6 @@ part 'src/ui/simple_panel.dart';
 part 'src/ui/accepts_one_widget.dart';
 part 'src/ui/resize_layout_panel.dart';
 part 'src/ui/provides_resize.dart';
-part 'src/ui/panel_iterator.dart';
 part 'src/ui/impl/resize_layout_panel_impl.dart';
 part 'src/ui/finite_widget_iterator.dart';
 part 'src/ui/check_box.dart';

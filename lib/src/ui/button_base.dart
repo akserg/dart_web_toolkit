@@ -3,7 +3,7 @@
 
 part of dart_web_toolkit_ui;
 
-abstract class ButtonBase extends FocusWidget implements HasHtml {
+abstract class ButtonBase extends FocusWidget implements HasHtml, HasSafeHtml {
   
   /**
    * Creates a new ButtonBase that wraps the given browser element.

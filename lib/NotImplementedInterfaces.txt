@@ -26,9 +26,32 @@ has_all_touch_handlers.dart
 has_touch_start_handlers.dart
 has_touch_move_handlers.dart
 has_touch_cancel_handlers.dart
+has_direction_estimator.dart
+has_directional_safe_html.dart
+has_directional_text.dart
+has_safe_html.dart
+is_editor.dart
+leaf_value_editor.dart
+editor.dart
+has_load_handlers.dart
+has_error_handlers.dart
 
 Deprecated:
 
 SourcesClickEvents -> HasClickHandlers
 SourcesMouseEvents -> HasAllMouseHandlers
 
+Used instead of
+
+InsertPanelForIsWidget -> InsertPanel.ForIsWidget
+IndexedPanel.ForIsWidget -> IndexedPanelForIsWidget
+HasWidgets.ForIsWidget -> HasWidgetsForIsWidget
+
+Not Implemented
+CheckBox:
+- get wordWrap
+- set wordWrap
+
+Hyperlink
+- get html
+- set html

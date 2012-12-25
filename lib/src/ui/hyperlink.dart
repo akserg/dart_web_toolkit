@@ -43,7 +43,8 @@ part of dart_web_toolkit_ui;
  * 
  * @see Anchor
  */
-class Hyperlink extends Widget implements HasClickHandlers {
+class Hyperlink extends Widget implements HasHtml, HasClickHandlers, 
+  HasDirectionEstimator, HasDirectionalSafeHtml {
   
   static HyperlinkImpl _impl = new HyperlinkImpl();
   dart_html.Element _anchorElem = new dart_html.AnchorElement();
@@ -81,6 +82,28 @@ class Hyperlink extends Widget implements HasClickHandlers {
     }
     //
     clearAndSetStyleName("dwt-Hyperlink");
+  }
+  
+  //***********************************
+  // Implementation of HasClickHandlers
+  //***********************************
+  
+  /**
+   * Gets this object's contents as HTML.
+   * 
+   * @return the object's HTML
+   */
+  String get html => ""; // directionalTextHelper.getTextOrHtml(true);
+
+  /**
+   * Sets this object's contents via HTML. Use care when setting an object's
+   * HTML; it is an easy way to expose script-based security problems. Consider
+   * using {@link #setText(String)} whenever possible.
+   * 
+   * @param html the object's new HTML
+   */
+  void set html(String value) {
+    // directionalTextHelper.setTextOrHtml(html, true);
   }
   
   //***********************************

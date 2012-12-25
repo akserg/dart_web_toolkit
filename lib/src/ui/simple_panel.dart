@@ -67,7 +67,7 @@ class SimplePanel extends Panel implements HasOneWidget {
   Iterator<Widget> iterator() {
     // Return a simple iterator that enumerates the 0 or 1 elements in this
     // panel.
-    return new PanelIterator(this);
+    return new SimplePanelIterator(this);
   }
 
   bool remove(Widget w) {
@@ -149,5 +149,35 @@ class SimplePanel extends Panel implements HasOneWidget {
    */
   Widget getWidget() {
     return widget;
+  }
+}
+
+class SimplePanelIterator implements Iterator<Widget> {
+
+  Widget returned = null;
+  SimplePanel _panel;
+
+  SimplePanelIterator(this._panel);
+
+  /**
+   * Returns whether the [Iterator] has elements left.
+   */
+  bool get hasNext => _panel.widget != null;
+
+  /**
+   * Gets the next element in the iteration. Throws a
+   * [StateError] if no element is left.
+   */
+  Widget next() {
+    if (_panel.widget == null) {
+      throw new StateError("No Such Element found");
+    }
+    return (returned = _panel.widget);
+  }
+
+  remove() {
+    if (returned != null) {
+      _panel.remove(returned);
+    }
   }
 }

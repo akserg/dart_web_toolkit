@@ -7,7 +7,10 @@ part of dart_web_toolkit_ui;
  * A simple panel that makes its contents focusable, and adds the ability to
  * catch mouse and keyboard events.
  */
-class FocusPanel extends SimplePanel implements HasFocus, HasClickHandlers {
+class FocusPanel extends SimplePanel implements HasFocus,
+  HasAllDragAndDropHandlers, HasAllMouseHandlers, HasClickHandlers,
+  HasDoubleClickHandlers, HasAllKeyHandlers, HasAllFocusHandlers,
+  HasAllGestureHandlers, HasAllTouchHandlers {
   
   /**
    * Creates an empty panel that uses the specified browser element for its

@@ -34,10 +34,14 @@ part of dart_web_toolkit_ui;
  * {@example com.google.gwt.examples.CheckBoxExample}
  * </p>
  */
-class CheckBox extends ButtonBase implements HasName {
+class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
+  HasWordWrap, HasDirectionalSafeHtml, HasDirectionEstimator,
+  IsEditor<LeafValueEditor<bool>> {
 
   dart_html.InputElement inputElem;
   dart_html.LabelElement labelElem;
+  
+  bool _valueChangeHandlerInitialized;
 
   /**
    * Creates a check box with label.
@@ -132,6 +136,19 @@ class CheckBox extends ButtonBase implements HasName {
     labelElem.innerHtml = val;
   }
 
+  //****************************************
+  // Impementation of HasValueChangeHandlers
+  //****************************************
+  
+  HandlerRegistration addValueChangeHandler(ValueChangeHandler<bool> handler) {
+    // Is this the first value change handler? If so, time to add handlers
+    if (!_valueChangeHandlerInitialized) {
+      ensureDomEventHandlers();
+      _valueChangeHandlerInitialized = true;
+    }
+    return addHandler(handler, ValueChangeEvent.TYPE);
+  }
+  
   //****************************
   // Impementation of HasEnabled
   //****************************
@@ -152,6 +169,26 @@ class CheckBox extends ButtonBase implements HasName {
     Dom.setElementPropertyBoolean(inputElem, "disabled", !val);
   }
 
+  //******************************
+  // Implementation of HasWordWrap
+  //******************************
+  
+  /**
+   * Gets whether word-wrapping is enabled.
+   * 
+   * @return <code>true</code> if word-wrapping is enabled.
+   */
+  bool get wordWrap => false; //!WhiteSpace.NOWRAP.getCssName().equals(getElement().getStyle().getWhiteSpace());
+
+  /**
+   * Sets whether word-wrapping is enabled.
+   * 
+   * @param wrap <code>true</code> to enable word-wrapping.
+   */
+  void set wordWrap(bool wrap) {
+    //getElement().style.WhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
+  }
+  
   //***************************
   // Implementation of HasFocus
   //***************************
@@ -247,27 +284,12 @@ class CheckBox extends ButtonBase implements HasName {
    * @return <code>true</code> if the check box is checked, false otherwise.
    *         Will not return null
    */
-  bool get value => _getValue();
-
-  bool _getValue() {
+  bool getValue() {
     if (isAttached()) {
       return inputElem.checked;
     } else {
       return inputElem.defaultChecked;
     }
-  }
-
-  /**
-   * Checks or unchecks the check box.
-   * <p>
-   * Note that this <em>does not</em> set the value property of the checkbox
-   * input element wrapped by this widget. For access to that property, see
-   * {@link #setFormValue(String)}
-   *
-   * @param value true to check, false to uncheck; null value implies false
-   */
-  void set value(bool val) {
-    setValue(val, false);
   }
 
   /**
@@ -282,12 +304,12 @@ class CheckBox extends ButtonBase implements HasName {
    * @param fireEvents If true, and value has changed, fire a
    *          {@link ValueChangeEvent}
    */
-  void setValue(bool val, bool fireEvents) {
+  void setValue(bool val, [bool fireEvents = false]) {
     if (val == null) {
       val = false;
     }
 
-    bool oldValue = value;
+    bool oldValue = getValue();
     inputElem.checked = val;
     inputElem.defaultChecked = val;
     if (val != oldValue && fireEvents) {
@@ -325,7 +347,7 @@ class CheckBox extends ButtonBase implements HasName {
     // reference between it and the widget).
     //setEventListener(asOld(inputElem), null);
     //setValue(getValue());
-    setValue(value, false);
+    setValue(getValue(), false);
   }
 
   /**
@@ -338,7 +360,7 @@ class CheckBox extends ButtonBase implements HasName {
   void replaceInputElement(dart_html.InputElement newInputElem) {
     // Collect information we need to set
     int _tabIndex = tabIndex;
-    bool _checked = value;
+    bool _checked = getValue();
     bool _enabled = enabled;
     String _formValue = formValue;
     String _uid = inputElem.id;
@@ -363,7 +385,7 @@ class CheckBox extends ButtonBase implements HasName {
 //      inputElem.setAccessKey(accessKey);
 //    }
     tabIndex = _tabIndex;
-    value = _checked;
+    setValue(_checked);
     enabled = _enabled;
     formValue = _formValue;
 

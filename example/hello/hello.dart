@@ -11,6 +11,41 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+// Create a panel to layout the widgets
+  ui.VerticalPanel vpanel = new ui.VerticalPanel();
+  vpanel.spacing = 5;
+  
+  // Add a normal and disabled text box
+  ui.TextBox normalText = new ui.TextBox();
+  // Set the normal text box to automatically adjust its direction according
+  // to the input text. Use the Any-RTL heuristic, which sets an RTL direction
+  // iff the text contains at least one RTL character.
+  //normalText.setDirectionEstimator(AnyRtlDirectionEstimator.get());
+  
+  ui.TextBox disabledText = new ui.TextBox();
+  disabledText.text = "read only"; //(constants.cwBasicTextReadOnly());
+  disabledText.enabled = false;
+  //vpanel.add(new HTML(constants.cwBasicTextNormalLabel()));
+  vpanel.add(normalText);
+  vpanel.add(disabledText);
+  
+  // Add a normal and disabled password text box
+  ui.PasswordTextBox normalPassword = new ui.PasswordTextBox();
+  ui.PasswordTextBox disabledPassword = new ui.PasswordTextBox();
+  disabledPassword.text = "123456"; //constants.cwBasicTextReadOnly();
+  disabledPassword.enabled = false;
+  vpanel.add(normalPassword);
+  vpanel.add(disabledPassword);
+  
+  // Add a text area
+  ui.TextArea textArea = new ui.TextArea();
+  textArea.setVisibleLines(5);
+  vpanel.add(textArea);
+  
+  ui.RootPanel.get("testId").add(vpanel);
+}
+
+void main5() {
 
   List<String> listTypes = ["One", "Two", "Three", "4444", "555", "666"];
   

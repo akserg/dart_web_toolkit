@@ -69,6 +69,14 @@ part 'src/ui/focus_panel.dart';
 part 'src/ui/push_button.dart';
 part 'src/ui/toggle_button.dart';
 part 'src/ui/list_box.dart';
+part 'src/ui/value_box_base.dart';
+part 'src/ui/text_box_base.dart';
+part 'src/ui/text_box.dart';
+part 'src/ui/password_text_box.dart';
+part 'src/ui/text_area.dart';
+
+part 'src/ui/adapter/value_box_editor.dart';
+part 'src/ui/adapter/takes_value_editor.dart';
 
 part 'src/ui/widget_collection.dart';
 
@@ -79,6 +87,7 @@ part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/dom_helper_default.dart';
 part 'src/ui/impl/hyperlink_impl.dart';
 part 'src/ui/impl/history_impl.dart';
+part 'src/ui/impl/text_box_impl.dart';
 
 /**
  * Supports core functionality that in some cases requires direct support from

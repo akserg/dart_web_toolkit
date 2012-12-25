@@ -10,6 +10,7 @@ import 'dart:html' as dart_html;
 
 import 'event.dart';
 import 'util.dart';
+import 'editor.dart';
 
 part 'src/shared/browser_events.dart';
 
@@ -43,6 +44,8 @@ part 'src/shared/takes_value.dart';
 part 'src/shared/has_value.dart';
 
 part 'src/shared/has_text_direction.dart';
+
+part 'src/shared/has_direction.dart';
 
 part 'src/shared/has_all_drag_and_drop_handlers.dart';
 
@@ -120,3 +123,17 @@ part 'src/shared/has_load_handlers.dart';
 
 part 'src/shared/has_error_handlers.dart';
 
+part 'src/shared/auto_direction_handler_target.dart';
+
+part 'src/shared/has_editor_delegate.dart';
+part 'src/shared/parser.dart';
+part 'src/shared/renderer.dart';
+part 'src/shared/appendable.dart';
+
+part 'src/shared/auto_direction_handler.dart';
+
+part 'src/shared/key_up_handler.dart';
+
+part 'src/shared/abstract_renderer.dart';
+part 'src/shared/testing/passthrough_parser.dart';
+part 'src/shared/testing/passthrough_renderer.dart';

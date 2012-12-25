@@ -35,6 +35,14 @@ leaf_value_editor.dart
 editor.dart
 has_load_handlers.dart
 has_error_handlers.dart
+has_editor_delegate.dart
+editor.dart
+value_box_editor.dart
+appendable.dart
+auto_direction_handler.dart
+editor_delegate.dart
+key_up_handler.dart
+auto_direction_handler.dart
 
 Deprecated:
 
@@ -55,3 +63,5 @@ CheckBox:
 Hyperlink
 - get html
 - set html
+
+ValueBoxEditor

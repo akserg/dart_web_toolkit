@@ -51,7 +51,9 @@ class Button extends ButtonBase {
    *
    * @param element the element to be used
    */
-  Button.fromElement(dart_html.Element element) : super(element);
+  Button.fromElement(dart_html.Element element) : super(element) {
+    clearAndSetStyleName("dwt-Button");
+  }
 
   /**
    * Creates a button with the given HTML caption and click listener.

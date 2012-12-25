@@ -76,17 +76,8 @@ part 'src/ui/list_box.dart';
 
 part 'src/ui/widget_collection.dart';
 
-part 'src/ui/has_enabled.dart';
-part 'src/ui/has_focus.dart';
 part 'src/ui/has_widgets.dart';
-part 'src/ui/has_name.dart';
-part 'src/ui/has_html.dart';
-part 'src/ui/has_text.dart';
-part 'src/ui/has_word_wrap.dart';
 part 'src/ui/has_one_widget.dart';
-part 'src/ui/has_horizontal_alignment.dart';
-part 'src/ui/has_vertical_alignment.dart';
-part 'src/ui/has_alignment.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/dom_helper_default.dart';

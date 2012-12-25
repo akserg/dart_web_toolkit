@@ -4,7 +4,7 @@
 /**
  * DartMob Event library.
  */
-part of dart_web_toolkit_ui;
+part of dart_web_toolkit_shared;
 
 /**
  * A widget that implements this interface can receive keyboard focus.

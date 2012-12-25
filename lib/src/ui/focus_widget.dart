@@ -6,7 +6,10 @@ part of dart_web_toolkit_ui;
 /**
  * Abstract base class for most widgets that can receive focus.
  */
-abstract class FocusWidget extends Widget implements HasEnabled, HasFocus, HasClickHandlers {
+abstract class FocusWidget extends Widget implements  
+    HasClickHandlers, HasDoubleClickHandlers, HasFocus, HasEnabled,
+    HasAllDragAndDropHandlers, HasAllFocusHandlers, HasAllGestureHandlers,
+    HasAllKeyHandlers, HasAllMouseHandlers, HasAllTouchHandlers {
 
   /**
    * Creates a new focus widget that wraps the specified browser [element].

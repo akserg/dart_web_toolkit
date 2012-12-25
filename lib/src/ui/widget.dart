@@ -9,7 +9,7 @@ part of dart_web_toolkit_ui;
  * [Panel]s.
  */
 class Widget extends UiObject
-             implements EventListener, IsWidget, HasAttachHandlers  {
+             implements EventListener, HasAttachHandlers, IsWidget  {
 
   /**
    * This convenience method makes a null-safe call to

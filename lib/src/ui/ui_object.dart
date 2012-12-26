@@ -21,6 +21,37 @@ abstract class UiObject implements HasVisibility {
 
   dart_html.Element _element;
 
+  /**
+   * Returns whether the given element is visible in a way consistent with
+   * {@link #setVisible(Element, boolean)}.
+   *
+   * <p>
+   * Warning: implemented with a heuristic. The value returned takes into
+   * account only the "display" style, ignoring CSS and Aria roles, thus may not
+   * accurately reflect whether the element is actually visible in the browser.
+   * </p>
+   */
+  static bool isVisible(dart_html.Element elem) {
+    return (elem.style.display != 'none');
+  }
+
+  /**
+   * Shows or hides the given element. Also updates the "aria-hidden" attribute.
+   *
+   * <p>
+   * Warning: implemented with a heuristic based on the "display" style:
+   * clears the "display" style to its default value if {@code visible} is true,
+   * else forces the style to "none". If the "display" style is set to "none"
+   * via CSS style sheets, the element remains invisible after a call to
+   * {@code setVisible(elem, true)}.
+   * </p>
+   */
+  static void setVisible(dart_html.Element elem, bool visible) {
+    elem.style.display = visible ? '' : 'none';
+    elem.attributes['aria-hidden'] = (!visible).toString();
+  }
+  
+  
   //**************
   // HasVisibility
   //**************
@@ -34,7 +65,7 @@ abstract class UiObject implements HasVisibility {
    *
    * @return <code>true</code> if the object is visible
    */
-  bool get visible => _element.style.display != 'none';
+  bool get visible => isVisible(getElement());
 
   /**
    * Sets whether this object is visible.
@@ -43,8 +74,7 @@ abstract class UiObject implements HasVisibility {
    *          hide it
    */
   void set visible(bool visible) {
-    _element.style.display = visible ? '' : 'none';
-    _element.attribute['aria-hidden'] = (!visible).toString();
+    setVisible(getElement(), visible);
   }
 
   //***********

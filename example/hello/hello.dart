@@ -11,7 +11,58 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
-// Create a panel to layout the widgets
+
+  // Create a new stack panel
+  //ui.StackPanel stackPanel = new ui.StackPanel();
+  ui.DecoratedStackPanel stackPanel = new ui.DecoratedStackPanel();
+  stackPanel.setWidth("200px");
+
+  // Add the Mail folders
+  String mailHeader = "Mail";
+  stackPanel.add(createMailItem(), mailHeader, false);
+
+  // Add a list of filters
+  String filtersHeader = "<b>Filters</b>";
+  stackPanel.add(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), filtersHeader, true);
+
+  // Add a list of contacts
+  String contactsHeader = "Contacts";
+  stackPanel.add(createContactsItem(), contactsHeader, false);
+  
+  stackPanel.showStack(1);
+
+  ui.RootPanel.get("testId").add(stackPanel);
+}
+
+ui.VerticalPanel createMailItem() {
+  ui.VerticalPanel mailsPanel = new ui.VerticalPanel();
+  mailsPanel.spacing = 4;
+  mailsPanel.add(new ui.Button("Refresh"));
+  return mailsPanel;
+}
+
+ui.VerticalPanel createFiltersItem(List<String> filters){
+  ui.VerticalPanel filtersPanel = new ui.VerticalPanel();
+  filtersPanel.spacing = 4;
+  for (String filter in filters) {
+    filtersPanel.add(new ui.CheckBox(filter));
+  }
+  return filtersPanel;
+}
+
+ui.VerticalPanel createContactsItem() {
+  // Create a popup to show the contact info when a contact is clicked
+  ui.VerticalPanel contactPopupContainer = new ui.VerticalPanel();
+  contactPopupContainer.spacing = 5;
+  String name = "contacts";
+  contactPopupContainer.add(new ui.RadioButton(name, "Sergey", false));
+  contactPopupContainer.add(new ui.RadioButton(name, "Lada", false));
+  contactPopupContainer.add(new ui.RadioButton(name, "Alex", false));
+  return contactPopupContainer;
+}
+
+void main6() {
+  // Create a panel to layout the widgets
   ui.VerticalPanel vpanel = new ui.VerticalPanel();
   vpanel.spacing = 5;
   

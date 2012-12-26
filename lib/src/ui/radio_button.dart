@@ -47,14 +47,14 @@ class RadioButton extends CheckBox {
    *
    * @param name the group name with which to associate the radio button
    */
-  RadioButton(String name, [String label = null, bool asHTML = false]) : super.fromElement(new dart_html.InputElement()) {
+  RadioButton(String name, [String label = null, bool asHtml = false]) : super.fromElement(new dart_html.InputElement()) {
     inputElem.type = "radio";
     //super(DOM.createInputRadio(name));
     inputElem.name = name;
     clearAndSetStyleName("dwt-RadioButton");
 
     if (label != null) {
-      if (asHTML) {
+      if (asHtml) {
         html = label;
       } else {
         text = label;

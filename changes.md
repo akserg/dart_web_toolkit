@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 26, 2012
+
+* Implemented StackPanel, DecoratedStackPanel and part of DecoratorPanel. Added example.
+
 **December 25, 2012
 
 * Housekeeping.

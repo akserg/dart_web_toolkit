@@ -43,6 +43,7 @@ auto_direction_handler.dart
 editor_delegate.dart
 key_up_handler.dart
 auto_direction_handler.dart
+decorator_panel.dart - partial
 
 Deprecated:
 

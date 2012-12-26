@@ -74,6 +74,9 @@ part 'src/ui/text_box_base.dart';
 part 'src/ui/text_box.dart';
 part 'src/ui/password_text_box.dart';
 part 'src/ui/text_area.dart';
+part 'src/ui/stack_panel.dart';
+part 'src/ui/decorated_stack_panel.dart';
+part 'src/ui/decorator_panel.dart';
 
 part 'src/ui/adapter/value_box_editor.dart';
 part 'src/ui/adapter/takes_value_editor.dart';

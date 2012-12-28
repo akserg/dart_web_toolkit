@@ -1,11 +1,3 @@
-has_drag_end_handlers.dart 
-has_drag_enter_handlers.dart 
-has_drag_handlers.dart 
-has_drag_leave_handlers.dart 
-has_drag_over_handlers.dart 
-has_drag_start_handlers.dart 
-has_drop_handlers.dart 
-has_double_click_handlers.dart
 has_focus_handlers.dart
 has_blur_handlers.dart
 has_gesture_start_handlers.dart
@@ -16,16 +8,6 @@ has_key_up_handlers.dart
 has_key_down_handlers.dart
 has_key_press_handlers.dart
 has_all_mouse_handlers.dart
-has_mouse_down_handlers.dart
-has_mouse_up_handlers.dart
-has_mouse_out_handlers.dart
-has_mouse_over_handlers.dart
-has_mouse_move_handlers.dart
-has_mouse_wheel_handlers.dart
-has_all_touch_handlers.dart
-has_touch_start_handlers.dart
-has_touch_move_handlers.dart
-has_touch_cancel_handlers.dart
 has_direction_estimator.dart
 has_directional_safe_html.dart
 has_directional_text.dart
@@ -44,6 +26,8 @@ editor_delegate.dart
 key_up_handler.dart
 auto_direction_handler.dart
 decorator_panel.dart - partial
+LocaleInfo - partial
+direction_estimator.dart
 
 Deprecated:
 
@@ -66,3 +50,5 @@ Hyperlink
 - set html
 
 ValueBoxEditor
+BidiUtils
+SafeHtml

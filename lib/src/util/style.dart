@@ -3,41 +3,6 @@
 
 part of dart_web_toolkit_util;
 
-class Style {
-
-  static const String _DISPLAY_INLINE_BLOCK = "inline-block";
-  static const String _DISPLAY_INLINE = "inline";
-  static const String _DISPLAY_BLOCK = "block";
-  static const String _DISPLAY_NONE = "none";
-
-  static const String _OVERFLOW_AUTO = "auto";
-  static const String _OVERFLOW_SCROLL = "scroll";
-  static const String _OVERFLOW_HIDDEN = "hidden";
-  static const String _OVERFLOW_VISIBLE = "visible";
-
-  static const String _POSITION_FIXED = "fixed";
-  static const String _POSITION_ABSOLUTE = "absolute";
-  static const String _POSITION_RELATIVE = "relative";
-  static const String _POSITION_STATIC = "static const";
-
-  static const String _UNIT_MM = "mm";
-  static const String _UNIT_CM = "cm";
-  static const String _UNIT_IN = "in";
-  static const String _UNIT_PC = "pc";
-  static const String _UNIT_PT = "pt";
-  static const String _UNIT_EX = "ex";
-  static const String _UNIT_EM = "em";
-  static const String _UNIT_PCT = "%";
-  static const String _UNIT_PX = "px";
-
-  static const String _WHITE_SPACE_NORMAL = "normal";
-  static const String _WHITE_SPACE_NOWRAP = "nowrap";
-  static const String _WHITE_SPACE_PRE = "pre";
-  static const String _WHITE_SPACE_PRE_LINE = "pre-line";
-  static const String _WHITE_SPACE_PRE_WRAP = "pre-wrap";
-}
-
-
 /**
  * Enum for the display property.
  */
@@ -107,4 +72,56 @@ class WhiteSpace<String> extends Enum<String> {
   static const WhiteSpace PRE = const WhiteSpace(Style._WHITE_SPACE_PRE);
   static const WhiteSpace PRE_LINE = const WhiteSpace(Style._WHITE_SPACE_PRE_LINE);
   static const WhiteSpace PRE_WRAP = const WhiteSpace(Style._WHITE_SPACE_PRE_WRAP);
+}
+
+/**
+ * Enum for the text-align property.
+ */
+class TextAlign<String> extends Enum<String> {
+  
+  const TextAlign(String type) : super (type);
+  
+  static const TextAlign CENTER = const TextAlign(Style._TEXT_ALIGN_CENTER);
+  static const TextAlign JUSTIFY = const TextAlign(Style._TEXT_ALIGN_JUSTIFY);
+  static const TextAlign LEFT = const TextAlign(Style._TEXT_ALIGN_LEFT);
+  static const TextAlign RIGHT = const TextAlign(Style._TEXT_ALIGN_RIGHT);
+}
+
+class Style {
+
+  static const String _DISPLAY_INLINE_BLOCK = "inline-block";
+  static const String _DISPLAY_INLINE = "inline";
+  static const String _DISPLAY_BLOCK = "block";
+  static const String _DISPLAY_NONE = "none";
+
+  static const String _OVERFLOW_AUTO = "auto";
+  static const String _OVERFLOW_SCROLL = "scroll";
+  static const String _OVERFLOW_HIDDEN = "hidden";
+  static const String _OVERFLOW_VISIBLE = "visible";
+
+  static const String _POSITION_FIXED = "fixed";
+  static const String _POSITION_ABSOLUTE = "absolute";
+  static const String _POSITION_RELATIVE = "relative";
+  static const String _POSITION_STATIC = "static const";
+  
+  static const String _TEXT_ALIGN_CENTER = "center";
+  static const String _TEXT_ALIGN_JUSTIFY = "justify";
+  static const String _TEXT_ALIGN_LEFT = "left";
+  static const String _TEXT_ALIGN_RIGHT = "right";
+
+  static const String _UNIT_MM = "mm";
+  static const String _UNIT_CM = "cm";
+  static const String _UNIT_IN = "in";
+  static const String _UNIT_PC = "pc";
+  static const String _UNIT_PT = "pt";
+  static const String _UNIT_EX = "ex";
+  static const String _UNIT_EM = "em";
+  static const String _UNIT_PCT = "%";
+  static const String _UNIT_PX = "px";
+
+  static const String _WHITE_SPACE_NORMAL = "normal";
+  static const String _WHITE_SPACE_NOWRAP = "nowrap";
+  static const String _WHITE_SPACE_PRE = "pre";
+  static const String _WHITE_SPACE_PRE_LINE = "pre-line";
+  static const String _WHITE_SPACE_PRE_WRAP = "pre-wrap";
 }

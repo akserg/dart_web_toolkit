@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A widget that represents a simple [:a:] element.
  */
 class Anchor extends FocusWidget implements HasHorizontalAlignment,
-  HasName, HasHtml, HasWordWrap, HasDirection,
+  HasName, HasHtml, HasWordWrap, //HasDirection,
   HasDirectionEstimator, HasDirectionalSafeHtml {
 
   /**
@@ -17,6 +17,8 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
    */
   static String DEFAULT_HREF = "javascript:;";
 
+  HorizontalAlignmentConstant _horzAlign;
+  
   /**
    * Creates an empty anchor.
    *
@@ -36,6 +38,19 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
    */
   dart_html.AnchorElement getAnchorElement() {
     return getElement() as dart_html.AnchorElement;
+  }
+  
+  //*****************************************
+  // Implementation of HasHorizontalAlignment
+  //*****************************************
+  
+  HorizontalAlignmentConstant getHorizontalAlignment() {
+    return _horzAlign;
+  }
+  
+  void setHorizontalAlignment(HorizontalAlignmentConstant align) {
+    _horzAlign = align;
+    getElement().style.textAlign = align.getTextAlignString();
   }
 
   //***********
@@ -86,7 +101,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
    */
   void set wordWrap(bool value) {
     assert(value != null);
-    getAnchorElement().style.whiteSpace = value ? WhiteSpace.NORMAL.type : WhiteSpace.NOWRAP.type;
+    getAnchorElement().style.whiteSpace = value ? WhiteSpace.NORMAL.cssName : WhiteSpace.NOWRAP.cssName;
   }
 
   /**
@@ -120,16 +135,16 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
     getAnchorElement().text = value;
   }
 
-  /**
-   * Sets the anchor's text.
-   */
-  String get direction => getAnchorElement().dir;
-
-  /**
-   * Get the anchor's text.
-   */
-  void set direction(String value) {
-    assert(value != null);
-    getAnchorElement().dir = value;
-  }
+//  /**
+//   * Sets the anchor's text.
+//   */
+//  String get direction => getAnchorElement().dir;
+//
+//  /**
+//   * Get the anchor's text.
+//   */
+//  void set direction(String value) {
+//    assert(value != null);
+//    getAnchorElement().dir = value;
+//  }
 }

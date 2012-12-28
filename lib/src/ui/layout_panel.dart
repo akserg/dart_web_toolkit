@@ -109,7 +109,7 @@ class LayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresResize
    * @param widget the widget to be added
    */
   void add(Widget widget) {
-    _insert(widget, getWidgetCount());
+    insertAt(widget, getWidgetCount());
   }
   
   void animate(int duration, [LayoutAnimationCallback callback = null]) {
@@ -154,7 +154,7 @@ class LayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresResize
    * @throws IndexOutOfBoundsException if <code>beforeIndex</code> is out of
    *           range
    */
-  void _insert(Widget widget, int beforeIndex) {
+  void insertAt(Widget widget, int beforeIndex) {
     // Detach new child.
     widget.removeFromParent();
 

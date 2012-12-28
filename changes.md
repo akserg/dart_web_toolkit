@@ -1,6 +1,12 @@
 DartMob Changes
 ==============
 
+**December 28, 2012
+
+* Implemented part of i18n and TextDecorator.
+* Implemted Mouse, Touch, Drag and Drop handlers.
+* Implemented Label and StackLayoutPanel. Added examples.
+
 **December 26, 2012
 
 * Implemented StackPanel, DecoratedStackPanel and part of DecoratorPanel. Added example.

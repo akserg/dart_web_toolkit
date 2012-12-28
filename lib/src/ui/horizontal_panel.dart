@@ -12,8 +12,8 @@ part of dart_web_toolkit_ui;
  */
 class HorizontalPanel extends CellPanel implements HasAlignment, InsertPanelForIsWidget {
   
-  String _horzAlign = "left"; //ALIGN_DEFAULT;
-  String _vertAlign = "top"; //ALIGN_TOP;
+  HorizontalAlignmentConstant _horzAlign = HasHorizontalAlignment.ALIGN_DEFAULT;
+  VerticalAlignmentConstant _vertAlign = HasVerticalAlignment.ALIGN_TOP;
   dart_html.Element _tableRow;
   
   /**
@@ -33,7 +33,7 @@ class HorizontalPanel extends CellPanel implements HasAlignment, InsertPanelForI
     addWidget(w, td);
   }
   
-  String getHorizontalAlignment() {
+  HorizontalAlignmentConstant getHorizontalAlignment() {
     return _horzAlign;
   }
   
@@ -43,11 +43,11 @@ class HorizontalPanel extends CellPanel implements HasAlignment, InsertPanelForI
    * 
    * @see HasHorizontalAlignment#setHorizontalAlignment(HasHorizontalAlignment.HorizontalAlignmentConstant)
    */
-  void setHorizontalAlignment(String align) {
+  void setHorizontalAlignment(HorizontalAlignmentConstant align) {
     _horzAlign = align;
   }
 
-  String getVerticalAlignment() {
+  VerticalAlignmentConstant getVerticalAlignment() {
     return _vertAlign;
   }
   
@@ -57,7 +57,7 @@ class HorizontalPanel extends CellPanel implements HasAlignment, InsertPanelForI
    * 
    * @see HasVerticalAlignment#setVerticalAlignment(HasVerticalAlignment.VerticalAlignmentConstant)
    */
-  void setVerticalAlignment(String align) {
+  void setVerticalAlignment(VerticalAlignmentConstant align) {
     _vertAlign = align;
   }
   

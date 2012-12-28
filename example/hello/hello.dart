@@ -11,6 +11,55 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.Label label = new ui.Label("This is a Label");
+  ui.RootPanel.get("testId").add(label);
+}
+
+void main8() {
+  // Create a new stack layout panel.
+  ui.StackLayoutPanel stackPanel = new ui.StackLayoutPanel(util.Unit.EM);
+  stackPanel.setPixelSize(200, 400);
+
+  // Add the Mail folders.
+  //ui.Widget mailHeader = createHeaderWidget("Mail");
+  //stackPanel.addWidget(createMailItem(), mailHeader, 4);
+  stackPanel.addWidget(createMailItem(), "Mail", false, 4.0);
+
+//  // Add a list of filters.
+//  //ui.Widget filtersHeader = createHeaderWidget("<b>Filters</b>");
+//  //stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), filtersHeader, 4);
+//  stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), "<b>Filters</b>", true, 4.0);
+//
+//  // Add a list of contacts.
+//  //ui.Widget contactsHeader = createHeaderWidget("Contacts");
+//  //stackPanel.add(createContactsItem(), contactsHeader, 4);
+//  stackPanel.addWidget(createContactsItem(), "Contacts", false, 4.0);
+  
+  ui.RootPanel.get("testId").add(stackPanel);
+}
+
+/**
+ * Create a widget to display in the header that includes an image and some
+ * text.
+ * 
+ * @param text the header text
+ * @param image the {@link ImageResource} to add next to the header
+ * @return the header widget
+ */
+ui.Widget createHeaderWidget(String text) {
+  // Add the image and text to a horizontal panel
+  ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
+  hPanel.setHeight("100%");
+  hPanel.spacing = 0;
+  hPanel.setVerticalAlignment(shared.HasVerticalAlignment.ALIGN_MIDDLE);
+  //hPanel.add(new Image(image));
+  ui.Button headerText = new ui.Button(text);
+  headerText.clearAndSetStyleName("cw-StackPanelHeader");
+  hPanel.add(headerText);
+  return new ui.SimplePanel(hPanel);
+}
+
+void main7() {
 
   // Create a new stack panel
   //ui.StackPanel stackPanel = new ui.StackPanel();

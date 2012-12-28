@@ -24,4 +24,56 @@ part of dart_web_toolkit_shared;
  * &lt;g:VerticalPanel verticalAlignment='bottom' />
  * </pre>
  */
-abstract class HasVerticalAlignment {}
+abstract class HasVerticalAlignment {
+  
+  /**
+   * Specifies that the widget's contents should be aligned to the bottom.
+   */
+  static VerticalAlignmentConstant ALIGN_BOTTOM = new VerticalAlignmentConstant("bottom");
+
+  /**
+   * Specifies that the widget's contents should be aligned in the middle.
+   */
+  static VerticalAlignmentConstant ALIGN_MIDDLE = new VerticalAlignmentConstant("middle");
+
+  /**
+   * Specifies that the widget's contents should be aligned to the top.
+   */
+  static VerticalAlignmentConstant ALIGN_TOP = new VerticalAlignmentConstant("top");
+
+  /**
+   * Gets the vertical alignment.
+   * 
+   * @return the current vertical alignment.
+   */
+  VerticalAlignmentConstant getVerticalAlignment();
+
+  /**
+   * Sets the vertical alignment.
+   * 
+   * @param align the vertical alignment (
+   *          {@link HasVerticalAlignment#ALIGN_TOP},
+   *          {@link HasVerticalAlignment#ALIGN_MIDDLE}, or
+   *          {@link HasVerticalAlignment#ALIGN_BOTTOM}).
+   */
+  void setVerticalAlignment(VerticalAlignmentConstant align);
+}
+
+/**
+ * Horizontal alignment constant.
+ */
+class VerticalAlignmentConstant {
+  
+  final String _verticalAlignString;
+
+  VerticalAlignmentConstant(this._verticalAlignString);
+
+  /**
+   * Gets the CSS 'vertical-align' string associated with this constant.
+   * 
+   * @return the CSS 'vertical-align' value
+   */
+  String getVerticalAlignString() {
+    return _verticalAlignString;
+  }
+}

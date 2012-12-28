@@ -57,12 +57,12 @@ class SplitLayoutPanel extends DockLayoutPanel {
 
     if (glassElem == null) {
       glassElem = new dart_html.DivElement();
-      glassElem.style.position = Position.ABSOLUTE.type;
-      glassElem.style.top = "0".concat(Unit.PX.type);
-      glassElem.style.left = "0".concat(Unit.PX.type);
-      glassElem.style.margin = "0".concat(Unit.PX.type);
-      glassElem.style.padding = "0".concat(Unit.PX.type);
-      glassElem.style.borderWidth = "0".concat(Unit.PX.type);
+      glassElem.style.position = Position.ABSOLUTE.cssName;
+      glassElem.style.top = "0".concat(Unit.PX.cssName);
+      glassElem.style.left = "0".concat(Unit.PX.cssName);
+      glassElem.style.margin = "0".concat(Unit.PX.cssName);
+      glassElem.style.padding = "0".concat(Unit.PX.cssName);
+      glassElem.style.borderWidth = "0".concat(Unit.PX.cssName);
 
       // We need to set the background color or mouse events will go right
       // through the glassElem. If the SplitPanel contains an iframe, the
@@ -81,9 +81,9 @@ class SplitLayoutPanel extends DockLayoutPanel {
     return _splitterSize;
   }
 
-  void _insert(Widget child, Direction direction, double size, Widget before) {
+  void _insert(Widget child, LayoutDirection direction, double size, Widget before) {
     super._insert(child, direction, size, before);
-    if (direction != Direction.CENTER) {
+    if (direction != LayoutDirection.CENTER) {
       _insertSplitter(child, before);
     }
   }
@@ -110,7 +110,7 @@ class SplitLayoutPanel extends DockLayoutPanel {
    * <p>
    * Its associated splitter cannot be dragged to a position that would make it
    * smaller than this size. This method has no effect for the
-   * {@link DockLayoutPanel.Direction#CENTER} widget.
+   * {@link DockLayoutPanel.LayoutDirection#CENTER} widget.
    * </p>
    *
    * @param child the child whose minimum size will be set
@@ -132,7 +132,7 @@ class SplitLayoutPanel extends DockLayoutPanel {
    * closing completely.
    *
    * <p>
-   * This method has no effect for the {@link DockLayoutPanel.Direction#CENTER}
+   * This method has no effect for the {@link DockLayoutPanel.LayoutDirection#CENTER}
    * widget.
    * </p>
    *
@@ -184,16 +184,16 @@ class SplitLayoutPanel extends DockLayoutPanel {
     LayoutData layout = widget.getLayoutData() as LayoutData;
     Splitter splitter = null;
     switch (getResolvedDirection(layout.direction)) {
-      case Direction.WEST:
+      case LayoutDirection.WEST:
         splitter = new HSplitter(this, widget, false);
         break;
-      case Direction.EAST:
+      case LayoutDirection.EAST:
         splitter = new HSplitter(this, widget, true);
         break;
-      case Direction.NORTH:
+      case LayoutDirection.NORTH:
         splitter = new VSplitter(this, widget, false);
         break;
-      case Direction.SOUTH:
+      case LayoutDirection.SOUTH:
         splitter = new VSplitter(this, widget, true);
         break;
       default:

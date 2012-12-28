@@ -24,3 +24,4 @@ part 'src/event/dom_event_handler.dart';
 
 part 'src/event/has_handlers.dart';
 part 'src/event/has_attach_handlers.dart';
+part 'src/event/has_native_event.dart';

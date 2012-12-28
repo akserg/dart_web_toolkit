@@ -3,10 +3,10 @@
 
 part of dart_web_toolkit_event;
 
-abstract class DomEvent extends DwtEvent {
+abstract class DomEvent extends DwtEvent implements HasNativeEvent {
 
-  dart_html.UIEvent nativeEvent;
-  dart_html.Element relativeElem;
+  dart_html.UIEvent _nativeEvent;
+  dart_html.Element _relativeElem;
   
   static Map<String, DomEventType> _registered;
   
@@ -31,29 +31,29 @@ abstract class DomEvent extends DwtEvent {
   /**
    * Fires the given native event on the specified handlers.
    * 
-   * @param nativeEvent the native event
+   * @param _nativeEvent the native event
    * @param handlerSource the source of the handlers to fire
-   * @param relativeElem the element relative to which event coordinates will be
+   * @param _relativeElem the element relative to which event coordinates will be
    *          measured
    */
   static void fireNativeEvent(dart_html.UIEvent nativeEvent,
       HasHandlers handlerSource, [dart_html.Element relativeElem = null]) {
-    assert (nativeEvent != null); // : "nativeEvent must not be null";
+    assert (nativeEvent != null); // : "_nativeEvent must not be null";
 
     if (_registered != null) {
       DomEventType typeKey = _registered[nativeEvent.type];
       if (typeKey != null) {
         // Store and restore native event just in case we are in recursive
         // loop.
-        dart_html.UIEvent currentNative = typeKey.flyweight.nativeEvent;
-        dart_html.Element currentRelativeElem = typeKey.flyweight.relativeElem;
-        typeKey.flyweight.nativeEvent = nativeEvent;
-        typeKey.flyweight.relativeElem = relativeElem;
+        dart_html.UIEvent currentNative = typeKey.flyweight._nativeEvent;
+        dart_html.Element currentRelativeElem = typeKey.flyweight._relativeElem;
+        typeKey.flyweight._nativeEvent = nativeEvent;
+        typeKey.flyweight._relativeElem = relativeElem;
 
         handlerSource.fireEvent(typeKey.flyweight);
 
-        typeKey.flyweight.nativeEvent = currentNative;
-        typeKey.flyweight.relativeElem = currentRelativeElem;
+        typeKey.flyweight._nativeEvent = currentNative;
+        typeKey.flyweight._relativeElem = currentRelativeElem;
       }
     }
   }
@@ -63,7 +63,7 @@ abstract class DomEvent extends DwtEvent {
    */
   void preventDefault() {
     assertLive();
-    nativeEvent.preventDefault();
+    _nativeEvent.preventDefault();
   }
   
   /**
@@ -71,7 +71,24 @@ abstract class DomEvent extends DwtEvent {
    */
   void stopPropagation() {
     assertLive();
-    nativeEvent.stopPropagation();
+    _nativeEvent.stopPropagation();
+  }
+  
+  dart_html.Event getNativeEvent() {
+    assertLive();
+    return _nativeEvent;
+  }
+  
+  /**
+   * Gets the element relative to which event coordinates will be measured.
+   * If this element is <code>null</code>, event coordinates will be measured
+   * relative to the window's client area.
+   * 
+   * @return the event's relative element
+   */
+  dart_html.Element getRelativeElement() {
+    assertLive();
+    return _relativeElem;
   }
 }
 

@@ -102,12 +102,12 @@ abstract class CellPanel extends ComplexPanel {
     return _table;
   }
 
-  void setCellHorizontalAlignment(dart_html.Element td, String align) {
-    Dom.setElementProperty(td, "align", align);
+  void setCellHorizontalAlignment(dart_html.Element td, HorizontalAlignmentConstant align) {
+    Dom.setElementProperty(td, "align", align.getTextAlignString());
   }
   
-  void setCellVerticalAlignment(dart_html.Element td, String align) {
-    Dom.setStyleAttribute(td, "verticalAlign", align);
+  void setCellVerticalAlignment(dart_html.Element td, VerticalAlignmentConstant align) {
+    Dom.setStyleAttribute(td, "verticalAlign", align.getVerticalAlignString());
   }
   
   dart_html.Element getWidgetTd(Widget w) {
@@ -151,7 +151,7 @@ abstract class CellPanel extends ComplexPanel {
    * @param align the widget's horizontal alignment, as defined in
    *          {@link HasHorizontalAlignment}.
    */
-  void setWidgetCellHorizontalAlignment(Widget w, String align) {
+  void setWidgetCellHorizontalAlignment(Widget w, HorizontalAlignmentConstant align) {
     dart_html.Element td = getWidgetTd(w);
     if (td != null) {
       setCellHorizontalAlignment(td, align);
@@ -163,7 +163,7 @@ abstract class CellPanel extends ComplexPanel {
    * 
    * @see #setCellHorizontalAlignment(Widget,HasHorizontalAlignment.HorizontalAlignmentConstant)
    */
-  void setIsWidgetCellHorizontalAlignment(IsWidget w, String align) {
+  void setIsWidgetCellHorizontalAlignment(IsWidget w, HorizontalAlignmentConstant align) {
     this.setWidgetCellHorizontalAlignment(w.asWidget(), align);
   }
   
@@ -174,7 +174,7 @@ abstract class CellPanel extends ComplexPanel {
    * @param align the widget's vertical alignment, as defined in
    *          {@link HasVerticalAlignment}.
    */
-  void setWidgetCellVerticalAlignment(Widget w, String align) {
+  void setWidgetCellVerticalAlignment(Widget w, VerticalAlignmentConstant align) {
     dart_html.Element td = getWidgetTd(w);
     if (td != null) {
       setCellVerticalAlignment(td, align);
@@ -186,7 +186,7 @@ abstract class CellPanel extends ComplexPanel {
    * 
    * @see #setCellVerticalAlignment(Widget,HasVerticalAlignment.VerticalAlignmentConstant)
    */
-  void setIsWidgetCellVerticalAlignment(IsWidget w, String align) {
+  void setIsWidgetCellVerticalAlignment(IsWidget w, VerticalAlignmentConstant align) {
     this.setWidgetCellVerticalAlignment(w.asWidget(),align);
   }
   

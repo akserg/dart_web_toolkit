@@ -24,9 +24,9 @@ part of dart_web_toolkit_util;
  */
 abstract class Enum<T> {
   
-  final T _type;
+  final T _cssName;
   
-  const Enum(this._type);
+  const Enum(this._cssName);
   
-  T get type => _type;
+  T get cssName => _cssName;
 }

@@ -24,8 +24,6 @@ part 'src/ui/ui_object.dart';
 part 'src/ui/is_widget.dart';
 part 'src/ui/widget.dart';
 part 'src/ui/focus_widget.dart';
-part 'src/ui/dom.dart';
-part 'src/ui/dom_helper.dart';
 part 'src/ui/focus_helper.dart';
 part 'src/ui/anchor.dart';
 part 'src/ui/root_panel.dart';
@@ -77,9 +75,15 @@ part 'src/ui/text_area.dart';
 part 'src/ui/stack_panel.dart';
 part 'src/ui/decorated_stack_panel.dart';
 part 'src/ui/decorator_panel.dart';
+part 'src/ui/resize_composite.dart';
+part 'src/ui/stack_layout_panel.dart';
+part 'src/ui/label_base.dart';
+part 'src/ui/directional_text_helper.dart';
+part 'src/ui/label.dart';
 
 part 'src/ui/adapter/value_box_editor.dart';
 part 'src/ui/adapter/takes_value_editor.dart';
+part 'src/ui/adapter/has_text_editor.dart';
 
 part 'src/ui/widget_collection.dart';
 
@@ -87,7 +91,6 @@ part 'src/ui/has_widgets.dart';
 part 'src/ui/has_one_widget.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
-part 'src/ui/impl/dom_helper_default.dart';
 part 'src/ui/impl/hyperlink_impl.dart';
 part 'src/ui/impl/history_impl.dart';
 part 'src/ui/impl/text_box_impl.dart';

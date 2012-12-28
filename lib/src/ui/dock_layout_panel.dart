@@ -94,7 +94,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param widget the widget to be added
    */
   void add(Widget widget) {
-    _insert(widget, Direction.CENTER, 0.0, null);
+    _insert(widget, LayoutDirection.CENTER, 0.0, null);
   }
 
   //*****
@@ -106,7 +106,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param size the child widget's size
    */
   void addEast(Widget widget, double size) {
-    _insert(widget, Direction.EAST, size, null);
+    _insert(widget, LayoutDirection.EAST, size, null);
   }
 
   /**
@@ -126,7 +126,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param size the child widget's size
    */
   void addLineEnd(Widget widget, double size) {
-    _insert(widget, Direction.LINE_END, size, null);
+    _insert(widget, LayoutDirection.LINE_END, size, null);
   }
 
   /**
@@ -137,7 +137,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param size the child widget's size
    */
   void addLineStart(Widget widget, double size) {
-    _insert(widget, Direction.LINE_START, size, null);
+    _insert(widget, LayoutDirection.LINE_START, size, null);
   }
 
   /**
@@ -147,7 +147,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param size the child widget's size
    */
   void addNorth(Widget widget, double size) {
-    _insert(widget, Direction.NORTH, size, null);
+    _insert(widget, LayoutDirection.NORTH, size, null);
   }
 
   /**
@@ -166,7 +166,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param size the child widget's size
    */
   void addSouth(Widget widget, double size) {
-    _insert(widget, Direction.SOUTH, size, null);
+    _insert(widget, LayoutDirection.SOUTH, size, null);
   }
 
   /**
@@ -185,7 +185,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param size the child widget's size
    */
   void addWest(Widget widget, double size) {
-    _insert(widget, Direction.WEST, size, null);
+    _insert(widget, LayoutDirection.WEST, size, null);
   }
 
   /**
@@ -207,7 +207,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *          <code>null</code> to append
    */
   void insertEast(Widget widget, double size, Widget before) {
-    _insert(widget, Direction.EAST, size, before);
+    _insert(widget, LayoutDirection.EAST, size, before);
   }
 
   /**
@@ -221,7 +221,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *          <code>null</code> to append
    */
   void insertLineEnd(Widget widget, double size, Widget before) {
-    _insert(widget, Direction.LINE_END, size, before);
+    _insert(widget, LayoutDirection.LINE_END, size, before);
   }
 
   /**
@@ -235,7 +235,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *          <code>null</code> to append
    */
   void insertLineStart(Widget widget, double size, Widget before) {
-    _insert(widget, Direction.LINE_START, size, before);
+    _insert(widget, LayoutDirection.LINE_START, size, before);
   }
 
   /**
@@ -248,7 +248,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *          <code>null</code> to append
    */
   void insertNorth(Widget widget, double size, Widget before) {
-    _insert(widget, Direction.NORTH, size, before);
+    _insert(widget, LayoutDirection.NORTH, size, before);
   }
 
   /**
@@ -261,7 +261,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *          <code>null</code> to append
    */
   void insertSouth(Widget widget, double size, Widget before) {
-    _insert(widget, Direction.SOUTH, size, before);
+    _insert(widget, LayoutDirection.SOUTH, size, before);
   }
 
   /**
@@ -274,7 +274,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *          <code>null</code> to append
    */
   void insertWest(Widget widget, double size, Widget before) {
-    _insert(widget, Direction.WEST, size, before);
+    _insert(widget, LayoutDirection.WEST, size, before);
   }
 
   /**
@@ -287,14 +287,14 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    * @param before the widget before which to insert the new child, or
    *          <code>null</code> to append
    */
-  void _insert(Widget widget, Direction direction, double size, Widget before) {
+  void _insert(Widget widget, LayoutDirection direction, double size, Widget before) {
     assertIsChild(before);
 
     // Validation.
     if (before == null) {
       assert (_center == null); // : "No widget may be added after the CENTER widget";
     } else {
-      assert (direction != Direction.CENTER); // : "A CENTER widget must always be added last";
+      assert (direction != LayoutDirection.CENTER); // : "A CENTER widget must always be added last";
     }
 
     // Detach new child.
@@ -309,7 +309,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
       children.insert(widget, index);
     }
 
-    if (direction == Direction.CENTER) {
+    if (direction == LayoutDirection.CENTER) {
       _center = widget;
     }
 
@@ -363,7 +363,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    *         child of this panel
    * @throws AssertionError if the widget is not a child and assertions are enabled
    */
-  Direction getWidgetDirection(Widget child) {
+  LayoutDirection getWidgetDirection(Widget child) {
     assertIsChild(child);
     if (child.getParent() != this) {
       return null;
@@ -443,7 +443,7 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     assertIsChild(widget);
     LayoutData data = widget.getLayoutData() as LayoutData;
 
-    assert (data.direction != Direction.CENTER); // : "The size of the center widget can not be updated.";
+    assert (data.direction != LayoutDirection.CENTER); // : "The size of the center widget can not be updated.";
 
     data.size = size;
 
@@ -465,21 +465,21 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
 
   /**
    * Resolve the specified direction based on the current locale. If the
-   * direction is {@link Direction#LINE_START} or {@link Direction#LINE_END},
-   * the return value will be one of {@link Direction#EAST} or
-   * {@link Direction#WEST} depending on the RTL mode of the locale. For all
+   * direction is {@link LayoutDirection#LINE_START} or {@link LayoutDirection#LINE_END},
+   * the return value will be one of {@link LayoutDirection#EAST} or
+   * {@link LayoutDirection#WEST} depending on the RTL mode of the locale. For all
    * other directions, the specified value is returned.
    *
    * @param direction the specified direction
    * @return the locale
    */
-  Direction getResolvedDirection(Direction direction) {
-//    if (direction == Direction.LINE_START) {
+  LayoutDirection getResolvedDirection(LayoutDirection direction) {
+//    if (direction == LayoutDirection.LINE_START) {
 //      return LocaleInfo.getCurrentLocale().isRTL()
-//          ? Direction.EAST : Direction.WEST;
-//    } else if (direction == Direction.LINE_END) {
+//          ? LayoutDirection.EAST : LayoutDirection.WEST;
+//    } else if (direction == LayoutDirection.LINE_END) {
 //      return LocaleInfo.getCurrentLocale().isRTL()
-//          ? Direction.WEST : Direction.EAST;
+//          ? LayoutDirection.WEST : LayoutDirection.EAST;
 //    }
     return direction;
   }
@@ -524,31 +524,31 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
       }
 
       switch (getResolvedDirection(data.direction)) {
-        case Direction.NORTH:
+        case LayoutDirection.NORTH:
           layer.setLeftRight(left, _unit, right, _unit);
           layer.setTopHeight(top, _unit, data.size, _unit);
           top += data.size;
           break;
 
-        case Direction.SOUTH:
+        case LayoutDirection.SOUTH:
           layer.setLeftRight(left, _unit, right, _unit);
           layer.setBottomHeight(bottom, _unit, data.size, _unit);
           bottom += data.size;
           break;
 
-        case Direction.WEST:
+        case LayoutDirection.WEST:
           layer.setTopBottom(top, _unit, bottom, _unit);
           layer.setLeftWidth(left, _unit, data.size, _unit);
           left += data.size;
           break;
 
-        case Direction.EAST:
+        case LayoutDirection.EAST:
           layer.setTopBottom(top, _unit, bottom, _unit);
           layer.setRightWidth(right, _unit, data.size, _unit);
           right += data.size;
           break;
 
-        case Direction.CENTER:
+        case LayoutDirection.CENTER:
           layer.setLeftRight(left, _unit, right, _unit);
           layer.setTopBottom(top, _unit, bottom, _unit);
           break;
@@ -567,30 +567,30 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
  * Used in {@link DockLayoutPanel#addEast(Widget, double)} et al to specify
  * the direction in which a child widget will be added.
  */
-class Direction<int> extends Enum<int> {
+class LayoutDirection<int> extends Enum<int> {
 
-  const Direction(int type) : super (type);
+  const LayoutDirection(int type) : super (type);
 
-  static const Direction NORTH = const Direction(0);
-  static const Direction EAST = const Direction(1);
-  static const Direction SOUTH = const Direction(2);
-  static const Direction WEST = const Direction(3);
-  static const Direction CENTER = const Direction(4);
-  static const Direction LINE_START = const Direction(5);
-  static const Direction LINE_END = const Direction(6);
+  static const LayoutDirection NORTH = const LayoutDirection(0);
+  static const LayoutDirection EAST = const LayoutDirection(1);
+  static const LayoutDirection SOUTH = const LayoutDirection(2);
+  static const LayoutDirection WEST = const LayoutDirection(3);
+  static const LayoutDirection CENTER = const LayoutDirection(4);
+  static const LayoutDirection LINE_START = const LayoutDirection(5);
+  static const LayoutDirection LINE_END = const LayoutDirection(6);
 }
 
 /**
  * Layout data associated with each widget.
  */
 class LayoutData {
-  Direction direction;
+  LayoutDirection direction;
   double oldSize, size;
   double originalSize;
   bool hidden = false;
   Layer layer;
 
-  LayoutData(Direction direction, double size, Layer layer) {
+  LayoutData(LayoutDirection direction, double size, Layer layer) {
     this.direction = direction;
     this.size = size;
     this.layer = layer;

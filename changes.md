@@ -6,7 +6,7 @@ DartMob Changes
 * Implemented part of i18n and TextDecorator.
 * Implemted Mouse, Touch, Drag and Drop handlers.
 * Implemented Label and StackLayoutPanel. Added examples.
-* Implementd Html. Added examples.
+* Implemented Html. Added examples.
 
 **December 26, 2012
 

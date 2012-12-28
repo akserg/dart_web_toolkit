@@ -80,6 +80,7 @@ part 'src/ui/stack_layout_panel.dart';
 part 'src/ui/label_base.dart';
 part 'src/ui/directional_text_helper.dart';
 part 'src/ui/label.dart';
+part 'src/ui/Html.dart';
 
 part 'src/ui/adapter/value_box_editor.dart';
 part 'src/ui/adapter/takes_value_editor.dart';
@@ -89,6 +90,7 @@ part 'src/ui/widget_collection.dart';
 
 part 'src/ui/has_widgets.dart';
 part 'src/ui/has_one_widget.dart';
+part 'src/ui/has_directional_html.dart';
 
 part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/hyperlink_impl.dart';

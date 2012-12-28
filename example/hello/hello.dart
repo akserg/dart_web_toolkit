@@ -10,7 +10,14 @@ import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
-void main() {
+void main() { 
+  // Create Html
+  ui.Html html = new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>");
+  ui.RootPanel.get("testId").add(html);
+}
+
+void main9() {
+  // Create Label
   ui.Label label = new ui.Label("This is a Label");
   ui.RootPanel.get("testId").add(label);
 }

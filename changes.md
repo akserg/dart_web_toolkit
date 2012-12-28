@@ -7,6 +7,7 @@ DartMob Changes
 * Implemted Mouse, Touch, Drag and Drop handlers.
 * Implemented Label and StackLayoutPanel. Added examples.
 * Implemented Html. Added examples.
+* Implemented InlineHtml, InlineLabel.
 
 **December 26, 2012
 

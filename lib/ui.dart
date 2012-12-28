@@ -82,6 +82,10 @@ part 'src/ui/directional_text_helper.dart';
 part 'src/ui/label.dart';
 part 'src/ui/Html.dart';
 
+part 'src/ui/inline_label.dart';
+part 'src/ui/inline_html.dart';
+part 'src/ui/inline_hyperlink.dart';
+
 part 'src/ui/adapter/value_box_editor.dart';
 part 'src/ui/adapter/takes_value_editor.dart';
 part 'src/ui/adapter/has_text_editor.dart';

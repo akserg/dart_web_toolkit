@@ -25,8 +25,8 @@ class HeaderPanel extends Panel implements RequiresResize {
     layoutCmd = new HeaderPanelScheduledCommand(this);
     // Create the outer element
     dart_html.DivElement elem = new dart_html.DivElement();
-    elem.style.position = Position.RELATIVE.cssName;
-    elem.style.overflow = Overflow.HIDDEN.cssName;
+    elem.style.position = Position.RELATIVE.value;
+    elem.style.overflow = Overflow.HIDDEN.value;
     setElement(elem);
 
     footerImpl = new ResizeLayoutPanelImpl.browserDependent();
@@ -37,21 +37,21 @@ class HeaderPanel extends Panel implements RequiresResize {
 
     // Create the header container.
     headerContainer = createContainer();
-    headerContainer.style.top = "0.0".concat(Unit.PX.cssName);
+    headerContainer.style.top = "0.0".concat(Unit.PX.value);
     headerImpl.init(headerContainer, resizeDelegate);
     elem.append(headerContainer);
 
     // Create the footer container.
     footerContainer = createContainer();
-    footerContainer.style.bottom = "0.0".concat(Unit.PX.cssName);
+    footerContainer.style.bottom = "0.0".concat(Unit.PX.value);
     footerImpl.init(footerContainer, resizeDelegate);
     elem.append(footerContainer);
 
     // Create the content container.
     contentContainer = createContainer();
-    contentContainer.style.overflow = Overflow.HIDDEN.cssName;
-    contentContainer.style.top = "0.0".concat(Unit.PX.cssName);
-    contentContainer.style.height = "0.0".concat(Unit.PX.cssName);
+    contentContainer.style.overflow = Overflow.HIDDEN.value;
+    contentContainer.style.top = "0.0".concat(Unit.PX.value);
+    contentContainer.style.height = "0.0".concat(Unit.PX.value);
     elem.append(contentContainer);
   }
 
@@ -92,13 +92,13 @@ class HeaderPanel extends Panel implements RequiresResize {
       // Logical detach.
       if (w == content) {
         content = null;
-        contentContainer.style.display = Display.NONE.cssName;
+        contentContainer.style.display = Display.NONE.value;
       } else if (w == header) {
         header = null;
-        headerContainer.style.display = Display.NONE.cssName;
+        headerContainer.style.display = Display.NONE.value;
       } else if (w == footer) {
         footer = null;
-        footerContainer.style.display = Display.NONE.cssName;
+        footerContainer.style.display = Display.NONE.value;
       }
     }
     return true;
@@ -211,10 +211,10 @@ class HeaderPanel extends Panel implements RequiresResize {
 
   dart_html.Element createContainer() {
     dart_html.DivElement container = new dart_html.DivElement();
-    container.style.position = Position.ABSOLUTE.cssName;
-    container.style.display = Display.NONE.cssName;
-    container.style.left = "0.0".concat(Unit.PX.cssName);
-    container.style.width = "100.0".concat(Unit.PX.cssName);
+    container.style.position = Position.ABSOLUTE.value;
+    container.style.display = Display.NONE.value;
+    container.style.left = "0.0".concat(Unit.PX.value);
+    container.style.width = "100.0".concat(Unit.PX.value);
     return container;
   }
 
@@ -314,14 +314,14 @@ class HeaderPanel extends Panel implements RequiresResize {
     if (header != null) {
       int height = dart_math.max(0, headerContainer.offsetHeight);
       remainingHeight -= height;
-      contentContainer.style.top = height.toString().concat(Unit.PX.cssName);
+      contentContainer.style.top = height.toString().concat(Unit.PX.value);
     } else {
-      contentContainer.style.top = "0.0".concat(Unit.PX.cssName);
+      contentContainer.style.top = "0.0".concat(Unit.PX.value);
     }
     if (footer != null) {
       remainingHeight -= footerContainer.offsetHeight;
     }
-    contentContainer.style.height = dart_math.max(0, remainingHeight).toString().concat(Unit.PX.cssName);
+    contentContainer.style.height = dart_math.max(0, remainingHeight).toString().concat(Unit.PX.value);
 
     // Provide resize to child.
     if (content is RequiresResize) {

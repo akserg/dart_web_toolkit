@@ -46,6 +46,9 @@ class LocaleInfo {
   LocaleInfoImpl infoImpl;
 
 //  CldrImpl cldrImpl;
+  DateTimeFormatInfo dateTimeFormatInfo;
+  
+  NumberConstants numberConstants;
   
   /**
    * Create a LocaleInfo instance, passing in the implementation classes.
@@ -61,4 +64,33 @@ class LocaleInfo {
   bool isRTL() {
     return false; //cldrImpl.isRTL();
   }
+  
+  /**
+   * Returns a DateTimeConstants instance for this locale.
+   */
+  DateTimeFormatInfo getDateTimeFormatInfo() {
+    ensureDateTimeFormatInfo();
+    return dateTimeFormatInfo;
+  }
+  
+  void ensureDateTimeFormatInfo() {
+    if (dateTimeFormatInfo == null) {
+      dateTimeFormatInfo = infoImpl.getDateTimeFormatInfo();
+    }
+  }
+  
+  /**
+   * Returns a NumberConstants instance for this locale.
+   */
+  NumberConstants getNumberConstants() {
+    ensureNumberConstants();
+    return numberConstants;
+  }
+  
+  void ensureNumberConstants() {
+    if (numberConstants == null) {
+      numberConstants = infoImpl.getNumberConstants();
+    }
+  }
+
 }

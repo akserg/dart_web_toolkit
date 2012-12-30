@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_web_toolkit_shared;
+part of dart_web_toolkit_text;
 
 /**
  * A no-op String parser.
@@ -22,7 +22,7 @@ class PassthroughParser implements Parser<String> {
 
   PassthroughParser();
   
-  String parse(String object) { //CharSequence object) {
-    return object.toString();
+  String parse(String text) { //CharSequence object) {
+    return text as String;
   }
 }

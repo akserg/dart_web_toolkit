@@ -171,7 +171,7 @@ abstract class Splitter extends Widget {
 class HSplitter extends Splitter {
   HSplitter(SplitLayoutPanel splitLayoutPanel, Widget target, bool reverse) : super(splitLayoutPanel, target, reverse) {
     //getElement().getStyle().setPropertyPx("width", splitterSize);
-    getElement().style.width = this._splitLayoutPanel._splitterSize.toString().concat(Unit.PX.cssName);
+    getElement().style.width = this._splitLayoutPanel._splitterSize.toString().concat(Unit.PX.value);
     clearAndSetStyleName("dwt-SplitLayoutPanel-HDragger");
   }
 
@@ -204,7 +204,7 @@ class HSplitter extends Splitter {
 class VSplitter extends Splitter {
   VSplitter(SplitLayoutPanel splitLayoutPanel, Widget target, bool reverse) : super(splitLayoutPanel, target, reverse) {
     //getElement().getStyle().setPropertyPx("height", splitterSize);
-    getElement().style.height = this._splitLayoutPanel._splitterSize.toString().concat(Unit.PX.cssName);
+    getElement().style.height = this._splitLayoutPanel._splitterSize.toString().concat(Unit.PX.value);
     clearAndSetStyleName("dwt-SplitLayoutPanel-VDragger");
   }
 

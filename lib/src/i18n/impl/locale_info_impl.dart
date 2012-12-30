@@ -36,9 +36,9 @@ class LocaleInfoImpl {
    *
    * @return a {@link DateTimeFormatInfo} instance
    */
-//  DateTimeFormatInfo getDateTimeFormatInfo() {
-//    return new DateTimeFormatInfoImpl(); //GWT.create(DateTimeFormatInfoImpl.class);
-//  }
+  DateTimeFormatInfo getDateTimeFormatInfo() {
+    return new DateTimeFormatInfoImpl();
+  }
 
   /**
    * Returns the name of the name of the cookie holding the locale to use,
@@ -86,13 +86,13 @@ class LocaleInfoImpl {
 //  LocalizedNames getLocalizedNames() {
 //    return new LocalizedNamesImpl(); // GWT.create(LocalizedNamesImpl.class);
 //  }
-//
-//  /**
-//   * Returns a NumberConstants instance appropriate for this locale.
-//   */
-//  NumberConstants getNumberConstants() {
-//    return new NumberConstantsImpl(); //GWT.create(NumberConstantsImpl.class);
-//  }
+
+  /**
+   * Returns a NumberConstants instance appropriate for this locale.
+   */
+  NumberConstants getNumberConstants() {
+    return new NumberConstantsImpl(); //GWT.create(NumberConstantsImpl.class);
+  }
 
   /**
    * Returns true if any locale supported by this build of the app is RTL.

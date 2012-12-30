@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_web_toolkit_shared;
+part of dart_web_toolkit_text;
 
 /**
  * An object that can render other objects of a particular type into plain-text
@@ -22,5 +22,5 @@ abstract class Renderer<T> {
    * appendable}. Should never throw any exceptions except if {@code appendable}
    * throws an {@code IOException}.
    */
-  void renderTo(T object, Appendable appendable); // throws IOException;
+  void renderTo(T object, Appendable appendable);
 }

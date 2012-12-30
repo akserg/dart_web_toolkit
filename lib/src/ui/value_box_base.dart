@@ -249,7 +249,7 @@ class ValueBoxBase<T> extends FocusWidget implements
   }
   
   void setAlignment(TextAlignment align) {
-    Dom.setStyleAttribute(getElement(), "textAlign", align.cssName);
+    Dom.setStyleAttribute(getElement(), "textAlign", align.value);
   }
   
   /**

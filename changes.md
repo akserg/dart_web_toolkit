@@ -1,6 +1,12 @@
 DartMob Changes
 ==============
 
+**December 30, 2012
+
+* Partial implemntation of localization.
+* Implemented DateLabel, DoubleBox, IntBox, ValueBox and ValueLabel.
+* Added text library with parsers and renderers.
+
 **December 28, 2012
 
 * Implemented part of i18n and TextDecorator.

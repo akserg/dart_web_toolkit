@@ -52,6 +52,8 @@ part 'src/shared/has_value.dart';
 
 part 'src/shared/has_text_direction.dart';
 
+part 'src/shared/has_before_selection_handlers.dart';
+
 part 'src/shared/has_all_drag_and_drop_handlers.dart';
 part 'src/shared/drag_drop_event_base.dart';
 
@@ -167,19 +169,6 @@ part 'src/shared/has_error_handlers.dart';
 part 'src/shared/auto_direction_handler_target.dart';
 
 part 'src/shared/has_editor_delegate.dart';
-part 'src/shared/parser.dart';
-part 'src/shared/renderer.dart';
-part 'src/shared/appendable.dart';
-
-part 'src/shared/auto_direction_handler.dart';
-
-part 'src/shared/key_up_handler.dart';
-
-part 'src/shared/abstract_renderer.dart';
-part 'src/shared/testing/passthrough_parser.dart';
-part 'src/shared/testing/passthrough_renderer.dart';
-
-part 'src/shared/has_before_selection_handlers.dart';
 
 part 'src/shared/before_selection_handler.dart';
 part 'src/shared/before_selection_event.dart';

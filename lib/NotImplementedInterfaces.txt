@@ -1,3 +1,5 @@
+Not implemented:
+
 has_focus_handlers.dart
 has_blur_handlers.dart
 has_gesture_start_handlers.dart
@@ -28,19 +30,22 @@ auto_direction_handler.dart
 decorator_panel.dart - partial
 LocaleInfo - partial
 direction_estimator.dart
+number_format.dart
+number_constants_impl.dart - partial. Content must be downloaded as properties file from server.
 
 Deprecated:
 
 SourcesClickEvents -> HasClickHandlers
 SourcesMouseEvents -> HasAllMouseHandlers
 
-Used instead of
+Instead of
 
 InsertPanelForIsWidget -> InsertPanel.ForIsWidget
 IndexedPanel.ForIsWidget -> IndexedPanelForIsWidget
 HasWidgets.ForIsWidget -> HasWidgetsForIsWidget
 
 Not Implemented
+
 CheckBox:
 - get wordWrap
 - set wordWrap
@@ -53,3 +58,6 @@ ValueBoxEditor
 BidiUtils
 SafeHtml
 InlineHyperlink - partial
+
+TimeZoneInfo - partial. Need access to JS eval function.
+TimeZone - partial. createTimeZoneFromJson and createTimeZoneFromInfo are commented out.

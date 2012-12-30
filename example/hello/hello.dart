@@ -10,7 +10,21 @@ import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
-void main() { 
+void main() {
+  ui.DoubleBox dBox = new ui.DoubleBox();
+  dBox.setMaxLength(10);
+  dBox.setVisibleLength(5);
+  dBox.setValue(123.4543453);
+  ui.RootPanel.get("testId").add(dBox);
+  
+  ui.IntegerBox iBox = new ui.IntegerBox();
+  iBox.setMaxLength(10);
+  iBox.setVisibleLength(5);
+  iBox.setValue(123123);
+  ui.RootPanel.get("testId").add(iBox);
+}
+
+void main10() { 
   // Create Html
   ui.Html html = new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>");
   ui.RootPanel.get("testId").add(html);

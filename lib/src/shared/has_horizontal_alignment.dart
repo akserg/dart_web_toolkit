@@ -28,22 +28,22 @@ abstract class HasHorizontalAlignment {
   /**
    * Specifies that the widget's contents should be aligned in the center.
    */
-  static HorizontalAlignmentConstant ALIGN_CENTER = new HorizontalAlignmentConstant(TextAlign.CENTER.cssName);
+  static HorizontalAlignmentConstant ALIGN_CENTER = new HorizontalAlignmentConstant(TextAlign.CENTER.value);
 
   /**
    * Specifies that the widget's contents should be aligned as justify.
    */
-  static HorizontalAlignmentConstant ALIGN_JUSTIFY = new HorizontalAlignmentConstant(TextAlign.JUSTIFY.cssName);
+  static HorizontalAlignmentConstant ALIGN_JUSTIFY = new HorizontalAlignmentConstant(TextAlign.JUSTIFY.value);
 
   /**
    * Specifies that the widget's contents should be aligned to the left.
    */
-  static HorizontalAlignmentConstant ALIGN_LEFT = new HorizontalAlignmentConstant(TextAlign.LEFT.cssName);
+  static HorizontalAlignmentConstant ALIGN_LEFT = new HorizontalAlignmentConstant(TextAlign.LEFT.value);
 
   /**
    * Specifies that the widget's contents should be aligned to the right.
    */
-  static HorizontalAlignmentConstant ALIGN_RIGHT = new HorizontalAlignmentConstant(TextAlign.RIGHT.cssName);
+  static HorizontalAlignmentConstant ALIGN_RIGHT = new HorizontalAlignmentConstant(TextAlign.RIGHT.value);
 
   /**
    * In a RTL layout, specifies that the widget's contents should be aligned to

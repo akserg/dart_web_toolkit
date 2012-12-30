@@ -57,12 +57,12 @@ class SplitLayoutPanel extends DockLayoutPanel {
 
     if (glassElem == null) {
       glassElem = new dart_html.DivElement();
-      glassElem.style.position = Position.ABSOLUTE.cssName;
-      glassElem.style.top = "0".concat(Unit.PX.cssName);
-      glassElem.style.left = "0".concat(Unit.PX.cssName);
-      glassElem.style.margin = "0".concat(Unit.PX.cssName);
-      glassElem.style.padding = "0".concat(Unit.PX.cssName);
-      glassElem.style.borderWidth = "0".concat(Unit.PX.cssName);
+      glassElem.style.position = Position.ABSOLUTE.value;
+      glassElem.style.top = "0".concat(Unit.PX.value);
+      glassElem.style.left = "0".concat(Unit.PX.value);
+      glassElem.style.margin = "0".concat(Unit.PX.value);
+      glassElem.style.padding = "0".concat(Unit.PX.value);
+      glassElem.style.borderWidth = "0".concat(Unit.PX.value);
 
       // We need to set the background color or mouse events will go right
       // through the glassElem. If the SplitPanel contains an iframe, the

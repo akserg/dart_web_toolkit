@@ -101,7 +101,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
    */
   void set wordWrap(bool value) {
     assert(value != null);
-    getAnchorElement().style.whiteSpace = value ? WhiteSpace.NORMAL.cssName : WhiteSpace.NOWRAP.cssName;
+    getAnchorElement().style.whiteSpace = value ? WhiteSpace.NORMAL.value : WhiteSpace.NOWRAP.value;
   }
 
   /**

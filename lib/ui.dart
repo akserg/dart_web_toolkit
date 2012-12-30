@@ -18,6 +18,7 @@ import 'util.dart';
 import 'scheduler.dart';
 import 'role.dart';
 import 'editor.dart';
+import 'text.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -81,6 +82,11 @@ part 'src/ui/label_base.dart';
 part 'src/ui/directional_text_helper.dart';
 part 'src/ui/label.dart';
 part 'src/ui/Html.dart';
+part 'src/ui/value_label.dart';
+part 'src/ui/date_label.dart';
+part 'src/ui/value_box.dart';
+part 'src/ui/double_box.dart';
+part 'src/ui/integer_box.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

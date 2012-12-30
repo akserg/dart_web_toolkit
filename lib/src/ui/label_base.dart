@@ -119,10 +119,10 @@ class LabelBase<T> extends Widget implements HasWordWrap,
   // Implementation of HasWordWrap
   //******************************
   
-  bool get wordWrap => WhiteSpace.NOWRAP.cssName == getElement().style.whiteSpace;
+  bool get wordWrap => WhiteSpace.NOWRAP.value == getElement().style.whiteSpace;
   
   void set wordWrap(bool wrap) {
-    getElement().style.whiteSpace = wrap ? WhiteSpace.NORMAL.cssName : WhiteSpace.NOWRAP.cssName;
+    getElement().style.whiteSpace = wrap ? WhiteSpace.NORMAL.value : WhiteSpace.NOWRAP.value;
   }
   
   /**

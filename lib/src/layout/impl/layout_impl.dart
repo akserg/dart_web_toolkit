@@ -28,18 +28,18 @@ class LayoutImpl {
   static dart_html.DivElement createRuler(Unit widthUnit, Unit heightUnit) {
     dart_html.DivElement ruler = new dart_html.DivElement();
     ruler.innerHtml = "&nbsp;";
-    ruler.style.position = Position.ABSOLUTE.cssName;
+    ruler.style.position = Position.ABSOLUTE.value;
     ruler.style.zIndex = "-32767";
 
     // Position the ruler off the top edge, double the size just to be
     // extra sure it doesn't show up on the screen.
-    ruler.style.top = "-20".concat(heightUnit.cssName);
+    ruler.style.top = "-20".concat(heightUnit.value);
 
     // Note that we are making the ruler element 10x10, because some browsers
     // generate non-integral ratios (e.g., 1em == 13.3px), so we need a little
     // extra precision.
-    ruler.style.width = "10".concat(widthUnit.cssName);
-    ruler.style.height = "10".concat(heightUnit.cssName);
+    ruler.style.width = "10".concat(widthUnit.value);
+    ruler.style.height = "10".concat(heightUnit.value);
     return ruler;
   }
 
@@ -51,13 +51,13 @@ class LayoutImpl {
     dart_html.DivElement container = new dart_html.DivElement();
     container.append(child);
 
-    container.style.position = Position.ABSOLUTE.cssName;
-    container.style.overflow = Overflow.HIDDEN.cssName;
+    container.style.position = Position.ABSOLUTE.value;
+    container.style.overflow = Overflow.HIDDEN.value;
     // I have added that code here because without it it doesn't show itself and children elements
-    container.style.left = "0".concat(Unit.PX.cssName);
-    container.style.top = "0".concat(Unit.PX.cssName);
-    container.style.right = "0".concat(Unit.PX.cssName);
-    container.style.bottom = "0".concat(Unit.PX.cssName);
+    container.style.left = "0".concat(Unit.PX.value);
+    container.style.top = "0".concat(Unit.PX.value);
+    container.style.right = "0".concat(Unit.PX.value);
+    container.style.bottom = "0".concat(Unit.PX.value);
     //
     container.id = "layoutContainer";
 
@@ -73,11 +73,11 @@ class LayoutImpl {
   }
 
   void fillParent(dart_html.Element elem) {
-    elem.style.position = Position.ABSOLUTE.cssName;
-    elem.style.left = "0".concat(Unit.PX.cssName);
-    elem.style.top = "0".concat(Unit.PX.cssName);
-    elem.style.right = "0".concat(Unit.PX.cssName);
-    elem.style.bottom = "0".concat(Unit.PX.cssName);
+    elem.style.position = Position.ABSOLUTE.value;
+    elem.style.left = "0".concat(Unit.PX.value);
+    elem.style.top = "0".concat(Unit.PX.value);
+    elem.style.right = "0".concat(Unit.PX.value);
+    elem.style.bottom = "0".concat(Unit.PX.value);
   }
 
   /**
@@ -116,7 +116,7 @@ class LayoutImpl {
   }
 
   void initParent(dart_html.Element parent) {
-    parent.style.position = Position.RELATIVE.cssName;
+    parent.style.position = Position.RELATIVE.value;
     parent.append(relativeRuler = createRuler(Unit.EM, Unit.EX));
   }
 
@@ -124,43 +124,43 @@ class LayoutImpl {
     if (layer.visible) {
       layer.container.style.display = "";
     } else {
-      layer.container.style.display = Display.NONE.cssName;
+      layer.container.style.display = Display.NONE.value;
     }
 
-    layer.container.style.left = layer.setLeft ? (layer.left.toString().concat(layer.leftUnit.cssName)) : "";
-    layer.container.style.top = layer.setTop ? (layer.top.toString().concat(layer.topUnit.cssName)) : "";
-    layer.container.style.right = layer.setRight ? (layer.right.toString().concat(layer.rightUnit.cssName)) : "";
-    layer.container.style.bottom = layer.setBottom ? (layer.bottom.toString().concat(layer.bottomUnit.cssName)) : "";
-    layer.container.style.width = layer.setWidth ? (layer.width.toString().concat(layer.widthUnit.cssName)) : "";
-    layer.container.style.height = layer.setHeight ? (layer.height.toString().concat(layer.heightUnit.cssName)) : "";
+    layer.container.style.left = layer.setLeft ? (layer.left.toString().concat(layer.leftUnit.value)) : "";
+    layer.container.style.top = layer.setTop ? (layer.top.toString().concat(layer.topUnit.value)) : "";
+    layer.container.style.right = layer.setRight ? (layer.right.toString().concat(layer.rightUnit.value)) : "";
+    layer.container.style.bottom = layer.setBottom ? (layer.bottom.toString().concat(layer.bottomUnit.value)) : "";
+    layer.container.style.width = layer.setWidth ? (layer.width.toString().concat(layer.widthUnit.value)) : "";
+    layer.container.style.height = layer.setHeight ? (layer.height.toString().concat(layer.heightUnit.value)) : "";
 
     switch (layer.hPos) {
       case Alignment.BEGIN:
-        layer.child.style.left = "0".concat(Unit.PX.cssName);
+        layer.child.style.left = "0".concat(Unit.PX.value);
         layer.child.style.right = "";
         break;
       case Alignment.END:
         layer.child.style.left = "";
-        layer.child.style.right = "0".concat(Unit.PX.cssName);
+        layer.child.style.right = "0".concat(Unit.PX.value);
         break;
       case Alignment.STRETCH:
-        layer.child.style.left = "0".concat(Unit.PX.cssName);
-        layer.child.style.right = "0".concat(Unit.PX.cssName);
+        layer.child.style.left = "0".concat(Unit.PX.value);
+        layer.child.style.right = "0".concat(Unit.PX.value);
         break;
     }
 
     switch (layer.vPos) {
       case Alignment.BEGIN:
-        layer.child.style.top = "0".concat(Unit.PX.cssName);
+        layer.child.style.top = "0".concat(Unit.PX.value);
         layer.child.style.bottom = "";
         break;
       case Alignment.END:
         layer.child.style.top = "";
-        layer.child.style.bottom = "0".concat(Unit.PX.cssName);
+        layer.child.style.bottom = "0".concat(Unit.PX.value);
         break;
       case Alignment.STRETCH:
-        layer.child.style.top = "0".concat(Unit.PX.cssName);
-        layer.child.style.bottom = "0".concat(Unit.PX.cssName);
+        layer.child.style.top = "0".concat(Unit.PX.value);
+        layer.child.style.bottom = "0".concat(Unit.PX.value);
         break;
     }
   }

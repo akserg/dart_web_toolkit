@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_web_toolkit_shared;
+part of dart_web_toolkit_text;
 
 /**
  * A no-op String renderer. This is rarely or never the right
@@ -24,6 +24,6 @@ class PassthroughRenderer extends AbstractRenderer<String> {
   PassthroughRenderer();
 
   String render(String object) {
-    return object;
+    return object as String;
   }
 }

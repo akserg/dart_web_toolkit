@@ -20,3 +20,12 @@ public void setStylePrimaryName(String style)                       void setStyl
 protected Element getStyleElement()     Element getStyleElement()
 
 getElement().appendChild(Element element)    getElement().append(Element element)
+
+
+CurrencyDataImpl:
+static int getDefaultFractionDigits(int flagsAndPrecision)  static int getDefaultFractionDigits(int flagsAndPrecision)
+static bool isDeprecated(int flagsAndPrecision)             static bool testDeprecated(int flagsAndPrecision)
+static bool isSpaceForced(int flagsAndPrecision)            static bool testSpaceForced(int flagsAndPrecision)
+static bool isSpacingFixed(int flagsAndPrecision)           static bool testSpacingFixed(int flagsAndPrecision)
+static bool isSymbolPositionFixed(int flagsAndPrecision)    static bool testSymbolPositionFixed(int flagsAndPrecision)
+static bool isSymbolPrefix(int flagsAndPrecision)           static bool testSymbolPrefix(int flagsAndPrecision)

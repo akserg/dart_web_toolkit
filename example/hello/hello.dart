@@ -22,6 +22,16 @@ void main() {
   iBox.setVisibleLength(5);
   iBox.setValue(123123);
   ui.RootPanel.get("testId").add(iBox);
+
+  ui.SimpleCheckBox sCheckBox = new ui.SimpleCheckBox();
+  sCheckBox.setValue(true);
+  sCheckBox.enabled = false;
+  ui.RootPanel.get("testId").add(sCheckBox);
+  
+  ui.SimpleRadioButton rCheckBox = new ui.SimpleRadioButton();
+  rCheckBox.setValue(true);
+  rCheckBox.enabled = false;
+  ui.RootPanel.get("testId").add(rCheckBox);
 }
 
 void main10() { 

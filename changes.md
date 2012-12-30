@@ -7,6 +7,7 @@ DartMob Changes
 * Implemented DateLabel, DoubleBox, IntBox, ValueBox and ValueLabel.
 * Added text library with parsers and renderers.
 * IntegerBox renamed to IntBox.
+* Implemented SimpleCheckBox and SimpleRadioButton. Example added.
 
 **December 28, 2012
 

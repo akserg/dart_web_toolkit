@@ -6,6 +6,7 @@ DartMob Changes
 * Partial implemntation of localization.
 * Implemented DateLabel, DoubleBox, IntBox, ValueBox and ValueLabel.
 * Added text library with parsers and renderers.
+* IntegerBox renamed to IntBox.
 
 **December 28, 2012
 

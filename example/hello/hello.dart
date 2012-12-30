@@ -17,7 +17,7 @@ void main() {
   dBox.setValue(123.4543453);
   ui.RootPanel.get("testId").add(dBox);
   
-  ui.IntegerBox iBox = new ui.IntegerBox();
+  ui.IntBox iBox = new ui.IntBox();
   iBox.setMaxLength(10);
   iBox.setVisibleLength(5);
   iBox.setValue(123123);

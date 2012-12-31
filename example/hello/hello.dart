@@ -11,6 +11,17 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.DeckLayoutPanel dPanel = new ui.DeckLayoutPanel();
+  
+  dPanel.setSize("500px", "400px");
+  dPanel.add(new ui.Button("Button 1"));
+  dPanel.add(new ui.Button("Button 2"));
+  dPanel.showWidgetAt(1);
+  
+  ui.RootPanel.get("testId").add(dPanel);
+}
+
+void main11() {
   ui.DoubleBox dBox = new ui.DoubleBox();
   dBox.setMaxLength(10);
   dBox.setVisibleLength(5);

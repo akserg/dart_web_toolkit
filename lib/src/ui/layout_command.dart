@@ -17,7 +17,7 @@ class LayoutCommand implements ScheduledCommand {
   bool _scheduled = false;
   bool _canceled = false;
   int _duration = 0;
-  LayoutAnimationCallback _callback;
+  LayoutAnimationCallback callback;
   Layout _layout;
 
   /**
@@ -59,7 +59,7 @@ class LayoutCommand implements ScheduledCommand {
    */
   void schedule(int duration, LayoutAnimationCallback callback) {
     this._duration = duration;
-    this._callback = callback;
+    this.callback = callback;
 
     _canceled = false;
     if (!_scheduled) {
@@ -85,8 +85,8 @@ class LayoutCommandAnimationCallback implements LayoutAnimationCallback {
   
   void onAnimationComplete() {
     // Chain to the passed callback.
-    if (_command._callback != null) {
-      _command._callback.onAnimationComplete();
+    if (_command.callback != null) {
+      _command.callback.onAnimationComplete();
     }
   }
 
@@ -99,8 +99,8 @@ class LayoutCommandAnimationCallback implements LayoutAnimationCallback {
     }
 
     // Chain to the passed callback.
-    if (_command._callback != null) {
-      _command._callback.onLayout(layer, progress);
+    if (_command.callback != null) {
+      _command.callback.onLayout(layer, progress);
     }
   }
 }

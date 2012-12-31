@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**December 31, 2012
+
+* Implemented DeckLayoutPanel. Added example.
+
 **December 30, 2012
 
 * Partial implemntation of localization.

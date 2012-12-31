@@ -23,14 +23,15 @@ abstract class InsertPanel extends IndexedPanel {
    * @throws IndexOutOfBoundsException if <code>beforeIndex</code> is out of
    *           range
    */
-  void insert(Widget w, int beforeIndex);}
+  void insert(Widget w, int beforeIndex);
+}
 
 /**
  * Extends this interface with convenience methods to handle [IsWidget].
  */
 abstract class InsertPanelForIsWidget implements InsertPanel, IndexedPanelForIsWidget {
   
-  void add(IsWidget w);
+  void addIsWidget(IsWidget w);
 
-  void insert(IsWidget w, int beforeIndex);
+  void insertIsWidget(IsWidget w, int beforeIndex);
 }

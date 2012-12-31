@@ -89,6 +89,7 @@ part 'src/ui/double_box.dart';
 part 'src/ui/int_box.dart';
 part 'src/ui/simple_check_box.dart';
 part 'src/ui/simple_radio_button.dart';
+part 'src/ui/deck_layout_panel.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

@@ -229,6 +229,11 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
    */
   void insert(Widget child, dart_html.Element container, int beforeIndex,
       bool domInsert) {
+
+    if (container == null) {
+      throw new Exception("container may not be null");
+    }
+    
     // Validate index; adjust if the widget is already a child of this panel.
     beforeIndex = adjustIndex(child, beforeIndex);
 

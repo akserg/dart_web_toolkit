@@ -22,3 +22,4 @@ part 'src/text/double_parser.dart';
 part 'src/text/double_renderer.dart';
 part 'src/text/int_parser.dart';
 part 'src/text/int_renderer.dart';
+part 'src/text/number_format_renderer.dart';

@@ -329,4 +329,21 @@ class NumberFormat {
     return number.toString();
   }
   
+  /**
+   * This method formats a Number to produce a string.
+   * <p>
+   * Any {@link Number} which is not a {@link BigDecimal}, {@link BigInteger},
+   * or {@link Long} instance is formatted as a {@code double} value.
+   *
+   * @param number The Number instance to format
+   * @return the formatted number string
+   */
+  String format(num number) {
+    if (number is int) {
+      return formatInt(number as int);
+    } else if (number is double) {
+      return formatDouble(number as double);
+    } 
+    throw new Exception("Unknown type");
+  }
 }

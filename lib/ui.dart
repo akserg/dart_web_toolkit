@@ -84,6 +84,7 @@ part 'src/ui/label.dart';
 part 'src/ui/Html.dart';
 part 'src/ui/value_label.dart';
 part 'src/ui/date_label.dart';
+part 'src/ui/number_label.dart';
 part 'src/ui/value_box.dart';
 part 'src/ui/double_box.dart';
 part 'src/ui/int_box.dart';

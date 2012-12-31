@@ -11,6 +11,21 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  
+  ui.DateLabel dLabel = new ui.DateLabel();
+  dLabel.setValue(new Date.now());
+  
+  ui.RootPanel.get("testId").add(dLabel);
+  
+  ui.RootPanel.get("testId").add(new ui.Html(""));
+  
+  ui.NumberLabel nLabel = new ui.NumberLabel();
+  nLabel.setValue(123.12);
+  
+  ui.RootPanel.get("testId").add(nLabel);
+}
+
+void main12() {
   ui.DeckLayoutPanel dPanel = new ui.DeckLayoutPanel();
   
   dPanel.setSize("500px", "400px");

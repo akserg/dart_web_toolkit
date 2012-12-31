@@ -4,6 +4,7 @@ DartMob Changes
 **December 31, 2012
 
 * Implemented DeckLayoutPanel. Added example.
+* Implemented NumberLabel. Added example.
 
 **December 30, 2012
 

@@ -7,8 +7,11 @@
 library dart_web_toolkit_util;
 
 import 'dart:html' as dart_html;
+import 'dart:uri';
 
 part 'src/util/timer.dart';
 part 'src/util/style.dart';
 part 'src/util/remove_iterator.dart';
 part 'src/util/enum.dart';
+part 'src/util/safe_uri.dart';
+part 'src/util/uri_utils.dart';

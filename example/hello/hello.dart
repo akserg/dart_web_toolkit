@@ -11,6 +11,11 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.Image image = new ui.Image("img/IanBambury.jpg");
+  ui.RootPanel.get("testId").add(image);
+}
+
+void main13() {
   
   ui.DateLabel dLabel = new ui.DateLabel();
   dLabel.setValue(new Date.now());

@@ -110,6 +110,7 @@ part 'src/ui/impl/focus_helper_default.dart';
 part 'src/ui/impl/hyperlink_impl.dart';
 part 'src/ui/impl/history_impl.dart';
 part 'src/ui/impl/text_box_impl.dart';
+part 'src/ui/impl/clipped_image_impl.dart';
 
 /**
  * Supports core functionality that in some cases requires direct support from

@@ -15,3 +15,4 @@ part 'src/util/remove_iterator.dart';
 part 'src/util/enum.dart';
 part 'src/util/safe_uri.dart';
 part 'src/util/uri_utils.dart';
+part 'src/util/safe_html.dart';

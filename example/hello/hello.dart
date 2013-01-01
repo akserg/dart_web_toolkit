@@ -11,6 +11,22 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.CaptionPanel panel = new ui.CaptionPanel("Caption Goes Here");
+  ui.RootPanel.get("testId").add(panel);
+
+  panel.setContentWidget(new ui.Label("The main, wrapped widget goes here."));
+
+  // Set up some style - normally you'd do this in CSS, but it's
+  // easier to show like this
+
+  shared.Dom.setStyleAttribute(panel.getElement(), "border", "3px solid #00c");
+  shared.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "margin", "5px 10px 10px 10px");
+  shared.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "padding", "10px 10px 10px 10px");
+  shared.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "border", "1px solid #ccf");
+}
+
+void main16() {
+
   String html = "<div id='one' style='border:3px dotted blue;'></div><div id='two' style='border:3px dotted green;'></div>";
   ui.HtmlPanel panel = new ui.HtmlPanel(html);
   panel.setSize("200px", "120px");

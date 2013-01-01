@@ -7,6 +7,7 @@ DartMob Changes
 * Implemented FlowPanel. Added example.
 * Implemented HtmlPanel. Added example.
 * Implemented LazyPanel.
+* Implemented CaptionPanel. Added example.
 
 **December 31, 2012
 

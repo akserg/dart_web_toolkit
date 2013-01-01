@@ -6,6 +6,7 @@ DartMob Changes
 * Implemented Image. Added example.
 * Implemented FlowPanel. Added example.
 * Implemented HtmlPanel. Added example.
+* Implemented LazyPanel.
 
 **December 31, 2012
 

@@ -93,6 +93,7 @@ part 'src/ui/simple_radio_button.dart';
 part 'src/ui/deck_layout_panel.dart';
 part 'src/ui/flow_panel.dart';
 part 'src/ui/html_panel.dart';
+part 'src/ui/lazy_panel.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

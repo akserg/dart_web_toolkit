@@ -11,6 +11,19 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.FlowPanel flowpanel = new ui.FlowPanel();
+  flowpanel.setSize("380px", "380px");
+  
+  ui.Button label = new ui.Button("My Button");
+  shared.Dom.setStyleAttribute(label.getElement(), "border", "1px solid #00f");
+  shared.Dom.setStyleAttribute(label.getElement(), "backgroundColor", "blue");
+  label.setSize("100px", "100px");
+  flowpanel.add(label);
+  
+  ui.RootPanel.get("testId").add(flowpanel);
+}
+
+void main14() {
   ui.Image image = new ui.Image("img/IanBambury.jpg");
   ui.RootPanel.get("testId").add(image);
 }

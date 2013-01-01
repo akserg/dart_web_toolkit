@@ -4,6 +4,7 @@ DartMob Changes
 **January 1, 2013
 
 * Implemented Image. Added example.
+* Implemented FlowPanel. Added example.
 
 **December 31, 2012
 

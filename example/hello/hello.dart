@@ -11,6 +11,18 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  String html = "<div id='one' style='border:3px dotted blue;'></div><div id='two' style='border:3px dotted green;'></div>";
+  ui.HtmlPanel panel = new ui.HtmlPanel(html);
+  panel.setSize("200px", "120px");
+  //panel.addStyleName("demo-panel");
+  panel.addById(new ui.Button("Do Nothing"), "one");
+  panel.addById(new ui.TextBox(), "two");
+  
+  ui.RootPanel.get("testId").add(panel);
+}
+
+void main15() {
+
   ui.FlowPanel flowpanel = new ui.FlowPanel();
   flowpanel.setSize("380px", "380px");
   
@@ -24,7 +36,7 @@ void main() {
 }
 
 void main14() {
-  ui.Image image = new ui.Image("img/IanBambury.jpg");
+  ui.Image image = new ui.Image("img/test.jpg");
   ui.RootPanel.get("testId").add(image);
 }
 

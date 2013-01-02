@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**January 2, 2013
+
+* Implemented TabLayoutPanel. Added example.
+
 **January 1, 2013
 
 * Implemented Image. Added example.

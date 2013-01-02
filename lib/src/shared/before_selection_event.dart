@@ -47,7 +47,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
 
   T _item;
 
-  bool _canceled;
+  bool _canceled = false;
 
   /**
    * Creates a new before selection event.

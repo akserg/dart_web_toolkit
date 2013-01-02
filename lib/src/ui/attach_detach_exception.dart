@@ -39,6 +39,7 @@ class AttachDetachException extends UmbrellaException {
     Set<Exception> caught = null;
     for (Widget w in hasWidgets) {
       try {
+        print("AttachDetachException.tryCommand. ${w.getElement().id}");
         c.execute(w);
       } on Exception catch (e) {
         // Catch all exceptions to prevent some children from being attached
@@ -117,6 +118,7 @@ class AttachExceptionCommand implements AttachCommand {
    * The singleton command used to attach widgets.
    */
   void execute(Widget w) {
+    print("AttachExceptionCommand. ${w.getElement().id}");
     w.onAttach();
   }
 }

@@ -11,6 +11,20 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  // Create a three-item tab panel, with the tab area 1.5em tall.
+  ui.TabLayoutPanel p = new ui.TabLayoutPanel(1.5, util.Unit.EM);
+  p.add(new ui.Html("this"), "[this]");
+  p.add(new ui.Html("that"), "[that]");
+  p.add(new ui.Html("the other"), "[the other]");
+  
+  // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
+  // resize events on the window to ensure that its children are informed of
+  // possible size changes.
+  ui.RootLayoutPanel.get().add(p);
+}
+
+void main17() {
+
   ui.CaptionPanel panel = new ui.CaptionPanel("Caption Goes Here");
   ui.RootPanel.get("testId").add(panel);
 

@@ -154,25 +154,29 @@ class SimplePanel extends Panel implements HasOneWidget {
 
 class SimplePanelIterator implements Iterator<Widget> {
 
+  bool hasElement = false;
   Widget returned = null;
   SimplePanel _panel;
 
-  SimplePanelIterator(this._panel);
+  SimplePanelIterator(this._panel) {
+    hasElement = this._panel.widget != null;
+  }
 
   /**
    * Returns whether the [Iterator] has elements left.
    */
-  bool get hasNext => _panel.widget != null;
+  bool get hasNext => hasElement;
 
   /**
    * Gets the next element in the iteration. Throws a
    * [StateError] if no element is left.
    */
   Widget next() {
-    if (_panel.widget == null) {
-      throw new StateError("No Such Element found");
+    if (!hasElement || (this._panel.widget == null)) {
+      throw new Exception("NoSuchElement");
     }
-    return (returned = _panel.widget);
+    hasElement = false;
+    return (returned = this._panel.widget);
   }
 
   remove() {

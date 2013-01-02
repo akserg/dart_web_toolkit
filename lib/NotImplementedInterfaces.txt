@@ -63,3 +63,4 @@ TimeZoneInfo - partial. Need access to JS eval function.
 TimeZone - partial. createTimeZoneFromJson and createTimeZoneFromInfo are commented out.
 
 SafeHtmlTemplate
+CommonResources

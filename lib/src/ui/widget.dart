@@ -406,7 +406,7 @@ class Widget extends UiObject
     // the attached flag is set. This allows widgets to be notified when they
     // are fully attached, and panels when all of their children are attached.
     onLoad();
-    AttachEvent.fire(this, true);
+    //AttachEvent.fire(this, true);
   }
 
   /**

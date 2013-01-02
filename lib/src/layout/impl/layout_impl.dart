@@ -53,14 +53,12 @@ class LayoutImpl {
 
     container.style.position = Position.ABSOLUTE.value;
     container.style.overflow = Overflow.HIDDEN.value;
-    // I have added that code here because without it it doesn't show itself and children elements
+    // I have added that code here because without it it doesn't show itself and child elements
     container.style.left = "0".concat(Unit.PX.value);
     container.style.top = "0".concat(Unit.PX.value);
     container.style.right = "0".concat(Unit.PX.value);
     container.style.bottom = "0".concat(Unit.PX.value);
     //
-    container.id = "layoutContainer";
-
     fillParent(child);
 
     dart_html.Element beforeContainer = null;

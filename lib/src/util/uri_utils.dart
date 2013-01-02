@@ -148,7 +148,6 @@ class UriUtils {
    * @return a SafeUri instance
    */
   static SafeUri fromSafeConstant(String s) {
-    //SafeUriHostedModeUtils.maybeCheckValidUri(s);
     return new SafeUriString(s);
   }
 

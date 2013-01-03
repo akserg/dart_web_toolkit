@@ -99,6 +99,7 @@ part 'src/ui/tab_layout_panel.dart';
 part 'src/ui/deck_panel.dart';
 part 'src/ui/html_table.dart';
 part 'src/ui/flex_table.dart';
+part 'src/ui/grid.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

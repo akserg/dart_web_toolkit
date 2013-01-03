@@ -10,20 +10,22 @@ part of dart_web_toolkit_ui;
  */
 class ElementMapperImpl<T> {
   
+  static const String UI_OBJECT_ID = "uiObjectID";
+  
   static void clearIndex(dart_html.Element elem) {
-    elem.dataAttributes["__uiObjectID"] = null;
+    elem.dataAttributes[UI_OBJECT_ID] = null;
   }
 
   static int getIndex(dart_html.Element elem) {
-    if (elem.dataAttributes["__uiObjectID"] == null) {
+    if (elem.dataAttributes[UI_OBJECT_ID] == null) {
       return -1;
     } else {
-      return int.parse(elem.dataAttributes["__uiObjectID"]);
+      return int.parse(elem.dataAttributes[UI_OBJECT_ID]);
     }
   }
 
   static void setIndex(dart_html.Element elem, int index) {
-    elem.dataAttributes["__uiObjectID"] = index.toString();
+    elem.dataAttributes[UI_OBJECT_ID] = index.toString();
   }
 
   FreeNode freeList = null;

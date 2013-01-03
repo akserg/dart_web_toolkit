@@ -11,6 +11,24 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  
+  // Create a grid
+  ui.Grid grid = new ui.Grid(4, 4);
+  grid.addStyleName("cw-FlexTable");
+
+  // Add images to the grid
+  int numRows = grid.getRowCount();
+  int numColumns = grid.getColumnCount();
+  for (int row = 0; row < numRows; row++) {
+    for (int col = 0; col < numColumns; col++) {
+      grid.setWidget(row, col, new ui.Html("Cell $row.$col"));
+    }
+  }
+  
+  ui.RootPanel.get("testId").add(grid);
+}
+
+void main20() {
   // Create a Flex Table
   ui.FlexTable flexTable = new ui.FlexTable();
   ui.FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();

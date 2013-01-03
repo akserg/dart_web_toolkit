@@ -568,10 +568,10 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    * @return returns whether a widget was cleared
    */
   bool internalClearCell(dart_html.Element td, bool clearInnerHTML) {
-    dart_html.Element maybeChild = td.$dom_firstChild;
+    var maybeChild = td.$dom_firstChild;
     Widget widget = null;
-    if (maybeChild != null) {
-      widget = widgetMap.get(maybeChild);
+    if (maybeChild != null && maybeChild is dart_html.Element) {
+      widget = widgetMap.get(maybeChild as dart_html.Element);
     }
     if (widget != null) {
       // If there is a widget, remove it.
@@ -1165,7 +1165,7 @@ class ColumnFormatter {
     // prepareColumnGroup() for more details.
     columns = dart_math.max(columns, 1);
 
-    int num = columnGroup.getChildCount();
+    int num = columnGroup.children.length;
     if (num < columns) {
       for (int i = num; i < columns; i++) {
         columnGroup.append(new dart_html.TableColElement());

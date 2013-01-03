@@ -155,7 +155,7 @@ abstract class Animation {
    * @param startTime the synchronized start time in milliseconds
    * @param element the element that visually bounds the entire animation
    */
-  void run({int duration, int startTime, dart_html.Element element}) {
+  void run(int duration, {int startTime:null, dart_html.Element element:null}) {
     // Cancel the animation if it is running
     cancel();
 

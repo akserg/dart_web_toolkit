@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**January 3, 2013
+
+* Implemented DeckPanel. Added example.
+
 **January 2, 2013
 
 * Implemented TabLayoutPanel. Added example.

@@ -11,6 +11,18 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.DeckPanel dPanel = new ui.DeckPanel();
+  dPanel.setSize("300px", "120px");
+  
+  dPanel.add(new ui.Html("Panel 1"));
+  dPanel.add(new ui.Html("Panel 2"));
+  dPanel.showWidgetAt(1);
+  
+  ui.RootPanel.get("testId").add(dPanel);
+}
+
+void main18() {
+
   // Create a three-item tab panel, with the tab area 1.5em tall.
   ui.TabLayoutPanel p = new ui.TabLayoutPanel(1.5, util.Unit.EM);
   p.add(new ui.Html("this"), "[this]");

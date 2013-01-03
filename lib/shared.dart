@@ -31,6 +31,7 @@ part 'src/shared/has_alignment.dart';
 part 'src/shared/has_horizontal_alignment.dart';
 part 'src/shared/has_vertical_alignment.dart';
 part 'src/shared/has_auto_horizontal_alignment.dart';
+part 'src/shared/has_animation.dart';
 
 part 'src/shared/has_resize_handlers.dart';
 part 'src/shared/resize_handler.dart';

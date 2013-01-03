@@ -96,6 +96,7 @@ part 'src/ui/html_panel.dart';
 part 'src/ui/lazy_panel.dart';
 part 'src/ui/caption_panel.dart';
 part 'src/ui/tab_layout_panel.dart';
+part 'src/ui/deck_panel.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

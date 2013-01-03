@@ -190,7 +190,7 @@ class Layout {
 
     animation = new LayoutAnimation(this, callback);
 
-    animation.run(duration:duration, element:parentElem);
+    animation.run(duration, element:parentElem);
   }
 
   /**

@@ -97,6 +97,7 @@ part 'src/ui/lazy_panel.dart';
 part 'src/ui/caption_panel.dart';
 part 'src/ui/tab_layout_panel.dart';
 part 'src/ui/deck_panel.dart';
+part 'src/ui/html_table.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';
@@ -117,6 +118,7 @@ part 'src/ui/impl/hyperlink_impl.dart';
 part 'src/ui/impl/history_impl.dart';
 part 'src/ui/impl/text_box_impl.dart';
 part 'src/ui/impl/clipped_image_impl.dart';
+part 'src/ui/impl/element_mapper_impl.dart';
 
 /**
  * Supports core functionality that in some cases requires direct support from

@@ -4,6 +4,7 @@ DartMob Changes
 **January 3, 2013
 
 * Implemented DeckPanel. Added example.
+* Implemented HtmlTable.
 
 **January 2, 2013
 

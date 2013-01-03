@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**January 4, 2013
+
+* Implemented PopupPanel. Added example.
+
 **January 3, 2013
 
 * Implemented DeckPanel. Added example.

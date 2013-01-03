@@ -49,7 +49,7 @@ class AnimationSchedulerImplWebkit extends AnimationSchedulerImpl {
 
   int requestAnimationFrameImpl(AnimationCallback callback, dart_html.Element element) {
 //    var _callback = callback;
-    Function wrapper = () {
+    Function wrapper = (num highResTime) {
       // Older versions of Chrome pass the current timestamp, but newer versions pass a
       // high resolution timer. We normalize on the current timestamp.
       //var now = @com.google.gwt.core.client.Duration::currentTimeMillis()();

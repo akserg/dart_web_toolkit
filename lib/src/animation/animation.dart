@@ -242,20 +242,23 @@ abstract class Animation {
    * @return true if the animation should run again, false if it is complete
    */
   bool update(int curTime) {
+    print("Animation.update(${curTime} >= ${startTime + duration})");
     /*
      * Save the run id. If the runId is incremented during this execution block,
      * we know that this run has been canceled.
      */
-    final int curRunId = runId;
+    int curRunId = runId;
 
     bool finished = curTime >= startTime + duration;
     if (isStarted && !finished) {
+      print("Animation is in progress.");
       // Animation is in progress.
       double progress = (curTime - startTime) / duration;
       onUpdate(interpolate(progress));
       return isRunning(curRunId); // Check if this run was canceled.
     }
     if (!isStarted && curTime >= startTime) {
+      print("Start the animation.");
       /*
        * Start the animation. We do not call onUpdate() because onStart() calls
        * onUpdate() by default.
@@ -269,6 +272,7 @@ abstract class Animation {
       // Intentional fall through to possibly end the animation.
     }
     if (finished) {
+      print("Animation is complete.");
       // Animation is complete.
       running = false;
       isStarted = false;
@@ -287,10 +291,13 @@ class AnimationCallback2 implements AnimationCallback {
   AnimationCallback2(this._animation);
 
   void execute(int timestamp) {
+    print("AnimationCallback2.execute(${timestamp})");
     if (_animation.update(timestamp)) {
+      print("Schedule the next animation frame.");
       // Schedule the next animation frame.
       _animation.requestHandle = _animation.scheduler.requestAnimationFrame(_animation.callback, _animation.element);
     } else {
+      print("Stop animation frame.");
       _animation.requestHandle = null;
     }
   }

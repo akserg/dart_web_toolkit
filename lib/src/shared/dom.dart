@@ -41,8 +41,12 @@ class Dom {
   static int getElementPropertyInt(dart_html.Element elem, String prop) {
     String eProp = getElementProperty(elem, prop);
     //
-    int intProp = int.parse(eProp);
-    return intProp != null ? intProp : 0;
+    if (eProp == null) {
+      return 0;
+    } else {
+      int intProp = int.parse(eProp);
+      return intProp != null ? intProp : 0;
+    }
   }
 
   /**
@@ -242,5 +246,64 @@ class Dom {
   static void setCapture(dart_html.Element elem) {
     _sCaptureElem = elem;
     //domHelper.setCapture(elem);
+  }
+  
+  /**
+   * The height of the document's client area.
+   * 
+   * @return the document's client height
+   */
+  static int getClientHeight() {
+    return dart_html.window.innerHeight; ////dart_html.document.body.clientHeight;
+  }
+
+  /**
+   * The width of the document's client area.
+   * 
+   * @return the document's client width
+   */
+  static int getClientWidth() {
+    return dart_html.window.innerWidth; //dart_html.document.body.clientWidth;
+  }
+  
+  /**
+   * The number of pixels that the document's content is scrolled from the left.
+   * 
+   * <p>
+   * If the document is in RTL mode, this method will return a negative value of
+   * the number of pixels scrolled from the right.
+   * </p>
+   * 
+   * @return the document's left scroll position
+   */
+  static int getScrollLeft() {
+    return dart_html.document.body.scrollLeft;
+  }
+  
+  /**
+   * The number of pixels that the document's content is scrolled from the top.
+   * 
+   * @return the document's top scroll position
+   */
+  static int getScrollTop() {
+    return dart_html.document.body.scrollTop;
+  }
+  
+  /**
+   * The width of the scrollable area of the document.
+   * 
+   * @return the width of the document's scrollable area
+   */
+  static int getScrollWidth() {
+    return dart_html.document.body.scrollWidth;
+  }
+  
+  /**
+   * The height of the scrollable area of the document.
+   * 
+   * @return the height of the document's scrollable area
+   */
+  static int getScrollHeight() {
+    return dart_html.document.body.scrollHeight;
   }
 }

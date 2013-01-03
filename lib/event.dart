@@ -21,6 +21,8 @@ part 'src/event/dom_event.dart';
 part 'src/event/attach_event.dart';
 part 'src/event/event_handler.dart';
 part 'src/event/dom_event_handler.dart';
+part 'src/event/close_event.dart';
+part 'src/event/close_handler.dart';
 
 part 'src/event/has_handlers.dart';
 part 'src/event/has_attach_handlers.dart';

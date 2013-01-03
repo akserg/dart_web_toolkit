@@ -103,6 +103,7 @@ part 'src/ui/grid.dart';
 part 'src/ui/simple_layout_panel.dart';
 part 'src/ui/scroll_panel.dart';
 part 'src/ui/has_scrolling.dart';
+part 'src/ui/popup_panel.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';
@@ -125,6 +126,7 @@ part 'src/ui/impl/text_box_impl.dart';
 part 'src/ui/impl/clipped_image_impl.dart';
 part 'src/ui/impl/element_mapper_impl.dart';
 part 'src/ui/impl/scroll_impl.dart';
+part 'src/ui/impl/popup_impl.dart';
 
 /**
  * Supports core functionality that in some cases requires direct support from

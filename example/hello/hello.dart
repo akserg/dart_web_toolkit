@@ -12,6 +12,15 @@ import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
   
+  ui.PopupPanel imagePopup = new ui.PopupPanel(true);
+  //imagePopup.setAnimationEnabled(true);
+  imagePopup.setWidget(new ui.Html("this is test"));
+  
+  imagePopup.center();
+}
+
+void main22() {
+  
   String lorem = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi sit amet massa ornare mauris lobortis laoreet. Pellentesque vel est at massa condimentum porta. Aliquam tincidunt scelerisque orci. Donec sit amet elit nec leo egestas vestibulum. Mauris et nibh quis ipsum volutpat congue. Ut tellus nibh, convallis sed, consectetuer sit amet, facilisis eget, lectus. Morbi hendrerit, dolor eget tincidunt tristique, velit enim laoreet erat, nec condimentum eros mi quis tellus. Fusce pharetra nibh vestibulum lacus. Integer vulputate eros at nisi. Phasellus elit quam, dignissim quis, volutpat vitae, egestas nec, nisi. Nullam sodales sagittis quam. Aliquam iaculis neque ut magna. Donec convallis interdum sem. Sed suscipit.";
   
   ui.ScrollPanel panel = new ui.ScrollPanel(new ui.Html(lorem));

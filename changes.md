@@ -7,6 +7,7 @@ DartMob Changes
 * Implemented HtmlTable.
 * Implemented FlexTable. Added example.
 * Implemented Grid. Added example.
+* Implemented SimpleLayoutPanel.
 
 **January 2, 2013
 

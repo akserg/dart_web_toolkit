@@ -11,6 +11,63 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  // Create a Flex Table
+  ui.FlexTable flexTable = new ui.FlexTable();
+  ui.FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
+  flexTable.addStyleName("cw-FlexTable");
+  flexTable.setWidth("32em");
+  flexTable.setCellSpacing(5);
+  flexTable.setCellPadding(3);
+
+  // Add some text
+  cellFormatter.setHorizontalAlignment(0, 1, shared.HasHorizontalAlignment.ALIGN_LEFT);
+  flexTable.setHtml(0, 0, "This is a FlexTable that supports <b>colspans</b> and <b>rowspans</b>. You can use it to format your page or as a special purpose table.");
+  cellFormatter.setColSpan(0, 0, 2);
+  
+  // Add a button that will add more rows to the table
+  ui.Button addRowButton = new ui.Button("Add");
+  addRowButton.addStyleName("sc-FixedWidthButton");
+  
+  ui.Button removeRowButton = new ui.Button("Remove");
+  removeRowButton.addStyleName("sc-FixedWidthButton");
+  
+  ui.VerticalPanel buttonPanel = new ui.VerticalPanel();
+  buttonPanel.clearAndSetStyleName("cw-FlexTable-buttonPanel");
+  buttonPanel.add(addRowButton);
+  buttonPanel.add(removeRowButton);
+  flexTable.setWidget(0, 1, buttonPanel);
+  cellFormatter.setVerticalAlignment(0, 1, shared.HasVerticalAlignment.ALIGN_TOP);
+  
+  // Add two rows to start
+  addRow(flexTable);
+  addRow(flexTable);
+  
+  ui.RootPanel.get("testId").add(flexTable);
+}
+
+/**
+ * Add a row to the flex table.
+ */
+void addRow(ui.FlexTable flexTable) {
+  int numRows = flexTable.getRowCount();
+  flexTable.setWidget(numRows, 0, new ui.Html("Cell ${numRows}.0"));
+  flexTable.setWidget(numRows, 1, new ui.Html("Cell ${numRows}.1"));
+  flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows + 1);
+}
+
+/**
+ * Remove a row from the flex table.
+ */
+void removeRow(ui.FlexTable flexTable) {
+  int numRows = flexTable.getRowCount();
+  if (numRows > 1) {
+    flexTable.removeRow(numRows - 1);
+    flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows - 1);
+  }
+}
+
+void main19() {
+
   ui.DeckPanel dPanel = new ui.DeckPanel();
   dPanel.setSize("300px", "120px");
   

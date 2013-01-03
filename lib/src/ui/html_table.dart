@@ -43,7 +43,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
   /**
    * Create a new empty HTML Table.
    */
-  HTMLTable() {
+  HtmlTable() {
     tableElem = new dart_html.TableElement();
     bodyElem = tableElem.createTBody();
     tableElem.append(bodyElem);
@@ -478,7 +478,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    * 
    * @return Returns the number of rows in the table
    */
-  int getDOMRowCount([dart_html.Element elem = null]) {
+  int getDomRowCount([dart_html.Element elem = null]) {
     if (elem == null) {
       return bodyElem.rows.length;
     } else {
@@ -1192,7 +1192,7 @@ class ColumnFormatter {
    */
   void prepareColumnGroup() {
     if (columnGroup == null) {
-      columnGroup = new dart_html.Element.html("colgroup");
+      columnGroup = new dart_html.Element.tag("colgroup");
       Dom.insertChild(_table.tableElem, columnGroup, 0);
       columnGroup.append(new dart_html.TableColElement());
     }

@@ -11,16 +11,19 @@ part of dart_web_toolkit_ui;
 class ElementMapperImpl<T> {
   
   static void clearIndex(dart_html.Element elem) {
-    elem["__uiObjectID"] = null;
+    elem.dataAttributes["__uiObjectID"] = null;
   }
 
   static int getIndex(dart_html.Element elem) {
-    var index = elem["__uiObjectID"];
-    return (index == null) ? -1 : index;
+    if (elem.dataAttributes["__uiObjectID"] == null) {
+      return -1;
+    } else {
+      return int.parse(elem.dataAttributes["__uiObjectID"]);
+    }
   }
 
   static void setIndex(dart_html.Element elem, int index) {
-    elem["__uiObjectID"] = index;
+    elem.dataAttributes["__uiObjectID"] = index.toString();
   }
 
   FreeNode freeList = null;

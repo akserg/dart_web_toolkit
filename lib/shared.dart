@@ -187,3 +187,9 @@ part 'src/shared/mouse_over_event.dart';
 
 part 'src/shared/human_input_event.dart';
 part 'src/shared/mouse_event.dart';
+
+part 'src/shared/has_horizontal_scrolling.dart';
+part 'src/shared/has_vertical_scrolling.dart';
+part 'src/shared/has_scroll_handlers.dart';
+part 'src/shared/scroll_handler.dart';
+part 'src/shared/scroll_event.dart';

@@ -8,6 +8,7 @@ DartMob Changes
 * Implemented FlexTable. Added example.
 * Implemented Grid. Added example.
 * Implemented SimpleLayoutPanel.
+* Implemented ScrollPanel, HasHorizontalScrolling, HasScrollHandlers, HasVerticalScrolling, ScrollEvent, ScrollHandler, HasScrolling, ScrollImpl. Added example.
 
 **January 2, 2013
 

@@ -11,6 +11,8 @@ abstract class FocusWidget extends Widget implements
     HasAllDragAndDropHandlers, HasAllFocusHandlers, HasAllGestureHandlers,
     HasAllKeyHandlers, HasAllMouseHandlers, HasAllTouchHandlers {
 
+  static final FocusImpl impl = FocusImpl.getFocusImplForWidget();
+  
   /**
    * Creates a new focus widget that wraps the specified browser [element].
    */
@@ -48,7 +50,7 @@ abstract class FocusWidget extends Widget implements
    *
    * @return the widget's tab index
    */
-  int get tabIndex => FocusHelper.getFocusHelper().getTabIndex(getElement());
+  int get tabIndex => impl.getTabIndex(getElement()); //FocusHelper.getFocusHelper().getTabIndex(getElement());
 
   /**
    * Sets the widget's position in the tab index. If more than one widget has
@@ -59,7 +61,7 @@ abstract class FocusWidget extends Widget implements
    * @param index the widget's tab index
    */
   void set tabIndex(int index) {
-    FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
+    impl.setTabIndex(getElement(), index); //FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
   }
 
   /**
@@ -70,9 +72,9 @@ abstract class FocusWidget extends Widget implements
    */
   void set focus(bool focused) {
     if (focused) {
-      FocusHelper.getFocusHelper().focus(getElement());
+      impl.focus(getElement()); //FocusHelper.getFocusHelper().focus(getElement());
     } else {
-      FocusHelper.getFocusHelper().blur(getElement());
+      impl.blur(getElement()); //FocusHelper.getFocusHelper().blur(getElement());
     }
   }
 

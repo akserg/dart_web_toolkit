@@ -51,7 +51,8 @@ part of dart_web_toolkit_ui;
 abstract class CellPanel extends ComplexPanel {
   
   int _spacing;
-  dart_html.Element _table, _body;
+  dart_html.TableElement _table;
+  dart_html.Element _body;
   
   CellPanel() {
     _table = new dart_html.TableElement();
@@ -102,11 +103,11 @@ abstract class CellPanel extends ComplexPanel {
     return _table;
   }
 
-  void setCellHorizontalAlignment(dart_html.Element td, HorizontalAlignmentConstant align) {
+  void setCellHorizontalAlignment(dart_html.TableCellElement td, HorizontalAlignmentConstant align) {
     Dom.setElementProperty(td, "align", align.getTextAlignString());
   }
   
-  void setCellVerticalAlignment(dart_html.Element td, VerticalAlignmentConstant align) {
+  void setCellVerticalAlignment(dart_html.TableCellElement td, VerticalAlignmentConstant align) {
     Dom.setStyleAttribute(td, "verticalAlign", align.getVerticalAlignString());
   }
   
@@ -129,7 +130,7 @@ abstract class CellPanel extends ComplexPanel {
    * @param height the cell's height, in CSS units
    */
   void setWidgetCellHeight(Widget w, String height) {
-    dart_html.Element td = getWidgetTd(w);
+    dart_html.TableCellElement td = getWidgetTd(w);
     if (td != null) {
       td.height = height;
     }
@@ -198,9 +199,10 @@ abstract class CellPanel extends ComplexPanel {
    * @param width the cell's width, in CSS units
    */
   void setWidgetCellWidth(Widget w, String width) {
-    dart_html.Element td = getWidgetTd(w);
+    dart_html.TableCellElement td = getWidgetTd(w);
     if (td != null) {
-      td.setPropertyString("width", width);
+      //td.wisetPropertyString("width", width);
+      td.width = width;
     }
   }
   

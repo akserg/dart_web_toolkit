@@ -74,10 +74,13 @@ class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
    *
    * @param html the new widget's HTML contents
    */
-  Html([String html = null]) : super(null) {
+  Html([String html = null, bool wordWrap = null]) : super(null) {
     clearAndSetStyleName("dwt-HTML");
     if (html != null) {
       this.html = html;
+    }
+    if (wordWrap != null) {
+      this.wordWrap = wordWrap;
     }
   }
   

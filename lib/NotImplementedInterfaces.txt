@@ -66,3 +66,5 @@ SafeHtmlTemplate
 CommonResources
 ScrollImpl
 PopupPanel - Animation
+TabBar
+FocusImpl - Implement FocusImplStandart to resolve implWidget

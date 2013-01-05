@@ -3,7 +3,7 @@
 
 part of dart_web_toolkit_ui;
 
-class FocusHelperDefault implements FocusHelper {
+class FocusImplDefault implements FocusImpl {
 
   /**
    * Remove focus from [Element].

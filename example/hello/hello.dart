@@ -12,6 +12,29 @@ import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
   
+  ui.TabPanel panel = new ui.TabPanel();
+  panel.setSize("500px", "250px");
+  
+  // Add a home tab
+  ui.Html homeText = new ui.Html("Click one of the tabs to see more content.");
+  panel.addTabText(homeText, "Home");
+
+  // Add a tab with an image
+  ui.SimplePanel imageContainer = new ui.SimplePanel();
+  imageContainer.setWidget(new ui.Image("img/test.jpg"));
+  panel.addTabText(imageContainer, "DWT Logo");
+
+  // Add a tab
+  ui.Html moreInfo = new ui.Html("Tabs are highly customizable using CSS.");
+  panel.addTabText(moreInfo, "More Info");
+
+  panel.selectTab(0);
+  
+  ui.RootPanel.get("testId").add(panel);
+}
+
+void main24() {
+  
   ui.PopupPanel imagePopup = new ui.PopupPanel(true);
   //imagePopup.setAnimationEnabled(true);
   imagePopup.setWidget(new ui.Html("this is test"));

@@ -25,7 +25,7 @@ part 'src/ui/ui_object.dart';
 part 'src/ui/is_widget.dart';
 part 'src/ui/widget.dart';
 part 'src/ui/focus_widget.dart';
-part 'src/ui/focus_helper.dart';
+part 'src/ui/impl/focus_impl.dart';
 part 'src/ui/anchor.dart';
 part 'src/ui/root_panel.dart';
 part 'src/ui/absolute_panel.dart';
@@ -104,6 +104,8 @@ part 'src/ui/simple_layout_panel.dart';
 part 'src/ui/scroll_panel.dart';
 part 'src/ui/has_scrolling.dart';
 part 'src/ui/popup_panel.dart';
+part 'src/ui/tab_panel.dart';
+part 'src/ui/tab_bar.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';
@@ -119,7 +121,7 @@ part 'src/ui/has_widgets.dart';
 part 'src/ui/has_one_widget.dart';
 part 'src/ui/has_directional_html.dart';
 
-part 'src/ui/impl/focus_helper_default.dart';
+part 'src/ui/impl/focus_impl_default.dart';
 part 'src/ui/impl/hyperlink_impl.dart';
 part 'src/ui/impl/history_impl.dart';
 part 'src/ui/impl/text_box_impl.dart';

@@ -12,13 +12,15 @@ class FocusPanel extends SimplePanel implements HasFocus,
   HasDoubleClickHandlers, HasAllKeyHandlers, HasAllFocusHandlers,
   HasAllGestureHandlers, HasAllTouchHandlers {
   
+  static FocusImpl impl = FocusImpl.getFocusImplForPanel();
+  
   /**
    * Creates an empty panel that uses the specified browser element for its
    * contents.
    *
    * @param elem the browser element to use
    */
-  FocusPanel.fromElement() : super.fromElement(FocusHelper.getFocusHelper().createFocusable());
+  FocusPanel.fromElement() : super.fromElement(impl.createFocusable());
   
   /**
    * Creates an empty panel that uses a DIV for its contents or
@@ -182,7 +184,7 @@ class FocusPanel extends SimplePanel implements HasFocus,
    *
    * @return the widget's tab index
    */
-  int get tabIndex => FocusHelper.getFocusHelper().getTabIndex(getElement());
+  int get tabIndex => impl.getTabIndex(getElement());
 
   /**
    * Sets the widget's position in the tab index. If more than one widget has
@@ -193,7 +195,7 @@ class FocusPanel extends SimplePanel implements HasFocus,
    * @param index the widget's tab index
    */
   void set tabIndex(int index) {
-    FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
+    impl.setTabIndex(getElement(), index);
   }
 
   /**
@@ -204,9 +206,9 @@ class FocusPanel extends SimplePanel implements HasFocus,
    */
   void set focus(bool focused) {
     if (focused) {
-      FocusHelper.getFocusHelper().focus(getElement());
+      impl.focus(getElement());
     } else {
-      FocusHelper.getFocusHelper().blur(getElement());
+      impl.blur(getElement());
     }
   }
 }

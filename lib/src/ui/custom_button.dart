@@ -220,7 +220,7 @@ class CustomButton extends ButtonBase {
    *
    * @param upImage image for the default (up) face of the button
    */
-  CustomButton.fromImage(Image upImage, {Image downImage:null, ClickHandler handler:null}) : super(FocusHelper.getFocusHelper().createFocusable()) {
+  CustomButton.fromImage(Image upImage, {Image downImage:null, ClickHandler handler:null}) : super(FocusPanel.impl.createFocusable()) {
     _init();
     //
     getUpFace().setImage(upImage);
@@ -239,7 +239,7 @@ class CustomButton extends ButtonBase {
    *
    * @param upText the text for the default (up) face of the button
    */
-  CustomButton.fromText(String upText, {String downText:null, ClickHandler handler:null}) : super(FocusHelper.getFocusHelper().createFocusable()) {
+  CustomButton.fromText(String upText, {String downText:null, ClickHandler handler:null}) : super(FocusPanel.impl.createFocusable()) {
     _init();
     //
     getUpFace().text = upText;
@@ -253,7 +253,7 @@ class CustomButton extends ButtonBase {
     }
   }
   
-  CustomButton.internal() : super(FocusHelper.getFocusHelper().createFocusable()) {
+  CustomButton.internal() : super(FocusPanel.impl.createFocusable()) {
     _init();
   }
   
@@ -368,10 +368,10 @@ class CustomButton extends ButtonBase {
     getCurrentFace().html = value;
   }
 
-  int get tabIndex => FocusHelper.getFocusHelper().getTabIndex(getElement());
+  int get tabIndex => FocusPanel.impl.getTabIndex(getElement()); //FocusHelper.getFocusHelper().getTabIndex(getElement());
 
   void set tabIndex(int index) {
-    FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
+    FocusPanel.impl.setTabIndex(getElement(), index); //FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
   }
   
   /**
@@ -530,9 +530,9 @@ class CustomButton extends ButtonBase {
   
   void setFocus(bool focused) {
     if (focused) {
-      FocusHelper.getFocusHelper().focus(getElement());
+      FocusPanel.impl.focus(getElement()); //FocusHelper.getFocusHelper().focus(getElement());
     } else {
-      FocusHelper.getFocusHelper().blur(getElement());
+      FocusPanel.impl.blur(getElement()); //FocusHelper.getFocusHelper().blur(getElement());
     }
   }
   

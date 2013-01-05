@@ -73,10 +73,13 @@ class Label extends LabelBase<String> implements HasDirectionalText,
   /**
    * Creates an empty label.
    */
-  Label([String text = null]) : super(false) {
+  Label([String text = null, bool wordWrap = null]) : super(false) {
     clearAndSetStyleName("dwt-Label");
     if (text != null) {
       this.text = text;
+    }
+    if (wordWrap != null) {
+      this.wordWrap = wordWrap;
     }
   }
   

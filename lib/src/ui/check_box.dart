@@ -197,7 +197,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    *
    * @return the widget's tab index
    */
-  int get tabIndex => FocusHelper.getFocusHelper().getTabIndex(inputElem);
+  int get tabIndex => inputElem.tabIndex; //FocusHelper.getFocusHelper().getTabIndex(inputElem);
 
   /**
    * Sets the widget's position in the tab index. If more than one widget has
@@ -213,7 +213,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     // CheckBox) setElement method calls setTabIndex before inputElem is
     // initialized. See CheckBox's protected constructor for more information.
     if (inputElem != null) {
-      FocusHelper.getFocusHelper().setTabIndex(inputElem, index);
+      inputElem.tabIndex = index; //FocusHelper.getFocusHelper().setTabIndex(inputElem, index);
     }
   }
 
@@ -225,9 +225,9 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    */
   void set focus(bool focused) {
     if (focused) {
-      FocusHelper.getFocusHelper().focus(inputElem);
+      inputElem.focus();
     } else {
-      FocusHelper.getFocusHelper().blur(inputElem);
+      inputElem.blur();
     }
   }
 

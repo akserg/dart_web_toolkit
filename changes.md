@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**January 6, 2013
+
+* Implemented DecoratedPopupPanel. Fixed DecoratedPanel. Added example.
+
 **January 5, 2013
 
 * Implemented TabBar, TabPanel. Added Example.

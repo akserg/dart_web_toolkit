@@ -11,6 +11,17 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 
 void main() {
+  ui.DecoratedPopupPanel simplePopup = new ui.DecoratedPopupPanel(true);
+  simplePopup.setWidth("150px");
+  simplePopup.setWidget(new ui.Html("Click anywhere outside this popup to make it disappear."));
+
+  // Create a button to show the popup
+  simplePopup.setPopupPosition(20, 30);
+  // Show the popup
+  simplePopup.show();
+}
+
+void main25() {
   
   ui.TabPanel panel = new ui.TabPanel();
   panel.setSize("500px", "250px");

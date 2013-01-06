@@ -106,6 +106,7 @@ part 'src/ui/has_scrolling.dart';
 part 'src/ui/popup_panel.dart';
 part 'src/ui/tab_panel.dart';
 part 'src/ui/tab_bar.dart';
+part 'src/ui/decorated_popup_panel.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

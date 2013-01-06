@@ -358,7 +358,7 @@ abstract class UiObject implements HasVisibility {
    */
   static void _updatePrimaryAndDependentStyleNames(dart_html.Element elem,
       String newPrimaryStyle) {
-    List<String> classes = elem.className.split(new RegExp("\s+"));
+    List<String> classes = elem.$dom_className.split(new RegExp("\s+"));
     if (classes.length == 0) {
       return;
     }
@@ -387,7 +387,7 @@ abstract class UiObject implements HasVisibility {
         classes[i] = newPrimaryStyle.concat(name.substring(oldPrimaryStyleLen));
       }
     }
-    elem.className = Strings.join(classes, " ");
+    elem.$dom_className = Strings.join(classes, " ");
   }
 
   /**

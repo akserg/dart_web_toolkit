@@ -29,11 +29,11 @@ part of dart_web_toolkit_ui;
 class TabBar extends Composite implements /*SourcesTabEvents,*/
   HasBeforeSelectionHandlers<int>, HasSelectionHandlers<int>/*,
   ClickListener, KeyboardListener*/ {
-  
+
     static final String STYLENAME_DEFAULT = "dwt-TabBarItem";
     HorizontalPanel panel = new HorizontalPanel();
     Widget selectedTab;
-    
+
     /**
      * Creates an empty tab bar.
      */
@@ -47,7 +47,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
 
       panel.setVerticalAlignment(HasVerticalAlignment.ALIGN_BOTTOM);
 
-      Html first = new Html("&nbsp;", true); 
+      Html first = new Html("&nbsp;", true);
       Html rest = new Html("&nbsp;", true);
       first.clearAndSetStyleName("dwt-TabBarFirst");
       rest.clearAndSetStyleName("dwt-TabBarRest");
@@ -63,12 +63,12 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
       UiObject.setElementStyleName(rest.getElement().parent, "dwt-TabBarRest-wrapper");
     }
 
-    
+
     HandlerRegistration addBeforeSelectionHandler(BeforeSelectionHandler<int> handler) {
       return addHandler(handler, BeforeSelectionEvent.TYPE);
     }
 
-    
+
     HandlerRegistration addSelectionHandler(SelectionHandler<int> handler) {
       return addHandler(handler, SelectionEvent.TYPE);
     }
@@ -250,7 +250,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
 //     * you need to access to the individual tabs, add a click handler to each
 //     * {@link Tab} element instead.
 //     */
-//    
+//
 //    @Deprecated
 //    void onClick(Widget sender) {
 //    }
@@ -259,7 +259,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
 //     * @deprecated add a key down handler to the individual {@link Tab} objects
 //     *  instead.
 //     */
-//    
+//
 //    @Deprecated
 //    void onKeyDown(Widget sender, char keyCode, int modifiers) {
 //    }
@@ -269,7 +269,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
 //     * if what you wanted to do was to listen to key press events on tabs, add the
 //     * key press handler to the individual tab wrappers instead.
 //     */
-//    
+//
 //    @Deprecated
 //    void onKeyPress(Widget sender, char keyCode, int modifiers) {
 //    }
@@ -280,7 +280,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
 //     * key up handler to the individual tab wrappers instead.
 //    *
 //     */
-//    
+//
 //    @Deprecated
 //    void onKeyUp(Widget sender, char keyCode, int modifiers) {
 //    }
@@ -305,7 +305,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
 //     * @deprecated Instead use the {@link HandlerRegistration#removeHandler}
 //     * call on the object returned by an add*Handler method
 //     */
-//    
+//
 //    @Deprecated
 //    void removeTabListener(TabListener listener) {
 //      ListenerWrapper.WrappedTabListener.remove(this, listener);
@@ -461,7 +461,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
     *
      * @see UIObject#onEnsureDebugId(String)
      */
-    
+
     void onEnsureDebugId(String baseID) {
 
       int numTabs = getTabCount();
@@ -543,7 +543,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
   bool enabled = true;
 
   TabBar _tabBar;
-  
+
   _ClickDelegatePanel(this._tabBar, Widget child) {
 
     focusablePanel = new SimplePanel.fromElement(FocusPanel.impl.createFocusable());
@@ -559,38 +559,41 @@ class _ClickDelegatePanel extends Composite implements Tab {
    //sinkEvents(dart_html.Event.ONCLICK | dart_html.Event.ONKEYDOWN);
   }
 
-  
+
   HandlerRegistration addClickHandler(ClickHandler handler) {
     return addHandler(handler, ClickEvent.TYPE);
   }
 
-  
-//  HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {
-//    return addHandler(handler, KeyDownEvent.TYPE);
-//  }
-//
-//  
-//  HandlerRegistration addKeyPressHandler(KeyPressHandler handler) {
-//    return addDomHandler(handler, KeyPressEvent.TYPE);
-//  }
-//
-//  
-//  HandlerRegistration addKeyUpHandler(KeyUpHandler handler) {
-//    return addDomHandler(handler, KeyUpEvent.TYPE);
-//  }
+  //*************************
+  // Keyboard events handlers
+  //*************************
+
+  HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {
+    return addHandler(handler, KeyDownEvent.TYPE);
+  }
+
+
+  HandlerRegistration addKeyPressHandler(KeyPressHandler handler) {
+    return addDomHandler(handler, KeyPressEvent.TYPE);
+  }
+
+
+  HandlerRegistration addKeyUpHandler(KeyUpHandler handler) {
+    return addDomHandler(handler, KeyUpEvent.TYPE);
+  }
 
   SimplePanel getFocusablePanel() {
     return focusablePanel;
   }
 
-  
+
   /**
    * Gets whether word-wrapping is enabled.
-   * 
+   *
    * @return <code>true</code> if word-wrapping is enabled.
    */
   bool get wordWrap => _getWordWrap();
-  
+
   bool _getWordWrap() {
     if (hasWordWrap()) {
       return (focusablePanel.getWidget() as HasWordWrap).wordWrap;
@@ -598,7 +601,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
     throw new Exception("Widget does not implement HasWordWrap");
   }
 
-  
+
   bool hasWordWrap() {
     return focusablePanel.getWidget() is HasWordWrap;
   }
@@ -607,7 +610,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
     return enabled;
   }
 
-  
+
   void onBrowserEvent(dart_html.Event event) {
     if (!enabled) {
       return;
@@ -635,7 +638,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
     this.enabled = enabled;
   }
 
-  
+
   void set wordWrap(bool wrap) {
     if (hasWordWrap()) {
       (focusablePanel.getWidget() as HasWordWrap).wordWrap = wrap;

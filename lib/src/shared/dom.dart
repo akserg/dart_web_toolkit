@@ -94,7 +94,7 @@ class Dom {
 
   /**
    * Sets an int property on the given element.
-   * 
+   *
    * @param elem the element whose property is to be set
    * @param prop the name of the property to be set
    * @param value the new property value as an int
@@ -105,8 +105,8 @@ class Dom {
     assert(value != null);
     //
     elem.attributes[prop] = value.toString();
-  }  
-  
+  }
+
   /**
    * Sets an attribute on a given element.
    *
@@ -183,14 +183,14 @@ class Dom {
     //return Document.get().createUniqueId();
     return "dwt-id-${uniqueId++}";
   }
-  
+
   /**
    * Inserts an element as a child of the given parent element.
    * <p>
    * If the child element is a {@link com.google.gwt.user.client.ui.PotentialElement}, it is first
    * resolved.
    * </p>
-   * 
+   *
    * @param parent the parent element
    * @param child the child element to add to <code>parent</code>
    * @param index the index before which the child will be inserted (any value
@@ -206,26 +206,26 @@ class Dom {
     //impl.insertChild(parent, PotentialElement.resolve(child).<Element> cast(), index);
     domHelper.insertChild(parent, child, index);
   }
-  
+
   //********
   // Capture
   //********
-  
+
   /**
    * Gets the element that currently has mouse capture.
-   * 
+   *
    * @return a handle to the capture element, or <code>null</code> if none
    *         exists
    */
   static dart_html.Element getCaptureElement() {
     return _sCaptureElem;
   }
-  
+
   /**
    * Releases mouse/touch/gesture capture on the given element. Calling this
    * method has no effect if the element does not currently have
    * mouse/touch/gesture capture.
-   * 
+   *
    * @param elem the element to release capture
    * @see #setCapture(Element)
    */
@@ -235,22 +235,22 @@ class Dom {
     }
     //domHelper.releaseCapture(elem);
   }
-  
+
   /**
    * Sets mouse/touch/gesture capture on the given element. This element will
    * directly receive all mouse events until {@link #releaseCapture(Element)} is
    * called on it.
-   * 
+   *
    * @param elem the element on which to set mouse/touch/gesture capture
    */
   static void setCapture(dart_html.Element elem) {
     _sCaptureElem = elem;
     //domHelper.setCapture(elem);
   }
-  
+
   /**
    * The height of the document's client area.
-   * 
+   *
    * @return the document's client height
    */
   static int getClientHeight() {
@@ -259,51 +259,79 @@ class Dom {
 
   /**
    * The width of the document's client area.
-   * 
+   *
    * @return the document's client width
    */
   static int getClientWidth() {
     return dart_html.window.innerWidth; //dart_html.document.body.clientWidth;
   }
-  
+
   /**
    * The number of pixels that the document's content is scrolled from the left.
-   * 
+   *
    * <p>
    * If the document is in RTL mode, this method will return a negative value of
    * the number of pixels scrolled from the right.
    * </p>
-   * 
+   *
    * @return the document's left scroll position
    */
   static int getScrollLeft() {
     return dart_html.document.body.scrollLeft;
   }
-  
+
   /**
    * The number of pixels that the document's content is scrolled from the top.
-   * 
+   *
    * @return the document's top scroll position
    */
   static int getScrollTop() {
     return dart_html.document.body.scrollTop;
   }
-  
+
   /**
    * The width of the scrollable area of the document.
-   * 
+   *
    * @return the width of the document's scrollable area
    */
   static int getScrollWidth() {
     return dart_html.document.body.scrollWidth;
   }
-  
+
   /**
    * The height of the scrollable area of the document.
-   * 
+   *
    * @return the height of the document's scrollable area
    */
   static int getScrollHeight() {
     return dart_html.document.body.scrollHeight;
+  }
+
+//*******
+  // Events
+  //*******
+
+  /**
+   * Sinks a named event. Events will be fired to the nearest
+   * {@link EventListener} specified on any of the element's parents.
+   *
+   * @param elem the element whose events are to be retrieved
+   * @param eventTypeName name of the event to sink on this element
+   */
+  static void sinkBitlessEvent(dart_html.Element elem, String eventTypeName, dart_html.EventListener listener) {
+    domHelper.sinkBitlessEvent(elem, eventTypeName, listener);
+  }
+
+  /**
+   * Sets the current set of events sunk by a given element. These events will
+   * be fired to the nearest {@link EventListener} specified on any of the
+   * element's parents.
+   *
+   * @param elem the element whose events are to be retrieved
+   * @param eventBits a bitfield describing the events sunk on this element (its
+   *          possible values are described in {@link Event})
+   */
+  static void sinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener) {
+    domHelper.sinkEvents(elem, eventBits, listener);
   }
 }

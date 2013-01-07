@@ -12,6 +12,68 @@ import 'package:dart_web_toolkit/util.dart' as util;
 import 'dart_web_toolkit/i18n.dart' as i18n;
 
 void main() {
+  ui.Button btn = new ui.Button("Test");
+  // Click
+  event.HandlerRegistration handlerRegistration;
+  handlerRegistration = btn.addClickHandler(new shared.ClickHandler((shared.ClickEvent evt){
+    print("Clicked");
+    handlerRegistration.removeHandler();
+  }));
+  // Double click
+  btn.addDoubleClickHandler(new shared.DoubleClickHandler((shared.DoubleClickEvent evt){
+    print("Double Clicked");
+  }));
+  // Focus
+  btn.addFocusHandler(new shared.FocusHandler((shared.FocusEvent evt){
+    print("Focus");
+  }));
+  // Blur
+  btn.addBlurHandler(new shared.BlurHandler((shared.BlurEvent evt){
+    print("Blur");
+  }));
+  ui.RootPanel.get("testId").add(btn);
+
+  ui.TextBox normalText = new ui.TextBox();
+  // Key down
+  normalText.addKeyDownHandler(new shared.KeyDownHandler((shared.KeyDownEvent evt){
+    print("Key down: ${evt.getNativeKeyCode()}");
+  }));
+  // Key up
+  normalText.addKeyUpHandler(new shared.KeyUpHandler((shared.KeyUpEvent evt){
+    print("Key up: ${evt.getNativeKeyCode()}");
+  }));
+  // Key press
+  normalText.addKeyPressHandler(new shared.KeyPressHandler((shared.KeyPressEvent evt){
+    print("Key press: ${evt.getUnicodeCharCode()}");
+  }));
+  // Mouse down
+  normalText.addMouseDownHandler(new shared.MouseDownHandler((shared.MouseDownEvent evt){
+    print("Mouse down: ${evt.getClientX()} x ${evt.getClientY()}");
+  }));
+  // Mouse up
+  normalText.addMouseUpHandler(new shared.MouseUpHandler((shared.MouseUpEvent evt){
+    print("Mouse up: ${evt.getClientX()} x ${evt.getClientY()}");
+  }));
+  // Mouse move
+  normalText.addMouseMoveHandler(new shared.MouseMoveHandler((shared.MouseMoveEvent evt){
+    print("Mouse move: ${evt.getClientX()} x ${evt.getClientY()}");
+  }));
+  // Mouse out
+  normalText.addMouseOutHandler(new shared.MouseOutHandler((shared.MouseOutEvent evt){
+    print("Mouse out");
+  }));
+  // Mouse over
+  normalText.addMouseOverHandler(new shared.MouseOverHandler((shared.MouseOverEvent evt){
+    print("Mouse over");
+  }));
+  // Mouse move
+  normalText.addMouseWheelHandler(new shared.MouseWheelHandler((shared.MouseWheelEvent evt){
+    print("Mouse wheel: ${evt.getClientX()} x ${evt.getClientY()} x ${evt.getDeltaY()}");
+  }));
+  ui.RootPanel.get("testId").add(normalText);
+}
+
+void main28() {
   ui.Frame frame = new ui.Frame("frame_test.html");
   frame.setWidth("100%");
   frame.setHeight("450px");

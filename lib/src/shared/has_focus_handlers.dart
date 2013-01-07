@@ -8,5 +8,12 @@ part of dart_web_toolkit_shared;
  * {@link FocusHandler} instances.
  */
 abstract class HasFocusHandlers extends HasHandlers {
-  
+
+  /**
+   * Adds a {@link FocusEvent} handler.
+   *
+   * @param handler the focus handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addFocusHandler(FocusHandler handler);
 }

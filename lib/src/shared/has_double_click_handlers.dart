@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link DoubleClickHandler} instances.
  */
 abstract class HasDoubleClickHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link DoubleClickEvent} handler.
+   *
+   * @param handler the double click handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler);
 }

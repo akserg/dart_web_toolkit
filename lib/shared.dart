@@ -93,26 +93,43 @@ part 'src/shared/double_click_event.dart';
 part 'src/shared/has_all_focus_handlers.dart';
 
 part 'src/shared/has_focus_handlers.dart';
+part 'src/shared/focus_handler.dart';
+part 'src/shared/focus_event.dart';
 
 part 'src/shared/has_blur_handlers.dart';
+part 'src/shared/blur_handler.dart';
+part 'src/shared/blur_event.dart';
 
 part 'src/shared/has_all_gesture_handlers.dart';
 
 part 'src/shared/has_gesture_start_handlers.dart';
+part 'src/shared/gesture_start_handler.dart';
+part 'src/shared/gesture_start_event.dart';
 
 part 'src/shared/has_gesture_change_handlers.dart';
 part 'src/shared/gesture_change_handler.dart';
 part 'src/shared/gesture_change_event.dart';
 
 part 'src/shared/has_gesture_end_handlers.dart';
+part 'src/shared/gesture_end_handler.dart';
+part 'src/shared/gesture_end_event.dart';
 
 part 'src/shared/has_all_key_handlers.dart';
 
 part 'src/shared/has_key_up_handlers.dart';
+part 'src/shared/key_up_handler.dart';
+part 'src/shared/key_up_event.dart';
+
+part 'src/shared/key_event.dart';
+part 'src/shared/key_code_event.dart';
 
 part 'src/shared/has_key_down_handlers.dart';
+part 'src/shared/key_down_handler.dart';
+part 'src/shared/key_down_event.dart';
 
 part 'src/shared/has_key_press_handlers.dart';
+part 'src/shared/key_press_handler.dart';
+part 'src/shared/key_press_event.dart';
 
 part 'src/shared/has_all_mouse_handlers.dart';
 

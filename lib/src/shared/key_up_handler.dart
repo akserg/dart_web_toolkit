@@ -6,6 +6,16 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link KeyUpEvent} events.
  */
-abstract class KeyUpHandler extends EventHandler {
-  
+class KeyUpHandler extends DomEventHandler {
+
+  KeyUpHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+
+  /**
+   * Called when KeyUpEvent is fired.
+   *
+   * @param event the {@link KeyUpEvent} that was fired
+   */
+  void onKeyUp(KeyUpEvent event) {
+    onDomEventHandler(event);
+  }
 }

@@ -26,6 +26,14 @@ class Widget extends UiObject
   // Properties
   //***********
 
+  /**
+   * A set og events that should be sunk when the widget is attached to
+   * the DOM. (We delay the sinking of events to improve startup performance.)
+   * When the widget is attached, this is set is empty
+   *
+   * Package protected to allow Composite to see it.
+   */
+  Set eventsToSink = new Set();
 //  HandlerManager _handlerManager;
   EventBus _eventBus;
   bool _attached = false;
@@ -149,6 +157,26 @@ class Widget extends UiObject
     return _eventBus;
   }
 
+  /**
+   * For <a href=
+   * "http://code.google.com/p/google-web-toolkit/wiki/UnderstandingMemoryLeaks"
+   * >browsers which do not leak</a>, adds a native event handler to the widget.
+   * Note that, unlike the
+   * {@link #addDomHandler(EventHandler, com.google.gwt.event.dom.client.DomEvent.Type)}
+   * implementation, there is no need to attach the widget to the DOM in order
+   * to cause the event handlers to be attached.
+   *
+   * @param <H> the type of handler to add
+   * @param type the event key
+   * @param handler the handler
+   * @return {@link HandlerRegistration} used to remove the handler
+   */
+  HandlerRegistration addBitlessDomHandler(EventHandler handler, DomEventType type) {
+    assert (handler != null);; // : "handler must not be null";
+    assert (type != null); // : "type must not be null";
+    sinkBitlessEvent(type.eventName);
+    return ensureHandlers().addHandler(type, handler);
+  }
 
   /**
    * Adds a native event handler to the widget and sinks the corresponding
@@ -160,20 +188,56 @@ class Widget extends UiObject
    * @param handler the handler
    * @return {@link HandlerRegistration} used to remove the handler
    */
-//  HandlerRegistration addDomHandler(EventHandler handler, EventType type) {
-//    assert (handler != null); // : "handler must not be null";
-//    assert (type != null); // : "type must not be null";
-//    int typeInt = Event.getTypeInt(type.getName());
-//    if (typeInt == -1) {
-//      sinkBitlessEvent(type.getName());
-//    } else {
-//      sinkEvents(typeInt);
-//    }
-//    return ensureHandlers().addHandler(type, handler);
-//  }
   HandlerRegistration addDomHandler(DomEventHandler handler, DomEventType type) {
-    getElement().on[type.eventName].add(onBrowserEvent);
+    assert (handler != null); // : "handler must not be null";
+    assert (type != null); // : "type must not be null";
+    if (BrowserEvents.events.indexOf(type.eventName) == -1) {
+      sinkBitlessEvent(type.eventName);
+    } else {
+      sinkEvents(type.eventName);
+    }
     return ensureHandlers().addHandlerToSource(type, getElement(), handler);
+  }
+
+  /**
+   * Sinks a named event. Note that only {@link Widget widgets} may actually
+   * receive events, but can receive events from all objects contained within
+   * them.
+   *
+   * @param eventTypeName name of the event to sink on this element
+   * @see com.google.gwt.user.client.Event
+   */
+  void sinkBitlessEvent(String eventTypeName) {
+    Dom.sinkBitlessEvent(getElement(), eventTypeName, onBrowserEvent);
+  }
+
+  /**
+   * Overridden to defer the call to super.sinkEvents until the first time this
+   * widget is attached to the dom, as a performance enhancement. Subclasses
+   * wishing to customize sinkEvents can preserve this deferred sink behavior by
+   * putting their implementation behind a check of
+   * <code>isOrWasAttached()</code>:
+   *
+   * <pre>
+   * {@literal @}Override
+   * public void sinkEvents(int eventBitsToAdd) {
+   *   if (isOrWasAttached()) {
+   *     /{@literal *} customized sink code goes here {@literal *}/
+   *   } else {
+   *     super.sinkEvents(eventBitsToAdd);
+   *  }
+   *} </pre>
+   */
+  void sinkEvents(String eventName) {
+    if (isOrWasAttached()) {
+      eventsToSink.add(eventName);
+      Dom.sinkEvents(getElement(), eventsToSink, onBrowserEvent);
+      eventsToSink.clear();
+    } else {
+      if (!eventsToSink.contains(eventName)) {
+        eventsToSink.add(eventName);
+      }
+    }
   }
 
   /**
@@ -186,16 +250,6 @@ class Widget extends UiObject
     return new SimpleEventBus();
   }
 
-
-//  /**
-//   * Gets the number of handlers listening to the event type.
-//   *
-//   * @param type the event type
-//   * @return the number of registered handlers
-//   */
-//  int getHandlerCount(EventType type) {
-//    return _handlerManager == null ? 0 : _handlerManager.getHandlerCount(type);
-//  }
 
   /**
    * Returns whether or not the receiver is attached to the

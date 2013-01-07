@@ -6,13 +6,13 @@ part of dart_web_toolkit_ui;
 /**
  * Abstract base class for most widgets that can receive focus.
  */
-abstract class FocusWidget extends Widget implements  
+abstract class FocusWidget extends Widget implements
     HasClickHandlers, HasDoubleClickHandlers, HasFocus, HasEnabled,
     HasAllDragAndDropHandlers, HasAllFocusHandlers, HasAllGestureHandlers,
     HasAllKeyHandlers, HasAllMouseHandlers, HasAllTouchHandlers {
 
   static final FocusImpl impl = FocusImpl.getFocusImplForWidget();
-  
+
   /**
    * Creates a new focus widget that wraps the specified browser [element].
    */
@@ -82,6 +82,10 @@ abstract class FocusWidget extends Widget implements
   // Impementation of HasClickHandlers
   //**********************************
 
+  HandlerRegistration addBlurHandler(BlurHandler handler) {
+    return addDomHandler(handler, BlurEvent.TYPE);
+  }
+
   /**
    * Adds a {@link ClickEvent} handler.
    *
@@ -91,4 +95,126 @@ abstract class FocusWidget extends Widget implements
   HandlerRegistration addClickHandler(ClickHandler handler) {
     return addDomHandler(handler, ClickEvent.TYPE);
   }
+
+  HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
+    return addDomHandler(handler, DoubleClickEvent.TYPE);
+  }
+
+  //******************************
+  // Drag and Drop events handlers
+  //******************************
+
+  HandlerRegistration addDragEndHandler(DragEndHandler handler) {
+    return addBitlessDomHandler(handler, DragEndEvent.TYPE);
+  }
+
+  HandlerRegistration addDragEnterHandler(DragEnterHandler handler) {
+    return addBitlessDomHandler(handler, DragEnterEvent.TYPE);
+  }
+
+  HandlerRegistration addDragHandler(DragHandler handler) {
+    return addBitlessDomHandler(handler, DragEvent.TYPE);
+  }
+
+  HandlerRegistration addDragLeaveHandler(DragLeaveHandler handler) {
+    return addBitlessDomHandler(handler, DragLeaveEvent.TYPE);
+  }
+
+  HandlerRegistration addDragOverHandler(DragOverHandler handler) {
+    return addBitlessDomHandler(handler, DragOverEvent.TYPE);
+  }
+
+  HandlerRegistration addDragStartHandler(DragStartHandler handler) {
+    return addBitlessDomHandler(handler, DragStartEvent.TYPE);
+  }
+
+  HandlerRegistration addDropHandler(DropHandler handler) {
+    return addBitlessDomHandler(handler, DropEvent.TYPE);
+  }
+
+  HandlerRegistration addFocusHandler(FocusHandler handler) {
+    return addDomHandler(handler, FocusEvent.TYPE);
+  }
+
+  //************************
+  // Gesture events handlers
+  //************************
+
+  HandlerRegistration addGestureChangeHandler(GestureChangeHandler handler) {
+    return addDomHandler(handler, GestureChangeEvent.TYPE);
+  }
+
+  HandlerRegistration addGestureEndHandler(GestureEndHandler handler) {
+    return addDomHandler(handler, GestureEndEvent.TYPE);
+  }
+
+  HandlerRegistration addGestureStartHandler(GestureStartHandler handler) {
+    return addDomHandler(handler, GestureStartEvent.TYPE);
+  }
+
+
+  //*************************
+  // Keyboard events handlers
+  //*************************
+
+  HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {
+    return addDomHandler(handler, KeyDownEvent.TYPE);
+  }
+
+  HandlerRegistration addKeyPressHandler(KeyPressHandler handler) {
+    return addDomHandler(handler, KeyPressEvent.TYPE);
+  }
+
+  HandlerRegistration addKeyUpHandler(KeyUpHandler handler) {
+    return addDomHandler(handler, KeyUpEvent.TYPE);
+  }
+
+  //**********************
+  // Mouse events handlers
+  //**********************
+
+  HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
+    return addDomHandler(handler, MouseDownEvent.TYPE);
+  }
+
+  HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
+    return addDomHandler(handler, MouseMoveEvent.TYPE);
+  }
+
+  HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
+    return addDomHandler(handler, MouseOutEvent.TYPE);
+  }
+
+  HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
+    return addDomHandler(handler, MouseOverEvent.TYPE);
+  }
+
+  HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
+    return addDomHandler(handler, MouseUpEvent.TYPE);
+  }
+
+  HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
+    return addDomHandler(handler, MouseWheelEvent.TYPE);
+  }
+
+  //**********************
+  // Touch events handlers
+  //**********************
+
+  HandlerRegistration addTouchCancelHandler(TouchCancelHandler handler) {
+    return addDomHandler(handler, TouchCancelEvent.TYPE);
+  }
+
+  HandlerRegistration addTouchEndHandler(TouchEndHandler handler) {
+    return addDomHandler(handler, TouchEndEvent.TYPE);
+  }
+
+  HandlerRegistration addTouchMoveHandler(TouchMoveHandler handler) {
+    return addDomHandler(handler, TouchMoveEvent.TYPE);
+  }
+
+  HandlerRegistration addTouchStartHandler(TouchStartHandler handler) {
+    return addDomHandler(handler, TouchStartEvent.TYPE);
+  }
+
 }

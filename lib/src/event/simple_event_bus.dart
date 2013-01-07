@@ -222,7 +222,7 @@ class SimpleEventBus<H> extends EventBus<H> {
         H handler = it.next();
 
         try {
-          dispatchEvent(event, handler);
+          EventBus.dispatchEvent(event, handler);
         } on Exception catch (e) {
           if (causes == null) {
             causes = new Set<Exception>();
@@ -250,8 +250,10 @@ class SimpleEventBus<H> extends EventBus<H> {
 
     List<H> globalHandlers = getHandlerList(type, null);
 
-    List<H> rtn = new List<H>(directHandlers.length);
-    rtn.addAll(globalHandlers);
+    List<H> rtn = new List<H>.from(directHandlers);
+    if (globalHandlers.length > 1) {
+      rtn.addAll(globalHandlers);
+    }
     return rtn;
   }
 
@@ -312,6 +314,6 @@ class _RemoveCommand<H> extends Command<H> {
   _RemoveCommand(this._eventBus, this.type, this.source, this.handler);
 
   void execute() {
-    _eventBus._doAddNow(type, source, handler);
+    _eventBus._doRemoveNow(type, source, handler);
   }
 }

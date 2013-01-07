@@ -8,5 +8,12 @@ part of dart_web_toolkit_shared;
  * {@link KeyUpHandler} instances.
  */
 abstract class HasKeyUpHandlers extends HasHandlers {
-  
+
+  /**
+   * Adds a {@link KeyUpEvent} handler.
+   *
+   * @param handler the key up handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addKeyUpHandler(KeyUpHandler handler);
 }

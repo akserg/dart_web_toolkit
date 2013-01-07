@@ -11,21 +11,29 @@ abstract class DomHelper {
   factory DomHelper.browserDependent() {
     return new DomHelperDefault();
   }
-  
-  
+
+
   void setEventListener(dart_html.Element elem, EventListener listener);
-  
+
   int getAbsoluteLeft(dart_html.Element elem);
-  
+
   int getAbsoluteTop(dart_html.Element elem);
- 
+
   void insertChild(dart_html.Element parent, dart_html.Element child, int index);
-  
+
   //*********
   // Capturte
   //*********
-  
+
   void releaseCapture(dart_html.Element elem);
 
   void setCapture(dart_html.Element elem);
+
+//*******
+  // Events
+  //*******
+
+  void sinkBitlessEvent(dart_html.Element elem, String eventTypeName, dart_html.EventListener listener);
+
+  void sinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener);
 }

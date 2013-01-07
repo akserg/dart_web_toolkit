@@ -4,16 +4,16 @@
 part of dart_web_toolkit_shared;
 
 class DomHelperDefault implements DomHelper {
-  
+
   void setEventListener(dart_html.Element elem, EventListener listener) {
     // Native JavaScript code
     //elem.__listener = listener;
   }
-  
+
   int getAbsoluteLeft(dart_html.Element elem) {
     var left = 0;
     dart_html.Element curr = elem;
-    // This intentionally excludes body which has a null offsetParent.    
+    // This intentionally excludes body which has a null offsetParent.
     while (curr.offsetParent != null) {
       left -= curr.scrollLeft;
       curr = curr.parent;
@@ -24,11 +24,11 @@ class DomHelperDefault implements DomHelper {
     }
     return left;
   }
-  
+
   int getAbsoluteTop(dart_html.Element elem) {
     var top = 0;
     dart_html.Element curr = elem;
-    // This intentionally excludes body which has a null offsetParent.    
+    // This intentionally excludes body which has a null offsetParent.
     while (curr.offsetParent != null) {
       top -= curr.scrollTop;
       curr = curr.parentNode;
@@ -39,7 +39,7 @@ class DomHelperDefault implements DomHelper {
     }
     return top;
   }
-  
+
   void insertChild(dart_html.Element parent, dart_html.Element toAdd, int index) {
     int count = 0;
     dart_html.Node child = parent.$dom_firstChild;
@@ -57,11 +57,11 @@ class DomHelperDefault implements DomHelper {
 
     parent.insertBefore(toAdd, before);
   }
-  
+
 //*********
   // Capturte
   //*********
-  
+
   void releaseCapture(dart_html.Element elem) {
 //    maybeInitializeEventSystem();
 //    releaseCaptureImpl(elem);
@@ -71,5 +71,18 @@ class DomHelperDefault implements DomHelper {
 //    maybeInitializeEventSystem();
 //    setCaptureImpl(elem);
   }
-  
+
+//*******
+  // Events
+  //*******
+
+  void sinkBitlessEvent(dart_html.Element elem, String eventTypeName, dart_html.EventListener listener) {
+    elem.on[eventTypeName].add(listener);
+  }
+
+  void sinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener) {
+    for (String eventName in eventBits) {
+      elem.on[eventName].add(listener);
+    }
+  }
 }

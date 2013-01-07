@@ -5,7 +5,9 @@ DartMob Changes
 
 * Implemented SafeHtmlString and SafeHtmlUtils.
 * Implemented DialogBox. Added example.
-* Implemented Frame. Added example
+* Implemented Frame. Added example.
+* Created 0.2 feature branch.
+* Added events. Changed Widget, FocusWidget, FocusPanel and TabBar. Added example.
 
 **January 6, 2013
 

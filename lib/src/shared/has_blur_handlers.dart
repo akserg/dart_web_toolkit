@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link BlurHandler} instances.
  */
 abstract class HasBlurHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link BlurEvent} handler.
+   *
+   * @param handler the blur handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addBlurHandler(BlurHandler handler);
 }

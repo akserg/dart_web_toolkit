@@ -12,6 +12,13 @@ import 'package:dart_web_toolkit/util.dart' as util;
 import 'dart_web_toolkit/i18n.dart' as i18n;
 
 void main() {
+  ui.Frame frame = new ui.Frame("frame_test.html");
+  frame.setWidth("100%");
+  frame.setHeight("450px");
+  ui.RootPanel.get("testId").add(frame);
+}
+
+void main27() {
   // Create the dialog box
   ui.DialogBox dialogBox = createDialogBox();
   dialogBox.setGlassEnabled(true);

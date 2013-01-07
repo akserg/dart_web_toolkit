@@ -4,7 +4,8 @@ DartMob Changes
 **January 7, 2013
 
 * Implemented SafeHtmlString and SafeHtmlUtils.
-* Implemented DialogBox. Added Example.
+* Implemented DialogBox. Added example.
+* Implemented Frame. Added example
 
 **January 6, 2013
 

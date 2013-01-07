@@ -108,6 +108,7 @@ part 'src/ui/tab_panel.dart';
 part 'src/ui/tab_bar.dart';
 part 'src/ui/decorated_popup_panel.dart';
 part 'src/ui/dialog_box.dart';
+part 'src/ui/frame.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

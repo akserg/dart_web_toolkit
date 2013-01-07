@@ -9,8 +9,65 @@ import 'package:dart_web_toolkit/event.dart' as event;
 import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
+import 'dart_web_toolkit/i18n.dart' as i18n;
 
 void main() {
+  // Create the dialog box
+  ui.DialogBox dialogBox = createDialogBox();
+  dialogBox.setGlassEnabled(true);
+  dialogBox.setAnimationEnabled(true);
+
+  dialogBox.center();
+  dialogBox.show();
+
+}
+
+/**
+ * Create the dialog box for this example.
+*
+ * @return the new dialog box
+ */
+ui.DialogBox createDialogBox() {
+  // Create a dialog box and set the caption text
+  ui.DialogBox dialogBox = new ui.DialogBox();
+  //dialogBox.ensureDebugId("cwDialogBox");
+  dialogBox.text = "Sample DialogBox"; //(constants.cwDialogBoxCaption());
+
+  // Create a table to layout the content
+  ui.VerticalPanel dialogContents = new ui.VerticalPanel();
+  dialogContents.spacing = 4;
+  dialogBox.setWidget(dialogContents);
+
+  // Add some text to the top of the dialog
+  ui.Html details = new ui.Html("This is an example of a standard dialog box component."); //constants.cwDialogBoxDetails());
+  dialogContents.add(details);
+  dialogContents.setWidgetCellHorizontalAlignment(details, shared.HasHorizontalAlignment.ALIGN_CENTER);
+
+  // Add an image to the dialog
+  ui.Image image = new ui.Image("img/lights.png"); //Showcase.images.jimmy());
+  dialogContents.add(image);
+  dialogContents.setWidgetCellHorizontalAlignment(image, shared.HasHorizontalAlignment.ALIGN_CENTER);
+
+  // Add a close button at the bottom of the dialog
+  ui.Button closeButton = new ui.Button("Close");
+//      constants.cwDialogBoxClose(), new ClickHandler() {
+//        public void onClick(ClickEvent event) {
+//          dialogBox.hide();
+//        }
+//      });
+  dialogContents.add(closeButton);
+  if (i18n.LocaleInfo.getCurrentLocale().isRTL()) {
+    dialogContents.setWidgetCellHorizontalAlignment(closeButton, shared.HasHorizontalAlignment.ALIGN_LEFT);
+
+  } else {
+    dialogContents.setWidgetCellHorizontalAlignment(closeButton, shared.HasHorizontalAlignment.ALIGN_RIGHT);
+  }
+
+  // Return the dialog box
+  return dialogBox;
+}
+
+void main26() {
   ui.DecoratedPopupPanel simplePopup = new ui.DecoratedPopupPanel(true);
   simplePopup.setWidth("150px");
   simplePopup.setWidget(new ui.Html("Click anywhere outside this popup to make it disappear."));

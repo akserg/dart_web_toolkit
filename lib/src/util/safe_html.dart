@@ -47,7 +47,7 @@ part of dart_web_toolkit_util;
 abstract class SafeHtml {
   /*
    * Notes regarding serialization:
-   * 
+   *
    * - It may be reasonable to allow deserialization on the client of objects
    * serialized on the server (i.e. RPC responses), based on the assumption that
    * server code is trusted and would not provide a malicious serialized form
@@ -56,7 +56,7 @@ abstract class SafeHtml {
    * seem to provide a facility for restricting deserialization on the Server
    * only (though this shouldn't be difficult to implement through a custom
    * SerializationPolicy)
-   * 
+   *
    * - Some implementations of SafeHtml would in principle be able to enforce
    * their class invariant on deserialization (e.g., SimpleHtmlSanitizer could
    * apply HTML sanitization on deserialization). However, the GWT RPC framework
@@ -70,7 +70,7 @@ abstract class SafeHtml {
    * <p>
    * Based on this class' contract, the returned value will be non-null and a
    * string that is safe to use in an HTML context.
-   * 
+   *
    * @return the contents as a String
    */
   String asString();
@@ -81,7 +81,7 @@ abstract class SafeHtml {
    *
    * @param anObject the object to compare to
    */
-  bool equals(Object anObject);
+  bool operator ==(Object obj);
 
   /**
    * Returns a hash code for this string.

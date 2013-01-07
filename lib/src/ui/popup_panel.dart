@@ -44,7 +44,7 @@ part of dart_web_toolkit_ui;
  * </dl>
  */
 class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, HasCloseHandlers<PopupPanel>  {
- 
+
   /**
    * The duration of the animation.
    */
@@ -56,12 +56,12 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
   static const String DEFAULT_STYLENAME = "dwt-PopupPanel";
 
   static PopupImpl impl = new PopupImpl();
-  
+
   /**
    * Window resize handler used to keep the glass the proper size.
    */
   ResizeHandler glassResizer;
-  
+
   /**
    * If true, animate the opening of this popup from the center. If false,
    * animate it open from top to bottom, and do not animate closing. Use false
@@ -122,7 +122,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     //
     resizeAnimation = new ResizeAnimation(this);
     //
-    
+
     super.getContainerElement().append(impl.createElement());
 
     // Default position of popup should be in the upper-left corner of the
@@ -184,7 +184,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 
     int left = (Dom.getClientWidth() - getOffsetWidth()) >> 1;
     int top = (Dom.getClientHeight() - getOffsetHeight()) >> 1;
-    setPopupPosition(dart_math.max(Dom.getScrollLeft() + left, 0), 
+    setPopupPosition(dart_math.max(Dom.getScrollLeft() + left, 0),
         dart_math.max(Dom.getScrollTop() + top, 0));
 
     if (!initiallyShowing) {
@@ -218,7 +218,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    *
    * @return the object's offset height
    */
-  
+
   int getOffsetHeight() {
     return super.getOffsetHeight();
   }
@@ -229,7 +229,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    *
    * @return the object's offset width
    */
-  
+
   int getOffsetWidth() {
     return super.getOffsetWidth();
   }
@@ -252,7 +252,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     return Dom.getAbsoluteTop(getElement());
   }
 
-  
+
   String getTitle() {
     return Dom.getElementProperty(getContainerElement(), "title");
   }
@@ -347,7 +347,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    * @return <code>true</code> if the object is visible
    * @see #setVisible(bool)
    */
-  
+
   bool get visible => getElement().style.visibility != "hidden"; // !"hidden".equals(getElement().style.getProperty("visibility"));
 
 //  /**
@@ -461,7 +461,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     this._isGlassEnabled = enabled;
     if (enabled && glass == null) {
       glass = new dart_html.DivElement();
-      glass.setClassName(glassStyleName);
+      glass.$dom_className = glassStyleName;
 
       glass.style.position = Position.ABSOLUTE.value;
       glass.style.left = "0px"; //, Unit.PX);
@@ -478,7 +478,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
   void setGlassStyleName(String glassStyleName) {
     this.glassStyleName = glassStyleName;
     if (glass != null) {
-      glass.setClassName(glassStyleName);
+      glass.$dom_className = glassStyleName;
     }
   }
 
@@ -496,7 +496,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    *
    * @param height the object's new height, in CSS units (e.g. "10px", "1em")
    */
-  
+
   void setHeight(String height) {
     desiredHeight = height;
     maybeUpdateSize();
@@ -576,7 +576,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     this.previewAllNativeEvents = previewAllNativeEvents;
   }
 
-  
+
   void setTitle(String title) {
     dart_html.Element containerElement = getContainerElement();
     if (title == null || title.length == 0) {
@@ -596,7 +596,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    * @see #show()
    * @see #hide()
    */
-  
+
   void set visible(bool vis) {
     // We use visibility here instead of UiObject's default of display
     // Because the panel is absolutely positioned, this will not create
@@ -614,7 +614,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     }
   }
 
-  
+
   void setWidget(Widget w) {
     super.setWidget(w);
     maybeUpdateSize();
@@ -634,7 +634,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    *
    * @param width the object's new width, in CSS units (e.g. "10px", "1em")
    */
-  
+
   void setWidth(String width) {
     desiredWidth = width;
     maybeUpdateSize();
@@ -675,7 +675,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     setPopupPositionAndShow(new ShowPositionCallback(this, target));
   }
 
-  
+
   dart_html.Element getContainerElement() {
     return impl.getContainerElement(getPopupImplElement());
   }
@@ -690,7 +690,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     return glass;
   }
 
-  
+
   dart_html.Element getStyleElement() {
     return impl.getStyleElement(getPopupImplElement());
   }
@@ -702,7 +702,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 //    }
 //  }
 
-  
+
   void onUnload() {
     super.onUnload();
 
@@ -1076,14 +1076,14 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 }
 
 class HistoryValueChangeHandler<String> implements ValueChangeHandler<String> {
-  
+
   PopupPanel _panel;
-  
+
   HistoryValueChangeHandler(this._panel);
-  
+
   /**
    * Called when {@link ValueChangeEvent} is fired.
-   * 
+   *
    * @param event the {@link ValueChangeEvent} that was fired
    */
   void onValueChange(ValueChangeEvent<String> event) {
@@ -1116,10 +1116,10 @@ abstract class PositionCallback {
  * Set the position of the popup right before it is shown.
  */
 class ShowPositionCallback implements PositionCallback {
-  
+
   PopupPanel _panel;
   UiObject _target;
-  
+
   ShowPositionCallback(_panel, this._target);
 
     /**
@@ -1147,9 +1147,9 @@ class ShowPositionCallback implements PositionCallback {
  * </ul>
  */
 class AnimationType<int> extends Enum<int> {
-  
+
   const AnimationType(int num) : super(num);
-  
+
   static const AnimationType CENTER = const AnimationType(0);
   static const AnimationType ONE_WAY_CORNER = const AnimationType(1);
   static const AnimationType ROLL_DOWN = const AnimationType(2);
@@ -1269,7 +1269,7 @@ class ResizeAnimation extends Animation {
     }
   }
 
-  
+
   void onComplete() {
     if (!showing) {
       maybeShowGlass();
@@ -1282,7 +1282,7 @@ class ResizeAnimation extends Animation {
     Dom.setStyleAttribute(curPanel.getElement(), "overflow", "visible");
   }
 
-  
+
   void onStart() {
     offsetHeight = curPanel.getOffsetHeight();
     offsetWidth = curPanel.getOffsetWidth();
@@ -1290,7 +1290,7 @@ class ResizeAnimation extends Animation {
     super.onStart();
   }
 
-  
+
   void onUpdate(double progress) {
     if (!showing) {
       progress = 1.0 - progress;
@@ -1383,11 +1383,11 @@ class ResizeAnimation extends Animation {
 
 
 class _WindowResizeHandler implements ResizeHandler {
-  
+
   PopupPanel _panel;
-  
+
   _WindowResizeHandler(this._panel);
-  
+
   void onResize(ResizeEvent event) {
     int winWidth = Dom.getClientWidth();
     int winHeight = Dom.getClientHeight();

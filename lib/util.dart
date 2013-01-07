@@ -16,3 +16,5 @@ part 'src/util/enum.dart';
 part 'src/util/safe_uri.dart';
 part 'src/util/uri_utils.dart';
 part 'src/util/safe_html.dart';
+part 'src/util/safe_html_utils.dart';
+part 'src/util/safe_html_string.dart';

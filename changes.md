@@ -1,6 +1,11 @@
 DartMob Changes
 ==============
 
+**January 7, 2013
+
+* Implemented SafeHtmlString and SafeHtmlUtils.
+* Implemented DialogBox. Added Example.
+
 **January 6, 2013
 
 * Implemented DecoratedPopupPanel. Fixed DecoratedPanel. Added example.

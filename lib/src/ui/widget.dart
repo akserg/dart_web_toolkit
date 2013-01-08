@@ -66,7 +66,7 @@ class Widget extends UiObject
 //    }
     //DomEvent.fireNativeEvent(event, this, this.getElement());
 //    ensureHandlers().
-    print("onBrowserEvent: ${event}");
+//    print("onBrowserEvent: ${event}");
     DomEvent.fireNativeEvent(event, this, this.getElement());
   }
 

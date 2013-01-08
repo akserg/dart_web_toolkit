@@ -8,6 +8,7 @@ DartMob Changes
 * Added original methods into HasDragEndHandlers, HasDragEnterHandlers, HasDragHandlers, HasDragLeaveHandlers, HasDragOverHandlers, HasDragStartHandlers, HasDropHandlers, HasErrorHandlers, HasKeyDownHandlers, HasKeyPressHandlers, HasLoadHandlers, HasMouseDownHandlers, HasMouseMoveHandlers, HasMouseOutHandlers, HasMouseOverHandlers, HasMouseUpHandlers, HasMouseWheelHandlers, HasTouchCancelHandlers, HasTouchEndHandlers, HasTouchMoveHandlers, HasTouchStartHandlers.
 * Fixed problems in Frame and Image classes
 * Added ErrorEvent, ErrorHandler, LoadEvent and LoadHandler.
+* Fixed event handler for StackPanel.
 
 **January 7, 2013
 

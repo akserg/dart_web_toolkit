@@ -36,7 +36,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
 
   dart_html.Element _body;
   int _visibleStack = -1;
-  
+
   /**
    * Creates an empty stack panel.
    */
@@ -49,10 +49,11 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     Dom.setElementPropertyInt(table, "cellSpacing", 0);
     Dom.setElementPropertyInt(table, "cellPadding", 0);
 
-    //Dom.sinkEvents(table, Event.ONCLICK);
+    //Dom.sinkEvents(table, dart_html.MouseEvent.Event.ONCLICK);
+    sinkEvents(BrowserEvents.CLICK);
     clearAndSetStyleName(_DEFAULT_STYLENAME);
   }
-  
+
   /**
    * Adds a new child with the given widget and header, optionally interpreting
    * the header as HTML.
@@ -67,7 +68,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
       setStackText(getWidgetCount() - 1, stackText, asHTML);
     }
   }
-  
+
   /**
    * Gets the currently selected child index.
    *
@@ -76,11 +77,11 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   int getSelectedIndex() {
     return _visibleStack;
   }
-  
+
   void insertIsWidget(IsWidget w, int beforeIndex) {
     insertWidget(asWidgetOrNull(w), beforeIndex);
   }
-  
+
   /**
    * Insert a new child Widget into this Panel at a specified index, attaching
    * its Element to the specified container Element. The child Element will
@@ -153,26 +154,26 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
       _setStackVisible(_visibleStack, true);
     }
   }
-  
+
   void onBrowserEvent(dart_html.Event event) {
-//    if (DOM.eventGetType(event) == Event.ONCLICK) {
-//      Element target = DOM.eventGetTarget(event);
-//      int index = findDividerIndex(target);
-//      if (index != -1) {
-//        showStack(index);
-//      }
-//    }
+    if (event.type == BrowserEvents.CLICK) {
+      dart_html.Element target = (event as dart_html.MouseEvent).target;
+      int index = _findDividerIndex(target);
+      if (index != -1) {
+        showStack(index);
+      }
+    }
     super.onBrowserEvent(event);
   }
-  
+
   bool removeAt(int index) {
     return _remove(getWidget(index), index);
   }
-  
+
   bool remove(Widget child) {
     return _remove(child, getWidgetIndex(child));
   }
-  
+
   bool _remove(Widget child, int index) {
     // Make sure to call this before disconnecting the DOM.
     bool removed = super.remove(child);
@@ -198,7 +199,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     }
     return removed;
   }
-  
+
   /**
    * Sets the text associated with a child by its index.
    *
@@ -220,7 +221,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
       getHeaderTextElem(headerElem).text = text; // Dom.setInnerText(getHeaderTextElem(headerElem), text);
     }
   }
-  
+
   /**
    * Shows the widget at the specified child index.
    *
@@ -238,14 +239,14 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     _visibleStack = index;
     _setStackVisible(_visibleStack, true);
   }
-  
+
   /**
    * Returns a header element.
    */
   dart_html.Element createHeaderElem() {
     return new dart_html.DivElement();
   }
-  
+
   /**
    * Get the element that holds the header text given the header element created
    * by #createHeaderElement.
@@ -256,7 +257,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   dart_html.Element getHeaderTextElem(dart_html.Element headerElem) {
     return headerElem;
   }
-  
+
   int _findDividerIndex(dart_html.Element elem) {
     while (elem != null && elem != getElement()) {
       String expando = Dom.getElementProperty(elem, "__index");
@@ -275,13 +276,13 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     }
     return -1;
   }
-  
+
   void _setStackContentVisible(int index, bool visible) {
     dart_html.Element tr = _body.children[(index * 2) + 1]; //  DOM.getChild(_body, (index * 2) + 1);
     UiObject.setVisible(tr, visible);
     getWidget(index).visible = visible;
   }
-  
+
   void _setStackVisible(int index, bool visible) {
     // Get the first table row containing the widget's selector item.
     dart_html.Element tr = _body.children[index * 2]; // DOM.getChild(_body, (index * 2));
@@ -303,7 +304,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
       UiObject.manageElementStyleName(tdNext, _DEFAULT_ITEM_STYLENAME.concat("-below-selected"), visible);
     }
   }
-  
+
   void _updateIndicesFrom(int beforeIndex) {
     for (int i = beforeIndex, c = getWidgetCount(); i < c; ++i) {
       dart_html.Element childTR = _body.children[i * 2]; //DOM.getChild(_body, i * 2);

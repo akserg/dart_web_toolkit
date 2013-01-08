@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link MouseWheelHandler} instances.
  */
 abstract class HasMouseWheelHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link MouseWheelEvent} handler.
+   *
+   * @param handler the mouse wheel handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler);
 }

@@ -12,20 +12,20 @@ part of dart_web_toolkit_ui;
  * image is constructed, and how it is transformed after construction. Methods
  * will operate differently depending on the mode that the image is in. These
  * differences are detailed in the documentation for each method.
- * 
+ *
  * <p>
  * If an image transitions between clipped mode and unclipped mode, any
  * {@link Element}-specific attributes added by the user (including style
  * attributes, style names, and style modifiers), except for event listeners,
  * will be lost.
  * </p>
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <dl>
  * <dt>.gwt-Image</dt>
  * </dd>The outer element</dd>
  * </dl>
- * 
+ *
  * Tranformations between clipped and unclipped state will result in a loss of
  * any style names that were set/added; the only style names that are preserved
  * are those that are mentioned in the static CSS style rules. Due to
@@ -34,7 +34,7 @@ part of dart_web_toolkit_ui;
  * expected when an image is in clipped mode. These limitations can usually be
  * easily worked around by encapsulating the image in a container widget that
  * can itself be styled.
- * 
+ *
  * <p>
  * <h3>Example</h3>
  * {@example com.google.gwt.examples.ImageExample}
@@ -43,23 +43,23 @@ part of dart_web_toolkit_ui;
 class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   HasClickHandlers, HasDoubleClickHandlers, HasAllDragAndDropHandlers,
   HasAllGestureHandlers, HasAllMouseHandlers, HasAllTouchHandlers {
-  
+
   /**
    * The attribute that is set when an image fires a native load or error event
    * before it is attached.
    */
   static final String UNHANDLED_EVENT_ATTR = "__gwtLastUnhandledEvent";
-  
+
   /**
    * This map is used to store prefetched images. If a reference is not kept to
    * the prefetched image objects, they can get garbage collected, which
    * sometimes keeps them from getting fully fetched.
    */
   static Map<String, dart_html.Element> prefetchImages = new Map<String, dart_html.Element>();
-  
+
   /**
    * Causes the browser to pre-fetch the image at a given URL.
-   * 
+   *
    * @param url the URL of the image to be prefetched
    */
   static void prefetch(String url) {
@@ -67,23 +67,23 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
     img.src = url;
     prefetchImages[url] = img;
   }
-  
+
   /**
    * Causes the browser to pre-fetch the image at a given URL.
-   * 
+   *
    * @param url the URL of the image to be prefetched
    */
   static void prefetchSafe(SafeUri url) {
     prefetch(url.asString());
   }
-  
+
   /**
    * Creates a Image widget that wraps an existing &lt;img&gt; element.
-   * 
+   *
    * This element must already be attached to the document. If the element is
    * removed from the document, you must call
    * {@link RootPanel#detachNow(Widget)}.
-   * 
+   *
    * @param element the element to be wrapped
    */
   factory Image.wrap(dart_html.Element element) {
@@ -98,24 +98,24 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
 
     return image;
   }
-  
+
   _State state;
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be an &lt;img&gt; element.
-   * 
+   *
    * @param element the element to be used
    */
   Image.fromElement(dart_html.ImageElement element) {
     setElement(element);
     changeState(new _UnclippedState(element:element));
   }
-  
+
   /**
    * Creates an image with a specified URL. The load event will be fired once
    * the image at the given URL has been retrieved by the browser.
-   * 
+   *
    * @param url the URL of the image to be displayed
    */
   Image(String url) : this.safe(UriUtils.unsafeCastFromUntrustedString(url));
@@ -123,14 +123,14 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   /**
    * Creates an image with a specified URL. The load event will be fired once
    * the image at the given URL has been retrieved by the browser.
-   * 
+   *
    * @param url the URL of the image to be displayed
    */
   Image.safe(SafeUri url) {
     changeState(new _UnclippedState(image:this, url:url));
     clearAndSetStyleName("dwt-Image");
   }
-  
+
   /**
    * Creates a clipped image with a specified URL and visibility rectangle. The
    * visibility rectangle is declared relative to the the rectangle which
@@ -140,7 +140,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * the width and height are specified explicitly by the user, this behavior
    * will not cause problems with retrieving the width and height of a clipped
    * image in a load event handler.
-   * 
+   *
    * @param url the URL of the image to be displayed
    * @param left the horizontal co-ordinate of the upper-left vertex of the
    *          visibility rectangle
@@ -150,7 +150,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @param height the height of the visibility rectangle
    */
   Image.clipped(String url, int left, int top, int width, int height) : this.clippedSafe(UriUtils.unsafeCastFromUntrustedString(url), left, top, width, height);
-  
+
   /**
    * Creates a clipped image with a specified URL and visibility rectangle. The
    * visibility rectangle is declared relative to the the rectangle which
@@ -160,7 +160,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * the width and height are specified explicitly by the user, this behavior
    * will not cause problems with retrieving the width and height of a clipped
    * image in a load event handler.
-   * 
+   *
    * @param url the URL of the image to be displayed
    * @param left the horizontal co-ordinate of the upper-left vertex of the
    *          visibility rectangle
@@ -173,7 +173,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
     changeState(new _ClippedState(this, url, left, top, width, height));
     clearAndSetStyleName("dwt-Image");
   }
-  
+
   //***********************************
   // Implementation of HasClickHandlers
   //***********************************
@@ -181,7 +181,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   HandlerRegistration addClickHandler(ClickHandler handler) {
     return addHandler(handler, ClickEvent.TYPE);
   }
-  
+
   HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
     return addHandler(handler, DoubleClickEvent.TYPE);
   }
@@ -214,30 +214,30 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
     return addDomHandler(handler, DropEvent.TYPE);
   }
 
-//  HandlerRegistration addErrorHandler(ErrorHandler handler) {
-//    return addHandler(handler, ErrorEvent.TYPE);
-//  }
+  HandlerRegistration addErrorHandler(ErrorHandler handler) {
+    return addHandler(handler, ErrorEvent.TYPE);
+  }
 
   HandlerRegistration addGestureChangeHandler(GestureChangeHandler handler) {
     return addDomHandler(handler, GestureChangeEvent.TYPE);
   }
 
-//  HandlerRegistration addGestureEndHandler(GestureEndHandler handler) {
-//    return addDomHandler(handler, GestureEndEvent.TYPE);
-//  }
-//
-//  HandlerRegistration addGestureStartHandler(GestureStartHandler handler) {
-//    return addDomHandler(handler, GestureStartEvent.TYPE);
-//  }
+  HandlerRegistration addGestureEndHandler(GestureEndHandler handler) {
+    return addDomHandler(handler, GestureEndEvent.TYPE);
+  }
 
-//  HandlerRegistration addLoadHandler(LoadHandler handler) {
-//    return addHandler(handler, LoadEvent.TYPE);
-//  }
-  
+  HandlerRegistration addGestureStartHandler(GestureStartHandler handler) {
+    return addDomHandler(handler, GestureStartEvent.TYPE);
+  }
+
+  HandlerRegistration addLoadHandler(LoadHandler handler) {
+    return addHandler(handler, LoadEvent.TYPE);
+  }
+
   HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
     return addDomHandler(handler, MouseDownEvent.TYPE);
   }
-  
+
   HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
     return addDomHandler(handler, MouseMoveEvent.TYPE);
   }
@@ -257,7 +257,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
     return addDomHandler(handler, MouseWheelEvent.TYPE);
   }
-  
+
   HandlerRegistration addTouchCancelHandler(TouchCancelHandler handler) {
     return addDomHandler(handler, TouchCancelEvent.TYPE);
   }
@@ -273,21 +273,21 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   HandlerRegistration addTouchStartHandler(TouchStartHandler handler) {
     return addDomHandler(handler, TouchStartEvent.TYPE);
   }
-  
-  
+
+
   /**
    * Gets the alternate text for the image.
-   * 
+   *
    * @return the alternate text for the image
    */
   String getAltText() {
     return state.getImageElement(this).getAlt();
   }
-  
+
   /**
    * Sets the alternate text of the image for user agents that can't render the
    * image.
-   * 
+   *
    * @param altText the alternate text to set to
    */
   void setAltText(String altText) {
@@ -298,7 +298,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * Gets the height of the image. When the image is in the unclipped state, the
    * height of the image is not known until the image has been loaded (i.e. load
    * event has been fired for the image).
-   * 
+   *
    * @return the height of the image, or 0 if the height is unknown
    */
   int getHeight() {
@@ -310,7 +310,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * visibility rectangle. If the image is in the unclipped state, then the
    * visibility rectangle is assumed to be the rectangle which encompasses the
    * entire image, which has an upper-left vertex of (0,0).
-   * 
+   *
    * @return the horizontal co-ordinate of the upper-left vertex of the image's
    *         visibility rectangle
    */
@@ -323,7 +323,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * visibility rectangle. If the image is in the unclipped state, then the
    * visibility rectangle is assumed to be the rectangle which encompasses the
    * entire image, which has an upper-left vertex of (0,0).
-   * 
+   *
    * @return the vertical co-ordinate of the upper-left vertex of the image's
    *         visibility rectangle
    */
@@ -335,7 +335,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * Gets the URL of the image. The URL that is returned is not necessarily the
    * URL that was passed in by the user. It may have been transformed to an
    * absolute URL.
-   * 
+   *
    * @return the image URL
    */
   String getUrl() {
@@ -347,30 +347,30 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * state, a call to this method will cause a transition of the image to the
    * unclipped state. Regardless of whether or not the image is in the clipped
    * or unclipped state, a load event will be fired.
-   * 
+   *
    * @param url the image URL
    */
   void setSafeUrl(SafeUri url) {
     state.setUrl(this, url);
   }
-  
+
   /**
    * Sets the URL of the image to be displayed. If the image is in the clipped
    * state, a call to this method will cause a transition of the image to the
    * unclipped state. Regardless of whether or not the image is in the clipped
    * or unclipped state, a load event will be fired.
-   * 
+   *
    * @param url the image URL
    */
   void setUrl(String url) {
     setSafeUrl(UriUtils.unsafeCastFromUntrustedString(url));
   }
-  
+
   /**
    * Gets the width of the image. When the image is in the unclipped state, the
    * width of the image is not known until the image has been loaded (i.e. load
    * event has been fired for the image).
-   * 
+   *
    * @return the width of the image, or 0 if the width is unknown
    */
   int getWidth() {
@@ -387,7 +387,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
 
     super.onBrowserEvent(event);
   }
-  
+
   /**
    * Sets the url and the visibility rectangle for the image at the same time,
    * based on an ImageResource instance. A single load event will be fired if
@@ -395,14 +395,14 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * image's current url or current visibility rectangle co-ordinates. If the
    * image is currently in the unclipped state, a call to this method will cause
    * a transition to the clipped state.
-   * 
+   *
    * @param resource the ImageResource to display
    */
 //  void setResource(ImageResource resource) {
 //    setUrlAndVisibleRect(resource.getSafeUri(), resource.getLeft(), resource.getTop(),
 //        resource.getWidth(), resource.getHeight());
 //  }
-  
+
   /**
    * Sets the url and the visibility rectangle for the image at the same time. A
    * single load event will be fired if either the incoming url or visiblity
@@ -410,7 +410,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * visibility rectangle co-ordinates. If the image is currently in the
    * unclipped state, a call to this method will cause a transition to the
    * clipped state.
-   * 
+   *
    * @param url the image URL
    * @param left the horizontal coordinate of the upper-left vertex of the
    *          visibility rectangle
@@ -430,7 +430,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * visibility rectangle co-ordinates. If the image is currently in the
    * unclipped state, a call to this method will cause a transition to the
    * clipped state.
-   * 
+   *
    * @param url the image URL
    * @param left the horizontal coordinate of the upper-left vertex of the
    *          visibility rectangle
@@ -452,7 +452,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * is in the unclipped state, a call to this method will cause a transition of
    * the image to the clipped state. This transition will cause a load event to
    * fire.
-   * 
+   *
    * @param left the horizontal coordinate of the upper-left vertex of the
    *          visibility rectangle
    * @param top the vertical coordinate of the upper-left vertex of the
@@ -463,7 +463,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   void setVisibleRect(int left, int top, int width, int height) {
     state.setVisibleRect(this, left, top, width, height);
   }
-  
+
   void onLoad() {
     super.onLoad();
 
@@ -512,7 +512,7 @@ abstract class _State {
   /**
    * Called when the widget is attached to the page. Not to be confused with
    * the load event that fires when the image loads.
-   * 
+   *
    * @param image the widget
    */
   void onLoad(Image image) {
@@ -526,7 +526,7 @@ abstract class _State {
 
   /**
    * Called when a load event is handled by the widget.
-   * 
+   *
    * @param image the widget
    */
   void onLoadEvent(Image image) {
@@ -543,7 +543,7 @@ abstract class _State {
   /**
    * We need to synthesize a load event in case the image loads synchronously,
    * before our handlers can be attached.
-   * 
+   *
    * @param image the image on which to dispatch the event
    */
   void fireSyntheticLoadEvent(Image image) {
@@ -562,12 +562,12 @@ abstract class _State {
 }
 
 class StateScheduledCommand extends ScheduledCommand {
-  
+
   _State _state;
   Image _image;
-  
+
   StateScheduledCommand(this._state, this._image);
-  
+
   void execute() {
     /*
      * The state has been replaced, or another load event is already
@@ -710,7 +710,7 @@ class _UnclippedState extends _State {
       // incorrectly cache itself if the load event is assigned at the same time
       // as the image is added to the dom.
 //      Event.sinkEvents(image.getElement(), Event.ONLOAD);
-      
+
       if (?url) {
         setUrl(image, url);
       }
@@ -721,7 +721,7 @@ class _UnclippedState extends _State {
 //          | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
     }
   }
-    
+
   int getHeight(Image image) {
     return getImageElement(image).height;
   }

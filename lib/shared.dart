@@ -142,8 +142,12 @@ part 'src/shared/mouse_up_handler.dart';
 part 'src/shared/mouse_up_event.dart';
 
 part 'src/shared/has_mouse_out_handlers.dart';
+part 'src/shared/mouse_out_handler.dart';
+part 'src/shared/mouse_out_event.dart';
 
 part 'src/shared/has_mouse_over_handlers.dart';
+part 'src/shared/mouse_over_handler.dart';
+part 'src/shared/mouse_over_event.dart';
 
 part 'src/shared/has_mouse_move_handlers.dart';
 part 'src/shared/mouse_move_handler.dart';
@@ -181,8 +185,12 @@ part 'src/shared/has_directional_text.dart';
 part 'src/shared/has_safe_html.dart';
 
 part 'src/shared/has_load_handlers.dart';
+part 'src/shared/load_handler.dart';
+part 'src/shared/load_event.dart';
 
 part 'src/shared/has_error_handlers.dart';
+part 'src/shared/error_handler.dart';
+part 'src/shared/error_event.dart';
 
 part 'src/shared/auto_direction_handler_target.dart';
 
@@ -192,15 +200,8 @@ part 'src/shared/before_selection_handler.dart';
 part 'src/shared/before_selection_event.dart';
 
 part 'src/shared/has_selection_handlers.dart';
-
 part 'src/shared/selection_handler.dart';
 part 'src/shared/selection_event.dart';
-
-part 'src/shared/mouse_out_handler.dart';
-part 'src/shared/mouse_out_event.dart';
-
-part 'src/shared/mouse_over_handler.dart';
-part 'src/shared/mouse_over_event.dart';
 
 part 'src/shared/human_input_event.dart';
 part 'src/shared/mouse_event.dart';

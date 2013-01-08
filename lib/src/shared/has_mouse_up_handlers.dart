@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link MouseUpHandler} instances.
  */
 abstract class HasMouseUpHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link MouseUpEvent} handler.
+   *
+   * @param handler the mouse up handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addMouseUpHandler(MouseUpHandler handler);
 }

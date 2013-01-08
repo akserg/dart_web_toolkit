@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link LoadHandler} instances.
  */
 abstract class HasLoadHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link LoadEvent} handler.
+   *
+   * @param handler the load handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addLoadHandler(LoadHandler handler);
 }

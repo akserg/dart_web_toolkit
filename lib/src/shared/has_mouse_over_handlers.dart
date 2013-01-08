@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link MouseOverHandler} instances.
  */
 abstract class HasMouseOverHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link MouseOverEvent} handler.
+   *
+   * @param handler the mouse over handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addMouseOverHandler(MouseOverHandler handler);
 }

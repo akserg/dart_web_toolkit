@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link MouseMoveHandler} instances.
  */
 abstract class HasMouseMoveHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link MouseMoveEvent} handler.
+   *
+   * @param handler the mouse move handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler);
 }

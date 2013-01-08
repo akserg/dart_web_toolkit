@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link ErrorHandler} instances.
  */
 abstract class HasErrorHandlers extends HasHandlers {
-  
+  /**
+   * Adds an {@link ErrorEvent} handler.
+   *
+   * @param handler the error handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addErrorHandler(ErrorHandler handler);
 }

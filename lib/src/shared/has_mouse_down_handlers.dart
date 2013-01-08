@@ -8,5 +8,12 @@ part of dart_web_toolkit_shared;
  * {@link MouseDownHandler} instances.
  */
 abstract class HasMouseDownHandlers extends HasHandlers {
-  
+
+  /**
+   * Adds a {@link MouseDownEvent} handler.
+   *
+   * @param handler the mouse down handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addMouseDownHandler(MouseDownHandler handler);
 }

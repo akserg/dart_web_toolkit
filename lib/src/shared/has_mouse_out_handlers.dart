@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link MouseOutHandler} instances.
  */
 abstract class HasMouseOutHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link MouseOutEvent} handler.
+   *
+   * @param handler the mouse out handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addMouseOutHandler(MouseOutHandler handler);
 }

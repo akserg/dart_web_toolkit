@@ -8,5 +8,11 @@ part of dart_web_toolkit_shared;
  * {@link TouchMoveHandler} instances.
  */
 abstract class HasTouchMoveHandlers extends HasHandlers {
-  
+  /**
+   * Adds a {@link TouchMoveEvent} handler.
+   *
+   * @param handler the touch move handler
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  HandlerRegistration addTouchMoveHandler(TouchMoveHandler handler);
 }

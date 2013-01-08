@@ -76,9 +76,9 @@ class Frame extends Widget implements HasLoadHandlers {
    * @param handler the load handler
    * @return {@link HandlerRegistration} that can be used to remove this handler
    */
-//  HandlerRegistration addLoadHandler(LoadHandler handler) {
-//    return addDomHandler(handler, LoadEvent.TYPE);
-//  }
+  HandlerRegistration addLoadHandler(LoadHandler handler) {
+    return addDomHandler(handler, LoadEvent.TYPE);
+  }
 
   /**
    * Gets the URL of the frame's resource.

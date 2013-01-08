@@ -8,6 +8,8 @@ part of dart_web_toolkit_event;
  */
 class SimpleEventBus<H> extends EventBus<H> {
 
+  static _EmptySource _emptySource = new _EmptySource();
+
   /**
    * Map of event type to map of event source to list of their handlers.
    */
@@ -41,7 +43,7 @@ class SimpleEventBus<H> extends EventBus<H> {
    *         handler later
    */
   HandlerRegistration addHandler(EventType<H> type, H handler) {
-    return _doAdd(type, new _EmptySource(), handler);
+    return _doAdd(type, _emptySource, handler);
   }
 
   /**
@@ -248,10 +250,10 @@ class SimpleEventBus<H> extends EventBus<H> {
       return directHandlers;
     }
 
-    List<H> globalHandlers = getHandlerList(type, null);
+    List<H> globalHandlers = getHandlerList(type, _emptySource);
 
     List<H> rtn = new List<H>.from(directHandlers);
-    if (globalHandlers.length > 1) {
+    if (globalHandlers.length > 0) {
       rtn.addAll(globalHandlers);
     }
     return rtn;

@@ -1,6 +1,11 @@
 DartMob Changes
 ==============
 
+**January 8, 2013
+
+* Added Events support. DoubleClickHandler, FocusHandler, BlurHandler, KeyUpHandler, KeyDownHandler, KeyPressHandler, MouseDownHandler, MouseMoveHandler, MouseOutHandler, MouseOverHandler, MouseUpHandler, MouseWheelHandler, TouchCancelHandler, TouchEndHandler, TouchMoveHandler, TouchStartHandler, GestureChangeHandler, GestureEndHandler, GestureStartHandler, DragEndHandler, DragEnterHandler, DragHandler, DragLeaveHandler, DragOverHandler, DragStartHandler, DropHandler. Added couple of examples.
+* Fixed bug in SimpleEventBus.
+
 **January 7, 2013
 
 * Implemented SafeHtmlString and SafeHtmlUtils.

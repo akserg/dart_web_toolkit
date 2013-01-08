@@ -11,7 +11,127 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 import 'dart_web_toolkit/i18n.dart' as i18n;
 
+dart_html.Element _dragSourceEl;
+
 void main() {
+
+  //*********************************************************************************
+  // Port of DnD Basic example from [https://github.com/dart-lang/dart-html5-samples]
+  //*********************************************************************************
+
+  ui.FlowPanel columns = new ui.FlowPanel();
+  columns.getElement().id = "columns";
+
+  for (int i = 0; i < 3; i++) {
+    ui.SimplePanel column = createDraggablePanel(i);
+    columns.add(column);
+  }
+
+  ui.RootPanel.get("testId").add(columns);
+}
+
+/// Create DraggablePanel instance and add DnD handlers.
+ui.SimplePanel createDraggablePanel(int i) {
+  DraggablePanel column = new DraggablePanel();
+  column.addStyleName("column");
+  column.getElement().draggable = true;
+  column.addDragStartHandler(new shared.DragStartHandler(_onDragStart));
+  column.addDragEndHandler(new shared.DragEndHandler(_onDragEnd));
+  column.addDragEnterHandler(new shared.DragEnterHandler(_onDragEnter));
+  column.addDragOverHandler(new shared.DragOverHandler(_onDragOver));
+  column.addDragLeaveHandler(new shared.DragLeaveHandler(_onDragLeave));
+  column.addDropHandler(new shared.DropHandler(_onDrop));
+
+  ui.Html header = new ui.Html("<header>${i.toString()}</header>");
+  column.add(header);
+
+  return column;
+}
+
+/// SimplePanel with DnD support
+class DraggablePanel extends ui.SimplePanel implements shared.HasAllDragAndDropHandlers {
+
+  DraggablePanel() : super();
+
+  event.HandlerRegistration addDragStartHandler(shared.DragStartHandler handler) {
+    return addBitlessDomHandler(handler, shared.DragStartEvent.TYPE);
+  }
+
+  event.HandlerRegistration addDragEndHandler(shared.DragEndHandler handler) {
+    return addBitlessDomHandler(handler, shared.DragEndEvent.TYPE);
+  }
+
+  event.HandlerRegistration addDragEnterHandler(shared.DragEnterHandler handler) {
+    return addBitlessDomHandler(handler, shared.DragEnterEvent.TYPE);
+  }
+
+  event.HandlerRegistration addDragOverHandler(shared.DragOverHandler handler) {
+    return addBitlessDomHandler(handler, shared.DragOverEvent.TYPE);
+  }
+
+  event.HandlerRegistration addDragLeaveHandler(shared.DragLeaveHandler handler) {
+    return addBitlessDomHandler(handler, shared.DragLeaveEvent.TYPE);
+  }
+
+  event.HandlerRegistration addDropHandler(shared.DropHandler handler) {
+    return addBitlessDomHandler(handler, shared.DropEvent.TYPE);
+  }
+}
+
+
+////*********************************
+//// Drag and Drop callback functions
+////*********************************
+
+void _onDragStart(shared.DragStartEvent evt){
+  dart_html.Element dragTarget = evt.getNativeEvent().target;
+  dragTarget.classes.add('moving');
+  _dragSourceEl = dragTarget;
+  evt.getDataTransfer().effectAllowed = 'move';
+  evt.getDataTransfer().setData('text/html', dragTarget.innerHtml);
+}
+
+void _onDragEnd(shared.DragEndEvent evt){
+  dart_html.Element dragTarget = evt.getNativeEvent().target;
+  dragTarget.classes.remove('moving');
+  var cols = dart_html.document.queryAll('#columns .column');
+  for (dart_html.Element col in cols) {
+    col.classes.remove('over');
+  }
+}
+
+void _onDragEnter(shared.DragEnterEvent evt){
+  dart_html.Element dropTarget = evt.getNativeEvent().target;
+  dropTarget.classes.add('over');
+}
+
+void _onDragOver(shared.DragOverEvent evt){
+  // This is necessary to allow us to drop.
+  evt.getNativeEvent().preventDefault();
+  evt.getDataTransfer().dropEffect = 'move';
+}
+
+void _onDragLeave(shared.DragLeaveEvent evt){
+  dart_html.Element dropTarget = evt.getNativeEvent().target;
+  dropTarget.classes.remove('over');
+}
+
+void _onDrop(shared.DropEvent evt){
+  // Stop the browser from redirecting.
+  evt.getNativeEvent().stopPropagation();
+
+  // Don't do anything if dropping onto the same column we're dragging.
+  dart_html.Element dropTarget = evt.getNativeEvent().target;
+  if (_dragSourceEl != dropTarget) {
+    // Set the source column's HTML to the HTML of the column we dropped on.
+    _dragSourceEl.innerHtml = dropTarget.innerHtml;
+    dropTarget.innerHtml = evt.getDataTransfer().getData('text/html');
+  }
+}
+
+
+void main29() {
+
   ui.Button btn = new ui.Button("Test");
   // Click
   event.HandlerRegistration handlerRegistration;

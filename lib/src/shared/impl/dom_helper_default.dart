@@ -10,6 +10,10 @@ class DomHelperDefault implements DomHelper {
     //elem.__listener = listener;
   }
 
+  bool isOrHasChild(dart_html.Node parent, dart_html.Node child) {
+    return parent.contains(child);
+  }
+
   int getAbsoluteLeft(dart_html.Element elem) {
     var left = 0;
     dart_html.Element curr = elem;

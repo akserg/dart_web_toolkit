@@ -75,7 +75,7 @@ class FileUpload extends Widget implements HasName, HasChangeHandlers, HasEnable
   // Implementation of HasName
   //************************************
 
-  String get name => _getInputElement().getName();
+  String get name => _getInputElement().name;
 
   void set name(String value) {
     _getInputElement().name = value;
@@ -90,7 +90,7 @@ class FileUpload extends Widget implements HasName, HasChangeHandlers, HasEnable
    *
    * @return <code>true</code> if the widget is enabled
    */
-  bool get enabled => !getElement().disabled;
+  bool get enabled => !_getInputElement().disabled;
 
   /**
    * Sets whether this widget is enabled.
@@ -99,7 +99,7 @@ class FileUpload extends Widget implements HasName, HasChangeHandlers, HasEnable
    *          to disable it
    */
   void set enabled(bool value) {
-    getElement().disabled = !value;
+    _getInputElement().disabled = !value;
   }
 
   //****
@@ -111,7 +111,7 @@ class FileUpload extends Widget implements HasName, HasChangeHandlers, HasEnable
    * @return the widget's filename
    */
   String getFilename() {
-    return _getInputElement().getValue();
+    return _getInputElement().value;
   }
 
   void onBrowserEvent(dart_html.Event event) {

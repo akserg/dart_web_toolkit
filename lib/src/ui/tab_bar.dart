@@ -177,7 +177,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
         return (widget as Label).text;
       } else {
         // This will be a focusable panel holding a user-supplied widget.
-        return focusablePanel.getElement().getParentElement().innerHtml;
+        return focusablePanel.getElement().parent.innerHtml;
       }
     }
 
@@ -370,7 +370,7 @@ class TabBar extends Composite implements /*SourcesTabEvents,*/
       _ClickDelegatePanel delPanel = panel.getWidget(index + 1) as _ClickDelegatePanel;
       delPanel.setEnabled(enabled);
       manageElementStyleName(delPanel.getElement(), "dwt-TabBarItem-disabled", !enabled);
-      manageElementStyleName(delPanel.getElement().getParentElement(), "dwt-TabBarItem-wrapper-disabled", !enabled);
+      manageElementStyleName(delPanel.getElement().parent, "dwt-TabBarItem-wrapper-disabled", !enabled);
     }
 
     /**

@@ -18,7 +18,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   static String DEFAULT_HREF = "javascript:;";
 
   HorizontalAlignmentConstant _horzAlign;
-  
+
   /**
    * Creates an empty anchor.
    *
@@ -39,15 +39,15 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   dart_html.AnchorElement getAnchorElement() {
     return getElement() as dart_html.AnchorElement;
   }
-  
+
   //*****************************************
   // Implementation of HasHorizontalAlignment
   //*****************************************
-  
+
   HorizontalAlignmentConstant getHorizontalAlignment() {
     return _horzAlign;
   }
-  
+
   void setHorizontalAlignment(HorizontalAlignmentConstant align) {
     _horzAlign = align;
     getElement().style.textAlign = align.getTextAlignString();
@@ -135,16 +135,16 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
     getAnchorElement().text = value;
   }
 
-//  /**
-//   * Sets the anchor's text.
-//   */
-//  String get direction => getAnchorElement().dir;
-//
-//  /**
-//   * Get the anchor's text.
-//   */
-//  void set direction(String value) {
-//    assert(value != null);
-//    getAnchorElement().dir = value;
-//  }
+  /**
+   * Sets the anchor's text.
+   */
+  String get direction => getAnchorElement().dir;
+
+  /**
+   * Get the anchor's text.
+   */
+  void set direction(String value) {
+    assert(value != null);
+    getAnchorElement().dir = value;
+  }
 }

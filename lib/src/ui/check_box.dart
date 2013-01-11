@@ -40,7 +40,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
 
   dart_html.InputElement inputElem;
   dart_html.LabelElement labelElem;
-  
+
   bool _valueChangeHandlerInitialized;
 
   /**
@@ -139,7 +139,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   //****************************************
   // Impementation of HasValueChangeHandlers
   //****************************************
-  
+
   HandlerRegistration addValueChangeHandler(ValueChangeHandler<bool> handler) {
     // Is this the first value change handler? If so, time to add handlers
     if (!_valueChangeHandlerInitialized) {
@@ -148,7 +148,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     }
     return addHandler(handler, ValueChangeEvent.TYPE);
   }
-  
+
   //****************************
   // Impementation of HasEnabled
   //****************************
@@ -172,23 +172,23 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   //******************************
   // Implementation of HasWordWrap
   //******************************
-  
+
   /**
    * Gets whether word-wrapping is enabled.
-   * 
+   *
    * @return <code>true</code> if word-wrapping is enabled.
    */
   bool get wordWrap => false; //!WhiteSpace.NOWRAP.getCssName().equals(getElement().getStyle().getWhiteSpace());
 
   /**
    * Sets whether word-wrapping is enabled.
-   * 
+   *
    * @param wrap <code>true</code> to enable word-wrapping.
    */
   void set wordWrap(bool wrap) {
     //getElement().style.WhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
   }
-  
+
   //***************************
   // Implementation of HasFocus
   //***************************
@@ -371,7 +371,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     //setEventListener(asOld(inputElem), null);
 
     //getElement().replaceChild(newInputElem, inputElem);
-    inputElem.replaceElement(newInputElem);
+    inputElem.replaceWith(newInputElem);
 
     // Sink events on the new element
 //    Event.sinkEvents(elem, Event.getEventsSunk(inputElem));

@@ -87,7 +87,7 @@ class HeaderPanel extends Panel implements RequiresResize {
       orphan(w);
     } finally {
       // Physical detach.
-      w.getElement().removeFromParent();
+      w.getElement().remove();
 
       // Logical detach.
       if (w == content) {

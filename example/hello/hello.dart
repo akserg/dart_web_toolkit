@@ -9,11 +9,11 @@ import 'package:dart_web_toolkit/event.dart' as event;
 import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
-import 'dart_web_toolkit/i18n.dart' as i18n;
+import 'package:dart_web_toolkit/i18n.dart' as i18n;
 
 dart_html.Element _dragSourceEl;
 
-void main() {
+void main30() {
 
   //*********************************************************************************
   // Port of DnD Basic example from [https://github.com/dart-lang/dart-html5-samples]
@@ -55,6 +55,10 @@ class DraggablePanel extends ui.SimplePanel implements shared.HasAllDragAndDropH
 
   event.HandlerRegistration addDragStartHandler(shared.DragStartHandler handler) {
     return addBitlessDomHandler(handler, shared.DragStartEvent.TYPE);
+  }
+
+  event.HandlerRegistration addDragHandler(shared.DragHandler handler) {
+    return addBitlessDomHandler(handler, shared.DragEvent.TYPE);
   }
 
   event.HandlerRegistration addDragEndHandler(shared.DragEndHandler handler) {
@@ -268,10 +272,10 @@ void main26() {
 }
 
 void main25() {
-  
+
   ui.TabPanel panel = new ui.TabPanel();
   panel.setSize("500px", "250px");
-  
+
   // Add a home tab
   ui.Html homeText = new ui.Html("Click one of the tabs to see more content.");
   panel.addTabText(homeText, "Home");
@@ -286,31 +290,31 @@ void main25() {
   panel.addTabText(moreInfo, "More Info");
 
   panel.selectTab(0);
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
 void main24() {
-  
+
   ui.PopupPanel imagePopup = new ui.PopupPanel(true);
   //imagePopup.setAnimationEnabled(true);
   imagePopup.setWidget(new ui.Html("this is test"));
-  
+
   imagePopup.center();
 }
 
 void main22() {
-  
+
   String lorem = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi sit amet massa ornare mauris lobortis laoreet. Pellentesque vel est at massa condimentum porta. Aliquam tincidunt scelerisque orci. Donec sit amet elit nec leo egestas vestibulum. Mauris et nibh quis ipsum volutpat congue. Ut tellus nibh, convallis sed, consectetuer sit amet, facilisis eget, lectus. Morbi hendrerit, dolor eget tincidunt tristique, velit enim laoreet erat, nec condimentum eros mi quis tellus. Fusce pharetra nibh vestibulum lacus. Integer vulputate eros at nisi. Phasellus elit quam, dignissim quis, volutpat vitae, egestas nec, nisi. Nullam sodales sagittis quam. Aliquam iaculis neque ut magna. Donec convallis interdum sem. Sed suscipit.";
-  
+
   ui.ScrollPanel panel = new ui.ScrollPanel(new ui.Html(lorem));
   panel.setSize("200px", "120px");
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
 void main21() {
-  
+
   // Create a grid
   ui.Grid grid = new ui.Grid(4, 4);
   grid.addStyleName("cw-FlexTable");
@@ -323,7 +327,7 @@ void main21() {
       grid.setWidget(row, col, new ui.Html("Cell $row.$col"));
     }
   }
-  
+
   ui.RootPanel.get("testId").add(grid);
 }
 
@@ -340,25 +344,25 @@ void main20() {
   cellFormatter.setHorizontalAlignment(0, 1, shared.HasHorizontalAlignment.ALIGN_LEFT);
   flexTable.setHtml(0, 0, "This is a FlexTable that supports <b>colspans</b> and <b>rowspans</b>. You can use it to format your page or as a special purpose table.");
   cellFormatter.setColSpan(0, 0, 2);
-  
+
   // Add a button that will add more rows to the table
   ui.Button addRowButton = new ui.Button("Add");
   addRowButton.addStyleName("sc-FixedWidthButton");
-  
+
   ui.Button removeRowButton = new ui.Button("Remove");
   removeRowButton.addStyleName("sc-FixedWidthButton");
-  
+
   ui.VerticalPanel buttonPanel = new ui.VerticalPanel();
   buttonPanel.clearAndSetStyleName("cw-FlexTable-buttonPanel");
   buttonPanel.add(addRowButton);
   buttonPanel.add(removeRowButton);
   flexTable.setWidget(0, 1, buttonPanel);
   cellFormatter.setVerticalAlignment(0, 1, shared.HasVerticalAlignment.ALIGN_TOP);
-  
+
   // Add two rows to start
   addRow(flexTable);
   addRow(flexTable);
-  
+
   ui.RootPanel.get("testId").add(flexTable);
 }
 
@@ -387,11 +391,11 @@ void main19() {
 
   ui.DeckPanel dPanel = new ui.DeckPanel();
   dPanel.setSize("300px", "120px");
-  
+
   dPanel.add(new ui.Html("Panel 1"));
   dPanel.add(new ui.Html("Panel 2"));
   dPanel.showWidgetAt(1);
-  
+
   ui.RootPanel.get("testId").add(dPanel);
 }
 
@@ -402,7 +406,7 @@ void main18() {
   p.add(new ui.Html("this"), "[this]");
   p.add(new ui.Html("that"), "[that]");
   p.add(new ui.Html("the other"), "[the other]");
-  
+
   // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
   // resize events on the window to ensure that its children are informed of
   // possible size changes.
@@ -433,7 +437,7 @@ void main16() {
   //panel.addStyleName("demo-panel");
   panel.addById(new ui.Button("Do Nothing"), "one");
   panel.addById(new ui.TextBox(), "two");
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
@@ -441,13 +445,13 @@ void main15() {
 
   ui.FlowPanel flowpanel = new ui.FlowPanel();
   flowpanel.setSize("380px", "380px");
-  
+
   ui.Button label = new ui.Button("My Button");
   shared.Dom.setStyleAttribute(label.getElement(), "border", "1px solid #00f");
   shared.Dom.setStyleAttribute(label.getElement(), "backgroundColor", "blue");
   label.setSize("100px", "100px");
   flowpanel.add(label);
-  
+
   ui.RootPanel.get("testId").add(flowpanel);
 }
 
@@ -457,28 +461,28 @@ void main14() {
 }
 
 void main13() {
-  
+
   ui.DateLabel dLabel = new ui.DateLabel();
   dLabel.setValue(new Date.now());
-  
+
   ui.RootPanel.get("testId").add(dLabel);
-  
+
   ui.RootPanel.get("testId").add(new ui.Html(""));
-  
+
   ui.NumberLabel nLabel = new ui.NumberLabel();
   nLabel.setValue(123.12);
-  
+
   ui.RootPanel.get("testId").add(nLabel);
 }
 
 void main12() {
   ui.DeckLayoutPanel dPanel = new ui.DeckLayoutPanel();
-  
+
   dPanel.setSize("500px", "400px");
   dPanel.add(new ui.Button("Button 1"));
   dPanel.add(new ui.Button("Button 2"));
   dPanel.showWidgetAt(1);
-  
+
   ui.RootPanel.get("testId").add(dPanel);
 }
 
@@ -488,7 +492,7 @@ void main11() {
   dBox.setVisibleLength(5);
   dBox.setValue(123.4543453);
   ui.RootPanel.get("testId").add(dBox);
-  
+
   ui.IntBox iBox = new ui.IntBox();
   iBox.setMaxLength(10);
   iBox.setVisibleLength(5);
@@ -499,14 +503,14 @@ void main11() {
   sCheckBox.setValue(true);
   sCheckBox.enabled = false;
   ui.RootPanel.get("testId").add(sCheckBox);
-  
+
   ui.SimpleRadioButton rCheckBox = new ui.SimpleRadioButton();
   rCheckBox.setValue(true);
   rCheckBox.enabled = false;
   ui.RootPanel.get("testId").add(rCheckBox);
 }
 
-void main10() { 
+void main10() {
   // Create Html
   ui.Html html = new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>");
   ui.RootPanel.get("testId").add(html);
@@ -524,27 +528,27 @@ void main8() {
   stackPanel.setPixelSize(200, 400);
 
   // Add the Mail folders.
-  //ui.Widget mailHeader = createHeaderWidget("Mail");
+  ui.Widget mailHeader = createHeaderWidget("Mail");
   //stackPanel.addWidget(createMailItem(), mailHeader, 4);
   stackPanel.addWidget(createMailItem(), "Mail", false, 4.0);
 
-//  // Add a list of filters.
-//  //ui.Widget filtersHeader = createHeaderWidget("<b>Filters</b>");
+  // Add a list of filters.
+  //ui.Widget filtersHeader = createHeaderWidget("<b>Filters</b>");
 //  //stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), filtersHeader, 4);
-//  stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), "<b>Filters</b>", true, 4.0);
-//
-//  // Add a list of contacts.
-//  //ui.Widget contactsHeader = createHeaderWidget("Contacts");
+  stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), "<b>Filters</b>", true, 4.0);
+
+  // Add a list of contacts.
+  ui.Widget contactsHeader = createHeaderWidget("Contacts");
 //  //stackPanel.add(createContactsItem(), contactsHeader, 4);
-//  stackPanel.addWidget(createContactsItem(), "Contacts", false, 4.0);
-  
+  stackPanel.addWidget(createContactsItem(), "Contacts", false, 4.0);
+
   ui.RootPanel.get("testId").add(stackPanel);
 }
 
 /**
  * Create a widget to display in the header that includes an image and some
  * text.
- * 
+ *
  * @param text the header text
  * @param image the {@link ImageResource} to add next to the header
  * @return the header widget
@@ -580,7 +584,7 @@ void main7() {
   // Add a list of contacts
   String contactsHeader = "Contacts";
   stackPanel.add(createContactsItem(), contactsHeader, false);
-  
+
   stackPanel.showStack(1);
 
   ui.RootPanel.get("testId").add(stackPanel);
@@ -617,21 +621,21 @@ void main6() {
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel = new ui.VerticalPanel();
   vpanel.spacing = 5;
-  
+
   // Add a normal and disabled text box
   ui.TextBox normalText = new ui.TextBox();
   // Set the normal text box to automatically adjust its direction according
   // to the input text. Use the Any-RTL heuristic, which sets an RTL direction
   // iff the text contains at least one RTL character.
   //normalText.setDirectionEstimator(AnyRtlDirectionEstimator.get());
-  
+
   ui.TextBox disabledText = new ui.TextBox();
   disabledText.text = "read only"; //(constants.cwBasicTextReadOnly());
   disabledText.enabled = false;
   //vpanel.add(new HTML(constants.cwBasicTextNormalLabel()));
   vpanel.add(normalText);
   vpanel.add(disabledText);
-  
+
   // Add a normal and disabled password text box
   ui.PasswordTextBox normalPassword = new ui.PasswordTextBox();
   ui.PasswordTextBox disabledPassword = new ui.PasswordTextBox();
@@ -639,19 +643,19 @@ void main6() {
   disabledPassword.enabled = false;
   vpanel.add(normalPassword);
   vpanel.add(disabledPassword);
-  
+
   // Add a text area
   ui.TextArea textArea = new ui.TextArea();
   textArea.setVisibleLines(5);
   vpanel.add(textArea);
-  
+
   ui.RootPanel.get("testId").add(vpanel);
 }
 
 void main5() {
 
   List<String> listTypes = ["One", "Two", "Three", "4444", "555", "666"];
-  
+
   // Create a panel to align the Widgets
   ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
   hPanel.spacing = 20;
@@ -694,7 +698,7 @@ void main5() {
   // Show default category
   //showCategory(multiBox, 0);
   //multiBox.ensureDebugId("cwListBox-multiBox");
-  
+
   ui.RootPanel.get("testId").add(hPanel);
 }
 
@@ -715,7 +719,7 @@ void main4() {
   //************************
   // Add a normal PushButton
   //************************
-  
+
   //ui.PushButton normalPushButton = new ui.PushButton(new Image(Showcase.images.gwtLogo()));
   ui.PushButton normalPushButton = new ui.PushButton.fromText("Register");
   //normalPushButton.ensureDebugId("cwCustomButton-push-normal");
@@ -727,11 +731,11 @@ void main4() {
   //disabledPushButton.ensureDebugId("cwCustomButton-push-disabled");
   disabledPushButton.enabled = false;
   pushPanel.add(disabledPushButton);
-  
+
   //**************************
   // Add a normal ToggleButton
   //**************************
-  
+
   ui.ToggleButton normalToggleButton = new ui.ToggleButton.fromText("Toggle");
   //normalToggleButton.ensureDebugId("cwCustomButton-toggle-normal");
   togglePanel.add(normalToggleButton);
@@ -743,7 +747,7 @@ void main4() {
   disabledToggleButton.setDown(true);
   togglePanel.add(disabledToggleButton);
 
-  
+
   ui.RootPanel.get("testId").add(vpanel);
 }
 

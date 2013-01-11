@@ -12,6 +12,7 @@ abstract class DomHelper {
     return new DomHelperDefault();
   }
 
+  bool isOrHasChild(dart_html.Node parent, dart_html.Node child);
 
   void setEventListener(dart_html.Element elem, EventListener listener);
 

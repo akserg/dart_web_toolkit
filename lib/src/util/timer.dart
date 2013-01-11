@@ -29,22 +29,22 @@ class Timer {
   static bool _initialised = false;
 
   static void clearInterval(int id) {
-    (dart_html.document.window as dart_html.LocalWindow).clearInterval(id);
+    dart_html.window.clearInterval(id);
   }
 
   static void clearTimeout(int id) {
-    (dart_html.document.window as dart_html.LocalWindow).clearTimeout(id);
+    dart_html.window.clearTimeout(id);
   }
 
   static int createInterval(Timer timer, int period) {
-    return (dart_html.document.window as dart_html.LocalWindow).setInterval(
+    return dart_html.window.setInterval(
       (){
         timer.fire();
       }, period);
   }
 
   static int createTimeout(Timer timer, int delay) {
-    return (dart_html.document.window as dart_html.LocalWindow).setTimeout(
+    return dart_html.window.setTimeout(
       (){
         timer.fire();
       }, delay);

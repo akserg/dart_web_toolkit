@@ -281,7 +281,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @return the alternate text for the image
    */
   String getAltText() {
-    return state.getImageElement(this).getAlt();
+    return state.getImageElement(this).alt;
   }
 
   /**
@@ -291,7 +291,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @param altText the alternate text to set to
    */
   void setAltText(String altText) {
-    state.getImageElement(this).setAlt(altText);
+    state.getImageElement(this).alt = altText;
   }
 
   /**
@@ -481,7 +481,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    */
   void clearUnhandledEvent() {
     if (state != null) {
-      state.getImageElement(this).setPropertyString(Image.UNHANDLED_EVENT_ATTR, "");
+      state.getImageElement(this).dataAttributes.remove(Image.UNHANDLED_EVENT_ATTR);
     }
   }
 }
@@ -518,10 +518,10 @@ abstract class _State {
   void onLoad(Image image) {
     // If an onload event fired while the image wasn't attached, we need to
     // synthesize one now.
-//    String unhandledEvent = getImageElement(image).getPropertyString(Image.UNHANDLED_EVENT_ATTR);
-//    if (BrowserEvents.LOAD.equals(unhandledEvent)) {
-//      fireSyntheticLoadEvent(image);
-//    }
+    String unhandledEvent = getImageElement(image).dataAttributes[Image.UNHANDLED_EVENT_ATTR];
+    if (BrowserEvents.LOAD == unhandledEvent) {
+      fireSyntheticLoadEvent(image);
+    }
   }
 
   /**
@@ -585,7 +585,7 @@ class StateScheduledCommand extends ScheduledCommand {
      * the widget is attached.
      */
     if (!_image.isAttached()) {
-      _state.getImageElement(_image).setPropertyString(Image.UNHANDLED_EVENT_ATTR, BrowserEvents.LOAD);
+      _state.getImageElement(_image).dataAttributes[Image.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
       return;
     }
 
@@ -739,7 +739,7 @@ class _UnclippedState extends _State {
   }
 
   SafeUri getUrl(Image image) {
-    return UriUtils.unsafeCastFromUntrustedString(getImageElement(image).getSrc());
+    return UriUtils.unsafeCastFromUntrustedString(getImageElement(image).src);
   }
 
   int getWidth(Image image) {

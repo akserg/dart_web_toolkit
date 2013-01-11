@@ -14,10 +14,10 @@ part of dart_web_toolkit_role;
  * @param <T> The attribute value type
  */
 abstract class Attribute<T> {
-  
+
   final String name;
   String defaultValue;
-  
+
   /**
    * Constructs a state/property ARIA attribute with name {@code name} and {@code defaultValue}.
    *
@@ -28,7 +28,7 @@ abstract class Attribute<T> {
     assert (name != null); // : "Name cannot be null";
     this.defaultValue = defaultValue;
   }
-  
+
   /**
    * Gets the HTML attribute value for the attribute with name {@code name} for element
    * {@code element}
@@ -86,14 +86,15 @@ abstract class Attribute<T> {
     assert (defaultValue != null && !defaultValue.isEmpty); // : "Default value cannot be null.";
     element.attributes[name] = defaultValue;
   }
-  
+
   String getSingleValue(T value);
 
   String _getAriaValue(T value) {
     if (value is Collection) {
       StringBuffer buf = new StringBuffer();
       for (T item in (value as Collection)) {
-        buf.add(getSingleValue(item)).add(" ");
+        buf.add(getSingleValue(item));
+        buf.add(" ");
       }
       return buf.toString().trim();
     } else {

@@ -81,7 +81,7 @@ class SimplePanel extends Panel implements HasOneWidget {
       orphan(w);
     } finally {
       // Physical detach.
-      getContainerElement().removeChild(w.getElement());
+      w.getElement().remove();
 
       // Logical detach.
       widget = null;

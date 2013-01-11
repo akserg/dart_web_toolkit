@@ -172,12 +172,12 @@ class LayoutImpl {
   }
 
   void removeChild(dart_html.Element container, dart_html.Element child) {
-    container.removeFromParent();
+    container.remove();
 
     // We want this code to be resilient to the child having already been
     // removed from its container (perhaps by widget code).
-    if (child.getParentElement() == container) {
-      child.removeFromParent();
+    if (child.parent == container) {
+      child.remove();
     }
 
     // Cleanup child styles set by fillParent().

@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A simple panel that wraps its contents in a scrollable area.
  */
 class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize, HasScrolling {
-  
+
   dart_html.Element containerElem;
   dart_html.Element scrollableElem;
 
@@ -33,7 +33,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   /**
    * Creates an empty scroll panel using the specified root, scrollable, and
    * container elements.
-   * 
+   *
    * @param root the root element of the Widget
    * @param scrollable the scrollable element, which can be the same as the root
    *          element
@@ -57,7 +57,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   /**
    * Ensures that the specified item is visible, by adjusting the panel's scroll
    * position.
-   * 
+   *
    * @param item the item whose visibility is to be ensured
    */
   void ensureVisible(UiObject item) {
@@ -68,11 +68,11 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
 
   /**
    * Gets the horizontal scroll position.
-   * 
+   *
    * @return the horizontal scroll position, in pixels
    */
   int getHorizontalScrollPosition() {
-    return getScrollableElement().getScrollLeft();
+    return getScrollableElement().scrollLeft;
   }
 
   int getMaximumHorizontalScrollPosition() {
@@ -80,7 +80,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   }
 
   int getMaximumVerticalScrollPosition() {
-    return getScrollableElement().getScrollHeight() - getScrollableElement().getClientHeight();
+    return getScrollableElement().scrollHeight - getScrollableElement().clientHeight;
   }
 
   int getMinimumHorizontalScrollPosition() {
@@ -92,13 +92,13 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   }
 
   int getVerticalScrollPosition() {
-    return getScrollableElement().getScrollTop();
+    return getScrollableElement().scrollTop;
   }
 
   /**
    * Check whether or not touch based scrolling is disabled. This method always
    * returns false on devices that do not support touch scrolling.
-   * 
+   *
    * @return true if disabled, false if enabled
    */
   bool isTouchScrollingDisabled() {
@@ -143,7 +143,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   /**
    * Sets whether this panel always shows its scroll bars, or only when
    * necessary.
-   * 
+   *
    * @param alwaysShow <code>true</code> to show scroll bars at all times
    */
   void setAlwaysShowScrollBars(bool alwaysShow) {
@@ -153,34 +153,34 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   /**
    * Sets the object's height. This height does not include decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param height the object's new height, in absolute CSS units (e.g. "10px",
    *          "1em" but not "50%")
    */
-  
+
   void setHeight(String height) {
     super.setHeight(height);
   }
 
   /**
    * Sets the horizontal scroll position.
-   * 
+   *
    * @param position the new horizontal scroll position, in pixels
    */
   void setHorizontalScrollPosition(int position) {
-    getScrollableElement().setScrollLeft(position);
+    getScrollableElement().scrollLeft = position;
   }
 
   /**
    * Sets the object's size. This size does not include decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param width the object's new width, in absolute CSS units (e.g. "10px",
    *          "1em", but not "50%")
    * @param height the object's new height, in absolute CSS units (e.g. "10px",
    *          "1em", but not "50%")
    */
-  
+
   void setSize(String width, String height) {
     super.setSize(width, height);
   }
@@ -188,7 +188,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   /**
    * Set whether or not touch scrolling is disabled. By default, touch scrolling
    * is enabled on devices that support touch events.
-   * 
+   *
    * @param isDisabled true to disable, false to enable
    * @return true if touch scrolling is enabled and supported, false if disabled
    *         or not supported
@@ -210,22 +210,22 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   }
 
   void setVerticalScrollPosition(int position) {
-    getScrollableElement().setScrollTop(position);
+    getScrollableElement().scrollTop = position;
   }
 
   /**
    * Sets the object's width. This width does not include decorations such as
    * border, margin, and padding.
-   * 
+   *
    * @param width the object's new width, in absolute CSS units (e.g. "10px",
    *          "1em", but not "50%")
    */
-  
+
   void setWidth(String width) {
     super.setWidth(width);
   }
 
-  
+
   dart_html.Element getContainerElement() {
     return containerElem;
   }
@@ -233,14 +233,14 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   /**
    * Get the scrollable element. That is the element with its overflow set to
    * 'auto' or 'scroll'.
-   * 
+   *
    * @return the scrollable element
    */
   dart_html.Element getScrollableElement() {
     return scrollableElem;
   }
 
-  
+
   void onAttach() {
     super.onAttach();
 
@@ -253,7 +253,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
     //Event.setEventListener(getScrollableElement(), this);
   }
 
-  
+
   void onDetach() {
     /*
      * Detach the event listener in onDetach instead of onUnload so users cannot
@@ -266,7 +266,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
 
   void ensureVisibleImpl(dart_html.Element scroll, dart_html.Element e) {
     if (e == null)
-      return; 
+      return;
 
     dart_html.Element item = e;
     int realOffset = 0;

@@ -39,12 +39,12 @@ class AnimationSchedulerImplWebkit extends AnimationSchedulerImpl {
   }
 
   bool isNativelySupported() {
-    return ((dart_html.document.window as dart_html.LocalWindow).webkitRequestAnimationFrame != null &&
-        (dart_html.document.window as dart_html.LocalWindow).webkitCancelAnimationFrame != null);
+    return (dart_html.window.webkitRequestAnimationFrame != null &&
+        dart_html.window.webkitCancelAnimationFrame != null);
   }
 
   void cancelAnimationFrameImpl(int requestId) {
-    (dart_html.document.window as dart_html.LocalWindow).webkitCancelAnimationFrame(requestId);
+    dart_html.window.webkitCancelAnimationFrame(requestId);
   }
 
   int requestAnimationFrameImpl(AnimationCallback callback, dart_html.Element element) {
@@ -57,7 +57,7 @@ class AnimationSchedulerImplWebkit extends AnimationSchedulerImpl {
       //var now = dart_html.document.window.
       callback.execute(new Date.now().millisecond);
     };
-    return (dart_html.document.window as dart_html.LocalWindow).webkitRequestAnimationFrame(wrapper);
+    return dart_html.window.webkitRequestAnimationFrame(wrapper);
   }
 }
 

@@ -17,6 +17,17 @@ class Dom {
   static dart_html.Element _sCaptureElem;
 
   /**
+   * Determine whether one element is equal to, or the child of, another.
+   *
+   * @param parent the potential parent element
+   * @param child the potential child element
+   * @return <code>true</code> if the relationship holds
+   */
+  static bool isOrHasChild(dart_html.Element parent, dart_html.Element child) {
+    return domHelper.isOrHasChild(parent, child);
+  }
+
+  /**
    * Gets any named property from an element, as a string.
    *
    * @param elem the element whose property is to be retrieved

@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A panel that displays all of its child widgets in a 'deck', where only one
  * can be visible at a time. It is used by
  * {@link com.google.gwt.user.client.ui.TabPanel}.
- * 
+ *
  * <p>
  * Once a widget has been added to a DeckPanel, its visibility, width, and
  * height attributes will be manipulated. When the widget is removed from the
@@ -28,7 +28,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
 
   /**
    * The the container {@link dart_html.Element} around a {@link Widget}.
-   * 
+   *
    * @param w the {@link Widget}
    * @return the container {@link dart_html.Element}
    */
@@ -67,7 +67,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
 
   /**
    * Gets the index of the currently-visible widget.
-   * 
+   *
    * @return the visible widget's index
    */
   int getVisibleWidget() {
@@ -113,7 +113,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
   /**
    * Shows the widget at the specified index. This causes the currently- visible
    * widget to be hidden.
-   * 
+   *
    * @param index the index of the widget to be shown
    */
   void showWidgetAt(int index) {
@@ -176,9 +176,9 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
  * An {@link Animation} used to slide in the new content.
  */
 class _SlideAnimation extends Animation {
-  
+
   DeckPanel _deckPanel;
-  
+
   /**
    * The {@link dart_html.Element} holding the {@link Widget} with a lower index.
    */
@@ -212,10 +212,10 @@ class _SlideAnimation extends Animation {
    * @param scheduler an {@link _SlideAnimation} instance
    */
   _SlideAnimation(this._deckPanel, [AnimationScheduler scheduler = null]) : super(scheduler);
-    
+
   /**
    * Switch to a new {@link Widget}.
-   * 
+   *
    * @param oldWidget the {@link Widget} to hide
    * @param newWidget the {@link Widget} to show
    * @param animate true to animate, false to switch instantly
@@ -260,7 +260,7 @@ class _SlideAnimation extends Animation {
         fixedHeight = container2.offsetHeight;
         container2.style.height = (dart_math.max(1, fixedHeight - 1)).toString().concat(Unit.PX.value);
       } else {
-        fixedHeight = container1.getOffsetHeight();
+        fixedHeight = container1.offsetHeight;
         container1.style.height = (dart_math.max(1, fixedHeight - 1)).toString().concat(Unit.PX.value);
       }
       if (deckElem.offsetHeight != deckHeight) {

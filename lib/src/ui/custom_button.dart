@@ -111,7 +111,7 @@ part of dart_web_toolkit_ui;
  * </pre>
  */
 class CustomButton extends ButtonBase {
- 
+
   static String _STYLENAME_DEFAULT = "dwt-CustomButton";
 
   /**
@@ -214,7 +214,7 @@ class CustomButton extends ButtonBase {
    * or container elements.
    */
   bool _allowClick = false;
-  
+
   /**
    * Constructor for <code>CustomButton</code>.
    *
@@ -233,7 +233,7 @@ class CustomButton extends ButtonBase {
       addClickHandler(handler);
     }
   }
-  
+
   /**
    * Constructor for <code>CustomButton</code>.
    *
@@ -252,11 +252,11 @@ class CustomButton extends ButtonBase {
       addClickHandler(handler);
     }
   }
-  
+
   CustomButton.internal() : super(FocusPanel.impl.createFocusable()) {
     _init();
   }
-  
+
   /**
    * Constructor for <code>CustomButton</code>.
    */
@@ -270,11 +270,11 @@ class CustomButton extends ButtonBase {
     // Add a11y role "button"
     Roles.BUTTON.set(getElement());
   }
-  
+
   //********
   // Up Face
   //********
-  
+
   /**
    * Gets the up face of the button.
    *
@@ -283,7 +283,7 @@ class CustomButton extends ButtonBase {
   Face getUpFace() {
     return _up;
   }
-  
+
   /**
    * Gets the _upDisabled face of the button.
    *
@@ -295,7 +295,7 @@ class CustomButton extends ButtonBase {
     }
     return _upDisabled;
   }
-  
+
   /**
    * Gets the _upHovering face of the button.
    *
@@ -307,11 +307,11 @@ class CustomButton extends ButtonBase {
     }
     return _upHovering;
   }
-  
+
   //**********
   // Down Face
   //**********
-  
+
   /**
    * Gets the down face of the button.
    *
@@ -323,7 +323,7 @@ class CustomButton extends ButtonBase {
     }
     return _down;
   }
-  
+
   /**
    * Gets the _downDisabled face of the button.
    *
@@ -335,7 +335,7 @@ class CustomButton extends ButtonBase {
     }
     return _downDisabled;
   }
-  
+
   /**
    * Gets the _downHovering face of the button.
    *
@@ -347,18 +347,18 @@ class CustomButton extends ButtonBase {
     }
     return _downHovering;
   }
-  
+
   //*************
   // Current face
   //*************
-  
+
   /**
    * Gets the current face's html.
    *
    * @return current face's html
    */
   String get html => getCurrentFace().html;
-  
+
   /**
    * Sets the current face's html.
    *
@@ -373,14 +373,14 @@ class CustomButton extends ButtonBase {
   void set tabIndex(int index) {
     FocusPanel.impl.setTabIndex(getElement(), index); //FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
   }
-  
+
   /**
    * Gets the current face's text.
    *
    * @return current face's text
    */
   String get text => getCurrentFace().text;
-  
+
   /**
    * Sets the current face's text.
    *
@@ -389,7 +389,7 @@ class CustomButton extends ButtonBase {
   void set text(String value) {
     getCurrentFace().text = value;
   }
-  
+
   /**
    * Is this button down?
    *
@@ -398,11 +398,11 @@ class CustomButton extends ButtonBase {
   bool isDown() {
     return (_DOWN_ATTRIBUTE & getCurrentFace().getFaceID()) > 0;
   }
-  
+
   //*******
   // Events
   //*******
-  
+
   void onBrowserEvent(dart_html.Event event) {
     // Should not act on button if disabled.
     if (!enabled) {
@@ -508,7 +508,7 @@ class CustomButton extends ButtonBase {
 //  void setAccessKey(Char key) {
 //    FocusHelper.getFocusHelper().setAccessKey(getElement(), key);
 //  }
-  
+
   /**
    * Sets whether this button is enabled.
    *
@@ -527,7 +527,7 @@ class CustomButton extends ButtonBase {
       }
     }
   }
-  
+
   void setFocus(bool focused) {
     if (focused) {
       FocusPanel.impl.focus(getElement()); //FocusHelper.getFocusHelper().focus(getElement());
@@ -535,7 +535,7 @@ class CustomButton extends ButtonBase {
       FocusPanel.impl.blur(getElement()); //FocusHelper.getFocusHelper().blur(getElement());
     }
   }
-  
+
   /**
    * Overridden on attach to ensure that a button face has been chosen before
    * the button is displayed.
@@ -544,13 +544,13 @@ class CustomButton extends ButtonBase {
     finishSetup();
     super.onAttach();
   }
-  
+
   void onDetach() {
     super.onDetach();
     cleanupCaptureState();
     setHovering(false);
   }
-  
+
   /**
    * Called when the user finishes clicking on this button. The default behavior
    * is to fire the click event to listeners. Subclasses that override
@@ -571,11 +571,11 @@ class CustomButton extends ButtonBase {
     // After DOM CustomEvent instance has been created we can initialise it here
     evt.$dom_initCustomEvent('CustomEvent', false, false, false);
     // Dispatch event
-    getElement().dispatchEvent(evt);
+    getElement().$dom_dispatchEvent(evt);
 
     _allowClick = false;
   }
-  
+
   /**
    * Called when the user aborts a click in progress; for example, by dragging
    * the mouse outside of the button before releasing the mouse button.
@@ -583,7 +583,7 @@ class CustomButton extends ButtonBase {
    * method to restore the normal widget display.
    */
   void onClickCancel() { }
-  
+
   /**
    * Called when the user begins to click on this button. Subclasses may
    * override this method to display the start of the click visually; such
@@ -594,7 +594,7 @@ class CustomButton extends ButtonBase {
    * the click is completed.
    */
   void onClickStart() { }
-  
+
   /**
    * Sets whether this button is down.
    *
@@ -606,7 +606,7 @@ class CustomButton extends ButtonBase {
       toggleDown();
     }
   }
-  
+
   /**
    * Common setup between constructors.
    */
@@ -615,12 +615,12 @@ class CustomButton extends ButtonBase {
       setCurrentFace(getUpFace());
     }
   }
-  
+
   void fireClickListeners(dart_html.Event nativeEvent) {
     // TODO(ecc) Once event triggering is committed, should fire a native click event instead.
     fireEvent(new ClickEvent());
   }
-  
+
   /**
    * Gets the current face of the button.
    *
@@ -635,7 +635,7 @@ class CustomButton extends ButtonBase {
     finishSetup();
     return _curFace;
   }
-  
+
   void setCurrentFace(Face newFace) {
     /*
      * Implementation note: default access for testing.
@@ -655,7 +655,7 @@ class CustomButton extends ButtonBase {
       }
     }
   }
-  
+
   /**
    * Sets the current face based on the faceID.
    *
@@ -665,7 +665,7 @@ class CustomButton extends ButtonBase {
     Face newFace = _getFaceFromID(faceID);
     setCurrentFace(newFace);
   }
-  
+
   /**
    * Is the mouse hovering over this button?
    *
@@ -674,7 +674,7 @@ class CustomButton extends ButtonBase {
   bool isHovering() {
     return (_HOVERING_ATTRIBUTE & getCurrentFace().getFaceID()) > 0;
   }
-  
+
   /**
    * Sets whether this button is hovering.
    *
@@ -685,7 +685,7 @@ class CustomButton extends ButtonBase {
       toggleHover();
     }
   }
-  
+
   /**
    * Toggle the up/down attribute.
    */
@@ -693,7 +693,7 @@ class CustomButton extends ButtonBase {
     int newFaceID = getCurrentFace().getFaceID() ^ _DOWN_ATTRIBUTE;
     _setCurrentFace(newFaceID);
   }
-  
+
   /**
    * Resets internal state if this button can no longer service events. This can
    * occur when the widget becomes detached or disabled.
@@ -706,11 +706,11 @@ class CustomButton extends ButtonBase {
       onClickCancel();
     }
   }
-  
+
   Face _createFace(Face delegateTo, String name, int faceID) {
     return new SimpleFace(this, delegateTo, name, faceID);
   }
-  
+
   Face _getFaceFromID(int id) {
     switch (id) {
       case _DOWN:
@@ -729,12 +729,12 @@ class CustomButton extends ButtonBase {
         throw new Exception("$id is not a known face id.");
     }
   }
-  
+
   void _setAriaPressed(Face newFace) {
     bool pressed = (newFace.getFaceID() & _DOWN_ATTRIBUTE) == 1;
     Roles.BUTTON.setAriaPressedState(getElement(), PressedValue.of(pressed));
   }
-  
+
   void _setCurrentFaceElement(dart_html.Element newFaceElement) {
     if (_curFaceElement != newFaceElement) {
       if (_curFaceElement != null) {
@@ -746,7 +746,7 @@ class CustomButton extends ButtonBase {
       getElement().append(_curFaceElement);
     }
   }
-  
+
   /**
    * Sets the _downDisabled face of the button.
    *
@@ -755,7 +755,7 @@ class CustomButton extends ButtonBase {
   void _setDownDisabledFace(Face _downDisabled) {
     this._downDisabled = _downDisabled;
   }
-  
+
   /**
    * Sets the down face of the button.
    *
@@ -764,7 +764,7 @@ class CustomButton extends ButtonBase {
   void _setDownFace(Face down) {
     this._down = down;
   }
-  
+
   /**
    * Sets the _downHovering face of the button.
    *
@@ -833,13 +833,13 @@ class CustomButton extends ButtonBase {
  * modifier and, optionally, its own contents html, text, or image.
  */
 abstract class Face  implements HasHtml {
-  
+
   static String STYLENAME_HTML_FACE = "html-face";
   Face delegateTo;
   dart_html.Element face;
-  
+
   CustomButton _customButton;
-  
+
   /**
    * Constructor for <code>Face</code>. Creates a new face that delegates to
    * the supplied face.
@@ -847,11 +847,11 @@ abstract class Face  implements HasHtml {
    * @param delegateTo default content provider
    */
   Face(this._customButton, this.delegateTo);
-  
+
   //**************************
   // Implementation of HasHtml
   //**************************
-  
+
   /**
    * Gets the face's contents as html.
   *
@@ -869,14 +869,14 @@ abstract class Face  implements HasHtml {
   void set html(String value) {
     face = new dart_html.DivElement();
     UiObject.manageElementStyleName(face, STYLENAME_HTML_FACE, true);
-    face.innerrHtml = value;
+    face.innerHtml = value;
     updateButtonFace();
   }
-  
+
   //**************************
   // Implementation of HasText
   //**************************
-  
+
   /**
    * Gets the face's contents as text.
   *
@@ -896,8 +896,8 @@ abstract class Face  implements HasHtml {
     face.text = value;
     updateButtonFace();
   }
-  
-  
+
+
   /**
    * Gets the contents associated with this face.
    */
@@ -914,13 +914,13 @@ abstract class Face  implements HasHtml {
       return face;
     }
   }
-  
+
   void updateButtonFace() {
     if (_customButton._curFace != null && _customButton._curFace.getFace() == this.getFace()) {
       _customButton._setCurrentFaceElement(face);
     }
   }
-  
+
   /**
    * Set the face's contents as an image.
   *
@@ -930,17 +930,17 @@ abstract class Face  implements HasHtml {
     face = image.getElement();
     updateButtonFace();
   }
-  
+
   String toString() {
     return this.getName();
   }
-  
+
   /**
    * Gets the ID associated with this face. This will be a bitwise and of all
    * of the attributes that comprise this face.
    */
   int getFaceID();
-  
+
   /**
    * Get the name of the face. This property is also used as a modifier on the
    * <code>CustomButton</code> style. <p/> For instance, if the
@@ -956,9 +956,9 @@ class SimpleFace extends Face {
 
   String name;
   int faceID;
-  
+
   SimpleFace(CustomButton customButton, Face delegateTo, this.name, this.faceID) : super(customButton, delegateTo);
-  
+
   String getName() {
     return name;
   }

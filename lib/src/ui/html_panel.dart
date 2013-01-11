@@ -8,7 +8,7 @@ part of dart_web_toolkit_ui;
  * elements within that HTML.
  */
 class HtmlPanel extends ComplexPanel {
-  
+
   static dart_html.DivElement hiddenDiv;
 
   /**
@@ -21,7 +21,7 @@ class HtmlPanel extends ComplexPanel {
   static String createUniqueId() {
     return Dom.createUniqueId();
   }
-  
+
   /**
    * Creates an HTML panel that wraps an existing element.
    *
@@ -43,7 +43,7 @@ class HtmlPanel extends ComplexPanel {
 
     return html;
   }
-  
+
   /**
    * Creates an HTML panel with the specified HTML contents inside a DIV
    * element. Any element within this HTML that has a specified id can contain a
@@ -60,7 +60,7 @@ class HtmlPanel extends ComplexPanel {
     setElement(new dart_html.DivElement());
     getElement().innerHtml = html;
   }
-  
+
 //  /**
 //   * Initializes the panel's HTML from a given {@link SafeHtml} object.
 //   *
@@ -69,7 +69,7 @@ class HtmlPanel extends ComplexPanel {
 //   * @param safeHtml the html to set.
 //   */
 //  HtmlPanel.fromSafeHtml(SafeHtml safeHtml) : this(safeHtml.asString());
-  
+
   /**
    * Creates an HTML panel whose root element has the given tag, and with the
    * specified HTML contents. Any element within this HTML that has a specified
@@ -96,18 +96,23 @@ class HtmlPanel extends ComplexPanel {
      * IE robustification.
      */
     StringBuffer b = new StringBuffer();
-    b.add('<').add(tag).add('>').add(html);
-    b.add("</").add(tag).add('>');
+    b.add('<');
+    b.add(tag);
+    b.add('>');
+    b.add(html);
+    b.add("</");
+    b.add(tag);
+    b.add('>');
 
     // We could use the static hiddenDiv, but that thing is attached
     // to the document. The caller might not want that.
 
     dart_html.DivElement scratchDiv = new dart_html.DivElement();
     scratchDiv.innerHtml = b.toString();
-    setElement(scratchDiv.dom_firstElementChild);
+    setElement(scratchDiv.$dom_firstElementChild);
     getElement().remove(); //FromParent();
   }
-  
+
   /**
    * Construct a new {@link HTMLPanel} with the specified element.
    *
@@ -116,7 +121,7 @@ class HtmlPanel extends ComplexPanel {
   HtmlPanel.fromElement(dart_html.Element elem) {
     setElement(elem);
   }
-  
+
   /**
    * Adds a child widget to the panel.
    *
@@ -178,7 +183,7 @@ class HtmlPanel extends ComplexPanel {
     // Logical detach of all children of the element to replace.
     Widget toRemove = null;
     for (Widget widget in getChildren()) {
-      if (toReplace.isOrHasChild(widget.getElement())) {
+      if (Dom.isOrHasChild(toReplace, widget.getElement())) {
         if (widget.getElement() == toReplace) {
           /*
            * If the element that we are replacing is itself a widget, then we
@@ -215,14 +220,14 @@ class HtmlPanel extends ComplexPanel {
 
     // Physical attach.
     if (toRemove == null) {
-      toReplace.getParentNode().replaceChild(widget.getElement(), toReplace);
+      widget.getElement().replaceWith(toReplace);
     } else {
       /*
        * The element being replaced is a widget, which needs to be removed.
        * First insert the new widget at the same location, then remove the old
        * widget.
        */
-      toReplace.getParentNode().insertBefore(widget.getElement(), toReplace);
+      toReplace.parent.insertBefore(widget.getElement(), toReplace);
       remove(toRemove);
     }
 

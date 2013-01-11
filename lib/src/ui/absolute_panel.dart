@@ -232,7 +232,7 @@ class AbsolutePanel extends ComplexPanel implements InsertPanelForIsWidget{
     }
 
     // Non-visible or detached elements have no offsetParent
-    if (child.getElement().getOffsetParent() == null) {
+    if (child.getElement().offsetParent == null) {
       return;
     }
 

@@ -8,18 +8,18 @@ part of dart_web_toolkit_ui;
  * another state of the running application. When clicked, it will create a new
  * history frame using {@link com.google.gwt.user.client.History#newItem}, but
  * without reloading the page.
- * 
+ *
  * <p>
  * If you want an HTML hyperlink (&lt;a&gt; tag) without interacting with the
  * history system, use {@link Anchor} instead.
  * </p>
- * 
+ *
  * <p>
  * Being a true hyperlink, it is also possible for the user to "right-click,
  * open link in new window", which will cause the application to be loaded in a
  * new window at the state specified by the hyperlink.
  * </p>
- * 
+ *
  * <p>
  * <h3>Built-in Bidi Text Support</h3>
  * This widget is capable of automatically adjusting its direction according to
@@ -31,25 +31,25 @@ part of dart_web_toolkit_ui;
  * <p>
  * <img class='gallery' src='doc-files/Hyperlink.png'/>
  * </p>
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <ul class='css'>
  * <li>.gwt-Hyperlink { }</li>
  * </ul>
- * 
+ *
  * <p>
  * <h3>Example</h3> {@example com.google.gwt.examples.HistoryExample}
  * </p>
- * 
+ *
  * @see Anchor
  */
-class Hyperlink extends Widget implements HasHtml, HasClickHandlers, 
+class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
   HasDirectionEstimator, HasDirectionalSafeHtml {
-  
+
   static HyperlinkImpl _impl = new HyperlinkImpl();
-  dart_html.Element _anchorElem = new dart_html.AnchorElement();
+  dart_html.AnchorElement _anchorElem = new dart_html.AnchorElement();
   String _targetHistoryToken;
-  
+
   /**
    * Creates a hyperlink with its text and target history token specified.
    *
@@ -61,14 +61,14 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
   Hyperlink([String text, bool asHTML = false, String targetHistoryToken = null]) {
     _init(new dart_html.DivElement(), targetHistoryToken);
   }
-  
+
   Hyperlink.fromElement(dart_html.Element element) {
     _init(element);
     //
     //sinkEvents(Event.ONCLICK);
     //directionalTextHelper = new DirectionalTextHelper(anchorElem, /* is inline */ true);
   }
-  
+
   void _init(dart_html.Element element, [String targetHistoryToken = null]) {
     if (element == null) {
       setElement(_anchorElem);
@@ -83,14 +83,14 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
     //
     clearAndSetStyleName("dwt-Hyperlink");
   }
-  
+
   //***********************************
   // Implementation of HasClickHandlers
   //***********************************
-  
+
   /**
    * Gets this object's contents as HTML.
-   * 
+   *
    * @return the object's HTML
    */
   String get html => ""; // directionalTextHelper.getTextOrHtml(true);
@@ -99,39 +99,39 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
    * Sets this object's contents via HTML. Use care when setting an object's
    * HTML; it is an easy way to expose script-based security problems. Consider
    * using {@link #setText(String)} whenever possible.
-   * 
+   *
    * @param html the object's new HTML
    */
   void set html(String value) {
     // directionalTextHelper.setTextOrHtml(html, true);
   }
-  
+
   //***********************************
   // Implementation of HasClickHandlers
   //***********************************
-  
+
   /**
    * Adds a {@link ClickEvent} handler.
-   * 
+   *
    * @param handler the click handler
    * @return {@link HandlerRegistration} used to remove this handler
    */
   HandlerRegistration addClickHandler(ClickHandler handler) {
     return addHandler(handler, ClickEvent.TYPE);
   }
-  
+
   //**********
   //Properties
   //**********
-  
+
   /**
    * Gets the history token referenced by this hyperlink.
-   * 
+   *
    * @return the target history token
    * @see #setTargetHistoryToken
    */
   String get targetHistoryToken => _targetHistoryToken;
-  
+
   /**
    * Sets the history token referenced by this hyperlink. This is the history
    * token that will be passed to {@link History#newItem} when this link is
@@ -147,17 +147,17 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
     //DOM.setElementProperty(anchorElem, "href", "#" + hash);
     _anchorElem.href = "#".concat(hash);
   }
-  
+
   String get text => _anchorElem.text;
-  
+
   void set text(String value) {
     _anchorElem.text = value;
   }
-  
+
   //*******
   // Events
   //*******
-  
+
   void onBrowserEvent(dart_html.Event event) {
     super.onBrowserEvent(event);
     //if (DOM.eventGetType(event) == Event.ONCLICK && impl.handleAsClick(event)) {
@@ -167,6 +167,6 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
       event.preventDefault();
     }
   }
-  
-  
+
+
 }

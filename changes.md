@@ -1,6 +1,11 @@
 DartMob Changes
 ==============
 
+**January 11, 2013
+
+* Migrate project code to follow Dart SDK version 0.2.10.1_r16761.
+* Fixed minor migration bugs.
+
 **January 8, 2013
 
 * Added Events support. DoubleClickHandler, FocusHandler, BlurHandler, KeyUpHandler, KeyDownHandler, KeyPressHandler, MouseDownHandler, MouseMoveHandler, MouseOutHandler, MouseOverHandler, MouseUpHandler, MouseWheelHandler, TouchCancelHandler, TouchEndHandler, TouchMoveHandler, TouchStartHandler, GestureChangeHandler, GestureEndHandler, GestureStartHandler, DragEndHandler, DragEnterHandler, DragHandler, DragLeaveHandler, DragOverHandler, DragStartHandler, DropHandler. Added couple of examples.

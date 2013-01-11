@@ -4,23 +4,23 @@
 part of dart_web_toolkit_ui;
 
 /**
- * A helper class for displaying bidi (i.e. potentially opposite-direction) text 
+ * A helper class for displaying bidi (i.e. potentially opposite-direction) text
  * or HTML in an element.
  * Note: this class assumes that callers perform all their text/html and
  * direction manipulations through it alone.
  */
 class DirectionalTextHelper implements HasDirectionEstimator {
-  
+
   /**
    * A default direction estimator instance.
    */
   static DirectionEstimator DEFAULT_DIRECTION_ESTIMATOR;// = WordCountDirectionEstimator.get();
-  
+
   /**
    * The DirectionEstimator object.
    */
   DirectionEstimator directionEstimator;
-  
+
   /**
    * Whether direction was explicitly set on the last {@code setTextOrHtml}
    * call. If so, {@link #setDirectionEstimator} will refrain from modifying the
@@ -28,7 +28,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
    * explicit direction.
    */
   bool isDirectionExplicitlySet = false;
-  
+
   /**
    * Whether the element contains a nested &lt;span&gt; element used to
    * indicate the content's direction.
@@ -40,17 +40,17 @@ class DirectionalTextHelper implements HasDirectionEstimator {
    * RLM character afterwards to prevent the garbling.
    */
   bool isSpanWrapped = false;
-  
+
   /**
    * The target element.
    */
   dart_html.Element element;
-  
+
   /**
    * The initial direction of the element.
    */
   Direction initialElementDir;
-  
+
   /**
    * Whether the element is inline (e.g. a &lt;span&gt; element, but not a block
    * element like &lt;div&gt;).
@@ -58,7 +58,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
    * and for non-inline elements.
    */
   bool isElementInline = false;
-  
+
   /**
    * The direction of the element's content.
    * Note: this may not match the direction attribute of the element itself.
@@ -67,7 +67,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
    * for details.
    */
   Direction textDir;
-  
+
   /**
    * @param element The widget's element holding text.
    * @param isElementInline Whether the element is an inline element.
@@ -81,11 +81,11 @@ class DirectionalTextHelper implements HasDirectionEstimator {
     // setDirectionEstimator shouldn't refresh appearance of initial empty text.
     isDirectionExplicitlySet = true;
   }
-  
+
   DirectionEstimator getDirectionEstimator() {
     return directionEstimator;
   }
-  
+
   /**
    * See note at
    * {@link #setDirectionEstimator(com.google.gwt.i18n.shared.DirectionEstimator)}.
@@ -102,7 +102,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
    */
   void setDirectionEstimator(DirectionEstimator directionEstimator) {
     this.directionEstimator = directionEstimator;
-    /* 
+    /*
      * Refresh appearance unless direction was explicitly set on last
      * setTextOrHtml call.
      */
@@ -110,11 +110,11 @@ class DirectionalTextHelper implements HasDirectionEstimator {
       setTextOrHtml(getTextOrHtml(true), true);
     }
   }
-  
+
   /**
    * Get the inner text or html of the element, taking the inner span wrap into
    * consideration, if needed.
-   * 
+   *
    * @param isHtml true to get the inner html, false to get the inner text
    * @return the text or html
    */
@@ -122,7 +122,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
     dart_html.Element elem = isSpanWrapped ? element.$dom_firstElementChild : element;
     return isHtml ? elem.innerHtml : elem.text;
   }
-  
+
   /**
    * Sets the element's content to the given value (either plain text or HTML).
    * If direction estimation is off, the direction is verified to match the
@@ -152,7 +152,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
     }
     isDirectionExplicitlySet = false;
   }
-  
+
   /**
    * Sets the element's content to the given value (either plain text or HTML),
    * applying the given direction.
@@ -179,8 +179,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
     // Set the text and the direction.
     if (isElementInline) {
       isSpanWrapped = true;
-      element.setInnerHTML(BidiFormatter.getInstanceForCurrentLocale(
-          true /* alwaysSpan */).spanWrapWithKnownDir(dir, content, isHtml));
+      element.innerHtml = BidiFormatter.getInstanceForCurrentLocale(true /* alwaysSpan */).spanWrapWithKnownDir(dir, content, isHtml);
     } else {
       isSpanWrapped = false;
       BidiUtils.setDirectionOnElement(element, dir);
@@ -188,11 +187,11 @@ class DirectionalTextHelper implements HasDirectionEstimator {
     }
     isDirectionExplicitlySet = true;
   }
-  
+
   Direction getTextDirection() {
     return textDir;
   }
-  
+
   void setInnerTextOrHtml(String content, bool isHtml) {
     if (isHtml) {
       element.innerHtml = content;

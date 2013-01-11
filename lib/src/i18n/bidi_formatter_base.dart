@@ -8,12 +8,12 @@ part of dart_web_toolkit_i18n;
  * contains their common implementation.
  */
 abstract class BidiFormatterBase {
-  
+
   bool alwaysSpan;
   Direction contextDir;
-  
+
   BidiFormatterBase(this.contextDir, this.alwaysSpan);
-  
+
   /**
    * @see BidiFormatter#spanWrapWithKnownDir(HasDirection.Direction, String, boolean, boolean)
    *
@@ -39,7 +39,9 @@ abstract class BidiFormatterBase {
         result.add(" ");
         result.add(dir == Direction.RTL ? "dir=rtl" : "dir=ltr");
       }
-      result.add(">").add(str).add("</span>");
+      result.add(">");
+      result.add(str);
+      result.add("</span>");
     } else {
       result.add(str);
     }
@@ -47,7 +49,7 @@ abstract class BidiFormatterBase {
     result.add(dirResetIfNeeded(origStr, dir, isHtml, dirReset));
     return result.toString();
   }
-  
+
   /**
    * Returns a unicode BiDi mark matching the context direction (LRM or RLM) if
    * {@code dirReset}, and if the overall direction or the exit direction of

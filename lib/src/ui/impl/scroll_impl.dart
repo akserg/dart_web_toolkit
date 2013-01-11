@@ -21,27 +21,27 @@ class ScrollImpl {
 
   /**
    * Get the maximum horizontal scroll position.
-   * 
+   *
    * @param scrollable the scrollable element
    * @return the maximum scroll position
    */
   int getMaximumHorizontalScrollPosition(dart_html.Element scrollable) {
-    return isRtl(scrollable) ? 0 : scrollable.getScrollWidth() - scrollable.getClientWidth();
+    return isRtl(scrollable) ? 0 : scrollable.scrollWidth - scrollable.clientWidth;
   }
 
   /**
    * Get the minimum horizontal scroll position.
-   * 
+   *
    * @param scrollable the scrollable element
    * @return the minimum scroll position
    */
   int getMinimumHorizontalScrollPosition(dart_html.Element scrollable) {
-    return isRtl(scrollable) ? scrollable.getClientWidth() - scrollable.getScrollWidth() : 0;
+    return isRtl(scrollable) ? scrollable.clientWidth - scrollable.scrollWidth : 0;
   }
 
   /**
    * Initialize a scrollable element.
-   * 
+   *
    * @param scrollable the scrollable element
    * @param container the container
    */
@@ -53,7 +53,7 @@ class ScrollImpl {
    * Check if the specified element has an RTL direction. We can't base this on
    * the current locale because the user can modify the direction at the DOM
    * level.
-   * 
+   *
    * @param scrollable the scrollable element
    * @return true if the direction is RTL, false if LTR
    */

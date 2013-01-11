@@ -31,7 +31,7 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class TextBox extends TextBoxBase {
-  
+
   /**
    * Creates a TextBox widget that wraps an existing &lt;input type='text'&gt;
    * element.
@@ -54,7 +54,7 @@ class TextBox extends TextBoxBase {
 
     return textBox;
   }
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be an &lt;input&gt; element whose type is
@@ -65,19 +65,19 @@ class TextBox extends TextBoxBase {
   TextBox.fromElement(dart_html.Element element) : super(element) {
     clearAndSetStyleName("dwt-TextBox");
   }
-  
+
   /**
    * Creates an empty text box.
    */
   TextBox() : this.fromElement(new dart_html.InputElement());
-  
+
   /**
    * Gets the maximum allowable length of the text box.
    *
    * @return the maximum length, in characters
    */
   int getMaxLength() {
-    return _getInputElement().getMaxLength();
+    return _getInputElement().maxLength;
   }
 
   /**
@@ -86,7 +86,7 @@ class TextBox extends TextBoxBase {
    * @return the number of visible characters
    */
   int getVisibleLength() {
-    return _getInputElement().getSize();
+    return _getInputElement().size;
   }
 
   /**
@@ -95,7 +95,7 @@ class TextBox extends TextBoxBase {
    * @param length the maximum length, in characters
    */
   void setMaxLength(int length) {
-    _getInputElement().setMaxLength(length);
+    _getInputElement().maxLength = length;
   }
 
   /**
@@ -104,10 +104,10 @@ class TextBox extends TextBoxBase {
    * @param length the number of visible characters
    */
   void setVisibleLength(int length) {
-    _getInputElement().setSize(length);
+    _getInputElement().size = length;
   }
 
   dart_html.InputElement _getInputElement() {
-    return getElement().cast();
+    return getElement() as dart_html.InputElement;
   }
 }

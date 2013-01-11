@@ -16,11 +16,11 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class FlexTable extends HtmlTable {
-  
+
   static void addCells(dart_html.Element table, int row, int num){
     dart_html.TableRowElement rowElem = table.rows[row];
     for(int i = 0; i < num; i++) {
-      rowElem.append(new dart_html.TableCellElement());  
+      rowElem.append(new dart_html.TableCellElement());
     }
   }
 
@@ -32,7 +32,7 @@ class FlexTable extends HtmlTable {
 
   /**
    * Appends a cell to the specified row.
-   * 
+   *
    * @param row the row to which the new cell will be added
    * @throws IndexOutOfBoundsException
    */
@@ -42,12 +42,12 @@ class FlexTable extends HtmlTable {
 
   /**
    * Gets the number of cells on a given row.
-   * 
+   *
    * @param row the row whose cells are to be counted
    * @return the number of cells present
    * @throws IndexOutOfBoundsException
    */
-  
+
   int getCellCount(int row) {
     checkRowBounds(row);
     return getDomCellCount(row); //, getBodyElement());
@@ -57,7 +57,7 @@ class FlexTable extends HtmlTable {
    * Explicitly gets the {@link FlexCellFormatter}. The results of
    * {@link HTMLTable#getCellFormatter()} may also be downcast to a
    * {@link FlexCellFormatter}.
-   * 
+   *
    * @return the FlexTable's cell formatter
    */
   FlexCellFormatter getFlexCellFormatter() {
@@ -66,31 +66,31 @@ class FlexTable extends HtmlTable {
 
   /**
    * Gets the number of rows.
-   * 
+   *
    * @return number of rows
    */
-  
+
   int getRowCount() {
     return getDomRowCount();
   }
 
   /**
    * Inserts a cell into the FlexTable.
-   * 
+   *
    * @param beforeRow the cell's row
    * @param beforeColumn the cell's column
    */
-  
+
   void insertCell(int beforeRow, int beforeColumn) {
     super.insertCell(beforeRow, beforeColumn);
   }
 
   /**
    * Inserts a row into the FlexTable.
-   * 
+   *
    * @param beforeRow the row to insert
    */
-  
+
   int insertRow(int beforeRow) {
     return super.insertRow(beforeRow);
   }
@@ -105,14 +105,14 @@ class FlexTable extends HtmlTable {
     }
   }
 
-  
+
   void removeCell(int row, int col) {
     super.removeCell(row, col);
   }
 
   /**
    * Removes a number of cells from a row in the table.
-   * 
+   *
    * @param row the row of the cells to be removed
    * @param column the column of the first cell to be removed
    * @param num the number of cells to be removed
@@ -124,19 +124,19 @@ class FlexTable extends HtmlTable {
     }
   }
 
-  
+
   void removeRow(int row) {
     super.removeRow(row);
   }
 
   /**
    * Ensure that the cell exists.
-   * 
+   *
    * @param row the row to prepare.
    * @param column the column to prepare.
    * @throws IndexOutOfBoundsException if the row is negative
    */
-  
+
   void prepareCell(int row, int column) {
     prepareRow(row);
     if (column < 0) {
@@ -153,11 +153,11 @@ class FlexTable extends HtmlTable {
 
   /**
    * Ensure that the row exists.
-   * 
+   *
    * @param row The row to prepare.
    * @throws IndexOutOfBoundsException if the row is negative
    */
-  
+
   void prepareRow(int row) {
     if (row < 0) {
       throw new Exception("IndexOutOfBounds. Cannot create a row with a negative index: $row");
@@ -179,11 +179,11 @@ class FlexTable extends HtmlTable {
 class FlexCellFormatter extends CellFormatter {
 
   FlexCellFormatter(HtmlTable table) : super(table);
-  
+
   /**
    * Gets the column span for the given cell. This is the number of logical
    * columns covered by the cell.
-   * 
+   *
    * @param row the cell's row
    * @param column the cell's column
    * @return the cell's column span
@@ -196,7 +196,7 @@ class FlexCellFormatter extends CellFormatter {
   /**
    * Gets the row span for the given cell. This is the number of logical rows
    * covered by the cell.
-   * 
+   *
    * @param row the cell's row
    * @param column the cell's column
    * @return the cell's row span
@@ -209,7 +209,7 @@ class FlexCellFormatter extends CellFormatter {
   /**
    * Sets the column span for the given cell. This is the number of logical
    * columns covered by the cell.
-   * 
+   *
    * @param row the cell's row
    * @param column the cell's column
    * @param colSpan the cell's column span
@@ -222,7 +222,7 @@ class FlexCellFormatter extends CellFormatter {
   /**
    * Sets the row span for the given cell. This is the number of logical rows
    * covered by the cell.
-   * 
+   *
    * @param row the cell's row
    * @param column the cell's column
    * @param rowSpan the cell's row span

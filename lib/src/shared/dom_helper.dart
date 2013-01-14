@@ -37,4 +37,6 @@ abstract class DomHelper {
   void sinkBitlessEvent(dart_html.Element elem, String eventTypeName, dart_html.EventListener listener);
 
   void sinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener);
+  
+  void unsinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener);
 }

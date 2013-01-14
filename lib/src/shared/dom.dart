@@ -345,4 +345,18 @@ class Dom {
   static void sinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener) {
     domHelper.sinkEvents(elem, eventBits, listener);
   }
+  
+  /**
+   * Sets the current set of events sunk by a given element. These events will
+   * be fired to the nearest {@link EventListener} specified on any of the
+   * element's parents.
+   *
+   * @param elem the element whose events are to be retrieved
+   * @param eventBits a bitfield describing the events sunk on this element (its
+   *          possible values are described in {@link Event})
+   */
+  static void unsinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener) {
+    domHelper.unsinkEvents(elem, eventBits, listener);
+  }
+  
 }

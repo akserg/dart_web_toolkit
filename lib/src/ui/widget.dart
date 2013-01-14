@@ -51,22 +51,17 @@ class Widget extends UiObject
    * TODO
    */
   void onBrowserEvent(dart_html.Event event) {
-//    switch (DOM.eventGetType(event)) {
-//      case Event.ONMOUSEOVER:
-//        // Only fire the mouse over event if it's coming from outside this
-//        // widget.
-//      case Event.ONMOUSEOUT:
-//        // Only fire the mouse out event if it's leaving this
-//        // widget.
-//        Element related = event.getRelatedEventTarget().cast();
-//        if (related != null && getElement().isOrHasChild(related)) {
-//          return;
-//        }
-//        break;
-//    }
-    //DomEvent.fireNativeEvent(event, this, this.getElement());
-//    ensureHandlers().
 //    print("onBrowserEvent: ${event}");
+    if (event.type == BrowserEvents.MOUSEOVER ||
+        event.type == BrowserEvents.MOUSEOUT) {
+      // Only fire the mouse over event if it's coming from outside this widget.
+      // Only fire the mouse out event if it's leaving this widget.
+      dart_html.Element related = (event as dart_html.MouseEvent).relatedTarget as dart_html.Element;
+      if (related != null && Dom.isOrHasChild(getElement(), related)) {
+        return;
+      }
+    }
+    
     DomEvent.fireNativeEvent(event, this, this.getElement());
   }
 
@@ -93,28 +88,31 @@ class Widget extends UiObject
    * @param event the event
    */
   void fireEvent(DwtEvent event) {
+//    if (_eventBus != null) {
+//      // If it not live we should revive it.
+//      if (!event.isLive()) {
+//        event.revive();
+//      }
+//      Object oldSource = event.getSource();
+//      event.overrideSource(getElement());
+//      try {
+//
+//        // May throw an UmbrellaException.
+//        _eventBus.fireEventFromSource(event, getElement());
+//      } on UmbrellaException catch (e) {
+//        throw new UmbrellaException(e.causes);
+//      } finally {
+//        if (oldSource == null) {
+//          // This was my event, so I should kill it now that I'm done.
+//          event.kill();
+//        } else {
+//          // Restoring the source for the next handler to use.
+//          event.overrideSource(oldSource);
+//        }
+//      }
+//    }
     if (_eventBus != null) {
-      // If it not live we should revive it.
-      if (!event.isLive()) {
-        event.revive();
-      }
-      Object oldSource = event.getSource();
-      event.overrideSource(getElement());
-      try {
-
-        // May throw an UmbrellaException.
-        _eventBus.fireEventFromSource(event, getElement());
-      } on UmbrellaException catch (e) {
-        throw new UmbrellaException(e.causes);
-      } finally {
-        if (oldSource == null) {
-          // This was my event, so I should kill it now that I'm done.
-          event.kill();
-        } else {
-          // Restoring the source for the next handler to use.
-          event.overrideSource(oldSource);
-        }
-      }
+      _eventBus.fireEvent(event);
     }
   }
 
@@ -194,7 +192,7 @@ class Widget extends UiObject
     if (BrowserEvents.events.indexOf(type.eventName) == -1) {
       sinkBitlessEvent(type.eventName);
     } else {
-      sinkEvents(type.eventName);
+      sinkEvents(new Set.from([type.eventName]));
     }
     return ensureHandlers().addHandlerToSource(type, getElement(), handler);
   }
@@ -228,18 +226,28 @@ class Widget extends UiObject
    *  }
    *} </pre>
    */
-  void sinkEvents(String eventName) {
+  void sinkEvents(Set<String> eventName) {
     if (isOrWasAttached()) {
-      eventsToSink.add(eventName);
+      eventsToSink.addAll(eventName);
       Dom.sinkEvents(getElement(), eventsToSink, onBrowserEvent);
       eventsToSink.clear();
     } else {
-      if (!eventsToSink.contains(eventName)) {
-        eventsToSink.add(eventName);
-      }
+      eventsToSink.addAll(eventName);
     }
   }
 
+  /**
+   * Removes a set of events from this object's event list.
+   * 
+   * @param eventBitsToRemove a bitfield representing the set of events to be
+   *          removed from this element's event set
+   * @see #sinkEvents
+   * @see com.google.gwt.user.client.Event
+   */
+  void unsinkEvents(Set<String> eventBitsToRemove) {
+    Dom.unsinkEvents(getElement(), eventBitsToRemove, onBrowserEvent);
+  }
+  
   /**
    * Creates the [SimpleEventBus] used by this Widget. You can override
    * this method to create a custom [EventBus].
@@ -449,18 +457,18 @@ class Widget extends UiObject
 
     // Event hookup code
     Dom.setEventListener(getElement(), this);
-    //int bitsToAdd = eventsToSink;
-    //eventsToSink = -1;
-    //if (bitsToAdd > 0) {
-      //sinkEvents(bitsToAdd);
-    //}
+    Set bitsToAdd = new Set.from(eventsToSink);
+    eventsToSink.clear();
+    if (bitsToAdd.length > 0) {
+      sinkEvents(bitsToAdd);
+    }
     doAttachChildren();
 
     // onLoad() gets called only *after* all of the children are attached and
     // the attached flag is set. This allows widgets to be notified when they
     // are fully attached, and panels when all of their children are attached.
     onLoad();
-    //AttachEvent.fire(this, true);
+    AttachEvent.fire(this, true);
   }
 
   /**
@@ -529,6 +537,6 @@ class Widget extends UiObject
    * @return true if this widget ever been attached to the DOM, false otherwise
    */
   bool isOrWasAttached() {
-    return true;
+    return eventsToSink.length == 0;
   }
 }

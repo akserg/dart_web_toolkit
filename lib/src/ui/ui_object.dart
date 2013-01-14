@@ -202,7 +202,6 @@ abstract class UiObject implements HasVisibility {
    * @return the objects's space-separated style names
    */
   static String getElementStyleName(dart_html.Element elem) {
-    //return Dom.getElementProperty(elem, "className");
     return elem.$dom_className;
   }
 
@@ -213,9 +212,8 @@ abstract class UiObject implements HasVisibility {
    * @param styleName the new style name
    */
   static void setElementStyleName(dart_html.Element elem, String styleName) {
-    //Dom.setElementProperty(elem, "className", styleName);
     elem.$dom_className = styleName;
-    print("setElementStyleName: ${elem.$dom_className}");
+    //print("setElementStyleName: ${elem.$dom_className}");
   }
 
 
@@ -682,5 +680,18 @@ abstract class UiObject implements HasVisibility {
    */
   int getOffsetWidth() {
     return Dom.getElementPropertyInt(getElement(), "offsetWidth");
+  }
+  
+  /**
+   * This method is overridden so that any object can be viewed in the debugger
+   * as an HTML snippet.
+   * 
+   * @return a string representation of the object
+   */
+  String toString() {
+    if (_element == null) {
+      return "(null handle)";
+    }
+    return getElement().toString();
   }
 }

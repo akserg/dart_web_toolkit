@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**January 14, 2013
+
+* Checked UiObject, Widget, FocusWidget, Anchor.
+
 **January 11, 2013
 
 * Migrate project code to follow Dart SDK version 0.2.10.1_r16761.

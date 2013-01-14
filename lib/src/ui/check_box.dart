@@ -321,9 +321,26 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   // Events
   //*******
   void ensureDomEventHandlers() {
-    // addClickHandler...
+    addClickHandler(new ClickHandler((ClickEvent event) {
+      // Checkboxes always toggle their value, no need to compare
+      // with old value. Radio buttons are not so lucky, see
+      // overrides in RadioButton
+      ValueChangeEvent.fire(this, getValue());
+    }));
   }
 
+  // Unlike other widgets the CheckBox sinks on its inputElement, not
+  // its wrapper
+  void sinkEvents(Set<String> eventName) {
+    if (isOrWasAttached()) {
+      eventsToSink.add(eventName);
+      Dom.sinkEvents(inputElem, eventsToSink, onBrowserEvent);
+      eventsToSink.clear();
+    } else {
+      super.sinkEvents(eventName);
+    }
+  }
+  
   //*******
   // Logics
   //*******

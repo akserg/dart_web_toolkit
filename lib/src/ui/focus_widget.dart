@@ -17,7 +17,7 @@ abstract class FocusWidget extends Widget implements
    * Creates a new focus widget that wraps the specified browser [element].
    */
   FocusWidget([dart_html.Element element = null]) {
-    if (?element) {
+    if (element != null) {
       setElement(element);
     }
   }
@@ -50,7 +50,7 @@ abstract class FocusWidget extends Widget implements
    *
    * @return the widget's tab index
    */
-  int get tabIndex => impl.getTabIndex(getElement()); //FocusHelper.getFocusHelper().getTabIndex(getElement());
+  int get tabIndex => impl.getTabIndex(getElement());
 
   /**
    * Sets the widget's position in the tab index. If more than one widget has
@@ -61,7 +61,7 @@ abstract class FocusWidget extends Widget implements
    * @param index the widget's tab index
    */
   void set tabIndex(int index) {
-    impl.setTabIndex(getElement(), index); //FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
+    impl.setTabIndex(getElement(), index);
   }
 
   /**
@@ -72,9 +72,9 @@ abstract class FocusWidget extends Widget implements
    */
   void set focus(bool focused) {
     if (focused) {
-      impl.focus(getElement()); //FocusHelper.getFocusHelper().focus(getElement());
+      impl.focus(getElement());
     } else {
-      impl.blur(getElement()); //FocusHelper.getFocusHelper().blur(getElement());
+      impl.blur(getElement());
     }
   }
 
@@ -217,4 +217,37 @@ abstract class FocusWidget extends Widget implements
     return addDomHandler(handler, TouchStartEvent.TYPE);
   }
 
+  /**
+   * <p>
+   * This method is called when a widget is attached to the browser's document.
+   * To receive notification after a Widget has been added to the document,
+   * override the {@link #onLoad} method or use {@link #addAttachHandler}.
+   * </p>
+   * <p>
+   * It is strongly recommended that you override {@link #onLoad()} or
+   * {@link #doAttachChildren()} instead of this method to avoid inconsistencies
+   * between logical and physical attachment states.
+   * </p>
+   * <p>
+   * Subclasses that override this method must call
+   * <code>super.onAttach()</code> to ensure that the Widget has been attached
+   * to its underlying Element.
+   * </p>
+   *
+   * @throws IllegalStateException if this widget is already attached
+   * @see #onLoad()
+   * @see #doAttachChildren()
+   */
+  void onAttach() {
+    super.onAttach();
+
+    // Accessibility: setting tab index to be 0 by default, ensuring element
+    // appears in tab sequence. We must ensure that the element doesn't already
+    // have a tabIndex set. This is not a problem for normal widgets, but when
+    // a widget is used to wrap an existing static element, it can already have
+    // a tabIndex.
+    if (-1 == tabIndex) {
+      tabIndex = 0;
+    }
+  }
 }

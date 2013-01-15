@@ -4,7 +4,8 @@ DartMob Changes
 **January 15, 2013
 
 * Added Browser lib for access to dart.js.
-* Checked ButtonBase, Button, ResetButton, SubmitButton
+* Checked ButtonBase, Button, ResetButton, SubmitButton, CheckBox.
+* Improved sunkEvent mechanism in Dom.
 
 **January 14, 2013
 

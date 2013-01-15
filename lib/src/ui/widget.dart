@@ -33,7 +33,7 @@ class Widget extends UiObject
    *
    * Package protected to allow Composite to see it.
    */
-  Set eventsToSink = new Set();
+  Set<String> eventsToSink = new Set<String>();
 //  HandlerManager _handlerManager;
   EventBus _eventBus;
   bool _attached = false;
@@ -206,7 +206,7 @@ class Widget extends UiObject
    * @see com.google.gwt.user.client.Event
    */
   void sinkBitlessEvent(String eventTypeName) {
-    Dom.sinkBitlessEvent(getElement(), eventTypeName, onBrowserEvent);
+    Dom.sinkBitlessEvent(getElement(), eventTypeName);
   }
 
   /**
@@ -229,7 +229,7 @@ class Widget extends UiObject
   void sinkEvents(Set<String> eventName) {
     if (isOrWasAttached()) {
       eventsToSink.addAll(eventName);
-      Dom.sinkEvents(getElement(), eventsToSink, onBrowserEvent);
+      Dom.sinkEvents(getElement(), eventsToSink);
       eventsToSink.clear();
     } else {
       eventsToSink.addAll(eventName);
@@ -245,7 +245,7 @@ class Widget extends UiObject
    * @see com.google.gwt.user.client.Event
    */
   void unsinkEvents(Set<String> eventBitsToRemove) {
-    Dom.unsinkEvents(getElement(), eventBitsToRemove, onBrowserEvent);
+    Dom.unsinkEvents(getElement(), eventBitsToRemove);
   }
   
   /**

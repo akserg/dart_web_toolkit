@@ -47,7 +47,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
 
   LeafValueEditor<bool> editor;
 
-  bool _valueChangeHandlerInitialized;
+  bool _valueChangeHandlerInitialized = false;
 
   /**
    * Creates a check box with label.
@@ -345,8 +345,8 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   // its wrapper
   void sinkEvents(Set<String> eventName) {
     if (isOrWasAttached()) {
-      eventsToSink.add(eventName);
-      Dom.sinkEvents(inputElem, eventsToSink, onBrowserEvent);
+      eventsToSink.addAll(eventName);
+      Dom.sinkEvents(inputElem, eventsToSink);
       eventsToSink.clear();
     } else {
       super.sinkEvents(eventName);
@@ -374,8 +374,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   void onUnload() {
     // Clear out the inputElem's event listener (breaking the circular
     // reference between it and the widget).
-    setEventListener(asOld(inputElem), null);
-    //setValue(getValue());
+    setEventListener(inputElem, null);
     setValue(getValue(), false);
   }
 
@@ -394,21 +393,21 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     String _formValue = formValue;
     String _uid = inputElem.id;
     //String accessKey = inputElem.getAccessKey();
-    //int sunkEvents = Event.getEventsSunk(inputElem);
+    Set<String> sunkEvents = Dom.getEventsSunk(inputElem);
 
     // Clear out the old input element
-    //setEventListener(asOld(inputElem), null);
+    setEventListener(inputElem, null);
 
     //getElement().replaceChild(newInputElem, inputElem);
     inputElem.replaceWith(newInputElem);
 
     // Sink events on the new element
-//    Event.sinkEvents(elem, Event.getEventsSunk(inputElem));
-//    Event.sinkEvents(inputElem, 0);
+    Dom.sinkEvents(newInputElem, Dom.getEventsSunk(inputElem));
+    Dom.sinkEvents(inputElem, new Set<String>());
     inputElem = newInputElem;
 
     // Setup the new element
-//    Event.sinkEvents(inputElem, sunkEvents);
+    Dom.sinkEvents(inputElem, sunkEvents);
     inputElem.id = _uid;
 //    if (!"".equals(accessKey)) {
 //      inputElem.setAccessKey(accessKey);
@@ -420,12 +419,12 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
 
     // Set the event listener
     if (isAttached()) {
-//      setEventListener(asOld(inputElem), this);
+      setEventListener(inputElem, this);
     }
   }
 
   void setEventListener(dart_html.Element e, EventListener listener) {
-    //DOM.setEventListener(asOld(e), listener);
+    Dom.setEventListener(e, listener);
   }
 
   LeafValueEditor<bool> asEditor() {

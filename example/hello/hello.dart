@@ -843,7 +843,11 @@ void main() {
   headerPanel.setSize("150px", "100px");
 
   headerPanel.setHeaderWidget(new ui.Button("Header"));
-  headerPanel.setFooterWidget(new ui.CheckBox("Active Footer"));
+  ui.CheckBox check = new ui.CheckBox("Active Footer");
+  check.addValueChangeHandler(new event.ValueChangeHandler<bool>((event.ValueChangeEvent evt){
+    print("CheckBox value: ${evt.value}");
+  }));
+  headerPanel.setFooterWidget(check);
   headerPanel.setContentWidget(new ui.RadioButton("group", "Center"));
 
   ui.RootPanel.get("testId").add(headerPanel);

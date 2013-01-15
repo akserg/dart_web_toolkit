@@ -15,6 +15,8 @@ class Dom {
    */
   static DomHelper domHelper = new DomHelper.browserDependent();
   static dart_html.Element _sCaptureElem;
+  // The current event being fired
+  static dart_html.Event _currentEvent;
 
   /**
    * Determine whether one element is equal to, or the child of, another.
@@ -329,8 +331,8 @@ class Dom {
    * @param elem the element whose events are to be retrieved
    * @param eventTypeName name of the event to sink on this element
    */
-  static void sinkBitlessEvent(dart_html.Element elem, String eventTypeName, dart_html.EventListener listener) {
-    domHelper.sinkBitlessEvent(elem, eventTypeName, listener);
+  static void sinkBitlessEvent(dart_html.Element elem, String eventTypeName) {
+    domHelper.sinkBitlessEvent(elem, eventTypeName);
   }
 
   /**
@@ -342,8 +344,8 @@ class Dom {
    * @param eventBits a bitfield describing the events sunk on this element (its
    *          possible values are described in {@link Event})
    */
-  static void sinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener) {
-    domHelper.sinkEvents(elem, eventBits, listener);
+  static void sinkEvents(dart_html.Element elem, Set eventBits) {
+    domHelper.sinkEvents(elem, eventBits);
   }
   
   /**
@@ -355,8 +357,49 @@ class Dom {
    * @param eventBits a bitfield describing the events sunk on this element (its
    *          possible values are described in {@link Event})
    */
-  static void unsinkEvents(dart_html.Element elem, Set eventBits, dart_html.EventListener listener) {
-    domHelper.unsinkEvents(elem, eventBits, listener);
+  static void unsinkEvents(dart_html.Element elem, Set eventBits) {
+    domHelper.unsinkEvents(elem, eventBits);
   }
   
+  /**
+   * Gets the current set of events sunk by a given element.
+   * 
+   * @param elem the element whose events are to be retrieved
+   * @return a bitfield describing the events sunk on this element (its possible
+   *         values are described in {@link Event})
+   */
+  static Set getEventsSunk(dart_html.Element elem) {
+    return domHelper.getEventsSunk(elem);
+  }
+  
+  /**
+   * This method is called directly by native code when any event is fired.
+   * 
+   * @param evt the handle to the event being fired.
+   * @param elem the handle to the element that received the event.
+   * @param listener the listener associated with the element that received the
+   *          event.
+   */
+  static void dispatchEvent(dart_html.Event evt, dart_html.Element elem, EventListener listener) {
+    // Preserve the current event in case we are in a reentrant event dispatch.
+    dart_html.Event prevCurrentEvent = _currentEvent;
+    _currentEvent = evt;
+
+    _dispatchEventImpl(evt, elem, listener);
+
+    _currentEvent = prevCurrentEvent;
+  }
+  
+  static void _dispatchEventImpl(dart_html.Event evt, dart_html.Element elem, EventListener listener) {
+//    // If this element has capture...
+//    if (elem == _sCaptureElem) {
+//      // ... and it's losing capture, clear sCaptureElem.
+//      if (eventGetType(evt) == dart_html.Event.ONLOSECAPTURE) {
+//        _sCaptureElem = null;
+//      }
+//    }
+
+    // Pass the event to the listener.
+    listener.onBrowserEvent(evt);
+  }
 }

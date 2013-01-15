@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_web_toolkit_shared;
+part of dart_web_toolkit_event;
 
 /**
  * Represents a value change event.
@@ -92,16 +92,4 @@ class ValueChangeEvent<T> extends DwtEvent {
   static bool _shouldFire(HasValueChangeHandlers source, Object oldValue, Object newValue) {
     return TYPE != null && oldValue != newValue && oldValue == null; // || !oldValue.equals(newValue));
   }
-}
-
-/**
- * Implemented by objects that handle {@link AttachEvent}.
- */
-abstract class ValueChangeHandler<T> extends EventHandler {
-  /**
-   * Called when {@link ValueChangeEvent} is fired.
-   * 
-   * @param event the {@link ValueChangeEvent} that was fired
-   */
-  void onValueChange(ValueChangeEvent<T> event);
 }

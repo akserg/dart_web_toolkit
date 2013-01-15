@@ -1,6 +1,11 @@
 DartMob Changes
 ==============
 
+**January 15, 2013
+
+* Added Browser lib for access to dart.js.
+* Checked ButtonBase, Button, ResetButton, SubmitButton
+
 **January 14, 2013
 
 * Checked UiObject, Widget, FocusWidget, Anchor.

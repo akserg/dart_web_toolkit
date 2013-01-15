@@ -789,7 +789,7 @@ void main2() {
 
 }
 
-void main1() {
+void main() {
   //*******
   // Anchor
   //*******
@@ -817,17 +817,13 @@ void main1() {
   anchor.text = "Just text";
   print("Text: ${anchor.text}");
   //
-  anchor.direction = "right";
-  print("Direction: ${anchor.direction}");
-  //
-//  event.HandlerRegistration handlerRegistration;
-//  handlerRegistration = anchor.addClickHandler(new shared.ClickHandler((shared.ClickEvent evt){
-//    dart_html.UIEvent uiEvent = evt.nativeEvent;
-//    print("Event: ${uiEvent.type}");
-//    //
-//    print("Direction: ${anchor.direction}");
-//    handlerRegistration.removeHandler();
-//  }));
+  event.HandlerRegistration handlerRegistration;
+  handlerRegistration = anchor.addClickHandler(new shared.ClickHandler((shared.ClickEvent evt){
+    dart_html.UIEvent uiEvent = evt.getNativeEvent();
+    print("Event: ${uiEvent.type}");
+    //
+    handlerRegistration.removeHandler();
+  }));
 
   ui.RootPanel.get("testId").add(anchor);
 

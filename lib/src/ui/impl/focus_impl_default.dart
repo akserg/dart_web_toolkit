@@ -32,7 +32,7 @@ class FocusImplDefault implements FocusImpl {
    * Return [Element] tab index.
    */
   int getTabIndex(dart_html.Element elem) {
-    return int.parse(elem.attributes['tabIndex']);
+    return elem.tabIndex;
   }
 
   /**

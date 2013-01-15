@@ -12,4 +12,3 @@ import 'shared.dart';
 part 'src/editor/is_editor.dart';
 part 'src/editor/leaf_value_editor.dart';
 part 'src/editor/editor.dart';
-part 'src/editor/editor_delegate.dart';

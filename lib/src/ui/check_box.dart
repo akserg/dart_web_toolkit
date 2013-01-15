@@ -38,8 +38,14 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   HasWordWrap, HasDirectionalSafeHtml, HasDirectionEstimator,
   IsEditor<LeafValueEditor<bool>> {
 
+  static DirectionEstimator DEFAULT_DIRECTION_ESTIMATOR = DirectionalTextHelper.DEFAULT_DIRECTION_ESTIMATOR;
+
+  DirectionalTextHelper directionalTextHelper;
+
   dart_html.InputElement inputElem;
   dart_html.LabelElement labelElem;
+
+  LeafValueEditor<bool> editor;
 
   bool _valueChangeHandlerInitialized;
 
@@ -84,6 +90,8 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     inputElem.id = uid;
     labelElem.htmlFor = uid;
 
+    directionalTextHelper = new DirectionalTextHelper(labelElem, true);
+
     // Accessibility: setting tab index to be 0 by default, ensuring element
     // appears in tab sequence. FocusWidget's setElement method already
     // calls setTabIndex, which is overridden below. However, at the time
@@ -121,7 +129,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    * @return the object's HTML
    */
   String get html {
-    return labelElem.innerHtml;
+    return directionalTextHelper.getTextOrHtml(true);
   }
 
   /**
@@ -132,8 +140,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    * @param html the object's new HTML
    */
   void set html(String val) {
-    assert(val != null);
-    labelElem.innerHtml = val;
+    directionalTextHelper.setTextOrHtml(html, true);
   }
 
   //****************************************
@@ -157,7 +164,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    *
    * @return <code>true</code> if the widget is enabled
    */
-  bool get enabled => !Dom.getElementPropertyBoolean(inputElem, "disabled");
+  bool get enabled => !inputElem.disabled; // !Dom.getElementPropertyBoolean(inputElem, "disabled");
 
   /**
    * Sets whether this widget is enabled.
@@ -166,7 +173,13 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    *          to disable it
    */
   void set enabled(bool val) {
-    Dom.setElementPropertyBoolean(inputElem, "disabled", !val);
+    //Dom.setElementPropertyBoolean(inputElem, "disabled", !val);
+    inputElem.disabled = !val;
+    if (enabled) {
+      removeStyleDependentName("disabled");
+    } else {
+      addStyleDependentName("disabled");
+    }
   }
 
   //******************************
@@ -178,7 +191,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    *
    * @return <code>true</code> if word-wrapping is enabled.
    */
-  bool get wordWrap => false; //!WhiteSpace.NOWRAP.getCssName().equals(getElement().getStyle().getWhiteSpace());
+  bool get wordWrap => WhiteSpace.NOWRAP.value != getElement().style.whiteSpace;
 
   /**
    * Sets whether word-wrapping is enabled.
@@ -186,7 +199,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    * @param wrap <code>true</code> to enable word-wrapping.
    */
   void set wordWrap(bool wrap) {
-    //getElement().style.WhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
+    getElement().style.whiteSpace = wrap ? WhiteSpace.NORMAL.value : WhiteSpace.NOWRAP.value;
   }
 
   //***************************
@@ -197,7 +210,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    *
    * @return the widget's tab index
    */
-  int get tabIndex => inputElem.tabIndex; //FocusHelper.getFocusHelper().getTabIndex(inputElem);
+  int get tabIndex => inputElem.tabIndex;
 
   /**
    * Sets the widget's position in the tab index. If more than one widget has
@@ -213,7 +226,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     // CheckBox) setElement method calls setTabIndex before inputElem is
     // initialized. See CheckBox's protected constructor for more information.
     if (inputElem != null) {
-      inputElem.tabIndex = index; //FocusHelper.getFocusHelper().setTabIndex(inputElem, index);
+      inputElem.tabIndex = index;
     }
   }
 
@@ -238,14 +251,13 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   /**
    * Sets the element's text.
    */
-  String get text => labelElem.text;
+  String get text => directionalTextHelper.getTextOrHtml(false);
 
   /**
    * Get the element's text.
    */
   void set text(String val) {
-    assert(val != null);
-    labelElem.text = val;
+    directionalTextHelper.setTextOrHtml(text, false);
   }
 
   /**
@@ -313,7 +325,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     inputElem.checked = val;
     inputElem.defaultChecked = val;
     if (val != oldValue && fireEvents) {
-      //ValueChangeEvent.fire(this, val);
+      ValueChangeEvent.fire(this, val);
     }
   }
 
@@ -340,7 +352,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
       super.sinkEvents(eventName);
     }
   }
-  
+
   //*******
   // Logics
   //*******
@@ -351,7 +363,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    * {@link Widget#onAttach()} to preserve the <code>onAttach</code> contract.
    */
   void onLoad() {
-    //setEventListener(inputElem, this);
+    setEventListener(inputElem, this);
   }
 
   /**
@@ -362,7 +374,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   void onUnload() {
     // Clear out the inputElem's event listener (breaking the circular
     // reference between it and the widget).
-    //setEventListener(asOld(inputElem), null);
+    setEventListener(asOld(inputElem), null);
     //setValue(getValue());
     setValue(getValue(), false);
   }
@@ -414,5 +426,38 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
 
   void setEventListener(dart_html.Element e, EventListener listener) {
     //DOM.setEventListener(asOld(e), listener);
+  }
+
+  LeafValueEditor<bool> asEditor() {
+    if (editor == null) {
+      editor = new TakesValueEditor.of(this);
+    }
+    return editor;
+  }
+
+  DirectionEstimator getDirectionEstimator() {
+    return directionalTextHelper.getDirectionEstimator();
+  }
+
+  /**
+   * {@inheritDoc}
+   * <p>
+   * See note at {@link #setDirectionEstimator(DirectionEstimator)}.
+   */
+  void enableDirectionEstimator(bool enabled) {
+    directionalTextHelper.enableDefaultDirectionEstimator(enabled);
+  }
+
+  /**
+   * {@inheritDoc}
+   * <p>
+   * Note: DirectionEstimator should be set before the label has any content;
+   * it's highly recommended to set it using a constructor. Reason: if the
+   * label already has non-empty content, this will update its direction
+   * according to the new estimator's result. This may cause flicker, and thus
+   * should be avoided.
+   */
+  void setDirectionEstimator(DirectionEstimator directionEstimator) {
+    directionalTextHelper.setDirectionEstimator(directionEstimator);
   }
 }

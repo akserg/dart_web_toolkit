@@ -5,5 +5,5 @@ description: >
 authors:
 - Sergey Akopkokhyants <akserg@gmail.com>
 homepage: http://akserg.github.com/dart_web_toolkit
-#dependencies:
-#  unittest: 0.2.7
+dependencies:
+  browser: any

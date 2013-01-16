@@ -5,6 +5,7 @@ DartMob Changes
 
 * Implemented set of Adapters for EventHandlers because Dart doesn't support anonimous interfaces.
 * Checked Anchor events dispatching.
+* All content of Shared library have been moved into Event, I18n and Editor libraries. Shared library Removed.
 
 **January 15, 2013
 

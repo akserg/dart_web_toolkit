@@ -11,9 +11,9 @@ import 'dart:math' as dart_math;
 //import 'dart:fixnum' as dart_fixnum;
 
 import 'util.dart';
+import 'event.dart';
 
 part 'src/i18n/locale_info.dart';
-part 'src/i18n/has_direction.dart';
 part 'src/i18n/bidi_utils.dart';
 part 'src/i18n/bidi_formatter_base.dart';
 part 'src/i18n/bidi_formatter.dart';
@@ -29,6 +29,14 @@ part 'src/i18n/constants.dart';
 part 'src/i18n/currency_data.dart';
 part 'src/i18n/currency_list.dart';
 part 'src/i18n/default_currency_data.dart';
+part 'src/i18n/direction.dart';
+part 'src/i18n/direction_estimator.dart';
+
+part 'src/i18n/has_text_direction.dart';
+part 'src/i18n/has_alignment.dart';
+part 'src/i18n/has_horizontal_alignment.dart';
+part 'src/i18n/has_vertical_alignment.dart';
+part 'src/i18n/has_auto_horizontal_alignment.dart';
 
 part 'src/i18n/constants/number_constants.dart';
 

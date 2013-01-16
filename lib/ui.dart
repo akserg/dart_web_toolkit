@@ -11,7 +11,6 @@ import 'dart:math' as dart_math;
 
 import 'event.dart';
 import 'i18n.dart';
-import 'shared.dart';
 import 'animation.dart';
 import 'layout.dart';
 import 'util.dart';

@@ -6,7 +6,6 @@ library hello;
 import 'dart:html' as dart_html;
 
 import 'package:dart_web_toolkit/event.dart' as event;
-import 'package:dart_web_toolkit/shared.dart' as shared;
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 import 'package:dart_web_toolkit/i18n.dart' as i18n;
@@ -35,12 +34,12 @@ ui.SimplePanel createDraggablePanel(int i) {
   DraggablePanel column = new DraggablePanel();
   column.addStyleName("column");
   column.getElement().draggable = true;
-  column.addDragStartHandler(new shared.DragStartHandlerAdapter(_onDragStart));
-  column.addDragEndHandler(new shared.DragEndHandlerAdapter(_onDragEnd));
-  column.addDragEnterHandler(new shared.DragEnterHandlerAdapter(_onDragEnter));
-  column.addDragOverHandler(new shared.DragOverHandlerAdapter(_onDragOver));
-  column.addDragLeaveHandler(new shared.DragLeaveHandlerAdapter(_onDragLeave));
-  column.addDropHandler(new shared.DropHandlerAdapter(_onDrop));
+  column.addDragStartHandler(new event.DragStartHandlerAdapter(_onDragStart));
+  column.addDragEndHandler(new event.DragEndHandlerAdapter(_onDragEnd));
+  column.addDragEnterHandler(new event.DragEnterHandlerAdapter(_onDragEnter));
+  column.addDragOverHandler(new event.DragOverHandlerAdapter(_onDragOver));
+  column.addDragLeaveHandler(new event.DragLeaveHandlerAdapter(_onDragLeave));
+  column.addDropHandler(new event.DropHandlerAdapter(_onDrop));
 
   ui.Html header = new ui.Html("<header>${i.toString()}</header>");
   column.add(header);
@@ -49,36 +48,36 @@ ui.SimplePanel createDraggablePanel(int i) {
 }
 
 /// SimplePanel with DnD support
-class DraggablePanel extends ui.SimplePanel implements shared.HasAllDragAndDropHandlers {
+class DraggablePanel extends ui.SimplePanel implements event.HasAllDragAndDropHandlers {
 
   DraggablePanel() : super();
 
-  event.HandlerRegistration addDragStartHandler(shared.DragStartHandler handler) {
-    return addBitlessDomHandler(handler, shared.DragStartEvent.TYPE);
+  event.HandlerRegistration addDragStartHandler(event.DragStartHandler handler) {
+    return addBitlessDomHandler(handler, event.DragStartEvent.TYPE);
   }
 
-  event.HandlerRegistration addDragHandler(shared.DragHandler handler) {
-    return addBitlessDomHandler(handler, shared.DragEvent.TYPE);
+  event.HandlerRegistration addDragHandler(event.DragHandler handler) {
+    return addBitlessDomHandler(handler, event.DragEvent.TYPE);
   }
 
-  event.HandlerRegistration addDragEndHandler(shared.DragEndHandler handler) {
-    return addBitlessDomHandler(handler, shared.DragEndEvent.TYPE);
+  event.HandlerRegistration addDragEndHandler(event.DragEndHandler handler) {
+    return addBitlessDomHandler(handler, event.DragEndEvent.TYPE);
   }
 
-  event.HandlerRegistration addDragEnterHandler(shared.DragEnterHandler handler) {
-    return addBitlessDomHandler(handler, shared.DragEnterEvent.TYPE);
+  event.HandlerRegistration addDragEnterHandler(event.DragEnterHandler handler) {
+    return addBitlessDomHandler(handler, event.DragEnterEvent.TYPE);
   }
 
-  event.HandlerRegistration addDragOverHandler(shared.DragOverHandler handler) {
-    return addBitlessDomHandler(handler, shared.DragOverEvent.TYPE);
+  event.HandlerRegistration addDragOverHandler(event.DragOverHandler handler) {
+    return addBitlessDomHandler(handler, event.DragOverEvent.TYPE);
   }
 
-  event.HandlerRegistration addDragLeaveHandler(shared.DragLeaveHandler handler) {
-    return addBitlessDomHandler(handler, shared.DragLeaveEvent.TYPE);
+  event.HandlerRegistration addDragLeaveHandler(event.DragLeaveHandler handler) {
+    return addBitlessDomHandler(handler, event.DragLeaveEvent.TYPE);
   }
 
-  event.HandlerRegistration addDropHandler(shared.DropHandler handler) {
-    return addBitlessDomHandler(handler, shared.DropEvent.TYPE);
+  event.HandlerRegistration addDropHandler(event.DropHandler handler) {
+    return addBitlessDomHandler(handler, event.DropEvent.TYPE);
   }
 }
 
@@ -87,7 +86,7 @@ class DraggablePanel extends ui.SimplePanel implements shared.HasAllDragAndDropH
 //// Drag and Drop callback functions
 ////*********************************
 
-void _onDragStart(shared.DragStartEvent evt){
+void _onDragStart(event.DragStartEvent evt){
   dart_html.Element dragTarget = evt.getNativeEvent().target;
   dragTarget.classes.add('moving');
   _dragSourceEl = dragTarget;
@@ -95,7 +94,7 @@ void _onDragStart(shared.DragStartEvent evt){
   evt.getDataTransfer().setData('text/html', dragTarget.innerHtml);
 }
 
-void _onDragEnd(shared.DragEndEvent evt){
+void _onDragEnd(event.DragEndEvent evt){
   dart_html.Element dragTarget = evt.getNativeEvent().target;
   dragTarget.classes.remove('moving');
   var cols = dart_html.document.queryAll('#columns .column');
@@ -104,23 +103,23 @@ void _onDragEnd(shared.DragEndEvent evt){
   }
 }
 
-void _onDragEnter(shared.DragEnterEvent evt){
+void _onDragEnter(event.DragEnterEvent evt){
   dart_html.Element dropTarget = evt.getNativeEvent().target;
   dropTarget.classes.add('over');
 }
 
-void _onDragOver(shared.DragOverEvent evt){
+void _onDragOver(event.DragOverEvent evt){
   // This is necessary to allow us to drop.
   evt.getNativeEvent().preventDefault();
   evt.getDataTransfer().dropEffect = 'move';
 }
 
-void _onDragLeave(shared.DragLeaveEvent evt){
+void _onDragLeave(event.DragLeaveEvent evt){
   dart_html.Element dropTarget = evt.getNativeEvent().target;
   dropTarget.classes.remove('over');
 }
 
-void _onDrop(shared.DropEvent evt){
+void _onDrop(event.DropEvent evt){
   // Stop the browser from redirecting.
   evt.getNativeEvent().stopPropagation();
 
@@ -139,59 +138,59 @@ void main29() {
   ui.Button btn = new ui.Button("Test");
   // Click
   event.HandlerRegistration handlerRegistration;
-  handlerRegistration = btn.addClickHandler(new shared.ClickHandlerAdapter((shared.ClickEvent evt){
+  handlerRegistration = btn.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent evt){
     print("Clicked");
     handlerRegistration.removeHandler();
   }));
   // Double click
-  btn.addDoubleClickHandler(new shared.DoubleClickHandlerAdapter((shared.DoubleClickEvent evt){
+  btn.addDoubleClickHandler(new event.DoubleClickHandlerAdapter((event.DoubleClickEvent evt){
     print("Double Clicked");
   }));
   // Focus
-  btn.addFocusHandler(new shared.FocusHandlerAdapter((shared.FocusEvent evt){
+  btn.addFocusHandler(new event.FocusHandlerAdapter((event.FocusEvent evt){
     print("Focus");
   }));
   // Blur
-  btn.addBlurHandler(new shared.BlurHandlerAdapter((shared.BlurEvent evt){
+  btn.addBlurHandler(new event.BlurHandlerAdapter((event.BlurEvent evt){
     print("Blur");
   }));
   ui.RootPanel.get("testId").add(btn);
 
   ui.TextBox normalText = new ui.TextBox();
   // Key down
-  normalText.addKeyDownHandler(new shared.KeyDownHandlerAdapter((shared.KeyDownEvent evt){
+  normalText.addKeyDownHandler(new event.KeyDownHandlerAdapter((event.KeyDownEvent evt){
     print("Key down: ${evt.getNativeKeyCode()}");
   }));
   // Key up
-  normalText.addKeyUpHandler(new shared.KeyUpHandlerAdapter((shared.KeyUpEvent evt){
+  normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
     print("Key up: ${evt.getNativeKeyCode()}");
   }));
   // Key press
-  normalText.addKeyPressHandler(new shared.KeyPressHandlerAdapter((shared.KeyPressEvent evt){
+  normalText.addKeyPressHandler(new event.KeyPressHandlerAdapter((event.KeyPressEvent evt){
     print("Key press: ${evt.getUnicodeCharCode()}");
   }));
   // Mouse down
-  normalText.addMouseDownHandler(new shared.MouseDownHandlerAdapter((shared.MouseDownEvent evt){
+  normalText.addMouseDownHandler(new event.MouseDownHandlerAdapter((event.MouseDownEvent evt){
     print("Mouse down: ${evt.getClientX()} x ${evt.getClientY()}");
   }));
   // Mouse up
-  normalText.addMouseUpHandler(new shared.MouseUpHandlerAdapter((shared.MouseUpEvent evt){
+  normalText.addMouseUpHandler(new event.MouseUpHandlerAdapter((event.MouseUpEvent evt){
     print("Mouse up: ${evt.getClientX()} x ${evt.getClientY()}");
   }));
   // Mouse move
-  normalText.addMouseMoveHandler(new shared.MouseMoveHandlerAdapter((shared.MouseMoveEvent evt){
+  normalText.addMouseMoveHandler(new event.MouseMoveHandlerAdapter((event.MouseMoveEvent evt){
     print("Mouse move: ${evt.getClientX()} x ${evt.getClientY()}");
   }));
   // Mouse out
-  normalText.addMouseOutHandler(new shared.MouseOutHandlerAdapter((shared.MouseOutEvent evt){
+  normalText.addMouseOutHandler(new event.MouseOutHandlerAdapter((event.MouseOutEvent evt){
     print("Mouse out");
   }));
   // Mouse over
-  normalText.addMouseOverHandler(new shared.MouseOverHandlerAdapter((shared.MouseOverEvent evt){
+  normalText.addMouseOverHandler(new event.MouseOverHandlerAdapter((event.MouseOverEvent evt){
     print("Mouse over");
   }));
   // Mouse move
-  normalText.addMouseWheelHandler(new shared.MouseWheelHandlerAdapter((shared.MouseWheelEvent evt){
+  normalText.addMouseWheelHandler(new event.MouseWheelHandlerAdapter((event.MouseWheelEvent evt){
     print("Mouse wheel: ${evt.getClientX()} x ${evt.getClientY()} x ${evt.getDeltaY()}");
   }));
   ui.RootPanel.get("testId").add(normalText);
@@ -234,12 +233,12 @@ ui.DialogBox createDialogBox() {
   // Add some text to the top of the dialog
   ui.Html details = new ui.Html("This is an example of a standard dialog box component."); //constants.cwDialogBoxDetails());
   dialogContents.add(details);
-  dialogContents.setWidgetCellHorizontalAlignment(details, shared.HasHorizontalAlignment.ALIGN_CENTER);
+  dialogContents.setWidgetCellHorizontalAlignment(details, i18n.HasHorizontalAlignment.ALIGN_CENTER);
 
   // Add an image to the dialog
   ui.Image image = new ui.Image("img/lights.png"); //Showcase.images.jimmy());
   dialogContents.add(image);
-  dialogContents.setWidgetCellHorizontalAlignment(image, shared.HasHorizontalAlignment.ALIGN_CENTER);
+  dialogContents.setWidgetCellHorizontalAlignment(image, i18n.HasHorizontalAlignment.ALIGN_CENTER);
 
   // Add a close button at the bottom of the dialog
   ui.Button closeButton = new ui.Button("Close");
@@ -250,10 +249,10 @@ ui.DialogBox createDialogBox() {
 //      });
   dialogContents.add(closeButton);
   if (i18n.LocaleInfo.getCurrentLocale().isRTL()) {
-    dialogContents.setWidgetCellHorizontalAlignment(closeButton, shared.HasHorizontalAlignment.ALIGN_LEFT);
+    dialogContents.setWidgetCellHorizontalAlignment(closeButton, i18n.HasHorizontalAlignment.ALIGN_LEFT);
 
   } else {
-    dialogContents.setWidgetCellHorizontalAlignment(closeButton, shared.HasHorizontalAlignment.ALIGN_RIGHT);
+    dialogContents.setWidgetCellHorizontalAlignment(closeButton, i18n.HasHorizontalAlignment.ALIGN_RIGHT);
   }
 
   // Return the dialog box
@@ -341,7 +340,7 @@ void main20() {
   flexTable.setCellPadding(3);
 
   // Add some text
-  cellFormatter.setHorizontalAlignment(0, 1, shared.HasHorizontalAlignment.ALIGN_LEFT);
+  cellFormatter.setHorizontalAlignment(0, 1, i18n.HasHorizontalAlignment.ALIGN_LEFT);
   flexTable.setHtml(0, 0, "This is a FlexTable that supports <b>colspans</b> and <b>rowspans</b>. You can use it to format your page or as a special purpose table.");
   cellFormatter.setColSpan(0, 0, 2);
 
@@ -357,7 +356,7 @@ void main20() {
   buttonPanel.add(addRowButton);
   buttonPanel.add(removeRowButton);
   flexTable.setWidget(0, 1, buttonPanel);
-  cellFormatter.setVerticalAlignment(0, 1, shared.HasVerticalAlignment.ALIGN_TOP);
+  cellFormatter.setVerticalAlignment(0, 1, i18n.HasVerticalAlignment.ALIGN_TOP);
 
   // Add two rows to start
   addRow(flexTable);
@@ -423,10 +422,10 @@ void main17() {
   // Set up some style - normally you'd do this in CSS, but it's
   // easier to show like this
 
-  shared.Dom.setStyleAttribute(panel.getElement(), "border", "3px solid #00c");
-  shared.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "margin", "5px 10px 10px 10px");
-  shared.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "padding", "10px 10px 10px 10px");
-  shared.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "border", "1px solid #ccf");
+  event.Dom.setStyleAttribute(panel.getElement(), "border", "3px solid #00c");
+  event.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "margin", "5px 10px 10px 10px");
+  event.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "padding", "10px 10px 10px 10px");
+  event.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "border", "1px solid #ccf");
 }
 
 void main16() {
@@ -447,8 +446,8 @@ void main15() {
   flowpanel.setSize("380px", "380px");
 
   ui.Button label = new ui.Button("My Button");
-  shared.Dom.setStyleAttribute(label.getElement(), "border", "1px solid #00f");
-  shared.Dom.setStyleAttribute(label.getElement(), "backgroundColor", "blue");
+  event.Dom.setStyleAttribute(label.getElement(), "border", "1px solid #00f");
+  event.Dom.setStyleAttribute(label.getElement(), "backgroundColor", "blue");
   label.setSize("100px", "100px");
   flowpanel.add(label);
 
@@ -558,7 +557,7 @@ ui.Widget createHeaderWidget(String text) {
   ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
   hPanel.setHeight("100%");
   hPanel.spacing = 0;
-  hPanel.setVerticalAlignment(shared.HasVerticalAlignment.ALIGN_MIDDLE);
+  hPanel.setVerticalAlignment(i18n.HasVerticalAlignment.ALIGN_MIDDLE);
   //hPanel.add(new Image(image));
   ui.Button headerText = new ui.Button(text);
   headerText.clearAndSetStyleName("cw-StackPanelHeader");
@@ -818,7 +817,7 @@ void main1() {
   print("Text: ${anchor.text}");
   //
   event.HandlerRegistration handlerRegistration;
-  handlerRegistration = anchor.addClickHandler(new shared.ClickHandlerAdapter((shared.ClickEvent evt){
+  handlerRegistration = anchor.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent evt){
     dart_html.UIEvent uiEvent = evt.getNativeEvent();
     print("Event: ${uiEvent.type}");
     //
@@ -892,28 +891,28 @@ void main() {
 }
 
 void _addAllHandlers(ui.Widget widget) {
-  if (widget is shared.HasClickHandlers) {
-    widget.addClickHandler(new shared.ClickHandlerAdapter(_print));
+  if (widget is event.HasClickHandlers) {
+    widget.addClickHandler(new event.ClickHandlerAdapter(_print));
   }
-  if (widget is shared.HasDoubleClickHandlers) {
-    widget.addDoubleClickHandler(new shared.DoubleClickHandlerAdapter(_print));
+  if (widget is event.HasDoubleClickHandlers) {
+    widget.addDoubleClickHandler(new event.DoubleClickHandlerAdapter(_print));
   }
-  if (widget is shared.HasAllFocusHandlers) {
-    widget.addFocusHandler(new shared.FocusHandlerAdapter(_print));
-    widget.addBlurHandler(new shared.BlurHandlerAdapter(_print));
+  if (widget is event.HasAllFocusHandlers) {
+    widget.addFocusHandler(new event.FocusHandlerAdapter(_print));
+    widget.addBlurHandler(new event.BlurHandlerAdapter(_print));
   }
-  if (widget is shared.HasAllMouseHandlers) {
-    widget.addMouseDownHandler(new shared.MouseDownHandlerAdapter(_print));
-    widget.addMouseUpHandler(new shared.MouseUpHandlerAdapter(_print));
-    widget.addMouseOutHandler(new shared.MouseOutHandlerAdapter(_print));
-    widget.addMouseOverHandler(new shared.MouseOverHandlerAdapter(_print));
-    widget.addMouseMoveHandler(new shared.MouseMoveHandlerAdapter(_print));
-    widget.addMouseWheelHandler(new shared.MouseWheelHandlerAdapter(_print));
+  if (widget is event.HasAllMouseHandlers) {
+    widget.addMouseDownHandler(new event.MouseDownHandlerAdapter(_print));
+    widget.addMouseUpHandler(new event.MouseUpHandlerAdapter(_print));
+    widget.addMouseOutHandler(new event.MouseOutHandlerAdapter(_print));
+    widget.addMouseOverHandler(new event.MouseOverHandlerAdapter(_print));
+    widget.addMouseMoveHandler(new event.MouseMoveHandlerAdapter(_print));
+    widget.addMouseWheelHandler(new event.MouseWheelHandlerAdapter(_print));
   }
-  if (widget is shared.HasAllKeyHandlers) {
-    widget.addKeyUpHandler(new shared.KeyUpHandlerAdapter(_print));
-    widget.addKeyDownHandler(new shared.KeyDownHandlerAdapter(_print));
-    widget.addKeyPressHandler(new shared.KeyPressHandlerAdapter(_print));
+  if (widget is event.HasAllKeyHandlers) {
+    widget.addKeyUpHandler(new event.KeyUpHandlerAdapter(_print));
+    widget.addKeyDownHandler(new event.KeyDownHandlerAdapter(_print));
+    widget.addKeyPressHandler(new event.KeyPressHandlerAdapter(_print));
   }
   // HasAllDragAndDropHandlers, HasAllGestureHandlers, HasAllTouchHandlers
 }

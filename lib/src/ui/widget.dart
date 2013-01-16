@@ -194,7 +194,7 @@ class Widget extends UiObject
     } else {
       sinkEvents(new Set.from([type.eventName]));
     }
-    return ensureHandlers().addHandlerToSource(type, getElement(), handler);
+    return ensureHandlers().addHandler(type, handler);
   }
 
   /**

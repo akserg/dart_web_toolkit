@@ -4,6 +4,7 @@ DartMob Changes
 **January 16, 2013
 
 * Implemented set of Adapters for EventHandlers because Dart doesn't support anonimous interfaces.
+* Checked Anchor events dispatching.
 
 **January 15, 2013
 

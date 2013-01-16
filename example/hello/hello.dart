@@ -885,14 +885,39 @@ void main() {
   ui.Anchor anchor = new ui.Anchor(true);
   anchor.html = "<b>hi</b>";
 
-  event.HandlerRegistration handlerRegistration;
-  handlerRegistration = anchor.addClickHandler(new shared.ClickHandlerAdapter((shared.ClickEvent evt){
-    dart_html.UIEvent uiEvent = evt.getNativeEvent();
-    print("Event: ${uiEvent.type}");
-//    //
-//    handlerRegistration.removeHandler();
-  }));
+  _addAllHandlers(anchor);
 
   ui.RootPanel.get("testId").add(anchor);
 
+}
+
+void _addAllHandlers(ui.Widget widget) {
+  if (widget is shared.HasClickHandlers) {
+    widget.addClickHandler(new shared.ClickHandlerAdapter(_print));
+  }
+  if (widget is shared.HasDoubleClickHandlers) {
+    widget.addDoubleClickHandler(new shared.DoubleClickHandlerAdapter(_print));
+  }
+  if (widget is shared.HasAllFocusHandlers) {
+    widget.addFocusHandler(new shared.FocusHandlerAdapter(_print));
+    widget.addBlurHandler(new shared.BlurHandlerAdapter(_print));
+  }
+  if (widget is shared.HasAllMouseHandlers) {
+    widget.addMouseDownHandler(new shared.MouseDownHandlerAdapter(_print));
+    widget.addMouseUpHandler(new shared.MouseUpHandlerAdapter(_print));
+    widget.addMouseOutHandler(new shared.MouseOutHandlerAdapter(_print));
+    widget.addMouseOverHandler(new shared.MouseOverHandlerAdapter(_print));
+    widget.addMouseMoveHandler(new shared.MouseMoveHandlerAdapter(_print));
+    widget.addMouseWheelHandler(new shared.MouseWheelHandlerAdapter(_print));
+  }
+  if (widget is shared.HasAllKeyHandlers) {
+    widget.addKeyUpHandler(new shared.KeyUpHandlerAdapter(_print));
+    widget.addKeyDownHandler(new shared.KeyDownHandlerAdapter(_print));
+    widget.addKeyPressHandler(new shared.KeyPressHandlerAdapter(_print));
+  }
+  // HasAllDragAndDropHandlers, HasAllGestureHandlers, HasAllTouchHandlers
+}
+
+void _print(event.DomEvent event) {
+  print("Source: ${event.getRelativeElement().toString()} Event: ${event.getNativeEvent().type}");
 }

@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link BlurEvent} events.
  */
-class BlurHandler extends DomEventHandler {
-
-  BlurHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class BlurHandler extends EventHandler {
 
   /**
    * Called when BlurEvent is fired.
    *
    * @param event the {@link BlurEvent} that was fired
    */
-  void onBlur(BlurEvent event) {
-    onDomEventHandler(event);
-  }
+  void onBlur(BlurEvent event);
 }

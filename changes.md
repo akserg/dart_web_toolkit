@@ -1,6 +1,10 @@
 DartMob Changes
 ==============
 
+**January 16, 2013
+
+* Implemented set of Adapters for EventHandlers because Dart doesn't support anonimous interfaces.
+
 **January 15, 2013
 
 * Added Browser lib for access to dart.js.

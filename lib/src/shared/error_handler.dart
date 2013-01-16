@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link ErrorEvent} events.
  */
-class ErrorHandler extends DomEventHandler {
-
-  ErrorHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class ErrorHandler extends EventHandler {
 
   /**
    * Called when ErrorEvent is fired.
    *
    * @param event the {@link ErrorEvent} that was fired
    */
-  void onError(ErrorEvent event) {
-    onDomEventHandler(event);
-  }
+  void onError(ErrorEvent event);
 }

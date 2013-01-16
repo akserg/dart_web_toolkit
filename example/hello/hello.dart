@@ -35,12 +35,12 @@ ui.SimplePanel createDraggablePanel(int i) {
   DraggablePanel column = new DraggablePanel();
   column.addStyleName("column");
   column.getElement().draggable = true;
-  column.addDragStartHandler(new shared.DragStartHandler(_onDragStart));
-  column.addDragEndHandler(new shared.DragEndHandler(_onDragEnd));
-  column.addDragEnterHandler(new shared.DragEnterHandler(_onDragEnter));
-  column.addDragOverHandler(new shared.DragOverHandler(_onDragOver));
-  column.addDragLeaveHandler(new shared.DragLeaveHandler(_onDragLeave));
-  column.addDropHandler(new shared.DropHandler(_onDrop));
+  column.addDragStartHandler(new shared.DragStartHandlerAdapter(_onDragStart));
+  column.addDragEndHandler(new shared.DragEndHandlerAdapter(_onDragEnd));
+  column.addDragEnterHandler(new shared.DragEnterHandlerAdapter(_onDragEnter));
+  column.addDragOverHandler(new shared.DragOverHandlerAdapter(_onDragOver));
+  column.addDragLeaveHandler(new shared.DragLeaveHandlerAdapter(_onDragLeave));
+  column.addDropHandler(new shared.DropHandlerAdapter(_onDrop));
 
   ui.Html header = new ui.Html("<header>${i.toString()}</header>");
   column.add(header);
@@ -139,59 +139,59 @@ void main29() {
   ui.Button btn = new ui.Button("Test");
   // Click
   event.HandlerRegistration handlerRegistration;
-  handlerRegistration = btn.addClickHandler(new shared.ClickHandler((shared.ClickEvent evt){
+  handlerRegistration = btn.addClickHandler(new shared.ClickHandlerAdapter((shared.ClickEvent evt){
     print("Clicked");
     handlerRegistration.removeHandler();
   }));
   // Double click
-  btn.addDoubleClickHandler(new shared.DoubleClickHandler((shared.DoubleClickEvent evt){
+  btn.addDoubleClickHandler(new shared.DoubleClickHandlerAdapter((shared.DoubleClickEvent evt){
     print("Double Clicked");
   }));
   // Focus
-  btn.addFocusHandler(new shared.FocusHandler((shared.FocusEvent evt){
+  btn.addFocusHandler(new shared.FocusHandlerAdapter((shared.FocusEvent evt){
     print("Focus");
   }));
   // Blur
-  btn.addBlurHandler(new shared.BlurHandler((shared.BlurEvent evt){
+  btn.addBlurHandler(new shared.BlurHandlerAdapter((shared.BlurEvent evt){
     print("Blur");
   }));
   ui.RootPanel.get("testId").add(btn);
 
   ui.TextBox normalText = new ui.TextBox();
   // Key down
-  normalText.addKeyDownHandler(new shared.KeyDownHandler((shared.KeyDownEvent evt){
+  normalText.addKeyDownHandler(new shared.KeyDownHandlerAdapter((shared.KeyDownEvent evt){
     print("Key down: ${evt.getNativeKeyCode()}");
   }));
   // Key up
-  normalText.addKeyUpHandler(new shared.KeyUpHandler((shared.KeyUpEvent evt){
+  normalText.addKeyUpHandler(new shared.KeyUpHandlerAdapter((shared.KeyUpEvent evt){
     print("Key up: ${evt.getNativeKeyCode()}");
   }));
   // Key press
-  normalText.addKeyPressHandler(new shared.KeyPressHandler((shared.KeyPressEvent evt){
+  normalText.addKeyPressHandler(new shared.KeyPressHandlerAdapter((shared.KeyPressEvent evt){
     print("Key press: ${evt.getUnicodeCharCode()}");
   }));
   // Mouse down
-  normalText.addMouseDownHandler(new shared.MouseDownHandler((shared.MouseDownEvent evt){
+  normalText.addMouseDownHandler(new shared.MouseDownHandlerAdapter((shared.MouseDownEvent evt){
     print("Mouse down: ${evt.getClientX()} x ${evt.getClientY()}");
   }));
   // Mouse up
-  normalText.addMouseUpHandler(new shared.MouseUpHandler((shared.MouseUpEvent evt){
+  normalText.addMouseUpHandler(new shared.MouseUpHandlerAdapter((shared.MouseUpEvent evt){
     print("Mouse up: ${evt.getClientX()} x ${evt.getClientY()}");
   }));
   // Mouse move
-  normalText.addMouseMoveHandler(new shared.MouseMoveHandler((shared.MouseMoveEvent evt){
+  normalText.addMouseMoveHandler(new shared.MouseMoveHandlerAdapter((shared.MouseMoveEvent evt){
     print("Mouse move: ${evt.getClientX()} x ${evt.getClientY()}");
   }));
   // Mouse out
-  normalText.addMouseOutHandler(new shared.MouseOutHandler((shared.MouseOutEvent evt){
+  normalText.addMouseOutHandler(new shared.MouseOutHandlerAdapter((shared.MouseOutEvent evt){
     print("Mouse out");
   }));
   // Mouse over
-  normalText.addMouseOverHandler(new shared.MouseOverHandler((shared.MouseOverEvent evt){
+  normalText.addMouseOverHandler(new shared.MouseOverHandlerAdapter((shared.MouseOverEvent evt){
     print("Mouse over");
   }));
   // Mouse move
-  normalText.addMouseWheelHandler(new shared.MouseWheelHandler((shared.MouseWheelEvent evt){
+  normalText.addMouseWheelHandler(new shared.MouseWheelHandlerAdapter((shared.MouseWheelEvent evt){
     print("Mouse wheel: ${evt.getClientX()} x ${evt.getClientY()} x ${evt.getDeltaY()}");
   }));
   ui.RootPanel.get("testId").add(normalText);
@@ -789,7 +789,7 @@ void main2() {
 
 }
 
-void main() {
+void main1() {
   //*******
   // Anchor
   //*******
@@ -818,7 +818,7 @@ void main() {
   print("Text: ${anchor.text}");
   //
   event.HandlerRegistration handlerRegistration;
-  handlerRegistration = anchor.addClickHandler(new shared.ClickHandler((shared.ClickEvent evt){
+  handlerRegistration = anchor.addClickHandler(new shared.ClickHandlerAdapter((shared.ClickEvent evt){
     dart_html.UIEvent uiEvent = evt.getNativeEvent();
     print("Event: ${uiEvent.type}");
     //
@@ -844,7 +844,7 @@ void main() {
 
   headerPanel.setHeaderWidget(new ui.Button("Header"));
   ui.CheckBox check = new ui.CheckBox("Active Footer");
-  check.addValueChangeHandler(new event.ValueChangeHandler<bool>((event.ValueChangeEvent evt){
+  check.addValueChangeHandler(new event.ValueChangeHandlerAdapter<bool>((event.ValueChangeEvent evt){
     print("CheckBox value: ${evt.value}");
   }));
   headerPanel.setFooterWidget(check);
@@ -879,4 +879,20 @@ void main() {
   }
 
   ui.RootPanel.get("testId").add(hPanel);
+}
+
+void main() {
+  ui.Anchor anchor = new ui.Anchor(true);
+  anchor.html = "<b>hi</b>";
+
+  event.HandlerRegistration handlerRegistration;
+  handlerRegistration = anchor.addClickHandler(new shared.ClickHandlerAdapter((shared.ClickEvent evt){
+    dart_html.UIEvent uiEvent = evt.getNativeEvent();
+    print("Event: ${uiEvent.type}");
+//    //
+//    handlerRegistration.removeHandler();
+  }));
+
+  ui.RootPanel.get("testId").add(anchor);
+
 }

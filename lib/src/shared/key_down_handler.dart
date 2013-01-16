@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link KeyDownEvent} events.
  */
-class KeyDownHandler extends DomEventHandler {
-
-  KeyDownHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class KeyDownHandler extends EventHandler {
 
   /**
    * Called when {@link KeyDownEvent} is fired.
    *
    * @param event the {@link KeyDownEvent} that was fired
    */
-  void onKeyDown(KeyDownEvent event) {
-    onDomEventHandler(event);
-  }
+  void onKeyDown(KeyDownEvent event);
 }

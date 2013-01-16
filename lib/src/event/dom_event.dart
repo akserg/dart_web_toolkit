@@ -20,9 +20,9 @@ abstract class DomEvent extends DwtEvent implements HasNativeEvent {
   /**
    * The event type.
    */
-  static EventType<DomEventHandler> TYPE = new EventType<DomEventHandler>();
+  static EventType<EventHandler> TYPE = new EventType<EventHandler>();
 
-  EventType<DomEventHandler> getAssociatedType() {
+  EventType<EventHandler> getAssociatedType() {
     return TYPE;
   }
 

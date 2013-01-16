@@ -5,29 +5,29 @@ part of dart_web_toolkit_ui;
 
 /**
  * Abstract base class for all text entry widgets.
- * 
+ *
  * <h3>Use in UiBinder Templates</h3>
- * 
+ *
  * @param <T> the value type
  */
 class ValueBoxBase<T> extends FocusWidget implements
   HasChangeHandlers, HasName, HasDirectionEstimator,
   HasValue<T>, AutoDirectionHandlerTarget, IsEditor<ValueBoxEditor<T>> {
-  
+
   static TextBoxImpl _impl = new TextBoxImpl.browserDependent();
 //  AutoDirectionHandler _autoDirHandler;
-  
+
   Parser<T> _parser;
   Renderer<T> _renderer;
   ValueBoxEditor<T> _editor;
   dart_html.Event _currentEvent;
 
   bool _valueChangeHandlerInitialized;
-  
+
   /**
    * Creates a value box that wraps the given browser element handle. This is
    * only used by subclasses.
-   * 
+   *
    * @param elem the browser element to wrap
    */
   ValueBoxBase(dart_html.Element elem, Renderer<T> renderer, Parser<T> parser) : super(elem) {
@@ -35,30 +35,30 @@ class ValueBoxBase<T> extends FocusWidget implements
     this._renderer = renderer;
     this._parser = parser;
   }
-   
+
   //************************************
   // Implementation of HasChangeHandlers
   //************************************
-  
+
   HandlerRegistration addChangeHandler(ChangeHandler handler) {
     return addDomHandler(handler, ChangeEvent.TYPE);
   }
-  
+
   //*****************************************
   // Implementation of HasValueChangeHandlers
   //*****************************************
-  
+
   HandlerRegistration addValueChangeHandler(ValueChangeHandler<T> handler) {
     // Initialization code
     if (!_valueChangeHandlerInitialized) {
       _valueChangeHandlerInitialized = true;
-      addChangeHandler(new ChangeHandler((ChangeEvent event){
+      addChangeHandler(new ChangeHandlerAdapter((ChangeEvent event){
         ValueChangeEvent.fire(this, getValue());
       }));
     }
     return addHandler(handler, ValueChangeEvent.TYPE);
   }
-  
+
   /**
    * Returns an Editor that is backed by the ValueBoxBase. The default
    * implementation returns {@link ValueBoxEditor#of(ValueBoxBase)}. Subclasses
@@ -71,7 +71,7 @@ class ValueBoxBase<T> extends FocusWidget implements
     }
     return _editor;
   }
-  
+
   /**
    * If a keyboard event is currently being handled on this text box, calling
    * this method will suppress it. This allows listeners to easily filter
@@ -83,62 +83,62 @@ class ValueBoxBase<T> extends FocusWidget implements
       _currentEvent.preventDefault();
     }
   }
-  
+
   /**
    * Gets the current position of the cursor (this also serves as the beginning
    * of the text selection).
-   * 
+   *
    * @return the cursor's position
    */
   int getCursorPos() {
     return _impl.getCursorPos(getElement());
   }
-  
+
   /**
    * Sets the cursor position.
-   * 
+   *
    * This will only work when the widget is attached to the document and not
    * hidden.
-   * 
+   *
    * @param pos the new cursor position
    */
   void setCursorPos(int pos) {
     setSelectionRange(pos, 0);
   }
-  
+
   String get direction => null; //BidiUtils.getDirectionOnElement(getElement());
-  
+
   void set direction(String val) {
     //BidiUtils.setDirectionOnElement(getElement(), val);
   }
-  
+
 //  DirectionEstimator getDirectionEstimator() {
 //    return _autoDirHandler.getDirectionEstimator();
 //  }
-  
+
   /**
    * Toggles on / off direction estimation.
    */
 //  void setDirectionEstimator(bool enabled) {
 //    autoDirHandler.setDirectionEstimator(enabled);
 //  }
-  
+
   /**
    * Sets the direction estimation model of the auto-dir handler.
    */
 //  void setDirectionEstimator(DirectionEstimator directionEstimator) {
 //    autoDirHandler.setDirectionEstimator(directionEstimator);
 //  }
-  
+
   String get name => Dom.getElementProperty(getElement(), "name");
-  
+
   void set name(String val) {
     Dom.setElementProperty(getElement(), "name", val);
   }
-  
+
   /**
    * Gets the text currently selected within this text box.
-   * 
+   *
    * @return the selected text, or an empty string if none is selected
    */
   String getSelectedText() {
@@ -149,32 +149,32 @@ class ValueBoxBase<T> extends FocusWidget implements
     int length = getSelectionLength();
     return text.substring(start, start + length);
   }
-  
+
   /**
    * Gets the length of the current text selection.
-   * 
+   *
    * @return the text selection length
    */
   int getSelectionLength() {
     return _impl.getSelectionLength(getElement());
   }
-  
+
   String get text => Dom.getElementProperty(getElement(), "value");
-  
+
   /**
    * Sets this object's text. Note that some browsers will manipulate the text
    * before adding it to the widget. For example, most browsers will strip all
    * <code>\r</code> from the text, except IE which will add a <code>\r</code>
    * before each <code>\n</code>. Use {@link #getText()} to get the text
    * directly from the widget.
-   * 
+   *
    * @param text the object's new text
    */
   void set text(String val) {
     Dom.setElementProperty(getElement(), "value", val != null ? val : "");
 //    _autoDirHandler.refreshDirection();
   }
-  
+
   /**
    * Return the parsed value, or null if the field is empty or parsing fails.
    */
@@ -185,7 +185,7 @@ class ValueBoxBase<T> extends FocusWidget implements
       return null;
     }
   }
-  
+
   void setValue(T value, [bool fireEvents = false]) {
     T oldValue = getValue();
     text = _renderer.render(value);
@@ -193,10 +193,10 @@ class ValueBoxBase<T> extends FocusWidget implements
       ValueChangeEvent.fireIfNotEqual(this, oldValue, value);
     }
   }
-  
+
   /**
    * Return the parsed value, or null if the field is empty.
-   * 
+   *
    * @throws ParseException if the value cannot be parsed
    */
   T getValueOrThrow() {
@@ -208,17 +208,17 @@ class ValueBoxBase<T> extends FocusWidget implements
 
     return parseResult;
   }
-  
+
   /**
    * Determines whether or not the widget is read-only.
-   * 
+   *
    * @return <code>true</code> if the widget is currently read-only,
    *         <code>false</code> if the widget is currently editable
    */
   bool isReadOnly() {
     return Dom.getElementPropertyBoolean(getElement(), "readOnly");
   }
-  
+
   void onBrowserEvent(dart_html.Event event) {
 //    int type = DOM.eventGetType(event);
 //    if ((type & Event.KEYEVENTS) != 0) {
@@ -234,10 +234,10 @@ class ValueBoxBase<T> extends FocusWidget implements
       super.onBrowserEvent(event);
 //    }
   }
-  
+
   /**
    * Selects all of the text in the box.
-   * 
+   *
    * This will only work when the widget is attached to the document and not
    * hidden.
    */
@@ -247,14 +247,14 @@ class ValueBoxBase<T> extends FocusWidget implements
       setSelectionRange(0, length);
     }
   }
-  
+
   void setAlignment(TextAlignment align) {
     Dom.setStyleAttribute(getElement(), "textAlign", align.value);
   }
-  
+
   /**
    * Turns read-only mode on or off.
-   * 
+   *
    * @param readOnly if <code>true</code>, the widget becomes read-only; if
    *          <code>false</code> the widget becomes editable
    */
@@ -267,13 +267,13 @@ class ValueBoxBase<T> extends FocusWidget implements
       removeStyleDependentName(readOnlyStyle);
     }
   }
-  
+
   /**
    * Sets the range of text to be selected.
-   * 
+   *
    * This will only work when the widget is attached to the document and not
    * hidden.
-   * 
+   *
    * @param pos the position of the first character to be selected
    * @param length the number of characters to be selected
    */
@@ -291,11 +291,11 @@ class ValueBoxBase<T> extends FocusWidget implements
     }
     _impl.setSelectionRange(getElement(), pos, length);
   }
-  
+
   TextBoxImpl getImpl() {
     return _impl;
   }
-  
+
   void onLoad() {
     super.onLoad();
 //    _autoDirHandler.refreshDirection();
@@ -306,9 +306,9 @@ class ValueBoxBase<T> extends FocusWidget implements
  * Alignment values for {@link ValueBoxBase#setAlignment}.
  */
 class TextAlignment extends Enum<String> {
-  
+
   const TextAlignment(String type) : super (type);
-  
+
   static const TextAlignment CENTER = const TextAlignment("center");
   static const TextAlignment JUSTIFY = const TextAlignment("justify");
   static const TextAlignment LEFT = const TextAlignment("left");

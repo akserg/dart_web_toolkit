@@ -6,16 +6,12 @@ part of dart_web_toolkit_event;
 /**
  * Implemented by objects that handle {@link AttachEvent}.
  */
-class ValueChangeHandler<T> extends DwtEventHandler {
-  
-  ValueChangeHandler(OnDwtEventHandler onDwtEventHandler) : super(onDwtEventHandler);
-  
+abstract class ValueChangeHandler<T> extends EventHandler {
+
   /**
    * Called when {@link ValueChangeEvent} is fired.
-   * 
+   *
    * @param event the {@link ValueChangeEvent} that was fired
    */
-  void onValueChange(ValueChangeEvent<T> event) {
-    onDwtEventHandler(event);
-  }
+  void onValueChange(ValueChangeEvent<T> event);
 }

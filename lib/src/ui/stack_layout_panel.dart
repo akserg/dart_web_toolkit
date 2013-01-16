@@ -64,20 +64,20 @@ part of dart_web_toolkit_ui;
 class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   ProvidesResize, IndexedPanelForIsWidget, AnimatedLayout,
   HasBeforeSelectionHandlers<int>, HasSelectionHandlers<int> {
-  
+
   static final String WIDGET_STYLE = "dwt-StackLayoutPanel";
   static final String CONTENT_STYLE = "dwt-StackLayoutPanelContent";
   static final String HEADER_STYLE = "dwt-StackLayoutPanelHeader";
   static final String HEADER_STYLE_HOVERING = "dwt-StackLayoutPanelHeader-hovering";
-  
+
   static final int ANIMATION_TIME = 250;
-  
+
   int animationDuration = ANIMATION_TIME;
   LayoutPanel layoutPanel;
   final Unit unit;
   final List<StackLayoutPanelLayoutData> layoutData = new List<StackLayoutPanelLayoutData>();
   int selectedIndex = -1;
-  
+
   /**
    * Creates an empty stack panel.
    *
@@ -87,15 +87,15 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     initWidget(layoutPanel);
     clearAndSetStyleName(WIDGET_STYLE);
   }
-  
+
   void add(Widget w) {
     assert (false); // : "Single-argument add() is not supported for this widget";
   }
-  
+
   /**
    * Adds a child widget to this stack, along with a widget representing the
    * stack header.
-   * 
+   *
    * @param widget the child widget to be added
    * @param header the text to be shown on its header
    * @param asHtml <code>true</code> to treat the specified text as HTML
@@ -104,24 +104,24 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   void addWidget(Widget widget, String header, bool asHtml, double headerSize) {
     insertAsText(widget, header, asHtml, headerSize, getWidgetCount());
   }
-  
+
   /**
    * Overloaded version for IsWidget.
-   * 
+   *
    * @see #add(Widget,String,boolean,double)
    */
   void addIsWidget(IsWidget widget, String header, bool asHtml, double headerSize) {
     this.addWidget(widget.asWidget(), header, asHtml, headerSize);
   }
-  
+
   HandlerRegistration addBeforeSelectionHandler(BeforeSelectionHandler<int> handler) {
     return addHandler(handler, BeforeSelectionEvent.TYPE);
   }
-  
+
   HandlerRegistration addSelectionHandler(SelectionHandler<int> handler) {
     return addHandler(handler, SelectionEvent.TYPE);
   }
-  
+
   void animate(int duration, [LayoutAnimationCallback callback = null]) {
     // Don't try to animate zero widgets.
     if (layoutData.length == 0) {
@@ -160,26 +160,26 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 
     layoutPanel.animate(duration, callback);
   }
-  
+
   void clear() {
     layoutPanel.clear();
     layoutData.clear();
     selectedIndex = -1;
   }
-  
+
   void forceLayout() {
     layoutPanel.forceLayout();
   }
-  
+
   /**
    * Get the duration of the animated transition between children.
-   * 
+   *
    * @return the duration in milliseconds
    */
   int getAnimationDuration() {
     return animationDuration;
   }
-  
+
   /**
    * Gets the widget in the stack header at the given index.
    *
@@ -190,7 +190,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     checkIndex(index);
     return (layoutData[index] as StackLayoutPanelLayoutData).header.getWidget();
   }
-  
+
   /**
    * Gets the widget in the stack header associated with the given child widget.
    *
@@ -201,7 +201,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     checkChild(child);
     return getHeaderWidgetAt(getWidgetIndex(child));
   }
-  
+
   /**
    * Gets the currently-selected index.
    *
@@ -210,7 +210,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   int getVisibleIndex() {
     return selectedIndex;
   }
-  
+
   /**
    * Gets the currently-selected widget.
    *
@@ -222,19 +222,19 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     }
     return getWidgetAt(selectedIndex);
   }
-  
+
   Widget getWidgetAt(int index) {
     return layoutPanel.getWidget(index * 2 + 1);
   }
-  
+
   int getWidgetCount() {
     return layoutPanel.getWidgetCount() ~/ 2;
   }
-  
+
   int getWidgetIndexIsWidget(IsWidget child) {
     return getWidgetIndex(asWidgetOrNull(child));
   }
-  
+
   int getWidgetIndex(Widget child) {
     int index = layoutPanel.getWidgetIndex(child);
     if (index == -1) {
@@ -242,11 +242,11 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     }
     return (index - 1) ~/ 2;
   }
-  
+
   /**
    * Inserts a widget into the panel. If the Widget is already attached, it will
    * be moved to the requested index.
-   * 
+   *
    * @param child the widget to be added
    * @param text the text to be shown on its header
    * @param asHtml <code>true</code> to treat the specified text as HTML
@@ -262,19 +262,19 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 //    }
 //    insert(child, contents, headerSize, beforeIndex);
   }
-  
+
   Iterator<Widget> iterator() {
     return new StackLayoutPanellIterator(this);
   }
-  
+
   void onResize() {
     layoutPanel.onResize();
   }
-  
+
   bool removeAt(int index) {
     return remove(getWidgetAt(index));
   }
-  
+
   bool remove(Widget child) {
     if (child.getParent() != layoutPanel) {
       return false;
@@ -309,22 +309,22 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 
     return false;
   }
-  
+
   /**
    * Set the duration of the animated transition between children.
-   * 
+   *
    * @param duration the duration in milliseconds.
    */
   void setAnimationDuration(int duration) {
     this.animationDuration = duration;
   }
-  
+
   /**
    * Sets a stack header's HTML contents.
    *
    * Use care when setting an object's HTML; it is an easy way to expose
    * script-based security problems. Consider using
-   * {@link #setHeaderHTML(int, SafeHtml)} or 
+   * {@link #setHeaderHTML(int, SafeHtml)} or
    * {@link #setHeaderText(int, String)} whenever possible.
    *
    * @param index the index of the header whose HTML is to be set
@@ -338,7 +338,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     assert (headerWidget is HasHtml); // : "Header widget does not implement HasHTML";
     (headerWidget as HasHtml).html = html;
   }
-  
+
   /**
    * Sets a stack header's text contents.
    *
@@ -353,7 +353,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     assert (headerWidget is HasText); // : "Header widget does not implement HasText";
     (headerWidget as HasText).text = text;
   }
-  
+
   /**
    * Shows the specified widget.
    *
@@ -363,20 +363,20 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   void showWidget(Widget child, [bool fireEvents = false]) {
     showWidgetAt(getWidgetIndex(child), animationDuration, fireEvents);
   }
-  
+
   void onLoad() {
     // When the widget becomes attached, update its layout.
     animate(0);
   }
-  
+
   void checkChild(Widget child) {
     assert (layoutPanel.getChildren().contains(child));
   }
-  
+
   void checkIndex(int index) {
     assert ((index >= 0) && (index < getWidgetCount())); // : "Index out of bounds";
   }
-  
+
   void insert(Widget child, StackLayoutPanelHeader header, double headerSize, int beforeIndex) {
     assert ((beforeIndex >= 0) && (beforeIndex <= getWidgetCount())); // : "beforeIndex out of bounds";
 
@@ -408,15 +408,15 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     header.addStyleName(HEADER_STYLE);
     child.addStyleName(CONTENT_STYLE);
 
-    header.addClickHandler(new ClickHandler((ClickEvent event) {
+    header.addClickHandler(new ClickHandlerAdapter((ClickEvent event) {
         showWidget(child);
     }));
 
-    header.addMouseOutHandler(new MouseOutHandler((MouseOutEvent event) {
+    header.addMouseOutHandler(new MouseOutHandlerAdapter((MouseOutEvent event) {
         header.removeStyleName(HEADER_STYLE_HOVERING);
     }));
 
-    header.addMouseOverHandler(new MouseOverHandler((MouseOverEvent event) {
+    header.addMouseOverHandler(new MouseOverHandlerAdapter((MouseOverEvent event) {
         header.addStyleName(HEADER_STYLE_HOVERING);
     }));
 
@@ -435,7 +435,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
       animate(animationDuration);
     }
   }
-  
+
   void showWidgetAt(int index, [int duration = null, bool fireEvents = false]) {
     checkIndex(index);
     if (index == selectedIndex) {
@@ -465,7 +465,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 }
 
 class StackLayoutPanelHeader extends Composite implements HasClickHandlers {
-  
+
   StackLayoutPanelHeader(Widget child) {
     initWidget(child);
   }
@@ -484,7 +484,7 @@ class StackLayoutPanelHeader extends Composite implements HasClickHandlers {
 }
 
 class StackLayoutPanelLayoutData {
-  
+
   double headerSize;
   StackLayoutPanelHeader header;
   Widget widget;
@@ -493,10 +493,10 @@ class StackLayoutPanelLayoutData {
 }
 
 class StackLayoutPanellIterator extends Iterator<Widget> {
-  
+
   int i = 0, last = -1;
   StackLayoutPanel _panel;
-  
+
   StackLayoutPanellIterator(this._panel);
 
   bool get hasNext => i < _panel.layoutData.length;

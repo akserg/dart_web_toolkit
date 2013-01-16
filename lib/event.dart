@@ -17,7 +17,6 @@ part 'src/event/umbrella_exception.dart';
 
 part 'src/event/event_listener.dart';
 part 'src/event/dwt_event.dart';
-part 'src/event/dwt_event_handler.dart';
 part 'src/event/dom_event.dart';
 part 'src/event/attach_event.dart';
 part 'src/event/event_handler.dart';
@@ -31,3 +30,6 @@ part 'src/event/has_handlers.dart';
 part 'src/event/has_attach_handlers.dart';
 part 'src/event/has_native_event.dart';
 part 'src/event/has_value_change_handlers.dart';
+
+part 'src/event/event_handler_adapter.dart';
+part 'src/event/adapter/value_change_handler_adapter.dart';

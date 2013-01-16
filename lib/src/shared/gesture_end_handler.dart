@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link GestureEndEvent} events.
  */
-class GestureEndHandler extends DomEventHandler {
-
-  GestureEndHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class GestureEndHandler extends EventHandler {
 
   /**
    * Called when GestureEndEvent is fired.
    *
    * @param event the {@link GestureEndEvent} that was fired
    */
-  void onGestureEnd(GestureEndEvent event) {
-    onDomEventHandler(event);
-  }
+  void onGestureEnd(GestureEndEvent event);
 }

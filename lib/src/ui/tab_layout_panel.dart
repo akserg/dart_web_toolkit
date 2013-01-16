@@ -63,7 +63,7 @@ part of dart_web_toolkit_ui;
  * </pre>
  */
 class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResize, IndexedPanelForIsWidget, AnimatedLayout, HasBeforeSelectionHandlers<int>, HasSelectionHandlers<int> {
-  
+
   static final String _CONTENT_CONTAINER_STYLE = "dwt-TabLayoutPanelContentContainer";
   static final String _CONTENT_STYLE = "dwt-TabLayoutPanelContent";
 
@@ -73,7 +73,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
   final FlowPanel _tabBar = new FlowPanel();
   final List<_Tab> _tabs = new List<_Tab>();
   int _selectedIndex = -1;
-  
+
   /**
    * Creates an empty tab panel.
    *
@@ -196,7 +196,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 
   /**
    * Get the duration of the animated transition between _tabs.
-   * 
+   *
    * @return the duration in milliseconds
    */
   int getAnimationDuration() {
@@ -343,7 +343,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
   /**
    * Check whether or not transitions slide in vertically or horizontally.
    * Defaults to horizontally.
-   * 
+   *
    * @return true for vertical transitions, false for horizontal
    */
   bool isAnimationVertical() {
@@ -453,7 +453,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 
   /**
    * Set the duration of the animated transition between _tabs.
-   * 
+   *
    * @param duration the duration in milliseconds.
    */
   void setAnimationDuration(int duration) {
@@ -462,7 +462,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 
   /**
    * Set whether or not transitions slide in vertically or horizontally.
-   * 
+   *
    * @param isVertical true for vertical transitions, false for horizontal
    */
   void setAnimationVertical(bool isVertical) {
@@ -530,7 +530,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
     _deckPanel._insertProtected(child, beforeIndex);
     _tabs.insertRange(beforeIndex, 1, tab);
     _tabBar.insertWidget(tab, beforeIndex);
-    tab.addClickHandler(new ClickHandler((ClickEvent event) {
+    tab.addClickHandler(new ClickHandlerAdapter((ClickEvent event) {
       selectTabWidget(child);
     }));
 
@@ -547,12 +547,12 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 }
 
 class _Tab extends SimplePanel {
-  
+
   static final String TAB_STYLE = "dwt-TabLayoutPanelTab";
   static final String TAB_INNER_STYLE = "dwt-TabLayoutPanelTabInner";
-  
+
   TabLayoutPanel _panel;
-  
+
   dart_html.Element _inner;
   bool _replacingWidget;
 
@@ -626,9 +626,9 @@ class _Tab extends SimplePanel {
 class _TabbedDeckLayoutPanel extends DeckLayoutPanel {
 
   TabLayoutPanel _panel;
-  
+
   _TabbedDeckLayoutPanel(this._panel);
-  
+
   void add(Widget w) {
     throw new Exception("Use TabLayoutPanel.add() to alter the DeckLayoutPanel");
   }

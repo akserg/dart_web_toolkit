@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link ScrollEvent} events.
  */
-class ScrollHandler extends DomEventHandler {
-  
-  ScrollHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-  
+abstract class ScrollHandler extends EventHandler {
+
   /**
    * Called when ScrollEvent is fired.
-   * 
+   *
    * @param event the {@link ScrollEvent} that was fired
    */
-  void onScroll(ScrollEvent event) {
-    onDomEventHandler(event);
-  }
+  void onScroll(ScrollEvent event);
 }

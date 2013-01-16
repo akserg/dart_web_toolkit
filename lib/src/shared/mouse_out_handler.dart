@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link MouseOutEvent} events.
  */
-class MouseOutHandler extends DomEventHandler {
-  
-  MouseOutHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-  
+abstract class MouseOutHandler extends EventHandler {
+
   /**
    * Called when MouseOutEvent is fired.
-   * 
+   *
    * @param event the {@link MouseOutEvent} that was fired
    */
-  void onMouseOut(MouseOutEvent event) {
-    onDomEventHandler(event);
-  }
+  void onMouseOut(MouseOutEvent event);
 }

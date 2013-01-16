@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler for {@link ChangeEvent} events.
  */
-class ChangeHandler extends DomEventHandler {
-
-  ChangeHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class ChangeHandler extends EventHandler {
 
   /**
    * Called when a change event is fired.
    *
    * @param event the {@link ChangeEvent} that was fired
    */
-  void onChange(ChangeEvent event) {
-    onDomEventHandler(event);
-  }
+  void onChange(ChangeEvent event);
 }

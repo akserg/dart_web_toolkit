@@ -61,7 +61,7 @@ class Widget extends UiObject
         return;
       }
     }
-    
+
     DomEvent.fireNativeEvent(event, this, this.getElement());
   }
 
@@ -88,32 +88,32 @@ class Widget extends UiObject
    * @param event the event
    */
   void fireEvent(DwtEvent event) {
-//    if (_eventBus != null) {
-//      // If it not live we should revive it.
-//      if (!event.isLive()) {
-//        event.revive();
-//      }
-//      Object oldSource = event.getSource();
-//      event.overrideSource(getElement());
-//      try {
-//
-//        // May throw an UmbrellaException.
-//        _eventBus.fireEventFromSource(event, getElement());
-//      } on UmbrellaException catch (e) {
-//        throw new UmbrellaException(e.causes);
-//      } finally {
-//        if (oldSource == null) {
-//          // This was my event, so I should kill it now that I'm done.
-//          event.kill();
-//        } else {
-//          // Restoring the source for the next handler to use.
-//          event.overrideSource(oldSource);
-//        }
-//      }
-//    }
     if (_eventBus != null) {
-      _eventBus.fireEvent(event);
+      // If it not live we should revive it.
+      if (!event.isLive()) {
+        event.revive();
+      }
+      Object oldSource = event.getSource();
+      event.overrideSource(getElement());
+      try {
+
+        // May throw an UmbrellaException.
+        _eventBus.fireEventFromSource(event, getElement());
+      } on UmbrellaException catch (e) {
+        throw new UmbrellaException(e.causes);
+      } finally {
+        if (oldSource == null) {
+          // This was my event, so I should kill it now that I'm done.
+          event.kill();
+        } else {
+          // Restoring the source for the next handler to use.
+          event.overrideSource(oldSource);
+        }
+      }
     }
+//    if (_eventBus != null) {
+//      _eventBus.fireEvent(event);
+//    }
   }
 
   //************************************
@@ -186,7 +186,7 @@ class Widget extends UiObject
    * @param handler the handler
    * @return {@link HandlerRegistration} used to remove the handler
    */
-  HandlerRegistration addDomHandler(DomEventHandler handler, DomEventType type) {
+  HandlerRegistration addDomHandler(EventHandler handler, DomEventType type) {
     assert (handler != null); // : "handler must not be null";
     assert (type != null); // : "type must not be null";
     if (BrowserEvents.events.indexOf(type.eventName) == -1) {
@@ -238,7 +238,7 @@ class Widget extends UiObject
 
   /**
    * Removes a set of events from this object's event list.
-   * 
+   *
    * @param eventBitsToRemove a bitfield representing the set of events to be
    *          removed from this element's event set
    * @see #sinkEvents
@@ -247,7 +247,7 @@ class Widget extends UiObject
   void unsinkEvents(Set<String> eventBitsToRemove) {
     Dom.unsinkEvents(getElement(), eventBitsToRemove);
   }
-  
+
   /**
    * Creates the [SimpleEventBus] used by this Widget. You can override
    * this method to create a custom [EventBus].

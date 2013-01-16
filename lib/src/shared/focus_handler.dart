@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link FocusEvent} events.
  */
-class FocusHandler extends DomEventHandler {
-
-  FocusHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class FocusHandler extends EventHandler {
 
   /**
    * Called when FocusEvent is fired.
    *
    * @param event the {@link FocusEvent} that was fired
    */
-  void onFocus(FocusEvent event) {
-    onDomEventHandler(event);
-  }
+  void onFocus(FocusEvent event);
 }

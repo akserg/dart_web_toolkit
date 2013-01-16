@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link KeyPressEvent} events.
  */
-class KeyPressHandler extends DomEventHandler {
-
-  KeyPressHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class KeyPressHandler extends EventHandler {
 
   /**
    * Called when KeyPressEvent is fired.
    *
    * @param event the {@link KeyPressEvent} that was fired
    */
-  void onKeyPress(KeyPressEvent event) {
-    onDomEventHandler(event);
-  }
+  void onKeyPress(KeyPressEvent event);
 }

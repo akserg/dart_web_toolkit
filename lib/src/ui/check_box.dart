@@ -333,7 +333,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   // Events
   //*******
   void ensureDomEventHandlers() {
-    addClickHandler(new ClickHandler((ClickEvent event) {
+    addClickHandler(new ClickHandlerAdapter((ClickEvent event) {
       // Checkboxes always toggle their value, no need to compare
       // with old value. Radio buttons are not so lucky, see
       // overrides in RadioButton

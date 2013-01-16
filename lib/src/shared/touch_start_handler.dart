@@ -6,17 +6,13 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link TouchStartEvent} events.
  */
-class TouchStartHandler extends DomEventHandler {
+abstract class TouchStartHandler extends EventHandler {
 
-  TouchStartHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-  
   /**
    * Called when TouchStartEvent is fired.
    *
    * @param event the {@link TouchStartEvent} that was fired
    */
-  void onTouchStart(TouchStartEvent event) {
-    onDomEventHandler(event);
-  }
-  
+  void onTouchStart(TouchStartEvent event);
+
 }

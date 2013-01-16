@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link MouseOverEvent} events.
  */
-class MouseOverHandler extends DomEventHandler {
-  
-  MouseOverHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-  
+abstract class MouseOverHandler extends EventHandler {
+
   /**
    * Called when MouseOverEvent is fired.
-   * 
+   *
    * @param event the {@link MouseOverEvent} that was fired
    */
-  void onMouseOver(MouseOverEvent event) {
-    onDomEventHandler(event);
-  }
+  void onMouseOver(MouseOverEvent event);
 }

@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link DragEndEvent} events.
  */
-class DragEndHandler extends DomEventHandler {
- 
-  DragEndHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-  
+abstract class DragEndHandler extends EventHandler {
+
   /**
    * Called when a {@link DragEndEvent} is fired.
-   * 
+   *
    * @param event the {@link DragEndEvent} that was fired
    */
-  void onDragEnd(DragEndEvent event) {
-    onDomEventHandler(event);
-  }
+  void onDragEnd(DragEndEvent event);
 }

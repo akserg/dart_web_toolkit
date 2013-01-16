@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link DragLeaveEvent} events.
  */
-class DragLeaveHandler extends DomEventHandler {
-  
-  DragLeaveHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-  
+abstract class DragLeaveHandler extends EventHandler {
+
   /**
    * Called when a {@link DragLeaveEvent} is fired.
-   * 
+   *
    * @param event the {@link DragLeaveEvent} that was fired
    */
-  void onDragLeave(DragLeaveEvent event) {
-    onDomEventHandler(event);
-  }
+  void onDragLeave(DragLeaveEvent event);
 }

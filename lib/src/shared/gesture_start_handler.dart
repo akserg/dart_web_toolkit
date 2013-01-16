@@ -6,16 +6,12 @@ part of dart_web_toolkit_shared;
 /**
  * Handler interface for {@link GestureStartEvent} events.
  */
-class GestureStartHandler extends DomEventHandler {
-
-  GestureStartHandler(OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
+abstract class GestureStartHandler extends EventHandler {
 
   /**
    * Called when GestureStartEvent is fired.
    *
    * @param event the {@link GestureStartEvent} that was fired
    */
-  void onGestureStart(GestureStartEvent event) {
-    onDomEventHandler(event);
-  }
+  void onGestureStart(GestureStartEvent event);
 }

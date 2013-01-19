@@ -4,13 +4,13 @@
 part of dart_web_toolkit_i18n;
 
 /**
- * NumberConstants class encapsulate a collection of Number formatting 
+ * NumberConstants class encapsulate a collection of Number formatting
  * symbols for use with Number format and parse services. This class extends
  * GWT's Constants class. The actual symbol collections are defined in a set
- * of property files named like "NumberConstants_xx.properties". GWT will 
- * will perform late binding to the property file that specific to user's 
+ * of property files named like "NumberConstants_xx.properties". GWT will
+ * will perform late binding to the property file that specific to user's
  * locale.
- * 
+ *
  * If you previously were using GWT.create on this interface, you should
  * use LocaleInfo.getCurrentLocale().getNumberConstants() instead.
  */
@@ -37,15 +37,15 @@ abstract class NumberConstants {
 }
 
 /**
- * NumberConstantsImpl class encapsulate a collection of Number formatting 
+ * NumberConstantsImpl class encapsulate a collection of Number formatting
  * symbols for use with Number format and parse services. This class extends
  * GWT's Constants class. The actual symbol collections are defined in a set
- * of property files named like "NumberConstants_xx.properties". GWT will 
- * will perform late binding to the property file that specific to user's 
- * locale. 
+ * of property files named like "NumberConstants_xx.properties". GWT will
+ * will perform late binding to the property file that specific to user's
+ * locale.
  */
 class NumberConstantsImpl implements Constants, NumberConstants {
-  
+
   String notANumber() { return "NaN"; }
 
   String currencyPattern() { return "\$#,##0.00;(\$#,##0.00)"; }
@@ -83,5 +83,5 @@ class NumberConstantsImpl implements Constants, NumberConstants {
   String simpleCurrencyPattern() { return "\$\$\$\$#,##0.00;(\$\$\$\$#,##0.00)"; }
 
   String zeroDigit() { return "0"; }
-  
+
 }

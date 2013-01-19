@@ -8,7 +8,7 @@ part of dart_web_toolkit_text;
  * thing to use in production, but it's handy for tests.
  */
 class PassthroughRenderer extends AbstractRenderer<String> {
-  
+
   static PassthroughRenderer _instance;
 
   /**

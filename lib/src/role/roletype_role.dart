@@ -22,7 +22,7 @@ part of dart_web_toolkit_role;
  * The Roles Model </a>.</p>
  */
 abstract class RoletypeRole {
-  
+
   /**
    * Gets the role for the element {@code element}. If none is set, "" is returned.
    *
@@ -30,21 +30,21 @@ abstract class RoletypeRole {
    * @return The role attribute value
    */
   String get(dart_html.Element element);
-  
+
   /**
    * Gets the role name
    *
    * @return The role name
    */
   String getName();
-  
+
   /**
    * Removes the role for element {@code element}
    *
    * @param element HTML element
    */
   void remove(dart_html.Element element);
-  
+
   /**
    * Sets the role to element {@code element}
    *

@@ -18,7 +18,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
   ComplexPanel() {
     _children = new WidgetCollection(this);
   }
-  
+
   //*****************************
   // Implementation of HasWidgets
   //*****************************
@@ -233,7 +233,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
     if (container == null) {
       throw new Exception("container may not be null");
     }
-    
+
     // Validate index; adjust if the widget is already a child of this panel.
     beforeIndex = adjustIndex(child, beforeIndex);
 

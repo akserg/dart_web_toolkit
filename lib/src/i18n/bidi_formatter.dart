@@ -46,7 +46,7 @@ part of dart_web_toolkit_i18n;
  *
  */
 class BidiFormatter extends BidiFormatterBase {
-  
+
   /**
    * Factory for creating an instance of BidiFormatter given the context
    * direction and the desired span wrapping behavior (see below).
@@ -61,7 +61,7 @@ class BidiFormatter extends BidiFormatterBase {
   static BidiFormatter getInstance(bool rtlContext, [bool alwaysSpan = false]) {
     return new BidiFormatter(rtlContext ? Direction.RTL : Direction.LTR, alwaysSpan);
   }
-  
+
   /**
    * Factory for creating an instance of BidiFormatter whose context direction
    * matches the current locale's direction, and given the desired span wrapping
@@ -75,7 +75,7 @@ class BidiFormatter extends BidiFormatterBase {
   static BidiFormatter getInstanceForCurrentLocale([bool alwaysSpan = false]) {
     return getInstance(LocaleInfo.getCurrentLocale().isRTL(), alwaysSpan);
   }
-  
+
   /**
    * @param contextDir The context direction
    * @param alwaysSpan Whether {@link #spanWrap} (and its variations) should
@@ -84,7 +84,7 @@ class BidiFormatter extends BidiFormatterBase {
    *          does not depend on the combination of directions
    */
   BidiFormatter(Direction contextDir, bool alwaysSpan) : super(contextDir, alwaysSpan);
-  
+
   /**
    * Formats a string of given direction for use in HTML output of the context
    * direction, so an opposite-direction string is neither garbled nor garbles

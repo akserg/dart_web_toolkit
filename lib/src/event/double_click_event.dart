@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Represents a native double click event.
  */
 class DoubleClickEvent extends MouseEvent {
-  
+
   /**
    * The event type.
    */

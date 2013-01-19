@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Represents a native drag event.
  */
 class DragEvent extends DragDropEventBase {
-  
+
   /**
    * The event type.
    */

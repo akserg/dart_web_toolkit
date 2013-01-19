@@ -29,7 +29,7 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class TextArea extends TextBoxBase {
-  
+
   /**
    * Creates a TextArea widget that wraps an existing &lt;textarea&gt;
    * element.
@@ -52,7 +52,7 @@ class TextArea extends TextBoxBase {
 
     return textArea;
   }
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be an &lt;textarea&gt; element whose type is
@@ -63,12 +63,12 @@ class TextArea extends TextBoxBase {
   TextArea.fromElement(dart_html.Element element) : super(element) {
     clearAndSetStyleName("dwt-TextArea");
   }
-  
+
   /**
    * Creates an empty text area.
    */
   TextArea() : this.fromElement(new dart_html.TextAreaElement());
-  
+
   /**
    * Gets the requested width of the text box (this is not an exact value, as
    * not all characters are created equal).

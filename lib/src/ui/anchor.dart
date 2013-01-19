@@ -18,16 +18,16 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   static String DEFAULT_HREF = "javascript:;";
 
   HorizontalAlignmentConstant _horzAlign;
-  
+
   DirectionalTextHelper _directionalTextHelper;
-  
+
   /**
    * Creates an Anchor widget that wraps an existing &lt;a&gt; element.
-   * 
+   *
    * This element must already be attached to the document. If the element is
    * removed from the document, you must call
    * {@link RootPanel#detachNow(Widget)}.
-   * 
+   *
    * @param element the element to be wrapped
    */
   factory Anchor.wrap(dart_html.Element element) {
@@ -42,11 +42,11 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
 
     return anchor;
   }
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be an &lt;a&gt; element.
-   * 
+   *
    * @param element the element to be used
    */
   Anchor.fromElement(dart_html.AnchorElement element) {
@@ -68,7 +68,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
       href = DEFAULT_HREF;
     }
   }
-  
+
   DirectionEstimator getDirectionEstimator() {
     return _directionalTextHelper.getDirectionEstimator();
   }
@@ -92,7 +92,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
     _horzAlign = align;
     getElement().style.textAlign = align.getTextAlignString();
   }
-  
+
   //***************************
   // Implementation of HasFocus
   //***************************
@@ -106,7 +106,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   void setTabIndex(int index) {
     getAnchorElement().tabIndex = index;
   }
-  
+
   //***********
   // PROPERTIES
   //***********
@@ -188,7 +188,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
     assert(value != null);
     _directionalTextHelper.setTextOrHtml(value, false);
   }
-  
+
   void setText(String text, Direction dir) {
     _directionalTextHelper.setTextOrHtml(text, false, dir);
   }
@@ -196,7 +196,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   Direction getTextDirection() {
     return _directionalTextHelper.getTextDirection();
   }
-  
+
   /**
    * Sets the anchor's text.
    */
@@ -212,7 +212,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
 //    assert(value != null);
 //    getAnchorElement().dir = value;
 //  }
-  
+
   /**
    * {@inheritDoc}
    * <p>
@@ -221,7 +221,7 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   void enableDirectionEstimator(bool enabled) {
     _directionalTextHelper.enableDefaultDirectionEstimator(enabled);
   }
-  
+
   /**
    * {@inheritDoc}
    * <p>
@@ -234,11 +234,11 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
   void setDirectionEstimator(DirectionEstimator directionEstimator) {
     _directionalTextHelper.setDirectionEstimator(directionEstimator);
   }
-  
+
   void setAccessKey(int key) {
     //getAnchorElement().accessKey(Character.toString(key));
   }
-  
+
   void setFocus(bool focused) {
     if (focused) {
       getAnchorElement().focus();

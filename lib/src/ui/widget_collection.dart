@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A simple collection of widgets to be used by
  * {@link com.google.gwt.user.client.ui.Panel panels} and
  * {@link com.google.gwt.user.client.ui.Composite composites}.
- * 
+ *
  * <p>
  * The main purpose of this specialized collection is to implement
  * {@link java.util.Iterator#remove()} in a way that delegates removal to its
@@ -17,7 +17,7 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class WidgetCollection implements Iterable<Widget> {
-  
+
   static int _INITIAL_SIZE = 4;
 
   List<Widget> _array;
@@ -26,7 +26,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Constructs a new widget collection.
-   * 
+   *
    * @param _parent the container whose {@link HasWidgets#remove(Widget)} will be
    *          delegated to by the iterator's {@link Iterator#remove()} method.
    */
@@ -37,7 +37,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Adds a widget to the end of this collection.
-   * 
+   *
    * @param w the widget to be added
    */
   void add(Widget w) {
@@ -46,7 +46,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Determines whether a given widget is contained in this collection.
-   * 
+   *
    * @param w the widget to be searched for
    * @return <code>true</code> if the widget is present
    */
@@ -56,7 +56,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Gets the widget at the given index.
-   * 
+   *
    * @param index the index to be retrieved
    * @return the widget at the specified index
    * @throws IndexOutOfBoundsException if the index is out of range
@@ -71,7 +71,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Gets the index of the specified index.
-   * 
+   *
    * @param w the widget to be found
    * @return the index of the specified widget, or <code>-1</code> if it is
    *         not found
@@ -88,7 +88,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Inserts a widget before the specified index.
-   * 
+   *
    * @param w the widget to be inserted
    * @param beforeIndex the index before which the widget will be inserted
    * @throws IndexOutOfBoundsException if <code>beforeIndex</code> is out of
@@ -121,7 +121,7 @@ class WidgetCollection implements Iterable<Widget> {
   /**
    * Gets an iterator on this widget collection. This iterator is guaranteed to
    * implement remove() in terms of its containing {@link HasWidgets}.
-   * 
+   *
    * @return an iterator
    */
   RemoveIterator<Widget> iterator() {
@@ -130,7 +130,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Removes the widget at the specified index.
-   * 
+   *
    * @param index the index of the widget to be removed
    * @throws IndexOutOfBoundsException if <code>index</code> is out of range
    */
@@ -149,7 +149,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Removes the specified widget.
-   * 
+   *
    * @param w the widget to be removed
    * @throws NoSuchElementException if the widget is not present
    */
@@ -164,7 +164,7 @@ class WidgetCollection implements Iterable<Widget> {
 
   /**
    * Gets the number of widgets in this collection.
-   * 
+   *
    * @return the number of widgets
    */
   int size() {
@@ -175,11 +175,11 @@ class WidgetCollection implements Iterable<Widget> {
 class WidgetIterator implements RemoveIterator<Widget> {
 
   WidgetCollection _widgetCollection;
-  
+
   WidgetIterator(this._widgetCollection);
-  
+
   int index = -1;
-  
+
   //***************************
   // Implementation of Iterator
   //***************************
@@ -196,7 +196,7 @@ class WidgetIterator implements RemoveIterator<Widget> {
   //*********************************
   // Implementation of RemoveIterator
   //*********************************
-  
+
   void remove() {
     if ((index < 0) || (index >= _widgetCollection._size)) {
       throw new Exception("IllegalState");

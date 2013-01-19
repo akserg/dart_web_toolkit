@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Represents a native drag leave event.
  */
 class DragLeaveEvent extends DragDropEventBase {
-  
+
   /**
    * The event type.
    */

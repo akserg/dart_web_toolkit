@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Represents a native gesture change event.
  */
 class GestureChangeEvent extends DomEvent {
-  
+
   /**
    * The event type.
    */
@@ -22,7 +22,7 @@ class GestureChangeEvent extends DomEvent {
   void dispatch(GestureChangeHandler handler) {
     handler.onGestureChange(this);
   }
-  
+
   double getRotation() {
     //return getNativeEvent().rotation;
     throw new Exception("Not implemented yet");

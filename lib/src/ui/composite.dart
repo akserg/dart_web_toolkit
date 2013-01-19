@@ -19,17 +19,17 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 abstract class Composite extends Widget implements IsRenderable {
-  
+
   Widget _widget;
 
   IsRenderable _renderable;
 //
 //  dart_html.Element _elementToWrap;
-  
+
 //  //*******************************
 //  // Implementation of IsRenderable
 //  //*******************************
-//  
+//
 //  /**
 //   * Replace the previous contents of the receiver with the given element,
 //   * presumed to have been created and stamped via a previous call to
@@ -68,7 +68,7 @@ abstract class Composite extends Widget implements IsRenderable {
 //   * marked by the given stamper.
 //   */
 //  void render(RenderableStamper stamper, SafeHtmlBuilder builder);
-  
+
   /**
    * Returns whether or not the receiver is attached to the
    * {@link com.google.gwt.dom.client.Document Document}'s
@@ -82,7 +82,7 @@ abstract class Composite extends Widget implements IsRenderable {
     }
     return false;
   }
-  
+
 //********************************
   // Implementation of EventListener
   //********************************
@@ -100,22 +100,22 @@ abstract class Composite extends Widget implements IsRenderable {
     // Delegate events to the widget.
     _widget.onBrowserEvent(event);
   }
-  
+
   /**
    * Provides subclasses access to the topmost widget that defines this
    * composite.
-   * 
+   *
    * @return the widget
    */
   Widget getWidget() {
     return _widget;
   }
-  
+
   /**
    * Sets the widget to be wrapped by the composite. The wrapped widget must be
    * set before calling any {@link Widget} methods on this object, or adding it
    * to a panel. This method may only be called once for a given composite.
-   * 
+   *
    * @param widget the widget to be wrapped
    */
   void initWidget(Widget widget) {
@@ -147,11 +147,11 @@ abstract class Composite extends Widget implements IsRenderable {
     // Adopt.
     widget.setParent(this);
   }
-  
+
   //*******
   // Attach
   //*******
-  
+
   /**
    * <p>
    * This method is called when a widget is attached to the browser's document.
@@ -192,7 +192,7 @@ abstract class Composite extends Widget implements IsRenderable {
     onLoad();
     AttachEvent.fire(this, true);
   }
-  
+
   /**
    * <p>
    * This method is called when a widget is detached from the browser's

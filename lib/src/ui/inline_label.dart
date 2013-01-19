@@ -23,7 +23,7 @@ part of dart_web_toolkit_ui;
  * </ul>
  */
 class InlineLabel extends Label {
-  
+
   /**
    * Creates a InlineLabel widget that wraps an existing &lt;div&gt; or
    * &lt;span&gt; element.
@@ -46,11 +46,11 @@ class InlineLabel extends Label {
 
     return label;
   }
-  
+
   InlineLabel.fromElement(dart_html.Element element) : super.fromElement(element) {
     clearAndSetStyleName("dwt-InlineLabel");
   }
-  
+
   /**
    * Creates an empty label.
    */

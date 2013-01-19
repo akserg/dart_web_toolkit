@@ -10,5 +10,5 @@ part of dart_web_toolkit_event;
  * TODO(tomerigo): add Paste and Input events once they're available in GWT.
  */
 abstract class AutoDirectionHandlerTarget implements HasText, HasDirection, HasKeyUpHandlers {
-  
+
 }

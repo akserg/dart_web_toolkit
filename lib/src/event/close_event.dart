@@ -5,11 +5,11 @@ part of dart_web_toolkit_event;
 
 /**
  * Represents a close event.
- * 
+ *
  * @param <T> the type being closed
  */
 class CloseEvent<T> extends DwtEvent {
-  
+
   /**
    * The event type.
    */
@@ -21,7 +21,7 @@ class CloseEvent<T> extends DwtEvent {
 
   /**
    * Creates a new close event.
-   * 
+   *
    * @param target the target
    * @param autoClosed whether it is auto closed
    */
@@ -45,7 +45,7 @@ class CloseEvent<T> extends DwtEvent {
 
   /**
    * Fires a close event on all registered handlers in the handler manager.
-   * 
+   *
    * @param <T> the target type
    * @param source the source of the handlers
    * @param target the target
@@ -62,13 +62,13 @@ class CloseEvent<T> extends DwtEvent {
 /**
  * A widget that implements this interface is a public source of
  * {@link CloseEvent} events.
- * 
+ *
  * @param <T> the type being closed
  */
 abstract class HasCloseHandlers<T> extends HasHandlers {
   /**
    * Adds a {@link CloseEvent} handler.
-   * 
+   *
    * @param handler the handler
    * @return the registration for the event
    */

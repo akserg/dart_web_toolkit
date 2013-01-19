@@ -265,8 +265,9 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   }
 
   void ensureVisibleImpl(dart_html.Element scroll, dart_html.Element e) {
-    if (e == null)
+    if (e == null) {
       return;
+    }
 
     dart_html.Element item = e;
     int realOffset = 0;

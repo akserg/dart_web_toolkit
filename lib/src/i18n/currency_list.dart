@@ -8,7 +8,7 @@ part of dart_web_toolkit_i18n;
  * the fallback in case the I18N module is not included.
  */
 class CurrencyList implements Iterable<CurrencyData> {
-  
+
   /**
    * Return the singleton instance of CurrencyList.
    */
@@ -46,7 +46,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Directly reference an entry in the currency names map JSO.
-   * 
+   *
    * @param code ISO4217 currency code
    * @return currency name, or the currency code if not known
    */
@@ -57,7 +57,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Directly reference an entry in the currency map JSO.
-   * 
+   *
    * @param code ISO4217 currency code
    * @return currency data
    */
@@ -93,10 +93,10 @@ class CurrencyList implements Iterable<CurrencyData> {
    */
   //JavaScriptObject namesMapNative;
 //  Map namesMapNative;
-  
+
   /**
    * Return the default currency data for this locale.
-   * 
+   *
    * Generated implementations override this method.
    */
   CurrencyData getDefault() {
@@ -109,8 +109,8 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Returns an iterator for the list of currencies, optionally including
-   * deprecated ones. 
-   * 
+   * deprecated ones.
+   *
    * @param includeDeprecated true if deprecated currencies should be included
    */
   Iterator<CurrencyData> iterator([bool includeDeprecated = false]) {
@@ -138,7 +138,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Lookup a currency based on the ISO4217 currency code.
-   * 
+   *
    * @param currencyCode ISO4217 currency code
    * @return currency data, or null if code not found
    */
@@ -153,7 +153,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Lookup a currency name based on the ISO4217 currency code.
-   * 
+   *
    * @param currencyCode ISO4217 currency code
    * @return name of the currency, or null if code not found
    */
@@ -169,7 +169,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Return the default currency data for this locale.
-   * 
+   *
    * Generated implementations override this method.
    */
   CurrencyData getDefaultJava() {
@@ -178,7 +178,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Return the default currency data for this locale.
-   * 
+   *
    * Generated implementations override this method.
    */
 //  CurrencyData getDefaultNative() {
@@ -187,7 +187,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Loads the currency map.
-   * 
+   *
    * Generated implementations override this method.
    */
   Map<String, CurrencyData> loadCurrencyMapJava() {
@@ -202,7 +202,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Loads the currency map from a JS object literal.
-   * 
+   *
    * Generated implementations override this method.
    */
   //JavaScriptObject loadCurrencyMapNative() {
@@ -217,7 +217,7 @@ class CurrencyList implements Iterable<CurrencyData> {
 
   /**
    * Loads the currency names map.
-   * 
+   *
    * Generated implementations override this method.
    */
   Map<String, String> loadNamesMapJava() {
@@ -228,10 +228,10 @@ class CurrencyList implements Iterable<CurrencyData> {
       "JPY": "Japanese Yen"};
     return result;
   }
-  
+
   /**
    * Loads the currency names map from a JS object literal.
-   * 
+   *
    * Generated implementations override this method.
    */
   //JavaScriptObject loadNamesMapNative() /*-{

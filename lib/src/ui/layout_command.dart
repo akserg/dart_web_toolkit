@@ -6,14 +6,14 @@ part of dart_web_toolkit_ui;
 /**
  * A scheduled command used by animated layouts to ensure that only layout is
  * ever performed for a panel within a given user event.
- * 
+ *
  * <p>
  * Note: This class assumes that {@link com.google.gwt.layout.client.Layout.Layer#getUserObject Layer.getUserObject()} will
  * return the widget associated with a given layer.
  * </p>
  */
 class LayoutCommand implements ScheduledCommand {
-  
+
   bool _scheduled = false;
   bool _canceled = false;
   int _duration = 0;
@@ -22,11 +22,11 @@ class LayoutCommand implements ScheduledCommand {
 
   /**
    * Creates a new command for the given layout object.
-   * 
+   *
    * @param layout
    */
   LayoutCommand(this._layout);
-  
+
   /**
    * Cancels this command. A subsequent call to
    * {@link #schedule(int, Layout.AnimationCallback)} will re-enable it.
@@ -35,7 +35,7 @@ class LayoutCommand implements ScheduledCommand {
     // There's no way to "unschedule" a command, so we use a canceled flag.
     _canceled = true;
   }
-  
+
   /**
    * Invokes the command.
    */
@@ -49,11 +49,11 @@ class LayoutCommand implements ScheduledCommand {
 
     _layout.layout(_duration, new LayoutCommandAnimationCallback(this));
   }
-  
+
   /**
    * Schedules a layout. The duration and callback passed to this method will
    * supercede any previous call that has not yet been executed.
-   * 
+   *
    * @param duration
    * @param callback
    */
@@ -78,11 +78,11 @@ class LayoutCommand implements ScheduledCommand {
 }
 
 class LayoutCommandAnimationCallback implements LayoutAnimationCallback {
-  
+
   LayoutCommand _command;
-  
+
   LayoutCommandAnimationCallback(this._command);
-  
+
   void onAnimationComplete() {
     // Chain to the passed callback.
     if (_command.callback != null) {

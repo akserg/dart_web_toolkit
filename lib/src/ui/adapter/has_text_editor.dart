@@ -7,11 +7,11 @@ part of dart_web_toolkit_ui;
  * Adapts the HasText interface to the Editor framework.
  */
 class HasTextEditor implements LeafValueEditor<String> {
-  
+
   /**
    * Returns a new ValueEditor that that modifies the given {@link HasText} peer
    * instance.
-   * 
+   *
    * @param peer a {@link HasText} instance
    * @return a HasTextEditor instance
    */
@@ -24,7 +24,7 @@ class HasTextEditor implements LeafValueEditor<String> {
   /**
    * Constructs a new HasTextEditor that that modifies the given {@link HasText}
    * peer instance.
-   * 
+   *
    * @param peer a {@link HasText} instance
    */
   HasTextEditor(HasText peer) {
@@ -33,7 +33,7 @@ class HasTextEditor implements LeafValueEditor<String> {
 
   /**
    * Returns the current value.
-   * 
+   *
    * @return the value as an object of type V
    * @see #setValue
    */

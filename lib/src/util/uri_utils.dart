@@ -230,7 +230,7 @@ class UriUtils {
       return "#";
     }
   }
-  
+
   /**
    * Returns a {@link SafeUri} constructed from an untrusted string but without
    * sanitizing it.

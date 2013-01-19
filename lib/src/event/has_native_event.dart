@@ -10,7 +10,7 @@ part of dart_web_toolkit_event;
 abstract class HasNativeEvent {
   /**
    * Gets the underlying native event.
-   * 
+   *
    * @return the native event
    */
   dart_html.Event getNativeEvent();

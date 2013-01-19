@@ -7,7 +7,7 @@ part of dart_web_toolkit_text;
  * A localized parser based on {@link NumberFormat#getDecimalFormat}.
  */
 class DoubleParser implements Parser<double> {
-  
+
   static DoubleParser _INSTANCE;
 
   /**

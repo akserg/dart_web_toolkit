@@ -7,13 +7,13 @@ part of dart_web_toolkit_ui;
  * A panel that displays all of its child widgets in a 'deck', where only one
  * can be visible at a time. It is used by
  * {@link com.google.gwt.user.client.ui.TabLayoutPanel}.
- * 
+ *
  * <p>
  * This widget will <em>only</em> work in standards mode, which requires that
  * the HTML page in which it is run have an explicit &lt;!DOCTYPE&gt;
  * declaration.
  * </p>
- * 
+ *
  * <p>
  * Once a widget has been added to a DeckPanel, its visibility, width, and
  * height attributes will be manipulated. When the widget is removed from the
@@ -22,7 +22,7 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresResize, ProvidesResize, InsertPanelForIsWidget, AcceptsOneWidget {
-  
+
   int _animationDuration = 0;
   bool _isAnimationVertical = false;
   Widget _hidingWidget;
@@ -30,7 +30,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   Layout _layout;
   LayoutCommand _layoutCmd;
   Widget _visibleWidget;
-  
+
   /**
    * Creates an empty deck panel.
    */
@@ -39,39 +39,39 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     _layout = new Layout(getElement());
     _layoutCmd = new _DeckAnimateCommand(this, _layout);
   }
-  
+
   void add(Widget w) {
     insertWidget(w, getWidgetCount());
   }
-  
+
   //*********************************
   // Implementation of AnimatedLayout
   //*********************************
-  
+
   /**
    * Layout children, animating over the specified period of time.
-   * 
+   *
    * <p>
    * This method provides a callback that will be informed of animation updates.
    * This can be used to create more complex animation effects.
    * </p>
-   * 
+   *
    * @param duration the animation duration, in milliseconds
    * @param callback the animation callback
    */
   void animate(int duration, [LayoutAnimationCallback callback = null]) {
     _layoutCmd.schedule(duration, callback);
   }
-  
+
   /**
    * Layout children immediately.
-   * 
+   *
    * <p>
    * This is not normally necessary, unless you want to update child widgets'
    * positions explicitly to create a starting point for a subsequent call to
    * {@link #animate(int)}.
    * </p>
-   * 
+   *
    * @see #animate(int)
    * @see #animate(int, Layout.AnimationCallback)
    */
@@ -82,49 +82,49 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     doAfterLayout();
     onResize();
   }
-  
+
   /**
    * Get the duration of the animated transition between tabs.
-   * 
+   *
    * @return the duration in milliseconds
    */
   int getAnimationDuration() {
     return _animationDuration;
   }
-  
+
   /**
    * Gets the currently-visible widget.
-   * 
+   *
    * @return the visible widget, or null if not visible
    */
   Widget getVisibleWidget() {
     return _visibleWidget;
   }
-  
+
   /**
    * Gets the index of the currently-visible widget.
-   * 
+   *
    * @return the visible widget's index
    */
   int getVisibleWidgetIndex() {
     return getWidgetIndex(_visibleWidget);
   }
-  
+
   void insertIsWidget(IsWidget w, int beforeIndex) {
     insertWidget(asWidgetOrNull(w), beforeIndex);
   }
-  
+
   void insertWidget(Widget widget, int beforeIndex) {
     Widget before = (beforeIndex < getWidgetCount()) ? getWidget(beforeIndex)
         : null;
     insertBefore(widget, before);
   }
-  
+
   /**
    * Insert a widget before the specified widget. If the widget is already a
    * child of this panel, this method behaves as though {@link #remove(Widget)}
    * had already been called.
-   * 
+   *
    * @param widget the widget to be added
    * @param before the widget before which to insert the new child, or
    *          <code>null</code> to append
@@ -155,30 +155,30 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     // Update the layout.
     animate(0);
   }
-  
+
   /**
    * Check whether or not transitions slide in vertically or horizontally.
    * Defaults to horizontally.
-   * 
+   *
    * @return true for vertical transitions, false for horizontal
    */
   bool isAnimationVertical() {
     return _isAnimationVertical;
   }
-  
+
   /**
    * Set whether or not transitions slide in vertically or horizontally.
-   * 
+   *
    * @param isVertical true for vertical transitions, false for horizontal
    */
   void setAnimationVertical(bool isVertical) {
     this._isAnimationVertical = isVertical;
   }
-  
+
   //*********************************
   // Implementation of RequiresResize
   //*********************************
-  
+
   void onResize() {
     for (Widget child in getChildren()) {
       if (child is RequiresResize) {
@@ -186,7 +186,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
       }
     }
   }
-  
+
   bool remove(Widget w) {
     bool removed = super.remove(w);
     if (removed) {
@@ -206,21 +206,21 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     }
     return removed;
   }
-  
+
   /**
    * Set the duration of the animated transition between tabs.
-   * 
+   *
    * @param duration the duration in milliseconds.
    */
   void setAnimationDuration(int duration) {
     this._animationDuration = duration;
   }
-  
+
   /**
     * Show the specified widget. If the widget is not a child of this panel, it
     * is added to the end of the panel. If the specified widget is null, the
     * currently-visible widget will be hidden.
-    * 
+    *
     * @param w the widget to show, and add if not a child
     */
   void setWidgetIsWidget(IsWidget w) {
@@ -238,22 +238,22 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     // Show the widget.
     showWidget(w.asWidget());
   }
-  
+
   /**
    * Shows the widget at the specified index. This causes the currently- visible
    * widget to be hidden.
-   * 
+   *
    * @param index the index of the widget to be shown
    */
   void showWidgetAt(int index) {
     checkIndexBoundsForAccess(index);
     showWidget(getWidget(index));
   }
-  
+
   /**
    * Shows the widget at the specified index. This causes the currently- visible
    * widget to be hidden.
-   * 
+   *
    * @param widget the widget to be shown
    */
   void showWidget(Widget widget) {
@@ -265,26 +265,26 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
     _visibleWidget = widget;
     animate((widget == null) ? 0 : _animationDuration);
   }
-  
+
   void onAttach() {
     super.onAttach();
     _layout.onAttach();
   }
-  
+
   void onDetach() {
     super.onDetach();
     _layout.onDetach();
   }
-  
+
   /**
    * Assert that the specified widget is null or a child of this widget.
-   * 
+   *
    * @param widget the widget to check
    */
   void assertIsChild(Widget widget) {
     assert ((widget == null) || (widget.getParent() == this)); // : "The specified widget is not a child of this panel";
   }
-  
+
   /**
    * Hide the widget that just slid out of view.
    */
@@ -296,7 +296,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
       _hidingWidget = null;
     }
   }
-  
+
   /**
    * Initialize the location of the widget that will slide into view.
    */
@@ -358,7 +358,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
 
     _lastVisibleWidget = _visibleWidget;
   }
-  
+
   void setWidgetVisible(Widget w, Layer layer, bool visible) {
     layer.setVisible(visible);
 
@@ -374,9 +374,9 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
  * {@link LayoutCommand} used by this widget.
  */
 class _DeckAnimateCommand extends LayoutCommand {
-  
+
   DeckLayoutPanel _panel;
-  
+
   _DeckAnimateCommand(this._panel, Layout layout) : super(layout);
 
 //  void schedule(int duration, LayoutAnimationCallback callback) {
@@ -391,12 +391,12 @@ class _DeckAnimateCommand extends LayoutCommand {
 }
 
 class _LayoutCommandAnimationCallback implements LayoutAnimationCallback {
-  
+
   DeckLayoutPanel _panel;
   LayoutCommand _command;
-  
+
   _LayoutCommandAnimationCallback(this._panel, this._command);
-  
+
   void onAnimationComplete() {
     _panel.doAfterLayout();
     if (_command.callback != null) {

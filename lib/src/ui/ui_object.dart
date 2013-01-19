@@ -50,8 +50,8 @@ abstract class UiObject implements HasVisibility {
     elem.style.display = visible ? '' : 'none';
     elem.attributes['aria-hidden'] = (!visible).toString();
   }
-  
-  
+
+
   //**************
   // HasVisibility
   //**************
@@ -283,7 +283,7 @@ abstract class UiObject implements HasVisibility {
     }
 
     String old = elem.$dom_className;
-    
+
     if (add) {
       // Get the current style string.
       String oldClassName = elem.$dom_className;
@@ -347,7 +347,7 @@ abstract class UiObject implements HasVisibility {
         elem.$dom_className = newClassName;
       }
     }
-    
+
     print("manageElementStyleName: '$style', '$add': '$old' -> '${elem.$dom_className}'");
   }
 
@@ -681,11 +681,11 @@ abstract class UiObject implements HasVisibility {
   int getOffsetWidth() {
     return Dom.getElementPropertyInt(getElement(), "offsetWidth");
   }
-  
+
   /**
    * This method is overridden so that any object can be viewed in the debugger
    * as an HTML snippet.
-   * 
+   *
    * @return a string representation of the object
    */
   String toString() {

@@ -35,13 +35,13 @@ abstract class FocusImpl {
   void setTabIndex(dart_html.Element elem, int index);
 
   static FocusImpl implPanel;
-  
+
   /**
    * This instance may not be a {@link FocusImplStandard}, because that special
    * case is only needed for things that aren't naturally focusable on some
    * browsers, such as DIVs. This exact class works for truly focusable widgets
    * on those browsers.
-   * 
+   *
    * The compiler will optimize out the conditional.
    */
   static FocusImpl implWidget;
@@ -55,7 +55,7 @@ abstract class FocusImpl {
     }
     return implPanel;
   }
-  
+
   /**
    * Returns the focus implementation class for manipulating focusable elements
    * that are naturally focusable in all browsers, such as text boxes.

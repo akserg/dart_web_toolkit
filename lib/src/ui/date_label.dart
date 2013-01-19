@@ -9,7 +9,7 @@ part of dart_web_toolkit_ui;
  * {@link com.google.gwt.uibinder.client.UiBinder UiBinder} templates. (Note
  * that this class does not accept renderers. To do so use {@link ValueLabel}
  * directly.)
- * 
+ *
  * <h3>Use in UiBinder Templates</h3>
  * In {@link com.google.gwt.uibinder.client.UiBinder UiBinder} templates, both the format and time zone can be configured.
  * <p>
@@ -27,6 +27,6 @@ part of dart_web_toolkit_ui;
  * </dl>
  */
 class DateLabel extends ValueLabel<Date> {
-  
+
   DateLabel([DateTimeFormat format = null, TimeZone timeZone = null]) : super(new DateTimeFormatRenderer(format, timeZone));
 }

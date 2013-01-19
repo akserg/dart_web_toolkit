@@ -30,7 +30,7 @@ part of dart_web_toolkit_ui;
  * </ul>
  */
 class InlineHtml extends Html {
-  
+
   /**
    * Creates an InlineHTML widget that wraps an existing &lt;div&gt; or
    * &lt;span&gt; element.
@@ -53,11 +53,11 @@ class InlineHtml extends Html {
 
     return html;
   }
-  
+
   InlineHtml.fromElement(dart_html.Element element) : super.fromElement(element) {
     clearAndSetStyleName("dwt-InlineHTML");
   }
-  
+
   /**
    * Creates an empty label.
    */

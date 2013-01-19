@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * An object that implements this interface contains html that has a direction.
  */
 abstract class HasDirectionalHtml implements HasDirectionalText, HasHtml {
-  
+
   /**
    * Sets this object's html, also declaring its direction.
    *

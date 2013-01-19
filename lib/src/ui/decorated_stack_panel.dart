@@ -8,12 +8,12 @@ part of dart_web_toolkit_ui;
  * A {@link StackPanel} that wraps each item in a 2x3 grid (six box), which
  * allows users to add rounded corners.
  * </p>
- * 
+ *
  * <p>
  * This widget will <em>only</em> work in quirks mode. If your application is in
  * Standards Mode, use {@link StackLayoutPanel} instead.
  * </p>
- * 
+ *
  * <p>
  * <h3>CSS Style Rules</h3>
  * <ul class='css'>
@@ -45,15 +45,15 @@ part of dart_web_toolkit_ui;
  * of the cell}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see StackLayoutPanel
  */
 class DecoratedStackPanel extends StackPanel {
-  
+
   static final String DEFAULT_STYLENAME = "dwt-DecoratedStackPanel";
 
   static final List<String> _DEFAULT_ROW_STYLENAMES = ["stackItemTop", "stackItemMiddle"];
-  
+
   /**
    * Creates an empty decorated stack panel.
    */
@@ -69,16 +69,16 @@ class DecoratedStackPanel extends StackPanel {
     Dom.setStyleAttribute(table, "width", "100%");
     Dom.setElementPropertyInt(table, "cellSpacing", 0);
     Dom.setElementPropertyInt(table, "cellPadding", 0);
-  
+
     // Add the decorated rows
     for (int i = 0; i < _DEFAULT_ROW_STYLENAMES.length; i++) {
       tbody.append(DecoratorPanel.createTR(_DEFAULT_ROW_STYLENAMES[i]));
     }
-  
+
     // Return the table
     return table;
   }
-  
+
   dart_html.Element getHeaderTextElem(dart_html.Element headerElem) {
     dart_html.Element tbody = headerElem.$dom_firstElementChild;
     dart_html.Element tr = tbody.children[1];

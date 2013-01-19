@@ -9,6 +9,6 @@ part of dart_web_toolkit_text;
  * @param <T> the type to parse
  */
 abstract class Parser<T> {
-  
+
   T parse(String text);
 }

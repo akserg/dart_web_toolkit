@@ -15,7 +15,7 @@ abstract class LazyPanel extends SimplePanel {
 
   /**
    * Create the widget contained within the {@link LazyPanel}.
-   * 
+   *
    * @return the lazy widget
    */
   Widget createWidget();
@@ -38,7 +38,7 @@ abstract class LazyPanel extends SimplePanel {
    * Sets whether this object is visible. If <code>visible</code> is
    * <code>true</code>, creates the sole child widget if necessary by calling
    * {@link #ensureWidget}.
-   * 
+   *
    * @param visible <code>true</code> to show the object, <code>false</code> to
    * hide it
    */

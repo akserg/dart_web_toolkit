@@ -13,20 +13,20 @@ part of dart_web_toolkit_event;
  * executing.
  */
 class UmbrellaException implements Exception {
-  
+
   /**
    * A message describing the format error.
    */
   Set<Exception> _causes;
-  
+
   UmbrellaException(this._causes) {
     throw (makeCause(_causes));
   }
 
   Set<Exception> get causes => _causes;
-  
+
   String toString() => makeMessage(_causes);
-  
+
   static String makeMessage(Set<Exception> causes) {
     if (causes.length == 0) {
       return null;
@@ -42,7 +42,7 @@ class UmbrellaException implements Exception {
 
     return b.toString();
   }
-  
+
   static Exception makeCause(Set<Exception> causes) {
     Iterator<Exception> iterator = causes.iterator();
     if (!iterator.hasNext) {
@@ -51,6 +51,6 @@ class UmbrellaException implements Exception {
 
     return iterator.next();
   }
-  
-  
+
+
 }

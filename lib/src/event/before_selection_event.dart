@@ -5,11 +5,11 @@ part of dart_web_toolkit_event;
 
 /**
  * Represents a before selection event.
- * 
+ *
  * @param <T> the type about to be selected
  */
 class BeforeSelectionEvent<T> extends DwtEvent {
-  
+
   /**
    * Handler type.
    */
@@ -18,7 +18,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
   /**
    * Fires a before selection event on all registered handlers in the handler
    * manager. If no such handlers exist, this method will do nothing.
-   * 
+   *
    * @param <T> the item type
    * @param source the source of the handlers
    * @param item the item
@@ -38,7 +38,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
 
   /**
    * Gets the type associated with this event.
-   * 
+   *
    * @return returns the handler type
    */
   static EventType<BeforeSelectionHandler> getType() {
@@ -56,7 +56,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
 
   /**
    * Cancel the before selection event.
-   * 
+   *
    * Classes overriding this method should still call super.cancel().
    */
   void cancel() {
@@ -71,7 +71,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
 
   /**
    * Gets the item.
-   * 
+   *
    * @return the item
    */
   T getItem() {
@@ -80,7 +80,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
 
   /**
    * Has the selection event already been canceled?
-   * 
+   *
    * @return is canceled
    */
   bool isCanceled() {
@@ -93,7 +93,7 @@ class BeforeSelectionEvent<T> extends DwtEvent {
 
   /**
    * Sets the item.
-   * 
+   *
    * @param item the item
    */
   void setItem(T item) {

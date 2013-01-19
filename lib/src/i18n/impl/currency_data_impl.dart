@@ -7,7 +7,7 @@ part of dart_web_toolkit_i18n;
  * A POJO for currency data.
  */
 class CurrencyDataImpl extends DefaultCurrencyData {
-  
+
   /**
    * Public so CurrencyListGenerator can get to them. As usual with an impl
    * package, external code should not rely on these values.
@@ -45,7 +45,7 @@ class CurrencyDataImpl extends DefaultCurrencyData {
 
   /**
    * Flags and # of decimal digits.
-   * 
+   *
    * <pre>
    *       d0-d2: # of decimal digits for this currency, 0-7
    *       d3:    currency symbol goes after number, 0=before

@@ -5,11 +5,11 @@ part of dart_web_toolkit_event;
 
 /**
  * Represents a value change event.
- * 
+ *
  * @param <T> the value about to be changed
  */
 class ValueChangeEvent<T> extends DwtEvent {
-  
+
   /**
    * The event type.
    */
@@ -19,14 +19,14 @@ class ValueChangeEvent<T> extends DwtEvent {
 
   /**
    * Gets the value.
-   * 
+   *
    * @return the value
    */
   T get value => _value;
-  
+
   /**
    * Creates a value change event.
-   * 
+   *
    * @param value the value
    */
   ValueChangeEvent(this._value);
@@ -61,12 +61,12 @@ class ValueChangeEvent<T> extends DwtEvent {
       source.fireEvent(event);
     }
   }
-  
+
   /**
    * Fires value change event if the old value is not equal to the new value.
    * Use this call rather than making the decision to short circuit yourself for
    * safe handling of null.
-   * 
+   *
    * @param <T> the old value type
    * @param source the source of the handlers
    * @param oldValue the oldValue, may be null
@@ -78,11 +78,11 @@ class ValueChangeEvent<T> extends DwtEvent {
       source.fireEvent(event);
     }
   }
-  
+
   /**
    * Convenience method to allow subtypes to know when they should fire a value
    * change event in a null-safe manner.
-   * 
+   *
    * @param <T> value type
    * @param source the source
    * @param oldValue the old value

@@ -9,7 +9,7 @@ part of dart_web_toolkit_i18n;
  * available.
  */
 class DefaultCurrencyData implements CurrencyData {
-  
+
   final String currencyCode;
   final String currencySymbol;
   final int fractionDigits;
@@ -18,7 +18,7 @@ class DefaultCurrencyData implements CurrencyData {
    * Create a default default {@link CurrencyData} instance, returning {@code
    * false} for all {@code isFoo} methods and using the standard symbol for the
    * portable symbol.
-   * 
+   *
    * @param currencyCode ISO 4217 currency code
    * @param currencySymbol symbol to use for this currency
    * @param fractionDigits default number of fraction digits

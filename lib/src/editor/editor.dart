@@ -25,9 +25,9 @@ part of dart_web_toolkit_editor;
  * {@link IsEditor} interface to provide an Editor instance. This allows view
  * objects to be written that can be attached to an Editor hierarchy without the
  * view directly implementing an Editor interface.
- * 
+ *
  * @param <T> the type of object the editor displays.
  */
 abstract class Editor<T> {
-  
+
 }

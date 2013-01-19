@@ -22,5 +22,5 @@ part of dart_web_toolkit_role;
  * The Roles Model </a>.</p>
  */
 abstract class WidgetRole extends RoletypeRole {
-  
+
 }

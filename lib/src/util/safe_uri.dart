@@ -38,7 +38,7 @@ part of dart_web_toolkit_util;
  *
  * <p>
  * Implementations must not return {@code null} from {@link #asString()}.
- * 
+ *
  * @see UriUtils
  */
 abstract class SafeUri {
@@ -64,16 +64,16 @@ abstract class SafeUri {
 
 /**
  * A string wrapped as an object of type {@link SafeUri}.
- * 
+ *
  * <p>
  * This class is package-private and intended for internal use by the
  * {@link com.google.gwt.safehtml} package.
- * 
+ *
  * All implementors must implement .equals and .hashCode so that they operate
  * just like String.equals() and String.hashCode().
  */
 class SafeUriString implements SafeUri {
-  
+
   String _uri;
 
   /**
@@ -81,7 +81,7 @@ class SafeUriString implements SafeUri {
    * for ensuring that the string passed as the argument to this constructor
    * satisfies the constraints of the contract imposed by the {@link SafeUri}
    * interface.
-   * 
+   *
    * @param uri the string to be wrapped as a {@link SafeUri}
    */
   SafeUriString(this._uri) {

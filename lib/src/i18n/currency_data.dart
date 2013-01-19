@@ -7,7 +7,7 @@ part of dart_web_toolkit_i18n;
  * Information about a currency.
  */
 abstract class CurrencyData {
-  
+
   /**
    * Returns the ISO4217 code for this currency.
    */

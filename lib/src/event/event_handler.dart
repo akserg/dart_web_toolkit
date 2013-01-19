@@ -8,5 +8,5 @@ part of dart_web_toolkit_event;
  * handlers extend [EventHandler].
  */
 abstract class EventHandler {
-  
+
 }

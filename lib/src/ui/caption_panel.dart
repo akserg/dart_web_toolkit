@@ -9,12 +9,12 @@ part of dart_web_toolkit_ui;
  * fieldset HTML element.
  */
 class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
-  
+
   /**
    * The implementation instance.
    */
   static CaptionPanelImpl impl = new CaptionPanelImpl.browserDependant();
-  
+
   /**
    * The legend element used as the caption.
    */
@@ -46,20 +46,20 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
       setCaptionText(caption);
     }
   }
-  
+
   void add(Widget w) {
     (getWidget() as SimplePanel).add(w);
   }
-  
+
   /**
    * Overloaded version for IsWidget.
-   * 
+   *
    * @see #add(Widget)
    */
   void addIsWidget(IsWidget w) {
     this.add(asWidgetOrNull(w));
   }
-  
+
   /**
    * Removes the content widget.
    */
@@ -76,7 +76,7 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
     assert (html != null);
     return html;
   }
-  
+
   /**
    * Sets the caption for the panel using an HTML fragment. Pass in empty string
    * to remove the caption completely, leaving just the unadorned panel.
@@ -106,7 +106,7 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
     assert (text != null);
     return text;
   }
-  
+
   /**
    * Sets the caption for the panel using text that will be automatically
    * escaped. Pass in empty string to remove the caption completely, leaving
@@ -118,7 +118,7 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
     assert (text != null);
     impl.setCaption(getElement() as dart_html.FieldSetElement, legend, text, false);
   }
-  
+
   /**
    * Accesses the content widget, if present.
    *
@@ -128,7 +128,7 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
   Widget getContentWidget() {
     return (getWidget() as SimplePanel).getWidget();
   }
-  
+
   /**
    * Sets or replaces the content widget within the CaptionPanel.
    *
@@ -155,10 +155,10 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
   bool remove(Widget w) {
     return (getWidget() as SimplePanel).remove(w);
   }
-  
+
   /**
    * Overloaded version for IsWidget.
-   * 
+   *
    * @see #remove(Widget)
    */
   bool removeIsWidget(IsWidget w) {
@@ -170,13 +170,13 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
  * Implementation class without browser-specific hacks.
  */
 class CaptionPanelImpl {
-  
+
   factory CaptionPanelImpl.browserDependant() {
     return new CaptionPanelImpl();
   }
-  
+
   CaptionPanelImpl();
-  
+
   void setCaption(dart_html.FieldSetElement fieldset, dart_html.Element legend, String caption, [bool asHtml = true]) {
     // TODO(bruce): rewrite to be inlinable
     assert (caption != null);
@@ -205,7 +205,7 @@ class CaptionPanelImpl {
  * Implementation class that handles Mozilla rendering issues.
  */
 class CaptionPanelImplMozilla extends CaptionPanelImpl {
-  
+
   void setSafeCaption(dart_html.FieldSetElement fieldset, dart_html.Element legend, SafeHtml caption) {
     setCaption(fieldset, legend, caption.asString(), true);
   }
@@ -234,11 +234,11 @@ class CaptionPanelImplSafari extends CaptionPanelImpl {
 }
 
 class _CaptionPanelImplSafariScheduledCommand implements ScheduledCommand {
-  
+
   dart_html.FieldSetElement _fieldset;
-  
+
   _CaptionPanelImplSafariScheduledCommand(this._fieldset);
-  
+
   void execute() {
     _fieldset.style.visibility = "";
   }

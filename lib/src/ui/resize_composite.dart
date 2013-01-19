@@ -9,7 +9,7 @@ part of dart_web_toolkit_ui;
  * must itself implement {@link RequiresResize}.
  */
 class ResizeComposite extends Composite implements RequiresResize {
-  
+
   void initWidget(Widget widget) {
     assert (widget is RequiresResize); // : "LayoutComposite requires that its wrapped widget implement RequiresResize";
     super.initWidget(widget);

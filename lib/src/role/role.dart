@@ -19,15 +19,15 @@ part of dart_web_toolkit_role;
  * The Roles Model </a>.</p>
  */
 class Role {
-  
+
   static final String ATTR_NAME_ROLE = "role";
   String _roleName;
-  
+
   Role(String roleName) {
     assert (roleName != null); // : "Role name cannot be null";
     this._roleName = roleName;
   }
-  
+
   /**
    * Gets the role for the element {@code element}. If none is set, "" is returned.
    *
@@ -38,7 +38,7 @@ class Role {
     assert (element != null); // : "Element cannot be null.";
     return element.attributes[ATTR_NAME_ROLE];
   }
-  
+
   /**
    * Gets the role name
    *
@@ -47,7 +47,7 @@ class Role {
   String getName() {
     return _roleName;
   }
-  
+
   /**
    * Removes the role for element {@code element}
    *
@@ -57,7 +57,7 @@ class Role {
     assert (element != null); // : "Element cannot be null.";
     element.attributes.remove(ATTR_NAME_ROLE);
   }
-  
+
   /**
    * Sets the role to element {@code element}
    *

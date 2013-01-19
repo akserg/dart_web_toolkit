@@ -11,11 +11,11 @@ class DomHelperDefault implements DomHelper {
   //*************************
   // Parent - child relations
   //*************************
-  
+
   bool isOrHasChild(dart_html.Node parent, dart_html.Node child) {
     return parent.contains(child);
   }
-  
+
   void insertChild(dart_html.Element parent, dart_html.Element toAdd, int index) {
     int count = 0;
     dart_html.Node child = parent.$dom_firstChild;
@@ -37,7 +37,7 @@ class DomHelperDefault implements DomHelper {
   //********************
   // Position of Element
   //********************
-  
+
   int getAbsoluteLeft(dart_html.Element elem) {
     var left = 0;
     dart_html.Element curr = elem;
@@ -85,7 +85,7 @@ class DomHelperDefault implements DomHelper {
   //*******
   // Events
   //*******
-  
+
   void setEventListener(dart_html.Element elem, EventListener listener) {
     //elem.__listener = listener;
     _listener[elem] = listener;
@@ -105,7 +105,7 @@ class DomHelperDefault implements DomHelper {
       }
     }
   }
-  
+
   void unsinkEvents(dart_html.Element elem, Set eventBits) {
     Set<String> _evt = getEventsSunk(elem);
     //
@@ -114,23 +114,23 @@ class DomHelperDefault implements DomHelper {
       elem.on[eventName].remove(_dispatchEvent);
     }
   }
-  
+
   Set<String> getEventsSunk(dart_html.Element elem) {
     return _eventBits[elem] == null ? new Set<String>() : _eventBits[elem];
   }
-  
+
   void _dispatchEvent(dart_html.Event event) {
     EventListener listener;
     dart_html.Node curElem = event.currentTarget as dart_html.Node;
-    
+
     while (curElem != null && (listener = _listener[curElem]) == null) {
       curElem = curElem.parentNode;
     }
-    
+
     if (curElem != null && curElem.nodeType != dart_html.Node.ELEMENT_NODE) {
       curElem = null;
     }
-    
+
     if (listener != null) {
       Dom.dispatchEvent(event, curElem, listener);
     }

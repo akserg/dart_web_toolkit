@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * Adapts the {@link ValueBoxBase} interface to the Editor framework. This
  * adapter uses {@link ValueBoxBase#getValueOrThrow()} to report parse errors to
  * the Editor framework.
- * 
+ *
  * @param <T> the type of value to be edited
  */
 class ValueBoxEditor<T> extends TakesValueEditor<T> implements HasEditorDelegate<T> {
@@ -69,7 +69,7 @@ class ValueBoxEditor<T> extends TakesValueEditor<T> implements HasEditorDelegate
   /**
    * Sets the {@link EditorDelegate} for this instance. This method is only
    * called by the driver.
-   * 
+   *
    * @param delegate an {@link EditorDelegate}, or {@code null}
    * @see #getDelegate()
    */

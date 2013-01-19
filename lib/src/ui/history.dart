@@ -39,7 +39,7 @@ part of dart_web_toolkit_ui;
  */
 class History {
   static HistoryImpl _impl;
-  
+
   /**
    * Adds a {@link com.google.gwt.event.logical.shared.ValueChangeEvent} handler
    * to be informed of changes to the browser's history stack.
@@ -50,7 +50,7 @@ class History {
   static HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> handler) {
     return _impl != null ? _impl.addValueChangeHandler(handler) : null;
   }
-  
+
   /**
    * Programmatic equivalent to the user pressing the browser's 'back' button.
    *
@@ -59,7 +59,7 @@ class History {
   static void back() {
     dart_html.window.history.back();
   }
-  
+
   /**
    * Programmatic equivalent to the user pressing the browser's 'forward'
    * button.
@@ -67,7 +67,7 @@ class History {
   static void forward() {
     dart_html.window.history.forward();
   }
-  
+
   /**
    * Encode a history token for use as part of a URI.
    *
@@ -77,7 +77,7 @@ class History {
   static String encodeHistoryToken(String historyToken) {
     return _impl != null ? _impl.encodeFragment(historyToken) : historyToken;
   }
-  
+
   /**
    * Fire
    * {@link ValueChangeHandler#onValueChange(com.google.gwt.event.logical.shared.ValueChangeEvent)}
@@ -92,7 +92,7 @@ class History {
       _impl.fireHistoryChangedImpl(token);
     }
   }
-  
+
   /**
    * Gets the current history token. The handler will not receive a
    * {@link ValueChangeHandler#onValueChange(com.google.gwt.event.logical.shared.ValueChangeEvent)}
@@ -105,7 +105,7 @@ class History {
   static String getToken() {
     return _impl != null ? HistoryImpl.getToken() : "";
   }
-  
+
   /**
    * Adds a new browser history entry. Calling this method will cause
    * {@link ValueChangeHandler#onValueChange(com.google.gwt.event.logical.shared.ValueChangeEvent)}

@@ -7,11 +7,11 @@ part of dart_web_toolkit_text;
  * Renders {@link Number} objects with a {@link NumberFormat}.
  */
 class NumberFormatRenderer extends AbstractRenderer<num> {
-  
+
   NumberFormat format;
 
   /**
-   * Create an instance with the given [format] or 
+   * Create an instance with the given [format] or
    * [NumberFormat#getDecimalFormat()]
    */
   NumberFormatRenderer([NumberFormat format = null]) {
@@ -21,7 +21,7 @@ class NumberFormatRenderer extends AbstractRenderer<num> {
       this.format = format;
     }
   }
-  
+
   String render(num object) {
     if (object == null) {
       return "";

@@ -42,13 +42,13 @@ part of dart_web_toolkit_ui;
 
 // Cannot do anything about tab panel implementing TabListener until next
 // release
-class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ HasWidgets, 
-  HasAnimation, IndexedPanelForIsWidget, HasBeforeSelectionHandlers<int>, 
+class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ HasWidgets,
+  HasAnimation, IndexedPanelForIsWidget, HasBeforeSelectionHandlers<int>,
   HasSelectionHandlers<int> {
-  
+
   _UnmodifiableTabBar tabBar;
   TabbedDeckPanel deck;
-  
+
   /**
    * Creates an empty tab panel.
    */
@@ -92,7 +92,7 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
 //    add(asWidgetOrNull(w), tabText, asHtml);
 //  }
 
-  
+
   void add(Widget w) {
     throw new Exception("A tabText parameter must be specified with add().");
   }
@@ -131,12 +131,12 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
     insertTabWidget(w, tabWidget, getWidgetCount());
   }
 
-  
+
   HandlerRegistration addBeforeSelectionHandler(BeforeSelectionHandler<int> handler) {
     return addHandler(handler, BeforeSelectionEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addSelectionHandler(SelectionHandler<int> handler) {
     return addHandler(handler, SelectionEvent.TYPE);
   }
@@ -145,13 +145,13 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
    * @deprecated Use {@link #addBeforeSelectionHandler} and {@link
    * #addSelectionHandler} instead
    */
-  
+
 //  @Deprecated
 //  void addTabListener(TabListener listener) {
 //    ListenerWrapper.WrappedTabListener.add(this, listener);
 //  }
 
-  
+
   void clear() {
     while (getWidgetCount() > 0) {
       remove(getWidgetAt(0));
@@ -179,12 +179,12 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
     return tabBar;
   }
 
-  
+
   Widget getWidgetAt(int index) {
     return deck.getWidget(index);
   }
 
-  
+
   int getWidgetCount() {
     return deck.getWidgetCount();
   }
@@ -192,12 +192,12 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
   /**
    * Convenience overload to allow {@link IsWidget} to be used directly.
    */
-  
+
   int getWidgetIndexIsWidget(IsWidget child) {
     return getWidgetIndex(asWidgetOrNull(child));
   }
 
-  
+
   int getWidgetIndex(Widget widget) {
     return deck.getWidgetIndex(widget);
   }
@@ -263,12 +263,12 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
     deck.insertProtectedTabWidget(widget, tabWidget, beforeIndex);
   }
 
-  
+
   bool isAnimationEnabled() {
     return deck.isAnimationEnabled();
   }
 
-  
+
   Iterator<Widget> iterator() {
     // The Iterator returned by DeckPanel supports removal and will invoke
     // TabbedDeckPanel.remove(), which is an active function.
@@ -278,7 +278,7 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
   /**
    * @deprecated Use {@link BeforeSelectionHandler#onBeforeSelection} instead
    */
-  
+
 //  @Deprecated
 //  bool onBeforeTabSelected(SourcesTabEvents sender, int tabIndex) {
 //    BeforeSelectionEvent<int> event = BeforeSelectionEvent.fire(this, tabIndex);
@@ -288,14 +288,14 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
   /**
    * @deprecated Use {@link SelectionHandler#onSelection} instead
    */
-  
+
 //  @Deprecated
 //  void onTabSelected(SourcesTabEvents sender, int tabIndex) {
 //    deck.showWidget(tabIndex);
 //    SelectionEvent.fire(this, tabIndex);
 //  }
 
-  
+
   bool removeAt(int index) {
     // Delegate updates to the TabBar to our DeckPanel implementation
     return deck.removeAt(index);
@@ -306,7 +306,7 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
    *
    * @param widget the widget to be removed
    */
-  
+
   bool remove(Widget widget) {
     // Delegate updates to the TabBar to our DeckPanel implementation
     return deck.remove(widget);
@@ -316,7 +316,7 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
    * @deprecated Use the {@link HandlerRegistration#removeHandler}
    * method on the object returned by and add*Handler method instead
    */
-  
+
 //  @Deprecated
 //  void removeTabListener(TabListener listener) {
 //    ListenerWrapper.WrappedTabListener.remove(this, listener);
@@ -341,7 +341,7 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
     tabBar.selectTab(index, fireEvents);
   }
 
-  
+
   void setAnimationEnabled(bool enable) {
     deck.setAnimationEnabled(enable);
   }
@@ -368,7 +368,7 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
    *
    * @see UIObject#onEnsureDebugId(String)
    */
-  
+
 //  void onEnsureDebugId(String baseID) {
 //    super.onEnsureDebugId(baseID);
 //    tabBar.ensureDebugId(baseID + "-bar");
@@ -390,27 +390,27 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
  * </p>
  */
 class TabbedDeckPanel extends DeckPanel {
-  
+
   final _UnmodifiableTabBar _tabBar;
 
   TabbedDeckPanel(this._tabBar);
 
-  
+
   void add(Widget w) {
     throw new Exception("Use TabPanel.add() to alter the DeckPanel");
   }
 
-  
+
   void clear() {
     throw new Exception("Use TabPanel.clear() to alter the DeckPanel");
   }
 
-  
+
   void insertAt(Widget w, int beforeIndex) {
     throw new Exception("Use TabPanel.insert() to alter the DeckPanel");
   }
 
-  
+
   bool remove(Widget w) {
     // Removal of items from the TabBar is delegated to the DeckPanel
     // to ensure consistency
@@ -461,16 +461,16 @@ class TabbedDeckPanel extends DeckPanel {
  * external callers from modifying the state of the TabBar.
  */
 class _UnmodifiableTabBar extends TabBar {
-  
+
   TabPanel _panel;
-  
+
   _UnmodifiableTabBar(this._panel);
-  
+
   void insertTabText(String text, int beforeIndex, [bool asHtml = false]) {
     throw new Exception("Use TabPanel.insert() to alter the TabBar");
   }
 
-  
+
   void insertTabWidget(Widget widget, int beforeIndex) {
     throw new Exception("Use TabPanel.insert() to alter the TabBar");
   }
@@ -483,7 +483,7 @@ class _UnmodifiableTabBar extends TabBar {
     super.insertTabWidget(widget, beforeIndex);
   }
 
-  
+
   void removeTab(int index) {
     // It's possible for removeTab() to function correctly, but it's
     // preferable to have only TabbedDeckPanel.remove() be operable,
@@ -495,7 +495,7 @@ class _UnmodifiableTabBar extends TabBar {
     super.removeTab(index);
   }
 
-  
+
   SimplePanel createTabTextWrapper() {
     return _panel.createTabTextWrapper();
   }

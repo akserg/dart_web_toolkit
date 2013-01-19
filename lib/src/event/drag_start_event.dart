@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Represents a native drag start event.
  */
 class DragStartEvent extends DragDropEventBase {
-  
+
   /**
    * The event type.
    */
@@ -22,5 +22,5 @@ class DragStartEvent extends DragDropEventBase {
   void dispatch(DragStartHandler handler) {
     handler.onDragStart(this);
   }
-  
+
 }

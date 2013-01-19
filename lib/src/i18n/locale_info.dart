@@ -11,7 +11,7 @@ class LocaleInfo {
    * to LocaleInfo instances.
    */
   static LocaleInfo instance = new LocaleInfo(new LocaleInfoImpl()); //, new CldrImpl());
-  
+
   /**
    * Returns an array of available locale names.
    */
@@ -29,7 +29,7 @@ class LocaleInfo {
      */
     return instance.infoImpl.getAvailableLocaleNames();
   }
-  
+
   /**
    * Returns a LocaleInfo instance for the current locale.
    */
@@ -42,14 +42,14 @@ class LocaleInfo {
      */
     return instance;
   }
-  
+
   LocaleInfoImpl infoImpl;
 
 //  CldrImpl cldrImpl;
   DateTimeFormatInfo dateTimeFormatInfo;
-  
+
   NumberConstants numberConstants;
-  
+
   /**
    * Create a LocaleInfo instance, passing in the implementation classes.
    *
@@ -57,14 +57,14 @@ class LocaleInfo {
    * @param cldr CldrImpl instance to use
    */
   LocaleInfo([this.infoImpl = null]); //, this.cldrImpl = null]);
-  
+
   /**
    * Returns true if this locale is right-to-left instead of left-to-right.
    */
   bool isRTL() {
     return false; //cldrImpl.isRTL();
   }
-  
+
   /**
    * Returns a DateTimeConstants instance for this locale.
    */
@@ -72,13 +72,13 @@ class LocaleInfo {
     ensureDateTimeFormatInfo();
     return dateTimeFormatInfo;
   }
-  
+
   void ensureDateTimeFormatInfo() {
     if (dateTimeFormatInfo == null) {
       dateTimeFormatInfo = infoImpl.getDateTimeFormatInfo();
     }
   }
-  
+
   /**
    * Returns a NumberConstants instance for this locale.
    */
@@ -86,7 +86,7 @@ class LocaleInfo {
     ensureNumberConstants();
     return numberConstants;
   }
-  
+
   void ensureNumberConstants() {
     if (numberConstants == null) {
       numberConstants = infoImpl.getNumberConstants();

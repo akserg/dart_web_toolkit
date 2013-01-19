@@ -8,17 +8,17 @@ part of dart_web_toolkit_ui;
  * children.
  */
 class AttachDetachException extends UmbrellaException {
-  
+
   /**
    * The singleton command used to attach widgets.
    */
   static AttachExceptionCommand attachCommand = new AttachExceptionCommand();
-  
+
   /**
    * The singleton command used to detach widgets.
    */
   static DetachExceptionCommand detachCommand = new DetachExceptionCommand();
-  
+
   /**
    * <p>
    * Iterator through all child widgets, trying to perform the specified
@@ -31,7 +31,7 @@ class AttachDetachException extends UmbrellaException {
    * ensure that the logical and physical state of all children match the
    * logical and physical state of the parent.
    * </p>
-   * 
+   *
    * @param hasWidgets children to iterate
    * @param c the {@link Command} to try on all children
    */
@@ -56,7 +56,7 @@ class AttachDetachException extends UmbrellaException {
       throw new AttachDetachException(caught);
     }
   }
-  
+
   /**
    * <p>
    * Iterator through all child widgets, trying to perform the specified
@@ -69,7 +69,7 @@ class AttachDetachException extends UmbrellaException {
    * ensure that the logical and physical state of all children match the
    * logical and physical state of the parent.
    * </p>
-   * 
+   *
    * @param c the {@link Command} to try on all children
    * @param widgets children to iterate, null children are ignored
    */
@@ -95,10 +95,10 @@ class AttachDetachException extends UmbrellaException {
       throw new AttachDetachException(caught);
     }
   }
-  
+
   /**
    * Construct a new {@link AttachDetachException}.
-   * 
+   *
    * @param causes the causes of the exception
    */
   AttachDetachException(Set<Exception> causes) : super (causes);
@@ -108,12 +108,12 @@ class AttachDetachException extends UmbrellaException {
  * The command to execute when iterating through child widgets.
  */
 abstract class AttachCommand {
-  
+
   void execute(Widget w);
 }
 
 class AttachExceptionCommand implements AttachCommand {
-  
+
   /**
    * The singleton command used to attach widgets.
    */
@@ -124,7 +124,7 @@ class AttachExceptionCommand implements AttachCommand {
 }
 
 class DetachExceptionCommand implements AttachCommand {
-  
+
   /**
    * The singleton command used to attach widgets.
    */

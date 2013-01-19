@@ -8,13 +8,13 @@ part of dart_web_toolkit_ui;
  * widgets.
  */
 abstract class Panel extends Widget implements HasWidgetsForIsWidget {
-  
+
   //*****************************
   // Implementation of HasWidgets
   //*****************************
   /**
    * Adds a child widget.
-   * 
+   *
    * <p>
    * <b>How to Override this Method</b>
    * </p>
@@ -42,7 +42,7 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
    * very last step.</li>
    * </ol>
    * </p>
-   * 
+   *
    * @param child the widget to be added
    * @throws UnsupportedOperationException if this method is not supported (most
    *           often this means that a specific overload must be called)
@@ -62,10 +62,10 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
       //it.remove();
     }
   }
-  
+
   /**
    * Removes a child widget.
-   * 
+   *
    * <p>
    * <b>How to Override this Method</b>
    * </p>
@@ -86,17 +86,17 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
    * Panel's {@link WidgetCollection}.</li>
    * </ol>
    * </p>
-   * 
+   *
    * @param child the widget to be removed
    * @return <code>true</code> if the child was present
-   * 
+   *
    * bool remove(Widget child);
    */
-  
+
   //****************************************
   // Implementation of HasWidgetsForIsWidget
   //****************************************
-  
+
   void addIsWidget(IsWidget child) {
     this.add(asWidgetOrNull(child));
   }
@@ -104,19 +104,19 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
   bool removeIsWidget(IsWidget child) {
     return remove(asWidgetOrNull(child));
   }
-  
-  
+
+
   //*********
   // Children
   //*********
-  
+
   /**
    * Finalize the attachment of a Widget to this Panel. This method is the
    * <b>last</b> step in adding or inserting a Widget into a Panel, and should
    * be called after physical attachment in the DOM is complete. This Panel
    * becomes the parent of the child Widget, and the child will now fire its
    * {@link Widget#onAttach()} event if this Panel is currently attached.
-   * 
+   *
    * @param child the widget to be adopted
    * @see #add(Widget)
    */
@@ -124,15 +124,15 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
     assert (child.getParent() == null);
     child.setParent(this);
   }
-  
+
   void doAttachChildren() {
     AttachDetachException.tryCommand(this, AttachDetachException.attachCommand);
   }
-  
+
   void doDetachChildren() {
     AttachDetachException.tryCommand(this, AttachDetachException.detachCommand);
   }
-  
+
   /**
    * <p>
    * This method must be called as part of the remove method of any Panel. It
@@ -147,7 +147,7 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
    * to ensure that the widget is physically detached even if orphan throws an
    * exception.
    * </p>
-   * 
+   *
    * @param child the widget to be disowned
    * @see #add(Widget)
    */

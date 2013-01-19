@@ -288,18 +288,18 @@ part of dart_web_toolkit_i18n;
  *
  */
 class NumberFormat {
-  
+
   static NumberFormat _cachedDecimalFormat;
-  
+
   static NumberFormat getDecimalFormat() {
     if (_cachedDecimalFormat == null) {
       _cachedDecimalFormat = new NumberFormat._internal();
     }
     return _cachedDecimalFormat;
   }
-  
+
   NumberFormat._internal();
-  
+
   /**
    * This method formats a double to produce a string.
    *
@@ -312,7 +312,7 @@ class NumberFormat {
     }
     return number.toString();
   }
-  
+
   /**
    * This method formats a Number to produce a string.
    * <p>
@@ -328,7 +328,7 @@ class NumberFormat {
     }
     return number.toString();
   }
-  
+
   /**
    * This method formats a Number to produce a string.
    * <p>
@@ -343,7 +343,7 @@ class NumberFormat {
       return formatInt(number as int);
     } else if (number is double) {
       return formatDouble(number as double);
-    } 
+    }
     throw new Exception("Unknown type");
   }
 }

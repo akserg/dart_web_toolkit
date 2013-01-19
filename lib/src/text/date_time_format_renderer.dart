@@ -7,10 +7,10 @@ part of dart_web_toolkit_text;
  * Renders {@link Date} objects with a {@link DateTimeFormat}.
  */
 class DateTimeFormatRenderer extends AbstractRenderer<Date> {
-  
+
   DateTimeFormat format;
   TimeZone timeZone;
-  
+
   /**
    * Create an instance with the given format and time zone.
    */
@@ -22,7 +22,7 @@ class DateTimeFormatRenderer extends AbstractRenderer<Date> {
     }
     this.timeZone = timeZone;
   }
-  
+
   String render(Date object) {
     if (object == null) {
       return "";

@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Represents a native drop event.
  */
 class DropEvent extends DragDropEventBase {
-  
+
   /**
    * The event type.
    */
@@ -22,5 +22,5 @@ class DropEvent extends DragDropEventBase {
   void dispatch(DropHandler handler) {
     handler.onDrop(this);
   }
-  
+
 }

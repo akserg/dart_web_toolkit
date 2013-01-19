@@ -28,13 +28,13 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class Label extends LabelBase<String> implements HasDirectionalText,
-  HasClickHandlers, HasDoubleClickHandlers, 
+  HasClickHandlers, HasDoubleClickHandlers,
   HasAllDragAndDropHandlers, //HasAllGestureHandlers, HasDirection
   HasAllMouseHandlers, HasAllTouchHandlers,
   IsEditor<LeafValueEditor<String>> {
-  
+
   static final DirectionEstimator DEFAULT_DIRECTION_ESTIMATOR = DirectionalTextHelper.DEFAULT_DIRECTION_ESTIMATOR;
-  
+
   /**
    * Creates a Label widget that wraps an existing &lt;div&gt; or &lt;span&gt;
    * element.
@@ -57,9 +57,9 @@ class Label extends LabelBase<String> implements HasDirectionalText,
 
     return label;
   }
-  
+
   LeafValueEditor<String> editor;
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be either a &lt;div&gt; or &lt;span&gt; element.
@@ -69,7 +69,7 @@ class Label extends LabelBase<String> implements HasDirectionalText,
   Label.fromElement(dart_html.Element element) : super.fromElement(element) {
     clearAndSetStyleName("dwt-Label");
   }
-  
+
   /**
    * Creates an empty label.
    */
@@ -82,11 +82,11 @@ class Label extends LabelBase<String> implements HasDirectionalText,
       this.wordWrap = wordWrap;
     }
   }
-  
+
   HandlerRegistration addClickHandler(ClickHandler handler) {
     return addDomHandler(handler, ClickEvent.TYPE);
   }
-  
+
   HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
     return addDomHandler(handler, DoubleClickEvent.TYPE);
   }
@@ -134,7 +134,7 @@ class Label extends LabelBase<String> implements HasDirectionalText,
   HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
     return addDomHandler(handler, MouseDownEvent.TYPE);
   }
-  
+
   HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
     return addDomHandler(handler, MouseMoveEvent.TYPE);
   }
@@ -154,7 +154,7 @@ class Label extends LabelBase<String> implements HasDirectionalText,
   HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
     return addDomHandler(handler, MouseWheelEvent.TYPE);
   }
-  
+
   HandlerRegistration addTouchCancelHandler(TouchCancelHandler handler) {
     return addDomHandler(handler, TouchCancelEvent.TYPE);
   }
@@ -170,14 +170,14 @@ class Label extends LabelBase<String> implements HasDirectionalText,
   HandlerRegistration addTouchStartHandler(TouchStartHandler handler) {
     return addDomHandler(handler, TouchStartEvent.TYPE);
   }
-  
+
   LeafValueEditor<String> asEditor() {
     if (editor == null) {
       editor = new HasTextEditor.of(this);
     }
     return editor;
   }
-  
+
   String get text => directionalTextHelper.getTextOrHtml(false);
 
   /**
@@ -187,18 +187,18 @@ class Label extends LabelBase<String> implements HasDirectionalText,
    * directionEstimator} is null. Otherwise, the widget's direction is set using
    * the estimator, and its alignment may therefore change as described in
    * {@link #setText(String, com.google.gwt.i18n.client.HasDirection.Direction) setText(String, Direction)}.
-   * 
+   *
    * @param text the widget's new text
    */
   void set text(String val) {
     directionalTextHelper.setTextOrHtml(val, false);
     updateHorizontalAlignment();
   }
-  
+
   Direction getTextDirection() {
     return directionalTextHelper.getTextDirection();
   }
-  
+
   /**
    * Sets the label's content to the given text, applying the given direction.
    * <p>

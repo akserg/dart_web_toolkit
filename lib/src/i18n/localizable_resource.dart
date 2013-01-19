@@ -5,20 +5,20 @@ part of dart_web_toolkit_i18n;
 
 /**
  * This is the common superinterface to Messages and Constants.
- * 
+ *
  * Each (and the Constants subinterface ConstantsWithLookup) provide
  * compile-time localization of various forms of data.  Messages is
  * used for <code>MessageFormat</code>-style strings which can have
  * parameters (including support for plural forms), while Constants
  * can be other types, have simplified quoting requirements, and do
  * not take any parameters.
- * 
+ *
  * The annotations defined here are common to both -- see the individual
  * subinterfaces for additional annotations which apply only to each
  * one.
  */
 abstract class LocalizableResource extends Localizable {
-  
+
 }
 
 /**
@@ -48,7 +48,7 @@ abstract class Description {
  * do not; also, additional parameters may be specified via format-specific
  * annotations -- see the documentation of the MessageCatalogFormat implementation
  * for details.
- * 
+ *
  * Examples:
  * <ul>
  * <li>&#64;Generate(format = "com.google.gwt.i18n.server.PropertyCatalogFactory")
@@ -59,7 +59,7 @@ abstract class Description {
  *    fileName = "myapp_translate_source", locales = {"default"})
  * <br>generates default files in two proprietary formats, with filenames like
  *      myapp_translate_source.p1 and myapp_translate_source.p2
- * </pre></code>  
+ * </pre></code>
  */
 abstract class Generate {
 
@@ -68,17 +68,17 @@ abstract class Generate {
    * parameter.
    */
   String DEFAULT = "[default]";
-  
+
   /**
    * Fully-qualified class names of the generator classes. Each class must
    * implement com.google.gwt.i18n.server.MessageCatalogFactory
    * (com.google.gwt.i18n.rebind.format.MessageCatalogFormat still works, but
    * is deprecated).
-   * 
+   *
    * Strings are used here instead of class literals because the generators
    * will likely contain non-translatable code and thus can't be referenced
    * from translatable code directly.
-   * 
+   *
    * Each generator may define additional annotations to supply other
    * necessary parameters.
    */
@@ -96,12 +96,12 @@ abstract class Generate {
    * just only one locale happened to be compiled for), the locale will be
    * appended to the name (such as _default [for the default locale], _en_US,
    * etc) as well as the proper extension for the specified format.
-   * 
+   *
    * Note that if multiple generators are used, they will have the same base
    * filename so the extensions must be different.
    */
   String get fileName => DEFAULT;
-  
+
   /**
    * A list of locales for which to generate this output file.  If no locales
    * are specified, all locales for which the application is compiled for will
@@ -112,7 +112,7 @@ abstract class Generate {
 
 /**
  * Annotation indicating this is a generated file and the source file it was
- * generated from. 
+ * generated from.
  */
 abstract class GeneratedFrom {
   String get value;
@@ -123,7 +123,7 @@ abstract class GeneratedFrom {
  * annotation is supplied with no value, the default is to use an MD5 hash of
  * the text and meaning.  If this annotation is not supplied, the keys will be
  * the unqualified method names.
- * 
+ *
  * <p>The value is either the name of an inner class of {@code KeyGenerator} or the
  * fully-qualified class name of some implementation of {@code KeyGenerator}.
  */

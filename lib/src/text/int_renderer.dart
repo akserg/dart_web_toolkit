@@ -7,7 +7,7 @@ part of dart_web_toolkit_text;
  * A localized renderer based on {@link NumberFormat#getDecimalFormat}.
  */
 class IntRenderer extends AbstractRenderer<int> {
-  
+
   static IntRenderer _INSTANCE;
 
   /**

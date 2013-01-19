@@ -6,7 +6,7 @@ part of dart_web_toolkit_i18n;
 /**
  * Implementation detail of DateTimeFormat -- not a API and subject to
  * change.
- * 
+ *
  * DateRecord class exposes almost the same set of interface as Date class with
  * only a few exceptions. The main purpose is the record all the information
  * during parsing phase and resolve them in a later time when all information
@@ -14,16 +14,16 @@ part of dart_web_toolkit_i18n;
  */
 class DateRecord {
   Date _date = new Date.now();
-  
+
   static final int AM = 0;
   static final int PM = 1;
 
   static final int _JS_START_YEAR = 1900;
 
   const int MIN_VALUE = -2147483648;
-  
+
   int era = -1;
-  int year = MIN_VALUE; 
+  int year = MIN_VALUE;
   int month = -1;
   int dayOfMonth = -1; // day
   int ampm = -1;
@@ -35,7 +35,7 @@ class DateRecord {
   int tzOffset = MIN_VALUE;
   int dayOfWeek = -1;
   bool ambiguousYear = false;
-  
+
   /**
    * Initialize DateExt object with default value. Here we use -1 for most of
    * the field to indicate that field is not set.
@@ -47,11 +47,11 @@ class DateRecord {
    * those information that is not provided, the existing value in 'date' will
    * be kept. Ambiguous year will be resolved after the date/time values are
    * resolved.
-   * 
+   *
    * If the strict option is set to true, calcDate will calculate certain
    * invalid dates by wrapping around as needed. For example, February 30 will
    * wrap to March 2.
-   * 
+   *
    * @param date The Date object being filled. Its value should be set to an
    *          acceptable default before pass in to this method
    * @param strict true to be strict when parsing
@@ -75,7 +75,7 @@ class DateRecord {
     // Real date is set after, and that might cause month switch. However,
     // that's desired.
     int orgDayOfMonth = date.day;
-    int _day = 1; //date.day = 1; 
+    int _day = 1; //date.day = 1;
 
     int _month;
     if (this.month >= 0) {
@@ -126,7 +126,7 @@ class DateRecord {
     }
 
     date = new Date(_year, _month, _day, _hour, _minute, _second, _millisecond);
-    
+
     // If strict, verify that the original date fields match the calculated date
     // fields. We do this before we set the timezone offset, which will skew all
     // of the dates.
@@ -164,7 +164,7 @@ class DateRecord {
       Date defaultCenturyStart = new Date.now();
       //defaultCenturyStart.year = defaultCenturyStart.year - 80;
       defaultCenturyStart = new Date(defaultCenturyStart.year - 80, defaultCenturyStart.month, defaultCenturyStart.day, defaultCenturyStart.hour, defaultCenturyStart.minute, defaultCenturyStart.second, defaultCenturyStart.millisecond);
-      
+
       if (date < defaultCenturyStart) {
         //date.year = defaultCenturyStart.year + 100;
         date = new Date(defaultCenturyStart.year + 100, _month, _day, _hour, _minute, _second, _millisecond);
@@ -191,9 +191,9 @@ class DateRecord {
         if (date.month != orgMonth) {
           _day /* date.day */ = _day /* date.day */ + (adjustment > 0 ? -7 : 7);
         }
-        
+
         date = new Date(date.year, date.month, _day, date.hour, date.minute, date.second, date.millisecond);
-        
+
       } else {
         if (date.day != this.dayOfWeek) {
           return false;
@@ -211,7 +211,7 @@ class DateRecord {
 
     return true;
   }
-  
+
 //  int getTimezoneOffset(Date date) {
 //    Date utc = new Date.utc(date.year, date.month, date.day, date.hour, date.minute, date.second, date.millisecond);
 //    return (date.millisecondsSinceEpoch - utc.millisecondsSinceEpoch) ~/ 60000;
@@ -221,7 +221,7 @@ class DateRecord {
    * Set ambiguous year field. This flag indicates that a 2 digit years's
    * century need to be determined by its date/time value. This can only be
    * resolved after its date/time is known.
-   * 
+   *
    * @param ambiguousYear true if it is ambiguous year.
    */
   void setAmbiguousYear(bool ambiguousYear) {
@@ -230,7 +230,7 @@ class DateRecord {
 
   /**
    * Set morning/afternoon field.
-   * 
+   *
    * @param ampm ampm value.
    */
   void setAmpm(int ampm) {
@@ -239,7 +239,7 @@ class DateRecord {
 
   /**
    * Set dayOfMonth field.
-   * 
+   *
    * @param day dayOfMonth value
    */
   void setDayOfMonth(int day) {
@@ -248,7 +248,7 @@ class DateRecord {
 
   /**
    * Set dayOfWeek field.
-   * 
+   *
    * @param dayOfWeek day of the week.
    */
   void setDayOfWeek(int dayOfWeek) {
@@ -257,7 +257,7 @@ class DateRecord {
 
   /**
    * Set Era field.
-   * 
+   *
    * @param era era value being set.
    */
   void setEra(int era) {
@@ -266,7 +266,7 @@ class DateRecord {
 
   /**
    * Set hour field.
-   * 
+   *
    * @param hours hour value.
    */
   void setHours(int hours) {
@@ -275,7 +275,7 @@ class DateRecord {
 
   /**
    * Set milliseconds field.
-   * 
+   *
    * @param milliseconds milliseconds value.
    */
   void setMilliseconds(int milliseconds) {
@@ -284,7 +284,7 @@ class DateRecord {
 
   /**
    * Set minute field.
-   * 
+   *
    * @param minutes minute value.
    */
   void setMinutes(int minutes) {
@@ -293,7 +293,7 @@ class DateRecord {
 
   /**
    * Set month field.
-   * 
+   *
    * @param month month value.
    */
   void setMonth(int month) {
@@ -302,7 +302,7 @@ class DateRecord {
 
   /**
    * Set seconds field.
-   * 
+   *
    * @param seconds second value.
    */
   void setSeconds(int seconds) {
@@ -311,7 +311,7 @@ class DateRecord {
 
   /**
    * Set timezone offset, in minutes.
-   * 
+   *
    * @param tzOffset timezone offset.
    */
   void setTzOffset(int tzOffset) {
@@ -320,7 +320,7 @@ class DateRecord {
 
   /**
    * Set year field.
-   * 
+   *
    * @param value year value.
    */
   void setYear(int value) {

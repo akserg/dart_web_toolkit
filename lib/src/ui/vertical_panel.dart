@@ -5,16 +5,16 @@ part of dart_web_toolkit_ui;
 
 /**
  * A panel that lays all of its widgets out in a single vertical column.
- * 
+ *
  * <p>
  * <img class='gallery' src='doc-files/VerticalPanel.png'/>
  * </p>
  */
 class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsWidget {
-  
+
   HorizontalAlignmentConstant _horzAlign = HasHorizontalAlignment.ALIGN_DEFAULT;
   VerticalAlignmentConstant _vertAlign = HasVerticalAlignment.ALIGN_TOP;
-  
+
   /**
    * Creates an empty vertical panel.
    */
@@ -22,7 +22,7 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
     Dom.setElementProperty(getTable(), "cellSpacing", "0");
     Dom.setElementProperty(getTable(), "cellPadding", "0");
   }
-  
+
   void add(Widget w) {
     dart_html.Element tr = new dart_html.TableRowElement();
     dart_html.Element td = _createAlignedTd();
@@ -30,15 +30,15 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
     getBody().append(tr);
     addWidget(w, td);
   }
-  
+
   HorizontalAlignmentConstant getHorizontalAlignment() {
     return _horzAlign;
   }
-  
+
   /**
    * Sets the default horizontal alignment to be used for widgets added to this
    * panel. It only applies to widgets added after this property is set.
-   * 
+   *
    * @see HasHorizontalAlignment#setHorizontalAlignment(HasHorizontalAlignment.HorizontalAlignmentConstant)
    */
   void setHorizontalAlignment(HorizontalAlignmentConstant align) {
@@ -48,21 +48,21 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
   VerticalAlignmentConstant getVerticalAlignment() {
     return _vertAlign;
   }
-  
+
   /**
    * Sets the default vertical alignment to be used for widgets added to this
    * panel. It only applies to widgets added after this property is set.
-   * 
+   *
    * @see HasVerticalAlignment#setVerticalAlignment(HasVerticalAlignment.VerticalAlignmentConstant)
    */
   void setVerticalAlignment(VerticalAlignmentConstant align) {
     _vertAlign = align;
   }
-  
+
   void insertIsWidget(IsWidget w, int beforeIndex) {
     insertWidget(asWidgetOrNull(w), beforeIndex);
   }
-  
+
   void insertWidget(Widget w, int beforeIndex) {
     checkIndexBoundsForInsertion(beforeIndex);
 
@@ -72,7 +72,7 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
 
     /*
      * The case where we reinsert an already existing child is tricky.
-     * 
+     *
      * For the WIDGET, it ultimately removes first and inserts second, so we
      * have to adjust the index within ComplexPanel.insert(). But for the DOM,
      * we insert first and remove second, which means we DON'T need to adjust
@@ -81,7 +81,7 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
     Dom.insertChild(getBody(), tr, beforeIndex);
     insert(w, td, beforeIndex, false);
   }
-  
+
   bool remove(Widget w) {
     /*
      * Get the TR to be removed before calling super.remove() because
@@ -95,7 +95,7 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
     }
     return removed;
   }
-  
+
   dart_html.Element _createAlignedTd() {
     dart_html.Element td = new dart_html.TableCellElement();
     setCellHorizontalAlignment(td, _horzAlign);

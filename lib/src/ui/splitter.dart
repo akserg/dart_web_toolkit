@@ -4,7 +4,7 @@
 part of dart_web_toolkit_ui;
 
 /**
- * Abstract Splitter for SplitLayoutPanelExample. Implemented as Splitter and 
+ * Abstract Splitter for SplitLayoutPanelExample. Implemented as Splitter and
  * VSplitter.
  */
 abstract class Splitter extends Widget {

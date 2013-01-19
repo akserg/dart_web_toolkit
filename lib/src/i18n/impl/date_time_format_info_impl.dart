@@ -8,5 +8,5 @@ part of dart_web_toolkit_i18n;
  * Unicode CLDR data.
  */
 class DateTimeFormatInfoImpl extends DefaultDateTimeFormatInfo implements Localizable {
-  
+
 }

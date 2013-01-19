@@ -7,7 +7,7 @@ part of dart_web_toolkit_text;
  * A no-op String parser.
  */
 class PassthroughParser implements Parser<String> {
-  
+
   static PassthroughParser _instance;
 
   /**
@@ -21,7 +21,7 @@ class PassthroughParser implements Parser<String> {
   }
 
   PassthroughParser();
-  
+
   String parse(String text) { //CharSequence object) {
     return text as String;
   }

@@ -5,7 +5,7 @@ part of dart_web_toolkit_ui;
 
 /**
  * A simple checkbox widget, with no label.
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <ul class='css'>
  * <li>.gwt-SimpleCheckBox { }</li>
@@ -13,15 +13,15 @@ part of dart_web_toolkit_ui;
  * </ul>
  */
 class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, IsEditor<LeafValueEditor<bool>> {
-  
+
   /**
    * Creates a SimpleCheckBox widget that wraps an existing &lt;input
    * type='checkbox'&gt; element.
-   * 
+   *
    * This element must already be attached to the document. If the element is
    * removed from the document, you must call
    * {@link RootPanel#detachNow(Widget)}.
-   * 
+   *
    * @param element the element to be wrapped
    */
   factory SimpleCheckBox.wrap(dart_html.CheckboxInputElement element) {
@@ -36,23 +36,23 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
 
     return checkBox;
   }
-  
+
   LeafValueEditor<bool> editor;
-  
+
   /**
    * Creates a new simple checkbox.
    */
   SimpleCheckBox([dart_html.InputElement element = null]) : super(element == null ? new dart_html.InputElement(type: 'checkbox') : element) {
     clearAndSetStyleName("dwt-SimpleCheckBox");
   }
-  
+
   LeafValueEditor<bool> asEditor() {
     if (editor == null) {
       editor = new TakesValueEditor(this);
     }
     return editor;
   }
-  
+
   /**
    * Returns the value property of the input element that backs this widget.
    * This is the value that will be associated with the check box name and
@@ -65,7 +65,7 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
   String getFormValue() {
     return _getInputElement().value;
   }
-  
+
   /**
    * Set the value property on the input element that backs this widget. This is
    * the value that will be associated with the check box's name and submitted
@@ -74,7 +74,7 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
    * <p>
    * Don't confuse this with {@link #setValue}, which actually checks and
    * unchecks the box.
-   * 
+   *
    * @param value
    */
   void setFormValue(String value) {
@@ -84,34 +84,34 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
   //**************************
   // Implementation of HasName
   //**************************
-  
+
   /**
    * Gets the widget's name.
-   * 
+   *
    * @return the widget's name
    */
   String get name => _getInputElement().name;
-  
+
   /**
    * Sets the widget's name.
-   * 
+   *
    * @param name the widget's new name
    */
   void set name(String name) {
     _getInputElement().name = name;
   }
-  
+
   //*****************************
   // Implementation of TakesValue
   //*****************************
-  
+
   /**
    * Determines whether this check box is currently checked.
    * <p>
    * Note that this <em>does not</em> return the value property of the checkbox
    * input element wrapped by this widget. For access to that property, see
    * {@link #getFormValue()}
-   * 
+   *
    * @return <code>true</code> if the check box is checked, false otherwise.
    *         Will not return null
    */
@@ -122,14 +122,14 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
       return _getInputElement().defaultChecked;
     }
   }
-  
+
   /**
    * Checks or unchecks the check box.
    * <p>
    * Note that this <em>does not</em> set the value property of the checkbox
    * input element wrapped by this widget. For access to that property, see
    * {@link #setFormValue(String)}
-   * 
+   *
    * @param value true to check, false to uncheck; null value implies false
    */
   void setValue(bool value, [bool fireEvents = false]) {
@@ -140,7 +140,7 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
     _getInputElement().checked = value;
     _getInputElement().defaultChecked = value;
   }
-  
+
   void set enabled(bool val) {
     super.enabled = val;
     if (val) {
@@ -149,7 +149,7 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
       addStyleDependentName("disabled");
     }
   }
-  
+
   /**
    * This method is called when a widget is detached from the browser's
    * document. Overridden because of IE bug that throws away checked state.

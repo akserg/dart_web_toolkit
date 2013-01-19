@@ -5,65 +5,65 @@ part of dart_web_toolkit_ui;
 
 /**
  * Abstract base class for all text display widgets.
- * 
+ *
  * <h3>Use in UiBinder Templates</h3>
- * 
+ *
  * @param <T> the value type
  */
 class LabelBase<T> extends Widget implements HasWordWrap,
   HasDirectionEstimator, HasAutoHorizontalAlignment {
-  
+
   /**
    * The widget's DirectionalTextHelper object.
    */
   DirectionalTextHelper directionalTextHelper;
-  
+
   /**
    * The widget's auto horizontal alignment policy.
-   * 
+   *
    * @see HasAutoHorizontalAlignment
    */
   AutoHorizontalAlignmentConstant autoHorizontalAlignment;
-  
+
   /**
    * The widget's horizontal alignment.
    */
   HorizontalAlignmentConstant horzAlign;
-  
+
   LabelBase(bool inline) : this._internal(inline ? new dart_html.SpanElement() : new dart_html.DivElement(), inline);
-  
+
   LabelBase.fromElement(dart_html.Element element) : this._internal(element, "span" == element.tagName.toLowerCase());
-  
+
   LabelBase._internal(dart_html.Element element, bool isElementInline) {
     assert ((isElementInline ? "span" : "div") == element.tagName.toLowerCase());
     setElement(element);
     directionalTextHelper = new DirectionalTextHelper(getElement(), isElementInline);
   }
-  
+
   //********************************************
   // Implementation of HasAutoHorizontalAlignment
   //********************************************
-  
+
   AutoHorizontalAlignmentConstant getAutoHorizontalAlignment() {
     return autoHorizontalAlignment;
   }
-  
+
   void setAutoHorizontalAlignment(AutoHorizontalAlignmentConstant autoAlignment) {
     autoHorizontalAlignment = autoAlignment;
     updateHorizontalAlignment();
   }
-  
+
   //***************************************
   // Implemntation of HasDirectionEstimator
   //***************************************
-  
+
   /**
    * Returns the {@code DirectionEstimator} object.
    */
   DirectionEstimator getDirectionEstimator() {
     return directionalTextHelper.getDirectionEstimator();
   }
-  
+
   /**
    * Toggles on / off direction estimation.
    *
@@ -75,7 +75,7 @@ class LabelBase<T> extends Widget implements HasWordWrap,
     directionalTextHelper.enableDefaultDirectionEstimator(enabled);
     updateHorizontalAlignment();
   }
-  
+
   /**
    * {@inheritDoc}
    * <p>
@@ -89,14 +89,14 @@ class LabelBase<T> extends Widget implements HasWordWrap,
     directionalTextHelper.setDirectionEstimator(directionEstimator);
     updateHorizontalAlignment();
   }
-  
+
   //****************************************
   //Implementation of HasHorizontalAlignment
   //****************************************
-  
+
   /**
    * {@inheritDoc}
-   * 
+   *
    * <p>
    * Note: A subsequent call to {@link #setAutoHorizontalAlignment} may override
    * the horizontal alignment set by this method.
@@ -104,27 +104,27 @@ class LabelBase<T> extends Widget implements HasWordWrap,
    * Note: For {@code null}, the horizontal alignment is cleared, allowing it to
    * be determined by the standard HTML mechanisms such as inheritance and CSS
    * rules.
-   * 
+   *
    * @see #setAutoHorizontalAlignment
    */
   void setHorizontalAlignment(HorizontalAlignmentConstant align) {
     setAutoHorizontalAlignment(align);
   }
-  
+
   HorizontalAlignmentConstant getHorizontalAlignment() {
     return horzAlign;
   }
-  
+
   //******************************
   // Implementation of HasWordWrap
   //******************************
-  
+
   bool get wordWrap => WhiteSpace.NOWRAP.value == getElement().style.whiteSpace;
-  
+
   void set wordWrap(bool wrap) {
     getElement().style.whiteSpace = wrap ? WhiteSpace.NORMAL.value : WhiteSpace.NOWRAP.value;
   }
-  
+
   /**
    * Sets the horizontal alignment of the widget according to the current
    * AutoHorizontalAlignment setting. Should be invoked whenever the horizontal

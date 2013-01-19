@@ -27,7 +27,7 @@ class TextBoxBase extends ValueBoxBase<String> {
    * @param elem the browser element to wrap
    */
   TextBoxBase(dart_html.Element elem) : super(elem, new PassthroughRenderer.instance(), new PassthroughParser.instance());
-  
+
   /**
    * Overridden to return "" from an empty text box.
    */

@@ -9,7 +9,7 @@ part of dart_web_toolkit_ui;
  * {@link com.google.gwt.uibinder.client.UiBinder UiBinder} templates. (Note
  * that this class does not accept renderers. To do so use {@link ValueLabel}
  * directly.)
- * 
+ *
  * <h3>Use in UiBinder Templates</h3> In
  * {@link com.google.gwt.uibinder.client.UiBinder UiBinder} templates, the
  * {@link NumberFormat} can be specified with one of these attributes:
@@ -48,10 +48,10 @@ part of dart_web_toolkit_ui;
  * <dt>currencyCode</dt>
  * <dd>an ISO4217 currency code.</dd>
  * </dl>
- * 
+ *
  * @param <T> The exact type of number
  */
 class NumberLabel<T> extends ValueLabel<T> {
-  
+
   NumberLabel([NumberFormat format = null]) : super(new NumberFormatRenderer(format));
 }

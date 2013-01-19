@@ -8,7 +8,7 @@ part of dart_web_toolkit_ui;
  * another state of the running application. It should behave exactly like
  * {@link com.google.gwt.user.client.ui.Hyperlink}, save that it lays out
  * as an inline element, not block.
- * 
+ *
  * <p>
  * <h3>Built-in Bidi Text Support</h3>
  * This widget is capable of automatically adjusting its direction according to
@@ -23,7 +23,7 @@ part of dart_web_toolkit_ui;
  * </ul>
  */
 class InlineHyperlink extends Hyperlink {
-  
+
   /**
    * Creates an empty hyperlink.
    */

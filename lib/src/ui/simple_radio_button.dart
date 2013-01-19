@@ -5,7 +5,7 @@ part of dart_web_toolkit_ui;
 
 /**
  * A simple radio button widget, with no label.
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <ul class='css'>
  * <li>.gwt-SimpleRadioButton { }</li>
@@ -13,15 +13,15 @@ part of dart_web_toolkit_ui;
  * </ul>
  */
 class SimpleRadioButton extends SimpleCheckBox {
-  
+
   /**
    * Creates a SimpleRadioButton widget that wraps an existing &lt;input
    * type='radio'&gt; element.
-   * 
+   *
    * This element must already be attached to the document. If the element is
    * removed from the document, you must call
    * {@link RootPanel#detachNow(Widget)}.
-   * 
+   *
    * @param element the element to be wrapped
    */
   factory SimpleRadioButton.wrap(dart_html.RadioButtonInputElement element) {
@@ -36,15 +36,15 @@ class SimpleRadioButton extends SimpleCheckBox {
 
     return radioButton;
   }
-  
+
   /**
    * Creates a new radio associated with a particular group name. All radio
    * buttons associated with the same group name belong to a mutually-exclusive
    * set.
-   * 
+   *
    * Radio buttons are grouped by their name attribute, so changing their name
    * using the setName() method will also change their associated group.
-   * 
+   *
    * @param name the group name with which to associate the radio button
    */
   SimpleRadioButton([dart_html.InputElement element = null, String name = null]) : super(element == null ? new dart_html.InputElement(type: 'radio') : element) {

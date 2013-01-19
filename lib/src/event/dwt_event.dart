@@ -8,7 +8,7 @@ part of dart_web_toolkit_event;
  * All GWT events are considered dead and should no longer be accessed once the
  * {@link HandlerManager} which originally fired the event finishes with it.
  * That is, don't hold on to event objects outside of your handler methods.
- * 
+ *
  * There is no need for an application's custom event types to extend GwtEvent.
  * Prefer {@link Event} instead.
  *

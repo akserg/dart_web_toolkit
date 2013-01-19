@@ -9,7 +9,7 @@ part of dart_web_toolkit_ui;
  * ability to provide a mock view instance in JRE unit tests.
  */
 abstract class IsWidget {
-  
+
   /**
    * Returns the [Widget] aspect of the receiver.
    */

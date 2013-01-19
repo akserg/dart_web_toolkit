@@ -31,14 +31,14 @@ part of dart_web_toolkit_ui;
  * width and height of the {@link DecoratorPanel}, it will wrap its contents
  * tightly.
  * </p>
- * 
+ *
  * <pre>
  * .gwt-DecoratorPanel .middleCenter {
  *   height: 100%;
  *   width: 100%;
  * }
  * </pre>
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <ul class='css'>
  * <li>.gwt-DecoratorPanel { the panel }</li>
@@ -80,10 +80,10 @@ class DecoratorPanel extends SimplePanel {
    * Create a new row with a specific style name. The row will contain three
    * cells (Left, Center, and Right), each prefixed with the specified style
    * name.
-   * 
+   *
    * This method allows Widgets to reuse the code on a Dom level, without
    * creating a DecoratorPanel Widget.
-   * 
+   *
    * @param styleName the style name
    * @return the new row {@link dart_html.Element}
    */
@@ -104,7 +104,7 @@ class DecoratorPanel extends SimplePanel {
 
   /**
    * Create a new table cell with a specific style name.
-   * 
+   *
    * @param styleName the style name
    * @return the new cell {@link dart_html.Element}
    */
@@ -131,7 +131,7 @@ class DecoratorPanel extends SimplePanel {
    * Creates a new panel using the specified style names to apply to each row.
    * Each row will contain three cells (Left, Center, and Right). The Center
    * cell in the containerIndex row will contain the {@link Widget}.
-   * 
+   *
    * @param rowStyles an array of style names to apply to each row
    * @param containerIndex the index of the container row
    */
@@ -159,7 +159,7 @@ class DecoratorPanel extends SimplePanel {
 
   /**
    * Get a specific dart_html.Element from the panel.
-   * 
+   *
    * @param row the row index
    * @param cell the cell index
    * @return the dart_html.Element at the given row and cell

@@ -14,7 +14,7 @@ part of dart_web_toolkit_editor;
  * a list might wish to re-use the provided
  * {@link com.google.gwt.editor.client.adapters.ListEditor ListEditor}
  * controller. It might be roughly built as:
- * 
+ *
  * <pre>
  * class MyListEditor extends Composite implements IsEditor&lt;ListEditor&lt;Foo, FooEditor>> {
  *   private ListEditor&lt;Foo, FooEditor> controller = ListEditor.of(new FooEditorSource());
@@ -31,10 +31,10 @@ part of dart_web_toolkit_editor;
  * It is legal for a type to implement both Editor and IsEditor. In this case,
  * the Editor returned from {@link #asEditor()} will be a co-Editor of the
  * IsEditor instance.
- * 
+ *
  * @param <E> the type of Editor the view object will provide
  * @see CompositeEditor
  */
 abstract class IsEditor<E> {
-  
+
 }

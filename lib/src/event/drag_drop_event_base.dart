@@ -5,11 +5,11 @@ part of dart_web_toolkit_event;
 
 /**
  * Base class for drag and drop events.
- * 
+ *
  * @param <H> handler type
  */
 abstract class DragDropEventBase extends MouseEvent {
-  
+
   /**
    * The implementation singleton.
    */
@@ -17,7 +17,7 @@ abstract class DragDropEventBase extends MouseEvent {
 
   /**
    * Runtime check for whether drag events are supported in this browser.
-   * 
+   *
    * @return true if supported, false if not
    */
   static bool isSupported() {
@@ -29,7 +29,7 @@ abstract class DragDropEventBase extends MouseEvent {
 
   /**
    * Get the {@link DataTransfer} associated with the current drag event.
-   * 
+   *
    * @return the {@link DataTransfer} object
    */
   dart_html.Clipboard getDataTransfer() {
@@ -38,10 +38,10 @@ abstract class DragDropEventBase extends MouseEvent {
     }
     return null;
   }
-  
+
   /**
    * Get the data for the specified format from the {@link DataTransfer} object.
-   * 
+   *
    * @param format the format
    * @return the data for the specified format
    */
@@ -55,7 +55,7 @@ abstract class DragDropEventBase extends MouseEvent {
 
   /**
    * Set the data in the {@link DataTransfer} object for the specified format.
-   * 
+   *
    * @param format the format
    * @param data the data to associate with the format
    */
@@ -76,7 +76,7 @@ class DragSupportDetector {
 
   /**
    * Using a run-time check, return true if drag events are supported.
-   * 
+   *
    * @return true if supported, false otherwise.
    */
   bool get isSupported => _isSupported;
@@ -98,6 +98,6 @@ class DragSupportDetector {
  * Detector for permutations that do not support drag events.
  */
 class DragSupportDetectorNo extends DragSupportDetector {
-  
+
   bool get isSupported => false;
 }

@@ -8,15 +8,15 @@ part of dart_web_toolkit_editor;
  * EditorDelegate. If an Editor implements the {@link ValueAwareEditor}
  * interface, the EditorDriver will make the delegate available through the
  * {@link ValueAwareEditor#setDelegate} method.
- * 
+ *
  * @param <T> the type of object the delegate can accept
  * @see com.google.gwt.editor.client.testing.MockEditorDelegate
  */
 abstract class EditorDelegate<T> {
-  
+
   /**
    * Returns the Editor's path, relative to the root object.
-   * 
+   *
    * @return the path as a String
    */
   String getPath();
@@ -26,7 +26,7 @@ abstract class EditorDelegate<T> {
    * {@link LeafValueEditor#getValue()} to record an error that will be reported
    * to the nearest super-Editor that implements the {@link HasEditorErrors}
    * interface.
-   * 
+   *
    * @param message a textual description of the error
    * @param value the value to be returned by {@link EditorError#getValue()} or
    *          <code>null</code> if the value currently associated with the
@@ -47,7 +47,7 @@ abstract class EditorDelegate<T> {
    * comparison of {@link LeafValueEditor#getValue()} and the value last passed
    * to {@link LeafValueEditor#setValue(Object)}, however a clean state can be
    * overridden by calling {@code setDirty(true)}.
-   * 
+   *
    * @param dirty the dirty state of the Editor
    */
   void setDirty(bool dirty);
@@ -59,7 +59,7 @@ abstract class EditorDelegate<T> {
    * The notification will occur via {@link ValueAwareEditor#onPropertyChange}
    * if the backend supports in-place property updates, otherwise updates will
    * be passed via {@link ValueAwareEditor#setValue}.
-   * 
+   *
    * @return a HandlerRegistration to unsubscribe from the notifications or
    *         <code>null</code> if the delegate does not support subscription
    */

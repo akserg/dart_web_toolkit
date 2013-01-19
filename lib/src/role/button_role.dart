@@ -23,9 +23,9 @@ part of dart_web_toolkit_role;
  */
 abstract class ButtonRole extends CommandRole {
   void setAriaPressedState(dart_html.Element element, PressedValue value);
-  
+
   String getAriaPressedState(dart_html.Element element);
-  
+
   void removeAriaPressedState(dart_html.Element element);
 }
 
@@ -33,21 +33,21 @@ abstract class ButtonRole extends CommandRole {
  * <p>Implements {@link ButtonRole}.</p>
  */
 class ButtonRoleImpl extends Role implements ButtonRole {
- 
+
   ButtonRoleImpl(String roleName) : super(roleName);
-  
+
   //*****************************
   // Implementation of ButtonRole
   //*****************************
-  
+
   void setAriaPressedState(dart_html.Element element, PressedValue value) {
     State.PRESSED.set(element, value);
   }
-  
+
   String getAriaPressedState(dart_html.Element element) {
     return State.PRESSED.get(element);
   }
-  
+
   void removeAriaPressedState(dart_html.Element element) {
     State.PRESSED.remove(element);
   }

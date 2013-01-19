@@ -7,9 +7,9 @@ part of dart_web_toolkit_util;
  * Enum for the display property.
  */
 class Display<String> extends Enum<String> {
-  
+
   const Display(String type) : super (type);
-  
+
   static const Display NONE = const Display(Style._DISPLAY_NONE);
   static const Display BLOCK = const Display(Style._DISPLAY_BLOCK);
   static const Display INLINE = const Display(Style._DISPLAY_INLINE);
@@ -20,9 +20,9 @@ class Display<String> extends Enum<String> {
  * Enum for the overflow property.
  */
 class Overflow<String> extends Enum<String> {
-  
+
   const Overflow(String type) : super (type);
-  
+
   static const Overflow VISIBLE = const Overflow(Style._OVERFLOW_VISIBLE);
   static const Overflow HIDDEN = const Overflow(Style._OVERFLOW_HIDDEN);
   static const Overflow SCROLL = const Overflow(Style._OVERFLOW_SCROLL);
@@ -33,9 +33,9 @@ class Overflow<String> extends Enum<String> {
  * Enum for the position property.
  */
 class Position<String> extends Enum<String> {
-  
+
   const Position(String type) : super (type);
-  
+
   static const Position STATIC = const Position(Style._POSITION_STATIC);
   static const Position RELATIVE = const Position(Style._POSITION_RELATIVE);
   static const Position ABSOLUTE = const Position(Style._POSITION_ABSOLUTE);
@@ -46,9 +46,9 @@ class Position<String> extends Enum<String> {
  * CSS length units.
  */
 class Unit<String> extends Enum<String> {
-  
+
   const Unit(String type) : super (type);
-  
+
   static const Unit PX = const Unit(Style._UNIT_PX);
   static const Unit PCT = const Unit(Style._UNIT_PCT);
   static const Unit EM = const Unit(Style._UNIT_EM);
@@ -64,9 +64,9 @@ class Unit<String> extends Enum<String> {
  * Enum for the 'white-space' CSS property.
  */
 class WhiteSpace<String> extends Enum<String> {
-  
+
   const WhiteSpace(String type) : super (type);
-  
+
   static const WhiteSpace NORMAL = const WhiteSpace(Style._WHITE_SPACE_NORMAL);
   static const WhiteSpace NOWRAP = const WhiteSpace(Style._WHITE_SPACE_NOWRAP);
   static const WhiteSpace PRE = const WhiteSpace(Style._WHITE_SPACE_PRE);
@@ -78,9 +78,9 @@ class WhiteSpace<String> extends Enum<String> {
  * Enum for the text-align property.
  */
 class TextAlign<String> extends Enum<String> {
-  
+
   const TextAlign(String type) : super (type);
-  
+
   static const TextAlign CENTER = const TextAlign(Style._TEXT_ALIGN_CENTER);
   static const TextAlign JUSTIFY = const TextAlign(Style._TEXT_ALIGN_JUSTIFY);
   static const TextAlign LEFT = const TextAlign(Style._TEXT_ALIGN_LEFT);
@@ -103,7 +103,7 @@ class Style {
   static const String _POSITION_ABSOLUTE = "absolute";
   static const String _POSITION_RELATIVE = "relative";
   static const String _POSITION_STATIC = "static const";
-  
+
   static const String _TEXT_ALIGN_CENTER = "center";
   static const String _TEXT_ALIGN_JUSTIFY = "justify";
   static const String _TEXT_ALIGN_LEFT = "left";

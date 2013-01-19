@@ -7,12 +7,12 @@ part of dart_web_toolkit_i18n;
  * Utility functions for performing common Bidi tests on strings.
  */
 class BidiUtils {
-  
+
   /**
    * An instance of BidiUtils, to be returned by {@link #get()}.
    */
   static final BidiUtils _INSTANCE = new BidiUtils();
-  
+
   /**
    * Get an instance of BidiUtils.
    * @return An instance of BidiUtils
@@ -20,7 +20,7 @@ class BidiUtils {
   static BidiUtils get() {
     return _INSTANCE;
   }
-  
+
   /**
    * A practical pattern to identify strong LTR characters. This pattern is not
    * completely correct according to the Unicode standard. It is simplified
@@ -40,43 +40,43 @@ class BidiUtils {
    * various references below.
    */
   static String RTL_CHARS = "\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC";
-  
+
   /**
    * Simplified regular expression for an HTML tag (opening or closing) or an
    * HTML escape. We might want to skip over such expressions when estimating
    * the text directionality.
    */
   static final RegExp SKIP_HTML_RE = new RegExp("<[^>]*>|&[^;]+;", multiLine:true);
-  
+
   /**
-   * The name of the element property which controls element directionality.  
+   * The name of the element property which controls element directionality.
    */
 //  static final String DIR_PROPERTY_NAME = "dir";
-  
+
   /**
    * The value for the directionality property which will set the element directionality
-   * to right-to-left.  
+   * to right-to-left.
    */
   static final String DIR_PROPERTY_VALUE_RTL = "rtl";
-  
+
   /**
    * The value for the directionality property which will set the element directionality
-   * to left-to-right.  
+   * to left-to-right.
    */
   static final String DIR_PROPERTY_VALUE_LTR = "ltr";
-  
+
   /**
    * Regular expressions to check if the last strongly-directional character in
    * a piece of text is RTL.
    */
   static final RegExp LAST_STRONG_IS_RTL_RE = new RegExp("[${RTL_CHARS}][^${LTR_CHARS}]*");
-  
+
   /**
    * Regular expressions to check if the last strongly-directional character in
    * a piece of text is LTR.
    */
   static final RegExp LAST_STRONG_IS_LTR_RE = new RegExp("[${LTR_CHARS}][^${RTL_CHARS}]*");
-  
+
   /**
    * Returns the input text with spaces instead of HTML tags or HTML escapes, if
    * isStripNeeded is true. Else returns the input as is.
@@ -88,11 +88,11 @@ class BidiUtils {
   String stripHtmlIfNeeded(String str, bool isStripNeeded) {
     return isStripNeeded ? str.replaceAll(SKIP_HTML_RE, " ") : str;
   }
-  
+
   /**
    * Gets the directionality of an element.
    *
-   * @param  elem  the element on which to check the directionality property 
+   * @param  elem  the element on which to check the directionality property
    * @return <code>RTL</code> if the directionality is right-to-left,
    *         <code>LTR</code> if the directionality is left-to-right, or
    *         <code>DEFAULT</code> if the directionality is not explicitly set
@@ -108,33 +108,33 @@ class BidiUtils {
 
     return Direction.DEFAULT;
   }
-  
+
   /**
    * Sets the directionality property for an element.
    *
    * @param elem  the element on which to set the property
-   * @param direction <code>RTL</code> if the directionality should be set to right-to-left, 
+   * @param direction <code>RTL</code> if the directionality should be set to right-to-left,
    *                  <code>LTR</code> if the directionality should be set to left-to-right
-   *                  <code>DEFAULT</code> if the directionality should be removed from the element   
+   *                  <code>DEFAULT</code> if the directionality should be removed from the element
    */
   static void setDirectionOnElement(dart_html.Element elem, Direction direction) {
-    switch (direction) {            
+    switch (direction) {
       case Direction.RTL:
         elem.dir = DIR_PROPERTY_VALUE_RTL;
         break;
       case Direction.LTR:
         elem.dir = DIR_PROPERTY_VALUE_LTR;
-        break;        
+        break;
       case Direction.DEFAULT:
         if (getDirectionOnElement(elem) != Direction.DEFAULT) {
           // only clear out the the dir property if it has already been set to something
           // explicitly
           elem.dir = "";
         }
-        break;        
-    }    
+        break;
+    }
   }
-  
+
   /**
    * Check whether the last strongly-directional character in the string is LTR.
    * @param str the string to check
@@ -147,7 +147,7 @@ class BidiUtils {
     }
     return LAST_STRONG_IS_LTR_RE.hasMatch(str);
   }
-  
+
   /**
    * Check whether the last strongly-directional character in the string is RTL.
    * @param str the string to check

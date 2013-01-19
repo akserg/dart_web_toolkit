@@ -8,7 +8,7 @@ part of dart_web_toolkit_ui;
  * A {@link PopupPanel} that wraps its content in a 3x3 grid, which allows users
  * to add rounded corners.
  * </p>
- * 
+ *
  * <h3>Setting the Size:</h3>
  * <p>
  * If you set the width or height of the {@link DecoratedPopupPanel}, you need
@@ -17,14 +17,14 @@ part of dart_web_toolkit_ui;
  * width and height of the {@link DecoratedPopupPanel}, it will wrap its
  * contents tightly.
  * </p>
- * 
+ *
  * <pre>
  * .dwt-DecoratedPopupPanel .popupMiddleCenter {
  *   height: 100%;
  *   width: 100%;
  * }
  * </pre>
- * 
+ *
  * <h3>CSS Style Rules</h3>
  * <ul class='css'>
  * <li>.dwt-DecoratedPopupPanel { the outside of the popup }</li>
@@ -59,17 +59,17 @@ part of dart_web_toolkit_ui;
  * </ul>
  */
 class DecoratedPopupPanel extends PopupPanel {
-  
+
   static final String _DEFAULT_STYLENAME = "dwt-DecoratedPopupPanel";
-  
+
   /**
    * The panel used to nine box the contents.
    */
   DecoratorPanel _decPanel;
-  
+
   /**
    * Creates an empty decorated popup panel using the specified style names.
-   * 
+   *
    * @param autoHide <code>true</code> if the popup should be automatically
    *          hidden when the user clicks outside of it
    * @param modal <code>true</code> if keyboard or mouse events that do not
@@ -85,40 +85,40 @@ class DecoratedPopupPanel extends PopupPanel {
     UiObject.manageElementStyleName(getContainerElement(), "popupContent", false);
     UiObject.manageElementStyleName(_decPanel.getContainerElement(), prefix.concat("Content"), true);
   }
-  
-  
+
+
   void clear() {
     _decPanel.clear();
   }
 
-  
+
   Widget getWidget() {
     return _decPanel.getWidget();
   }
 
-  
+
   Iterator<Widget> iterator() {
     return _decPanel.iterator();
   }
 
-  
+
   bool remove(Widget w) {
     return _decPanel.remove(w);
   }
 
-  
+
   void setWidget(Widget w) {
     _decPanel.setWidget(w);
     maybeUpdateSize();
   }
 
-  
+
   void doAttachChildren() {
     // See comment in doDetachChildren for an explanation of this call
     _decPanel.onAttach();
   }
 
-  
+
   void doDetachChildren() {
     // We need to detach the decPanel because it is not part of the iterator of
     // Widgets that this class returns (see the iterator() method override).
@@ -132,7 +132,7 @@ class DecoratedPopupPanel extends PopupPanel {
 
   /**
    * Get a specific Element from the panel.
-   * 
+   *
    * @param row the row index
    * @param cell the cell index
    * @return the Element at the given row and cell

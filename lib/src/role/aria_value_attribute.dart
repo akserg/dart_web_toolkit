@@ -7,7 +7,7 @@ part of dart_web_toolkit_role;
  *  ARIA specific type attribute.
  */
 class AriaValueAttribute<T> extends Attribute<T> {
-  
+
   AriaValueAttribute(String name, [String defaultValue = null]) : super(name, defaultValue);
 
   String getSingleValue(T value) {

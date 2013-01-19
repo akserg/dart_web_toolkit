@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A simple panel that {@link ProvidesResize} to its one child.
  */
 class SimpleLayoutPanel extends SimplePanel implements RequiresResize, ProvidesResize {
-  
+
   Layer layer;
   Layout layout;
 
@@ -15,14 +15,14 @@ class SimpleLayoutPanel extends SimplePanel implements RequiresResize, ProvidesR
     layout = new Layout(getElement());
   }
 
-  
+
   void onResize() {
     if (widget is RequiresResize) {
       (widget as RequiresResize).onResize();
     }
   }
 
-  
+
   bool remove(Widget w) {
     // Validate.
     if (widget != w) {
@@ -43,7 +43,7 @@ class SimpleLayoutPanel extends SimplePanel implements RequiresResize, ProvidesR
     return true;
   }
 
-  
+
   void setWidget(Widget w) {
     // Validate
     if (w == widget) {
@@ -77,13 +77,13 @@ class SimpleLayoutPanel extends SimplePanel implements RequiresResize, ProvidesR
     }
   }
 
-  
+
   void onAttach() {
     super.onAttach();
     layout.onAttach();
   }
 
-  
+
   void onDetach() {
     super.onDetach();
     layout.onDetach();

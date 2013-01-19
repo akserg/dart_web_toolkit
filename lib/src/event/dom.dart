@@ -347,7 +347,7 @@ class Dom {
   static void sinkEvents(dart_html.Element elem, Set eventBits) {
     domHelper.sinkEvents(elem, eventBits);
   }
-  
+
   /**
    * Sets the current set of events sunk by a given element. These events will
    * be fired to the nearest {@link EventListener} specified on any of the
@@ -360,10 +360,10 @@ class Dom {
   static void unsinkEvents(dart_html.Element elem, Set eventBits) {
     domHelper.unsinkEvents(elem, eventBits);
   }
-  
+
   /**
    * Gets the current set of events sunk by a given element.
-   * 
+   *
    * @param elem the element whose events are to be retrieved
    * @return a bitfield describing the events sunk on this element (its possible
    *         values are described in {@link Event})
@@ -371,10 +371,10 @@ class Dom {
   static Set getEventsSunk(dart_html.Element elem) {
     return domHelper.getEventsSunk(elem);
   }
-  
+
   /**
    * This method is called directly by native code when any event is fired.
-   * 
+   *
    * @param evt the handle to the event being fired.
    * @param elem the handle to the element that received the event.
    * @param listener the listener associated with the element that received the
@@ -389,7 +389,7 @@ class Dom {
 
     _currentEvent = prevCurrentEvent;
   }
-  
+
   static void _dispatchEventImpl(dart_html.Event evt, dart_html.Element elem, EventListener listener) {
 //    // If this element has capture...
 //    if (elem == _sCaptureElem) {

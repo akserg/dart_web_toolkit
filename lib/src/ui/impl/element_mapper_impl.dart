@@ -5,13 +5,13 @@ part of dart_web_toolkit_ui;
 
 /**
  * Creates a mapping from elements to their associated ui objects.
- * 
+ *
  * @param <T> the type that the element is mapped to
  */
 class ElementMapperImpl<T> {
-  
+
   static const String UI_OBJECT_ID = "uiObjectID";
-  
+
   static void clearIndex(dart_html.Element elem) {
     elem.dataAttributes[UI_OBJECT_ID] = null;
   }
@@ -34,7 +34,7 @@ class ElementMapperImpl<T> {
 
   /**
    * Returns the uiObject associated with the given element.
-   * 
+   *
    * @param elem uiObject's element
    * @return the uiObject
    */
@@ -48,7 +48,7 @@ class ElementMapperImpl<T> {
 
   /**
    * Gets the list of ui objects contained in this element mapper.
-   * 
+   *
    * @return the list of ui objects
    */
   List<T> getObjectList() {
@@ -57,7 +57,7 @@ class ElementMapperImpl<T> {
 
   /**
    * Creates an iterator from the ui objects stored within.
-   * 
+   *
    * @return an iterator of the ui objects indexed by this element mapper.
    */
   Iterator<T> iterator() {
@@ -66,7 +66,7 @@ class ElementMapperImpl<T> {
 
   /**
    * Adds the MappedType.
-   * 
+   *
    * @param uiObject uiObject to add
    */
   void put(T uiObject) {
@@ -84,7 +84,7 @@ class ElementMapperImpl<T> {
 
   /**
    * Remove the uiObject associated with the given element.
-   * 
+   *
    * @param elem the uiObject's element
    */
   void removeByElement(dart_html.Element elem) {

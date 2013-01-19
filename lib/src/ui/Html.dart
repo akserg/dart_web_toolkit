@@ -35,7 +35,7 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
-  
+
   /**
    * Creates an HTML widget that wraps an existing &lt;div&gt; or &lt;span&gt;
    * element.
@@ -58,7 +58,7 @@ class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
 
     return html;
   }
-  
+
   /**
    * This constructor may be used by subclasses to explicitly use an existing
    * element. This element must be either a &lt;div&gt; or &lt;span&gt; element.
@@ -68,7 +68,7 @@ class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
   Html.fromElement(dart_html.Element element) : super.fromElement(element) {
     clearAndSetStyleName("dwt-HTML");
   }
-  
+
   /**
    * Creates an HTML widget with the specified HTML contents.
    *
@@ -83,7 +83,7 @@ class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
       this.wordWrap = wordWrap;
     }
   }
-  
+
   String get html => directionalTextHelper.getTextOrHtml(true);
 
   /**
@@ -97,13 +97,13 @@ class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
     directionalTextHelper.setTextOrHtml(val, true);
     updateHorizontalAlignment();
   }
-  
+
   /**
    * Sets the label's content to the given HTML, applying the given direction.
    * See
    * {@link #setText(String, com.google.gwt.i18n.client.HasDirection.Direction) setText(String, Direction)}
    * for details on potential effects on alignment.
-   * 
+   *
    * @param html the new widget's HTML content
    * @param dir the content's direction. Note: {@code Direction.DEFAULT} means
    *          direction should be inherited from the widget's parent element.
@@ -112,7 +112,7 @@ class Html extends Label implements HasDirectionalHtml, HasDirectionalSafeHtml {
     directionalTextHelper.setTextOrHtml(val, true, dir);
     updateHorizontalAlignment();
   }
-  
+
   String getTextOrHtml(bool isHtml) {
     return directionalTextHelper.getTextOrHtml(isHtml);
   }

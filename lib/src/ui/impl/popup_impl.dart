@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * Implementation class used by {@link com.google.gwt.user.client.ui.PopupPanel}.
  */
 class PopupImpl {
-  
+
   dart_html.Element createElement() {
     return new dart_html.DivElement();
   }

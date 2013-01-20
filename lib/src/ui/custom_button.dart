@@ -264,6 +264,11 @@ class CustomButton extends ButtonBase {
     // Use FocusPanel.impl rather than FocusWidget because only FocusPanel.impl
     // works across browsers to create a focusable element.
     //sinkEvents(Event.ONCLICK | Event.MOUSEEVENTS | Event.FOCUSEVENTS | Event.KEYEVENTS);
+    sinkEvents(new Set.from([BrowserEvents.CLICK]));    
+    sinkEvents(new Set.from(BrowserEvents.MOUSEEVENTS));
+    sinkEvents(new Set.from(BrowserEvents.FOCUSEVENTS));
+    sinkEvents(new Set.from(BrowserEvents.KEYEVENTS));
+    //
     setUpFace(_createFace(null, "up", _UP));
     clearAndSetStyleName(_STYLENAME_DEFAULT);
 
@@ -368,7 +373,7 @@ class CustomButton extends ButtonBase {
     getCurrentFace().html = value;
   }
 
-  int get tabIndex => FocusPanel.impl.getTabIndex(getElement()); //FocusHelper.getFocusHelper().getTabIndex(getElement());
+  int get tabIndex => FocusPanel.impl.getTabIndex(getElement());
 
   void set tabIndex(int index) {
     FocusPanel.impl.setTabIndex(getElement(), index); //FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
@@ -410,101 +415,106 @@ class CustomButton extends ButtonBase {
       return;
     }
 
-//    int type = DOM.eventGetType(event);
-//    switch (type) {
-//      case Event.ONCLICK:
-//        // If clicks are currently disallowed, keep it from bubbling or being
-//        // passed to the superclass.
-//        if (!_allowClick) {
-//          event.stopPropagation();
-//          return;
-//        }
-//        break;
-//      case Event.ONMOUSEDOWN:
-//        if (event.getButton() == Event.BUTTON_LEFT) {
-//          setFocus(true);
-//          onClickStart();
-//          DOM.setCapture(getElement());
-//          _isCapturing = true;
-//          // Prevent dragging (on some browsers);
-//          DOM.eventPreventDefault(event);
-//        }
-//        break;
-//      case Event.ONMOUSEUP:
-//        if (_isCapturing) {
-//          _isCapturing = false;
-//          DOM.releaseCapture(getElement());
-//          if (isHovering() && event.getButton() == Event.BUTTON_LEFT) {
-//            onClick();
-//          }
-//        }
-//        break;
-//      case Event.ONMOUSEMOVE:
-//        if (_isCapturing) {
-//          // Prevent dragging (on other browsers);
-//          DOM.eventPreventDefault(event);
-//        }
-//        break;
-//      case Event.ONMOUSEOUT:
-//        Element to = DOM.eventGetToElement(event);
-//        if (DOM.isOrHasChild(getElement(), DOM.eventGetTarget(event))
-//            && (to == null || !DOM.isOrHasChild(getElement(), to))) {
-//          if (_isCapturing) {
-//            onClickCancel();
-//          }
-//          setHovering(false);
-//        }
-//        break;
-//      case Event.ONMOUSEOVER:
-//        if (DOM.isOrHasChild(getElement(), DOM.eventGetTarget(event))) {
-//          setHovering(true);
-//          if (_isCapturing) {
-//            onClickStart();
-//          }
-//        }
-//        break;
-//      case Event.ONBLUR:
-//        if (_isFocusing) {
-//          _isFocusing = false;
-//          onClickCancel();
-//        }
-//        break;
-//      case Event.ONLOSECAPTURE:
-//        if (_isCapturing) {
-//          _isCapturing = false;
-//          onClickCancel();
-//        }
-//        break;
-//    }
-//
-//    super.onBrowserEvent(event);
-//
-//    // Synthesize clicks based on keyboard events AFTER the normal key handling.
+    switch (event.type) {
+      case BrowserEvents.CLICK:
+        // If clicks are currently disallowed, keep it from bubbling or being
+        // passed to the superclass.
+        if (!_allowClick) {
+          event.stopPropagation();
+          return;
+        }
+        break;
+      case BrowserEvents.MOUSEDOWN:
+        if (getMouseEvent(event).button == BrowserEvents.BUTTON_LEFT) {
+          setFocus(true);
+          onClickStart();
+          Dom.setCapture(getElement());
+          _isCapturing = true;
+          // Prevent dragging (on some browsers);
+          event.preventDefault();
+        }
+        break;
+      case BrowserEvents.MOUSEUP:
+        if (_isCapturing) {
+          _isCapturing = false;
+          Dom.releaseCapture(getElement());
+          if (isHovering() && getMouseEvent(event).button == BrowserEvents.BUTTON_LEFT) {
+            onClick();
+          }
+        }
+        break;
+      case BrowserEvents.MOUSEMOVE:
+        if (_isCapturing) {
+          // Prevent dragging (on other browsers);
+          event.preventDefault();
+        }
+        break;
+      case BrowserEvents.MOUSEOUT:
+        dart_html.Element to = Dom.eventGetToElement(event);
+        if (Dom.isOrHasChild(getElement(), event.target)
+            && (to == null || !Dom.isOrHasChild(getElement(), to))) {
+          if (_isCapturing) {
+            onClickCancel();
+          }
+          setHovering(false);
+        }
+        break;
+      case BrowserEvents.MOUSEOVER:
+        if (Dom.isOrHasChild(getElement(), event.target)) {
+          setHovering(true);
+          if (_isCapturing) {
+            onClickStart();
+          }
+        }
+        break;
+      case BrowserEvents.BLUR:
+        if (_isFocusing) {
+          _isFocusing = false;
+          onClickCancel();
+        }
+        break;
+      case BrowserEvents.LOSECAPTURE:
+        if (_isCapturing) {
+          _isCapturing = false;
+          onClickCancel();
+        }
+        break;
+    }
+
+    super.onBrowserEvent(event);
+
+    // Synthesize clicks based on keyboard events AFTER the normal key handling.
 //    if ((event.getTypeInt() & Event.KEYEVENTS) != 0) {
-//      char keyCode = (char) DOM.eventGetKeyCode(event);
-//      switch (type) {
-//        case Event.ONKEYDOWN:
-//          if (keyCode == ' ') {
-//            _isFocusing = true;
-//            onClickStart();
-//          }
-//          break;
-//        case Event.ONKEYUP:
-//          if (_isFocusing && keyCode == ' ') {
-//            _isFocusing = false;
-//            onClick();
-//          }
-//          break;
-//        case Event.ONKEYPRESS:
-//          if (keyCode == '\n' || keyCode == '\r') {
-//            onClickStart();
-//            onClick();
-//          }
-//          break;
-//      }
-//    }
+//      char keyCode = (char) Dom.eventGetKeyCode(event);
+    int keyCode = getMouseEvent(event).$dom_keyCode;
+    if (keyCode > 0) {
+      switch (event.type) {
+        case BrowserEvents.KEYDOWN:
+          if (keyCode == ' '.charCodeAt(0)) {
+            _isFocusing = true;
+            onClickStart();
+          }
+          break;
+        case BrowserEvents.KEYUP:
+          if (_isFocusing && keyCode == ' '.charCodeAt(0)) {
+            _isFocusing = false;
+            onClick();
+          }
+          break;
+        case BrowserEvents.KEYPRESS:
+          if (keyCode == '\n'.charCodeAt(0) || keyCode == '\r'.charCodeAt(0)) {
+            onClickStart();
+            onClick();
+          }
+          break;
+      }
+    }
   }
 
+  dart_html.MouseEvent getMouseEvent(dart_html.Event evt) {
+    return evt as dart_html.MouseEvent;
+  }
+  
 //  void setAccessKey(Char key) {
 //    FocusHelper.getFocusHelper().setAccessKey(getElement(), key);
 //  }
@@ -566,9 +576,9 @@ class CustomButton extends ButtonBase {
     // Mouse coordinates are not always available (e.g., when the click is
     // caused by a keyboard event).
     //NativeEvent evt = Document.get().createClickEvent(1, 0, 0, 0, 0, false, false, false, false);
-    // Create DOM CustomEvent
+    // Create Dom CustomEvent
     dart_html.CustomEvent evt = dart_html.document.$dom_createEvent('CustomEvent');
-    // After DOM CustomEvent instance has been created we can initialise it here
+    // After Dom CustomEvent instance has been created we can initialise it here
     evt.$dom_initCustomEvent('CustomEvent', false, false, false);
     // Dispatch event
     getElement().$dom_dispatchEvent(evt);
@@ -738,11 +748,11 @@ class CustomButton extends ButtonBase {
   void _setCurrentFaceElement(dart_html.Element newFaceElement) {
     if (_curFaceElement != newFaceElement) {
       if (_curFaceElement != null) {
-        //DOM.removeChild(getElement(), _curFaceElement);
+        //Dom.removeChild(getElement(), _curFaceElement);
         _curFaceElement.remove();
       }
       _curFaceElement = newFaceElement;
-      //DOM.appendChild(getElement(), _curFaceElement);
+      //Dom.appendChild(getElement(), _curFaceElement);
       getElement().append(_curFaceElement);
     }
   }

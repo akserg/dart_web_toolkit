@@ -64,8 +64,41 @@ class RadioButton extends CheckBox {
 //    sinkEvents(Event.ONMOUSEUP);
 //    sinkEvents(Event.ONBLUR);
 //    sinkEvents(Event.ONKEYDOWN);
+    sinkEvents(new Set.from([BrowserEvents.CLICK, BrowserEvents.MOUSEUP, BrowserEvents.BLUR, BrowserEvents.KEYDOWN]));
   }
 
+  /**
+   * Overridden to send ValueChangeEvents only when appropriate.
+   */
+  void onBrowserEvent(dart_html.Event event) {
+    
+    if (event.type == BrowserEvents.MOUSEUP ||
+        event.type == BrowserEvents.BLUR ||
+        event.type == BrowserEvents.KEYDOWN) {
+      // Note the old value for onValueChange purposes (in ONCLICK case)
+      _oldValue = getValue();
+    } else if (event.type == BrowserEvents.CLICK) {
+      dart_html.EventTarget target = (event as dart_html.MouseEvent).target;
+      if (target is  dart_html.Element && Dom.isOrHasChild(labelElem, target as dart_html.Element)) {
+
+        // They clicked the label. Note our pre-click value, and
+        // short circuit event routing so that other click handlers
+        // don't hear about it
+        _oldValue = getValue();
+        return;
+      }
+
+      // It's not the label. Let our handlers hear about the
+      // click...
+      super.onBrowserEvent(event);
+      // ...and now maybe tell them about the change
+      ValueChangeEvent.fireIfNotEqual(this, _oldValue, getValue());
+      return;
+    }
+
+    super.onBrowserEvent(event);
+  }
+  
   //**************************
   // Implementation of HasName
   //**************************
@@ -89,13 +122,29 @@ class RadioButton extends CheckBox {
     dart_html.InputElement radio = new dart_html.InputElement();
     radio.type = "radio";
     radio.name = name;
-    replaceInputElement(radio); //DOM.createInputRadio(name));
+    replaceInputElement(radio);
   }
 
+  // Unlike other widgets the Radio button sinks on its inputElement, not
+  // its wrapper
+  void sinkEvents(Set<String> eventName) {
+    // Like CheckBox, we want to hear about inputElem. We
+    // also want to know what's going on with the label, to
+    // make sure onBrowserEvent is able to record value changes
+    // initiated by label events
+    if (isOrWasAttached()) {
+      eventsToSink.addAll(eventName);
+      Dom.sinkEvents(inputElem, eventsToSink);
+      Dom.sinkEvents(labelElem, eventsToSink);
+      eventsToSink.clear();
+    } else {
+      super.sinkEvents(eventName);
+    }
+  }
+  
   /**
    * No-op. CheckBox's click handler is no good for radio button, so don't use
    * it. Our event handling is all done in {@link #onBrowserEvent}
    */
-  void ensureDomEventHandlers() {
-  }
+  void ensureDomEventHandlers() {}
 }

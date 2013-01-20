@@ -402,4 +402,37 @@ class Dom {
     // Pass the event to the listener.
     listener.onBrowserEvent(evt);
   }
+  
+  /**
+   * Gets the element to which the mouse pointer was moved (only valid for
+   * {@link Event#ONMOUSEOUT} and {@link Event#ONMOUSEOVER}).
+   * 
+   * @param evt the event to be tested
+   * @return the element to which the mouse pointer was moved
+   */
+
+  static dart_html.Element eventGetToElement(dart_html.Event evt) {
+    return domHelper.eventGetToElement(evt);
+  }
+  
+  /**
+   * This method is called directly by native code when event preview is being
+   * used.
+   * 
+   * @param evt a handle to the event being previewed
+   * @return <code>false</code> to cancel the event
+   */
+  static bool previewEvent(dart_html.Event evt) {
+    // Fire a NativePreviewEvent to NativePreviewHandlers
+    bool ret = Event.fireNativePreviewEvent(evt);
+
+    // If the preview cancels the event, stop it from bubbling and performing
+    // its default action. Check for a null evt to allow unit tests to run.
+    if (!ret && evt != null) {
+      evt.cancelBubble = true;// eventCancelBubble(evt, true);
+      evt.preventDefault(); //eventPreventDefault(evt);
+    }
+
+    return ret;
+  }
 }

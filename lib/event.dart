@@ -34,7 +34,6 @@ part 'src/event/value_change_handler.dart';
 
 part 'src/event/has_handlers.dart';
 part 'src/event/has_attach_handlers.dart';
-part 'src/event/has_native_event.dart';
 part 'src/event/has_value_change_handlers.dart';
 
 part 'src/event/event_handler_adapter.dart';
@@ -221,6 +220,10 @@ part 'src/event/has_scroll_handlers.dart';
 part 'src/event/scroll_handler.dart';
 part 'src/event/scroll_event.dart';
 
+part 'src/event/has_native_event.dart';
+part 'src/event/native_preview_event.dart';
+part 'src/event/native_preview_handler.dart';
+
 part 'src/event/adapter/blur_handler_adapter.dart';
 part 'src/event/adapter/change_handler_adapter.dart';
 part 'src/event/adapter/click_handler_adapter.dart';
@@ -252,4 +255,3 @@ part 'src/event/adapter/touch_cancel_handler_adapter.dart';
 part 'src/event/adapter/touch_end_handler_adapter.dart';
 part 'src/event/adapter/touch_move_handler_adapter.dart';
 part 'src/event/adapter/touch_start_handler_adapter.dart';
-

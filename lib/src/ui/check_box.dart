@@ -140,7 +140,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    * @param html the object's new HTML
    */
   void set html(String val) {
-    directionalTextHelper.setTextOrHtml(html, true);
+    directionalTextHelper.setTextOrHtml(val, true);
   }
 
   //****************************************
@@ -175,7 +175,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   void set enabled(bool val) {
     //Dom.setElementPropertyBoolean(inputElem, "disabled", !val);
     inputElem.disabled = !val;
-    if (enabled) {
+    if (val) {
       removeStyleDependentName("disabled");
     } else {
       addStyleDependentName("disabled");
@@ -257,7 +257,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
    * Get the element's text.
    */
   void set text(String val) {
-    directionalTextHelper.setTextOrHtml(text, false);
+    directionalTextHelper.setTextOrHtml(val, false);
   }
 
   /**

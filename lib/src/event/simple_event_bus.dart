@@ -30,6 +30,14 @@ class SimpleEventBus<H> extends EventBus<H> {
   SimpleEventBus();
 
   /**
+   * @deprecated required by legacy features in GWT's old HandlerManager
+   */
+  //@Deprecated
+  bool isEventHandled(EventType<H> type) {
+    return map.containsKey(type);
+  }
+  
+  /**
    * Adds an unfiltered [handler] to receive events of this [type] from all sources.
    *
    * It is rare to call this method directly. More typically an [Event]

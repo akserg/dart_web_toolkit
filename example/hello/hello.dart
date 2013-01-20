@@ -880,9 +880,59 @@ void main1() {
   ui.RootPanel.get("testId").add(hPanel);
 }
 
+//*******************************
+//*******************************
+//*******************************
+
+// CustomButton
 void main() {
+  ui.CustomButton customButton = new ui.CustomButton.fromText("Button", handler:new event.ClickHandlerAdapter((event.ClickEvent evt){
+    print("$evt");
+  }));
+  
+  ui.RootPanel.get("testId").add(customButton);
+}
+
+// RadioButton
+void main04() {
+  ui.RadioButton radioButton = new ui.RadioButton("radio_test", "<b>Hi RadioButton 1</b>", true);
+  radioButton.getElement().id = "One";
+  _addAllHandlers(radioButton);
+  ui.RootPanel.get("testId").add(radioButton);
+  
+  radioButton = new ui.RadioButton("radio_test", "<b>Hi RadioButton 2</b>", true);
+  radioButton.getElement().id = "Two";
+  _addAllHandlers(radioButton);
+  ui.RootPanel.get("testId").add(radioButton);
+  
+  radioButton = new ui.RadioButton("radio_test", "<b>Hi RadioButton 3</b>", true);
+  radioButton.getElement().id = "Three";
+  _addAllHandlers(radioButton);
+  ui.RootPanel.get("testId").add(radioButton);
+}
+
+// CheckBox
+void main03() {
+  ui.CheckBox checkBox = new ui.CheckBox("<b>Hi CheckBox</b>", true);
+
+  _addAllHandlers(checkBox);
+
+  ui.RootPanel.get("testId").add(checkBox);
+}
+
+// Button
+void main02() {
+  ui.Button button = new ui.Button("<b>Hi Button</b>");
+
+  _addAllHandlers(button);
+
+  ui.RootPanel.get("testId").add(button);
+}
+
+// Anchor
+void main01() {
   ui.Anchor anchor = new ui.Anchor(true);
-  anchor.html = "<b>hi</b>";
+  anchor.html = "<b>Hi Anchor</b>";
 
   _addAllHandlers(anchor);
 
@@ -915,8 +965,19 @@ void _addAllHandlers(ui.Widget widget) {
     widget.addKeyPressHandler(new event.KeyPressHandlerAdapter(_print));
   }
   // HasAllDragAndDropHandlers, HasAllGestureHandlers, HasAllTouchHandlers
+  if (widget is event.HasValueChangeHandlers) {
+    widget.addValueChangeHandler(new event.ValueChangeHandlerAdapter(_print));
+  }
 }
 
-void _print(event.DomEvent event) {
-  print("Source: ${event.getRelativeElement().toString()} Event: ${event.getNativeEvent().type}");
+void _print(event.DwtEvent evt) {
+  if (evt is event.DomEvent) {
+    print("Source: ${evt.getRelativeElement().toString()} Event: ${evt.getNativeEvent().type} ID: ${evt.getRelativeElement().id != null ? evt.getRelativeElement().id : ''}");
+  } else {
+    if (evt.getSource() is dart_html.Element && (evt.getSource() as dart_html.Element).id != null) {
+      print("Source: ${evt.getSource()} Event: ${evt.toString()} ID: ${(evt.getSource() as dart_html.Element).id}");
+    } else {
+      print("Source: ${evt.getSource()} Event: ${evt.toString()}");
+    }
+  }
 }

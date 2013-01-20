@@ -90,6 +90,15 @@ class ValueChangeEvent<T> extends DwtEvent {
    * @return whether the event should be fired
    */
   static bool _shouldFire(HasValueChangeHandlers source, Object oldValue, Object newValue) {
-    return TYPE != null && oldValue != newValue && oldValue == null; // || !oldValue.equals(newValue));
+    return TYPE != null && oldValue != newValue && (oldValue == null || oldValue != newValue);
+  }
+  
+  /**
+   * The toString() for abstract event is overridden to avoid accidently
+   * including class literals in the the compiled output. Use [Event]
+   * #toDebugString to get more information about the event.
+   */
+  String toString() {
+    return "ValueChangeEvent. Value: ${value}";
   }
 }

@@ -11,6 +11,8 @@ abstract class DomHelper {
   factory DomHelper.browserDependent() {
     return new DomHelperDefault();
   }
+  
+  static bool eventSystemIsInitialized = false;
 
   //*************************
   // Parent - child relations
@@ -49,4 +51,7 @@ abstract class DomHelper {
   void unsinkEvents(dart_html.Element elem, Set<String> eventBits);
 
   Set<String> getEventsSunk(dart_html.Element elem);
+  
+  dart_html.Element eventGetToElement(dart_html.Event evt);
+  
 }

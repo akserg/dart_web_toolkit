@@ -73,6 +73,62 @@ abstract class Event<H> {
    * @see EventBus#dispatchEvent(Event, Object)
    */
   void dispatch(H handler);
+  
+  //*****************
+  
+  /**
+   * The list of {@link NativePreviewHandler}. We use a list instead of a
+   * handler manager for efficiency and because we want to fire the handlers in
+   * reverse order. When the last handler is removed, handlers is reset to null.
+   */
+  static EventBus handlers;
+  
+  /**
+   * <p>
+   * Adds a {@link NativePreviewHandler} that will receive all events before
+   * they are fired to their handlers. Note that the handler will receive
+   * <u>all</u> native events, including those received due to bubbling, whereas
+   * normal event handlers only receive explicitly sunk events.
+   * </p>
+   * 
+   * <p>
+   * Unlike other event handlers, {@link NativePreviewHandler} are fired in the
+   * reverse order that they are added, such that the last
+   * {@link NativePreviewEvent} that was added is the first to be fired.
+   * </p>
+   * 
+   * <p>
+   * Please note that nondeterministic behavior will result if more than one GWT
+   * application registers preview handlers. See <a href=
+   * 'http://code.google.com/p/google-web-toolkit/issues/detail?id=3892'>issue
+   * 3892</a> for details.
+   * </p>
+   *
+   * @param handler the {@link NativePreviewHandler}
+   * @return {@link HandlerRegistration} used to remove this handler
+   */
+  static HandlerRegistration addNativePreviewHandler(NativePreviewHandler handler) {
+    assert (handler != null); // : "Cannot add a null handler";
+    //DOM.maybeInitializeEventSystem();
+
+    // Initialize the type
+    //NativePreviewEvent.getType();
+    if (handlers == null) {
+      handlers = new SimpleEventBus(); // new HandlerManager(null, true);
+      NativePreviewEvent.singleton = new NativePreviewEvent();
+    }
+    return handlers.addHandler(NativePreviewEvent.TYPE, handler);
+  }
+  
+  /**
+   * Fire a {@link NativePreviewEvent} for the native event.
+   * 
+   * @param nativeEvent the native event
+   * @return true to fire the event normally, false to cancel the event
+   */
+  static bool fireNativePreviewEvent(dart_html.Event nativeEvent) {
+    return NativePreviewEvent.fire(handlers, nativeEvent);
+  }
 }
 
 /**

@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 20, 2013
+
+* Checked CheckBox, RadioButton.
+* Fixed CheckBox and RadionButton sunkEvent methods.
+
 **January 19, 2013
 
 * Code cleaned and follow Dart SDK 0.2.10.1_r16761.

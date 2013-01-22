@@ -343,13 +343,11 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
 
   // Unlike other widgets the CheckBox sinks on its inputElement, not
   // its wrapper
-  void sinkEvents(Set<String> eventName) {
+  void sinkEvents(int eventBitsToAdd) {
     if (isOrWasAttached()) {
-      eventsToSink.addAll(eventName);
-      Dom.sinkEvents(inputElem, eventsToSink);
-      eventsToSink.clear();
+      Event.sinkEvents(inputElem, eventBitsToAdd | Event.getEventsSunk(inputElem));
     } else {
-      super.sinkEvents(eventName);
+      super.sinkEvents(eventBitsToAdd);
     }
   }
 
@@ -393,7 +391,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     String _formValue = formValue;
     String _uid = inputElem.id;
     //String accessKey = inputElem.getAccessKey();
-    Set<String> sunkEvents = Dom.getEventsSunk(inputElem);
+    int sunkEvents = Event.getEventsSunk(inputElem);
 
     // Clear out the old input element
     setEventListener(inputElem, null);
@@ -402,12 +400,12 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     inputElem.replaceWith(newInputElem);
 
     // Sink events on the new element
-    Dom.sinkEvents(newInputElem, Dom.getEventsSunk(inputElem));
-    Dom.sinkEvents(inputElem, new Set<String>());
+    Event.sinkEvents(newInputElem, Event.getEventsSunk(inputElem));
+    Event.sinkEvents(inputElem, 0);
     inputElem = newInputElem;
 
     // Setup the new element
-    Dom.sinkEvents(inputElem, sunkEvents);
+    Event.sinkEvents(inputElem, sunkEvents);
     inputElem.id = _uid;
 //    if (!"".equals(accessKey)) {
 //      inputElem.setAccessKey(accessKey);

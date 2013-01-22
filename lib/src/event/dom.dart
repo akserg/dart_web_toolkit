@@ -349,26 +349,13 @@ class Dom {
   }
 
   /**
-   * Sets the current set of events sunk by a given element. These events will
-   * be fired to the nearest {@link EventListener} specified on any of the
-   * element's parents.
-   *
-   * @param elem the element whose events are to be retrieved
-   * @param eventBits a bitfield describing the events sunk on this element (its
-   *          possible values are described in {@link Event})
-   */
-  static void unsinkEvents(dart_html.Element elem, Set eventBits) {
-    domHelper.unsinkEvents(elem, eventBits);
-  }
-
-  /**
    * Gets the current set of events sunk by a given element.
    *
    * @param elem the element whose events are to be retrieved
    * @return a bitfield describing the events sunk on this element (its possible
    *         values are described in {@link Event})
    */
-  static Set getEventsSunk(dart_html.Element elem) {
+  static int getEventsSunk(dart_html.Element elem) {
     return domHelper.getEventsSunk(elem);
   }
 
@@ -434,5 +421,15 @@ class Dom {
     }
 
     return ret;
+  }
+  
+  /**
+   * Gets the enumerated type of this event (as defined in {@link Event}).
+   * 
+   * @param evt the event to be tested
+   * @return the event's enumerated type, or -1 if not defined
+   */
+  static int eventGetType(dart_html.Event evt) {
+    return domHelper.getEventTypeInt(evt);
   }
 }

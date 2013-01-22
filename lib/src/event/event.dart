@@ -129,6 +129,234 @@ abstract class Event<H> {
   static bool fireNativePreviewEvent(dart_html.Event nativeEvent) {
     return NativePreviewEvent.fire(handlers, nativeEvent);
   }
+  
+  //**************
+  //**************
+  //**************
+  
+  /**
+   * Fired when an element loses keyboard focus.
+   */
+  static const int ONBLUR = 0x01000;
+
+  /**
+   * Fired when the value of an input element changes.
+   */
+  static const int ONCHANGE = 0x00400;
+
+  /**
+   * Fired when the user clicks on an element.
+   */
+  static const int ONCLICK = 0x00001;
+
+  /**
+   * Fired when the user double-clicks on an element.
+   */
+  static const int ONDBLCLICK = 0x00002;
+
+  /**
+   * Fired when an image encounters an error.
+   */
+  static const int ONERROR = 0x10000;
+
+  /**
+   * Fired when an element receives keyboard focus.
+   */
+  static const int ONFOCUS = 0x00800;
+
+  /**
+   * Fired when the user gesture changes.
+   */
+  static const int ONGESTURECHANGE = 0x2000000;
+
+  /**
+   * Fired when the user gesture ends.
+   */
+  static const int ONGESTUREEND = 0x4000000;
+
+  /**
+   * Fired when the user gesture starts.
+   */
+  static const int ONGESTURESTART = 0x1000000;
+
+  /**
+   * Fired when the user depresses a key.
+   */
+  static const int ONKEYDOWN = 0x00080;
+
+  /**
+   * Fired when the a character is generated from a keypress (either directly or
+   * through auto-repeat).
+   */
+  static const int ONKEYPRESS = 0x00100;
+
+  /**
+   * Fired when the user releases a key.
+   */
+  static const int ONKEYUP = 0x00200;
+
+  /**
+   * Fired when an element (normally an IMG) finishes loading.
+   */
+  static const int ONLOAD = 0x08000;
+
+  /**
+   * Fired when an element that has mouse capture loses it.
+   */
+  static const int ONLOSECAPTURE = 0x02000;
+
+  /**
+   * Fired when the user depresses a mouse button over an element.
+   */
+  static const int ONMOUSEDOWN = 0x00004;
+
+  /**
+   * Fired when the mouse is moved within an element's area.
+   */
+  static const int ONMOUSEMOVE = 0x00040;
+
+  /**
+   * Fired when the mouse is moved out of an element's area.
+   */
+  static const int ONMOUSEOUT = 0x00020;
+
+  /**
+   * Fired when the mouse is moved into an element's area.
+   */
+  static const int ONMOUSEOVER = 0x00010;
+
+  /**
+   * Fired when the user releases a mouse button over an element.
+   */
+  static const int ONMOUSEUP = 0x00008;
+
+  /**
+   * Fired when the user scrolls the mouse wheel over an element.
+   */
+  static const int ONMOUSEWHEEL = 0x20000;
+
+  /**
+   * Fired when the user pastes text into an input element.
+   * 
+   * <p>
+   * Note: This event is <em>not</em> supported on Firefox 2 and earlier, or
+   * Opera 10 and earlier. Be aware that it will not fire on these browser
+   * versions.
+   * </p>
+   */
+  static const int ONPASTE = 0x80000;
+
+  /**
+   * Fired when a scrollable element's scroll offset changes.
+   */
+  static const int ONSCROLL = 0x04000;
+
+  /**
+   * Fired when the user cancels touching an element.
+   */
+  static const int ONTOUCHCANCEL = 0x800000;
+
+  /**
+   * Fired when the user ends touching an element.
+   */
+  static const int ONTOUCHEND = 0x400000;
+
+  /**
+   * Fired when the user moves while touching an element.
+   */
+  static const int ONTOUCHMOVE = 0x200000;
+
+  /**
+   * Fired when the user starts touching an element.
+   */
+  static const int ONTOUCHSTART = 0x100000;
+  /**
+   * Fired when the user requests an element's context menu (usually by
+   * right-clicking).
+   * 
+   * Note that not all browsers will fire this event (notably Opera, as of 9.5).
+   */
+  static const int ONCONTEXTMENU = 0x40000;
+
+  /**
+   * A bit-mask covering both focus events (focus and blur).
+   */
+  static const int FOCUSEVENTS = ONFOCUS | ONBLUR;
+
+  /**
+   * A bit-mask covering all keyboard events (down, up, and press).
+   */
+  static const int KEYEVENTS = ONKEYDOWN | ONKEYPRESS | ONKEYUP;
+
+  /**
+   * A bit-mask covering all mouse events (down, up, move, over, and out), but
+   * not click, dblclick, or wheel events.
+   */
+  static const int MOUSEEVENTS = ONMOUSEDOWN | ONMOUSEUP | ONMOUSEMOVE
+      | ONMOUSEOVER | ONMOUSEOUT;
+
+  /**
+   * A bit-mask covering all touch events (start, move, end, cancel).
+   */
+  static const int TOUCHEVENTS = ONTOUCHSTART | ONTOUCHMOVE | ONTOUCHEND | ONTOUCHCANCEL;
+
+  /**
+   * A bit-mask covering all gesture events (start, change, end).
+   */
+  static const int GESTUREEVENTS = ONGESTURESTART | ONGESTURECHANGE | ONGESTUREEND;
+  
+  /**
+   * The left mouse button.
+   */
+  static const int BUTTON_LEFT = 0;
+
+  /**
+   * The middle mouse button.
+   */
+  static const int BUTTON_MIDDLE = 1;
+
+  /**
+   * The right mouse button.
+   */
+  static const int BUTTON_RIGHT = 2;
+  
+  /**
+   * Gets the enumerated type of this event given a valid event type name.
+   * 
+   * @param typeName the typeName to be tested
+   * @return the event's enumerated type, or -1 if not defined
+   */
+  static int getTypeInt(String typeName) {
+    return Dom.domHelper.eventGetTypeInt(typeName);
+  }
+  
+  /**
+   * Sets the current set of events sunk by a given element. These events will
+   * be fired to the nearest {@link EventListener} specified on any of the
+   * element's parents.
+   * 
+   * @param elem the element whose events are to be retrieved
+   * @param eventBits a bitfield describing the events sunk on this element (its
+   *          possible values are described in {@link Event})
+   */
+  static void sinkEvents(dart_html.Element elem, int eventBits) {
+    // This cast is always valid because both Element types are JSOs and have
+    // no new fields are added in the subclass.
+    Dom.sinkEvents(elem, eventBits);
+  }
+  
+  /**
+   * Gets the current set of events sunk by a given element.
+   * 
+   * @param elem the element whose events are to be retrieved
+   * @return a bitfield describing the events sunk on this element (its possible
+   *         values are described in {@link Event})
+   */
+  static int getEventsSunk(dart_html.Element elem) {
+    // This cast is always valid because both Element types are JSOs and have
+    // no new fields are added in the subclass.
+    return Dom.getEventsSunk(elem);
+  }
 }
 
 /**

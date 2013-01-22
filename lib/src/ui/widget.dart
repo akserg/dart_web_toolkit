@@ -33,8 +33,7 @@ class Widget extends UiObject
    *
    * Package protected to allow Composite to see it.
    */
-  Set<String> eventsToSink = new Set<String>();
-//  HandlerManager _handlerManager;
+  int eventsToSink = 0;
   EventBus _eventBus;
   bool _attached = false;
   Object _layoutData;
@@ -52,14 +51,18 @@ class Widget extends UiObject
    */
   void onBrowserEvent(dart_html.Event event) {
 //    print("onBrowserEvent: ${event}");
-    if (event.type == BrowserEvents.MOUSEOVER ||
-        event.type == BrowserEvents.MOUSEOUT) {
-      // Only fire the mouse over event if it's coming from outside this widget.
-      // Only fire the mouse out event if it's leaving this widget.
-      dart_html.Element related = (event as dart_html.MouseEvent).relatedTarget as dart_html.Element;
-      if (related != null && Dom.isOrHasChild(getElement(), related)) {
-        return;
-      }
+    switch (Dom.eventGetType(event)) {
+      case Event.ONMOUSEOVER:
+        // Only fire the mouse over event if it's coming from outside this
+        // widget.
+      case Event.ONMOUSEOUT:
+        // Only fire the mouse over event if it's coming from outside this widget.
+        // Only fire the mouse out event if it's leaving this widget.
+        dart_html.Element related = (event as dart_html.MouseEvent).relatedTarget as dart_html.Element;
+        if (related != null && Dom.isOrHasChild(getElement(), related)) {
+          return;
+        }
+        break;
     }
 
     DomEvent.fireNativeEvent(event, this, this.getElement());
@@ -88,6 +91,9 @@ class Widget extends UiObject
    * @param event the event
    */
   void fireEvent(DwtEvent event) {
+//    if (_eventBus != null) {
+//      _eventBus.fireEvent(event);
+//    }
     if (_eventBus != null) {
       // If it not live we should revive it.
       if (!event.isLive()) {
@@ -111,9 +117,6 @@ class Widget extends UiObject
         }
       }
     }
-//    if (_eventBus != null) {
-//      _eventBus.fireEvent(event);
-//    }
   }
 
   //************************************
@@ -189,24 +192,13 @@ class Widget extends UiObject
   HandlerRegistration addDomHandler(EventHandler handler, DomEventType type) {
     assert (handler != null); // : "handler must not be null";
     assert (type != null); // : "type must not be null";
-    if (BrowserEvents.events.indexOf(type.eventName) == -1) {
+    int typeInt = Event.getTypeInt(type.eventName);
+    if (typeInt == -1) {
       sinkBitlessEvent(type.eventName);
     } else {
-      sinkEvents(new Set.from([type.eventName]));
+      sinkEvents(typeInt);
     }
     return ensureHandlers().addHandler(type, handler);
-  }
-
-  /**
-   * Sinks a named event. Note that only {@link Widget widgets} may actually
-   * receive events, but can receive events from all objects contained within
-   * them.
-   *
-   * @param eventTypeName name of the event to sink on this element
-   * @see com.google.gwt.user.client.Event
-   */
-  void sinkBitlessEvent(String eventTypeName) {
-    Dom.sinkBitlessEvent(getElement(), eventTypeName);
   }
 
   /**
@@ -226,26 +218,12 @@ class Widget extends UiObject
    *  }
    *} </pre>
    */
-  void sinkEvents(Set<String> eventName) {
+  void sinkEvents(int eventBitsToAdd) {
     if (isOrWasAttached()) {
-      eventsToSink.addAll(eventName);
-      Dom.sinkEvents(getElement(), eventsToSink);
-      eventsToSink.clear();
+      super.sinkEvents(eventsToSink);
     } else {
-      eventsToSink.addAll(eventName);
+      eventsToSink |= eventBitsToAdd;
     }
-  }
-
-  /**
-   * Removes a set of events from this object's event list.
-   *
-   * @param eventBitsToRemove a bitfield representing the set of events to be
-   *          removed from this element's event set
-   * @see #sinkEvents
-   * @see com.google.gwt.user.client.Event
-   */
-  void unsinkEvents(Set<String> eventBitsToRemove) {
-    Dom.unsinkEvents(getElement(), eventBitsToRemove);
   }
 
   /**
@@ -457,9 +435,9 @@ class Widget extends UiObject
 
     // Event hookup code
     Dom.setEventListener(getElement(), this);
-    Set bitsToAdd = new Set.from(eventsToSink);
-    eventsToSink.clear();
-    if (bitsToAdd.length > 0) {
+    int bitsToAdd = eventsToSink;
+    eventsToSink = -1;
+    if (bitsToAdd > 0) {
       sinkEvents(bitsToAdd);
     }
     doAttachChildren();
@@ -537,6 +515,6 @@ class Widget extends UiObject
    * @return true if this widget ever been attached to the DOM, false otherwise
    */
   bool isOrWasAttached() {
-    return eventsToSink.length == 0;
+    return eventsToSink == -1;
   }
 }

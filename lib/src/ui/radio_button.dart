@@ -60,11 +60,10 @@ class RadioButton extends CheckBox {
         text = label;
       }
     }
-//    sinkEvents(Event.ONCLICK);
-//    sinkEvents(Event.ONMOUSEUP);
-//    sinkEvents(Event.ONBLUR);
-//    sinkEvents(Event.ONKEYDOWN);
-    sinkEvents(new Set.from([BrowserEvents.CLICK, BrowserEvents.MOUSEUP, BrowserEvents.BLUR, BrowserEvents.KEYDOWN]));
+    sinkEvents(Event.ONCLICK);
+    sinkEvents(Event.ONMOUSEUP);
+    sinkEvents(Event.ONBLUR);
+    sinkEvents(Event.ONKEYDOWN);
   }
 
   /**
@@ -127,18 +126,16 @@ class RadioButton extends CheckBox {
 
   // Unlike other widgets the Radio button sinks on its inputElement, not
   // its wrapper
-  void sinkEvents(Set<String> eventName) {
+  void sinkEvents(int eventBitsToAdd) {
     // Like CheckBox, we want to hear about inputElem. We
     // also want to know what's going on with the label, to
     // make sure onBrowserEvent is able to record value changes
     // initiated by label events
     if (isOrWasAttached()) {
-      eventsToSink.addAll(eventName);
-      Dom.sinkEvents(inputElem, eventsToSink);
-      Dom.sinkEvents(labelElem, eventsToSink);
-      eventsToSink.clear();
+      Event.sinkEvents(inputElem, eventBitsToAdd | Event.getEventsSunk(inputElem));
+      Event.sinkEvents(labelElem, eventBitsToAdd | Event.getEventsSunk(labelElem));
     } else {
-      super.sinkEvents(eventName);
+      super.sinkEvents(eventBitsToAdd);
     }
   }
   

@@ -49,8 +49,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     Dom.setElementPropertyInt(table, "cellSpacing", 0);
     Dom.setElementPropertyInt(table, "cellPadding", 0);
 
-    //Dom.sinkEvents(table, dart_html.MouseEvent.Event.ONCLICK);
-    sinkEvents(new Set.from([BrowserEvents.CLICK]));
+    Dom.sinkEvents(table, Event.ONCLICK);
     clearAndSetStyleName(_DEFAULT_STYLENAME);
   }
 

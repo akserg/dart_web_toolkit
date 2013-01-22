@@ -263,11 +263,7 @@ class CustomButton extends ButtonBase {
   void _init() {
     // Use FocusPanel.impl rather than FocusWidget because only FocusPanel.impl
     // works across browsers to create a focusable element.
-    //sinkEvents(Event.ONCLICK | Event.MOUSEEVENTS | Event.FOCUSEVENTS | Event.KEYEVENTS);
-    sinkEvents(new Set.from([BrowserEvents.CLICK]));
-    sinkEvents(new Set.from(BrowserEvents.MOUSEEVENTS));
-    sinkEvents(new Set.from(BrowserEvents.FOCUSEVENTS));
-    sinkEvents(new Set.from(BrowserEvents.KEYEVENTS));
+    sinkEvents(Event.ONCLICK | Event.MOUSEEVENTS | Event.FOCUSEVENTS | Event.KEYEVENTS);
     //
     setUpFace(_createFace(null, "up", _UP));
     clearAndSetStyleName(_STYLENAME_DEFAULT);
@@ -415,8 +411,9 @@ class CustomButton extends ButtonBase {
       return;
     }
 
-    switch (event.type) {
-      case BrowserEvents.CLICK:
+    int type = Dom.eventGetType(event);
+    switch (type) {
+      case Event.ONCLICK:
         // If clicks are currently disallowed, keep it from bubbling or being
         // passed to the superclass.
         if (!_allowClick) {
@@ -424,8 +421,8 @@ class CustomButton extends ButtonBase {
           return;
         }
         break;
-      case BrowserEvents.MOUSEDOWN:
-        if (getMouseEvent(event).button == BrowserEvents.BUTTON_LEFT) {
+      case Event.ONMOUSEDOWN:
+        if (getMouseEvent(event).button == Event.BUTTON_LEFT) {
           setFocus(true);
           onClickStart();
           Dom.setCapture(getElement());
@@ -434,22 +431,22 @@ class CustomButton extends ButtonBase {
           event.preventDefault();
         }
         break;
-      case BrowserEvents.MOUSEUP:
+      case Event.ONMOUSEUP:
         if (_isCapturing) {
           _isCapturing = false;
           Dom.releaseCapture(getElement());
-          if (isHovering() && getMouseEvent(event).button == BrowserEvents.BUTTON_LEFT) {
+          if (isHovering() && getMouseEvent(event).button == Event.BUTTON_LEFT) {
             onClick();
           }
         }
         break;
-      case BrowserEvents.MOUSEMOVE:
+      case Event.ONMOUSEMOVE:
         if (_isCapturing) {
           // Prevent dragging (on other browsers);
           event.preventDefault();
         }
         break;
-      case BrowserEvents.MOUSEOUT:
+      case Event.ONMOUSEOUT:
         dart_html.Element to = Dom.eventGetToElement(event);
         if (Dom.isOrHasChild(getElement(), event.target)
             && (to == null || !Dom.isOrHasChild(getElement(), to))) {
@@ -459,7 +456,7 @@ class CustomButton extends ButtonBase {
           setHovering(false);
         }
         break;
-      case BrowserEvents.MOUSEOVER:
+      case Event.ONMOUSEOVER:
         if (Dom.isOrHasChild(getElement(), event.target)) {
           setHovering(true);
           if (_isCapturing) {
@@ -467,13 +464,13 @@ class CustomButton extends ButtonBase {
           }
         }
         break;
-      case BrowserEvents.BLUR:
+      case Event.ONBLUR:
         if (_isFocusing) {
           _isFocusing = false;
           onClickCancel();
         }
         break;
-      case BrowserEvents.LOSECAPTURE:
+      case Event.ONLOSECAPTURE:
         if (_isCapturing) {
           _isCapturing = false;
           onClickCancel();
@@ -484,24 +481,22 @@ class CustomButton extends ButtonBase {
     super.onBrowserEvent(event);
 
     // Synthesize clicks based on keyboard events AFTER the normal key handling.
-//    if ((event.getTypeInt() & Event.KEYEVENTS) != 0) {
-//      char keyCode = (char) Dom.eventGetKeyCode(event);
-    int keyCode = getMouseEvent(event).$dom_keyCode;
-    if (keyCode > 0) {
-      switch (event.type) {
-        case BrowserEvents.KEYDOWN:
+    if ((Event.getTypeInt(event.type) & Event.KEYEVENTS) != 0) {
+      int keyCode = getMouseEvent(event).$dom_keyCode;
+      switch (type) {
+        case Event.ONKEYDOWN:
           if (keyCode == ' '.charCodeAt(0)) {
             _isFocusing = true;
             onClickStart();
           }
           break;
-        case BrowserEvents.KEYUP:
+        case Event.ONKEYUP:
           if (_isFocusing && keyCode == ' '.charCodeAt(0)) {
             _isFocusing = false;
             onClick();
           }
           break;
-        case BrowserEvents.KEYPRESS:
+        case Event.ONKEYPRESS:
           if (keyCode == '\n'.charCodeAt(0) || keyCode == '\r'.charCodeAt(0)) {
             onClickStart();
             onClick();
@@ -842,7 +837,7 @@ class CustomButton extends ButtonBase {
  * Represents a button's face. Each face is associated with its own style
  * modifier and, optionally, its own contents html, text, or image.
  */
-abstract class Face  implements HasHtml {
+abstract class Face implements HasHtml {
 
   static String STYLENAME_HTML_FACE = "html-face";
   Face delegateTo;
@@ -907,6 +902,19 @@ abstract class Face  implements HasHtml {
     updateButtonFace();
   }
 
+  //*******
+  // Images
+  //*******
+  
+  /**
+   * Set the face's contents as an image.
+  *
+   * @param image image to set as face contents
+   */
+  void setImage(Image image) {
+    face = image.getElement();
+    updateButtonFace();
+  }
 
   /**
    * Gets the contents associated with this face.

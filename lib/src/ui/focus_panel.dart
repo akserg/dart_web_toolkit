@@ -171,9 +171,9 @@ class FocusPanel extends SimplePanel implements HasFocus,
   }
 
 
-//  void setAccessKey(char key) {
-//    FocusHelper.getFocusHelper().setAccessKey(getElement(), key);
-//  }
+  void setAccessKey(int key) {
+    FocusPanel.impl.setAccessKey(getElement(), key);
+  }
 
   //***************************
   // Implementation of HasFocus

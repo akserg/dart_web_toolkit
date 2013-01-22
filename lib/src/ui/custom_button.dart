@@ -264,7 +264,7 @@ class CustomButton extends ButtonBase {
     // Use FocusPanel.impl rather than FocusWidget because only FocusPanel.impl
     // works across browsers to create a focusable element.
     //sinkEvents(Event.ONCLICK | Event.MOUSEEVENTS | Event.FOCUSEVENTS | Event.KEYEVENTS);
-    sinkEvents(new Set.from([BrowserEvents.CLICK]));    
+    sinkEvents(new Set.from([BrowserEvents.CLICK]));
     sinkEvents(new Set.from(BrowserEvents.MOUSEEVENTS));
     sinkEvents(new Set.from(BrowserEvents.FOCUSEVENTS));
     sinkEvents(new Set.from(BrowserEvents.KEYEVENTS));
@@ -376,7 +376,7 @@ class CustomButton extends ButtonBase {
   int get tabIndex => FocusPanel.impl.getTabIndex(getElement());
 
   void set tabIndex(int index) {
-    FocusPanel.impl.setTabIndex(getElement(), index); //FocusHelper.getFocusHelper().setTabIndex(getElement(), index);
+    FocusPanel.impl.setTabIndex(getElement(), index);
   }
 
   /**
@@ -514,10 +514,10 @@ class CustomButton extends ButtonBase {
   dart_html.MouseEvent getMouseEvent(dart_html.Event evt) {
     return evt as dart_html.MouseEvent;
   }
-  
-//  void setAccessKey(Char key) {
-//    FocusHelper.getFocusHelper().setAccessKey(getElement(), key);
-//  }
+
+  void setAccessKey(int key) {
+    FocusPanel.impl.setAccessKey(getElement(), key);
+  }
 
   /**
    * Sets whether this button is enabled.
@@ -540,9 +540,9 @@ class CustomButton extends ButtonBase {
 
   void setFocus(bool focused) {
     if (focused) {
-      FocusPanel.impl.focus(getElement()); //FocusHelper.getFocusHelper().focus(getElement());
+      FocusPanel.impl.focus(getElement());
     } else {
-      FocusPanel.impl.blur(getElement()); //FocusHelper.getFocusHelper().blur(getElement());
+      FocusPanel.impl.blur(getElement());
     }
   }
 

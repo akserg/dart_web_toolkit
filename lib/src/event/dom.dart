@@ -344,7 +344,7 @@ class Dom {
    * @param eventBits a bitfield describing the events sunk on this element (its
    *          possible values are described in {@link Event})
    */
-  static void sinkEvents(dart_html.Element elem, Set eventBits) {
+  static void sinkEvents(dart_html.Element elem, int eventBits) {
     domHelper.sinkEvents(elem, eventBits);
   }
 
@@ -402,11 +402,11 @@ class Dom {
     // Pass the event to the listener.
     listener.onBrowserEvent(evt);
   }
-  
+
   /**
    * Gets the element to which the mouse pointer was moved (only valid for
    * {@link Event#ONMOUSEOUT} and {@link Event#ONMOUSEOVER}).
-   * 
+   *
    * @param evt the event to be tested
    * @return the element to which the mouse pointer was moved
    */
@@ -414,11 +414,11 @@ class Dom {
   static dart_html.Element eventGetToElement(dart_html.Event evt) {
     return domHelper.eventGetToElement(evt);
   }
-  
+
   /**
    * This method is called directly by native code when event preview is being
    * used.
-   * 
+   *
    * @param evt a handle to the event being previewed
    * @return <code>false</code> to cancel the event
    */

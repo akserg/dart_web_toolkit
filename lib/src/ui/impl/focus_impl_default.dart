@@ -41,4 +41,11 @@ class FocusImplDefault implements FocusImpl {
   void setTabIndex(dart_html.Element elem, int index) {
     elem.attributes['tabIndex'] = index.toString();
   }
+
+  /**
+   * Set Access Key for keyboard navigation.
+   */
+  void setAccessKey(dart_html.Element elem, int key) {
+//    elem.accessKey = key.toString();
+  }
 }

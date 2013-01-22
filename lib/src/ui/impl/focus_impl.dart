@@ -34,6 +34,14 @@ abstract class FocusImpl {
    */
   void setTabIndex(dart_html.Element elem, int index);
 
+  /**
+   * Set Access Key for keyboard navigation.
+   */
+  void setAccessKey(dart_html.Element elem, int key);
+
+  /**
+   * Static instance of FocusImpl.
+   */
   static FocusImpl implPanel;
 
   /**

@@ -7,7 +7,7 @@ class DomHelperDefault implements DomHelper {
 
   dart_html.Element captureElem;
 
-  Map<dart_html.Element, Set<String>>  _eventBits = new Map<dart_html.Element, Set<String>>();
+  Map<dart_html.Element, int>  _eventBits = new Map<dart_html.Element, int>();
   Map<dart_html.Element, EventListener> _listener = new Map<dart_html.Element, EventListener>();
 
   //*************************
@@ -77,7 +77,7 @@ class DomHelperDefault implements DomHelper {
   void releaseCapture(dart_html.Element elem) {
     _releaseCaptureImpl(elem);
   }
-  
+
   void _releaseCaptureImpl(dart_html.Element elem) {
     if (elem == captureElem) {
       captureElem = null;
@@ -87,7 +87,7 @@ class DomHelperDefault implements DomHelper {
   void setCapture(dart_html.Element elem) {
     _setCaptureImpl(elem);
   }
-  
+
   void _setCaptureImpl(dart_html.Element elem) {
     captureElem = elem;
   }
@@ -102,19 +102,99 @@ class DomHelperDefault implements DomHelper {
   }
 
   void sinkBitlessEvent(dart_html.Element elem, String eventTypeName) {
-    elem.on[eventTypeName].add(_dispatchEvent);
+    _sinkBitlessEventImpl(elem, eventTypeName);
   }
 
-  void sinkEvents(dart_html.Element elem, Set eventBits) {
-    Set<String> _evt = getEventsSunk(elem);
-    //
-    for (String eventName in eventBits) {
-      if (!_evt.contains(eventName)) {
-        _evt.add(eventName);
-        elem.on[eventName].add(_dispatchEvent);
+  void _sinkBitlessEventImpl(dart_html.Element elem, String eventTypeName, [bool useCapture = false]) {
+    switch(eventTypeName) {
+      case "drag":
+      case "dragend":
+      case "dragenter":
+      case "dragleave":
+      case "dragover":
+      case "dragstart":
+      case "drop":
+        elem.on[eventTypeName].add(_dispatchEvent, useCapture);
+        break;
+      case "canplaythrough":
+      case "ended":
+      case "progress":
+        // First call removeEventListener, so as not to add the same event listener more than once
+        elem.on[eventTypeName].remove(_dispatchEvent, false);
+        elem.on[eventTypeName].add(_dispatchEvent, false);
+        break;
+      default:
+        // catch missing cases
+        throw new Exception("Trying to sink unknown event type $eventTypeName");
+    }
+  }
+
+  void sinkEvents(dart_html.Element elem, int bits) {
+    sinkEventsImpl(elem, bits);
+  }
+
+  int _getEventBits(dart_html.Element elem) {
+    assert(elem != null);
+    String eventBits = elem.dataAttributes["eventBits"];
+    try {
+      return int.parse(eventBits);
+    } on Exception catch(e) {
+      return 0;
+    }
+  }
+
+  void _setEventBits(dart_html.Element elem, int bits) {
+    assert(elem != null);
+    assert(bits != null);
+    elem.dataAttributes["eventBits"] = bits.toRadixString(16);
+  }
+
+  void applyDispatcher(dart_html.Element elem, int bits, int chMask, String eventName, int mask, dart_html.EventListener handler, [bool useCapture = false]) {
+    if ((chMask & mask) > 0) {
+      if ((bits & mask) > 0) {
+        elem.on[eventName].add(handler, useCapture);
+      } else {
+        elem.on[eventName].remove(handler);
       }
     }
   }
+
+  void sinkEventsImpl(dart_html.Element elem, int bits) {
+    int chMask = _getEventBits(elem) ^ bits;
+    if (chMask == 0) {
+      return;
+    }
+    _setEventBits(elem, chMask);
+    //
+    applyDispatcher(elem, bits, chMask, "click", 0x00001, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "dblclick", 0x00002, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "mousedown", 0x00004, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "mouseup", 0x00008, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "mouseover", 0x00010, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "mouseout", 0x00020, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "mousemove", 0x00040, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "keydown", 0x00080, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "keypress", 0x00100, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "keyup", 0x00200, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "change", 0x00400, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "focus", 0x00800, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "blur", 0x01000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "losecapture", 0x02000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "scroll", 0x04000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "load", 0x08000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "error", 0x10000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "mousewheel", 0x20000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "contextmenu", 0x40000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "paste", 0x80000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "touchstart", 0x100000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "touchmove", 0x200000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "touchend", 0x400000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "touchcancel", 0x800000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "gesturestart", 0x1000000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "gesturechange", 0x2000000, _dispatchEvent);
+    applyDispatcher(elem, bits, chMask, "gestureend", 0x4000000, _dispatchEvent);
+  }
+
 
   void unsinkEvents(dart_html.Element elem, Set eventBits) {
     Set<String> _evt = getEventsSunk(elem);
@@ -145,7 +225,7 @@ class DomHelperDefault implements DomHelper {
       Dom.dispatchEvent(event, curElem, listener);
     }
   }
-  
+
   dart_html.Element eventGetToElement(dart_html.Event evt) {
     if (evt.type == BrowserEvents.MOUSEOVER) {
       return evt.target as dart_html.Element;
@@ -157,7 +237,7 @@ class DomHelperDefault implements DomHelper {
 
     return null;
   }
-  
+
   bool _dispatchCapturedEvent(dart_html.Event evt) {
     if (!Dom.previewEvent(evt)) {
       evt.stopPropagation();
@@ -186,7 +266,7 @@ class DomHelperDefault implements DomHelper {
         Dom.dispatchEvent(evt, cap, _listener[cap]);
         evt.stopPropagation();
       }
-    }  
+    }
   }
 
 //  $wnd.addEventListener('click', @com.google.gwt.user.client.impl.DOMImplStandard::dispatchCapturedMouseEvent, true);

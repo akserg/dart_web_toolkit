@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 22, 2013
+
+* Fixing Events issues.
+
 **January 20, 2013
 
 * Checked CheckBox, RadioButton.

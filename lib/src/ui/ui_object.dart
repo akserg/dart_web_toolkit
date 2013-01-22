@@ -694,4 +694,45 @@ abstract class UiObject implements HasVisibility {
     }
     return getElement().toString();
   }
+
+  //*******
+  // Events
+  //*******
+
+  /**
+   * Sinks a named event. Note that only {@link Widget widgets} may actually
+   * receive events, but can receive events from all objects contained within
+   * them.
+   *
+   * @param eventTypeName name of the event to sink on this element
+   * @see com.google.gwt.user.client.Event
+   */
+  void sinkBitlessEvent(String eventTypeName) {
+    Dom.sinkBitlessEvent(getElement(), eventTypeName);
+  }
+
+  /**
+   * Adds a set of events to be sunk by this object. Note that only
+   * {@link Widget widgets} may actually receive events, but can receive events
+   * from all objects contained within them.
+   *
+   * @param eventBitsToAdd a bitfield representing the set of events to be added
+   *          to this element's event set
+   * @see com.google.gwt.user.client.Event
+   */
+  void sinkEvents(int eventBitsToAdd) {
+    Dom.sinkEvents(getElement(), eventBitsToAdd | Dom.getEventsSunk(getElement()));
+  }
+
+  /**
+   * Removes a set of events from this object's event list.
+   *
+   * @param eventBitsToRemove a bitfield representing the set of events to be
+   *          removed from this element's event set
+   * @see #sinkEvents
+   * @see com.google.gwt.user.client.Event
+   */
+  void unsinkEvents(int eventBitsToRemove) {
+    Dom.sinkEvents(getElement(), Dom.getEventsSunk(getElement()) & (~eventBitsToRemove));
+  }
 }

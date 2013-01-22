@@ -11,7 +11,7 @@ abstract class DomHelper {
   factory DomHelper.browserDependent() {
     return new DomHelperDefault();
   }
-  
+
   static bool eventSystemIsInitialized = false;
 
   //*************************
@@ -46,12 +46,12 @@ abstract class DomHelper {
 
   void sinkBitlessEvent(dart_html.Element elem, String eventTypeName);
 
-  void sinkEvents(dart_html.Element elem, Set<String> eventBits);
+  void sinkEvents(dart_html.Element elem, int eventBits);
 
   void unsinkEvents(dart_html.Element elem, Set<String> eventBits);
 
   Set<String> getEventsSunk(dart_html.Element elem);
-  
+
   dart_html.Element eventGetToElement(dart_html.Event evt);
-  
+
 }

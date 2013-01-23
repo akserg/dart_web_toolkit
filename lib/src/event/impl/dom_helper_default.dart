@@ -262,8 +262,8 @@ class DomHelperDefault extends DomHelper {
   }
   
   void _applyDispatcher(dart_html.Element elem, int bits, int chMask, String eventName, int mask, dart_html.EventListener handler, [bool useCapture = false]) {
-    if ((chMask & mask) > 0) {
-      if ((bits & mask) > 0) {
+    if ((chMask & mask) != 0) {
+      if ((bits & mask) != 0) {
         elem.on[eventName].add(handler, useCapture);
       } else {
         elem.on[eventName].remove(handler);

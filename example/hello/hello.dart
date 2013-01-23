@@ -884,13 +884,42 @@ void main1() {
 //*******************************
 //*******************************
 
-// CustomButton
+// PushButton and ToggleButtons
 void main() {
-  ui.CustomButton customButton = new ui.CustomButton.fromText("Button", handler:new event.ClickHandlerAdapter((event.ClickEvent evt){
-    print("$evt");
-  }));
-  
-  ui.RootPanel.get("testId").add(customButton);
+  ui.VerticalPanel vpanel = new ui.VerticalPanel();
+
+  ui.HorizontalPanel pushPanel = new ui.HorizontalPanel();
+  pushPanel.spacing = 10;
+
+  ui.HorizontalPanel togglePanel = new ui.HorizontalPanel();
+  togglePanel.spacing = 10;
+
+  // Combine all the panels
+  vpanel.add(new ui.Html("Custom Button"));
+  vpanel.add(pushPanel);
+  vpanel.add(new ui.Html("<br><br>PushButtons and ToggleButtons allow you to customize the look of your buttons"));
+  vpanel.add(togglePanel);
+
+  ui.PushButton normalPushButton = new ui.PushButton.fromImage(new ui.Image("img/test.jpg"));
+  _addAllHandlers(normalPushButton);
+  pushPanel.add(normalPushButton);
+
+  // Add a disabled PushButton
+  ui.PushButton disabledPushButton = new ui.PushButton.fromImage(new ui.Image("img/test.jpg"));
+  disabledPushButton.enabled = false;
+  pushPanel.add(disabledPushButton);
+
+// Add a normal ToggleButton
+  ui.ToggleButton normalToggleButton = new ui.ToggleButton.fromImage(new ui.Image("img/test.jpg"));
+  _addAllHandlers(normalToggleButton);
+  togglePanel.add(normalToggleButton);
+
+  // Add a disabled ToggleButton
+  ui.ToggleButton disabledToggleButton = new ui.ToggleButton.fromImage(new ui.Image("img/test.jpg"));
+  disabledToggleButton.enabled = false;
+  togglePanel.add(disabledToggleButton);
+
+  ui.RootPanel.get("testId").add(vpanel);
 }
 
 // RadioButton
@@ -899,12 +928,12 @@ void main04() {
   radioButton.getElement().id = "One";
   _addAllHandlers(radioButton);
   ui.RootPanel.get("testId").add(radioButton);
-  
+
   radioButton = new ui.RadioButton("radio_test", "<b>Hi RadioButton 2</b>", true);
   radioButton.getElement().id = "Two";
   _addAllHandlers(radioButton);
   ui.RootPanel.get("testId").add(radioButton);
-  
+
   radioButton = new ui.RadioButton("radio_test", "<b>Hi RadioButton 3</b>", true);
   radioButton.getElement().id = "Three";
   _addAllHandlers(radioButton);

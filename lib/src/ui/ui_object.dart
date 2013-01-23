@@ -282,6 +282,7 @@ abstract class UiObject implements HasVisibility {
       throw new Exception(EMPTY_STYLENAME_MSG);
     }
 
+    // Keep it only for print
     String old = elem.$dom_className;
 
     if (add) {
@@ -291,11 +292,11 @@ abstract class UiObject implements HasVisibility {
 
       // Calculate matching index.
       while (idx != -1) {
-        if (idx == 0 || oldClassName.charCodeAt(idx - 1) == ' ') {
+        if (idx == 0 || oldClassName[idx - 1] == ' ') {
           int last = idx + style.length;
           int lastPos = oldClassName.length;
           if ((last == lastPos)
-              || ((last < lastPos) && (oldClassName.charCodeAt(last) == ' '))) {
+              || ((last < lastPos) && (oldClassName[last] == ' '))) {
             break;
           }
         }
@@ -317,11 +318,11 @@ abstract class UiObject implements HasVisibility {
 
       // Calculate matching index.
       while (idx != -1) {
-        if (idx == 0 || oldStyle.charCodeAt(idx - 1) == ' ') {
+        if (idx == 0 || oldStyle[idx - 1] == ' ') {
           int last = idx + style.length;
           int lastPos = oldStyle.length;
           if ((last == lastPos)
-              || ((last < lastPos) && (oldStyle.charCodeAt(last) == ' '))) {
+              || ((last < lastPos) && (oldStyle[last] == ' '))) {
             break;
           }
         }
@@ -380,7 +381,7 @@ abstract class UiObject implements HasVisibility {
     for (var i = 1, n = classes.length; i < n; i++) {
       var name = classes[i];
       if (name.length > oldPrimaryStyleLen
-          && name.charCodeAt(oldPrimaryStyleLen) == '-'
+          && name[oldPrimaryStyleLen] == '-'
           && name.indexOf(oldPrimaryStyle) == 0) {
         classes[i] = newPrimaryStyle.concat(name.substring(oldPrimaryStyleLen));
       }

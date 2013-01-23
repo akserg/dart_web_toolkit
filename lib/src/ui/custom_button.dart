@@ -647,12 +647,10 @@ class CustomButton extends ButtonBase {
      */
     if (_curFace != newFace) {
       if (_curFace != null) {
-        print("setCurrentFace. removeStyleDependentName: ${_curFace.getName()}");
         removeStyleDependentName(_curFace.getName());
       }
       _curFace = newFace;
       _setCurrentFaceElement(newFace.getFace());
-      print("setCurrentFace. addStyleDependentName: ${_curFace.getName()}");
       addStyleDependentName(_curFace.getName());
 
       if (enabled) {
@@ -905,7 +903,7 @@ abstract class Face implements HasHtml {
   //*******
   // Images
   //*******
-  
+
   /**
    * Set the face's contents as an image.
   *
@@ -937,16 +935,6 @@ abstract class Face implements HasHtml {
     if (_customButton._curFace != null && _customButton._curFace.getFace() == this.getFace()) {
       _customButton._setCurrentFaceElement(face);
     }
-  }
-
-  /**
-   * Set the face's contents as an image.
-  *
-   * @param image image to set as face contents
-   */
-  void setImage(Image image) {
-    face = image.getElement();
-    updateButtonFace();
   }
 
   String toString() {

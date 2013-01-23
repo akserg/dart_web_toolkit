@@ -1,9 +1,9 @@
 name: dart_web_toolkit
-version: 0.1.0
+version: 0.2.0
 description: >
   Dart Web Toolkit (DWT) is a development toolkit for building and optimizing complex browser-based applications.
 authors:
 - Sergey Akopkokhyants <akserg@gmail.com>
-homepage: http://akserg.github.com/dart_web_toolkit
+homepage: http://www.dartwebtoolkit.com
 dependencies:
   browser: any

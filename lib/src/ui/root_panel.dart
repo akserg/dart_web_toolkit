@@ -188,7 +188,7 @@ class RootPanel extends AbsolutePanel {
     // cleaned up. This will cause all of their event listeners
     // to be unhooked, which will avoid potential memory leaks.
     try {
-      AttachDetachException.tryCommand(_widgetsToDetach, _maybeDetachCommand);
+      AttachDetachException.tryCommand(_widgetsToDetach.iterator, _maybeDetachCommand);
     } finally {
       _widgetsToDetach.clear();
 

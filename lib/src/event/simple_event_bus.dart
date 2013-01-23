@@ -228,8 +228,8 @@ class SimpleEventBus<H> extends EventBus<H> {
       List<H> handlers = getDispatchList(event.getAssociatedType(), source);
       Set<Exception> causes = null;
 
-      for (Iterator<H> it = handlers.iterator(); it.hasNext;) {
-        H handler = it.next();
+      for (Iterator<H> it = handlers.iterator; it.moveNext();) {
+        H handler = it.current;
 
         try {
           EventBus.dispatchEvent(event, handler);

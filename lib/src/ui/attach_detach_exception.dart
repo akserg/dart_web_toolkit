@@ -35,9 +35,10 @@ class AttachDetachException extends UmbrellaException {
    * @param hasWidgets children to iterate
    * @param c the {@link Command} to try on all children
    */
-  static void tryCommand(Iterable<Widget> hasWidgets, AttachCommand c) {
+  static void tryCommand(Iterator<Widget> hasWidgets, AttachCommand c) {
     Set<Exception> caught = null;
-    for (Widget w in hasWidgets) {
+    for (;hasWidgets.moveNext(); ) {
+      Widget w = hasWidgets.current;
       try {
         print("AttachDetachException.tryCommand. ${w.getElement().id}");
         c.execute(w);

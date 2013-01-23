@@ -34,7 +34,7 @@ class DomHelperDefault extends DomHelper {
     dart_html.Node child = parent.$dom_firstChild;
     dart_html.Node before;
     while (child != null) {
-      if (child.nodeType == dart_html.Node.ELEMENT_NODE) {
+      if (child.nodeType == 1) { // dart_html.Node.ELEMENT_NODE
         if (count == index) {
           before = child;
           break;
@@ -130,7 +130,7 @@ class DomHelperDefault extends DomHelper {
         curElem = curElem.parentNode;
       }
 
-      if (curElem != null && curElem.nodeType != dart_html.Node.ELEMENT_NODE) {
+      if (curElem != null && curElem.nodeType != 1) { // dart_html.Node.ELEMENT_NODE
         curElem = null;
       }
 

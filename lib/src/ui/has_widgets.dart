@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A widget that implements this interface contains [Widget] and can enumerate
  * them.
  */
-abstract class HasWidgets implements Iterable<Widget>{
+abstract class HasWidgets implements Diterable<Widget>{
 
   /**
    * Adds a child widget.

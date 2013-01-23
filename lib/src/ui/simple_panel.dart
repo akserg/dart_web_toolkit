@@ -165,13 +165,17 @@ class SimplePanelIterator implements Iterator<Widget> {
   /**
    * Returns whether the [Iterator] has elements left.
    */
-  bool get hasNext => hasElement;
+  bool moveNext() {
+    return hasElement;
+  }
+  
+  Widget get current => _getCurrent();
 
   /**
    * Gets the next element in the iteration. Throws a
    * [StateError] if no element is left.
    */
-  Widget next() {
+  Widget _getCurrent() {
     if (!hasElement || (this._panel.widget == null)) {
       throw new Exception("NoSuchElement");
     }

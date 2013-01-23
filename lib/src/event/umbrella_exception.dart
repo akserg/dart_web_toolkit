@@ -44,12 +44,12 @@ class UmbrellaException implements Exception {
   }
 
   static Exception makeCause(Set<Exception> causes) {
-    Iterator<Exception> iterator = causes.iterator();
-    if (!iterator.hasNext) {
+    Iterator<Exception> iterator = causes.iterator;
+    if (!iterator.moveNext()) {
       return null;
     }
 
-    return iterator.next();
+    return iterator.current;
   }
 
 

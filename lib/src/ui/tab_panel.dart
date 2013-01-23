@@ -269,9 +269,11 @@ class TabPanel extends Composite implements /*TabListener, *SourcesTabEvents,*/ 
   }
 
 
+  /**
+   * The Iterator returned by DeckPanel supports removal and will invoke
+   * TabbedDeckPanel.remove(), which is an active function.
+   */
   Iterator<Widget> iterator() {
-    // The Iterator returned by DeckPanel supports removal and will invoke
-    // TabbedDeckPanel.remove(), which is an active function.
     return deck.iterator();
   }
 

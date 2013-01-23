@@ -499,10 +499,14 @@ class StackLayoutPanellIterator extends Iterator<Widget> {
 
   StackLayoutPanellIterator(this._panel);
 
-  bool get hasNext => i < _panel.layoutData.length;
+  bool moveNext() {
+    return i < _panel.layoutData.length;
+  }
 
-  Widget next() {
-    if (!hasNext) {
+  Widget get current => _getCurrent();
+
+  Widget _getCurrent() {
+    if (!moveNext()) {
       throw new Exception("NoSuchElement");
     }
     return (_panel.layoutData[last = i++] as StackLayoutPanelLayoutData).widget;

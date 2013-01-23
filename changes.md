@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Fixed events for CustomButton, PushButton and ToggleButton. Added example.
 * Branch 0.2 merged down to Master branch.
+* Code cleaned and follow Dart SDK 0.3.1.1_r17328.
 
 **January 22, 2013
 

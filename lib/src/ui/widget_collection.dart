@@ -16,7 +16,7 @@ part of dart_web_toolkit_ui;
  * supports removal of widgets.
  * </p>
  */
-class WidgetCollection implements Iterable<Widget> {
+class WidgetCollection implements Diterable<Widget> {
 
   static int _INITIAL_SIZE = 4;
 
@@ -184,9 +184,13 @@ class WidgetIterator implements RemoveIterator<Widget> {
   // Implementation of Iterator
   //***************************
 
-  bool get hasNext => index < (_widgetCollection._size - 1);
+  bool moveNext() {
+    return index < (_widgetCollection._size - 1);
+  }
 
-  Widget next() {
+  Widget get current => _getCurrent();
+  
+  Widget _getCurrent() {
     if (index >= _widgetCollection._size) {
       throw new Exception("NoSuchElement");
     }

@@ -61,7 +61,7 @@ class ElementMapperImpl<T> {
    * @return an iterator of the ui objects indexed by this element mapper.
    */
   Iterator<T> iterator() {
-    return uiObjectList.iterator();
+    return uiObjectList.iterator;
   }
 
   /**

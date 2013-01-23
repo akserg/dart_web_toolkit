@@ -35,9 +35,7 @@ class FiniteWidgetIterator implements Iterator<Widget> {
     this.widgetCount = widgetCount;
   }
 
-  bool get hasNext => _getHasNext();
-
-  bool _getHasNext() {
+  bool moveNext() {
     // Iterate over the remaining widgets until we find one.
     for (int i = index + 1; i < widgetCount; i++) {
       IsWidget w = provider.get(i);
@@ -48,7 +46,9 @@ class FiniteWidgetIterator implements Iterator<Widget> {
     return false;
   }
 
-  Widget next() {
+  Widget get current => _getCurrent();
+  
+  Widget _getCurrent() {
     // Iterate over the remaining widgets until we find one.
     for (int i = index + 1; i < widgetCount; i++) {
       index = i;

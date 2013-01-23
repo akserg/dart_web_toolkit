@@ -267,7 +267,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
       _orphanCommand = new OrpahExceptionCommand(this);
     }
     try {
-      AttachDetachException.tryCommand(this, _orphanCommand);
+      AttachDetachException.tryCommand(this.iterator(), _orphanCommand);
     } finally {
       _children = new WidgetCollection(this);
     }

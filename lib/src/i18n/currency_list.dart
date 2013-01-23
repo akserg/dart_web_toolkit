@@ -7,7 +7,7 @@ part of dart_web_toolkit_i18n;
  * Generated class containing all the CurrencyImpl instances.  This is just
  * the fallback in case the I18N module is not included.
  */
-class CurrencyList implements Iterable<CurrencyData> {
+class CurrencyList implements Diterable<CurrencyData> {
 
   /**
    * Return the singleton instance of CurrencyList.
@@ -133,7 +133,7 @@ class CurrencyList implements Iterable<CurrencyData> {
       collection = newCollection;
     }
     //return Collections.unmodifiableList(collection).iterator();
-    return collection.iterator();
+    return collection.iterator;
   }
 
   /**

@@ -1371,10 +1371,14 @@ class _WidgetIterator implements Iterator<Widget> {
     findNext();
   }
 
-  bool get hasNext => nextIndex < widgetList.length;
+  bool moveNext() {
+    return nextIndex < widgetList.length;
+  }
 
-  Widget next() {
-    if (!hasNext) {
+  Widget get current => _getCurrent();
+  
+  Widget _getCurrent() {
+    if (!moveNext()) {
       throw new Exception("NoSuchElement");
     }
     Widget result = widgetList[nextIndex];

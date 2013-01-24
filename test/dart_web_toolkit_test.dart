@@ -140,18 +140,3 @@ void _print(event.DwtEvent evt) {
     }
   }
 }
-
-
-
-
-import 'package:unittest/unittest.dart';
-
-import 'package:dart_test/main_test.dart';
-
-main() {
-  test('MyClass', () {
-    MyClass my = new MyClass("#sample_text_id");
-    my.text = "Click me";
-    expect(my.text, "Click me");
-  });
-}

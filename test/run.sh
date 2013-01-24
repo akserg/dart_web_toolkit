@@ -2,8 +2,9 @@
 
 set -e
 
-#####
+###############
 # Type Analysis
+###############
 
 echo
 echo "dart_analyzer lib/*.dart"
@@ -18,8 +19,9 @@ else
     echo "Passed analysis."
 fi
 
-#####
+############
 # Unit Tests
+############
 
 echo "DumpRenderTree test/index.html"
 results=`DumpRenderTree test/index.html 2>&1`

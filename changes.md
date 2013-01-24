@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 24, 2013
+
+* Prepared to CI testing on Drone.io
+
 **January 23, 2013
 
 * Fixed events for CustomButton, PushButton and ToggleButton. Added example.

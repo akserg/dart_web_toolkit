@@ -7,3 +7,4 @@ authors:
 homepage: http://www.dartwebtoolkit.com
 dependencies:
   browser: ">=0.3.1+1"
+  unittest: ">=0.3.1+1"

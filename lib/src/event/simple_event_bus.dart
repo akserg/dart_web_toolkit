@@ -36,7 +36,7 @@ class SimpleEventBus<H> extends EventBus<H> {
   bool isEventHandled(EventType<H> type) {
     return map.containsKey(type);
   }
-  
+
   /**
    * Adds an unfiltered [handler] to receive events of this [type] from all sources.
    *
@@ -228,8 +228,10 @@ class SimpleEventBus<H> extends EventBus<H> {
       List<H> handlers = getDispatchList(event.getAssociatedType(), source);
       Set<Exception> causes = null;
 
-      for (Iterator<H> it = handlers.iterator; it.moveNext();) {
-        H handler = it.current;
+      for (int i = 0; i < handlers.length; i++) {
+        H handler = handlers[i];
+//      for (Iterator<H> it = handlers.iterator; it.moveNext();) {
+//        H handler = it.current;
 
         try {
           EventBus.dispatchEvent(event, handler);

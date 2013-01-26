@@ -42,6 +42,13 @@ class LocaleInfo {
      */
     return instance;
   }
+  
+  /**
+   * Returns true if any locale supported by this build of the app is RTL.
+   */
+  static bool hasAnyRTL() {
+    return instance.infoImpl.hasAnyRTL();
+  }
 
   LocaleInfoImpl infoImpl;
 

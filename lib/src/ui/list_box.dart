@@ -86,7 +86,7 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
 
     return listBox;
   }
-
+  
   /**
    * Creates an empty list box in single selection mode.
    */

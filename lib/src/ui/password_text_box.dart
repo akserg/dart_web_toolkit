@@ -55,6 +55,7 @@ class PasswordTextBox extends TextBox {
    * @param element the element to be used
    */
   PasswordTextBox.fromElement(dart_html.Element element) : super.fromElement(element) {
+    assert((element as dart_html.InputElement).type == "password");
     clearAndSetStyleName("dwt-PasswordTextBox");
   }
 

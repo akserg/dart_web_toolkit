@@ -78,6 +78,16 @@ class TextArea extends TextBoxBase {
   int getCharacterWidth() {
     return _getTextAreaElement().cols;
   }
+  
+  /**
+   * Sets the requested width of the text box (this is not an exact value, as
+   * not all characters are created equal).
+   *
+   * @param width the requested width, in characters
+   */
+  void setCharacterWidth(int width) {
+    _getTextAreaElement().cols = width;
+  }
 
   int getCursorPos() {
     return getImpl().getTextAreaCursorPos(getElement());
@@ -94,16 +104,6 @@ class TextArea extends TextBoxBase {
    */
   int getVisibleLines() {
     return _getTextAreaElement().rows;
-  }
-
-  /**
-   * Sets the requested width of the text box (this is not an exact value, as
-   * not all characters are created equal).
-   *
-   * @param width the requested width, in characters
-   */
-  void setCharacterWidth(int width) {
-    _getTextAreaElement().cols = width;
   }
 
   /**

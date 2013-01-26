@@ -37,7 +37,7 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
     return checkBox;
   }
 
-  LeafValueEditor<bool> editor;
+  LeafValueEditor<bool> _editor;
 
   /**
    * Creates a new simple checkbox.
@@ -47,10 +47,10 @@ class SimpleCheckBox extends FocusWidget implements HasName, TakesValue<bool>, I
   }
 
   LeafValueEditor<bool> asEditor() {
-    if (editor == null) {
-      editor = new TakesValueEditor(this);
+    if (_editor == null) {
+      _editor = new TakesValueEditor(this);
     }
-    return editor;
+    return _editor;
   }
 
   /**

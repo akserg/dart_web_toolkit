@@ -27,7 +27,6 @@ abstract class DirectionEstimator {
    * @return {@code html}'s estimated direction.
    */
 //  Direction estimateDirection(SafeHtml html) {
-//    return estimateDirection(BidiUtils.get().stripHtmlIfNeeded(html.asString(),
-//        true));
+//    return estimateDirection(BidiUtils.get().stripHtmlIfNeeded(html.asString(), true));
 //  }
 }

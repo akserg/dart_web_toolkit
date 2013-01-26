@@ -15,14 +15,14 @@ class ValueBoxBase<T> extends FocusWidget implements
   HasValue<T>, AutoDirectionHandlerTarget, IsEditor<ValueBoxEditor<T>> {
 
   static TextBoxImpl _impl = new TextBoxImpl.browserDependent();
-//  AutoDirectionHandler _autoDirHandler;
+  AutoDirectionHandler _autoDirHandler;
 
   Parser<T> _parser;
   Renderer<T> _renderer;
   ValueBoxEditor<T> _editor;
   dart_html.Event _currentEvent;
 
-  bool _valueChangeHandlerInitialized;
+  bool _valueChangeHandlerInitialized = false;
 
   /**
    * Creates a value box that wraps the given browser element handle. This is
@@ -31,7 +31,7 @@ class ValueBoxBase<T> extends FocusWidget implements
    * @param elem the browser element to wrap
    */
   ValueBoxBase(dart_html.Element elem, Renderer<T> renderer, Parser<T> parser) : super(elem) {
-//    _autoDirHandler = AutoDirectionHandler.addTo(this, BidiPolicy.isBidiEnabled());
+    _autoDirHandler = AutoDirectionHandler.addToDefault(this, BidiPolicy.isBidiEnabled());
     this._renderer = renderer;
     this._parser = parser;
   }
@@ -106,29 +106,29 @@ class ValueBoxBase<T> extends FocusWidget implements
     setSelectionRange(pos, 0);
   }
 
-  String get direction => null; //BidiUtils.getDirectionOnElement(getElement());
+  Direction get direction => BidiUtils.getDirectionOnElement(getElement());
 
-  void set direction(String val) {
-    //BidiUtils.setDirectionOnElement(getElement(), val);
+  void set direction(Direction val) {
+    BidiUtils.setDirectionOnElement(getElement(), val);
   }
 
-//  DirectionEstimator getDirectionEstimator() {
-//    return _autoDirHandler.getDirectionEstimator();
-//  }
+  DirectionEstimator getDirectionEstimator() {
+    return _autoDirHandler.getDirectionEstimator();
+  }
 
   /**
    * Toggles on / off direction estimation.
    */
-//  void setDirectionEstimator(bool enabled) {
-//    autoDirHandler.setDirectionEstimator(enabled);
-//  }
+  void enableDefaultDirectionEstimator(bool enabled) {
+    _autoDirHandler.enableDefaultDirectionEstimator(enabled);
+  }
 
   /**
    * Sets the direction estimation model of the auto-dir handler.
    */
-//  void setDirectionEstimator(DirectionEstimator directionEstimator) {
-//    autoDirHandler.setDirectionEstimator(directionEstimator);
-//  }
+  void setDirectionEstimator(DirectionEstimator directionEstimator) {
+    _autoDirHandler.setDirectionEstimator(directionEstimator);
+  }
 
   String get name => Dom.getElementProperty(getElement(), "name");
 
@@ -172,7 +172,7 @@ class ValueBoxBase<T> extends FocusWidget implements
    */
   void set text(String val) {
     Dom.setElementProperty(getElement(), "value", val != null ? val : "");
-//    _autoDirHandler.refreshDirection();
+    _autoDirHandler.refreshDirection();
   }
 
   /**
@@ -220,19 +220,19 @@ class ValueBoxBase<T> extends FocusWidget implements
   }
 
   void onBrowserEvent(dart_html.Event event) {
-//    int type = DOM.eventGetType(event);
-//    if ((type & Event.KEYEVENTS) != 0) {
-//      // Fire the keyboard event. Hang on to the current event object so that
-//      // cancelKey() and setKey() can be implemented.
-//      _currentEvent = event;
-//      // Call the superclass' onBrowserEvent as that includes the key event
-//      // handlers.
-//      super.onBrowserEvent(event);
-//      _currentEvent = null;
-//    } else {
+    int type = Dom.eventGetType(event);
+    if ((type & Event.KEYEVENTS) != 0) {
+      // Fire the keyboard event. Hang on to the current event object so that
+      // cancelKey() and setKey() can be implemented.
+      _currentEvent = event;
+      // Call the superclass' onBrowserEvent as that includes the key event
+      // handlers.
+      super.onBrowserEvent(event);
+      _currentEvent = null;
+    } else {
       // Handles Focus and Click events.
       super.onBrowserEvent(event);
-//    }
+    }
   }
 
   /**
@@ -298,19 +298,6 @@ class ValueBoxBase<T> extends FocusWidget implements
 
   void onLoad() {
     super.onLoad();
-//    _autoDirHandler.refreshDirection();
+    _autoDirHandler.refreshDirection();
   }
-}
-
-/**
- * Alignment values for {@link ValueBoxBase#setAlignment}.
- */
-class TextAlignment extends Enum<String> {
-
-  const TextAlignment(String type) : super (type);
-
-  static const TextAlignment CENTER = const TextAlignment("center");
-  static const TextAlignment JUSTIFY = const TextAlignment("justify");
-  static const TextAlignment LEFT = const TextAlignment("left");
-  static const TextAlignment RIGHT = const TextAlignment("right");
 }

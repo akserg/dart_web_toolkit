@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 27, 2013
+
+* Renamed IntBox to IntegerBox, IntParser to IntegerParser, IntRenderer to IntegerRenderer.
+* Implemented Hidden widget. Example added.
+* Checked SimpleCheckBox, SimpleRadioButton, ValueBoxBase, TextBoxBase, TextArea, TextBox, PasswordTextBox, ValueBox, DoubleBox, IntegerBox, Frame, Hidden, Hyperlink.
+* AutoDirectionHandler, AtoDirectionHandlerTarget and HasDirection moved to i18n library
+
 **January 24, 2013
 
 * Prepared to CI testing on Drone.io

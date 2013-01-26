@@ -6,21 +6,21 @@ part of dart_web_toolkit_text;
 /**
  * A localized parser based on {@link NumberFormat#getDecimalFormat}.
  */
-class IntParser implements Parser<int> {
+class IntegerParser implements Parser<int> {
 
-  static IntParser _INSTANCE;
+  static IntegerParser _INSTANCE;
 
   /**
    * Returns the instance of the no-op renderer.
    */
-  factory IntParser.instance() {
+  factory IntegerParser.instance() {
     if (_INSTANCE == null) {
-      _INSTANCE = new IntParser();
+      _INSTANCE = new IntegerParser();
     }
     return _INSTANCE;
   }
 
-  IntParser();
+  IntegerParser();
 
   int parse(String object) {
     if (object == null || object == "") {

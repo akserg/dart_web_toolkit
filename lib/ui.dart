@@ -86,7 +86,7 @@ part 'src/ui/date_label.dart';
 part 'src/ui/number_label.dart';
 part 'src/ui/value_box.dart';
 part 'src/ui/double_box.dart';
-part 'src/ui/int_box.dart';
+part 'src/ui/integer_box.dart';
 part 'src/ui/simple_check_box.dart';
 part 'src/ui/simple_radio_button.dart';
 part 'src/ui/deck_layout_panel.dart';
@@ -108,6 +108,9 @@ part 'src/ui/tab_bar.dart';
 part 'src/ui/decorated_popup_panel.dart';
 part 'src/ui/dialog_box.dart';
 part 'src/ui/frame.dart';
+part 'src/ui/hidden.dart';
+
+part 'src/ui/text_alignment.dart';
 
 part 'src/ui/inline_label.dart';
 part 'src/ui/inline_html.dart';

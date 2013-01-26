@@ -81,21 +81,21 @@ class TextBox extends TextBoxBase {
   }
 
   /**
-   * Gets the number of visible characters in the text box.
-   *
-   * @return the number of visible characters
-   */
-  int getVisibleLength() {
-    return _getInputElement().size;
-  }
-
-  /**
    * Sets the maximum allowable length of the text box.
    *
    * @param length the maximum length, in characters
    */
   void setMaxLength(int length) {
     _getInputElement().maxLength = length;
+  }
+
+  /**
+   * Gets the number of visible characters in the text box.
+   *
+   * @return the number of visible characters
+   */
+  int getVisibleLength() {
+    return _getInputElement().size;
   }
 
   /**

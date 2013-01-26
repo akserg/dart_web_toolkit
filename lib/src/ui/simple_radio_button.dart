@@ -24,11 +24,11 @@ class SimpleRadioButton extends SimpleCheckBox {
    *
    * @param element the element to be wrapped
    */
-  factory SimpleRadioButton.wrap(dart_html.RadioButtonInputElement element) {
+  factory SimpleRadioButton.wrap(dart_html.RadioButtonInputElement element, [String name = null]) {
     // Assert that the element is attached.
     //assert Document.get().getBody().isOrHasChild(element);
 
-    SimpleRadioButton radioButton = new SimpleRadioButton(element);
+    SimpleRadioButton radioButton = new SimpleRadioButton(name, element);
 
     // Mark it attached and remember it for cleanup.
     radioButton.onAttach();
@@ -47,7 +47,7 @@ class SimpleRadioButton extends SimpleCheckBox {
    *
    * @param name the group name with which to associate the radio button
    */
-  SimpleRadioButton([dart_html.InputElement element = null, String name = null]) : super(element == null ? new dart_html.InputElement(type: 'radio') : element) {
+  SimpleRadioButton([String name = null, dart_html.InputElement element = null]) : super(element == null ? new dart_html.InputElement(type: 'radio') : element) {
     if (name != null) {
       this.name = name;
     }

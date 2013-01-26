@@ -14,7 +14,6 @@ part 'src/event/command.dart';
 part 'src/event/event_bus.dart';
 part 'src/event/simple_event_bus.dart';
 part 'src/event/umbrella_exception.dart';
-part 'src/event/has_direction.dart';
 
 part 'src/event/browser_events.dart';
 part 'src/event/dom.dart';
@@ -201,8 +200,6 @@ part 'src/event/load_event.dart';
 part 'src/event/has_error_handlers.dart';
 part 'src/event/error_handler.dart';
 part 'src/event/error_event.dart';
-
-part 'src/event/auto_direction_handler_target.dart';
 
 part 'src/event/before_selection_handler.dart';
 part 'src/event/before_selection_event.dart';

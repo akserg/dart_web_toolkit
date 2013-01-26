@@ -492,7 +492,7 @@ void main11() {
   dBox.setValue(123.4543453);
   ui.RootPanel.get("testId").add(dBox);
 
-  ui.IntBox iBox = new ui.IntBox();
+  ui.IntegerBox iBox = new ui.IntegerBox();
   iBox.setMaxLength(10);
   iBox.setVisibleLength(5);
   iBox.setValue(123123);
@@ -653,7 +653,7 @@ void main6() {
 
 void main5() {
 
-  List<String> listTypes = ["One", "Two", "Three", "4444", "555", "666"];
+  List<String> listTypes = ["Cars", "Sports", "Vacation Spots", "4444", "555", "666"];
 
   // Create a panel to align the Widgets
   ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
@@ -687,12 +687,9 @@ void main5() {
   hPanel.add(multiBoxPanel);
 
   // Add a handler to handle drop box events
-//  dropBox.addChangeHandler(new ChangeHandler() {
-//    public void onChange(ChangeEvent event) {
-//      showCategory(multiBox, dropBox.getSelectedIndex());
-//      multiBox.ensureDebugId("cwListBox-multiBox");
-//    }
-//  });
+  dropBox.addChangeHandler(new event.ChangeHandlerAdapter((event.ChangeEvent event){
+//    showCategory(multiBox, dropBox.getSelectedIndex());
+  }));
 
   // Show default category
   //showCategory(multiBox, 0);
@@ -700,6 +697,31 @@ void main5() {
 
   ui.RootPanel.get("testId").add(hPanel);
 }
+
+/**
+ * Display the options for a given category in the list box.
+*
+ * @param listBox the ListBox to add the options to
+ * @param category the category index
+ */
+//void showCategory(ui.ListBox listBox, int category) {
+//  listBox.clear();
+//  List<String> listData = null;
+//  switch (category) {
+//    case 0:
+//      listData = ["compact", "sedan", "coupe", "convertable", "SUV", "truck"];
+//      break;
+//    case 1:
+//      listData = ["Baseball", "Basketball", "Footbal"];
+//      break;
+//    case 2:
+//      listData = ["Paris", "London"];
+//      break;
+//  }
+//  for (int i = 0; i < listData.length; i++) {
+//    listBox.addItem(listData[i]);
+//  }
+//}
 
 void main4() {
   // Create a panel to layout the widgets
@@ -884,8 +906,174 @@ void main1() {
 //*******************************
 //*******************************
 
-// PushButton and ToggleButtons
+// Hyperlink
 void main() {
+  ui.Hyperlink widget = new ui.Hyperlink("Home Page", false, "Home");
+  _addAllHandlers(widget);
+  ui.SimplePanel panel = new ui.SimplePanel();
+  panel.setSize("200px", "30px");
+  //panel.addStyleName("demo-panel");
+  panel.add(widget);
+  ui.RootPanel.get("testId").add(panel);
+}
+
+// Frame
+void main08() {
+  ui.Frame frame = new ui.Frame("frame_test.html");
+  _addAllHandlers(frame);
+  frame.setWidth("100%");
+  frame.setHeight("450px");
+  ui.RootPanel.get("testId").add(frame);
+}
+
+// SimpleCheckBox, SimpleRadioButton, TextArea, TextBox, PasswordTextBox, 
+// DoubleBox, IntegerBox
+void main07() {
+// Create a panel to layout the widgets
+  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
+  vpanel1.spacing = 5;
+  
+  ui.DoubleBox dBox = new ui.DoubleBox();
+  _addAllHandlers(dBox);
+  dBox.setMaxLength(10);
+  dBox.setVisibleLength(5);
+  dBox.setValue(123.4543453);
+  vpanel1.add(dBox);
+
+  ui.IntegerBox iBox = new ui.IntegerBox();
+  _addAllHandlers(iBox);
+  iBox.setMaxLength(10);
+  iBox.setVisibleLength(5);
+  iBox.setValue(123123);
+  vpanel1.add(iBox);
+
+  ui.SimpleCheckBox sCheckBox = new ui.SimpleCheckBox();
+  _addAllHandlers(sCheckBox);
+  sCheckBox.setValue(true);
+  vpanel1.add(sCheckBox);
+
+  ui.SimpleRadioButton rCheckBox1 = new ui.SimpleRadioButton("SimpleRadioButtonGroup");
+  _addAllHandlers(rCheckBox1);
+  rCheckBox1.setValue(true);
+  vpanel1.add(rCheckBox1);
+  
+  ui.SimpleRadioButton rCheckBox2 = new ui.SimpleRadioButton("SimpleRadioButtonGroup");
+  _addAllHandlers(rCheckBox2);
+  vpanel1.add(rCheckBox2);
+  
+  ui.RootPanel.get("testId").add(vpanel1);
+  
+  // Create a panel to layout the widgets
+  ui.VerticalPanel vpanel2 = new ui.VerticalPanel();
+  vpanel2.spacing = 5;
+
+  // Add a normal and disabled text box
+  ui.TextBox normalText = new ui.TextBox();
+  _addAllHandlers(normalText);
+  // Set the normal text box to automatically adjust its direction according
+  // to the input text. Use the Any-RTL heuristic, which sets an RTL direction
+  // iff the text contains at least one RTL character.
+  //normalText.setDirectionEstimator(AnyRtlDirectionEstimator.get());
+  vpanel2.add(normalText);
+
+  ui.TextBox disabledText = new ui.TextBox();
+  disabledText.text = "read only"; //(constants.cwBasicTextReadOnly());
+  disabledText.enabled = false;
+  vpanel2.add(disabledText);
+
+  // Add a normal and disabled password text box
+  ui.PasswordTextBox normalPassword = new ui.PasswordTextBox();
+  _addAllHandlers(normalPassword);
+  ui.PasswordTextBox disabledPassword = new ui.PasswordTextBox();
+  disabledPassword.text = "123456"; //constants.cwBasicTextReadOnly();
+  disabledPassword.enabled = false;
+  vpanel2.add(normalPassword);
+  vpanel2.add(disabledPassword);
+
+  // Add a text area
+  ui.TextArea textArea = new ui.TextArea();
+  _addAllHandlers(textArea);
+  textArea.setVisibleLines(5);
+  vpanel2.add(textArea);
+
+  ui.RootPanel.get("testId").add(vpanel2);
+}
+
+// ListBox
+void main06() {
+
+  List<String> listTypes = ["Car Type", "Sport", "City"];
+
+  // Create a panel to align the Widgets
+  ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
+  hPanel.spacing = 20;
+
+  // Add a drop box with the list types
+  ui.ListBox dropBox = new ui.ListBox();
+  //List<String> listTypes = constants.cwListBoxCategories();
+  for (int i = 0; i < listTypes.length; i++) {
+    dropBox.addItem(listTypes[i]);
+  }
+  //dropBox.ensureDebugId("cwListBox-dropBox");
+  ui.VerticalPanel dropBoxPanel = new ui.VerticalPanel();
+  dropBoxPanel.spacing = 4;
+  //dropBoxPanel.add(new HTML(constants.cwListBoxSelectCategory()));
+  dropBoxPanel.add(dropBox);
+  hPanel.add(dropBoxPanel);
+
+  // Add a list box with multiple selection enabled
+  ui.ListBox multiBox = new ui.ListBox(true);
+  //multiBox.ensureDebugId("cwListBox-multiBox");
+  multiBox.setWidth("11em");
+  multiBox.setVisibleItemCount(10);
+  for (int i = 0; i < listTypes.length; i++) {
+    multiBox.addItem(listTypes[i]);
+  }
+  ui.VerticalPanel multiBoxPanel = new ui.VerticalPanel();
+  multiBoxPanel.spacing = 4;
+  //multiBoxPanel.add(new HTML(constants.cwListBoxSelectAll()));
+  multiBoxPanel.add(multiBox);
+  hPanel.add(multiBoxPanel);
+
+  // Add a handler to handle drop box events
+  dropBox.addChangeHandler(new event.ChangeHandlerAdapter((event.ChangeEvent event){
+    showCategory(multiBox, dropBox.getSelectedIndex());
+  }));
+
+  // Show default category
+  showCategory(multiBox, 0);
+//  multiBox.ensureDebugId("cwListBox-multiBox");
+
+  ui.RootPanel.get("testId").add(hPanel);
+}
+
+/**
+ * Display the options for a given category in the list box.
+*
+ * @param listBox the ListBox to add the options to
+ * @param category the category index
+ */
+void showCategory(ui.ListBox listBox, int category) {
+  listBox.clear();
+  List<String> listData = null;
+  switch (category) {
+    case 0:
+      listData = ["compact", "sedan", "coupe", "convertable", "SUV", "truck"];
+      break;
+    case 1:
+      listData = ["Baseball", "Basketball", "Footbal"];
+      break;
+    case 2:
+      listData = ["Paris", "London"];
+      break;
+  }
+  for (int i = 0; i < listData.length; i++) {
+    listBox.addItem(listData[i]);
+  }
+}
+
+// PushButton and ToggleButtons
+void main05() {
   ui.VerticalPanel vpanel = new ui.VerticalPanel();
 
   ui.HorizontalPanel pushPanel = new ui.HorizontalPanel();
@@ -996,6 +1184,10 @@ void _addAllHandlers(ui.Widget widget) {
   // HasAllDragAndDropHandlers, HasAllGestureHandlers, HasAllTouchHandlers
   if (widget is event.HasValueChangeHandlers) {
     widget.addValueChangeHandler(new event.ValueChangeHandlerAdapter(_print));
+  }
+  //
+  if (widget is event.HasLoadHandlers) {
+    widget.addLoadHandler(new event.LoadHandlerAdapter(_print));
   }
 }
 

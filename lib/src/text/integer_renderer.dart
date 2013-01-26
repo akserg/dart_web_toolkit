@@ -6,21 +6,21 @@ part of dart_web_toolkit_text;
 /**
  * A localized renderer based on {@link NumberFormat#getDecimalFormat}.
  */
-class IntRenderer extends AbstractRenderer<int> {
+class IntegerRenderer extends AbstractRenderer<int> {
 
-  static IntRenderer _INSTANCE;
+  static IntegerRenderer _INSTANCE;
 
   /**
    * Returns the instance.
    */
-  factory IntRenderer.instance() {
+  factory IntegerRenderer.instance() {
     if (_INSTANCE == null) {
-      _INSTANCE = new IntRenderer();
+      _INSTANCE = new IntegerRenderer();
     }
     return _INSTANCE;
   }
 
-  IntRenderer();
+  IntegerRenderer();
 
   String render(int object) {
     if (object == null) {

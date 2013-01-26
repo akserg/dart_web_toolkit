@@ -46,7 +46,11 @@ part of dart_web_toolkit_ui;
 class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
   HasDirectionEstimator, HasDirectionalSafeHtml {
 
+  static final DirectionEstimator DEFAULT_DIRECTION_ESTIMATOR = DirectionalTextHelper.DEFAULT_DIRECTION_ESTIMATOR;
+  
   static HyperlinkImpl _impl = new HyperlinkImpl();
+  
+  DirectionalTextHelper directionalTextHelper;
   dart_html.AnchorElement _anchorElem = new dart_html.AnchorElement();
   String _targetHistoryToken;
 
@@ -58,27 +62,28 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
    *          may not be null (use {@link Anchor} instead if you don't need
    *          history processing)
    */
-  Hyperlink([String text, bool asHTML = false, String targetHistoryToken = null]) {
-    _init(new dart_html.DivElement(), targetHistoryToken);
+  Hyperlink([String text, bool asHtml = false, String targetHistoryToken = null]) {
+    _init(new dart_html.DivElement(), text, asHtml, targetHistoryToken);
   }
 
   Hyperlink.fromElement(dart_html.Element element) {
     _init(element);
-    //
-    //sinkEvents(Event.ONCLICK);
-    //directionalTextHelper = new DirectionalTextHelper(anchorElem, /* is inline */ true);
   }
 
-  void _init(dart_html.Element element, [String targetHistoryToken = null]) {
+  void _init(dart_html.Element element, [String text, bool asHtml = false, String token = null]) {
     if (element == null) {
       setElement(_anchorElem);
     } else {
       setElement(element);
       getElement().append(_anchorElem);
     }
+    sinkEvents(Event.ONCLICK);
+    directionalTextHelper = new DirectionalTextHelper(_anchorElem, /* is inline */ true);
     //
-    if (targetHistoryToken != null) {
-      setTargetHistoryToken(targetHistoryToken);
+    directionalTextHelper.setTextOrHtml(text, asHtml);
+    //
+    if (token != null) {
+      targetHistoryToken = token;
     }
     //
     clearAndSetStyleName("dwt-Hyperlink");
@@ -93,7 +98,7 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
    *
    * @return the object's HTML
    */
-  String get html => ""; // directionalTextHelper.getTextOrHtml(true);
+  String get html => directionalTextHelper.getTextOrHtml(true);
 
   /**
    * Sets this object's contents via HTML. Use care when setting an object's
@@ -103,7 +108,7 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
    * @param html the object's new HTML
    */
   void set html(String value) {
-    // directionalTextHelper.setTextOrHtml(html, true);
+    directionalTextHelper.setTextOrHtml(html, true);
   }
 
   //***********************************
@@ -120,6 +125,41 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
     return addHandler(handler, ClickEvent.TYPE);
   }
 
+  //***********************************
+  // Implementation of HasClickHandlers
+  //***********************************
+  
+  /**
+   * Returns the {@code DirectionEstimator} object.
+   */
+  DirectionEstimator getDirectionEstimator() {
+    return directionalTextHelper.getDirectionEstimator();
+  }
+  
+  /**
+   * Toggles on / off direction estimation.
+   *
+   * @param enabled Whether to enable direction estimation. If {@code true},
+   *          sets the {@link DirectionEstimator} object to a default
+   *          {@code DirectionEstimator}.
+   */
+  void enableDefaultDirectionEstimator(bool enabled) {
+    directionalTextHelper.enableDefaultDirectionEstimator(enabled);
+  }
+  
+  /**
+   * {@inheritDoc}
+   * <p>
+   * Note: DirectionEstimator should be set before the widget has any content;
+   * it's highly recommended to set it using a constructor. Reason: if the
+   * widget already has non-empty content, this will update its direction
+   * according to the new estimator's result. This may cause flicker, and thus
+   * should be avoided.
+   */
+  void setDirectionEstimator(DirectionEstimator directionEstimator) {
+    directionalTextHelper.setDirectionEstimator(directionEstimator);
+  }
+  
   //**********
   //Properties
   //**********
@@ -140,18 +180,22 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
    * @param targetHistoryToken the new history token, which may not be null (use
    *          {@link Anchor} instead if you don't need history processing)
    */
-  void setTargetHistoryToken(String targetHistoryToken) {
-    assert (targetHistoryToken != null); //  : "targetHistoryToken must not be null, consider using Anchor instead";
-    this._targetHistoryToken = targetHistoryToken;
+  void set targetHistoryToken(String token) {
+    assert (token != null); //  : "targetHistoryToken must not be null, consider using Anchor instead";
+    this._targetHistoryToken = token;
     String hash = History.encodeHistoryToken(_targetHistoryToken);
     //DOM.setElementProperty(anchorElem, "href", "#" + hash);
     _anchorElem.href = "#".concat(hash);
   }
 
-  String get text => _anchorElem.text;
+  String get text => directionalTextHelper.getTextOrHtml(false);
 
   void set text(String value) {
-    _anchorElem.text = value;
+    directionalTextHelper.setTextOrHtml(text, false);
+  }
+  
+  Direction getTextDirection() {
+    return directionalTextHelper.getTextDirection();
   }
 
   //*******
@@ -160,13 +204,9 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
 
   void onBrowserEvent(dart_html.Event event) {
     super.onBrowserEvent(event);
-    //if (DOM.eventGetType(event) == Event.ONCLICK && impl.handleAsClick(event)) {
-    if (event.type == dart_html.Event.CLICK && _impl.handleAsClick(event)) {
-      History.newItem(_targetHistoryToken);
-      //DOM.eventPreventDefault(event);
+    if (Dom.eventGetType(event) == Event.ONCLICK && _impl.handleAsClick(event)) {
+      History.newItem(targetHistoryToken);
       event.preventDefault();
     }
   }
-
-
 }

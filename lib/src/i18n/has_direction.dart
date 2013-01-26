@@ -1,7 +1,7 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of dart_web_toolkit_event;
+part of dart_web_toolkit_i18n;
 
 /**
  * A widget that implements this interface has the ability to override
@@ -20,7 +20,7 @@ abstract class HasDirection {
    *                  <code>LTR</code> if the directionality should be set to left-to-right
    *                  <code>DEFAULT</code> if the directionality should not be explicitly set
    */
-  void set direction(String value);
+  void set direction(Direction value);
 
   /**
    * Gets the directionality of the widget.
@@ -29,5 +29,5 @@ abstract class HasDirection {
    *         <code>LTR</code> if the directionality is left-to-right, or
    *         <code>DEFAULT</code> if the directionality is not explicitly specified
    */
-  String get direction;
+  Direction get direction;
 }

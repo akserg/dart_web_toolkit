@@ -42,11 +42,11 @@ class ValueBox<T> extends ValueBoxBase<T> {
    */
   ValueBox.fromElement(dart_html.InputElement element, Renderer<T> renderer, Parser<T> parser) : super(element, renderer, parser) {
     // BiDi input is not expected - disable direction estimation.
-    //setDirectionEstimator(false);
+    enableDefaultDirectionEstimator(false);
     if (LocaleInfo.getCurrentLocale().isRTL()) {
-      direction = Direction.LTR.value;
+      direction = Direction.LTR;
     }
-    //assert InputElement.as(element).getType().equalsIgnoreCase("text");
+    assert ((element as dart_html.InputElement).type == "text");
 
   }
 
@@ -60,21 +60,21 @@ class ValueBox<T> extends ValueBoxBase<T> {
   }
 
   /**
-   * Gets the number of visible characters.
-   *
-   * @return the number of visible characters
-   */
-  int getVisibleLength() {
-    return _getInputElement().size;
-  }
-
-  /**
    * Sets the maximum allowable length.
    *
    * @param length the maximum length, in characters
    */
   void setMaxLength(int length) {
     _getInputElement().maxLength = length;
+  }
+
+  /**
+   * Gets the number of visible characters.
+   *
+   * @return the number of visible characters
+   */
+  int getVisibleLength() {
+    return _getInputElement().size;
   }
 
   /**

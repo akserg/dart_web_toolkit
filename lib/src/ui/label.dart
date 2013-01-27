@@ -29,7 +29,7 @@ part of dart_web_toolkit_ui;
  */
 class Label extends LabelBase<String> implements HasDirectionalText,
   HasClickHandlers, HasDoubleClickHandlers,
-  HasAllDragAndDropHandlers, //HasAllGestureHandlers, HasDirection
+  HasAllDragAndDropHandlers, HasAllGestureHandlers,
   HasAllMouseHandlers, HasAllTouchHandlers,
   IsEditor<LeafValueEditor<String>> {
 
@@ -58,7 +58,7 @@ class Label extends LabelBase<String> implements HasDirectionalText,
     return label;
   }
 
-  LeafValueEditor<String> editor;
+  LeafValueEditor<String> _editor;
 
   /**
    * This constructor may be used by subclasses to explicitly use an existing
@@ -172,10 +172,10 @@ class Label extends LabelBase<String> implements HasDirectionalText,
   }
 
   LeafValueEditor<String> asEditor() {
-    if (editor == null) {
-      editor = new HasTextEditor.of(this);
+    if (_editor == null) {
+      _editor = new HasTextEditor.of(this);
     }
-    return editor;
+    return _editor;
   }
 
   String get text => directionalTextHelper.getTextOrHtml(false);
@@ -219,12 +219,8 @@ class Label extends LabelBase<String> implements HasDirectionalText,
    * @param dir the text's direction. Note: {@code Direction.DEFAULT} means
    *        direction should be inherited from the widget's parent element.
    */
-  void setText(String text, [Direction dir]) {
-    if (?dir) {
-//      directionalTextHelper.setTextOrHtml(text, dir, false);
-    } else {
-      directionalTextHelper.setTextOrHtml(text, false);
-    }
+  void setText(String text, Direction dir) {
+    directionalTextHelper.setTextOrHtml(text, false, dir);
     updateHorizontalAlignment();
   }
 }

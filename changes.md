@@ -1,12 +1,14 @@
 Dart Web Toolkit Changes
 ========================
 
-**January 28, 2013
+**January 27, 2013
 
 * Checked Image.
 * Fixed small bugs in Hidden.
+* HasDirectionalSafeHtml and HasDirectionalText moved to i18n.
+* Checked Anchor, CheckBox, Image, Label, LabelBase. Added examples.
 
-**January 27, 2013
+**January 26, 2013
 
 * Renamed IntBox to IntegerBox, IntParser to IntegerParser, IntRenderer to IntegerRenderer.
 * Implemented Hidden widget. Example added.

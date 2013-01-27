@@ -23,12 +23,12 @@ class LabelBase<T> extends Widget implements HasWordWrap,
    *
    * @see HasAutoHorizontalAlignment
    */
-  AutoHorizontalAlignmentConstant autoHorizontalAlignment;
+  AutoHorizontalAlignmentConstant _autoHorizontalAlignment;
 
   /**
    * The widget's horizontal alignment.
    */
-  HorizontalAlignmentConstant horzAlign;
+  HorizontalAlignmentConstant _horzAlign;
 
   LabelBase(bool inline) : this._internal(inline ? new dart_html.SpanElement() : new dart_html.DivElement(), inline);
 
@@ -45,11 +45,11 @@ class LabelBase<T> extends Widget implements HasWordWrap,
   //********************************************
 
   AutoHorizontalAlignmentConstant getAutoHorizontalAlignment() {
-    return autoHorizontalAlignment;
+    return _autoHorizontalAlignment;
   }
 
   void setAutoHorizontalAlignment(AutoHorizontalAlignmentConstant autoAlignment) {
-    autoHorizontalAlignment = autoAlignment;
+    _autoHorizontalAlignment = autoAlignment;
     updateHorizontalAlignment();
   }
 
@@ -112,7 +112,7 @@ class LabelBase<T> extends Widget implements HasWordWrap,
   }
 
   HorizontalAlignmentConstant getHorizontalAlignment() {
-    return horzAlign;
+    return _horzAlign;
   }
 
   //******************************
@@ -133,23 +133,23 @@ class LabelBase<T> extends Widget implements HasWordWrap,
    */
   void updateHorizontalAlignment() {
     HorizontalAlignmentConstant align;
-    if (autoHorizontalAlignment == null) {
+    if (_autoHorizontalAlignment == null) {
       align = null;
-    } else if (autoHorizontalAlignment is HorizontalAlignmentConstant) {
-      align = autoHorizontalAlignment as HorizontalAlignmentConstant;
+    } else if (_autoHorizontalAlignment is HorizontalAlignmentConstant) {
+      align = _autoHorizontalAlignment as HorizontalAlignmentConstant;
     } else {
       /*
        * autoHorizontalAlignment is a truly automatic policy, i.e. either
        * ALIGN_CONTENT_START or ALIGN_CONTENT_END
        */
-      align = autoHorizontalAlignment == ALIGN_CONTENT_START
+      align = _autoHorizontalAlignment == ALIGN_CONTENT_START
           ? HorizontalAlignmentConstant.startOf(directionalTextHelper.getTextDirection())
           : HorizontalAlignmentConstant.endOf(directionalTextHelper.getTextDirection());
     }
 
-    if (align != horzAlign) {
-      horzAlign = align;
-      getElement().style.textAlign = horzAlign == null ? "" : horzAlign.getTextAlignString();
+    if (align != _horzAlign) {
+      _horzAlign = align;
+      getElement().style.textAlign = _horzAlign == null ? "" : _horzAlign.getTextAlignString();
     }
   }
 }

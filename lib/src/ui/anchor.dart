@@ -212,6 +212,14 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
 //    assert(value != null);
 //    getAnchorElement().dir = value;
 //  }
+  
+  //*****************************************
+  // Implementation of HasDirectionalSafeHtml
+  //*****************************************
+  
+  void setHtml(SafeHtml html, Direction dir) {
+    _directionalTextHelper.setTextOrHtml(html.asString(), true, dir);
+  }
 
   /**
    * {@inheritDoc}

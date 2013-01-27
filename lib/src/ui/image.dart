@@ -573,7 +573,7 @@ class StateScheduledCommand extends ScheduledCommand {
      * The state has been replaced, or another load event is already
      * pending.
      */
-    if (_image.state != _state || this != _state.syntheticEventCommand) {
+    if (_image._state != _state || this != _state.syntheticEventCommand) {
       return;
     }
     _state.syntheticEventCommand = null;

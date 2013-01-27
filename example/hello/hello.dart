@@ -906,8 +906,37 @@ void main1() {
 //*******************************
 //*******************************
 
-// Hyperlink
+// Create Html
 void main() {
+  ui.Html html = new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>");
+  _addAllHandlers(html);
+  ui.RootPanel.get("testId").add(html);
+  
+  ui.InlineHtml inlineHtml = new ui.InlineHtml("<div id='fred' style='background-color: red; border: 1px dotted green; width: 200px; text-align: center;'> This is an INLINE HTML Widget </div>");
+  _addAllHandlers(inlineHtml);
+  ui.RootPanel.get("testId").add(inlineHtml);
+  
+  ui.InlineLabel inlineLabel = new ui.InlineLabel("This is Inline Label");
+  _addAllHandlers(inlineLabel);
+  ui.RootPanel.get("testId").add(inlineLabel);
+}
+
+// Image
+void main_11() {
+  ui.Label label = new ui.Label("This is a Label");
+  _addAllHandlers(label);
+  ui.RootPanel.get("testId").add(label);
+}
+
+// Image
+void main_10() {
+  ui.Image image = new ui.Image("img/test.jpg");
+  _addAllHandlers(image);
+  ui.RootPanel.get("testId").add(image);
+}
+
+// Hyperlink
+void main_09() {
   ui.Hyperlink widget = new ui.Hyperlink("Home Page", false, "Home");
   _addAllHandlers(widget);
   ui.SimplePanel panel = new ui.SimplePanel();
@@ -918,7 +947,7 @@ void main() {
 }
 
 // Frame
-void main08() {
+void main_08() {
   ui.Frame frame = new ui.Frame("frame_test.html");
   _addAllHandlers(frame);
   frame.setWidth("100%");
@@ -928,7 +957,7 @@ void main08() {
 
 // SimpleCheckBox, SimpleRadioButton, TextArea, TextBox, PasswordTextBox, 
 // DoubleBox, IntegerBox
-void main07() {
+void main_07() {
 // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
   vpanel1.spacing = 5;
@@ -1000,7 +1029,7 @@ void main07() {
 }
 
 // ListBox
-void main06() {
+void main_06() {
 
   List<String> listTypes = ["Car Type", "Sport", "City"];
 
@@ -1073,7 +1102,7 @@ void showCategory(ui.ListBox listBox, int category) {
 }
 
 // PushButton and ToggleButtons
-void main05() {
+void main_05() {
   ui.VerticalPanel vpanel = new ui.VerticalPanel();
 
   ui.HorizontalPanel pushPanel = new ui.HorizontalPanel();
@@ -1111,7 +1140,7 @@ void main05() {
 }
 
 // RadioButton
-void main04() {
+void main_04() {
   ui.RadioButton radioButton = new ui.RadioButton("radio_test", "<b>Hi RadioButton 1</b>", true);
   radioButton.getElement().id = "One";
   _addAllHandlers(radioButton);
@@ -1129,7 +1158,7 @@ void main04() {
 }
 
 // CheckBox
-void main03() {
+void main_03() {
   ui.CheckBox checkBox = new ui.CheckBox("<b>Hi CheckBox</b>", true);
 
   _addAllHandlers(checkBox);
@@ -1138,7 +1167,7 @@ void main03() {
 }
 
 // Button
-void main02() {
+void main_02() {
   ui.Button button = new ui.Button("<b>Hi Button</b>");
 
   _addAllHandlers(button);
@@ -1147,7 +1176,7 @@ void main02() {
 }
 
 // Anchor
-void main01() {
+void main_01() {
   ui.Anchor anchor = new ui.Anchor(true);
   anchor.html = "<b>Hi Anchor</b>";
 

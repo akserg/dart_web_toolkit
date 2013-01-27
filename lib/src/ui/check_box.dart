@@ -243,7 +243,27 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
       inputElem.blur();
     }
   }
+  
+  //*************************************
+  // Implementation of HasDirectionalText
+  //*************************************
+  
+  Direction getTextDirection() {
+    return directionalTextHelper.getTextDirection();
+  }
+  
+  void setText(String text, Direction dir) {
+    directionalTextHelper.setTextOrHtml(text, false, dir);
+  }
 
+  //*****************************************
+  // Implementation of HasDirectionalSafeHtml
+  //*****************************************
+  
+  void setHtml(SafeHtml html, Direction dir) {
+    directionalTextHelper.setTextOrHtml(html.asString(), true, dir);
+  }
+  
   //***********
   // PROPERTIES
   //***********

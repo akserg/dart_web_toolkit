@@ -198,6 +198,10 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
     return directionalTextHelper.getTextDirection();
   }
 
+  void setText(String text, Direction dir) {
+    directionalTextHelper.setTextOrHtml(text, false, dir);
+  }
+  
   //*******
   // Events
   //*******

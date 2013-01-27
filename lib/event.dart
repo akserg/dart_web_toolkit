@@ -187,10 +187,6 @@ part 'src/event/touch_cancel_event.dart';
 
 part 'src/event/has_direction_estimator.dart';
 
-part 'src/event/has_directional_safe_html.dart';
-
-part 'src/event/has_directional_text.dart';
-
 part 'src/event/has_safe_html.dart';
 
 part 'src/event/has_load_handlers.dart';

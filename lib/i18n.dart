@@ -41,6 +41,8 @@ part 'src/i18n/has_horizontal_alignment.dart';
 part 'src/i18n/has_vertical_alignment.dart';
 part 'src/i18n/has_auto_horizontal_alignment.dart';
 part 'src/i18n/auto_direction_handler.dart';
+part 'src/i18n/has_directional_text.dart';
+part 'src/i18n/has_directional_safe_html.dart';
 
 part 'src/i18n/constants/number_constants.dart';
 

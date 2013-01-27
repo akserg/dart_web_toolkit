@@ -7,6 +7,7 @@ Dart Web Toolkit Changes
 * Fixed small bugs in Hidden.
 * HasDirectionalSafeHtml and HasDirectionalText moved to i18n.
 * Checked Anchor, CheckBox, Image, Label, LabelBase. Added examples.
+* Checked Panel, ComplexPanel, AbsolutePanel, RootPanel.
 
 **January 26, 2013
 

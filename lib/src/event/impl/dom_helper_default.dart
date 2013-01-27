@@ -184,6 +184,10 @@ class DomHelperDefault extends DomHelper {
 //    dart_html.window.on.gesturechange.add(dispatchCapturedMouseEvent, true);
   }
   
+  dart_html.EventListener getEventListener(dart_html.Element elem) {
+    //return elem.__listener;
+    return _listener.containsKey(elem) ? _listener[elem] : null;
+  }
   void setEventListener(dart_html.Element elem, EventListener listener) {
     //elem.__listener = listener;
     _listener[elem] = listener;

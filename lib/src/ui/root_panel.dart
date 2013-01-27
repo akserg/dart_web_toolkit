@@ -79,7 +79,7 @@ class RootPanel extends AbsolutePanel {
    *          &lt;body&gt; element)
    * @return the root panel, or <code>null</code> if no such element was found
    */
-  static RootPanel get([String id]) {
+  static RootPanel get([String id = null]) {
     // Find the element that this RootPanel will wrap.
     dart_html.Element elem = null;
     if (id != null) {
@@ -113,10 +113,9 @@ class RootPanel extends AbsolutePanel {
 
       // If we're in a RTL locale, set the RTL directionality
       // on the entire document.
-//      if (LocaleInfo.getCurrentLocale().isRTL()) {
-//        BidiUtils.setDirectionOnElement(getRootElement(),
-//            HasDirection.Direction.RTL);
-//      }
+      if (LocaleInfo.getCurrentLocale().isRTL()) {
+        BidiUtils.setDirectionOnElement(getRootElement(), Direction.RTL);
+      }
     }
 
     // Create the panel and put it in the map.
@@ -158,7 +157,7 @@ class RootPanel extends AbsolutePanel {
    * @return the document's root element
    */
   static dart_html.Element getRootElement() {
-    return dart_html.document.body;
+    return dart_html.document.documentElement;
   }
 
   /*
@@ -173,12 +172,12 @@ class RootPanel extends AbsolutePanel {
     // if the widget is attached. Which it will be in this case.
     element = element.parent;
     dart_html.BodyElement body = dart_html.document.body;
-//    while ((element != null) && (body != element)) {
-//      if (Event.getEventListener(element) != null) {
-//        return true;
-//      }
-//      element = element.getParentElement().cast();
-//    }
+    while ((element != null) && (body != element)) {
+      if (Event.getEventListener(element) != null) {
+        return true;
+      }
+      element = element.parent;
+    }
     return false;
   }
 
@@ -202,11 +201,6 @@ class RootPanel extends AbsolutePanel {
 
   static void _hookWindowClosing() {
     // Catch the window closing event.
-//    Window.addCloseHandler(new CloseHandler<Window>() {
-//      public void onClose(CloseEvent<Window> closeEvent) {
-//        detachWidgets();
-//      }
-//    });
     dart_html.window.on.unload.add((dart_html.Event event) {
       detachWidgets();
     });

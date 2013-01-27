@@ -906,8 +906,37 @@ void main1() {
 //*******************************
 //*******************************
 
-// Create Html
+// AbsolutePanel
 void main() {
+  ui.AbsolutePanel panel = new ui.AbsolutePanel();
+  panel.setSize("200px", "120px");
+  //panel.addStyleName("demo-panel");
+  ui.Label label = new ui.Label("Label");
+  label.setWidth("100px");
+  //label.setStyleName("demo-label");
+  panel.addInPosition(label, 50, 50);
+  ui.RootPanel.get("testId").add(panel);
+}
+
+// DateLabel and NumberLabel
+void main_13() {
+  // Create a panel to layout the widgets
+  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
+  vpanel1.spacing = 5;
+  
+  ui.DateLabel dLabel = new ui.DateLabel();
+  dLabel.setValue(new Date.now());
+  vpanel1.add(dLabel);
+  
+  ui.NumberLabel nLabel = new ui.NumberLabel();
+  nLabel.setValue(123.12);
+  vpanel1.add(nLabel);
+  
+  ui.RootPanel.get("testId").add(vpanel1);
+}
+
+// Create Html
+void main_12() {
   ui.Html html = new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>");
   _addAllHandlers(html);
   ui.RootPanel.get("testId").add(html);
@@ -958,7 +987,7 @@ void main_08() {
 // SimpleCheckBox, SimpleRadioButton, TextArea, TextBox, PasswordTextBox, 
 // DoubleBox, IntegerBox
 void main_07() {
-// Create a panel to layout the widgets
+  // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
   vpanel1.spacing = 5;
   

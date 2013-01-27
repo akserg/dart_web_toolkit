@@ -89,9 +89,9 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
    *
    * @param child the widget to be removed
    * @return <code>true</code> if the child was present
-   *
-   * bool remove(Widget child);
    */
+  
+  bool remove(Widget child);
 
   //****************************************
   // Implementation of HasWidgetsForIsWidget

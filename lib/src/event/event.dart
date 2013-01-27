@@ -357,6 +357,17 @@ abstract class Event<H> {
     // no new fields are added in the subclass.
     return Dom.getEventsSunk(elem);
   }
+  
+  /**
+   * Gets the {@link EventListener} that will receive events for the given
+   * element. Only one such listener may exist for a single element.
+   * 
+   * @param elem the element whose listener is to be set
+   * @return the element's event listener
+   */
+  static dart_html.EventListener getEventListener(dart_html.Element elem) {
+    return Dom.getEventListener(elem);
+  }
 }
 
 /**

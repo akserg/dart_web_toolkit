@@ -124,4 +124,6 @@ abstract class DomHelper {
   }
   
   dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable);
+  
+  dart_html.EventListener getEventListener(dart_html.Element elem);
 }

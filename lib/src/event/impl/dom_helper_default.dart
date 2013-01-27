@@ -283,4 +283,10 @@ class DomHelperDefault extends DomHelper {
     return null;
   }
 
+  dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable) {
+    dart_html.CustomEvent evt = new dart_html.CustomEvent('HTMLEvents');
+    evt.$dom_initCustomEvent(type, canBubble, cancelable, null);
+
+    return evt;
+  }
 }

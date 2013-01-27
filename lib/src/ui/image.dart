@@ -48,7 +48,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * The attribute that is set when an image fires a native load or error event
    * before it is attached.
    */
-  static final String UNHANDLED_EVENT_ATTR = "__gwtLastUnhandledEvent";
+  static final String UNHANDLED_EVENT_ATTR = "dwtLastUnhandledEvent";
 
   /**
    * This map is used to store prefetched images. If a reference is not kept to
@@ -99,7 +99,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
     return image;
   }
 
-  _State state;
+  _State _state;
 
   /**
    * This constructor may be used by subclasses to explicitly use an existing
@@ -281,7 +281,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @return the alternate text for the image
    */
   String getAltText() {
-    return state.getImageElement(this).alt;
+    return _state.getImageElement(this).alt;
   }
 
   /**
@@ -291,7 +291,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @param altText the alternate text to set to
    */
   void setAltText(String altText) {
-    state.getImageElement(this).alt = altText;
+    _state.getImageElement(this).alt = altText;
   }
 
   /**
@@ -302,7 +302,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @return the height of the image, or 0 if the height is unknown
    */
   int getHeight() {
-    return state.getHeight(this);
+    return _state.getHeight(this);
   }
 
   /**
@@ -315,7 +315,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    *         visibility rectangle
    */
   int getOriginLeft() {
-    return state.getOriginLeft();
+    return _state.getOriginLeft();
   }
 
   /**
@@ -328,7 +328,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    *         visibility rectangle
    */
   int getOriginTop() {
-    return state.getOriginTop();
+    return _state.getOriginTop();
   }
 
   /**
@@ -339,7 +339,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @return the image URL
    */
   String getUrl() {
-    return state.getUrl(this).asString();
+    return _state.getUrl(this).asString();
   }
 
   /**
@@ -351,7 +351,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @param url the image URL
    */
   void setSafeUrl(SafeUri url) {
-    state.setUrl(this, url);
+    _state.setUrl(this, url);
   }
 
   /**
@@ -374,16 +374,16 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @return the width of the image, or 0 if the width is unknown
    */
   int getWidth() {
-    return state.getWidth(this);
+    return _state.getWidth(this);
   }
 
   void onBrowserEvent(dart_html.Event event) {
     // We have to clear the unhandled event before firing handlers because the
     // handlers could trigger onLoad, which would refire the event.
-//    if (event.getTypeInt() == Event.ONLOAD) {
-//      clearUnhandledEvent();
-//      state.onLoadEvent(this);
-//    }
+    if (Dom.eventGetType(event) == Event.ONLOAD) {
+      clearUnhandledEvent();
+      _state.onLoadEvent(this);
+    }
 
     super.onBrowserEvent(event);
   }
@@ -420,7 +420,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @param height the height of the visibility rectangle
    */
   void setSafeUrlAndVisibleRect(SafeUri url, int left, int top, int width, int height) {
-    state.setUrlAndVisibleRect(this, url, left, top, width, height);
+    _state.setUrlAndVisibleRect(this, url, left, top, width, height);
   }
 
   /**
@@ -461,7 +461,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    * @param height the height of the visibility rectangle
    */
   void setVisibleRect(int left, int top, int width, int height) {
-    state.setVisibleRect(this, left, top, width, height);
+    _state.setVisibleRect(this, left, top, width, height);
   }
 
   void onLoad() {
@@ -469,19 +469,19 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
 
     // Issue 863: the state may need to fire a synthetic event if the native
     // onload event fired while the image was detached.
-    state.onLoad(this);
+    _state.onLoad(this);
   }
 
   void changeState(_State newState) {
-    state = newState;
+    _state = newState;
   }
 
   /**
    * Clear the unhandled event.
    */
   void clearUnhandledEvent() {
-    if (state != null) {
-      state.getImageElement(this).dataAttributes.remove(Image.UNHANDLED_EVENT_ATTR);
+    if (_state != null) {
+      _state.getImageElement(this).dataAttributes[Image.UNHANDLED_EVENT_ATTR] = "";
     }
   }
 }
@@ -589,8 +589,8 @@ class StateScheduledCommand extends ScheduledCommand {
       return;
     }
 
-//    NativeEvent evt = Document.get().createLoadEvent();
-//    _image.getImageElement(_image).dispatchEvent(evt);
+    dart_html.Event evt =  Dom.createLoadEvent();
+    _state.getImageElement(_image).$dom_dispatchEvent(evt);
   }
 }
 
@@ -617,8 +617,8 @@ class _ClippedState extends _State {
     image.replaceElement(impl.createStructure(url, left, top, width, height));
     // Todo(ecc) This is wrong, we should not be sinking these here on such a
     // common widget.After the branch is stable, this should be fixed.
-//    image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONMOUSEWHEEL
-//        | Event.ONLOAD | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
+    image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONMOUSEWHEEL
+        | Event.ONLOAD | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
   }
 
   int getHeight(Image image) {
@@ -709,16 +709,20 @@ class _UnclippedState extends _State {
       // We are working around an IE race condition that can make the image
       // incorrectly cache itself if the load event is assigned at the same time
       // as the image is added to the dom.
-//      Event.sinkEvents(image.getElement(), Event.ONLOAD);
+      Event.sinkEvents(image.getElement(), Event.ONLOAD);
 
+      // Todo(ecc) this could be more efficient overall.
+      image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
+          | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
+      
       if (?url) {
         setUrl(image, url);
       }
     } else if (element != null){
       // This case is relatively unusual, in that we swapped a clipped image
       // out, so does not need to be efficient.
-//      Event.sinkEvents(element, Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
-//          | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
+      Event.sinkEvents(element, Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
+          | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
     }
   }
 

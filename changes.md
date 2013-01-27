@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 28, 2013
+
+* Checked Image.
+* Fixed small bugs in Hidden.
+
 **January 27, 2013
 
 * Renamed IntBox to IntegerBox, IntParser to IntegerParser, IntRenderer to IntegerRenderer.

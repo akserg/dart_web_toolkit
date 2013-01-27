@@ -121,5 +121,7 @@ abstract class DomHelper {
 //      case "gestureend": return 0x4000000;
       default: return -1;
     }
-  } 
+  }
+  
+  dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable);
 }

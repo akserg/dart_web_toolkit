@@ -42,7 +42,7 @@ class Hidden extends Widget implements HasName, TakesValue<String>, IsEditor<Lea
   Hidden([String name = null, String value = null]) {
     setElement(new dart_html.HiddenInputElement());
     if (name != null) {
-      setName(name);
+      this.name = name;
     }
     if (value != null) {
       setValue(value);
@@ -109,23 +109,21 @@ class Hidden extends Widget implements HasName, TakesValue<String>, IsEditor<Lea
    * 
    * @return the name
    */
-  String getName() {
-    return getInputElement().name;
-  }
+  String get name => getInputElement().name;
 
   /**
    * Sets the name of the hidden field.
    * 
    * @param name name of the field
    */
-  void setName(String name) {
-    if (name == null) {
+  void set name(String val) {
+    if (val == null) {
       throw new Exception("Name cannot be null");
-    } else if (name == "") {
+    } else if (val == "") {
       throw new Exception("Name cannot be an empty string.");
     }
 
-    getInputElement().name = name;
+    getInputElement().name = val;
   }
 
   /**
@@ -142,7 +140,7 @@ class Hidden extends Widget implements HasName, TakesValue<String>, IsEditor<Lea
    * 
    * @param value value to set
    */
-  void setValue(String value) {
+  void setValue(String value, [bool fireEvents = false]) {
     getInputElement().value = value;
   }
 

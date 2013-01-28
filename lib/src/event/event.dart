@@ -327,7 +327,7 @@ abstract class Event<H> {
    * @return the event's enumerated type, or -1 if not defined
    */
   static int getTypeInt(String typeName) {
-    return Dom.domHelper.eventGetTypeInt(typeName);
+    return Dom.impl.eventGetTypeInt(typeName);
   }
   
   /**

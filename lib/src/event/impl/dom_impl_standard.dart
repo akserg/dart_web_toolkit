@@ -3,11 +3,11 @@
 
 part of dart_web_toolkit_event;
 
-class DomHelperDefault extends DomHelper {
+class DomImplStandard extends DomImpl {
 
   Map<dart_html.Element, EventListener> _listener = new Map<dart_html.Element, EventListener>();
 
-  DomHelperDefault();
+  DomImplStandard();
   
   dart_html.Element captureElem;
   

@@ -16,10 +16,10 @@ part 'src/event/simple_event_bus.dart';
 part 'src/event/umbrella_exception.dart';
 
 part 'src/event/browser_events.dart';
-part 'src/event/dom.dart';
-part 'src/event/dom_helper.dart';
 
-part 'src/event/impl/dom_helper_default.dart';
+part 'src/event/dom.dart';
+part 'src/event/impl/dom_impl.dart';
+part 'src/event/impl/dom_impl_standard.dart';
 
 part 'src/event/event_listener.dart';
 part 'src/event/dwt_event.dart';

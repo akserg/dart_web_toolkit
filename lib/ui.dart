@@ -78,7 +78,6 @@ part 'src/ui/decorator_panel.dart';
 part 'src/ui/resize_composite.dart';
 part 'src/ui/stack_layout_panel.dart';
 part 'src/ui/label_base.dart';
-part 'src/ui/directional_text_helper.dart';
 part 'src/ui/label.dart';
 part 'src/ui/Html.dart';
 part 'src/ui/value_label.dart';
@@ -125,7 +124,6 @@ part 'src/ui/widget_collection.dart';
 
 part 'src/ui/has_widgets.dart';
 part 'src/ui/has_one_widget.dart';
-part 'src/ui/has_directional_html.dart';
 
 part 'src/ui/impl/focus_impl_default.dart';
 part 'src/ui/impl/hyperlink_impl.dart';

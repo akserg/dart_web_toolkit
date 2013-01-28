@@ -3,16 +3,16 @@
 
 part of dart_web_toolkit_event;
 
-abstract class DomHelper {
+abstract class DomImpl {
 
   /**
-   * Create instance of [DomHelper] depends on broswer.
+   * Create instance of [DomImpl] depends on broswer.
    */
-  factory DomHelper.browserDependent() {
-    return new DomHelperDefault();
+  factory DomImpl.browserDependent() {
+    return new DomImplStandard();
   }
 
-  DomHelper();
+  DomImpl();
   
   static bool eventSystemIsInitialized = false;
 

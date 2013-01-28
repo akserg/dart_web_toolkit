@@ -7,6 +7,10 @@ Dart Web Toolkit Changes
 * Fixed Timer null pointer exception.
 * Fixed animation's bug in DeckLayoutPanel. Added example.
 * Added coupler of styles.
+* Cleaned BrowserEvents.
+* Renamed DomHelper to DomImpl, DomHelperDefault to DomImplStandard.
+* Moved HasDirectionalHtml from ui to i18n libraries.
+* Moved DirectionalTextHelper from ui to i18n library.
 
 **January 27, 2013
 

@@ -13,7 +13,7 @@ class Dom {
   /**
    * DOM helper class Implementation.
    */
-  static DomHelper domHelper = new DomHelper.browserDependent();
+  static DomImpl impl = new DomImpl.browserDependent();
   static dart_html.Element _sCaptureElem;
   // The current event being fired
   static dart_html.Event _currentEvent;
@@ -26,7 +26,7 @@ class Dom {
    * @return <code>true</code> if the relationship holds
    */
   static bool isOrHasChild(dart_html.Element parent, dart_html.Element child) {
-    return domHelper.isOrHasChild(parent, child);
+    return impl.isOrHasChild(parent, child);
   }
 
   /**
@@ -149,7 +149,7 @@ class Dom {
    * @param listener the listener to receive {@link Event events}
    */
   static void setEventListener(dart_html.Element elem, EventListener listener) {
-    domHelper.setEventListener(elem, listener);
+    impl.setEventListener(elem, listener);
   }
 
   /**
@@ -160,7 +160,7 @@ class Dom {
    * @return the element's absolute left coordinate
    */
   static int getAbsoluteLeft(dart_html.Element elem) {
-    return domHelper.getAbsoluteLeft(elem);
+    return impl.getAbsoluteLeft(elem);
   }
 
   /**
@@ -171,7 +171,7 @@ class Dom {
    * @return the element's absolute top coordinate
    */
   static int getAbsoluteTop(dart_html.Element elem) {
-    return domHelper.getAbsoluteTop(elem);
+    return impl.getAbsoluteTop(elem);
   }
 
   /**
@@ -217,7 +217,7 @@ class Dom {
     // If child isn't a PotentialElement, resolve() returns
     // the Element itself.
     //impl.insertChild(parent, PotentialElement.resolve(child).<Element> cast(), index);
-    domHelper.insertChild(parent, child, index);
+    impl.insertChild(parent, child, index);
   }
 
   //********
@@ -246,7 +246,7 @@ class Dom {
     if ((_sCaptureElem != null) && elem == _sCaptureElem) {
       _sCaptureElem = null;
     }
-    //domHelper.releaseCapture(elem);
+    //impl.releaseCapture(elem);
   }
 
   /**
@@ -258,7 +258,7 @@ class Dom {
    */
   static void setCapture(dart_html.Element elem) {
     _sCaptureElem = elem;
-    //domHelper.setCapture(elem);
+    //impl.setCapture(elem);
   }
 
   /**
@@ -332,7 +332,7 @@ class Dom {
    * @param eventTypeName name of the event to sink on this element
    */
   static void sinkBitlessEvent(dart_html.Element elem, String eventTypeName) {
-    domHelper.sinkBitlessEvent(elem, eventTypeName);
+    impl.sinkBitlessEvent(elem, eventTypeName);
   }
 
   /**
@@ -345,7 +345,7 @@ class Dom {
    *          possible values are described in {@link Event})
    */
   static void sinkEvents(dart_html.Element elem, int eventBits) {
-    domHelper.sinkEvents(elem, eventBits);
+    impl.sinkEvents(elem, eventBits);
   }
 
   /**
@@ -356,7 +356,7 @@ class Dom {
    *         values are described in {@link Event})
    */
   static int getEventsSunk(dart_html.Element elem) {
-    return domHelper.getEventsSunk(elem);
+    return impl.getEventsSunk(elem);
   }
 
   /**
@@ -399,7 +399,7 @@ class Dom {
    */
 
   static dart_html.Element eventGetToElement(dart_html.Event evt) {
-    return domHelper.eventGetToElement(evt);
+    return impl.eventGetToElement(evt);
   }
 
   /**
@@ -430,7 +430,7 @@ class Dom {
    * @return the event's enumerated type, or -1 if not defined
    */
   static int eventGetType(dart_html.Event evt) {
-    return domHelper.getEventTypeInt(evt);
+    return impl.getEventTypeInt(evt);
   }
   
   /**
@@ -454,7 +454,7 @@ class Dom {
    * @return the event object
    */
   static dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable) {
-    return domHelper.createHtmlEvent(type, canBubble, cancelable);
+    return impl.createHtmlEvent(type, canBubble, cancelable);
   }
   
   /**
@@ -530,6 +530,6 @@ class Dom {
    * @return the element's event listener
    */
   static EventListener getEventListener(dart_html.Element elem) {
-    return domHelper.getEventListener(elem);
+    return impl.getEventListener(elem);
   }
 }

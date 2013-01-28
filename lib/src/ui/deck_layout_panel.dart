@@ -391,7 +391,7 @@ class _DeckAnimateCommand extends LayoutCommand {
 class _LayoutCommandAnimationCallback implements LayoutAnimationCallback {
 
   DeckLayoutPanel _panel;
-  AnimationCallback _callback;
+  LayoutAnimationCallback _callback;
 
   _LayoutCommandAnimationCallback(this._panel, this._callback);
 

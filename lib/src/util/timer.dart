@@ -67,9 +67,9 @@ class Timer {
     });
   }
 
-  bool isRepeating;
+  bool isRepeating = false;
 
-  int timerId;
+  int timerId = -1;
 
   Function _callback;
 

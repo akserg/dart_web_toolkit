@@ -109,6 +109,7 @@ part 'src/ui/decorated_popup_panel.dart';
 part 'src/ui/dialog_box.dart';
 part 'src/ui/frame.dart';
 part 'src/ui/hidden.dart';
+part 'src/ui/dock_panel.dart';
 
 part 'src/ui/text_alignment.dart';
 

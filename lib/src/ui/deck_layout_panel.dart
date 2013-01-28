@@ -379,11 +379,9 @@ class _DeckAnimateCommand extends LayoutCommand {
 
   _DeckAnimateCommand(this._panel, Layout layout) : super(layout);
 
-//  void schedule(int duration, LayoutAnimationCallback callback) {
-//    super.schedule(duration, new AnimationCallback() {
-//      @Override
-//    });
-//  }
+  void schedule(int duration, LayoutAnimationCallback callback) {
+    super.schedule(duration, new _LayoutCommandAnimationCallback(_panel, callback));
+  }
 
   void doBeforeLayout() {
     _panel.doBeforeLayout();
@@ -393,20 +391,20 @@ class _DeckAnimateCommand extends LayoutCommand {
 class _LayoutCommandAnimationCallback implements LayoutAnimationCallback {
 
   DeckLayoutPanel _panel;
-  LayoutCommand _command;
+  AnimationCallback _callback;
 
-  _LayoutCommandAnimationCallback(this._panel, this._command);
+  _LayoutCommandAnimationCallback(this._panel, this._callback);
 
   void onAnimationComplete() {
     _panel.doAfterLayout();
-    if (_command.callback != null) {
-      _command.callback.onAnimationComplete();
+    if (_callback != null) {
+      _callback.onAnimationComplete();
     }
   }
 
   void onLayout(Layer layer, double progress) {
-    if (_command.callback != null) {
-      _command.callback.onLayout(layer, progress);
+    if (_callback != null) {
+      _callback.onLayout(layer, progress);
     }
   }
 

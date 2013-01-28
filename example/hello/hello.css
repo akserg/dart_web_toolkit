@@ -26,6 +26,11 @@ p {
   margin-top: 140px;
 }
 
+.cw-DockPanel td {
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+}
+
 .headerPanel {
     width: 150px;
     height: 100px;
@@ -125,3 +130,60 @@ p {
   transform: scale(0.8);
 }
 
+/**********************************************************************************
+*               Demo Pages
+**********************************************************************************/
+.demo-panel, .demo-panel-borderless, .demo-panel-padded
+{
+  margin            : 15px auto;
+  background-color      : #ddd;
+}
+.demo-panel
+{
+  border            : 5px solid #999;
+}
+.demo-panel-padded
+{
+  border            : 5px solid #999;
+  padding           : 10px;
+}
+.demo-panel-padded td
+{
+  padding           : 5px;
+}
+.demo-buttons
+{
+  margin            : 15px;
+  margin-left         : auto;
+  margin-right        : auto;
+}
+.demo-label, .demo-label-bigborder
+{
+  margin            : 0 auto;
+  background-color      : #ff0;
+  text-align          : center;
+  border            : 1px solid #009;
+}
+.demo-label-bigborder
+{
+  margin            : 7px;
+  border            : 7px solid #66f;
+}
+.demo-label-over
+{
+  background-color      : #00f;
+  color           : #ff0;
+}
+.demo-table
+{
+  border-collapse       : separate;
+  border            : 5px solid #999;
+  background-color      : #ddd;
+
+}
+.demo-table-cell
+{
+  border            : 1px solid #009;
+    background-color            :   #ff0;
+    padding           : 5px;
+}

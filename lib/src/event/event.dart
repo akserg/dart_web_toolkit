@@ -365,7 +365,7 @@ abstract class Event<H> {
    * @param elem the element whose listener is to be set
    * @return the element's event listener
    */
-  static dart_html.EventListener getEventListener(dart_html.Element elem) {
+  static EventListener getEventListener(dart_html.Element elem) {
     return Dom.getEventListener(elem);
   }
 }

@@ -57,7 +57,6 @@ abstract class CellPanel extends ComplexPanel {
   CellPanel() {
     _table = new dart_html.TableElement();
     _body = _table.createTBody();
-//    _table.append(_body);
     setElement(_table);
   }
 

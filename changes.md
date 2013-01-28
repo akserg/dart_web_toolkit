@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 28, 2013
+
+* Implemented DockPanel. Added Example.
+* Fixed Timer null pointer exception.
+* Fixed animation's bug in DeckLayoutPanel. Added example.
+* Added coupler of styles.
+
 **January 27, 2013
 
 * Checked Image.

@@ -4,6 +4,7 @@
 library hello;
 
 import 'dart:html' as dart_html;
+import 'dart:async' as dart_async;
 
 import 'package:dart_web_toolkit/event.dart' as event;
 import 'package:dart_web_toolkit/ui.dart' as ui;
@@ -906,8 +907,107 @@ void main1() {
 //*******************************
 //*******************************
 
-// AbsolutePanel
+// DeckLayoutPanel
 void main() {
+  ui.DeckLayoutPanel panel = new ui.DeckLayoutPanel();
+  panel.setSize("300px", "120px");
+  panel.addStyleName("demo-panel");
+  ui.Label label;
+
+// This will get set to 100% wide and high
+// and with a border will overflow the deck
+  label = new ui.Label("Widget 0");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+
+// Setting the height and width to "" will
+// make the label act like an ordinary div
+// in a div
+  label = new ui.Label("Widget 1");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+  label.setWidth("");
+  label.setHeight("");
+
+// So you have to set the width and height
+// if you don't want them to be 100%. Normal
+// defaults don't apply
+  label = new ui.Label("Widget 2");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+  label.setWidth("100px");
+  label.setHeight("");
+
+// Skip one, and you may get a surprise
+  label = new ui.Label("Widget 3");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+  label.setWidth("100px");
+
+  ui.RootPanel.get("testId").add(panel);
+  panel.showWidgetAt(0);
+
+  util.Timer t = new util.Timer.get(()
+  {
+    int index = panel.getVisibleWidgetIndex();
+    index++;
+    if (index == panel.getWidgetCount()) {
+      index = 0;
+    }
+    panel.showWidgetAt(index);
+  });
+  t.scheduleRepeating(1000);
+}
+
+// Horizontal and Vertical Panels
+void main_16() {
+  ui.HorizontalPanel hPanel = new ui.HorizontalPanel();
+  hPanel.spacing = 5;
+
+  // Add some content to the panel
+  for (int i = 1; i < 5; i++) {
+    hPanel.add(new ui.Button("Button $i"));
+  }
+  ui.RootPanel.get("testId").add(hPanel);
+
+  ui.VerticalPanel vPanel = new ui.VerticalPanel();
+  vPanel.spacing = 5;
+
+  // Add some content to the panel
+  for (int i = 1; i < 10; i++) {
+    vPanel.add(new ui.Button("Button $i"));
+  }
+  ui.RootPanel.get("testId").add(vPanel);
+}
+
+// DockPanel
+void main_15() {
+  ui.DockPanel dock = new ui.DockPanel();
+  dock.clearAndSetStyleName("cw-DockPanel");
+  dock.spacing = 4;
+  dock.setHorizontalAlignment(i18n.HasHorizontalAlignment.ALIGN_CENTER);
+
+  // Add text all around
+  dock.addWidgetTo(new ui.Html("This is the first north component"), ui.DockLayoutConstant.NORTH);
+  dock.addWidgetTo(new ui.Html("This is the first south component"), ui.DockLayoutConstant.SOUTH);
+  dock.addWidgetTo(new ui.Html("This is the east component"), ui.DockLayoutConstant.EAST);
+  dock.addWidgetTo(new ui.Html("This is the west component"), ui.DockLayoutConstant.WEST);
+  dock.addWidgetTo(new ui.Html("This is the second north component"), ui.DockLayoutConstant.NORTH);
+  dock.addWidgetTo(new ui.Html("This is the second south component"),ui.DockLayoutConstant.SOUTH);
+
+  // Add scrollable text in the center
+  ui.Html contents = new ui.Html("This is a ScrollPanel contained at the center of a DockPanel. By putting some fairly large contents in the middle and setting its size explicitly, it becomes a scrollable area within the page, but without requiring the use of an IFRAME./nHere's quite a bit more meaningless text that will serve primarily to make this thing scroll off the bottom of its visible area. Otherwise, you might have to make it really, really small in order to see the nifty scroll bars!");
+  ui.ScrollPanel scroller = new ui.ScrollPanel(contents);
+  scroller.setSize("400px", "100px");
+  dock.addWidgetTo(scroller, ui.DockLayoutConstant.CENTER);
+
+  // Return the content
+//  dock.ensureDebugId("cwDockPanel");
+  ui.RootPanel.get("testId").add(dock);
+}
+
+// AbsolutePanel
+void main_14() {
   ui.AbsolutePanel panel = new ui.AbsolutePanel();
   panel.setSize("200px", "120px");
   //panel.addStyleName("demo-panel");
@@ -923,15 +1023,15 @@ void main_13() {
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
   vpanel1.spacing = 5;
-  
+
   ui.DateLabel dLabel = new ui.DateLabel();
   dLabel.setValue(new Date.now());
   vpanel1.add(dLabel);
-  
+
   ui.NumberLabel nLabel = new ui.NumberLabel();
   nLabel.setValue(123.12);
   vpanel1.add(nLabel);
-  
+
   ui.RootPanel.get("testId").add(vpanel1);
 }
 
@@ -940,11 +1040,11 @@ void main_12() {
   ui.Html html = new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>");
   _addAllHandlers(html);
   ui.RootPanel.get("testId").add(html);
-  
+
   ui.InlineHtml inlineHtml = new ui.InlineHtml("<div id='fred' style='background-color: red; border: 1px dotted green; width: 200px; text-align: center;'> This is an INLINE HTML Widget </div>");
   _addAllHandlers(inlineHtml);
   ui.RootPanel.get("testId").add(inlineHtml);
-  
+
   ui.InlineLabel inlineLabel = new ui.InlineLabel("This is Inline Label");
   _addAllHandlers(inlineLabel);
   ui.RootPanel.get("testId").add(inlineLabel);
@@ -984,13 +1084,13 @@ void main_08() {
   ui.RootPanel.get("testId").add(frame);
 }
 
-// SimpleCheckBox, SimpleRadioButton, TextArea, TextBox, PasswordTextBox, 
+// SimpleCheckBox, SimpleRadioButton, TextArea, TextBox, PasswordTextBox,
 // DoubleBox, IntegerBox
 void main_07() {
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
   vpanel1.spacing = 5;
-  
+
   ui.DoubleBox dBox = new ui.DoubleBox();
   _addAllHandlers(dBox);
   dBox.setMaxLength(10);
@@ -1014,13 +1114,13 @@ void main_07() {
   _addAllHandlers(rCheckBox1);
   rCheckBox1.setValue(true);
   vpanel1.add(rCheckBox1);
-  
+
   ui.SimpleRadioButton rCheckBox2 = new ui.SimpleRadioButton("SimpleRadioButtonGroup");
   _addAllHandlers(rCheckBox2);
   vpanel1.add(rCheckBox2);
-  
+
   ui.RootPanel.get("testId").add(vpanel1);
-  
+
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel2 = new ui.VerticalPanel();
   vpanel2.spacing = 5;

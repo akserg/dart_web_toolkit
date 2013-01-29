@@ -7,7 +7,6 @@
 library dart_web_toolkit_animation;
 
 import 'dart:html' as dart_html;
-import 'dart:isolate' as dart_isolate;
 import 'dart:math' as dart_math;
 
 import 'util.dart';

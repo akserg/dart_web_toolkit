@@ -576,7 +576,7 @@ class CustomButton extends ButtonBase {
     // After Dom CustomEvent instance has been created we can initialise it here
     evt.$dom_initCustomEvent('CustomEvent', false, false, false);
     // Dispatch event
-    getElement().$dom_dispatchEvent(evt);
+    getElement().dispatchEvent(evt);
 
     _allowClick = false;
   }

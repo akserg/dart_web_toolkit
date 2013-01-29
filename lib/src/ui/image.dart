@@ -590,7 +590,7 @@ class StateScheduledCommand extends ScheduledCommand {
     }
 
     dart_html.Event evt =  Dom.createLoadEvent();
-    _state.getImageElement(_image).$dom_dispatchEvent(evt);
+    _state.getImageElement(_image).dispatchEvent(evt);
   }
 }
 
@@ -714,7 +714,7 @@ class _UnclippedState extends _State {
       // Todo(ecc) this could be more efficient overall.
       image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
           | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
-      
+
       if (?url) {
         setUrl(image, url);
       }

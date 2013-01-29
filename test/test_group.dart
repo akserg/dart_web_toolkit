@@ -8,7 +8,7 @@ part of dart_web_toolkit_test;
  */
 abstract class TestGroup {
 
-  final LinkedHashMap<String, Function> testList;
+  final Map<String, Function> testList;
 
   String testGroupName;
 
@@ -16,7 +16,7 @@ abstract class TestGroup {
    * Create an instance of [TestGroup].
    */
   TestGroup() :
-    testList = new LinkedHashMap<String, Function>() {
+    testList = new Map<String, Function>() {
 
     registerTests();
   }

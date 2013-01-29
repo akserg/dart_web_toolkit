@@ -1,6 +1,12 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 29, 2013
+
+* Fixed Dart SDK breaking changes Element.dispatchEvent in Image and CustomButton.
+* Fixed Dart SDK breaking changes LinkedHashMap in TerstGroup.
+* Migrate project code to follow Dart SDK version 0.3.2.0_r17657.
+
 **January 28, 2013
 
 * Implemented DockPanel. Added Example.

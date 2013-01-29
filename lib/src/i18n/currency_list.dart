@@ -7,7 +7,7 @@ part of dart_web_toolkit_i18n;
  * Generated class containing all the CurrencyImpl instances.  This is just
  * the fallback in case the I18N module is not included.
  */
-class CurrencyList implements Diterable<CurrencyData> {
+class CurrencyList extends Iterable<CurrencyData> {
 
   /**
    * Return the singleton instance of CurrencyList.
@@ -113,7 +113,8 @@ class CurrencyList implements Diterable<CurrencyData> {
    *
    * @param includeDeprecated true if deprecated currencies should be included
    */
-  Iterator<CurrencyData> iterator([bool includeDeprecated = false]) {
+  Iterator<CurrencyData> get iterator {
+    bool includeDeprecated = false;
     ensureCurrencyMap();
     List<CurrencyData> collection = new List<CurrencyData>();
 //    if (GWT.isScript()) {

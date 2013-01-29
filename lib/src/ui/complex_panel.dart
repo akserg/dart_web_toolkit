@@ -75,7 +75,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
   }
 
   Iterator<Widget> iterator() {
-    return getChildren().iterator();
+    return getChildren().iterator;
   }
   //*******************************
   // Implementation of IndexedPanel

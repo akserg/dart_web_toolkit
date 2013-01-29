@@ -909,7 +909,7 @@ void main1() {
 
 // DeckLayoutPanel
 void main() {
-  ui.DeckLayoutPanel panel = new ui.DeckLayoutPanel();
+  ui.DeckPanel panel = new ui.DeckPanel();
   panel.setSize("300px", "120px");
   panel.addStyleName("demo-panel");
   ui.Label label;
@@ -945,6 +945,59 @@ void main() {
   label.setWidth("100px");
 
   ui.RootPanel.get("testId").add(panel);
+  panel.showWidgetAt(0);
+
+  util.Timer t = new util.Timer.get(()
+  {
+    int index = panel.getVisibleWidgetIndex();
+    index++;
+    if (index == panel.getWidgetCount()) {
+      index = 0;
+    }
+    panel.showWidgetAt(index);
+  });
+  t.scheduleRepeating(1000);
+}
+
+
+// DeckLayoutPanel
+void main_17() {
+  ui.DeckLayoutPanel panel = new ui.DeckLayoutPanel();
+  panel.setSize("300px", "120px");
+  panel.addStyleName("demo-panel");
+  ui.Label label;
+
+// This will get set to 100% wide and high
+// and with a border will overflow the deck
+  label = new ui.Label("Widget 0");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+
+// Setting the height and width to "" will
+// make the label act like an ordinary div
+// in a div
+  label = new ui.Label("Widget 1");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+  label.setWidth("");
+  label.setHeight("");
+
+// So you have to set the width and height
+// if you don't want them to be 100%. Normal
+// defaults don't apply
+  label = new ui.Label("Widget 2");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+  label.setWidth("100px");
+  label.setHeight("");
+
+// Skip one, and you may get a surprise
+  label = new ui.Label("Widget 3");
+  label.addStyleName("demo-label-bigborder");
+  panel.add(label);
+  label.setWidth("100px");
+
+  ui.RootLayoutPanel.get().add(panel);
   panel.showWidgetAt(0);
 
   util.Timer t = new util.Timer.get(()

@@ -70,7 +70,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
    *
    * @return the visible widget's index
    */
-  int getVisibleWidget() {
+  int getVisibleWidgetIndex() {
     return getWidgetIndex(_visibleWidget);
   }
 

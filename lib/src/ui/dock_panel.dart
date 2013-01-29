@@ -242,7 +242,7 @@ class DockPanel extends CellPanel implements HasAlignment {
     }
 
     int rowCount = 1, colCount = 1;
-    for (RemoveIterator<Widget> it = getChildren().iterator(); it.moveNext();) {
+    for (RemoveIterator<Widget> it = getChildren().iterator; it.moveNext();) {
       Widget child = it.current;
       DockLayoutConstant dir = (child.getLayoutData() as DockPanelLayoutData).direction;
       if ((dir == DockLayoutConstant.NORTH) || (dir == DockLayoutConstant.SOUTH)) {
@@ -263,7 +263,7 @@ class DockPanel extends CellPanel implements HasAlignment {
     int northRow = 0, southRow = rowCount - 1;
     dart_html.Element centerTd = null;
 
-    for (RemoveIterator<Widget> it = getChildren().iterator(); it.moveNext();) {
+    for (RemoveIterator<Widget> it = getChildren().iterator; it.moveNext();) {
       Widget child = it.current;
       DockPanelLayoutData layout = child.getLayoutData() as DockPanelLayoutData;
 

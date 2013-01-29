@@ -6,6 +6,9 @@ Dart Web Toolkit Changes
 * Fixed Dart SDK breaking changes Element.dispatchEvent in Image and CustomButton.
 * Fixed Dart SDK breaking changes LinkedHashMap in TerstGroup.
 * Migrate project code to follow Dart SDK version 0.3.2.0_r17657.
+* Deleted Diterable class.
+* Fixed Dart SDK breaking changes iterator in Iterable not is a method now.
+* Checked DeckPanel and DeckLayoutPanel. Added examples.
 
 **January 28, 2013
 

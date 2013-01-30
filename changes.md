@@ -1,13 +1,18 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 30, 2013
+
+* Fixed bug capturing element doesn't recieve events in Dom, DomImplStandard and Splitter
+* Checked SplitLayoutPanel. Added example.
+
 **January 29, 2013
 
 * Fixed Dart SDK breaking changes Element.dispatchEvent in Image and CustomButton.
 * Fixed Dart SDK breaking changes LinkedHashMap in TerstGroup.
 * Migrate project code to follow Dart SDK version 0.3.2.0_r17657.
 * Deleted Diterable class.
-* Fixed Dart SDK breaking changes iterator in Iterable not is a method now.
+* Fixed Dart SDK breaking changes: iterator is field in Iterable now.
 * Checked DeckPanel and DeckLayoutPanel. Added examples.
 
 **January 28, 2013

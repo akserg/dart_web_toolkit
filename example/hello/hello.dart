@@ -907,8 +907,35 @@ void main1() {
 //*******************************
 //*******************************
 
-// DeckLayoutPanel
+// SplitLayoutPanel
 void main() {
+  ui.SplitLayoutPanel p = new ui.SplitLayoutPanel();
+  p.addWest(new ui.Button("navigation"), 128.0);
+  p.addNorth(new ui.Button("list"), 384.0);
+  p.add(new ui.FileUpload());
+
+  // Attach the SplitLayoutPanel to the RootLayoutPanel. The latter will listen for
+  // resize events on the window to ensure that its children are informed of
+  // possible size changes.
+  ui.RootLayoutPanel.get().add(p);
+}
+
+// DockLayoutPanel
+void main_19() {
+  ui.DockLayoutPanel p = new ui.DockLayoutPanel(util.Unit.PX);
+  p.addStyleName("demo-panel");
+
+  p.addNorth(new ui.Html("<div style='background-color: #FF0000;'>north</div>"), 50.0);
+  p.addSouth(new ui.Html("<div style='background-color: #00FF00;'>south</div>"), 100.0);
+  p.addEast(new ui.Html("<div style='background-color: #0000FF;'>east</div>"), 150.0);
+  p.addWest(new ui.Html("<div style='background-color: #FFFF00;'>west</div>"), 200.0);
+  p.add(new ui.Html("<div style='background-color: #00FFFF;'>center</div>"));
+
+  ui.RootLayoutPanel.get().add(p);
+}
+
+// DeckLayoutPanel
+void main_18() {
   ui.DeckPanel panel = new ui.DeckPanel();
   panel.setSize("300px", "120px");
   panel.addStyleName("demo-panel");
@@ -1041,18 +1068,18 @@ void main_15() {
   dock.setHorizontalAlignment(i18n.HasHorizontalAlignment.ALIGN_CENTER);
 
   // Add text all around
-  dock.addWidgetTo(new ui.Html("This is the first north component"), ui.DockLayoutConstant.NORTH);
-  dock.addWidgetTo(new ui.Html("This is the first south component"), ui.DockLayoutConstant.SOUTH);
-  dock.addWidgetTo(new ui.Html("This is the east component"), ui.DockLayoutConstant.EAST);
-  dock.addWidgetTo(new ui.Html("This is the west component"), ui.DockLayoutConstant.WEST);
-  dock.addWidgetTo(new ui.Html("This is the second north component"), ui.DockLayoutConstant.NORTH);
-  dock.addWidgetTo(new ui.Html("This is the second south component"),ui.DockLayoutConstant.SOUTH);
+  dock.addWidgetTo(new ui.Html("This is the first north component"), util.DockLayoutConstant.NORTH);
+  dock.addWidgetTo(new ui.Html("This is the first south component"), util.DockLayoutConstant.SOUTH);
+  dock.addWidgetTo(new ui.Html("This is the east component"), util.DockLayoutConstant.EAST);
+  dock.addWidgetTo(new ui.Html("This is the west component"), util.DockLayoutConstant.WEST);
+  dock.addWidgetTo(new ui.Html("This is the second north component"), util.DockLayoutConstant.NORTH);
+  dock.addWidgetTo(new ui.Html("This is the second south component"),util.DockLayoutConstant.SOUTH);
 
   // Add scrollable text in the center
   ui.Html contents = new ui.Html("This is a ScrollPanel contained at the center of a DockPanel. By putting some fairly large contents in the middle and setting its size explicitly, it becomes a scrollable area within the page, but without requiring the use of an IFRAME./nHere's quite a bit more meaningless text that will serve primarily to make this thing scroll off the bottom of its visible area. Otherwise, you might have to make it really, really small in order to see the nifty scroll bars!");
   ui.ScrollPanel scroller = new ui.ScrollPanel(contents);
   scroller.setSize("400px", "100px");
-  dock.addWidgetTo(scroller, ui.DockLayoutConstant.CENTER);
+  dock.addWidgetTo(scroller, util.DockLayoutConstant.CENTER);
 
   // Return the content
 //  dock.ensureDebugId("cwDockPanel");

@@ -11,95 +11,92 @@ abstract class Splitter extends Widget {
   Widget target;
 
   int _offset;
-  bool _mouseDown;
+  bool _mouseDown = false;
   ScheduledCommand _layoutCommand;
 
-  bool reverse;
+  bool reverse = false;
   int _minSize;
   int _snapClosedSize = -1;
   double _centerSize, _syncedCenterSize;
 
   bool _toggleDisplayAllowed = false;
-  double _lastClick = 0.0;
+  int _lastClick = 0;
 
   SplitLayoutPanel _splitLayoutPanel;
 
   Splitter(this._splitLayoutPanel, this.target, this.reverse) {
 
     setElement(new dart_html.DivElement());
-    //sinkEvents(Event.ONMOUSEDOWN | Event.ONMOUSEUP | Event.ONMOUSEMOVE | Event.ONDBLCLICK);
+    sinkEvents(Event.ONMOUSEDOWN | Event.ONMOUSEUP | Event.ONMOUSEMOVE | Event.ONDBLCLICK);
   }
 
 
   void onBrowserEvent(dart_html.Event event) {
-//    switch (event.typetTypeInt()) {
-//      case Event.ONMOUSEDOWN:
-//        _mouseDown = true;
-//
-//        /*
-//         * Resize glassElem to take up the entire scrollable window area,
-//         * which is the greater of the scroll size and the client size.
-//         */
-//        int width = Math.max(Window.getClientWidth(),
-//            Document.get().getScrollWidth());
-//        int height = Math.max(Window.getClientHeight(),
-//            Document.get().getScrollHeight());
-//        glassElem.getStyle().setHeight(height, Unit.PX);
-//        glassElem.getStyle().setWidth(width, Unit.PX);
-//        Document.get().getBody().appendChild(glassElem);
-//
-//        _offset = getEventPosition(event) - getAbsolutePosition();
-//        dart_html.Event.setCapture(getElement());
-//        event.preventDefault();
-//        break;
-//
-//      case Event.ONMOUSEUP:
-//        _mouseDown = false;
-//
-//        glassElem.removeFromParent();
-//
-//        // Handle double-clicks.
-//        // Fake them since the double-click event aren't fired.
-//        if (this._toggleDisplayAllowed) {
-//          double now = Duration.currentTimeMillis();
-//          if (now - this._lastClick < DOUBLE_CLICK_TIMEOUT) {
-//            now = 0;
-//            LayoutData layout = (LayoutData) target.getLayoutData();
-//            if (layout.size == 0) {
-//              // Restore the old size.
-//              setAssociatedWidgetSize(layout.oldSize);
-//            } else {
-//              /*
-//               * Collapse to size 0. We change the size instead of hiding the
-//               * widget because hiding the widget can cause issues if the
-//               * widget contains a flash component.
-//               */
-//              layout.oldSize = layout.size;
-//              setAssociatedWidgetSize(0);
-//            }
-//          }
-//          this._lastClick = now;
-//        }
-//
-//        Event.releaseCapture(getElement());
-//        event.preventDefault();
-//        break;
-//
-//      case Event.ONMOUSEMOVE:
-//        if (_mouseDown) {
-//          int size;
-//          if (reverse) {
-//            size = getTargetPosition() + getTargetSize()
-//                - getEventPosition(event) - _offset;
-//          } else {
-//            size = getEventPosition(event) - getTargetPosition() - _offset;
-//          }
-//          ((LayoutData) target.getLayoutData()).hidden = false;
-//          setAssociatedWidgetSize(size);
-//          event.preventDefault();
-//        }
-//        break;
-//    }
+    switch (Dom.eventGetType(event)) {
+      case Event.ONMOUSEDOWN:
+        _mouseDown = true;
+
+        /*
+         * Resize glassElem to take up the entire scrollable window area,
+         * which is the greater of the scroll size and the client size.
+         */
+        int width = dart_math.max(Dom.getClientWidth(), Dom.getScrollWidth());
+        int height = dart_math.max(Dom.getClientHeight(), Dom.getScrollHeight());
+        SplitLayoutPanel.glassElem.style.height = height.toString().concat(Unit.PX.value);
+        SplitLayoutPanel.glassElem.style.width = width.toString().concat(Unit.PX.value);
+        dart_html.document.body.append(SplitLayoutPanel.glassElem);
+
+        _offset = getEventPosition(event) - getAbsolutePosition();
+        Event.setCapture(getElement());
+        event.preventDefault();
+        break;
+
+      case Event.ONMOUSEUP:
+        _mouseDown = false;
+
+        SplitLayoutPanel.glassElem.remove();
+
+        // Handle double-clicks.
+        // Fake them since the double-click event aren't fired.
+        if (this._toggleDisplayAllowed) {
+          int now = new Duration().inMilliseconds; //currentTimeMillis();
+          if (now - this._lastClick < SplitLayoutPanel.DOUBLE_CLICK_TIMEOUT) {
+            now = 0;
+            LayoutData layout = target.getLayoutData() as LayoutData;
+            if (layout.size == 0) {
+              // Restore the old size.
+              setAssociatedWidgetSize(layout.oldSize);
+            } else {
+              /*
+               * Collapse to size 0. We change the size instead of hiding the
+               * widget because hiding the widget can cause issues if the
+               * widget contains a flash component.
+               */
+              layout.oldSize = layout.size;
+              setAssociatedWidgetSize(0.0);
+            }
+          }
+          this._lastClick = now;
+        }
+
+        Event.releaseCapture(getElement());
+        event.preventDefault();
+        break;
+
+      case Event.ONMOUSEMOVE:
+        if (_mouseDown) {
+          int size;
+          if (reverse) {
+            size = getTargetPosition() + getTargetSize() - getEventPosition(event) - _offset;
+          } else {
+            size = getEventPosition(event) - getTargetPosition() - _offset;
+          }
+          (target.getLayoutData() as LayoutData).hidden = false;
+          setAssociatedWidgetSize(size.toDouble());
+          event.preventDefault();
+        }
+        break;
+    }
   }
 
   void setMinSize(int minSize) {

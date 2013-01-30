@@ -368,6 +368,27 @@ abstract class Event<H> {
   static EventListener getEventListener(dart_html.Element elem) {
     return Dom.getEventListener(elem);
   }
+  
+  /**
+   * Sets mouse-capture on the given element. This element will directly receive
+   * all mouse events until {@link #releaseCapture(Element)} is called on it.
+   * 
+   * @param elem the element on which to set mouse capture
+   */
+  static void setCapture(dart_html.Element elem) {
+    Dom.setCapture(elem);
+  }
+  
+  /**
+   * Releases mouse capture on the given element. Calling this method has no
+   * effect if the element does not currently have mouse capture.
+   * 
+   * @param elem the element to release capture
+   * @see #setCapture(Element)
+   */
+  static void releaseCapture(dart_html.Element elem) {
+    Dom.releaseCapture(elem);
+  }
 }
 
 /**

@@ -161,24 +161,25 @@ class DomImplStandard extends DomImpl {
       }
     };
 
-    dart_html.window.on.click.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.doubleClick.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.mouseDown.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.mouseUp.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.mouseMove.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.mouseOver.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.mouseOut.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.mouseWheel.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.keyDown.add(dispatchCapturedEvent, true);
-    dart_html.window.on.keyUp.add(dispatchCapturedEvent, true);
-    dart_html.window.on.keyPress.add(dispatchCapturedEvent, true);
+    //dart_html.window.onClick.listen(dispatchCapturedMouseEvent, true);
+    dart_html.Element.clickEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.doubleClickEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.mouseDownEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.mouseUpEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.mouseMoveEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.mouseOverEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.mouseOutEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.mouseWheelEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.keyDownEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedEvent);
+    dart_html.Element.keyUpEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedEvent);
+    dart_html.Element.keyPressEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedEvent);
 
     // Touch and gesture events are not actually mouse events, but we treat
     // them as such, so that DOM#setCapture() and DOM#releaseCapture() work.
-    dart_html.window.on.touchStart.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.touchMove.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.touchEnd.add(dispatchCapturedMouseEvent, true);
-    dart_html.window.on.touchCancel.add(dispatchCapturedMouseEvent, true);
+    dart_html.Element.touchStartEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.touchMoveEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.touchEndEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
+    dart_html.Element.touchCancelEvent.forTarget(dart_html.window, useCapture:true).listen(dispatchCapturedMouseEvent);
 //    dart_html.window.on.gesturestart.add(dispatchCapturedMouseEvent, true);
 //    dart_html.window.on.gesturechange.add(dispatchCapturedMouseEvent, true);
 //    dart_html.window.on.gesturechange.add(dispatchCapturedMouseEvent, true);
@@ -200,24 +201,22 @@ class DomImplStandard extends DomImpl {
 
   void _sinkBitlessEventImpl(dart_html.Element elem, String eventTypeName) {
     switch(eventTypeName) {
-      case "drag":
-      case "dragend":
-      case "dragleave":
-      case "dragstart":
-      case "drop":
-        elem.on[eventTypeName].add(dispatchEvent);
-        break;
-      case "dragenter":
-      case "dragover":
-        elem.on[eventTypeName].add(dispatchDragEvent);
-        break;
-      case "canplaythrough":
-      case "ended":
-      case "progress":
+      case "drag": elem.onDrag.listen(dispatchEvent); break;
+      case "dragend": elem.onDragEnd.listen(dispatchEvent); break;
+      case "dragleave": elem.onDragLeave.listen(dispatchEvent); break;
+      case "dragstart": elem.onDragStart.listen(dispatchEvent); break;
+      case "drop": elem.onDrop.listen(dispatchEvent); break;
+      
+      case "dragenter": elem.onDragEnter.listen(dispatchDragEvent); break;
+      case "dragover": elem.onDragOver.listen(dispatchDragEvent); break;
+
+      case "canplaythrough": dart_html.MediaElement.canPlayThroughEvent.forTarget(elem).listen(dispatchEvent); break;
+      case "ended": dart_html.MediaElement.endedEvent.forTarget(elem).listen(dispatchEvent); break;
+      case "progress": dart_html.MediaElement.progressEvent.forTarget(elem).listen(dispatchEvent); break;
         // First call removeEventListener, so as not to add the same event listener more than once
-        elem.on[eventTypeName].remove(dispatchEvent);
-        elem.on[eventTypeName].add(dispatchEvent);
-        break;
+//        elem.on[eventTypeName].remove(dispatchEvent);
+//        elem.on[eventTypeName].add(dispatchEvent);
+//        break;
       default:
         // catch missing cases
         throw new Exception("Trying to sink unknown event type $eventTypeName");

@@ -246,7 +246,7 @@ class Dom {
     if ((_sCaptureElem != null) && elem == _sCaptureElem) {
       _sCaptureElem = null;
     }
-    //impl.releaseCapture(elem);
+    impl.releaseCapture(elem);
   }
 
   /**
@@ -258,7 +258,7 @@ class Dom {
    */
   static void setCapture(dart_html.Element elem) {
     _sCaptureElem = elem;
-    //impl.setCapture(elem);
+    impl.setCapture(elem);
   }
 
   /**

@@ -81,9 +81,9 @@ class SplitLayoutPanel extends DockLayoutPanel {
     return _splitterSize;
   }
 
-  void _insert(Widget child, LayoutDirection direction, double size, Widget before) {
+  void _insert(Widget child, DockLayoutConstant direction, double size, Widget before) {
     super._insert(child, direction, size, before);
-    if (direction != LayoutDirection.CENTER) {
+    if (direction != DockLayoutConstant.CENTER) {
       _insertSplitter(child, before);
     }
   }
@@ -110,7 +110,7 @@ class SplitLayoutPanel extends DockLayoutPanel {
    * <p>
    * Its associated splitter cannot be dragged to a position that would make it
    * smaller than this size. This method has no effect for the
-   * {@link DockLayoutPanel.LayoutDirection#CENTER} widget.
+   * {@link DockLayoutPanel.DockLayoutConstant#CENTER} widget.
    * </p>
    *
    * @param child the child whose minimum size will be set
@@ -132,7 +132,7 @@ class SplitLayoutPanel extends DockLayoutPanel {
    * closing completely.
    *
    * <p>
-   * This method has no effect for the {@link DockLayoutPanel.LayoutDirection#CENTER}
+   * This method has no effect for the {@link DockLayoutPanel.DockLayoutConstant#CENTER}
    * widget.
    * </p>
    *
@@ -184,16 +184,16 @@ class SplitLayoutPanel extends DockLayoutPanel {
     LayoutData layout = widget.getLayoutData() as LayoutData;
     Splitter splitter = null;
     switch (getResolvedDirection(layout.direction)) {
-      case LayoutDirection.WEST:
+      case DockLayoutConstant.WEST:
         splitter = new HSplitter(this, widget, false);
         break;
-      case LayoutDirection.EAST:
+      case DockLayoutConstant.EAST:
         splitter = new HSplitter(this, widget, true);
         break;
-      case LayoutDirection.NORTH:
+      case DockLayoutConstant.NORTH:
         splitter = new VSplitter(this, widget, false);
         break;
-      case LayoutDirection.SOUTH:
+      case DockLayoutConstant.SOUTH:
         splitter = new VSplitter(this, widget, true);
         break;
       default:

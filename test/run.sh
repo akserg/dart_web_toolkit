@@ -7,9 +7,9 @@ set -e
 ###############
 
 echo
-echo "dart_analyzer lib/*.dart"
+echo "dart_analyzer lib/animation.dart"
 
-results=`dart_analyzer lib/*.dart 2>&1`
+results=`dart_analyzer lib/animation.dart 2>&1`
 
 echo "$results"
 

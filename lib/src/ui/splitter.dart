@@ -10,14 +10,14 @@ part of dart_web_toolkit_ui;
 abstract class Splitter extends Widget {
   Widget target;
 
-  int _offset;
+  int _offset = 0;
   bool _mouseDown = false;
   ScheduledCommand _layoutCommand;
 
   bool reverse = false;
-  int _minSize;
+  int _minSize = 0;
   int _snapClosedSize = -1;
-  double _centerSize, _syncedCenterSize;
+  double _centerSize = 0.0, _syncedCenterSize = 0.0;
 
   bool _toggleDisplayAllowed = false;
   int _lastClick = 0;

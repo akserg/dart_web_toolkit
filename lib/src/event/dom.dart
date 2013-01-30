@@ -378,13 +378,13 @@ class Dom {
   }
 
   static void _dispatchEventImpl(dart_html.Event evt, dart_html.Element elem, EventListener listener) {
-//    // If this element has capture...
-//    if (elem == _sCaptureElem) {
-//      // ... and it's losing capture, clear sCaptureElem.
-//      if (eventGetType(evt) == dart_html.Event.ONLOSECAPTURE) {
-//        _sCaptureElem = null;
-//      }
-//    }
+    // If this element has capture...
+    if (elem == _sCaptureElem) {
+      // ... and it's losing capture, clear sCaptureElem.
+      if (eventGetType(evt) == Event.ONLOSECAPTURE) {
+        _sCaptureElem = null;
+      }
+    }
 
     // Pass the event to the listener.
     listener.onBrowserEvent(evt);
@@ -422,32 +422,32 @@ class Dom {
 
     return ret;
   }
-  
+
   /**
    * Gets the enumerated type of this event (as defined in {@link Event}).
-   * 
+   *
    * @param evt the event to be tested
    * @return the event's enumerated type, or -1 if not defined
    */
   static int eventGetType(dart_html.Event evt) {
     return impl.getEventTypeInt(evt);
   }
-  
+
   /**
    * Creates an event.
-   * 
+   *
    * <p>
    * While this method may be used to create events directly, it is generally
    * preferable to use existing helper methods such as
    * {@link #createFocusEvent()}.
    * </p>
-   * 
+   *
    * <p>
    * Also, note that on Internet Explorer the 'canBubble' and 'cancelable'
    * arguments will be ignored (the event's behavior is inferred by the browser
    * based upon its type).
    * </p>
-   * 
+   *
    * @param type the type of event (e.g., BrowserEvents.FOCUS, BrowserEvents.LOAD, etc)
    * @param canBubble <code>true</code> if the event should bubble
    * @param cancelable <code>true</code> if the event should be cancelable
@@ -456,76 +456,76 @@ class Dom {
   static dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable) {
     return impl.createHtmlEvent(type, canBubble, cancelable);
   }
-  
+
   /**
    * Creates a 'blur' event.
    */
   static dart_html.Event createBlurEvent() {
     return createHtmlEvent(BrowserEvents.BLUR, false, false);
   }
-  
+
   /**
    * Creates a 'change' event.
    */
   static dart_html.Event createChangeEvent() {
     return createHtmlEvent(BrowserEvents.CHANGE, false, true);
   }
-  
+
   /**
    * Creates a 'contextmenu' event.
-   * 
+   *
    * Note: Contextmenu events will not dispatch properly on Firefox 2 and
    * earlier.
-   * 
+   *
    * @return the event object
    */
   static dart_html.Event createContextMenuEvent() {
     return createHtmlEvent(BrowserEvents.CONTEXTMENU, true, true);
   }
-  
+
   /**
    * Creates an 'error' event.
-   * 
+   *
    * @return the event object
    */
   static dart_html.Event createErrorEvent() {
     return createHtmlEvent(BrowserEvents.ERROR, false, false);
   }
-  
+
   /**
    * Creates a 'focus' event.
-   * 
+   *
    * @return the event object
    */
   static dart_html.Event createFocusEvent() {
     return createHtmlEvent(BrowserEvents.FOCUS, false, false);
   }
-  
+
   /**
    * Creates a 'load' event.
-   * 
+   *
    * @return the event object
    */
   static dart_html.Event createLoadEvent() {
     return createHtmlEvent(BrowserEvents.LOAD, false, false);
   }
-  
+
   /**
    * Creates a 'scroll' event.
-   * 
+   *
    * Note: Contextmenu events will not dispatch properly on Firefox 2 and
    * earlier.
-   * 
+   *
    * @return the event object
    */
   static dart_html.Event createScrollEvent() {
     return createHtmlEvent(BrowserEvents.SCROLL, false, false);
   }
-  
+
   /**
    * Gets the {@link EventListener} that will receive events for the given
    * element. Only one such listener may exist for a single element.
-   * 
+   *
    * @param elem the element whose listener is to be set
    * @return the element's event listener
    */

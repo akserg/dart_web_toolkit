@@ -155,7 +155,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   }
 
   void onBrowserEvent(dart_html.Event event) {
-    if (event.type == BrowserEvents.CLICK) {
+    if (Dom.eventGetType(event) == Event.ONCLICK) {
       dart_html.Element target = (event as dart_html.MouseEvent).target;
       int index = _findDividerIndex(target);
       if (index != -1) {

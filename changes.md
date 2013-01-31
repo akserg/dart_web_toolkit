@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**January 31, 2013
+
+* Checked HtmlPanel, RootLayoutPanel, StackPanel. Added examples.
+
 **January 30, 2013
 
 * Fixed bug capturing element doesn't recieve events in Dom, DomImplStandard and Splitter

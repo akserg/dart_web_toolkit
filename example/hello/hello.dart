@@ -907,8 +907,60 @@ void main1() {
 //*******************************
 //*******************************
 
-// SplitLayoutPanel
 void main() {
+  String text1 = "Lorem ipsum dolor sit amet...";
+  String text2 = "Sed egestas, arcu nec accumsan...";
+  String text3 = "Proin tristique, elit at blandit...";
+  ui.StackPanel panel = new ui.StackPanel();
+  ui.Label label;
+  label = new ui.Label(text1);
+  panel.add(label, "One", false);
+  label = new ui.Label(text2);
+  panel.add(label, "Two", false);
+  label = new ui.Label(text3);
+  panel.add(label, "Three", false);
+  panel.setSize("400px", "200px");
+  panel.addStyleName("demo-panel");
+  ui.RootPanel.get("testId").add(panel);
+}
+
+//RootLayoutPanel 
+void main_23() {
+  // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
+  // resize events on the window to ensure that its children are informed of
+  // possible size changes.
+  ui.RootLayoutPanel.get().add(new ui.Html("<div id='fred' style='background-color: yellow; border: 1px dotted red; width: 200px; text-align: center;'> This is an HTML Widget </div>"));
+}
+
+// Html Panel
+void main_22() {
+
+  String html = "<div id='one' style='border:3px dotted blue;'></div><div id='two' style='border:3px dotted green;'></div>";
+  ui.HtmlPanel panel = new ui.HtmlPanel(html);
+  panel.setSize("200px", "120px");
+  //panel.addStyleName("demo-panel");
+  panel.addById(new ui.Button("Do Nothing"), "one");
+  panel.addById(new ui.TextBox(), "two");
+
+  ui.RootPanel.get("testId").add(panel);
+}
+
+// FlowPanel
+void main_21() {
+  ui.FlowPanel flowPanel = new ui.FlowPanel();
+
+  // Add some content to the panel
+  for (int i = 0; i < 30; i++) {
+    ui.CheckBox checkbox = new ui.CheckBox("Item $i");
+    checkbox.addStyleName("cw-FlowPanel-checkBox");
+    flowPanel.add(checkbox);
+  }
+
+  ui.RootPanel.get("testId").add(flowPanel);
+}
+
+// SplitLayoutPanel
+void main_20() {
   ui.SplitLayoutPanel p = new ui.SplitLayoutPanel();
   p.addWest(new ui.Button("navigation"), 128.0);
   p.addNorth(new ui.Button("list"), 384.0);

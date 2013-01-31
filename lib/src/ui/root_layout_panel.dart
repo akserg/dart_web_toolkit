@@ -47,7 +47,7 @@ class RootLayoutPanel extends LayoutPanel {
   }
 
   RootLayoutPanel._initial() {
-    dart_html.window.on.resize.add((dart_html.Event event){
+    dart_html.window.onResize.listen((dart_html.Event event){
       onResize();
     });
 

@@ -78,7 +78,7 @@ class HtmlPanel extends ComplexPanel {
    * @param tag the tag of the root element
    * @param html the panel's HTML
    */
-  HtmlPanel.tag(String tag, [String html = ""]) {
+  HtmlPanel.fromTag(String tag, [String html = ""]) {
     // Optimization for when the HTML is empty.
     if ("" == html) {
       setElement(new dart_html.Element.tag(tag));
@@ -282,7 +282,7 @@ class HtmlPanel extends ComplexPanel {
    * element.query('#id');
    */
   dart_html.Element getElementById(String id) {
-    dart_html.Element elem = isAttached() ? dart_html.document.$dom_getElementById(id) : attachToDomAndGetElement(id);
+    dart_html.Element elem = isAttached() ? dart_html.document.$dom_getElementById(id) : _attachToDomAndGetElement(id);
     return elem;
   }
 
@@ -295,7 +295,7 @@ class HtmlPanel extends ComplexPanel {
    * @param id the id whose associated element is to be retrieved
    * @return the associated element, or <code>null</code> if none is found
    */
-  dart_html.Element attachToDomAndGetElement(String id) {
+  dart_html.Element _attachToDomAndGetElement(String id) {
     // If the hidden DIV has not been created, create it.
     if (hiddenDiv == null) {
       hiddenDiv = new dart_html.DivElement();

@@ -12,7 +12,13 @@ echo "dart_analyzer lib/*.dart"
 results=`dart_analyzer --extended-exit-code lib/*.dart 2>&1`
 
 echo "$results"
-echo [ -n "$results" ];
+echo '[ -n "$results" ];
+
+if [$results -gt 1]; then
+  echo "No errors"
+else
+  echo "Were errors"
+fi
 
 #if [ -n "$results" ]; then
 #    exit 1

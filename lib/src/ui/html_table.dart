@@ -1034,7 +1034,11 @@ class CellFormatter {
    * @param col the column of the cell
    * @return the element
    */
-  dart_html.Element getCellElement(dart_html.TableElement table, int row, int col) {
+  dart_html.Element getCellElement(dart_html.Element table, int row, int col) {
+    if (table is! dart_html.TableElement) {
+      table = table.parent as dart_html.TableElement;
+    }
+    assert (table is dart_html.TableElement);
     return (table.rows[row] as dart_html.TableRowElement).cells[col];
   }
 

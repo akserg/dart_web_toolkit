@@ -907,21 +907,189 @@ void main1() {
 //*******************************
 //*******************************
 
+// FocusPanel
 void main() {
-  String text1 = "Lorem ipsum dolor sit amet...";
-  String text2 = "Sed egestas, arcu nec accumsan...";
-  String text3 = "Proin tristique, elit at blandit...";
-  ui.StackPanel panel = new ui.StackPanel();
-  ui.Label label;
-  label = new ui.Label(text1);
-  panel.add(label, "One", false);
-  label = new ui.Label(text2);
-  panel.add(label, "Two", false);
-  label = new ui.Label(text3);
-  panel.add(label, "Three", false);
-  panel.setSize("400px", "200px");
-  panel.addStyleName("demo-panel");
+  ui.FocusPanel panel = new ui.FocusPanel();
+  panel.setSize("200px", "120px");
+  panel.addStyleName("demo-panel-borderless");
+  ui.Label label = new ui.Label("Label");
+  label.setWidth("100px");
+  label.addStyleName("demo-label");
+  event.AllMouseHandlersAdapter allMouseHandlersAdapter = new event.AllMouseHandlersAdapter((event.MouseEvent evt){
+    if (evt is event.MouseOverEvent) {
+      label.addStyleName("demo-label-over");
+    } else if (evt is event.MouseOutEvent) {
+      label.removeStyleName("demo-label-over");
+    }
+  });
+//  label.addMouseDownHandler(allMouseHandlersAdapter);
+//  label.addMouseUpHandler(allMouseHandlersAdapter);
+  label.addMouseOverHandler(allMouseHandlersAdapter);
+  label.addMouseOutHandler(allMouseHandlersAdapter);
+//  label.addMouseMoveHandler(allMouseHandlersAdapter);
+//  label.addMouseWheelHandler(allMouseHandlersAdapter);
+  
+  panel.add(label);
   ui.RootPanel.get("testId").add(panel);
+}
+
+// DecoratorPanel
+void main_30() {
+  ui.FlexTable layout = new ui.FlexTable();
+  layout.setCellSpacing(6);
+  ui.FlexCellFormatter cellFormatter = layout.getFlexCellFormatter();
+
+  // Add a title to the form
+  layout.setHtml(0, 0, "Enter Search Criteria");
+  cellFormatter.setColSpan(0, 0, 2);
+  cellFormatter.setHorizontalAlignment(0, 0, i18n.HasHorizontalAlignment.ALIGN_CENTER);
+
+  // Add some standard form options
+  layout.setHtml(1, 0, "Name:");
+  layout.setWidget(1, 1, new ui.TextBox());
+  layout.setHtml(2, 0, "Description:");
+  layout.setWidget(2, 1, new ui.TextBox());
+
+  // Wrap the content in a DecoratorPanel
+  ui.DecoratorPanel decPanel = new ui.DecoratorPanel();
+  decPanel.setWidget(layout);
+  
+  ui.RootPanel.get("testId").add(decPanel);
+}
+
+// SimplePanel
+void main_29() {
+  ui.SimplePanel panel = new ui.SimplePanel();
+  panel.setSize("200px", "120px");
+  panel.addStyleName("demo-panel");
+  
+  ui.Label label = new ui.Label("Label");
+  label.setWidth("100px");
+  label.addStyleName("demo-label");
+  panel.add(label);
+  
+  ui.RootPanel.get("testId").add(panel);
+}
+
+// Grid
+void main_28() {
+
+  // Create a grid
+  ui.Grid grid = new ui.Grid(4, 4);
+  grid.addStyleName("cw-FlexTable");
+
+  // Add images to the grid
+  int numRows = grid.getRowCount();
+  int numColumns = grid.getColumnCount();
+  for (int row = 0; row < numRows; row++) {
+    for (int col = 0; col < numColumns; col++) {
+      grid.setWidget(row, col, new ui.Html("Cell $row.$col"));
+    }
+  }
+
+  ui.RootPanel.get("testId").add(grid);
+}
+
+// FlexTable
+void main_27() {
+  ui.FlexTable flexTable = new ui.FlexTable();
+  ui.FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
+  flexTable.addStyleName("cw-FlexTable");
+  flexTable.setWidth("32em");
+  flexTable.setCellSpacing(5);
+  flexTable.setCellPadding(3);
+
+  // Add some text
+  cellFormatter.setHorizontalAlignment(0, 1, i18n.HasHorizontalAlignment.ALIGN_LEFT);
+  flexTable.setHtml(0, 0, "This is a FlexTable that supports <b>colspans</b> and <b>rowspans</b>. You can use it to format your page or as a special purpose table.");
+  cellFormatter.setColSpan(0, 0, 2);
+
+  // Add a button that will add more rows to the table
+  ui.Button addRowButton = new ui.Button("Add", new event.ClickHandlerAdapter((event.ClickEvent evt){
+    addRow(flexTable);
+  }));
+  addRowButton.addStyleName("sc-FixedWidthButton");
+
+  ui.Button removeRowButton = new ui.Button("Remove", new event.ClickHandlerAdapter((event.ClickEvent evt){
+    removeRow(flexTable);
+  }));
+  removeRowButton.addStyleName("sc-FixedWidthButton");
+
+  ui.VerticalPanel buttonPanel = new ui.VerticalPanel();
+  buttonPanel.clearAndSetStyleName("cw-FlexTable-buttonPanel");
+  buttonPanel.add(addRowButton);
+  buttonPanel.add(removeRowButton);
+  flexTable.setWidget(0, 1, buttonPanel);
+  cellFormatter.setVerticalAlignment(0, 1, i18n.HasVerticalAlignment.ALIGN_TOP);
+
+  // Add two rows to start
+  _addRow(flexTable);
+  _addRow(flexTable);
+
+  ui.RootPanel.get("testId").add(flexTable);
+}
+
+/**
+ * Add a row to the flex table.
+ */
+void _addRow(ui.FlexTable flexTable) {
+  int numRows = flexTable.getRowCount();
+  flexTable.setWidget(numRows, 0, new ui.Html("Cell ${numRows}.0"));
+  flexTable.setWidget(numRows, 1, new ui.Html("Cell ${numRows}.1"));
+  flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows + 1);
+}
+
+// HeaderPanel - Bug in Resizing
+void main_26() {
+//  ui.HeaderPanel headerPanel = new ui.HeaderPanel();
+//  headerPanel.addStyleName("demo-panel");
+//  headerPanel.setSize("150px", "100px");
+//
+//  ui.FlowPanel header = new ui.FlowPanel();
+//  header.addStyleName(".header");
+//  header.add(new ui.Label("This is the header"));
+//  headerPanel.setHeaderWidget(header);
+//  
+//  ui.ResizeLayoutPanel content = new ui.ResizeLayoutPanel();
+//  content.addStyleName(".middle");
+//  content.add(new ui.Label("This is the middle section"));
+//  headerPanel.setContentWidget(content);
+//  
+//  ui.FlowPanel footer = new ui.FlowPanel();
+//  footer.addStyleName(".footer");
+//  footer.add(new ui.Label("This is the footer"));
+//  headerPanel.setFooterWidget(footer);
+//  
+//  ui.RootPanel.get("testId").add(headerPanel);
+}
+
+// DecoratedStackPanel
+void main_25() {
+  ui.DecoratedStackPanel panel = new ui.DecoratedStackPanel();
+  panel.setSize("400px", "200px");
+
+  createStackPanelContent(panel, "Panel 1", "One");
+  createStackPanelContent(panel, "Panel 2", "Two");
+  createStackPanelContent(panel, "Panel 3", "Three");
+  
+  ui.RootPanel.get("testId").add(panel);
+}
+
+// CtackPanel
+void main_24() {
+  ui.StackPanel panel = new ui.StackPanel();
+  panel.setSize("400px", "200px");
+
+  createStackPanelContent(panel, "Panel 1", "One");
+  createStackPanelContent(panel, "Panel 2", "Two");
+  createStackPanelContent(panel, "Panel 3", "Three");
+  
+  ui.RootPanel.get("testId").add(panel);
+}
+
+void createStackPanelContent(ui.StackPanel panel, String text, String label, [bool asHtml = false]) {
+  ui.Label content = new ui.Label(text);
+  panel.add(content, label, asHtml);
 }
 
 //RootLayoutPanel 

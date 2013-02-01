@@ -6,7 +6,7 @@ part of dart_web_toolkit_event;
 /**
  * Represents a native mouse over event.
  */
-class MouseOverEvent extends DomEvent {
+class MouseOverEvent extends MouseEvent {
 
   /**
    * The event type.

@@ -46,6 +46,7 @@ part 'src/ui/accepts_one_widget.dart';
 part 'src/ui/resize_layout_panel.dart';
 part 'src/ui/provides_resize.dart';
 part 'src/ui/impl/resize_layout_panel_impl.dart';
+part 'src/ui/impl/resize_layout_panel_impl_standard.dart';
 part 'src/ui/finite_widget_iterator.dart';
 part 'src/ui/check_box.dart';
 part 'src/ui/radio_button.dart';

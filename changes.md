@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** February 1, 2013
+
+* Checked DecoratorPanel, FlexTable, HeaderPanel, HeaderPanel, HtmlTable, ResizeLayoutPanel, StackPanel. Added examples.
+
 **January 31, 2013
 
 * Checked HtmlPanel, RootLayoutPanel, StackPanel. Added examples.

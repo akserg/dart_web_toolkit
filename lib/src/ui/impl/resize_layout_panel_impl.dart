@@ -3,13 +3,13 @@
 
 part of dart_web_toolkit_ui;
 
-class ResizeLayoutPanelImpl {
+abstract class ResizeLayoutPanelImpl {
 
   /**
    * Create instance of [ResizeLayoutPanelImpl] depends on broswer.
    */
   factory ResizeLayoutPanelImpl.browserDependent() {
-    return new ResizeLayoutPanelImpl();
+    return new ResizeLayoutPanelImplStandard();
   }
 
   bool isAttached;

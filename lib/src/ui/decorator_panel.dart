@@ -69,7 +69,7 @@ class DecoratorPanel extends SimplePanel {
   /**
    * The default style name.
    */
-  static final String _DEFAULT_STYLENAME = "gwt-DecoratorPanel";
+  static final String _DEFAULT_STYLENAME = "dwt-DecoratorPanel";
 
   /**
    * The default styles applied to each row.

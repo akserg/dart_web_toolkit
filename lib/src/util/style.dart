@@ -87,6 +87,17 @@ class TextAlign<String> extends Enum<String> {
   static const TextAlign RIGHT = const TextAlign(Style._TEXT_ALIGN_RIGHT);
 }
 
+/**
+ * Enum for the visibility property.
+ */
+class Visibility<String> extends Enum<String> {
+  
+  const Visibility(String type) : super (type);
+
+  static const Visibility VISIBLE = const Visibility(Style.VISIBILITY_VISIBLE);
+  static const Visibility HIDDEN = const Visibility(Style.VISIBILITY_HIDDEN);
+}
+
 class Style {
 
   static const String _DISPLAY_INLINE_BLOCK = "inline-block";
@@ -124,4 +135,7 @@ class Style {
   static const String _WHITE_SPACE_PRE = "pre";
   static const String _WHITE_SPACE_PRE_LINE = "pre-line";
   static const String _WHITE_SPACE_PRE_WRAP = "pre-wrap";
+  
+  static const String VISIBILITY_HIDDEN = "hidden";
+  static const String VISIBILITY_VISIBLE = "visible";
 }

@@ -10,7 +10,7 @@ part of dart_web_toolkit_ui;
  */
 class ResizeLayoutPanel extends SimplePanel implements ProvidesResize, HasResizeHandlers {
 
-  ResizeLayoutPanelImpl impl = new ResizeLayoutPanelImpl.browserDependent();
+  static ResizeLayoutPanelImpl impl = new ResizeLayoutPanelImpl.browserDependent();
   Layer layer;
   Layout layout;
   ScheduledCommand resizeCmd;

@@ -10,49 +10,49 @@ part of dart_web_toolkit_ui;
  */
 class HeaderPanel extends Panel implements RequiresResize {
 
-  Widget content;
-  dart_html.Element contentContainer;
-  Widget footer;
-  dart_html.Element footerContainer;
-  ResizeLayoutPanelImpl footerImpl;
-  Widget header;
-  dart_html.Element headerContainer;
-  ResizeLayoutPanelImpl headerImpl;
-  ScheduledCommand layoutCmd;
-  bool layoutScheduled = false;
+  Widget _content;
+  dart_html.Element _contentContainer;
+  Widget _footer;
+  dart_html.Element _footerContainer;
+  ResizeLayoutPanelImpl _footerImpl;
+  Widget _header;
+  dart_html.Element _headerContainer;
+  ResizeLayoutPanelImpl _headerImpl;
+  ScheduledCommand _layoutCmd;
+  bool _layoutScheduled = false;
 
   HeaderPanel() {
-    layoutCmd = new HeaderPanelScheduledCommand(this);
+    _layoutCmd = new HeaderPanelScheduledCommand(this);
     // Create the outer element
     dart_html.DivElement elem = new dart_html.DivElement();
     elem.style.position = Position.RELATIVE.value;
     elem.style.overflow = Overflow.HIDDEN.value;
     setElement(elem);
 
-    footerImpl = new ResizeLayoutPanelImpl.browserDependent();
-    headerImpl = new ResizeLayoutPanelImpl.browserDependent();
+    _footerImpl = new ResizeLayoutPanelImpl.browserDependent();
+    _headerImpl = new ResizeLayoutPanelImpl.browserDependent();
 
     // Create a delegate to handle resize from the header and footer.
     ResizeDelegate resizeDelegate = new HeaderPanelResizeDelegate(this);
 
     // Create the header container.
-    headerContainer = createContainer();
-    headerContainer.style.top = "0.0".concat(Unit.PX.value);
-    headerImpl.init(headerContainer, resizeDelegate);
-    elem.append(headerContainer);
+    _headerContainer = _createContainer();
+    _headerContainer.style.top = "0.0".concat(Unit.PX.value);
+    _headerImpl.init(_headerContainer, resizeDelegate);
+    elem.append(_headerContainer);
 
     // Create the footer container.
-    footerContainer = createContainer();
-    footerContainer.style.bottom = "0.0".concat(Unit.PX.value);
-    footerImpl.init(footerContainer, resizeDelegate);
-    elem.append(footerContainer);
+    _footerContainer = _createContainer();
+    _footerContainer.style.bottom = "0.0".concat(Unit.PX.value);
+    _footerImpl.init(_footerContainer, resizeDelegate);
+    elem.append(_footerContainer);
 
     // Create the content container.
-    contentContainer = createContainer();
-    contentContainer.style.overflow = Overflow.HIDDEN.value;
-    contentContainer.style.top = "0.0".concat(Unit.PX.value);
-    contentContainer.style.height = "0.0".concat(Unit.PX.value);
-    elem.append(contentContainer);
+    _contentContainer = _createContainer();
+    _contentContainer.style.overflow = Overflow.HIDDEN.value;
+    _contentContainer.style.top = "0.0".concat(Unit.PX.value);
+    _contentContainer.style.height = "0.0".concat(Unit.PX.value);
+    elem.append(_contentContainer);
   }
 
   //*********
@@ -66,11 +66,11 @@ class HeaderPanel extends Panel implements RequiresResize {
    */
   void add(Widget w) {
     // Add widgets in the order that they appear.
-    if (header == null) {
+    if (_header == null) {
       setHeaderWidget(w);
-    } else if (content == null) {
+    } else if (_content == null) {
       setContentWidget(w);
-    } else if (footer == null) {
+    } else if (_footer == null) {
       setFooterWidget(w);
     } else {
       throw new Exception("HeaderPanel already contains header, content, and footer widgets.");
@@ -90,15 +90,15 @@ class HeaderPanel extends Panel implements RequiresResize {
       w.getElement().remove();
 
       // Logical detach.
-      if (w == content) {
-        content = null;
-        contentContainer.style.display = Display.NONE.value;
-      } else if (w == header) {
-        header = null;
-        headerContainer.style.display = Display.NONE.value;
-      } else if (w == footer) {
-        footer = null;
-        footerContainer.style.display = Display.NONE.value;
+      if (w == _content) {
+        _content = null;
+        _contentContainer.style.display = Display.NONE.value;
+      } else if (w == _header) {
+        _header = null;
+        _headerContainer.style.display = Display.NONE.value;
+      } else if (w == _footer) {
+        _footer = null;
+        _footerContainer.style.display = Display.NONE.value;
       }
     }
     return true;
@@ -114,7 +114,7 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @return the content {@link Widget}
    */
   Widget getContentWidget() {
-    return content;
+    return _content;
   }
 
   /**
@@ -123,12 +123,12 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @param w the widget to use as the content
    */
   void setContentWidget(Widget w) {
-    contentContainer.style.display = "";
-    _put(w, content, contentContainer);
+    _contentContainer.style.display = "";
+    _add(w, _content, _contentContainer);
 
     // Logical attach.
-    content = w;
-    scheduledLayout();
+    _content = w;
+    _scheduledLayout();
   }
 
   /**
@@ -137,7 +137,7 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @return the footer {@link Widget}
    */
   Widget getFooterWidget() {
-    return footer;
+    return _footer;
   }
 
   /**
@@ -146,12 +146,12 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @param w the widget to use as the footer
    */
   void setFooterWidget(Widget w) {
-    footerContainer.style.display = "";
-    _put(w, footer, footerContainer);
+    _footerContainer.style.display = "";
+    _add(w, _footer, _footerContainer);
 
     // Logical attach.
-    footer = w;
-    scheduledLayout();
+    _footer = w;
+    _scheduledLayout();
   }
 
   /**
@@ -160,7 +160,7 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @return the header {@link Widget}
    */
   Widget getHeaderWidget() {
-    return header;
+    return _header;
   }
 
   /**
@@ -169,12 +169,12 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @param w the widget to use as the header
    */
   void setHeaderWidget(Widget w) {
-    headerContainer.style.display = "";
-    _put(w, header, headerContainer);
+    _headerContainer.style.display = "";
+    _add(w, _header, _headerContainer);
 
     // Logical attach.
-    header = w;
-    scheduledLayout();
+    _header = w;
+    _scheduledLayout();
   }
 
   /**
@@ -185,7 +185,7 @@ class HeaderPanel extends Panel implements RequiresResize {
    * @param toReplace the widget to replace
    * @param container the container in which to place the widget
    */
-  void _put(Widget w, Widget toReplace, dart_html.Element container) {
+  void _add(Widget w, Widget toReplace, dart_html.Element container) {
     // Validate.
     if (w == toReplace) {
       return;
@@ -209,7 +209,7 @@ class HeaderPanel extends Panel implements RequiresResize {
     }
   }
 
-  dart_html.Element createContainer() {
+  dart_html.Element _createContainer() {
     dart_html.DivElement container = new dart_html.DivElement();
     container.style.position = Position.ABSOLUTE.value;
     container.style.display = Display.NONE.value;
@@ -219,7 +219,7 @@ class HeaderPanel extends Panel implements RequiresResize {
   }
 
   Iterator<Widget> iterator() {
-    return new FiniteWidgetIterator(new WidgetProviderImpl(this), 3);
+    return new FiniteWidgetIterator(new _WidgetProviderImpl(this), 3);
   }
 
   //************
@@ -249,9 +249,9 @@ class HeaderPanel extends Panel implements RequiresResize {
    */
   void onAttach() {
     super.onAttach();
-    headerImpl.onAttach();
-    footerImpl.onAttach();
-    scheduledLayout();
+    _headerImpl.onAttach();
+    _footerImpl.onAttach();
+    _scheduledLayout();
   }
 
   /**
@@ -279,8 +279,8 @@ class HeaderPanel extends Panel implements RequiresResize {
    */
   void onDetach() {
     super.onDetach();
-    headerImpl.onDetach();
-    footerImpl.onDetach();
+    _headerImpl.onDetach();
+    _footerImpl.onDetach();
   }
 
   //*********************************
@@ -293,7 +293,7 @@ class HeaderPanel extends Panel implements RequiresResize {
    */
   void onResize() {
     // Handle the outer element resizing.
-    scheduledLayout();
+    _scheduledLayout();
   }
 
   //*******
@@ -303,39 +303,39 @@ class HeaderPanel extends Panel implements RequiresResize {
   /**
    * Update the layout.
    */
-  void forceLayout() {
+  void _forceLayout() {
     // No sense in doing layout if we aren't attached or have no content.
-    if (!isAttached() || content == null) {
+    if (!isAttached() || _content == null) {
       return;
     }
 
     // Resize the content area to fit between the header and footer.
     int remainingHeight = getElement().clientHeight;
-    if (header != null) {
-      int height = dart_math.max(0, headerContainer.offsetHeight);
+    if (_header != null) {
+      int height = dart_math.max(0, _headerContainer.offsetHeight);
       remainingHeight -= height;
-      contentContainer.style.top = height.toString().concat(Unit.PX.value);
+      _contentContainer.style.top = height.toString().concat(Unit.PX.value);
     } else {
-      contentContainer.style.top = "0.0".concat(Unit.PX.value);
+      _contentContainer.style.top = "0.0".concat(Unit.PX.value);
     }
-    if (footer != null) {
-      remainingHeight -= footerContainer.offsetHeight;
+    if (_footer != null) {
+      remainingHeight -= _footerContainer.offsetHeight;
     }
-    contentContainer.style.height = dart_math.max(0, remainingHeight).toString().concat(Unit.PX.value);
+    _contentContainer.style.height = dart_math.max(0, remainingHeight).toString().concat(Unit.PX.value);
 
     // Provide resize to child.
-    if (content is RequiresResize) {
-      (content as RequiresResize).onResize();
+    if (_content is RequiresResize) {
+      (_content as RequiresResize).onResize();
     }
   }
 
   /**
    * Schedule layout to adjust the height of the content area.
    */
-  void scheduledLayout() {
-    if (isAttached() && !layoutScheduled) {
-      layoutScheduled = true;
-      Scheduler.get().scheduleDeferred(layoutCmd);
+  void _scheduledLayout() {
+    if (isAttached() && !_layoutScheduled) {
+      _layoutScheduled = true;
+      Scheduler.get().scheduleDeferred(_layoutCmd);
     }
   }
 }
@@ -351,8 +351,8 @@ class HeaderPanelScheduledCommand implements ScheduledCommand {
    * Causes the Command to perform its encapsulated behavior.
    */
   void execute() {
-    _panel.layoutScheduled = false;
-    _panel.forceLayout();
+    _panel._layoutScheduled = false;
+    _panel._forceLayout();
   }
 }
 
@@ -370,7 +370,7 @@ class HeaderPanelResizeDelegate extends ResizeDelegate {
    * Called when the element is resized.
    */
   void onResize() {
-    _panel.scheduledLayout();
+    _panel._scheduledLayout();
   }
 }
 
@@ -385,20 +385,20 @@ class HeaderPanelResizeDelegate extends ResizeDelegate {
  * <li>Footer widget</li>
  * </ol>
  */
-class WidgetProviderImpl implements WidgetProvider {
+class _WidgetProviderImpl implements WidgetProvider {
 
   HeaderPanel _panel;
 
-  WidgetProviderImpl(this._panel);
+  _WidgetProviderImpl(this._panel);
 
   Widget get(int index) {
     switch (index) {
       case 0:
-        return _panel.header;
+        return _panel._header;
       case 1:
-        return _panel.content;
+        return _panel._content;
       case 2:
-        return _panel.footer;
+        return _panel._footer;
     }
     throw new Exception("Array Index Out Of Bounds $index");
   }

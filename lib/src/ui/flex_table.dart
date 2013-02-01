@@ -17,7 +17,11 @@ part of dart_web_toolkit_ui;
  */
 class FlexTable extends HtmlTable {
 
-  static void addCells(dart_html.TableElement table, int row, int num){
+  static void addCells(dart_html.Element table, int row, int num){
+    if (table is! dart_html.TableElement) {
+      table = table.parent as dart_html.TableElement;
+    }
+    assert (table is dart_html.TableElement);
     dart_html.TableRowElement rowElem = table.rows[row];
     for(int i = 0; i < num; i++) {
       rowElem.append(new dart_html.TableCellElement());
@@ -50,7 +54,7 @@ class FlexTable extends HtmlTable {
 
   int getCellCount(int row) {
     checkRowBounds(row);
-    return getDomCellCount(row); //, getBodyElement());
+    return getDomCellCount(row, getBodyElement());
   }
 
   /**

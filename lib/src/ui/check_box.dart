@@ -52,7 +52,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   /**
    * Creates a check box with label.
    */
-  CheckBox([String label = null, bool asHTML = false]) : super(new dart_html.SpanElement()) {
+  CheckBox([String label = null, bool asHtml = false]) : super(new dart_html.SpanElement()) {
     dart_html.InputElement element = new dart_html.InputElement();
     element.type = "checkbox";
     _initWidget(element);
@@ -60,7 +60,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     clearAndSetStyleName("dwt-CheckBox");
     //
     if (label != null) {
-      if (asHTML) {
+      if (asHtml) {
         html = label;
       } else {
         text = label;

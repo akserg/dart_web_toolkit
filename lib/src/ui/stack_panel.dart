@@ -61,10 +61,10 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
    * @param stackText the header text associated with this widget
    * @param asHTML <code>true</code> to treat the specified text as HTML
    */
-  void add(Widget w, [String stackText = null, bool asHTML = false]) {
+  void add(Widget w, [String stackText = null, bool asHtml = false]) {
     insertWidget(w, getWidgetCount());
     if (stackText != null) {
-      setStackText(getWidgetCount() - 1, stackText, asHTML);
+      setStackText(getWidgetCount() - 1, stackText, asHtml);
     }
   }
 

@@ -11,7 +11,7 @@ echo "dart_analyzer lib/*.dart"
 
 results=`dart_analyzer --extended-exit-code lib/*.dart 2>&1`
 
-echo "Result:"
+echo "Result "
 echo "$results"
 
 if [$results -gt 1]; then

@@ -26,9 +26,7 @@ part of dart_web_toolkit_ui;
  * {@example com.google.dwt.examples.TabBarExample}
  * </p>
  */
-class TabBar extends Composite implements /*SourcesTabEvents,*/
-  HasBeforeSelectionHandlers<int>, HasSelectionHandlers<int>/*,
-  ClickListener, KeyboardListener*/ {
+class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSelectionHandlers<int> {
 
     static final String STYLENAME_DEFAULT = "dwt-TabBarItem";
     HorizontalPanel panel = new HorizontalPanel();
@@ -556,7 +554,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
       initWidget(wrapperWidget);
     }
 
-   //sinkEvents(dart_html.Event.ONCLICK | dart_html.Event.ONKEYDOWN);
+   sinkEvents(Event.ONCLICK | Event.ONKEYDOWN);
   }
 
 
@@ -592,9 +590,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
    *
    * @return <code>true</code> if word-wrapping is enabled.
    */
-  bool get wordWrap => _getWordWrap();
-
-  bool _getWordWrap() {
+  bool get wordWrap {
     if (hasWordWrap()) {
       return (focusablePanel.getWidget() as HasWordWrap).wordWrap;
     }
@@ -617,20 +613,20 @@ class _ClickDelegatePanel extends Composite implements Tab {
     }
 
     // No need for call to super.
-//    switch (Dom.eventGetType(event)) {
-//      case dart_html.Event.ONCLICK:
-//        TabBar.this.selectTabByTabWidget(this);
-//        TabBar.this.onClick(this);
-//        break;
-//
-//      case dart_html.Event.ONKEYDOWN:
-//        if (((char) Dom.eventGetKeyCode(event)) == KeyCodes.KEY_ENTER) {
-//          TabBar.this.selectTabByTabWidget(this);
-//        }
-//        TabBar.this.onKeyDown(this, (char) event.getKeyCode(),
-//            KeyboardListenerCollection.getKeyboardModifiers(event));
-//        break;
-//    }
+    switch (Dom.eventGetType(event)) {
+      case Event.ONCLICK:
+        _tabBar.selectTabByTabWidget(this);
+//        _tabBar.onClick(this);
+        break;
+
+      case Event.ONKEYDOWN:
+        dart_html.KeyboardEvent keyEvent = event as dart_html.KeyboardEvent;
+        if (keyEvent.charCode == KeyCodes.KEY_ENTER) {
+          _tabBar.selectTabByTabWidget(this);
+        }
+//        _tabBar.onKeyDown(this, keyEvent.keyCode, KeyboardListenerCollection.getKeyboardModifiers(event));
+        break;
+    }
     super.onBrowserEvent(event);
   }
 

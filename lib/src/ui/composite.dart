@@ -83,7 +83,7 @@ abstract class Composite extends Widget implements IsRenderable {
     return false;
   }
 
-//********************************
+  //********************************
   // Implementation of EventListener
   //********************************
   /**
@@ -175,11 +175,10 @@ abstract class Composite extends Widget implements IsRenderable {
    */
   void onAttach() {
     if (!isOrWasAttached()) {
-//      _widget.sinkEvents(eventsToSink);
-//      eventsToSink = -1;
+      _widget.sinkEvents(eventsToSink);
+      eventsToSink = -1;
     }
 
-    print("Composite.onAttach. ${getElement().id}");
     _widget.onAttach();
 
     // Clobber the widget's call to setEventListener(), causing all events to

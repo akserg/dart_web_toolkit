@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** February 2, 2013
+
+* Checked Composite, PopupPanel, ScrollPanel, StackLayoutPanel, TabBar, TabLayoutPanel, TabPanel. Added examples.
+* Implemented AnimationType.
+
 ** February 1, 2013
 
 * Checked DecoratorPanel, FlexTable, HeaderPanel, HeaderPanel, HtmlTable, ResizeLayoutPanel, StackPanel. Added examples.

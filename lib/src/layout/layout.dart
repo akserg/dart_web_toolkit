@@ -427,11 +427,11 @@ class Layer {
   Unit leftUnit, topUnit, rightUnit, bottomUnit, widthUnit, heightUnit;
   Unit targetLeftUnit = Unit.PX, targetTopUnit = Unit.PX, targetRightUnit = Unit.PX,
       targetBottomUnit = Unit.PX, targetWidthUnit, targetHeightUnit;
-  double left, top, right, bottom, width, height;
-  double sourceLeft, sourceTop, sourceRight, sourceBottom, sourceWidth,
-  sourceHeight;
-  double targetLeft, targetTop, targetRight, targetBottom, targetWidth,
-  targetHeight;
+  double left = 0.0, top = 0.0, right = 0.0, bottom = 0.0, width = 0.0, height = 0.0;
+  double sourceLeft = 0.0, sourceTop = 0.0, sourceRight = 0.0, sourceBottom = 0.0, sourceWidth = 0.0,
+  sourceHeight = 0.0;
+  double targetLeft = 0.0, targetTop = 0.0, targetRight = 0.0, targetBottom = 0.0, targetWidth = 0.0,
+  targetHeight = 0.0;
 
   Alignment hPos = Alignment.STRETCH, vPos = Alignment.STRETCH;
   bool visible = true;

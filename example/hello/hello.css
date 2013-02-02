@@ -130,6 +130,45 @@ p {
   transform: scale(0.8);
 }
 
+.table-center
+{
+  margin-left         : auto;
+  margin-right        : auto;
+}
+
+/**********************************************************************************
+*             Popup Demo
+**********************************************************************************/
+.demo-popup, .demo-Composite
+{
+  background-color      : #ffc;
+  border            : 3px solid #009;
+}
+.demo-Composite
+{
+  margin            : 0 auto;
+}
+.demo-popup-header, .demo-Composite-header
+{
+  background-color      : #ff0;
+  font-size         : 90%;
+  font-weight         : bold;
+  border-bottom       : 3px solid #009;
+  padding           : 5px;
+  text-align          : center;
+}
+.demo-popup-message, .demo-Composite-data
+{
+  font-size         : 80%;
+  padding           : 15px;
+}
+.demo-popup-footer
+{
+  padding           : 5px;
+  text-align          : center;
+  width           : 100%;
+}
+
 /**********************************************************************************
 *               Demo Pages
 **********************************************************************************/

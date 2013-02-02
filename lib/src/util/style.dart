@@ -94,8 +94,8 @@ class Visibility<String> extends Enum<String> {
   
   const Visibility(String type) : super (type);
 
-  static const Visibility VISIBLE = const Visibility(Style.VISIBILITY_VISIBLE);
-  static const Visibility HIDDEN = const Visibility(Style.VISIBILITY_HIDDEN);
+  static const Visibility VISIBLE = const Visibility(Style._VISIBILITY_VISIBLE);
+  static const Visibility HIDDEN = const Visibility(Style._VISIBILITY_HIDDEN);
 }
 
 class Style {
@@ -136,6 +136,6 @@ class Style {
   static const String _WHITE_SPACE_PRE_LINE = "pre-line";
   static const String _WHITE_SPACE_PRE_WRAP = "pre-wrap";
   
-  static const String VISIBILITY_HIDDEN = "hidden";
-  static const String VISIBILITY_VISIBLE = "visible";
+  static const String _VISIBILITY_HIDDEN = "hidden";
+  static const String _VISIBILITY_VISIBLE = "visible";
 }

@@ -65,27 +65,27 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   ProvidesResize, IndexedPanelForIsWidget, AnimatedLayout,
   HasBeforeSelectionHandlers<int>, HasSelectionHandlers<int> {
 
-  static final String WIDGET_STYLE = "dwt-StackLayoutPanel";
-  static final String CONTENT_STYLE = "dwt-StackLayoutPanelContent";
-  static final String HEADER_STYLE = "dwt-StackLayoutPanelHeader";
-  static final String HEADER_STYLE_HOVERING = "dwt-StackLayoutPanelHeader-hovering";
+  static final String _WIDGET_STYLE = "dwt-StackLayoutPanel";
+  static final String _CONTENT_STYLE = "dwt-StackLayoutPanelContent";
+  static final String _HEADER_STYLE = "dwt-StackLayoutPanelHeader";
+  static final String _HEADER_STYLE_HOVERING = "dwt-StackLayoutPanelHeader-hovering";
 
-  static final int ANIMATION_TIME = 250;
+  static final int _ANIMATION_TIME = 250;
 
-  int animationDuration = ANIMATION_TIME;
+  int _animationDuration = _ANIMATION_TIME;
   LayoutPanel layoutPanel;
-  final Unit unit;
-  final List<StackLayoutPanelLayoutData> layoutData = new List<StackLayoutPanelLayoutData>();
-  int selectedIndex = -1;
+  final Unit _unit;
+  final List<_LayoutData> _layoutData = new List<_LayoutData>();
+  int _selectedIndex = -1;
 
   /**
    * Creates an empty stack panel.
    *
    * @param unit the unit to be used for layout
    */
-  StackLayoutPanel(this.unit) : layoutPanel = new LayoutPanel() {
+  StackLayoutPanel(this._unit) : layoutPanel = new LayoutPanel() {
     initWidget(layoutPanel);
-    clearAndSetStyleName(WIDGET_STYLE);
+    clearAndSetStyleName(_WIDGET_STYLE);
   }
 
   void add(Widget w) {
@@ -124,7 +124,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 
   void animate(int duration, [LayoutAnimationCallback callback = null]) {
     // Don't try to animate zero widgets.
-    if (layoutData.length == 0) {
+    if (_layoutData.length == 0) {
       if (callback != null) {
         callback.onAnimationComplete();
       }
@@ -133,38 +133,37 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 
     double top = 0.0, bottom = 0.0;
     int i = 0;
-    for (; i < layoutData.length; ++i) {
-      StackLayoutPanelLayoutData data = layoutData[i];
-      layoutPanel.setWidgetTopHeight(data.header, top, unit, data.headerSize,
-          unit);
+    for (; i < _layoutData.length; ++i) {
+      _LayoutData data = _layoutData[i];
+      layoutPanel.setWidgetTopHeight(data.header, top, _unit, data.headerSize,
+          _unit);
 
       top += data.headerSize;
 
-      layoutPanel.setWidgetTopHeight(data.widget, top, unit, 0.0, unit);
+      layoutPanel.setWidgetTopHeight(data.widget, top, _unit, 0.0, _unit);
 
-      if (i == selectedIndex) {
+      if (i == _selectedIndex) {
         break;
       }
     }
 
-    for (int j = layoutData.length - 1; j > i; --j) {
-      StackLayoutPanelLayoutData data = layoutData[j];
-      layoutPanel.setWidgetBottomHeight(data.header, bottom, unit,
-          data.headerSize, unit);
-      layoutPanel.setWidgetBottomHeight(data.widget, bottom, unit, 0.0, unit);
+    for (int j = _layoutData.length - 1; j > i; --j) {
+      _LayoutData data = _layoutData[j];
+      layoutPanel.setWidgetBottomHeight(data.header, bottom, _unit, data.headerSize, _unit);
+      layoutPanel.setWidgetBottomHeight(data.widget, bottom, _unit, 0.0, _unit);
       bottom += data.headerSize;
     }
 
-    StackLayoutPanelLayoutData data = layoutData[selectedIndex];
-    layoutPanel.setWidgetTopBottom(data.widget, top, unit, bottom, unit);
+    _LayoutData data = _layoutData[_selectedIndex];
+    layoutPanel.setWidgetTopBottom(data.widget, top, _unit, bottom, _unit);
 
     layoutPanel.animate(duration, callback);
   }
 
   void clear() {
     layoutPanel.clear();
-    layoutData.clear();
-    selectedIndex = -1;
+    _layoutData.clear();
+    _selectedIndex = -1;
   }
 
   void forceLayout() {
@@ -177,7 +176,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @return the duration in milliseconds
    */
   int getAnimationDuration() {
-    return animationDuration;
+    return _animationDuration;
   }
 
   /**
@@ -188,7 +187,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    */
   Widget getHeaderWidgetAt(int index) {
     checkIndex(index);
-    return (layoutData[index] as StackLayoutPanelLayoutData).header.getWidget();
+    return (_layoutData[index] as _LayoutData).header.getWidget();
   }
 
   /**
@@ -208,7 +207,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @return the selected index, or <code>-1</code> if none is selected
    */
   int getVisibleIndex() {
-    return selectedIndex;
+    return _selectedIndex;
   }
 
   /**
@@ -217,10 +216,10 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @return the selected widget, or <code>null</code> if none exist
    */
   Widget getVisibleWidget() {
-    if (selectedIndex == -1) {
+    if (_selectedIndex == -1) {
       return null;
     }
-    return getWidgetAt(selectedIndex);
+    return getWidgetAt(_selectedIndex);
   }
 
   Widget getWidgetAt(int index) {
@@ -254,17 +253,17 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @param beforeIndex the index before which it will be inserted
    */
   void insertAsText(Widget child, String text, bool asHtml, double headerSize, int beforeIndex) {
-//    HTML contents = new HTML();
-//    if (asHtml) {
-//      contents.setHTML(text);
-//    } else {
-//      contents.setText(text);
-//    }
-//    insert(child, contents, headerSize, beforeIndex);
+    Html contents = new Html();
+    if (asHtml) {
+      contents.html = text;
+    } else {
+      contents.text = text;
+    }
+    insert(child, new _Header(contents), headerSize, beforeIndex);
   }
 
   Iterator<Widget> iterator() {
-    return new StackLayoutPanellIterator(this);
+    return new _Iterator(this);
   }
 
   void onResize() {
@@ -281,27 +280,27 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     }
 
     // Find the layoutData associated with this widget and remove it.
-    for (int i = 0; i < layoutData.length; ++i) {
-      StackLayoutPanelLayoutData data = layoutData[i];
+    for (int i = 0; i < _layoutData.length; ++i) {
+      _LayoutData data = _layoutData[i];
       if (data.widget == child) {
         layoutPanel.remove(data.header);
         layoutPanel.remove(data.widget);
 
-        data.header.removeStyleName(HEADER_STYLE);
-        data.widget.removeStyleName(CONTENT_STYLE);
+        data.header.removeStyleName(_HEADER_STYLE);
+        data.widget.removeStyleName(_CONTENT_STYLE);
 
-        layoutData.removeAt(i);
+        _layoutData.removeAt(i);
 
-        if (selectedIndex == i) {
-          selectedIndex = -1;
-          if (layoutData.length > 0) {
-            showWidgetAt(getWidgetIndex((layoutData[0] as StackLayoutPanelLayoutData).widget));
+        if (_selectedIndex == i) {
+          _selectedIndex = -1;
+          if (_layoutData.length > 0) {
+            showWidgetAt(getWidgetIndex((_layoutData[0] as _LayoutData).widget));
           }
         } else {
-          if (i <= selectedIndex) {
-            selectedIndex--;
+          if (i <= _selectedIndex) {
+            _selectedIndex--;
           }
-          animate(animationDuration);
+          animate(_animationDuration);
         }
         return true;
       }
@@ -316,7 +315,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @param duration the duration in milliseconds.
    */
   void setAnimationDuration(int duration) {
-    this.animationDuration = duration;
+    this._animationDuration = duration;
   }
 
   /**
@@ -330,9 +329,9 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @param index the index of the header whose HTML is to be set
    * @param html the header's new HTML contents
    */
-  void setHeaderHTML(int index, String html) {
+  void setHeaderHtml(int index, String html) {
     checkIndex(index);
-    StackLayoutPanelLayoutData data = layoutData[index];
+    _LayoutData data = _layoutData[index];
 
     Widget headerWidget = data.header.getWidget();
     assert (headerWidget is HasHtml); // : "Header widget does not implement HasHTML";
@@ -347,7 +346,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    */
   void setHeaderText(int index, String text) {
     checkIndex(index);
-    StackLayoutPanelLayoutData data = layoutData[index];
+    _LayoutData data = _layoutData[index];
 
     Widget headerWidget = data.header.getWidget();
     assert (headerWidget is HasText); // : "Header widget does not implement HasText";
@@ -361,7 +360,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    * @param fireEvents true to fire events, false not to
    */
   void showWidget(Widget child, [bool fireEvents = false]) {
-    showWidgetAt(getWidgetIndex(child), animationDuration, fireEvents);
+    showWidgetAt(getWidgetIndex(child), _animationDuration, fireEvents);
   }
 
   void onLoad() {
@@ -377,7 +376,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     assert ((index >= 0) && (index < getWidgetCount())); // : "Index out of bounds";
   }
 
-  void insert(Widget child, StackLayoutPanelHeader header, double headerSize, int beforeIndex) {
+  void insert(Widget child, _Header header, double headerSize, int beforeIndex) {
     assert ((beforeIndex >= 0) && (beforeIndex <= getWidgetCount())); // : "beforeIndex out of bounds";
 
     // Check to see if the StackPanel already contains the Widget. If so,
@@ -397,48 +396,48 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
     layoutPanel.setWidgetLeftRight(header, 0.0, Unit.PX, 0.0, Unit.PX);
     layoutPanel.setWidgetLeftRight(child, 0.0, Unit.PX, 0.0, Unit.PX);
 
-    StackLayoutPanelLayoutData data = new StackLayoutPanelLayoutData(child, header, headerSize);
-    if (beforeIndex < layoutData.length) {
-      layoutData.insertRange(beforeIndex, 1);
-      layoutData[beforeIndex] = data;
+    _LayoutData data = new _LayoutData(child, header, headerSize);
+    if (beforeIndex < _layoutData.length) {
+      _layoutData.insertRange(beforeIndex, 1);
+      _layoutData[beforeIndex] = data;
     } else {
-      layoutData.add(data);
+      _layoutData.add(data);
     }
 
-    header.addStyleName(HEADER_STYLE);
-    child.addStyleName(CONTENT_STYLE);
+    header.addStyleName(_HEADER_STYLE);
+    child.addStyleName(_CONTENT_STYLE);
 
     header.addClickHandler(new ClickHandlerAdapter((ClickEvent event) {
         showWidget(child);
     }));
 
     header.addMouseOutHandler(new MouseOutHandlerAdapter((MouseOutEvent event) {
-        header.removeStyleName(HEADER_STYLE_HOVERING);
+        header.removeStyleName(_HEADER_STYLE_HOVERING);
     }));
 
     header.addMouseOverHandler(new MouseOverHandlerAdapter((MouseOverEvent event) {
-        header.addStyleName(HEADER_STYLE_HOVERING);
+        header.addStyleName(_HEADER_STYLE_HOVERING);
     }));
 
-    if (selectedIndex == -1) {
+    if (_selectedIndex == -1) {
       // If there's no visible widget, display the first one. The layout will
       // be updated onLoad().
       showWidgetAt(0);
-    } else if (beforeIndex <= selectedIndex) {
+    } else if (beforeIndex <= _selectedIndex) {
       // If we inserted an item before the selected index, increment it.
-      selectedIndex++;
+      _selectedIndex++;
     }
 
     // If the widget is already attached, we must call animate() to update the
     // layout (if it's not yet attached, then onLoad() will do this).
     if (isAttached()) {
-      animate(animationDuration);
+      animate(_animationDuration);
     }
   }
 
   void showWidgetAt(int index, [int duration = null, bool fireEvents = false]) {
     checkIndex(index);
-    if (index == selectedIndex) {
+    if (index == _selectedIndex) {
       return;
     }
 
@@ -451,10 +450,10 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
       }
     }
 
-    selectedIndex = index;
+    _selectedIndex = index;
 
     if (isAttached()) {
-      animate(duration == null ? animationDuration : duration);
+      animate(duration == null ? _animationDuration : duration);
     }
 
     // Fire the selection event.
@@ -464,9 +463,9 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   }
 }
 
-class StackLayoutPanelHeader extends Composite implements HasClickHandlers {
+class _Header extends Composite implements HasClickHandlers {
 
-  StackLayoutPanelHeader(Widget child) {
+  _Header(Widget child) {
     initWidget(child);
   }
 
@@ -483,24 +482,24 @@ class StackLayoutPanelHeader extends Composite implements HasClickHandlers {
   }
 }
 
-class StackLayoutPanelLayoutData {
+class _LayoutData {
 
   double headerSize;
-  StackLayoutPanelHeader header;
+  _Header header;
   Widget widget;
 
-  StackLayoutPanelLayoutData(this.widget, this.header, this.headerSize);
+  _LayoutData(this.widget, this.header, this.headerSize);
 }
 
-class StackLayoutPanellIterator extends Iterator<Widget> {
+class _Iterator extends Iterator<Widget> {
 
   int i = 0, last = -1;
   StackLayoutPanel _panel;
 
-  StackLayoutPanellIterator(this._panel);
+  _Iterator(this._panel);
 
   bool moveNext() {
-    return i < _panel.layoutData.length;
+    return i < _panel._layoutData.length;
   }
 
   Widget get current => _getCurrent();
@@ -509,7 +508,7 @@ class StackLayoutPanellIterator extends Iterator<Widget> {
     if (!moveNext()) {
       throw new Exception("NoSuchElement");
     }
-    return (_panel.layoutData[last = i++] as StackLayoutPanelLayoutData).widget;
+    return (_panel._layoutData[last = i++] as _LayoutData).widget;
   }
 
   void remove() {
@@ -517,7 +516,7 @@ class StackLayoutPanellIterator extends Iterator<Widget> {
       throw new Exception("IllegalState");
     }
 
-    _panel.remove((_panel.layoutData[last] as StackLayoutPanelLayoutData).widget);
+    _panel.remove((_panel._layoutData[last] as _LayoutData).widget);
     i = last;
     last = -1;
   }

@@ -66,7 +66,10 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 
   static final String _CONTENT_CONTAINER_STYLE = "dwt-TabLayoutPanelContentContainer";
   static final String _CONTENT_STYLE = "dwt-TabLayoutPanelContent";
-
+  static final String _TAB_STYLE = "dwt-TabLayoutPanelTab";
+  
+  static final String _TAB_INNER_STYLE = "dwt-TabLayoutPanelTabInner";
+  
   static final int _BIG_ENOUGH_TO_NOT_WRAP = 16384;
 
   _TabbedDeckLayoutPanel _deckPanel;
@@ -548,9 +551,6 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 
 class _Tab extends SimplePanel {
 
-  static final String TAB_STYLE = "dwt-TabLayoutPanelTab";
-  static final String TAB_INNER_STYLE = "dwt-TabLayoutPanelTabInner";
-
   TabLayoutPanel _panel;
 
   dart_html.Element _inner;
@@ -560,8 +560,8 @@ class _Tab extends SimplePanel {
     getElement().append(_inner = new dart_html.DivElement());
 
     setWidget(child);
-    clearAndSetStyleName(TAB_STYLE);
-    UiObject.setElementStyleName(_inner, TAB_INNER_STYLE);
+    clearAndSetStyleName(TabLayoutPanel._TAB_STYLE);
+    UiObject.setElementStyleName(_inner, TabLayoutPanel._TAB_INNER_STYLE);
 
     //getElement().addClassName(CommonResources.getInlineBlockStyle());
     getElement().style.position = "relative";

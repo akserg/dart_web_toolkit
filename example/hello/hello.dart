@@ -402,15 +402,16 @@ void main19() {
 void main18() {
 
   // Create a three-item tab panel, with the tab area 1.5em tall.
-  ui.TabLayoutPanel p = new ui.TabLayoutPanel(1.5, util.Unit.EM);
-  p.add(new ui.Html("this"), "[this]");
-  p.add(new ui.Html("that"), "[that]");
-  p.add(new ui.Html("the other"), "[the other]");
+  ui.TabLayoutPanel tabPanel = new ui.TabLayoutPanel(1.5, util.Unit.EM);
+  
+  tabPanel.add(new ui.Html("this"), "[this]");
+  tabPanel.add(new ui.Html("that"), "[that]");
+  tabPanel.add(new ui.Html("the other"), "[the other]");
 
   // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
   // resize events on the window to ensure that its children are informed of
   // possible size changes.
-  ui.RootLayoutPanel.get().add(p);
+  ui.RootLayoutPanel.get().add(tabPanel);
 }
 
 void main17() {
@@ -907,8 +908,161 @@ void main1() {
 //*******************************
 //*******************************
 
-// FocusPanel
+// TabPanel
 void main() {
+
+  String text1 = "Lorem ipsum dolor sit amet...";
+  String text2 = "Sed egestas, arcu nec accumsan...";
+  String text3 = "Proin tristique, elit at blandit...";
+
+  ui.TabPanel panel = new ui.TabPanel();
+  ui.FlowPanel flowpanel;
+
+  flowpanel = new ui.FlowPanel();
+  flowpanel.add(new ui.Label(text1));
+  panel.addTabText(flowpanel, "One");
+
+  flowpanel = new ui.FlowPanel();
+  flowpanel.add(new ui.Label(text2));
+  panel.addTabText(flowpanel, "Two");
+
+  flowpanel = new ui.FlowPanel();
+  flowpanel.add(new ui.Label(text3));
+  panel.addTabText(flowpanel, "Three");
+
+  panel.selectTab(0);
+
+  panel.setSize("500px", "250px");
+  panel.addStyleName("table-center");
+  
+  ui.RootPanel.get("testId").add(panel);
+}
+
+//TabLayoutPanel
+void main_38() {
+
+  // Create a three-item tab panel, with the tab area 1.5em tall.
+  ui.TabLayoutPanel tabPanel = new ui.TabLayoutPanel(1.5, util.Unit.EM);
+  //tabPanel.setAnimationDuration(1000);
+  tabPanel.getElement().style.marginBottom = "10.0".concat(util.Unit.PX.value);
+  
+  tabPanel.add(new ui.Html("Home"), "[this]");
+  tabPanel.add(new ui.Html("that"), "[that]");
+  tabPanel.add(new ui.Html("the other"), "[the other]");
+
+  // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
+  // resize events on the window to ensure that its children are informed of
+  // possible size changes.
+  ui.RootLayoutPanel.get().add(tabPanel);
+}
+
+// StackLayoutPanel
+void main_37() {
+  // Create a new stack layout panel.
+  ui.StackLayoutPanel stackPanel = new ui.StackLayoutPanel(util.Unit.EM);
+  //stackPanel.setPixelSize(200, 400);
+
+  // Add the Mail folders.
+  ui.Widget mailHeader = createHeaderWidget("Mail");
+  //stackPanel.addWidget(createMailItem(), mailHeader, 4);
+  stackPanel.addWidget(createMailItem(), "Mail", false, 4.0);
+
+  // Add a list of filters.
+  //ui.Widget filtersHeader = createHeaderWidget("<b>Filters</b>");
+//  //stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), filtersHeader, 4);
+  stackPanel.addWidget(createFiltersItem(["All", "Starred", "Read", "Unread", "Recent", "Sent by me"]), "<b>Filters</b>", true, 4.0);
+
+  // Add a list of contacts.
+  ui.Widget contactsHeader = createHeaderWidget("Contacts");
+//  //stackPanel.add(createContactsItem(), contactsHeader, 4);
+  stackPanel.addWidget(createContactsItem(), "Contacts", false, 4.0);
+
+  ui.RootLayoutPanel.get().add(stackPanel);
+}
+
+// CaptionPanel
+void main_36() {
+
+  ui.CaptionPanel panel = new ui.CaptionPanel("Caption Goes Here");
+  ui.RootPanel.get("testId").add(panel);
+
+  panel.setContentWidget(new ui.Label("The main, wrapped widget goes here."));
+
+  // Set up some style - normally you'd do this in CSS, but it's
+  // easier to show like this
+
+  event.Dom.setStyleAttribute(panel.getElement(), "border", "3px solid #00c");
+  event.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "margin", "5px 10px 10px 10px");
+  event.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "padding", "10px 10px 10px 10px");
+  event.Dom.setStyleAttribute(panel.getContentWidget().getElement(), "border", "1px solid #ccf");
+}
+
+// Composite
+void main_35() {
+  DisplayBox displaybox = new DisplayBox("Header", "This is my data");
+  ui.RootPanel.get("testId").add(displaybox);
+}
+
+class DisplayBox extends ui.Composite {
+  
+    DisplayBox(String header, String data) {
+      ui.VerticalPanel widget = new ui.VerticalPanel();
+      initWidget(widget);
+      widget.addStyleName("demo-Composite");
+
+      ui.Label headerText = new ui.Label(header);
+      widget.add(headerText);
+      headerText.addStyleName("demo-Composite-header");
+
+      ui.Label dataText = new ui.Label(data);
+      widget.add(dataText);
+      dataText.addStyleName("demo-Composite-data");
+    }
+}
+
+// ScrollPanel
+void main_34() {
+
+  ui.ScrollPanel panel = new ui.ScrollPanel(new ui.Html("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi sit amet massa ornare mauris lobortis laoreet. Pellentesque vel est at massa condimentum porta. Aliquam tincidunt scelerisque orci. Donec sit amet elit nec leo egestas vestibulum. Mauris et nibh quis ipsum volutpat congue. Ut tellus nibh, convallis sed, consectetuer sit amet, facilisis eget, lectus. Morbi hendrerit, dolor eget tincidunt tristique, velit enim laoreet erat, nec condimentum eros mi quis tellus. Fusce pharetra nibh vestibulum lacus. Integer vulputate eros at nisi. Phasellus elit quam, dignissim quis, volutpat vitae, egestas nec, nisi. Nullam sodales sagittis quam. Aliquam iaculis neque ut magna. Donec convallis interdum sem. Sed suscipit."));
+  panel.setSize("200px", "120px");
+
+  ui.RootPanel.get("testId").add(panel);
+}
+
+// DecoratedPopupPanel
+void main_33() {
+  // Create a basic popup widget
+  ui.DecoratedPopupPanel simplePopup = new ui.DecoratedPopupPanel(true);
+  simplePopup.setWidth("150px");
+  simplePopup.setGlassEnabled(true);
+  simplePopup.setWidget(new ui.Html("Click anywhere outside this popup to make it disappear."));
+
+  // Create a button to show the popup
+  ui.Button openButton = new ui.Button("Show Basic Popup", new event.ClickHandlerAdapter((event.ClickEvent evt){
+    // Reposition the popup relative to the button
+    dart_html.ButtonElement source = evt.getSource();
+    int left = source.offsetLeft + 10;
+    int top = source.offsetTop + 10;
+    simplePopup.setPopupPosition(left, top);
+
+    // Show the popup
+    simplePopup.show();
+  }));
+  ui.RootPanel.get("testId").add(openButton);
+}
+
+// PopupPanel
+void main_32() {
+
+  ui.PopupPanel imagePopup = new ui.PopupPanel(true);
+  //imagePopup.setAnimationEnabled(true);
+  imagePopup.setWidget(new ui.Html("this is test"));
+
+  imagePopup.center();
+}
+
+// FocusPanel
+void main_31() {
   ui.FocusPanel panel = new ui.FocusPanel();
   panel.setSize("200px", "120px");
   panel.addStyleName("demo-panel-borderless");

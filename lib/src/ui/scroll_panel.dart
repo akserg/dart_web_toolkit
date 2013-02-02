@@ -20,8 +20,8 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
    * Creates an empty scroll panel or with the given [child] widget.
    */
   ScrollPanel([Widget child = null]) : super() {
-    this.scrollableElem = getElement();
-    this.containerElem = new dart_html.DivElement();
+    scrollableElem = getElement();
+    containerElem = new dart_html.DivElement();
     scrollableElem.append(containerElem);
     initialize();
     //
@@ -39,9 +39,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
    *          element
    * @param container the container element that holds the child
    */
-  ScrollPanel.fromElement(dart_html.Element root, dart_html.Element scrollable, dart_html.Element container) : super.fromElement(root) {
-    this.scrollableElem = scrollable;
-    this.containerElem = container;
+  ScrollPanel.fromElement(dart_html.Element root, this.scrollableElem, this.containerElem) : super.fromElement(root) {
     initialize();
   }
 
@@ -50,7 +48,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
      * Sink the event on the scrollable element, which may not be the root
      * element.
      */
-//    Event.sinkEvents(getScrollableElement(), Event.ONSCROLL);
+    Event.sinkEvents(getScrollableElement(), Event.ONSCROLL);
     return addHandler(handler, ScrollEvent.TYPE);
   }
 
@@ -250,7 +248,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
      * root element, then we set the event listener twice (once in
      * super.onAttach() and once here), which is fine.
      */
-    //Event.setEventListener(getScrollableElement(), this);
+    Event.setEventListener(getScrollableElement(), this);
   }
 
 
@@ -259,7 +257,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
      * Detach the event listener in onDetach instead of onUnload so users cannot
      * accidentally override it.
      */
-    //Event.setEventListener(getScrollableElement(), null);
+    Event.setEventListener(getScrollableElement(), null);
 
     super.onDetach();
   }

@@ -1,9 +1,6 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-/**
- * DartMob UI library.
- */
 part of dart_web_toolkit_event;
 
 /**

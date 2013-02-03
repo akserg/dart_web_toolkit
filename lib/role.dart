@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Role library.
+ * Dart Web Toolkit Role library.
  */
 library dart_web_toolkit_role;
 

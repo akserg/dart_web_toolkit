@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Event library.
+ * Dart Web Toolkit Event library.
  */
 library dart_web_toolkit_i18n;
 

@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Scheduler library.
+ * Dart Web Toolkit Scheduler library.
  */
 library dart_web_toolkit_scheduler;
 

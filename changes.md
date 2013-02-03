@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** February 3, 2013
+* Clean source code.
+* Clean example Hello class, added more examples.
+
 ** February 2, 2013
 
 * Checked Composite, PopupPanel, ScrollPanel, StackLayoutPanel, TabBar, TabLayoutPanel, TabPanel. Added examples.

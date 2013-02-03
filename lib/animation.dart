@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Animation library.
+ * Dart Web Toolkit Animation library.
  */
 library dart_web_toolkit_animation;
 

@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Text library.
+ * Dart Web Toolkit Text library.
  */
 library dart_web_toolkit_text;
 

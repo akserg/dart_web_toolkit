@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Editor library.
+ * Dart Web Toolkit Editor library.
  */
 library dart_web_toolkit_editor;
 

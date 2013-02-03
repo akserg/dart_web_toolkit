@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob UI library.
+ * Dart Web Toolkit UI library.
  */
 library dart_web_toolkit_ui;
 
@@ -18,6 +18,7 @@ import 'scheduler.dart';
 import 'role.dart';
 import 'editor.dart';
 import 'text.dart';
+import 'data.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -110,6 +111,7 @@ part 'src/ui/dialog_box.dart';
 part 'src/ui/frame.dart';
 part 'src/ui/hidden.dart';
 part 'src/ui/dock_panel.dart';
+part 'src/ui/value_list_box.dart';
 
 part 'src/ui/text_alignment.dart';
 

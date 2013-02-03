@@ -2,7 +2,7 @@
 //Author: akserg
 
 /**
- * DartMob Event library.
+ * Dart Web Toolkit Event library.
  */
 library dart_web_toolkit_event;
 
@@ -61,6 +61,7 @@ part 'src/event/has_change_handlers.dart';
 
 part 'src/event/takes_value.dart';
 part 'src/event/has_value.dart';
+part 'src/event/has_constrained_value.dart';
 
 part 'src/event/has_before_selection_handlers.dart';
 

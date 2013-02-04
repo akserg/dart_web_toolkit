@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** February 4, 2013
+
+* Added http and core libraries.
+
 ** February 3, 2013
 * Clean source code.
 * Clean example Hello class, added more examples.

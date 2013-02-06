@@ -30,6 +30,23 @@ class Dom {
   }
 
   /**
+   * Scrolls the given element into view.
+   * 
+   * <p>
+   * This method crawls up the DOM hierarchy, adjusting the scrollLeft and
+   * scrollTop properties of each scrollable element to ensure that the
+   * specified element is completely in view. It adjusts each scroll position by
+   * the minimum amount necessary.
+   * </p>
+   * 
+   * @param elem the element to be made visible
+   */
+  static void scrollIntoView(dart_html.Element elem) {
+    assert(elem != null);
+    elem.scrollIntoView();
+  }
+  
+  /**
    * Gets any named property from an element, as a string.
    *
    * @param elem the element whose property is to be retrieved
@@ -184,6 +201,20 @@ class Dom {
   static void setStyleAttribute(dart_html.Element elem, String attr, String value) {
     elem.style.setProperty(attr, value);
   }
+  
+  /**
+   * Sets an integer attribute on the given element's style.
+   * 
+   * @param elem the element whose style attribute is to be set
+   * @param attr the name of the style attribute to be set
+   * @param value the style attribute's new integer value
+   */
+  static void setIntStyleAttribute(dart_html.Element elem, String attr, int value) {
+    assert(elem != null);
+    assert(attr != null);
+    assert(value != null);
+    elem.style.setProperty(attr, value.toString());
+  }
 
   static int uniqueId = 0;
 
@@ -218,6 +249,16 @@ class Dom {
     // the Element itself.
     //impl.insertChild(parent, PotentialElement.resolve(child).<Element> cast(), index);
     impl.insertChild(parent, child, index);
+  }
+
+  /**
+   * Gets the first child element of the given element.
+   *
+   * @param elem the element whose child is to be retrieved
+   * @return the child element
+   */
+  static dart_html.Element getFirstChild(dart_html.Element elem) {
+    return elem.$dom_firstElementChild;
   }
 
   //********
@@ -320,7 +361,17 @@ class Dom {
     return dart_html.document.body.scrollHeight;
   }
 
-//*******
+  /**
+   * Clones an element.
+   *
+   * @param elem the element to be cloned
+   * @param deep should children be cloned as well?
+   */
+  static dart_html.Element clone(dart_html.Element elem, bool deep) {
+    return elem.clone(deep);
+  }
+
+  //*******
   // Events
   //*******
 

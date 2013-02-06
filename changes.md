@@ -1,6 +1,12 @@
 Dart Web Toolkit Changes
 ========================
 
+** February 6, 2013
+
+* Code changed to using Focusable instead HasFocus. Last one has been removed.
+* Because HasFocus deletion FocusPanel, FocusWidget has been updated.
+* Implemented Tree, TreeItem and resources. 
+
 ** February 4, 2013
 
 * Added http and core libraries.

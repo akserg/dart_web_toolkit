@@ -9,12 +9,12 @@ class ClippedImageImpl {
   String clearImage = "resource/images/clear.gif";
 
   dart_html.Element createStructure(SafeUri url, int left, int top, int width, int height) {
-    dart_html.Element tmp = new dart_html.SpanElement();
-    tmp.innerHtml = getSafeHtml(url, left, top, width, height);
+    dart_html.SpanElement tmp = new dart_html.SpanElement();
+    tmp.innerHtml = getSafeHtml(url, left, top, width, height).toString();
     return tmp.$dom_firstElementChild;
   }
 
-  String getSafeHtml(SafeUri url, int left, int top, int width, int height) {
+  SafeHtml getSafeHtml(SafeUri url, int left, int top, int width, int height) {
 
     StringBuffer sb = new StringBuffer();
     sb.add("width: ");
@@ -37,14 +37,14 @@ class ClippedImageImpl {
     sb.add(top.toString());
     sb.add("px");
 
-    return "<img onload='this.__gwtLastUnhandledEvent=\"load\";' src='${clearImage}' style='${sb.toString()}' border='0'>";
+    return new SafeHtmlString("<img onload='this.__gwtLastUnhandledEvent=\"load\";' src='${clearImage}' style='${sb.toString()}' border='0'>");
   }
 
-  dart_html.Element getImgElement(Image image) {
-    return image.getElement();
+  dart_html.ImageElement getImgElement(Image image) {
+    return image.getElement() as dart_html.ImageElement;
   }
 
-  void adjust(dart_html.Element img, SafeUri url, int left, int top, int width, int height) {
+  void adjust(dart_html.ImageElement img, SafeUri url, int left, int top, int width, int height) {
     String style = "url(\"${url.asString()}\") no-repeat -${left}px -${top}px";
     img.style.background = style;
     img.style.width = width.toString().concat(Unit.PX.value);

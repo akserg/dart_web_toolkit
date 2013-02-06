@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * Abstract base class for most widgets that can receive focus.
  */
 abstract class FocusWidget extends Widget implements
-    HasClickHandlers, HasDoubleClickHandlers, HasFocus, HasEnabled,
+    HasClickHandlers, HasDoubleClickHandlers, Focusable, HasEnabled,
     HasAllDragAndDropHandlers, HasAllFocusHandlers, HasAllGestureHandlers,
     HasAllKeyHandlers, HasAllMouseHandlers, HasAllTouchHandlers {
 
@@ -42,9 +42,9 @@ abstract class FocusWidget extends Widget implements
     Dom.setElementPropertyBoolean(getElement(), "disabled", !value);
   }
 
-  //***************************
-  // Implementation of HasFocus
-  //***************************
+  //****************************
+  // Implementation of Focusable
+  //****************************
   /**
    * Gets the widget's position in the tab index.
    *
@@ -76,6 +76,16 @@ abstract class FocusWidget extends Widget implements
     } else {
       impl.blur(getElement());
     }
+  }
+  
+  /**
+   * Sets the widget's 'access key'. This key is used (in conjunction with a
+   * browser-specific modifier key) to automatically focus the widget.
+   * 
+   * @param key the widget's access key
+   */
+  void set accessKey(int key) {
+    //Dom.setElementProperty(getElement(), "accessKey", "" + key);
   }
 
   //**********************************

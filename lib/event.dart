@@ -43,9 +43,9 @@ part 'src/event/has_word_wrap.dart';
 part 'src/event/has_html.dart';
 part 'src/event/has_text.dart';
 part 'src/event/has_name.dart';
-part 'src/event/has_focus.dart';
 part 'src/event/has_enabled.dart';
 part 'src/event/has_animation.dart';
+part 'src/event/focusable.dart';
 
 part 'src/event/has_resize_handlers.dart';
 part 'src/event/resize_handler.dart';
@@ -218,6 +218,10 @@ part 'src/event/has_native_event.dart';
 part 'src/event/native_preview_event.dart';
 part 'src/event/native_preview_handler.dart';
 
+part 'src/event/has_open_handlers.dart';
+part 'src/event/open_event.dart';
+part 'src/event/open_handler.dart';
+
 part 'src/event/adapter/blur_handler_adapter.dart';
 part 'src/event/adapter/change_handler_adapter.dart';
 part 'src/event/adapter/click_handler_adapter.dart';
@@ -249,5 +253,6 @@ part 'src/event/adapter/touch_cancel_handler_adapter.dart';
 part 'src/event/adapter/touch_end_handler_adapter.dart';
 part 'src/event/adapter/touch_move_handler_adapter.dart';
 part 'src/event/adapter/touch_start_handler_adapter.dart';
+part 'src/event/adapter/open_handler_adapter.dart';
 
 part 'src/event/adapter/all_mouse_handlers_adapter.dart';

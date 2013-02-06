@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A simple panel that makes its contents focusable, and adds the ability to
  * catch mouse and keyboard events.
  */
-class FocusPanel extends SimplePanel implements HasFocus,
+class FocusPanel extends SimplePanel implements Focusable,
   HasAllDragAndDropHandlers, HasAllMouseHandlers, HasClickHandlers,
   HasDoubleClickHandlers, HasAllKeyHandlers, HasAllFocusHandlers,
   HasAllGestureHandlers, HasAllTouchHandlers {
@@ -171,7 +171,13 @@ class FocusPanel extends SimplePanel implements HasFocus,
   }
 
 
-  void setAccessKey(int key) {
+  /**
+   * Sets the widget's 'access key'. This key is used (in conjunction with a
+   * browser-specific modifier key) to automatically focus the widget.
+   * 
+   * @param key the widget's access key
+   */
+  void set accessKey(int key) {
     FocusPanel.impl.setAccessKey(getElement(), key);
   }
 

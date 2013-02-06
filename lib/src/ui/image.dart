@@ -118,7 +118,27 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    *
    * @param url the URL of the image to be displayed
    */
-  Image(String url) : this.safe(UriUtils.unsafeCastFromUntrustedString(url));
+  Image(String url) : this.fromSafeUri(UriUtils.unsafeCastFromUntrustedString(url));
+
+  /**
+   * Creates a clipped image with a specified URL and visibility rectangle. The
+   * visibility rectangle is declared relative to the the rectangle which
+   * encompasses the entire image, which has an upper-left vertex of (0,0). The
+   * load event will be fired immediately after the object has been constructed
+   * (i.e. potentially before the image has been loaded in the browser). Since
+   * the width and height are specified explicitly by the user, this behavior
+   * will not cause problems with retrieving the width and height of a clipped
+   * image in a load event handler.
+   *
+   * @param url the URL of the image to be displayed
+   * @param left the horizontal co-ordinate of the upper-left vertex of the
+   *          visibility rectangle
+   * @param top the vertical co-ordinate of the upper-left vertex of the
+   *          visibility rectangle
+   * @param width the width of the visibility rectangle
+   * @param height the height of the visibility rectangle
+   */
+  Image.fromUriAndMeasure(String url, int left, int top, int width, int height) : this.fromSafeUriAndMeasure(UriUtils.unsafeCastFromUntrustedString(url), left, top, width, height);
 
   /**
    * Creates an image with a specified URL. The load event will be fired once
@@ -126,8 +146,31 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    *
    * @param url the URL of the image to be displayed
    */
-  Image.safe(SafeUri url) {
+  Image.fromSafeUri(SafeUri url) {
     changeState(new _UnclippedState(image:this, url:url));
+    clearAndSetStyleName("dwt-Image");
+  }
+
+  /**
+   * Creates a clipped image with a specified URL and visibility rectangle. The
+   * visibility rectangle is declared relative to the the rectangle which
+   * encompasses the entire image, which has an upper-left vertex of (0,0). The
+   * load event will be fired immediately after the object has been constructed
+   * (i.e. potentially before the image has been loaded in the browser). Since
+   * the width and height are specified explicitly by the user, this behavior
+   * will not cause problems with retrieving the width and height of a clipped
+   * image in a load event handler.
+   *
+   * @param url the URL of the image to be displayed
+   * @param left the horizontal co-ordinate of the upper-left vertex of the
+   *          visibility rectangle
+   * @param top the vertical co-ordinate of the upper-left vertex of the
+   *          visibility rectangle
+   * @param width the width of the visibility rectangle
+   * @param height the height of the visibility rectangle
+   */
+  Image.fromSafeUriAndMeasure(SafeUri url, int left, int top, int width, int height) {
+    changeState(new _ClippedState(this, url, left, top, width, height));
     clearAndSetStyleName("dwt-Image");
   }
 
@@ -665,7 +708,7 @@ class _ClippedState extends _State {
      * skip all of the work required with a getImpl().adjust, and we do not
      * want to fire a load event.
      */
-    if (!this.url.equals(url) || this.left != left || this.top != top || this.width != width
+    if (this.url != url || this.left != left || this.top != top || this.width != width
         || this.height != height) {
 
       this.url = url;

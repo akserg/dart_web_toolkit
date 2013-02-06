@@ -19,6 +19,7 @@ import 'role.dart';
 import 'editor.dart';
 import 'text.dart';
 import 'data.dart';
+import 'resource.dart';
 
 part 'src/ui/ui_object.dart';
 
@@ -112,6 +113,12 @@ part 'src/ui/frame.dart';
 part 'src/ui/hidden.dart';
 part 'src/ui/dock_panel.dart';
 part 'src/ui/value_list_box.dart';
+part 'src/ui/tree.dart';
+part 'src/ui/abstract_image_prototype.dart';
+
+part 'src/ui/has_tree_items.dart';
+part 'src/ui/tree_item.dart';
+part 'src/ui/is_tree_item.dart';
 
 part 'src/ui/text_alignment.dart';
 
@@ -124,6 +131,7 @@ part 'src/ui/adapter/takes_value_editor.dart';
 part 'src/ui/adapter/has_text_editor.dart';
 
 part 'src/ui/widget_collection.dart';
+part 'src/ui/widget_iterators.dart';
 
 part 'src/ui/has_widgets.dart';
 part 'src/ui/has_one_widget.dart';
@@ -136,6 +144,7 @@ part 'src/ui/impl/clipped_image_impl.dart';
 part 'src/ui/impl/element_mapper_impl.dart';
 part 'src/ui/impl/scroll_impl.dart';
 part 'src/ui/impl/popup_impl.dart';
+part 'src/ui/impl/clipped_image_prototype.dart';
 
 /**
  * Supports core functionality that in some cases requires direct support from

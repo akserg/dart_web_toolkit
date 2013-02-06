@@ -59,7 +59,7 @@ abstract class SafeUri {
    *
    * @param anObject the object to compare to
    */
-  bool equals(Object anObject);
+  bool operator ==(Object obj);
 }
 
 /**
@@ -98,7 +98,7 @@ class SafeUriString implements SafeUri {
   /**
    * Compares this string to the specified object.
    */
-  bool equals(Object obj) {
+  bool operator ==(Object obj) {
     if (!(obj is SafeUri)) {
       return false;
     }

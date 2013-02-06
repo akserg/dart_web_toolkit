@@ -7,7 +7,7 @@ part of dart_web_toolkit_ui;
  * A widget that implements this interface contains [Widget] and can enumerate
  * them.
  */
-abstract class HasWidgets{
+abstract class HasWidgets {
 
   /**
    * Adds a child widget.
@@ -30,7 +30,7 @@ abstract class HasWidgets{
    * @return <code>true</code> if the widget was present
    */
   bool remove(Widget w);
-  
+
   /**
    * Returns an [Iterator] that iterates over this [Iterable] object.
    */

@@ -10,6 +10,7 @@ Dart Web Toolkit Changes
 * Reference on Clipboard class changed to DataTransfer. Example fixed.
 * Fixed: ClippedImageImpl doesn't create instance of Image.
 * Added tree example.
+* Fixed: Tree incorrect shows navigation images.
 
 ** February 4, 2013
 

@@ -38,7 +38,7 @@ class ClippedImageImpl {
   }
 
   void adjust(dart_html.ImageElement img, SafeUri url, int left, int top, int width, int height) {
-    String style = "url(\"${url.asString()}\") no-repeat -${left}px -${top}px";
+    String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat -${left}px -${top}px";
     img.style.background = style;
     img.style.width = width.toString().concat(Unit.PX.value);
     img.style.height = height.toString().concat(Unit.PX.value);

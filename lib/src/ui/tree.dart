@@ -28,11 +28,6 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     Focusable, HasAnimation, HasAllKeyHandlers,
     HasAllFocusHandlers, HasSelectionHandlers<TreeItem>,
     HasOpenHandlers<TreeItem>, HasCloseHandlers<TreeItem>, HasAllMouseHandlers {
-  /*
-   * For compatibility with UiBinder interface HasTreeItems should be declared
-   * before HasWidgets, so that corresponding parser will run first and add
-   * TreeItem children as items, not as widgets.
-   */
 
   static const int _OTHER_KEY_DOWN = 63233;
   static const int _OTHER_KEY_LEFT = 63234;
@@ -1150,6 +1145,12 @@ abstract class Resources extends ClientBundle {
 
 class TreeResources implements Resources {
 
+  final Map<String, ImageResource> resources = new Map<String, ImageResource>();
+
+  const String TREE_CLOSED = "treeClosed";
+  const String TREE_LEAF = "treeLeaf";
+  const String TREE_OPEN = "treeOpen";
+
   const TreeResources();
 
   Source get source {
@@ -1160,21 +1161,30 @@ class TreeResources implements Resources {
    * An image indicating a closed branch.
    */
   ImageResource treeClosed() {
-    return _getTreeImageResourcePrototype("treeClosed", 32);
+    if (!resources.containsKey(TREE_CLOSED)) {
+      resources[TREE_CLOSED] = _getTreeImageResourcePrototype(TREE_CLOSED, 32);
+    }
+    return resources[TREE_CLOSED];
   }
 
   /**
    * An image indicating a leaf.
    */
   ImageResource treeLeaf() {
-    return _getTreeImageResourcePrototype("treeLeaf", 16);
+    if (!resources.containsKey(TREE_LEAF)) {
+      resources[TREE_LEAF] = _getTreeImageResourcePrototype(TREE_LEAF, 16);
+    }
+    return resources[TREE_LEAF];
   }
 
   /**
    * An image indicating an open branch.
    */
   ImageResource treeOpen() {
-    return _getTreeImageResourcePrototype("treeOpen", 0);
+    if (!resources.containsKey(TREE_OPEN)) {
+      resources[TREE_OPEN] = _getTreeImageResourcePrototype(TREE_OPEN, 0);
+    }
+    return resources[TREE_OPEN];
   }
 
   ImageResourcePrototype _getTreeImageResourcePrototype(String name, int left) {

@@ -32,7 +32,7 @@ abstract class DragDropEventBase extends MouseEvent {
    *
    * @return the {@link DataTransfer} object
    */
-  dart_html.Clipboard getDataTransfer() {
+  dart_html.DataTransfer getDataTransfer() {
     if (getNativeEvent() is dart_html.MouseEvent) {
       return (getNativeEvent() as dart_html.MouseEvent).dataTransfer;
     }
@@ -46,7 +46,7 @@ abstract class DragDropEventBase extends MouseEvent {
    * @return the data for the specified format
    */
   String getData(String format) {
-    dart_html.Clipboard dt = getDataTransfer();
+    dart_html.DataTransfer dt = getDataTransfer();
     if (dt != null) {
       return getDataTransfer().getData(format);
     }
@@ -60,7 +60,7 @@ abstract class DragDropEventBase extends MouseEvent {
    * @param data the data to associate with the format
    */
   void setData(String format, String data) {
-    dart_html.Clipboard dt = getDataTransfer();
+    dart_html.DataTransfer dt = getDataTransfer();
     if (dt != null) {
       getDataTransfer().setData(format, data);
     }

@@ -20,6 +20,7 @@ import 'editor.dart';
 import 'text.dart';
 import 'data.dart';
 import 'resource.dart';
+import 'core.dart';
 
 part 'src/ui/ui_object.dart';
 

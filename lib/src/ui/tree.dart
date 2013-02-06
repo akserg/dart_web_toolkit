@@ -105,7 +105,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
 
   ImageAdapter _images;
 
-  String _indentValue;
+  String _indentValue = "";
 
   bool _isAnimationEnabled = false;
 
@@ -132,37 +132,12 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
   }
 
   /**
-   * Constructs a tree that uses the specified image bundle for images.
-   *
-   * @param images a bundle that provides tree specific images
-   * @deprecated replaced by {@link #Tree(Resources)}
-   */
-//  @Deprecated
-//  Tree(TreeImages images) {
-//    _init(new ImageAdapter(images), false);
-//  }
-
-  /**
-   * Constructs a tree that uses the specified image bundle for images. If this
-   * tree does not use leaf images, the width of the TreeImage's leaf image will
-   * control the leaf indent.
-   *
-   * @param images a bundle that provides tree specific images
-   * @param useLeafImages use leaf images from bundle
-   * @deprecated replaced by {@link #Tree(Resources, bool)}
-   */
-//  @Deprecated
-//  Tree(TreeImages images, bool useLeafImages) {
-//    _init(new ImageAdapter(images), useLeafImages);
-//  }
-
-  /**
    * Adds the widget as a root tree item.
    *
    * @see com.google.gwt.user.client.ui.HasWidgets#add(com.google.gwt.user.client.ui.Widget)
    * @param widget widget to add.
    */
-  
+
   void add(Widget widget) {
     addWidgetItem(widget);
   }
@@ -172,46 +147,25 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    *
    * @see #add(Widget)
    */
-  
+
   void addIsWidget(IsWidget w) {
     this.add(asWidgetOrNull(w));
   }
 
-  
+
   HandlerRegistration addBlurHandler(BlurHandler handler) {
     return addDomHandler(handler, BlurEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addCloseHandler(CloseHandler<TreeItem> handler) {
     return addHandler(handler, CloseEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addFocusHandler(FocusHandler handler) {
     return addDomHandler(handler, FocusEvent.TYPE);
   }
-
-  /**
-   * @deprecated Use {@link #addFocusHandler} instead
-   */
-//  
-//  @Deprecated
-//  void addFocusListener(FocusListener listener) {
-//    ListenerWrapper.WrappedFocusListener.add(this, listener);
-//  }
-
-  /**
-   * Adds a simple tree item containing the specified html.
-   *
-   * @param itemHtml the text of the item to be added
-   * @return the item that was added
-   * @deprecated use {@link #addItem(SafeHtml)} instead
-   */
-//  @Deprecated
-//  TreeItem addItem(String itemHtml) {
-//    return _root.addItem(itemHtml);
-//  }
 
   /**
    * Adds a simple tree item containing the specified html.
@@ -219,7 +173,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    * @param itemHtml the html of the item to be added
    * @return the item that was added
    */
-  
+
   TreeItem addSafeHtmlItem(SafeHtml itemHtml) {
     return _root.addSafeHtmlItem(itemHtml);
   }
@@ -229,7 +183,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    *
    * @param item the item to be added
    */
-  
+
   void addItem(TreeItem item) {
     _root.addItem(item);
   }
@@ -239,7 +193,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    *
    * @param isItem the wrapper of item to be added
    */
-  
+
   void addIsTreeItem(IsTreeItem isItem) {
     _root.addIsTreeItem(isItem);
   }
@@ -250,7 +204,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    * @param widget the widget to be added
    * @return the new item
    */
-  
+
   TreeItem addWidgetItem(Widget widget) {
     return _root.addWidgetItem(widget);
   }
@@ -260,83 +214,60 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    *
    * @see #addItem(Widget)
    */
-  
+
   TreeItem addIsWidgetItem(IsWidget w) {
     return this.addIsWidgetItem(asWidgetOrNull(w));
   }
 
-  /**
-   * @deprecated Use {@link #addKeyDownHandler}, {@link #addKeyUpHandler} and
-   *             {@link #addKeyPressHandler} instead
-   */
-//  
-//  @Deprecated
-//  void addKeyboardListener(KeyboardListener listener) {
-//    ListenerWrapper.WrappedKeyboardListener.add(this, listener);
-//  }
-
-  
   HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {
     return addDomHandler(handler, KeyDownEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addKeyPressHandler(KeyPressHandler handler) {
     return addDomHandler(handler, KeyPressEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addKeyUpHandler(KeyUpHandler handler) {
     return addDomHandler(handler, KeyUpEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
     return addHandler(handler, MouseDownEvent.TYPE);
   }
 
-  /**
-   * @deprecated Use {@link #addMouseOverHandler} {@link #addMouseMoveHandler},
-   *             {@link #addMouseDownHandler}, {@link #addMouseUpHandler} and
-   *             {@link #addMouseOutHandler} instead
-   */
-//  
-//  @Deprecated
-//  void addMouseListener(MouseListener listener) {
-//    ListenerWrapper.WrappedMouseListener.add(this, listener);
-//  }
-
-  
   HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
     return addDomHandler(handler, MouseMoveEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
     return addDomHandler(handler, MouseOutEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
     return addDomHandler(handler, MouseOverEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addMouseUpHandler(MouseUpHandler handler) {
     return addDomHandler(handler, MouseUpEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
     return addDomHandler(handler, MouseWheelEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addOpenHandler(OpenHandler<TreeItem> handler) {
     return addHandler(handler, OpenEvent.TYPE);
   }
 
-  
+
   HandlerRegistration addSelectionHandler(
       SelectionHandler<TreeItem> handler) {
     return addHandler(handler, SelectionEvent.TYPE);
@@ -348,25 +279,15 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    * @param itemText the text of the item to be added
    * @return the item that was added
    */
-  
+
   TreeItem addTextItem(String itemText) {
     return _root.addTextItem(itemText);
   }
 
   /**
-   * @deprecated Use {@link #addSelectionHandler}, {@link #addOpenHandler}, and
-   *             {@link #addCloseHandler} instead
-   */
-//  
-//  @Deprecated
-//  void addTreeListener(TreeListener listener) {
-//    ListenerWrapper.WrappedTreeListener.add(this, listener);
-//  }
-
-  /**
    * Clears all tree items from the current tree.
    */
-  
+
   void clear() {
     int size = _root.getChildCount();
     for (int i = size - 1; i >= 0; i--) {
@@ -418,25 +339,10 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     return _curSelection;
   }
 
-  
+
   int get tabIndex {
     return FocusPanel.impl.getTabIndex(_focusable);
   }
-
-  /**
-   * Inserts a child tree item at the specified index containing the specified
-   * html.
-   *
-   * @param beforeIndex the index where the item will be inserted
-   * @param itemHtml the html to be added
-   * @return the item that was added
-   * @throws IndexOutOfBoundsException if the index is out of range
-   * @deprecated use {@link #insertItem(int, SafeHtml)} instead
-   */
-//  @Deprecated
-//  TreeItem insertItem(int beforeIndex, String itemHtml) {
-//    return _root.insertItem(beforeIndex, itemHtml);
-//  }
 
   /**
    * Inserts a child tree item at the specified index containing the specified
@@ -488,19 +394,19 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     return _root.insertTextItem(beforeIndex, itemText);
   }
 
-  
+
   bool isAnimationEnabled() {
     return _isAnimationEnabled;
   }
 
-  
+
   Iterator<Widget> iterator() {
     List<Widget> widgets = new List<Widget>(_childWidgets.length);
     widgets.addAll(_childWidgets.keys);
     return WidgetIterators.createWidgetIterator(this, widgets);
   }
 
-  
+
 //  @SuppressWarnings("fallthrough")
   void onBrowserEvent(dart_html.Event event) {
     int eventType = Dom.eventGetType(event);
@@ -521,8 +427,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
       case Event.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         // Issue 1890: Do not block history navigation via alt+left/right
-        
-        //if (Dom.eventGetAltKey(event) || Dom.eventGetMetaKey(event)) {
+
         if (kEvent.altKey || kEvent.metaKey) {
           super.onBrowserEvent(event);
           return;
@@ -549,7 +454,6 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
         // Also, ignore middle and right clicks here.
         dart_html.MouseEvent mEvent = event as dart_html.MouseEvent;
         if (mEvent.currentTarget == getElement() && mEvent.button == Event.BUTTON_LEFT) {
-        //if ((Dom.eventGetCurrentTarget(event) == getElement()) && (event.getButton() == Event.BUTTON_LEFT)) {
           _elementClicked(event.target as dart_html.Element);
         }
         break;
@@ -568,7 +472,6 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
       case Event.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         if (kEvent.keyCode == KeyCodes.KEY_TAB) {
-//        if (Dom.eventGetKeyCode(event) == KeyCodes.KEY_TAB) {
           List<dart_html.Element> chain = new List<dart_html.Element>();
           _collectElementChain(chain, getElement(), event.target);
           TreeItem item = _findItemByChain(chain, 0, _root);
@@ -585,10 +488,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
       case Event.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         if (isArrowKey(kEvent.keyCode)) {
-//        if (isArrowKey(Dom.eventGetKeyCode(event))) {
-//          Dom.eventCancelBubble(event, true);
           event.cancelBubble = true;
-//          Dom.eventPreventDefault(event);
           event.preventDefault();
           return;
         }
@@ -599,7 +499,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     super.onBrowserEvent(event);
   }
 
-  
+
   bool remove(Widget w) {
     // Validate.
     TreeItem item = _childWidgets[w];
@@ -617,27 +517,17 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    *
    * @see #remove(Widget)
    */
-  
+
   bool removeIsWidget(IsWidget w) {
     return this.remove(w.asWidget());
   }
-
-  /**
-   * @deprecated Use the {@link HandlerRegistration#removeHandler} method on the
-   *             object returned by {@link #addFocusHandler} instead
-   */
-//  
-//  @Deprecated
-//  void removeFocusListener(FocusListener listener) {
-//    ListenerWrapper.WrappedFocusListener.remove(this, listener);
-//  }
 
   /**
    * Removes an item from the root level of this tree.
    *
    * @param item the item to be removed
    */
-  
+
   void removeItem(TreeItem item) {
     _root.removeItem(item);
   }
@@ -647,7 +537,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    *
    * @param isItem the wrapper of item to be removed
    */
-  
+
   void removeIsTreeItem(IsTreeItem isItem) {
     if (isItem != null) {
       TreeItem item = isItem.asTreeItem();
@@ -658,54 +548,23 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
   /**
    * Removes all items from the root level of this tree.
    */
-  
+
   void removeItems() {
     while (getItemCount() > 0) {
       removeItem(getItem(0));
     }
   }
 
-  /**
-   * @deprecated Use the {@link HandlerRegistration#removeHandler} method on the
-   *             object returned by an add*Handler method instead
-   */
-//  
-//  @Deprecated
-//  void removeKeyboardListener(KeyboardListener listener) {
-//    ListenerWrapper.WrappedKeyboardListener.remove(this, listener);
-//  }
-
-  /**
-   * @deprecated Use the {@link HandlerRegistration#removeHandler} method on the
-   *             object returned by an add*Handler method instead
-   */
-//  
-//  @Deprecated
-//  void removeMouseListener(MouseListener listener) {
-//    ListenerWrapper.WrappedMouseListener.remove(this, listener);
-//  }
-
-  /**
-   * @deprecated Use the {@link HandlerRegistration#removeHandler} method on the
-   *             object returned by an add*Handler method instead
-   */
-//  
-//  @Deprecated
-//  void removeTreeListener(TreeListener listener) {
-//    ListenerWrapper.WrappedTreeListener.remove(this, listener);
-//  }
-
-  
   void set accessKey(int key) {
     FocusPanel.impl.setAccessKey(_focusable, key);
   }
 
-  
+
   void setAnimationEnabled(bool enable) {
     _isAnimationEnabled = enable;
   }
 
-  
+
   void set focus(bool val) {
     if (val) {
       FocusPanel.impl.focus(_focusable);
@@ -734,7 +593,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     _onSelection(item, fireEvents, true);
   }
 
-  
+
   void set tabIndex(int index) {
     FocusPanel.impl.setTabIndex(_focusable, index);
   }
@@ -750,7 +609,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     return accum.iterator;
   }
 
-  
+
   void doAttachChildren() {
     try {
       AttachDetachException.tryCommand(this.iterator(), AttachDetachException.attachCommand);
@@ -759,7 +618,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     }
   }
 
-  
+
   void doDetachChildren() {
     try {
       AttachDetachException.tryCommand(this.iterator(), AttachDetachException.detachCommand);
@@ -1285,12 +1144,62 @@ abstract class Resources extends ClientBundle {
   ImageResource treeOpen();
 }
 
+//*****
+// Temporary solution for work with image prototypies
+//*****
+
+class TreeResources implements Resources {
+
+  const TreeResources();
+
+  Source get source {
+    return new TreeSource();
+  }
+
+  /**
+   * An image indicating a closed branch.
+   */
+  ImageResource treeClosed() {
+    return _getTreeImageResourcePrototype("treeClosed", 32);
+  }
+
+  /**
+   * An image indicating a leaf.
+   */
+  ImageResource treeLeaf() {
+    return _getTreeImageResourcePrototype("treeLeaf", 16);
+  }
+
+  /**
+   * An image indicating an open branch.
+   */
+  ImageResource treeOpen() {
+    return _getTreeImageResourcePrototype("treeOpen", 0);
+  }
+
+  ImageResourcePrototype _getTreeImageResourcePrototype(String name, int left) {
+    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString("resource/images/tree.png"), left, 0, 16, 16, false, false);
+    return imageResource;
+  }
+}
+
+
+/**
+ * Specifies the classpath location of the resource or resources associated
+ * with the {@link ResourcePrototype}.
+ */
+class TreeSource implements Source {
+  List<String> value() {
+
+  }
+}
+
 /**
  * There are several ways of configuring images for the Tree widget due to
  * deprecated APIs.
  */
 class ImageAdapter {
-  static const Resources _DEFAULT_RESOURCES = null; // = new Resource(); //GWT.create(Resources.class);
+  static const Resources _DEFAULT_RESOURCES = const TreeResources();
   AbstractImagePrototype _treeClosed;
   AbstractImagePrototype _treeLeaf;
   AbstractImagePrototype _treeOpen;

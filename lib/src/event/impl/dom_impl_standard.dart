@@ -8,9 +8,9 @@ class DomImplStandard extends DomImpl {
   Map<dart_html.Element, EventListener> _listener = new Map<dart_html.Element, EventListener>();
 
   DomImplStandard();
-  
+
   dart_html.Element captureElem;
-  
+
   static Function dispatchCapturedEvent;
 
   static Function dispatchCapturedMouseEvent;
@@ -146,7 +146,9 @@ class DomImplStandard extends DomImpl {
     };
 
     dispatchUnhandledEvent = (dart_html.Event evt) {
-      //this.dataAttributes["gwtLastUnhandledEvent"] = evt.type; // Image
+      if (evt.target is dart_html.ImageElement) {
+        (evt.target as dart_html.ImageElement).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = evt.type;
+      }
       dispatchEvent(evt);
     };
 
@@ -184,7 +186,7 @@ class DomImplStandard extends DomImpl {
 //    dart_html.window.on.gesturechange.add(dispatchCapturedMouseEvent, true);
 //    dart_html.window.on.gesturechange.add(dispatchCapturedMouseEvent, true);
   }
-  
+
   EventListener getEventListener(dart_html.Element elem) {
     //return elem.__listener;
     return _listener.containsKey(elem) ? _listener[elem] : null;
@@ -206,7 +208,7 @@ class DomImplStandard extends DomImpl {
       case "dragleave": elem.onDragLeave.listen(dispatchEvent); break;
       case "dragstart": elem.onDragStart.listen(dispatchEvent); break;
       case "drop": elem.onDrop.listen(dispatchEvent); break;
-      
+
       case "dragenter": elem.onDragEnter.listen(dispatchDragEvent); break;
       case "dragover": elem.onDragOver.listen(dispatchDragEvent); break;
 
@@ -263,7 +265,7 @@ class DomImplStandard extends DomImpl {
 //    _applyDispatcher(elem, bits, chMask, "gesturechange", 0x2000000, dispatchEvent);
 //    _applyDispatcher(elem, bits, chMask, "gestureend", 0x4000000, dispatchEvent);
   }
-  
+
   void _applyDispatcher(dart_html.Element elem, int bits, int chMask, String eventName, int mask, dart_html.EventListener handler, [bool useCapture = false]) {
     if ((chMask & mask) != 0) {
       if ((bits & mask) != 0) {

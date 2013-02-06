@@ -6,38 +6,31 @@ part of dart_web_toolkit_ui;
 
 class ClippedImageImpl {
 
-  String clearImage = "resource/images/clear.gif";
+  String clearImage = DWT.getModuleBaseURL().concat("resource/images/clear.gif");
 
   dart_html.Element createStructure(SafeUri url, int left, int top, int width, int height) {
-    dart_html.SpanElement tmp = new dart_html.SpanElement();
-    tmp.innerHtml = getSafeHtml(url, left, top, width, height).toString();
-    return tmp.$dom_firstElementChild;
+    dart_html.ImageElement img = new dart_html.ImageElement();
+    img.src = clearImage;
+    //
+    String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
+    print("background: ${style}");
+    img.style.background = style;
+    img.style.width = "${width}px";
+    img.style.height = "${height}px";
+    img.onLoad.listen((dart_html.Event evt) {
+      img.dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
+    });
+    //
+    return img;
   }
 
   SafeHtml getSafeHtml(SafeUri url, int left, int top, int width, int height) {
 
-    StringBuffer sb = new StringBuffer();
-    sb.add("width: ");
-    sb.add(width);
-    sb.add(Unit.PX.value);
-    sb.add("; ");
-    //
-    sb.add("height: ");
-    sb.add(height);
-    sb.add(Unit.PX.value);
-    sb.add("; ");
-    //
-    sb.add("background: url(");
-    sb.add(url.asString());
-    sb.add(") no-repeat ");
-    sb.add("-");
-    sb.add(left.toString());
-    sb.add("px ");
-    sb.add("-");
-    sb.add(top.toString());
-    sb.add("px");
+    String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
 
-    return new SafeHtmlString("<img onload='this.__gwtLastUnhandledEvent=\"load\";' src='${clearImage}' style='${sb.toString()}' border='0'>");
+    String res = "<img onload='this.data-${DomImpl.UNHANDLED_EVENT_ATTR}=\"load\";' src='${clearImage}' style='background:${style}; width: ${width}px; height: ${height}px' border='0'>";
+
+    return new SafeHtmlString(res);
   }
 
   dart_html.ImageElement getImgElement(Image image) {

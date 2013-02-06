@@ -16,12 +16,6 @@ part of dart_web_toolkit_ui;
  * </p>
  */
 class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, HasSafeHtml {
-  /*
-   * For compatibility with UiBinder interface HasTreeItems should be declared
-   * before HasHTML, so that children items and widgets are processed before
-   * interpreting HTML.
-   */
-
   /**
    * The margin applied to child items.
    */
@@ -61,7 +55,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
    */
   static dart_html.Element _BASE_BARE_ELEM;
 
-  static TreeItemImpl _impl = new TreeItemImpl(); //GWT.create(TreeItemImpl.class);
+  static TreeItemImpl _impl;
 
   List<TreeItem> _children;
   dart_html.Element _contentElem, _childSpanElem, _imageHolder;
@@ -69,11 +63,11 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
   /**
    * Indicates that this item is a root item in a tree.
    */
-  bool _isRoot;
+  bool _isRoot = false;
 
-  bool _open;
+  bool _open = false;
   TreeItem _parent;
-  bool _selected;
+  bool _selected = false;
 
   Object _userObject;
 
@@ -82,6 +76,10 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
   Widget _widget;
 
   TreeItem({this._isRoot : false, SafeHtml html, Widget widget}) {
+    if (_impl == null) {
+      _impl = new TreeItemImpl();
+    }
+    //
     dart_html.Element elem = Dom.clone(_BASE_BARE_ELEM, true);
     setElement(elem);
     _contentElem = Dom.getFirstChild(elem);
@@ -462,7 +460,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
       return;
     }
     this._selected = selected;
-    UiObject.manageElementStyleName(getContentElem(), "gwt-TreeItem-selected", selected);
+    UiObject.manageElementStyleName(getContentElem(), "dwt-TreeItem-selected", selected);
   }
 
   /**

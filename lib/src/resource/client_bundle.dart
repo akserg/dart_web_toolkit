@@ -12,7 +12,7 @@ part of dart_web_toolkit_resource;
  * the original resource.
  */
 abstract class ClientBundle {
-  Source source;
+  Source get source;
 }
 
 /**

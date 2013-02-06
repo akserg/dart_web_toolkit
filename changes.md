@@ -6,6 +6,10 @@ Dart Web Toolkit Changes
 * Code changed to using Focusable instead HasFocus. Last one has been removed.
 * Because HasFocus deletion FocusPanel, FocusWidget has been updated.
 * Implemented Tree, TreeItem and resources. 
+* Migrate project code to follow Dart SDK version 0.3.4.0_r18115.
+* Reference on Clipboard class changed to DataTransfer. Example fixed.
+* Fixed: ClippedImageImpl doesn't create instance of Image.
+* Added tree example.
 
 ** February 4, 2013
 

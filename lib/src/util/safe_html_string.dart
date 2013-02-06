@@ -27,7 +27,7 @@ class SafeHtmlString implements SafeHtml {
    * @param html the string to be wrapped as a {@link SafeHtml}
    */
   SafeHtmlString(String html) {
-    if (_html == null) {
+    if (html == null) {
       throw new Exception("html is null");
     }
     this._html = html;

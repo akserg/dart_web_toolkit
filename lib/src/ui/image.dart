@@ -47,8 +47,9 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   /**
    * The attribute that is set when an image fires a native load or error event
    * before it is attached.
+   * Moved to DomImpl.UNHANDLED_EVENT_ATTR
    */
-  static final String UNHANDLED_EVENT_ATTR = "dwtLastUnhandledEvent";
+  //static final String UNHANDLED_EVENT_ATTR = "dwtLastUnhandledEvent";
 
   /**
    * This map is used to store prefetched images. If a reference is not kept to
@@ -148,7 +149,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    */
   Image.fromSafeUri(SafeUri url) {
     changeState(new _UnclippedState(image:this, url:url));
-    clearAndSetStyleName("dwt-Image");
+    //clearAndSetStyleName("dwt-Image");
   }
 
   /**
@@ -171,7 +172,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    */
   Image.fromSafeUriAndMeasure(SafeUri url, int left, int top, int width, int height) {
     changeState(new _ClippedState(this, url, left, top, width, height));
-    clearAndSetStyleName("dwt-Image");
+    //clearAndSetStyleName("dwt-Image");
   }
 
   /**
@@ -524,7 +525,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    */
   void clearUnhandledEvent() {
     if (_state != null) {
-      _state.getImageElement(this).dataAttributes[Image.UNHANDLED_EVENT_ATTR] = "";
+      _state.getImageElement(this).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = "";
     }
   }
 }
@@ -561,7 +562,7 @@ abstract class _State {
   void onLoad(Image image) {
     // If an onload event fired while the image wasn't attached, we need to
     // synthesize one now.
-    String unhandledEvent = getImageElement(image).dataAttributes[Image.UNHANDLED_EVENT_ATTR];
+    String unhandledEvent = getImageElement(image).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR];
     if (BrowserEvents.LOAD == unhandledEvent) {
       fireSyntheticLoadEvent(image);
     }
@@ -628,7 +629,7 @@ class StateScheduledCommand extends ScheduledCommand {
      * the widget is attached.
      */
     if (!_image.isAttached()) {
-      _state.getImageElement(_image).dataAttributes[Image.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
+      _state.getImageElement(_image).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
       return;
     }
 

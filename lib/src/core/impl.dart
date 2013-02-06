@@ -14,6 +14,6 @@ class Impl {
 //    var key = "__gwtDevModeHook:" + $moduleName + ":moduleBase";
 //    var global = $wnd || self;
 //    return global[key] || $moduleBase;
-    return "";
+    return "packages/dart_web_toolkit/";
   }
 }

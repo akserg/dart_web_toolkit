@@ -13,8 +13,14 @@ abstract class DomImpl {
   }
 
   DomImpl();
-  
+
   static bool eventSystemIsInitialized = false;
+
+  /**
+   * The attribute that is set when an image fires a native load or error event
+   * before it is attached.
+   */
+  static final String UNHANDLED_EVENT_ATTR = "dwtLastUnhandledEvent";
 
   //*************************
   // Parent - child relations
@@ -50,12 +56,12 @@ abstract class DomImpl {
       eventSystemIsInitialized = true;
     }
   }
-  
+
   /**
    * Initializes the event dispatch system.
    */
   void initEventSystem();
-  
+
   void setEventListener(dart_html.Element elem, EventListener listener);
 
   void sinkBitlessEvent(dart_html.Element elem, String eventTypeName);
@@ -65,7 +71,7 @@ abstract class DomImpl {
   int getEventsSunk(dart_html.Element elem) {
     return _getEventBits(elem);
   }
-  
+
   int _getEventBits(dart_html.Element elem) {
     assert(elem != null);
     String eventBits = elem.dataAttributes["eventBits"];
@@ -88,7 +94,7 @@ abstract class DomImpl {
   int getEventTypeInt(dart_html.Event evt) {
     return eventGetTypeInt(evt.type);
   }
-  
+
   int eventGetTypeInt(String eventType) {
     switch (eventType) {
       case "blur": return 0x01000;
@@ -122,8 +128,8 @@ abstract class DomImpl {
       default: return -1;
     }
   }
-  
+
   dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable);
-  
+
   EventListener getEventListener(dart_html.Element elem);
 }

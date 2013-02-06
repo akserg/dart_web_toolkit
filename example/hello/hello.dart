@@ -12,10 +12,76 @@ import 'package:dart_web_toolkit/util.dart' as util;
 import 'package:dart_web_toolkit/i18n.dart' as i18n;
 import 'package:dart_web_toolkit/text.dart' as text;
 
+void main() {
+  // Create a static tree and a container to hold it
+  ui.Tree staticTree = createStaticTree();
+  //staticTree.setAnimationEnabled(true);
+  //staticTree.ensureDebugId("cwTree-staticTree");
+  ui.ScrollPanel staticTreeWrapper = new ui.ScrollPanel(staticTree);
+  //staticTreeWrapper.ensureDebugId("cwTree-staticTree-Wrapper");
+  staticTreeWrapper.setSize("300px", "300px");
+
+  // Wrap the static tree in a DecoratorPanel
+  ui.DecoratorPanel staticDecorator = new ui.DecoratorPanel();
+  staticDecorator.setWidget(staticTreeWrapper);
+
+  ui.RootPanel.get("testId").add(staticDecorator);
+}
+
+/**
+ * Create a static tree with some data in it.
+*
+ * @return the new tree
+ */
+ui.Tree createStaticTree() {
+  // Create the tree
+  List<String> composers = ["Beethoven", "Brahms", "Mozart"];
+  String concertosLabel = "Concertos";
+  String quartetsLabel = "Quartets";
+  String sonatasLabel = "Sonatas";
+  String symphoniesLabel = "Symphonies";
+  ui.Tree staticTree = new ui.Tree();
+
+  // Add some of Beethoven's music
+  ui.TreeItem beethovenItem = staticTree.addTextItem(composers[0]);
+  addMusicSection(beethovenItem, concertosLabel, ["No. 1 - C", "No. 2 - B-Flat Major", "No. 3 - C Minor", "No. 4 - G Major", "No. 5 - E-Flat Major"]);
+  addMusicSection(beethovenItem, quartetsLabel, ["Six String Quartets", "Three String Quartets", "Grosse Fugue for String Quartets"]);
+  addMusicSection(beethovenItem, sonatasLabel, ["Sonata in A Minor", "Sonata in F Major"]);
+  addMusicSection(beethovenItem, symphoniesLabel, ["No. 2 - D Major", "No. 2 - D Major", "No. 3 - E-Flat Major", "No. 4 - B-Flat Major", "No. 5 - C Minor", "No. 6 - F Major", "No. 7 - A Major", "No. 8 - F Major", "No. 9 - D Minor"]);
+
+  // Add some of Brahms's music
+  ui.TreeItem brahmsItem = staticTree.addTextItem(composers[1]);
+  addMusicSection(brahmsItem, concertosLabel, ["Violin Concerto", "Double Concerto - A Minor", "Piano Concerto No. 1 - D Minor", "Piano Concerto No. 2 - B-Flat Major"]);
+  addMusicSection(brahmsItem, quartetsLabel, ["Piano Quartet No. 1 - G Minor", "Piano Quartet No. 2 - A Major", "Piano Quartet No. 3 - C Minor", "String Quartet No. 3 - B-Flat Minor"]);
+  addMusicSection(brahmsItem, sonatasLabel, ["Two Sonatas for Clarinet - F Minor", "Two Sonatas for Clarinet - E-Flat Major"]);
+  addMusicSection(brahmsItem, symphoniesLabel, ["No. 1 - C Minor", "No. 2 - D Minor", "No. 3 - F Major", "No. 4 - E Minor"]);
+
+  // Add some of Mozart's music
+  ui.TreeItem mozartItem = staticTree.addTextItem(composers[2]);
+  addMusicSection(mozartItem, concertosLabel, ["Piano Concerto No. 12", "Piano Concerto No. 17", "Clarinet Concerto", "Violin Concerto No. 5", "Violin Concerto No. 4"]);
+
+  // Return the tree
+  return staticTree;
+}
+
+/**
+ * Add a new section of music created by a specific composer.
+*
+ * @param parent the parent {@link TreeItem} where the section will be added
+ * @param label the label of the new section of music
+ * @param composerWorks an array of works created by the composer
+ */
+void addMusicSection(ui.TreeItem parent, String label, List<String> composerWorks) {
+  ui.TreeItem section = parent.addTextItem(label);
+  for (String work in composerWorks) {
+    section.addTextItem(work);
+  }
+}
+
 dart_html.Element _dragSourceEl;
 
 // Port of DnD Basic example from [https://github.com/dart-lang/dart-html5-samples]
-void main() {
+void main_43() {
   ui.FlowPanel columns = new ui.FlowPanel();
   columns.getElement().id = "columns";
 
@@ -184,7 +250,7 @@ ui.DialogBox createDialogBox() {
 
 // ValueListBox
 void main_40() {
-  
+
   ui.Grid grid = new ui.Grid(2, 2);
   grid.addStyleName("cw-FlexTable");
 
@@ -197,7 +263,7 @@ void main_40() {
 
   grid.setWidget(0, 0, new ui.Html("Gender:"));
   grid.setWidget(0, 1, lb);
-  
+
   grid.setWidget(1, 0, new ui.Html("Selected:"));
   grid.setWidget(1, 1, lb2);
 
@@ -213,7 +279,7 @@ class Gender<String> extends util.Enum<String> {
 
   static const Gender MALE = const Gender("Mail");
   static const Gender FEMAIL = const Gender("Femail");
-  
+
   static List<Gender> GENDERS = [Gender.MALE, Gender.FEMAIL];
 }
 
@@ -221,7 +287,7 @@ class Gender<String> extends util.Enum<String> {
  * Gender Renderer
  */
 class GenderRenderer implements text.Renderer<Gender> {
-  
+
   /**
    * Renders {@code object} as plain text. Should never throw any exceptions!
    */
@@ -266,7 +332,7 @@ void main_39() {
 
   panel.setSize("500px", "250px");
   panel.addStyleName("table-center");
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
@@ -277,7 +343,7 @@ void main_38() {
   ui.TabLayoutPanel tabPanel = new ui.TabLayoutPanel(1.5, util.Unit.EM);
   //tabPanel.setAnimationDuration(1000);
   tabPanel.getElement().style.marginBottom = "10.0".concat(util.Unit.PX.value);
-  
+
   tabPanel.add(new ui.Html("Home"), "[this]");
   tabPanel.add(new ui.Html("that"), "[that]");
   tabPanel.add(new ui.Html("the other"), "[the other]");
@@ -384,7 +450,7 @@ void main_35() {
 }
 
 class DisplayBox extends ui.Composite {
-  
+
     DisplayBox(String header, String data) {
       ui.VerticalPanel widget = new ui.VerticalPanel();
       initWidget(widget);
@@ -462,7 +528,7 @@ void main_31() {
   label.addMouseOutHandler(allMouseHandlersAdapter);
 //  label.addMouseMoveHandler(allMouseHandlersAdapter);
 //  label.addMouseWheelHandler(allMouseHandlersAdapter);
-  
+
   panel.add(label);
   ui.RootPanel.get("testId").add(panel);
 }
@@ -487,7 +553,7 @@ void main_30() {
   // Wrap the content in a DecoratorPanel
   ui.DecoratorPanel decPanel = new ui.DecoratorPanel();
   decPanel.setWidget(layout);
-  
+
   ui.RootPanel.get("testId").add(decPanel);
 }
 
@@ -496,12 +562,12 @@ void main_29() {
   ui.SimplePanel panel = new ui.SimplePanel();
   panel.setSize("200px", "120px");
   panel.addStyleName("demo-panel");
-  
+
   ui.Label label = new ui.Label("Label");
   label.setWidth("100px");
   label.addStyleName("demo-label");
   panel.add(label);
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
@@ -594,17 +660,17 @@ void main_26() {
 //  header.addStyleName(".header");
 //  header.add(new ui.Label("This is the header"));
 //  headerPanel.setHeaderWidget(header);
-//  
+//
 //  ui.ResizeLayoutPanel content = new ui.ResizeLayoutPanel();
 //  content.addStyleName(".middle");
 //  content.add(new ui.Label("This is the middle section"));
 //  headerPanel.setContentWidget(content);
-//  
+//
 //  ui.FlowPanel footer = new ui.FlowPanel();
 //  footer.addStyleName(".footer");
 //  footer.add(new ui.Label("This is the footer"));
 //  headerPanel.setFooterWidget(footer);
-//  
+//
 //  ui.RootPanel.get("testId").add(headerPanel);
 }
 
@@ -616,7 +682,7 @@ void main_25() {
   createStackPanelContent(panel, "Panel 1", "One");
   createStackPanelContent(panel, "Panel 2", "Two");
   createStackPanelContent(panel, "Panel 3", "Three");
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
@@ -628,7 +694,7 @@ void main_24() {
   createStackPanelContent(panel, "Panel 1", "One");
   createStackPanelContent(panel, "Panel 2", "Two");
   createStackPanelContent(panel, "Panel 3", "Three");
-  
+
   ui.RootPanel.get("testId").add(panel);
 }
 
@@ -637,7 +703,7 @@ void createStackPanelContent(ui.StackPanel panel, String text, String label, [bo
   panel.add(content, label, asHtml);
 }
 
-//RootLayoutPanel 
+//RootLayoutPanel
 void main_23() {
   // Attach the LayoutPanel to the RootLayoutPanel. The latter will listen for
   // resize events on the window to ensure that its children are informed of

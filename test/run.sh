@@ -6,17 +6,17 @@ set -e
 # Type Analysis
 ###############
 
-echo
-echo "dart_analyzer lib/*.dart"
+#echo
+#echo "dart_analyzer lib/*.dart"
 
-results=$(dart_analyzer --extended-exit-code lib/*.dart)
+#results=$(dart_analyzer --extended-exit-code lib/*.dart)
 
-echo "!!!! Results: !!!!"
-echo "$results"
-echo "!!!! Exit code: !!!!"
-echo "$?"
+#echo "!!!! Results: !!!!"
+#echo "$results"
+#echo "!!!! Exit code: !!!!"
+#echo "$?"
 
-echo "!!!! End !!!!"
+#echo "!!!! End !!!!"
 
 #if [ -n "$results" ]; then
 #    exit 1

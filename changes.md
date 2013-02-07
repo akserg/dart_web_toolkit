@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** February 7, 2013
+
+* Fixed dependencies versions in pubspec.yaml.
+* Changed License and Credits sections in README.md.
+
 ** February 6, 2013
 
 * Code changed to using Focusable instead HasFocus. Last one has been removed.

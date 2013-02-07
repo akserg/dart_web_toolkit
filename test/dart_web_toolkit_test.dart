@@ -14,7 +14,7 @@ import 'package:dart_web_toolkit/i18n.dart' as i18n;
 part 'test_group.dart';
 part 'src/widget_test_group.dart';
 
-void main() {
+vid main() {
 
   final _tList = new List<TestGroup>();
 

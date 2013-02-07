@@ -9,9 +9,15 @@ set -e
 echo
 echo "dart_analyzer lib/*.dart"
 
-results=$(dart_analyzer lib/*.dart 2>&1 1>/dev/null)
+results=$(dart_analyzer --extended-exit-code lib/*.dart 2>&1 1>out.txt)
 
-echo "$results"
+echo "!!!! File: !!!!"
+cat out.txt
+
+echo "!!!! Ecit code: !!!!"
+echo "$?"
+
+echo "!!!! End !!!!"
 
 #if [ -n "$results" ]; then
 #    exit 1

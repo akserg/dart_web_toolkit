@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Fixed dependencies versions in pubspec.yaml.
 * Changed License and Credits sections in README.md.
+* Added Dynamic Tree example.
 
 ** February 6, 2013
 

@@ -4,6 +4,7 @@
 library hello;
 
 import 'dart:html' as dart_html;
+import 'dart:math' as dart_math;
 import 'dart:async' as dart_async;
 
 import 'package:dart_web_toolkit/event.dart' as event;
@@ -16,16 +17,36 @@ void main() {
   // Create a static tree and a container to hold it
   ui.Tree staticTree = createStaticTree();
   //staticTree.setAnimationEnabled(true);
-  //staticTree.ensureDebugId("cwTree-staticTree");
   ui.ScrollPanel staticTreeWrapper = new ui.ScrollPanel(staticTree);
-  //staticTreeWrapper.ensureDebugId("cwTree-staticTree-Wrapper");
   staticTreeWrapper.setSize("300px", "300px");
 
   // Wrap the static tree in a DecoratorPanel
   ui.DecoratorPanel staticDecorator = new ui.DecoratorPanel();
   staticDecorator.setWidget(staticTreeWrapper);
 
-  ui.RootPanel.get("testId").add(staticDecorator);
+
+  // Create a dynamically generated tree and a container to hold it
+  ui.Tree dynamicTree = createDynamicTree();
+  ui.ScrollPanel dynamicTreeWrapper = new ui.ScrollPanel(dynamicTree);
+  dynamicTreeWrapper.setSize("300px", "300px");
+
+  // Wrap the dynamic tree in a DecoratorPanel
+  ui.DecoratorPanel dynamicDecorator = new ui.DecoratorPanel();
+  dynamicDecorator.setWidget(dynamicTreeWrapper);
+
+
+  // Combine trees onto the page
+  ui.Grid grid = new ui.Grid(2, 3);
+  grid.setCellPadding(2);
+  grid.getRowFormatter().setVerticalAlign(1, i18n.HasVerticalAlignment.ALIGN_TOP);
+  grid.setHtml(0, 0, "<b>Static Tree:</b>");
+  grid.setHtml(0, 1, "   ");
+  grid.setHtml(0, 2, "<b>Dynamic Tree:</b>");
+  grid.setWidget(1, 0, staticDecorator);
+  grid.setHtml(1, 1, "   ");
+  grid.setWidget(1, 2, dynamicDecorator);
+
+  ui.RootPanel.get("testId").add(grid);
 }
 
 /**
@@ -76,6 +97,53 @@ void addMusicSection(ui.TreeItem parent, String label, List<String> composerWork
   for (String work in composerWorks) {
     section.addTextItem(work);
   }
+}
+
+/**
+ * Create a dynamic tree that will add a random number of children to each
+ * node as it is clicked.
+*
+ * @return the new tree
+ */
+ui.Tree createDynamicTree() {
+  // Create a new tree
+  ui.Tree dynamicTree = new ui.Tree();
+
+  // Add some default tree items
+  for (int i = 0; i < 5; i++) {
+    ui.TreeItem item = dynamicTree.addTextItem("Item $i");
+
+    // Temporarily add an item so we can expand this node
+    item.addTextItem("");
+  }
+
+  dart_math.Random random = new dart_math.Random(5);
+
+  // Add a handler that automatically generates some children
+  dynamicTree.addOpenHandler(new event.OpenHandlerAdapter((event.OpenEvent evt) {
+    ui.TreeItem item = evt.getTarget();
+    if (item.getChildCount() == 1) {
+      // Close the item immediately
+      item.setState(false, false);
+
+      // Add a random number of children to the item
+      String itemText = item.text;
+      int numChildren = random.nextInt(5) + 2;
+      for (int i = 0; i < numChildren; i++) {
+        ui.TreeItem child = item.addTextItem(itemText.concat(".").concat(i.toString()));
+        child.addTextItem("");
+      }
+
+      // Remove the temporary item when we finish loading
+      item.getChild(0).remove();
+
+      // Reopen the item
+      item.setState(true, false);
+    }
+  }));
+
+  // Return the tree
+  return dynamicTree;
 }
 
 dart_html.Element _dragSourceEl;
@@ -913,7 +981,6 @@ void main_15() {
   dock.addWidgetTo(scroller, util.DockLayoutConstant.CENTER);
 
   // Return the content
-//  dock.ensureDebugId("cwDockPanel");
   ui.RootPanel.get("testId").add(dock);
 }
 
@@ -1083,7 +1150,6 @@ void main_06() {
   for (int i = 0; i < listTypes.length; i++) {
     dropBox.addItem(listTypes[i]);
   }
-  //dropBox.ensureDebugId("cwListBox-dropBox");
   ui.VerticalPanel dropBoxPanel = new ui.VerticalPanel();
   dropBoxPanel.spacing = 4;
   //dropBoxPanel.add(new HTML(constants.cwListBoxSelectCategory()));
@@ -1092,7 +1158,6 @@ void main_06() {
 
   // Add a list box with multiple selection enabled
   ui.ListBox multiBox = new ui.ListBox(true);
-  //multiBox.ensureDebugId("cwListBox-multiBox");
   multiBox.setWidth("11em");
   multiBox.setVisibleItemCount(10);
   for (int i = 0; i < listTypes.length; i++) {
@@ -1111,7 +1176,6 @@ void main_06() {
 
   // Show default category
   showCategory(multiBox, 0);
-//  multiBox.ensureDebugId("cwListBox-multiBox");
 
   ui.RootPanel.get("testId").add(hPanel);
 }

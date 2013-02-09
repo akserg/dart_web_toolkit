@@ -98,7 +98,7 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
   static final String DEFAULT_STYLENAME = "dwt-DialogBox";
 
   Caption caption;
-  bool dragging;
+  bool dragging = false;
   int dragStartX, dragStartY;
   int windowWidth;
   int clientLeft;
@@ -164,7 +164,6 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
    */
   DialogBox([bool autoHide = false, bool modal = true, Caption captionWidget = null]) : super(autoHide, modal, "dialog") {
 
-//    assert captionWidget != null : "The caption must not be null";
     if (captionWidget == null) {
       captionWidget = new DialogBoxCaptionImpl();
     }
@@ -184,12 +183,39 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
     clientLeft = dart_html.document.body.offsetLeft ;// Document.get().getBodyOffsetLeft();
     clientTop = dart_html.document.body.offsetTop; //Document.get().getBodyOffsetTop();
 
-//    _MouseHandler mouseHandler = new _MouseHandler();
-//    addDomHandler(mouseHandler, MouseDownEvent.getType());
-//    addDomHandler(mouseHandler, MouseUpEvent.getType());
-//    addDomHandler(mouseHandler, MouseMoveEvent.getType());
-//    addDomHandler(mouseHandler, MouseOverEvent.getType());
-//    addDomHandler(mouseHandler, MouseOutEvent.getType());
+//    AllMouseHandlersAdapter mouseHandler = new AllMouseHandlersAdapter((DwtEvent event){
+//      if (event is MouseDownEvent) {
+//        beginDragging(event);
+//      } else if (event is MouseMoveEvent) {
+//        continueDragging(event);
+//      } else if (event is MouseOutEvent) {
+//        DialogBox.this.onMouseLeave(caption.asWidget());
+//      } else if (event is MouseOverEvent) {
+//        DialogBox.this.onMouseEnter(caption.asWidget());
+//      } else if (event is MouseUpEvent) {
+//        endDragging(event);
+//      }
+//    });
+//    addDomHandler(mouseHandler, MouseDownEvent.TYPE);
+//    addDomHandler(mouseHandler, MouseUpEvent.TYPE);
+//    addDomHandler(mouseHandler, MouseMoveEvent.TYPE);
+//    addDomHandler(mouseHandler, MouseOverEvent.TYPE);
+//    addDomHandler(mouseHandler, MouseOutEvent.TYPE);
+    addDomHandler(new MouseDownHandlerAdapter((MouseDownEvent event){
+      beginDragging(event);
+    }), MouseDownEvent.TYPE);
+    addDomHandler(new MouseUpHandlerAdapter((MouseUpEvent event){
+      endDragging(event);
+    }), MouseUpEvent.TYPE);
+    addDomHandler(new MouseMoveHandlerAdapter((MouseMoveEvent event){
+      continueDragging(event);
+    }), MouseMoveEvent.TYPE);
+    addDomHandler(new MouseOverHandlerAdapter((MouseOverEvent event){
+      //onMouseEnter(caption.asWidget());
+    }), MouseOverEvent.TYPE);
+    addDomHandler(new MouseOutHandlerAdapter((MouseOutEvent event){
+      //onMouseLeave(caption.asWidget());
+    }), MouseOutEvent.TYPE);
   }
 
   /**
@@ -218,81 +244,20 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
   void onBrowserEvent(dart_html.Event event) {
     // If we're not yet dragging, only trigger mouse events if the event occurs
     // in the caption wrapper
-//    switch (event.type) {
-//      case dart_html.Event.ONMOUSEDOWN:
-//      case dart_html.Event.ONMOUSEUP:
-//      case dart_html.Event.ONMOUSEMOVE:
-//      case dart_html.Event.ONMOUSEOVER:
-//      case dart_html.Event.ONMOUSEOUT:
-//        if (!dragging && !isCaptionEvent(event)) {
-//          return;
-//        }
-//    }
+    switch (Event.getTypeInt(event.type)) {
+      case Event.ONMOUSEDOWN:
+      case Event.ONMOUSEUP:
+      case Event.ONMOUSEMOVE:
+      case Event.ONMOUSEOVER:
+      case Event.ONMOUSEOUT:
+        if (!dragging && !isCaptionEvent(event)) {
+          return;
+        }
+        break;
+    }
 
     super.onBrowserEvent(event);
   }
-
-  /**
-   * @deprecated Use {@link #beginDragging} and {@link #getCaption} instead
-   */
-//  @Deprecated
-//  void onMouseDown(Widget sender, int x, int y) {
-//    if (Dom.getCaptureElement() == null) {
-//      /*
-//       * Need to check to make sure that we aren't already capturing an element
-//       * otherwise events will not fire as expected. If this check isn't here,
-//       * any class which extends custom button will not fire its click event for
-//       * example.
-//       */
-//      dragging = true;
-//      Dom.setCapture(getElement());
-//      dragStartX = x;
-//      dragStartY = y;
-//    }
-//  }
-
-  /**
-   * @deprecated Use {@link Caption#addMouseOverHandler} instead
-   */
-//  @Deprecated
-//  void onMouseEnter(Widget sender) {
-//  }
-
-  /**
-   * @deprecated Use {@link Caption#addMouseOutHandler} instead
-   */
-//  @Deprecated
-//  void onMouseLeave(Widget sender) {
-//  }
-
-  /**
-   * @deprecated Use {@link #continueDragging} and {@link #getCaption} instead
-   */
-//  @Deprecated
-//  void onMouseMove(Widget sender, int x, int y) {
-//    if (dragging) {
-//      int absX = x + getAbsoluteLeft();
-//      int absY = y + getAbsoluteTop();
-//
-//      // if the mouse is off the screen to the left, right, or top, don't
-//      // move the dialog box. This would let users lose dialog boxes, which
-//      // would be bad for modal popups.
-//      if (absX < clientLeft || absX >= windowWidth || absY < clientTop) {
-//        return;
-//      }
-//
-//      setPopupPosition(absX - dragStartX, absY - dragStartY);
-//    }
-//  }
-
-  /**
-   * @deprecated Use {@link #endDragging} and {@link #getCaption} instead
-   */
-//  @Deprecated
-//  void onMouseUp(Widget sender, int x, int y) {
-//    dragging = false;
-//    Dom.releaseCapture(getElement());
-//  }
 
   /**
    * Sets the html string inside the caption by calling its
@@ -303,9 +268,9 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
    *
    * @param html the object's new Html
    */
-//  void setHtml(SafeHtml html) {
-//    caption.setHtml(html);
-//  }
+  void setHtml(SafeHtml html) {
+    caption.html = html.toString();
+  }
 
   /**
    * Sets the html string inside the caption by calling its
@@ -355,7 +320,18 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
    * @param event the mouse down event that triggered dragging
    */
   void beginDragging(MouseDownEvent event) {
-//    onMouseDown(caption.asWidget(), event.getX(), event.getY());
+    if (Dom.getCaptureElement() == null) {
+      /*
+       * Need to check to make sure that we aren't already capturing an element
+       * otherwise events will not fire as expected. If this check isn't here,
+       * any class which extends custom button will not fire its click event for
+       * example.
+       */
+      dragging = true;
+      Dom.setCapture(getElement());
+      dragStartX = event.getX();
+      dragStartY = event.getY();
+    }
   }
 
   /**
@@ -367,7 +343,19 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
    * @param event the mouse move event that continues dragging
    */
   void continueDragging(MouseMoveEvent event) {
-//    onMouseMove(caption.asWidget(), event.getX(), event.getY());
+    if (dragging) {
+      int absX = event.getX() + getAbsoluteLeft();
+      int absY = event.getY() + getAbsoluteTop();
+
+      // if the mouse is off the screen to the left, right, or top, don't
+      // move the dialog box. This would let users lose dialog boxes, which
+      // would be bad for modal popups.
+      if (absX < clientLeft || absX >= windowWidth || absY < clientTop) {
+        return;
+      }
+
+      setPopupPosition(absX - dragStartX, absY - dragStartY);
+    }
   }
 
 
@@ -406,7 +394,8 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
    * @see #endDragging
    */
   void endDragging(MouseUpEvent event) {
-//    onMouseUp(caption.asWidget(), event.getX(), event.getY());
+    dragging = false;
+    Dom.releaseCapture(getElement());
   }
 
   /**
@@ -419,26 +408,19 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
    * @see UIObject#onEnsureDebugId(String)
    */
 
-//  void onEnsureDebugId(String baseID) {
-//    super.onEnsureDebugId(baseID);
-//    caption.asWidget().ensureDebugId(baseID + "-caption");
-//    ensureDebugId(getCellElement(1, 1), baseID, "content");
-//  }
+  void onPreviewNativeEvent(NativePreviewEvent event) {
+    // We need to preventDefault() on mouseDown events (outside of the
+    // DialogBox content) to keep text from being selected when it
+    // is dragged.
+    dart_html.Event nativeEvent = event.getNativeEvent();
 
+    if (!event.isCanceled() && (Event.getTypeInt(nativeEvent.type) == Event.ONMOUSEDOWN)
+        && isCaptionEvent(nativeEvent)) {
+      nativeEvent.preventDefault();
+    }
 
-//  void onPreviewNativeEvent(NativePreviewEvent event) {
-//    // We need to preventDefault() on mouseDown events (outside of the
-//    // DialogBox content) to keep text from being selected when it
-//    // is dragged.
-//    dart_html.Event nativeEvent = event.getNativeEvent();
-//
-//    if (!event.isCanceled() && (event.getTypeInt() == dart_html.Event.ONMOUSEDOWN)
-//        && isCaptionEvent(nativeEvent)) {
-//      nativeEvent.preventDefault();
-//    }
-//
-//    super.onPreviewNativeEvent(event);
-//  }
+    super.onPreviewNativeEvent(event);
+  }
 
   bool isCaptionEvent(dart_html.Event event) {
     dart_html.EventTarget target = event.target;
@@ -467,31 +449,3 @@ class DialogBoxCaptionImpl extends Html implements Caption {
     clearAndSetStyleName("Caption");
   }
 }
-
-//class _MouseHandler extends DomEventHandle implements MouseDownHandler, MouseUpHandler, MouseOutHandler, MouseOverHandler, MouseMoveHandler {
-//
-//
-//  DialogBox _box;
-//
-//  _MouseHandler(this._box, OnDomEventHandler onDomEventHandler) : super(onDomEventHandler);
-//
-//  void onMouseDown(MouseDownEvent event) {
-//    _box.beginDragging(event);
-//  }
-//
-//  void onMouseMove(MouseMoveEvent event) {
-//    _box.continueDragging(event);
-//  }
-//
-//  void onMouseOut(MouseOutEvent event) {
-////    _box.onMouseLeave(_box.caption.asWidget());
-//  }
-//
-//  void onMouseOver(MouseOverEvent event) {
-////    _box.onMouseEnter(_box.caption.asWidget());
-//  }
-//
-//  void onMouseUp(MouseUpEvent event) {
-//    _box.endDragging(event);
-//  }
-//}

@@ -118,7 +118,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    * @param resources a bundle that provides tree specific images
    * @param useLeafImages use leaf images from bundle
    */
-  Tree([Resources resources = null, bool useLeafImages = false]) {
+  Tree([TreeResource resources = null, bool useLeafImages = false]) {
     if (resources == null) {
       _init(new ImageAdapter(), useLeafImages);
     } else {
@@ -1121,7 +1121,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
 /**
  * A ClientBundle that provides images for this widget.
  */
-abstract class Resources extends ClientBundle {
+abstract class TreeResource extends ClientBundle {
 
   /**
    * An image indicating a closed branch.
@@ -1143,7 +1143,7 @@ abstract class Resources extends ClientBundle {
 // Temporary solution for work with image prototypies
 //*****
 
-class TreeResources implements Resources {
+class TreeResources implements TreeResource {
 
   final Map<String, ImageResource> resources = new Map<String, ImageResource>();
 
@@ -1209,12 +1209,12 @@ class TreeSource implements Source {
  * deprecated APIs.
  */
 class ImageAdapter {
-  static const Resources _DEFAULT_RESOURCES = const TreeResources();
+  static const TreeResource _DEFAULT_RESOURCES = const TreeResources();
   AbstractImagePrototype _treeClosed;
   AbstractImagePrototype _treeLeaf;
   AbstractImagePrototype _treeOpen;
 
-  ImageAdapter([Resources resources = _DEFAULT_RESOURCES]) {
+  ImageAdapter([TreeResource resources = _DEFAULT_RESOURCES]) {
     _treeClosed = AbstractImagePrototype.create(resources.treeClosed());
     _treeLeaf = AbstractImagePrototype.create(resources.treeLeaf());
     _treeOpen = AbstractImagePrototype.create(resources.treeOpen());

@@ -47,6 +47,32 @@ class DomImplStandard extends DomImpl {
     parent.insertBefore(toAdd, before);
   }
 
+  dart_html.Element getChild(dart_html.Element elem, int index) {
+    int count = 0;
+    dart_html.Element child = elem.$dom_firstElementChild;
+    while (child != null) {
+      if (child.nodeType == 1) {
+        if (index == count)
+          return child;
+        ++count;
+      }
+      child = child.nextElementSibling;
+    }
+
+    return null;
+  }
+
+  int getChildCount(dart_html.Element elem) {
+    int count = 0;
+    dart_html.Element child = elem.$dom_firstElementChild;
+    while (child != null) {
+      if (child.nodeType == 1)
+        ++count;
+      child = child.nextElementSibling;
+    }
+    return count;
+  }
+
   //********************
   // Position of Element
   //********************

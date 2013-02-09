@@ -70,16 +70,16 @@ abstract class Event<H> {
    * @see EventBus#dispatchEvent(Event, Object)
    */
   void dispatch(H handler);
-  
+
   //*****************
-  
+
   /**
    * The list of {@link NativePreviewHandler}. We use a list instead of a
    * handler manager for efficiency and because we want to fire the handlers in
    * reverse order. When the last handler is removed, handlers is reset to null.
    */
   static EventBus handlers;
-  
+
   /**
    * <p>
    * Adds a {@link NativePreviewHandler} that will receive all events before
@@ -87,13 +87,13 @@ abstract class Event<H> {
    * <u>all</u> native events, including those received due to bubbling, whereas
    * normal event handlers only receive explicitly sunk events.
    * </p>
-   * 
+   *
    * <p>
    * Unlike other event handlers, {@link NativePreviewHandler} are fired in the
    * reverse order that they are added, such that the last
    * {@link NativePreviewEvent} that was added is the first to be fired.
    * </p>
-   * 
+   *
    * <p>
    * Please note that nondeterministic behavior will result if more than one GWT
    * application registers preview handlers. See <a href=
@@ -106,7 +106,7 @@ abstract class Event<H> {
    */
   static HandlerRegistration addNativePreviewHandler(NativePreviewHandler handler) {
     assert (handler != null); // : "Cannot add a null handler";
-    //DOM.maybeInitializeEventSystem();
+    Dom.maybeInitializeEventSystem();
 
     // Initialize the type
     //NativePreviewEvent.getType();
@@ -116,21 +116,21 @@ abstract class Event<H> {
     }
     return handlers.addHandler(NativePreviewEvent.TYPE, handler);
   }
-  
+
   /**
    * Fire a {@link NativePreviewEvent} for the native event.
-   * 
+   *
    * @param nativeEvent the native event
    * @return true to fire the event normally, false to cancel the event
    */
   static bool fireNativePreviewEvent(dart_html.Event nativeEvent) {
     return NativePreviewEvent.fire(handlers, nativeEvent);
   }
-  
+
   //**************
   //**************
   //**************
-  
+
   /**
    * Fired when an element loses keyboard focus.
    */
@@ -234,7 +234,7 @@ abstract class Event<H> {
 
   /**
    * Fired when the user pastes text into an input element.
-   * 
+   *
    * <p>
    * Note: This event is <em>not</em> supported on Firefox 2 and earlier, or
    * Opera 10 and earlier. Be aware that it will not fire on these browser
@@ -270,7 +270,7 @@ abstract class Event<H> {
   /**
    * Fired when the user requests an element's context menu (usually by
    * right-clicking).
-   * 
+   *
    * Note that not all browsers will fire this event (notably Opera, as of 9.5).
    */
   static const int ONCONTEXTMENU = 0x40000;
@@ -301,7 +301,7 @@ abstract class Event<H> {
    * A bit-mask covering all gesture events (start, change, end).
    */
   static const int GESTUREEVENTS = ONGESTURESTART | ONGESTURECHANGE | ONGESTUREEND;
-  
+
   /**
    * The left mouse button.
    */
@@ -316,21 +316,21 @@ abstract class Event<H> {
    * The right mouse button.
    */
   static const int BUTTON_RIGHT = 2;
-  
+
   /**
    * Gets the enumerated type of this event given a valid event type name.
-   * 
+   *
    * @param typeName the typeName to be tested
    * @return the event's enumerated type, or -1 if not defined
    */
   static int getTypeInt(String typeName) {
     return Dom.impl.eventGetTypeInt(typeName);
   }
-  
+
   /**
    * Sets the {@link EventListener} to receive events for the given element.
    * Only one such listener may exist for a single element.
-   * 
+   *
    * @param elem the element whose listener is to be set
    * @param listener the listener to receive {@link Event events}
    */
@@ -339,12 +339,12 @@ abstract class Event<H> {
     // no new fields are added in the subclass.
     Dom.setEventListener(elem, listener);
   }
-  
+
   /**
    * Sets the current set of events sunk by a given element. These events will
    * be fired to the nearest {@link EventListener} specified on any of the
    * element's parents.
-   * 
+   *
    * @param elem the element whose events are to be retrieved
    * @param eventBits a bitfield describing the events sunk on this element (its
    *          possible values are described in {@link Event})
@@ -354,10 +354,10 @@ abstract class Event<H> {
     // no new fields are added in the subclass.
     Dom.sinkEvents(elem, eventBits);
   }
-  
+
   /**
    * Gets the current set of events sunk by a given element.
-   * 
+   *
    * @param elem the element whose events are to be retrieved
    * @return a bitfield describing the events sunk on this element (its possible
    *         values are described in {@link Event})
@@ -367,32 +367,32 @@ abstract class Event<H> {
     // no new fields are added in the subclass.
     return Dom.getEventsSunk(elem);
   }
-  
+
   /**
    * Gets the {@link EventListener} that will receive events for the given
    * element. Only one such listener may exist for a single element.
-   * 
+   *
    * @param elem the element whose listener is to be set
    * @return the element's event listener
    */
   static EventListener getEventListener(dart_html.Element elem) {
     return Dom.getEventListener(elem);
   }
-  
+
   /**
    * Sets mouse-capture on the given element. This element will directly receive
    * all mouse events until {@link #releaseCapture(Element)} is called on it.
-   * 
+   *
    * @param elem the element on which to set mouse capture
    */
   static void setCapture(dart_html.Element elem) {
     Dom.setCapture(elem);
   }
-  
+
   /**
    * Releases mouse capture on the given element. Calling this method has no
    * effect if the element does not currently have mouse capture.
-   * 
+   *
    * @param elem the element to release capture
    * @see #setCapture(Element)
    */

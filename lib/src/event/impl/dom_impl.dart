@@ -30,6 +30,10 @@ abstract class DomImpl {
 
   void insertChild(dart_html.Element parent, dart_html.Element child, int index);
 
+  dart_html.Element getChild(dart_html.Element elem, int index);
+
+  int getChildCount(dart_html.Element elem);
+
   //********************
   // Position of Element
   //********************

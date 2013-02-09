@@ -96,7 +96,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
   // the left style attribute in pixels
   int leftPosition = -1;
 
-//  HandlerRegistration nativePreviewHandlerRegistration;
+  HandlerRegistration nativePreviewHandlerRegistration;
   HandlerRegistration historyHandlerRegistration;
 
   /**
@@ -350,58 +350,13 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 
   bool get visible => getElement().style.visibility != "hidden"; // !"hidden".equals(getElement().style.getProperty("visibility"));
 
-//  /**
-//   * @deprecated Use {@link #onPreviewNativeEvent} instead
-//   */
+  /**
+   * @deprecated Use {@link #onPreviewNativeEvent} instead
+   */
 //  @Deprecated
-//  bool onEventPreview(dart_html.Event event) {
-//    return true;
-//  }
-//
-//  /**
-//   * Popups get an opportunity to preview keyboard events before they are passed
-//   * to a widget contained by the Popup.
-//   *
-//   * @param key the key code of the depressed key
-//   * @param modifiers keyboard modifiers, as specified in
-//   *          {@link com.google.gwt.event.dom.client.KeyCodes}.
-//   * @return <code>false</code> to suppress the event
-//   * @deprecated Use {@link #onPreviewNativeEvent} instead
-//   */
-//  @Deprecated
-//  bool onKeyDownPreview(char key, int modifiers) {
-//    return true;
-//  }
-
-//  /**
-//   * Popups get an opportunity to preview keyboard events before they are passed
-//   * to a widget contained by the Popup.
-//   *
-//   * @param key the unicode character pressed
-//   * @param modifiers keyboard modifiers, as specified in
-//   *          {@link com.google.gwt.event.dom.client.KeyCodes}.
-//   * @return <code>false</code> to suppress the event
-//   * @deprecated Use {@link #onPreviewNativeEvent} instead
-//   */
-//  @Deprecated
-//  bool onKeyPressPreview(char key, int modifiers) {
-//    return true;
-//  }
-//
-//  /**
-//   * Popups get an opportunity to preview keyboard events before they are passed
-//   * to a widget contained by the Popup.
-//   *
-//   * @param key the key code of the released key
-//   * @param modifiers keyboard modifiers, as specified in
-//   *          {@link com.google.gwt.event.dom.client.KeyCodes}.
-//   * @return <code>false</code> to suppress the event
-//   * @deprecated Use {@link #onPreviewNativeEvent} instead
-//   */
-//  @Deprecated
-//  bool onKeyUpPreview(char key, int modifiers) {
-//    return true;
-//  }
+  bool onEventPreview(NativePreviewEvent event) {
+    return true;
+  }
 
   /**
    * Remove an autoHide partner.
@@ -464,8 +419,8 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
       glass.$dom_className = glassStyleName;
 
       glass.style.position = Position.ABSOLUTE.value;
-      glass.style.left = "0px"; //, Unit.PX);
-      glass.style.top = "0px"; //, Unit.PX);
+      glass.style.left = "0".concat(Unit.PX.value);
+      glass.style.top = "0".concat(Unit.PX.value);
     }
   }
 
@@ -551,7 +506,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    * @param callback the callback to set the position of the popup
    * @see PositionCallback#setPosition(int offsetWidth, int offsetHeight)
    */
-  void setPopupPositionAndShow(PositionCallback callback) {
+  void setPopupPositionAndShow(PopupPanelPositionCallback callback) {
     visible = false;
     show();
     callback.setPosition(getOffsetWidth(), getOffsetHeight());
@@ -695,12 +650,12 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     return impl.getStyleElement(getPopupImplElement());
   }
 
-//  void onPreviewNativeEvent(dart_html.Event event) {
-//    // Cancel the event based on the deprecated onEventPreview() method
-//    if (event.isFirstHandler() && !onEventPreview(event)) {
-//      event.cancel();
-//    }
-//  }
+  void onPreviewNativeEvent(NativePreviewEvent event) {
+    // Cancel the event based on the deprecated onEventPreview() method
+    if (event.isFirstHandler() && !onEventPreview(event)) {
+      event.cancel();
+    }
+  }
 
 
   void onUnload() {
@@ -955,109 +910,103 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    *
    * @param event the {@link dart_html.Event}
    */
-//  void previewNativeEvent(dart_html.Event event) {
-//    // If the event has been canceled or consumed, ignore it
-//    if (event.isCanceled() || (!previewAllNativeEvents && event.isConsumed())) {
-//      // We need to ensure that we cancel the event even if its been consumed so
-//      // that popups lower on the stack do not auto hide
-//      if (modal) {
-//        event.cancel();
-//      }
-//      return;
-//    }
-//
-//    // Fire the event hook and return if the event is canceled
-//    onPreviewNativeEvent(event);
-//    if (event.isCanceled()) {
-//      return;
-//    }
-//
-//    // If the event targets the popup or the partner, consume it
-//    dart_html.Event nativeEvent = Event.as(event.getNativeEvent());
-//    bool eventTargetsPopupOrPartner = eventTargetsPopup(nativeEvent)
-//        || eventTargetsPartner(nativeEvent);
-//    if (eventTargetsPopupOrPartner) {
-//      event.consume();
-//    }
-//
-//    // Cancel the event if it doesn't target the modal popup. Note that the
-//    // event can be both canceled and consumed.
-//    if (modal) {
-//      event.cancel();
-//    }
-//
-//    // Switch on the event type
-//    int type = nativeEvent.getTypeInt();
-//    switch (type) {
-//      case Event.ONKEYDOWN: {
+  void previewNativeEvent(NativePreviewEvent event) {
+    // If the event has been canceled or consumed, ignore it
+    if (event.isCanceled() || (!previewAllNativeEvents && event.isConsumed())) {
+      // We need to ensure that we cancel the event even if its been consumed so
+      // that popups lower on the stack do not auto hide
+      if (modal) {
+        event.cancel();
+      }
+      return;
+    }
+
+    // Fire the event hook and return if the event is canceled
+    onPreviewNativeEvent(event);
+    if (event.isCanceled()) {
+      return;
+    }
+
+    // If the event targets the popup or the partner, consume it
+    dart_html.Event nativeEvent = event.getNativeEvent();
+    bool eventTargetsPopupOrPartner = eventTargetsPopup(nativeEvent) || eventTargetsPartner(nativeEvent);
+    if (eventTargetsPopupOrPartner) {
+      event.consume();
+    }
+
+    // Cancel the event if it doesn't target the modal popup. Note that the
+    // event can be both canceled and consumed.
+    if (modal) {
+      event.cancel();
+    }
+
+    // Switch on the event type
+    int type = Event.getTypeInt(nativeEvent.type);
+    switch (type) {
+//      case Event.ONKEYDOWN:
 //        if (!onKeyDownPreview((char) nativeEvent.getKeyCode(),
 //            KeyboardListenerCollection.getKeyboardModifiers(nativeEvent))) {
 //          event.cancel();
 //        }
 //        return;
-//      }
-//      case Event.ONKEYUP: {
+//      case Event.ONKEYUP:
 //        if (!onKeyUpPreview((char) nativeEvent.getKeyCode(),
 //            KeyboardListenerCollection.getKeyboardModifiers(nativeEvent))) {
 //          event.cancel();
 //        }
 //        return;
-//      }
-//      case Event.ONKEYPRESS: {
+//      case Event.ONKEYPRESS:
 //        if (!onKeyPressPreview((char) nativeEvent.getKeyCode(),
 //            KeyboardListenerCollection.getKeyboardModifiers(nativeEvent))) {
 //          event.cancel();
 //        }
 //        return;
-//      }
 //
-//      case Event.ONMOUSEDOWN:
-//        // Don't eat events if event capture is enabled, as this can
-//        // interfere with dialog dragging, for example.
-//        if (Dom.getCaptureElement() != null) {
-//          event.consume();
-//          return;
-//        }
-//
-//        if (!eventTargetsPopupOrPartner && autoHide) {
-//          hide(true);
-//          return;
-//        }
-//        break;
-//      case Event.ONMOUSEUP:
-//      case Event.ONMOUSEMOVE:
-//      case Event.ONCLICK:
-//      case Event.ONDBLCLICK: {
-//        // Don't eat events if event capture is enabled, as this can
-//        // interfere with dialog dragging, for example.
-//        if (Dom.getCaptureElement() != null) {
-//          event.consume();
-//          return;
-//        }
-//        break;
-//      }
-//
-//      case Event.ONFOCUS: {
-//        dart_html.Element target = nativeEvent.getTarget();
-//        if (modal && !eventTargetsPopupOrPartner && (target != null)) {
-//          blur(target);
-//          event.cancel();
-//          return;
-//        }
-//        break;
-//      }
-//    }
-//  }
+      case Event.ONMOUSEDOWN:
+        // Don't eat events if event capture is enabled, as this can
+        // interfere with dialog dragging, for example.
+        if (Dom.getCaptureElement() != null) {
+          event.consume();
+          return;
+        }
+
+        if (!eventTargetsPopupOrPartner && autoHide) {
+          hide(true);
+          return;
+        }
+        break;
+      case Event.ONMOUSEUP:
+      case Event.ONMOUSEMOVE:
+      case Event.ONCLICK:
+      case Event.ONDBLCLICK:
+        // Don't eat events if event capture is enabled, as this can
+        // interfere with dialog dragging, for example.
+        if (Dom.getCaptureElement() != null) {
+          event.consume();
+          return;
+        }
+        break;
+
+      case Event.ONFOCUS:
+        dart_html.Element target = nativeEvent.target as dart_html.Element;
+        if (modal && !eventTargetsPopupOrPartner && (target != null)) {
+          blur(target);
+          event.cancel();
+          return;
+        }
+        break;
+    }
+  }
 
   /**
    * Register or unregister the handlers used by {@link PopupPanel}.
    */
   void updateHandlers() {
     // Remove any existing handlers.
-//    if (nativePreviewHandlerRegistration != null) {
-//      nativePreviewHandlerRegistration.removeHandler();
-//      nativePreviewHandlerRegistration = null;
-//    }
+    if (nativePreviewHandlerRegistration != null) {
+      nativePreviewHandlerRegistration.removeHandler();
+      nativePreviewHandlerRegistration = null;
+    }
     if (historyHandlerRegistration != null) {
       historyHandlerRegistration.removeHandler();
       historyHandlerRegistration = null;
@@ -1065,11 +1014,9 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 
     // Create handlers if showing.
     if (showing) {
-//      nativePreviewHandlerRegistration = Event.addNativePreviewHandler(new NativePreviewHandler() {
-//        void onPreviewNativeEvent(dart_html.Event event) {
-//          previewNativeEvent(event);
-//        }
-//      });
+      nativePreviewHandlerRegistration = Event.addNativePreviewHandler(new NativePreviewHandlerAdapter((NativePreviewEvent event) {
+        previewNativeEvent(event);
+      }));
       historyHandlerRegistration = History.addValueChangeHandler(new HistoryValueChangeHandler(this));
     }
   }
@@ -1097,7 +1044,7 @@ class HistoryValueChangeHandler<String> implements ValueChangeHandler<String> {
  * A callback that is used to set the position of a {@link PopupPanel} right
  * before it is shown.
  */
-abstract class PositionCallback {
+abstract class PopupPanelPositionCallback {
 
   /**
    * Provides the opportunity to set the position of the PopupPanel right
@@ -1115,7 +1062,7 @@ abstract class PositionCallback {
 /**
  * Set the position of the popup right before it is shown.
  */
-class ShowPositionCallback implements PositionCallback {
+class ShowPositionCallback implements PopupPanelPositionCallback {
 
   PopupPanel _panel;
   UiObject _target;

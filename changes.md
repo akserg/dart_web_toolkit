@@ -1,13 +1,19 @@
 Dart Web Toolkit Changes
 ========================
 
-** February 7, 2013
+**February 9, 2013
+
+* Implemented MenuBar. Added example.
+* Fixed autohide PopupDialog bug
+* Fixed Dialog movements.
+
+**February 7, 2013
 
 * Fixed dependencies versions in pubspec.yaml.
 * Changed License and Credits sections in README.md.
 * Added Dynamic Tree example.
 
-** February 6, 2013
+**February 6, 2013
 
 * Code changed to using Focusable instead HasFocus. Last one has been removed.
 * Because HasFocus deletion FocusPanel, FocusWidget has been updated.
@@ -18,7 +24,7 @@ Dart Web Toolkit Changes
 * Added tree example.
 * Fixed: Tree incorrect shows navigation images.
 
-** February 4, 2013
+**February 4, 2013
 
 * Added http and core libraries.
 
@@ -26,12 +32,12 @@ Dart Web Toolkit Changes
 * Clean source code.
 * Clean example Hello class, added more examples.
 
-** February 2, 2013
+**February 2, 2013
 
 * Checked Composite, PopupPanel, ScrollPanel, StackLayoutPanel, TabBar, TabLayoutPanel, TabPanel. Added examples.
 * Implemented AnimationType.
 
-** February 1, 2013
+**February 1, 2013
 
 * Checked DecoratorPanel, FlexTable, HeaderPanel, HeaderPanel, HtmlTable, ResizeLayoutPanel, StackPanel. Added examples.
 

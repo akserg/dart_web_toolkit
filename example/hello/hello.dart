@@ -12,8 +12,80 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/util.dart' as util;
 import 'package:dart_web_toolkit/i18n.dart' as i18n;
 import 'package:dart_web_toolkit/text.dart' as text;
+import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 
 void main() {
+
+  // Create a command that will execute on menu item selection
+  MenuCommand menuCommand = new MenuCommand();
+
+  // Create a menu bar
+  ui.MenuBar menu = new ui.MenuBar();
+  menu.setAutoOpen(true);
+  menu.setWidth("500px");
+  //menu.setAnimationEnabled(true);
+
+  // Create a sub menu of recent documents
+  ui.MenuBar recentDocsMenu = new ui.MenuBar(true);
+  List<String> recentDocs = ["Fishing in the desert.txt", "How to tame a wild parrot", "Idiots Guide to Emu Farms"];
+  for (int i = 0; i < recentDocs.length; i++) {
+    recentDocsMenu.addTextItem(recentDocs[i], false, cmd:menuCommand);
+  }
+
+  // Create the file menu
+  ui.MenuBar fileMenu = new ui.MenuBar(true);
+  //fileMenu.setAnimationEnabled(true);
+  menu.addItem(new ui.MenuItem("File", false, subMenu:fileMenu));
+  List<String> fileOptions = ["New", "Open", "Close", "Recent", "Exit"];
+  for (int i = 0; i < fileOptions.length; i++) {
+    if (i == 3) {
+      fileMenu.addSeparator();
+      fileMenu.addTextItem(fileOptions[i], false, popup:recentDocsMenu);
+      fileMenu.addSeparator();
+    } else {
+      fileMenu.addTextItem(fileOptions[i], false, cmd:menuCommand);
+    }
+  }
+
+  // Create the edit menu
+  ui.MenuBar editMenu = new ui.MenuBar(true);
+  menu.addItem(new ui.MenuItem("Edit", false, subMenu:editMenu));
+  List<String> editOptions = ["Undo", "Redo", "Cut", "Copy", "Paste"];
+  for (int i = 0; i < editOptions.length; i++) {
+    editMenu.addTextItem(editOptions[i], false, cmd:menuCommand);
+  }
+
+  // Create the GWT menu
+  ui.MenuBar gwtMenu = new ui.MenuBar(true);
+  menu.addItem(new ui.MenuItem("GWT", true, subMenu:gwtMenu));
+  List<String> gwtOptions = ["Download", "Examples", "Source Code", "GWT wit' the program"];
+  for (int i = 0; i < gwtOptions.length; i++) {
+    gwtMenu.addTextItem(gwtOptions[i], false, cmd:menuCommand);
+  }
+
+  // Create the help menu
+  ui.MenuBar helpMenu = new ui.MenuBar(true);
+  menu.addSeparator();
+  menu.addItem(new ui.MenuItem("Help", true, subMenu:helpMenu));
+  List<String> helpOptions = ["Contents", "Fortune Cookie", "About GWT"];
+  for (int i = 0; i < helpOptions.length; i++) {
+    helpMenu.addTextItem(helpOptions[i], false, cmd:menuCommand);
+  }
+
+  ui.RootPanel.get("testId").add(menu);
+}
+
+class MenuCommand implements scheduler.ScheduledCommand {
+  int _curPhrase = 0;
+  final List<String> phrases = ["Thank you for selecting a menu item", "A fine selection indeed", "Don't you have anything better to do than select menu items?", "Try something else", "this is just a menu!, Another wasted click"];
+
+  void execute() {
+    dart_html.window.alert(phrases[_curPhrase]);
+    _curPhrase = (_curPhrase + 1) % phrases.length;
+  }
+}
+
+void main_44() {
   // Create a static tree and a container to hold it
   ui.Tree staticTree = createStaticTree();
   //staticTree.setAnimationEnabled(true);
@@ -265,14 +337,18 @@ void _onDrop(event.DropEvent evt){
 }
 
 // DialogBox
-void main_42() {
+void main_41() {
   // Create the dialog box
   ui.DialogBox dialogBox = createDialogBox();
   dialogBox.setGlassEnabled(false);
   dialogBox.setAnimationEnabled(false);
 
-  dialogBox.show();
-  dialogBox.center();
+  // Create a button to show the popup
+  ui.Button openButton = new ui.Button("Show Basic Popup", new event.ClickHandlerAdapter((event.ClickEvent evt){
+    dialogBox.show();
+    dialogBox.center();
+  }));
+  ui.RootPanel.get("testId").add(openButton);
 
 }
 
@@ -548,7 +624,7 @@ void main_33() {
   // Create a basic popup widget
   ui.DecoratedPopupPanel simplePopup = new ui.DecoratedPopupPanel(true);
   simplePopup.setWidth("150px");
-  simplePopup.setGlassEnabled(true);
+  //simplePopup.setGlassEnabled(true);
   simplePopup.setWidget(new ui.Html("Click anywhere outside this popup to make it disappear."));
 
   // Create a button to show the popup

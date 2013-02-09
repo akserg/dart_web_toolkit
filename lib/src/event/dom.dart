@@ -30,22 +30,50 @@ class Dom {
   }
 
   /**
+   * Gets an element's n-th child element.
+   *
+   * @param parent the element whose child is to be retrieved
+   * @param index the index of the child element
+   * @return the n-th child element
+   */
+  static dart_html.Element getChild(dart_html.Element parent, int index) {
+    return impl.getChild(parent, index);
+  }
+
+  /**
+   * Gets the number of child elements present in a given parent element.
+   *
+   * @param parent the element whose children are to be counted
+   * @return the number of children
+   */
+  static int getChildCount(dart_html.Element parent) {
+    return impl.getChildCount(parent);
+  }
+
+  /**
    * Scrolls the given element into view.
-   * 
+   *
    * <p>
    * This method crawls up the DOM hierarchy, adjusting the scrollLeft and
    * scrollTop properties of each scrollable element to ensure that the
    * specified element is completely in view. It adjusts each scroll position by
    * the minimum amount necessary.
    * </p>
-   * 
+   *
    * @param elem the element to be made visible
    */
   static void scrollIntoView(dart_html.Element elem) {
     assert(elem != null);
     elem.scrollIntoView();
   }
-  
+
+  /**
+   * Initialize the event system if it has not already been initialized.
+   */
+  static void maybeInitializeEventSystem() {
+    impl.maybeInitializeEventSystem();
+  }
+
   /**
    * Gets any named property from an element, as a string.
    *
@@ -201,10 +229,10 @@ class Dom {
   static void setStyleAttribute(dart_html.Element elem, String attr, String value) {
     elem.style.setProperty(attr, value);
   }
-  
+
   /**
    * Sets an integer attribute on the given element's style.
-   * 
+   *
    * @param elem the element whose style attribute is to be set
    * @param attr the name of the style attribute to be set
    * @param value the style attribute's new integer value

@@ -273,6 +273,9 @@ class SimpleEventBus<H> extends EventBus<H> {
     if (map.containsKey(type)) {
       Map<Object, List> sourceMap = map[type];
       //
+      if (source == null) {
+        source = _emptySource;
+      }
       if (source != null && sourceMap.containsKey(source)) {
         return sourceMap[source];
       }

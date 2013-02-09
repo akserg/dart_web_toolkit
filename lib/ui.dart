@@ -116,6 +116,9 @@ part 'src/ui/dock_panel.dart';
 part 'src/ui/value_list_box.dart';
 part 'src/ui/tree.dart';
 part 'src/ui/abstract_image_prototype.dart';
+part 'src/ui/menu_item_separator.dart';
+part 'src/ui/menu_item.dart';
+part 'src/ui/menu_bar.dart';
 
 part 'src/ui/has_tree_items.dart';
 part 'src/ui/tree_item.dart';

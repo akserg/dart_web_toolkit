@@ -670,7 +670,7 @@ abstract class UiObject implements HasVisibility {
    * @return the object's offset height
    */
   int getOffsetHeight() {
-    return Dom.getElementPropertyInt(getElement(), "offsetHeight");
+    return getElement().offsetHeight; // Dom.getElementPropertyInt(getElement(), "offsetHeight");
   }
 
   /**
@@ -680,7 +680,7 @@ abstract class UiObject implements HasVisibility {
    * @return the object's offset width
    */
   int getOffsetWidth() {
-    return Dom.getElementPropertyInt(getElement(), "offsetWidth");
+    return getElement().offsetWidth; // Dom.getElementPropertyInt(getElement(), "offsetWidth");
   }
 
   /**

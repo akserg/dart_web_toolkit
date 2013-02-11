@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 11, 2013
+
+* Fixed MenuBar shows submeus in wrong position.
+
 **February 9, 2013
 
 * Implemented MenuBar. Added example.

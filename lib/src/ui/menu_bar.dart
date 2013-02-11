@@ -1238,7 +1238,6 @@ class _PopupPanelPositionCallback extends PopupPanelPositionCallback {
   _PopupPanelPositionCallback(this.menuBar, this.item);
 
   void setPosition(int offsetWidth, int offsetHeight) {
-
     // depending on the bidi direction position a menu on the left or right
     // of its base item
     if (LocaleInfo.getCurrentLocale().isRTL()) {

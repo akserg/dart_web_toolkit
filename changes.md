@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 12, 2013
+* Migrate project code to follow Dart SDK version 0.3.5.1_r18300
+* Fixed MenuBar doesn't show sub menu image.
+
 **February 11, 2013
 
 * Fixed MenuBar shows submeus in wrong position.

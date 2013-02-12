@@ -691,13 +691,8 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
 
       // Fire the item's command. The command must be fired in the same event
       // loop or popup blockers will prevent popups from opening.
-      final ScheduledCommand cmd = item.getScheduledCommand();
-//      Scheduler.get().scheduleFinally(new Scheduler.ScheduledCommand() {
-//
-//        void execute() {
-//          cmd.execute();
-//        }
-//      });
+      ScheduledCommand cmd = item.getScheduledCommand();
+      Scheduler.get().scheduleDeferred(new _MenuScheduledCommand(cmd));
 
       // hide any open submenus of this item
       if (_shownChildMenu != null) {
@@ -812,8 +807,7 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
       _setItemColSpan(item, 1);
       dart_html.Element td = new dart_html.TableCellElement();
       td.style.verticalAlign = "middle";
-      //td.setInnerSafeHtml(_subMenuIcon.getSafeHtml());
-      td.innerHtml = _subMenuIcon.getSafeHtml().toString();
+      td.append(_subMenuIcon.createElement());
       UiObject.setElementStyleName(td, "subMenuIcon");
       tr.append(td);
     }
@@ -1187,7 +1181,7 @@ class MenuResources implements MenuResource {
   }
 
   ImageResourcePrototype _getMenuImageResourcePrototype(String name, int left) {
-    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString("resource/images/menu.png"), left, 0, 82, 49, false, false);
+    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString("resource/images/menu.png"), left, 0, 5, 9, false, false);
     return imageResource;
   }
 }
@@ -1253,5 +1247,19 @@ class _PopupPanelPositionCallback extends PopupPanelPositionCallback {
         menuBar._popup.setPopupPosition(item.getAbsoluteLeft(), menuBar.getAbsoluteTop() + menuBar.getOffsetHeight() - 1);
       }
     }
+  }
+}
+
+class _MenuScheduledCommand extends ScheduledCommand {
+
+  ScheduledCommand _cmd;
+
+  _MenuScheduledCommand(this._cmd);
+
+  /**
+   * Invokes the command.
+   */
+  void execute() {
+    _cmd.execute();
   }
 }

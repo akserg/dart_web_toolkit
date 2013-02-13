@@ -4,6 +4,12 @@ Dart Web Toolkit Changes
 **February 13, 2013
 
 * Implemented NotificationMole. Added exxample.
+* Fixed animation problem.
+* Fixed PopupPanel: resizing
+* Fixed DecoratedPopupPanel: autohide
+* Fixed DialogBox: autohide, resize and center
+* Fixed HeaderPanel component
+* Fixed TabPanel component layout
 
 **February 12, 2013
 * Migrate project code to follow Dart SDK version 0.3.5.1_r18300

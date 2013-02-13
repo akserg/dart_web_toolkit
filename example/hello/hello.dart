@@ -19,7 +19,7 @@ void main() {
   // This can be any panel that accepts children.
   ui.HasWidgets panel = ui.RootPanel.get("testId");
   ui.NotificationMole nm = new ui.NotificationMole();
-  nm.setAnimationDuration(200);
+  nm.setAnimationDuration(500);
   nm.title = "Title";
   nm.setHeight("100px");
   nm.setWidth("200px");
@@ -29,6 +29,7 @@ void main() {
   nm.show();
 }
 
+// MenuBar
 void main_45() {
 
   // Create a command that will execute on menu item selection
@@ -38,7 +39,7 @@ void main_45() {
   ui.MenuBar menu = new ui.MenuBar();
   menu.setAutoOpen(true);
   menu.setWidth("500px");
-  //menu.setAnimationEnabled(true);
+  menu.setAnimationEnabled(true);
 
   // Create a sub menu of recent documents
   ui.MenuBar recentDocsMenu = new ui.MenuBar(true);
@@ -49,7 +50,7 @@ void main_45() {
 
   // Create the file menu
   ui.MenuBar fileMenu = new ui.MenuBar(true);
-  //fileMenu.setAnimationEnabled(true);
+  fileMenu.setAnimationEnabled(true);
   menu.addItem(new ui.MenuItem("File", false, subMenu:fileMenu));
   List<String> fileOptions = ["New", "Open", "Close", "Recent", "Exit"];
   for (int i = 0; i < fileOptions.length; i++) {
@@ -103,7 +104,7 @@ class MenuCommand implements scheduler.ScheduledCommand {
 void main_44() {
   // Create a static tree and a container to hold it
   ui.Tree staticTree = createStaticTree();
-  //staticTree.setAnimationEnabled(true);
+  staticTree.setAnimationEnabled(true);
   ui.ScrollPanel staticTreeWrapper = new ui.ScrollPanel(staticTree);
   staticTreeWrapper.setSize("300px", "300px");
 
@@ -352,11 +353,11 @@ void _onDrop(event.DropEvent evt){
 }
 
 // DialogBox
-void main_41() {
+void main_42() {
   // Create the dialog box
   ui.DialogBox dialogBox = createDialogBox();
   dialogBox.setGlassEnabled(false);
-  dialogBox.setAnimationEnabled(false);
+  dialogBox.setAnimationEnabled(true);
 
   // Create a button to show the popup
   ui.Button openButton = new ui.Button("Show Basic Popup", new event.ClickHandlerAdapter((event.ClickEvent evt){
@@ -500,7 +501,7 @@ void main_38() {
 
   // Create a three-item tab panel, with the tab area 1.5em tall.
   ui.TabLayoutPanel tabPanel = new ui.TabLayoutPanel(1.5, util.Unit.EM);
-  //tabPanel.setAnimationDuration(1000);
+  tabPanel.setAnimationDuration(1000);
   tabPanel.getElement().style.marginBottom = "10.0".concat(util.Unit.PX.value);
 
   tabPanel.add(new ui.Html("Home"), "[this]");
@@ -660,7 +661,7 @@ void main_33() {
 void main_32() {
 
   ui.PopupPanel imagePopup = new ui.PopupPanel(true);
-  //imagePopup.setAnimationEnabled(true);
+  imagePopup.setAnimationEnabled(true);
   imagePopup.setWidget(new ui.Html("this is test"));
 
   imagePopup.center();

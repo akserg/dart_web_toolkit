@@ -119,6 +119,7 @@ part 'src/ui/abstract_image_prototype.dart';
 part 'src/ui/menu_item_separator.dart';
 part 'src/ui/menu_item.dart';
 part 'src/ui/menu_bar.dart';
+part 'src/ui/notification_mole.dart';
 
 part 'src/ui/has_tree_items.dart';
 part 'src/ui/tree_item.dart';

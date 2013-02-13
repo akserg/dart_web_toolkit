@@ -14,7 +14,22 @@ import 'package:dart_web_toolkit/i18n.dart' as i18n;
 import 'package:dart_web_toolkit/text.dart' as text;
 import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 
+// Notification Mole
 void main() {
+  // This can be any panel that accepts children.
+  ui.HasWidgets panel = ui.RootPanel.get("testId");
+  ui.NotificationMole nm = new ui.NotificationMole();
+  nm.setAnimationDuration(200);
+  nm.title = "Title";
+  nm.setHeight("100px");
+  nm.setWidth("200px");
+  nm.setMessage("Test message to be shown in mole");
+  panel.add(nm);
+  // Setup the NotificationMole...
+  nm.show();
+}
+
+void main_45() {
 
   // Create a command that will execute on menu item selection
   MenuCommand menuCommand = new MenuCommand();

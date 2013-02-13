@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 13, 2013
+
+* Implemented NotificationMole. Added exxample.
+
 **February 12, 2013
 * Migrate project code to follow Dart SDK version 0.3.5.1_r18300
 * Fixed MenuBar doesn't show sub menu image.

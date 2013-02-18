@@ -386,7 +386,7 @@ abstract class UiObject implements HasVisibility {
         classes[i] = newPrimaryStyle.concat(name.substring(oldPrimaryStyleLen));
       }
     }
-    elem.$dom_className = Strings.join(classes, " ");
+    elem.$dom_className = classes.join(" ");
   }
 
   /**

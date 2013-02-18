@@ -13,7 +13,7 @@ part of dart_web_toolkit_i18n;
  * can be processed together.
  */
 class DateRecord {
-  Date _date = new Date.now();
+  DateTime _date = new DateTime.now();
 
   static final int AM = 0;
   static final int PM = 1;
@@ -57,7 +57,7 @@ class DateRecord {
    * @param strict true to be strict when parsing
    * @return true if successful, otherwise false.
    */
-  bool calcDate(Date date, bool strict) {
+  bool calcDate(DateTime date, bool strict) {
     // Year 0 is 1 BC, and so on.
     if (this.era == 0 && this.year > 0) {
       this.year = -(this.year - 1);
@@ -90,7 +90,7 @@ class DateRecord {
       // is parse on January 31, the resulting date should be in February, not
       // March. So, we limit the day of the month to the maximum day within the
       // parsed month.
-      Date tmp = new Date(date.year, date.month, 35);
+      DateTime tmp = new DateTime(date.year, date.month, 35);
       int daysInCurrentMonth = 35 - tmp.day;
       _day /* date.day */ = dart_math.min(daysInCurrentMonth, orgDayOfMonth);
     } else {
@@ -125,7 +125,7 @@ class DateRecord {
       _millisecond = date.millisecond ~/ 1000000 + this.millisecond;
     }
 
-    date = new Date(_year, _month, _day, _hour, _minute, _second, _millisecond);
+    date = new DateTime(_year, _month, _day, _hour, _minute, _second, _millisecond);
 
     // If strict, verify that the original date fields match the calculated date
     // fields. We do this before we set the timezone offset, which will skew all
@@ -161,13 +161,13 @@ class DateRecord {
 
     // Resolve ambiguous year if needed.
     if (this.ambiguousYear) { // the two-digit year == the default start year
-      Date defaultCenturyStart = new Date.now();
+      DateTime defaultCenturyStart = new DateTime.now();
       //defaultCenturyStart.year = defaultCenturyStart.year - 80;
-      defaultCenturyStart = new Date(defaultCenturyStart.year - 80, defaultCenturyStart.month, defaultCenturyStart.day, defaultCenturyStart.hour, defaultCenturyStart.minute, defaultCenturyStart.second, defaultCenturyStart.millisecond);
+      defaultCenturyStart = new DateTime(defaultCenturyStart.year - 80, defaultCenturyStart.month, defaultCenturyStart.day, defaultCenturyStart.hour, defaultCenturyStart.minute, defaultCenturyStart.second, defaultCenturyStart.millisecond);
 
       if (date < defaultCenturyStart) {
         //date.year = defaultCenturyStart.year + 100;
-        date = new Date(defaultCenturyStart.year + 100, _month, _day, _hour, _minute, _second, _millisecond);
+        date = new DateTime(defaultCenturyStart.year + 100, _month, _day, _hour, _minute, _second, _millisecond);
       }
     }
 
@@ -192,7 +192,7 @@ class DateRecord {
           _day /* date.day */ = _day /* date.day */ + (adjustment > 0 ? -7 : 7);
         }
 
-        date = new Date(date.year, date.month, _day, date.hour, date.minute, date.second, date.millisecond);
+        date = new DateTime(date.year, date.month, _day, date.hour, date.minute, date.second, date.millisecond);
 
       } else {
         if (date.day != this.dayOfWeek) {
@@ -205,15 +205,15 @@ class DateRecord {
     if (this.tzOffset > MIN_VALUE) {
       //int offset = getTimezoneOffset(date);
       //date.setTime(date.getTime() + (this.tzOffset - offset) * 60 * 1000);
-      date = new Date.fromMillisecondsSinceEpoch(date.millisecondsSinceEpoch, isUtc:true);
+      date = new DateTime.fromMillisecondsSinceEpoch(date.millisecondsSinceEpoch, isUtc:true);
       // HBJ date.setTime(date.getTime() + this.tzOffset * 60 * 1000);
     }
 
     return true;
   }
 
-//  int getTimezoneOffset(Date date) {
-//    Date utc = new Date.utc(date.year, date.month, date.day, date.hour, date.minute, date.second, date.millisecond);
+//  int getTimezoneOffset(DateTime date) {
+//    DateTime utc = new DateTime.utc(date.year, date.month, date.day, date.hour, date.minute, date.second, date.millisecond);
 //    return (date.millisecondsSinceEpoch - utc.millisecondsSinceEpoch) ~/ 60000;
 //  }
 

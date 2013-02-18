@@ -485,19 +485,19 @@ class CustomButton extends ButtonBase {
       int keyCode = getMouseEvent(event).$dom_keyCode;
       switch (type) {
         case Event.ONKEYDOWN:
-          if (keyCode == ' '.charCodeAt(0)) {
+          if (keyCode == ' '.codeUnitAt(0)) {
             _isFocusing = true;
             onClickStart();
           }
           break;
         case Event.ONKEYUP:
-          if (_isFocusing && keyCode == ' '.charCodeAt(0)) {
+          if (_isFocusing && keyCode == ' '.codeUnitAt(0)) {
             _isFocusing = false;
             onClick();
           }
           break;
         case Event.ONKEYPRESS:
-          if (keyCode == '\n'.charCodeAt(0) || keyCode == '\r'.charCodeAt(0)) {
+          if (keyCode == '\n'.codeUnitAt(0) || keyCode == '\r'.codeUnitAt(0)) {
             onClickStart();
             onClick();
           }

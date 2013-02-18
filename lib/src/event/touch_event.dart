@@ -91,7 +91,7 @@ class TouchSupportDetector {
   bool detectTouchSupport() {
     dart_html.DivElement elem = new dart_html.DivElement();
     try {
-      elem.on.touchStart.add((dart_html.Event evt){
+      elem.onTouchStart.listen((dart_html.Event evt){
         return;
       });
     } on Exception catch(e) {

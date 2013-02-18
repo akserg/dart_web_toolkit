@@ -391,7 +391,7 @@ class DateTimeFormat {
    * @return string representation for this date in the format defined by this
    *         object
    */
-  String format(Date date, [TimeZone timeZone = null]) {
+  String format(DateTime date, [TimeZone timeZone = null]) {
     return date.toString();
   }
 }

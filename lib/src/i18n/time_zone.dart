@@ -99,7 +99,7 @@ class TimeZone {
   static String _composeGMTString(int offset) {
     List<int> data = 'GMT-00:00'.charCodes;
     if (offset <= 0) {
-      data[3] = '+'.charCodeAt(0);
+      data[3] = '+'.codeUnitAt(0);
       offset = -offset; // suppress the '-' sign for text display.
     }
     data[4] += (offset ~/ 60) ~/ 10;
@@ -159,9 +159,9 @@ class TimeZone {
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getDaylightAdjustment(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getDaylightAdjustment(java.util.DateTime)
    */
-  int getDaylightAdjustment(Date date) {
+  int getDaylightAdjustment(DateTime date) {
     if (_transitionPoints == null) {
       return 0;
     }
@@ -175,9 +175,9 @@ class TimeZone {
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getGMTString(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getGMTString(java.util.DateTime)
    */
-  String getGMTString(Date date) {
+  String getGMTString(DateTime date) {
     return _composeGMTString(getOffset(date));
   }
 
@@ -189,14 +189,14 @@ class TimeZone {
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getISOTimeZoneString(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getISOTimeZoneString(java.util.DateTime)
    */
-  String getISOTimeZoneString(Date date) {
+  String getISOTimeZoneString(DateTime date) {
     int offset = -getOffset(date);
     //
     List<int> data = '+00:00'.charCodes;
     if (offset < 0) {
-      data[0] = '-'.charCodeAt(0);
+      data[0] = '-'.codeUnitAt(0);
       offset = -offset; // suppress the '-' sign for text display.
     }
     data[1] += (offset ~/ 60) ~/ 10;
@@ -207,28 +207,28 @@ class TimeZone {
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getLongName(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getLongName(java.util.DateTime)
    */
-  String getLongName(Date date) {
+  String getLongName(DateTime date) {
     return _tzNames[isDaylightTime(date) ? _DLT_LONG_NAME : _STD_LONG_NAME];
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getOffset(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getOffset(java.util.DateTime)
    */
-  int getOffset(Date date) {
+  int getOffset(DateTime date) {
     return _standardOffset - getDaylightAdjustment(date);
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getRFCTimeZoneString(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getRFCTimeZoneString(java.util.DateTime)
    */
-  String getRFCTimeZoneString(Date date) {
+  String getRFCTimeZoneString(DateTime date) {
     int offset = -getOffset(date);
     //
     List<int> data = '+0000'.charCodes;
     if (offset < 0) {
-      data[0] = '-'.charCodeAt(0);
+      data[0] = '-'.codeUnitAt(0);
       offset = -offset; // suppress the '-' sign for text display.
     }
     data[1] += (offset ~/ 60) ~/ 10;
@@ -239,9 +239,9 @@ class TimeZone {
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#getShortName(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#getShortName(java.util.DateTime)
    */
-  String getShortName(Date date) {
+  String getShortName(DateTime date) {
     return _tzNames[isDaylightTime(date) ? _DLT_SHORT_NAME : _STD_SHORT_NAME];
   }
 
@@ -253,9 +253,9 @@ class TimeZone {
   }
 
   /* (non-Javadoc)
-   * @see com.google.gwt.i18n.client.TimeZoneIntf#isDaylightTime(java.util.Date)
+   * @see com.google.gwt.i18n.client.TimeZoneIntf#isDaylightTime(java.util.DateTime)
    */
-  bool isDaylightTime(Date date) {
+  bool isDaylightTime(DateTime date) {
     return getDaylightAdjustment(date) > 0;
   }
 }

@@ -267,9 +267,9 @@ class SchedulerImpl extends Scheduler {
     }
 
     bool canceledSomeTasks = false;
-    int start = (new Date.now()).millisecond; // Duration.currentTimeMillis();
+    int start = (new DateTime.now()).millisecond; // Duration.currentTimeMillis();
 
-    while ((new Date.now()).millisecond - start < _TIME_SLICE) {
+    while ((new DateTime.now()).millisecond - start < _TIME_SLICE) {
       for (int i = 0; i < length; i++) {
         assert (tasks.length == length); // : "Working array length changed "  + tasks.length() + " != " + length;
         Task t = tasks[i];

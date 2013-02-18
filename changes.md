@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 17, 2013
+
+* Removed referenced on depraceted code:
+ - Strings;
+ - Date;
+ - 'on' method in elements
+
 **February 13, 2013
 
 * Implemented NotificationMole. Added exxample.

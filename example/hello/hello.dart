@@ -1095,7 +1095,7 @@ void main_13() {
   vpanel1.spacing = 5;
 
   ui.DateLabel dLabel = new ui.DateLabel();
-  dLabel.setValue(new Date.now());
+  dLabel.setValue(new DateTime.now());
   vpanel1.add(dLabel);
 
   ui.NumberLabel nLabel = new ui.NumberLabel();

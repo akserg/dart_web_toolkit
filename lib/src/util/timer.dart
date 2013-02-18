@@ -60,7 +60,7 @@ class Timer {
 //        }
 //      }
 //    });
-    dart_html.window.on.unload.add((dart_html.Event event) {
+    dart_html.window.onUnload.listen((dart_html.Event event) {
         while (timers.length > 0) {
           timers[0].cancel();
         }

@@ -201,7 +201,7 @@ class RootPanel extends AbsolutePanel {
 
   static void _hookWindowClosing() {
     // Catch the window closing event.
-    dart_html.window.on.unload.add((dart_html.Event event) {
+    dart_html.window.onUnload.listen((dart_html.Event event) {
       detachWidgets();
     });
   }

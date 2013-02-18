@@ -84,7 +84,7 @@ class HistoryImpl implements HasValueChangeHandlers<String> {
 
     //var oldHandler = dart_html.window.on["hashchange"];
 
-    dart_html.window.on.hashChange.add((dart_html.Event event) {
+    dart_html.window.onHashChange.listen((dart_html.Event event) {
       var token = '';
       String hash = dart_html.window.location.hash;
       if (hash.length > 0) {

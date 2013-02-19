@@ -136,6 +136,24 @@ abstract class ScheduledCommand {
 }
 
 /**
+ * Adapter of ScheduledCommand calling function in execute method
+ * passed through constructor.
+ */
+class ScheduledCommandAdapter implements ScheduledCommand {
+  
+  Function _function;
+  
+  ScheduledCommandAdapter(this._function);
+  
+  /**
+   * Invokes the command.
+   */
+  void execute() {
+    _function();
+  }
+}
+
+/**
  * General-purpose Command interface for tasks that repeat.
  */
 abstract class RepeatingCommand {
@@ -143,4 +161,22 @@ abstract class RepeatingCommand {
    * Returns true if the RepeatingCommand should be invoked again.
    */
   bool execute();
+}
+
+/**
+ * Adapter of RepeatingCommand calling function in execute method
+ * passed through constructor and return result.
+ */
+class RepeatingCommandAdapter implements RepeatingCommand {
+  
+  Function _function;
+  
+  RepeatingCommandAdapter(this._function);
+  
+  /**
+   * Returns true if the RepeatingCommand should be invoked again.
+   */
+  bool execute() {
+    return _function();
+  }
 }

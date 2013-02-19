@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 18, 2013
+
+* Added ScheduledCommandAdapter and RepeatingCommandAdapter to 'scheduler' library.
+
 **February 17, 2013
 
 * Removed referenced on depraceted code:

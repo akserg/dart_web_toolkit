@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 20, 2013
+
+* Fixed Panel content alignment.
+* Fixed CellPanel content alignment.
+
 **February 18, 2013
 
 * Added ScheduledCommandAdapter and RepeatingCommandAdapter to 'scheduler' library.

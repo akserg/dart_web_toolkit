@@ -58,8 +58,7 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
   void clear() {
     Iterator<Widget> it = iterator() as Iterator<Widget>;
     while (it.moveNext()) {
-      it.current;
-      //it.remove();
+      (it.current as Widget).removeFromParent();
     }
   }
 

@@ -103,11 +103,13 @@ abstract class CellPanel extends ComplexPanel {
   }
 
   void setCellHorizontalAlignment(dart_html.TableCellElement td, HorizontalAlignmentConstant align) {
-    Dom.setElementProperty(td, "align", align.getTextAlignString());
+    //Dom.setElementProperty(td, "align", align.getTextAlignString());
+    td.style.textAlign = align.getTextAlignString();
   }
 
   void setCellVerticalAlignment(dart_html.TableCellElement td, VerticalAlignmentConstant align) {
-    Dom.setStyleAttribute(td, "verticalAlign", align.getVerticalAlignString());
+    //Dom.setStyleAttribute(td, "verticalAlign", align.getVerticalAlignString());
+    td.style.verticalAlign = align.getVerticalAlignString();
   }
 
   dart_html.Element getWidgetTd(Widget w) {

@@ -256,5 +256,7 @@ part 'src/event/adapter/touch_start_handler_adapter.dart';
 part 'src/event/adapter/open_handler_adapter.dart';
 part 'src/event/adapter/close_handler_adapter.dart';
 part 'src/event/adapter/native_preview_handler_adapter.dart';
+part 'src/event/adapter/selection_handler_adapter.dart';
+part 'src/event/adapter/before_selection_handler_adapter.dart';
 
 part 'src/event/adapter/all_mouse_handlers_adapter.dart';

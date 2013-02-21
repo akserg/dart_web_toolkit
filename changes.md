@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 21, 2013
+
+* Added SelectionHandlerAdapter, BeforeSelectionAdapter.
+
 **February 20, 2013
 
 * Fixed Panel content alignment.

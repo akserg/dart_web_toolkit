@@ -525,7 +525,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
    */
   void clearUnhandledEvent() {
     if (_state != null) {
-      _state.getImageElement(this).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = "";
+      _state.getImageElement(this).dataset[DomImpl.UNHANDLED_EVENT_ATTR] = "";
     }
   }
 }
@@ -562,7 +562,7 @@ abstract class _State {
   void onLoad(Image image) {
     // If an onload event fired while the image wasn't attached, we need to
     // synthesize one now.
-    String unhandledEvent = getImageElement(image).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR];
+    String unhandledEvent = getImageElement(image).dataset[DomImpl.UNHANDLED_EVENT_ATTR];
     if (BrowserEvents.LOAD == unhandledEvent) {
       fireSyntheticLoadEvent(image);
     }
@@ -629,7 +629,7 @@ class StateScheduledCommand extends ScheduledCommand {
      * the widget is attached.
      */
     if (!_image.isAttached()) {
-      _state.getImageElement(_image).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
+      _state.getImageElement(_image).dataset[DomImpl.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
       return;
     }
 

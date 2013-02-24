@@ -39,19 +39,19 @@ class AnimationSchedulerImplWebkit extends AnimationSchedulerImpl {
   }
 
   bool isNativelySupported() {
-    return (dart_html.window.webkitRequestAnimationFrame != null &&
-        dart_html.window.webkitCancelAnimationFrame != null);
+    return (dart_html.window.requestAnimationFrame != null &&
+        dart_html.window.cancelAnimationFrame != null);
   }
 
   void cancelAnimationFrameImpl(int requestId) {
-    dart_html.window.webkitCancelAnimationFrame(requestId);
+    dart_html.window.cancelAnimationFrame(requestId);
   }
 
   int requestAnimationFrameImpl(AnimationCallback callback, dart_html.Element element) {
     Function wrapper = (num highResTime) {
       callback.execute(new DateTime.now().millisecondsSinceEpoch);
     };
-    return dart_html.window.webkitRequestAnimationFrame(wrapper);
+    return dart_html.window.requestAnimationFrame(wrapper);
   }
 }
 

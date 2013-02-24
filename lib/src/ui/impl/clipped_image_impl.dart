@@ -18,7 +18,7 @@ class ClippedImageImpl {
     img.style.width = "${width}px";
     img.style.height = "${height}px";
     img.onLoad.listen((dart_html.Event evt) {
-      img.dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
+      img.dataset[DomImpl.UNHANDLED_EVENT_ATTR] = BrowserEvents.LOAD;
     });
     //
     return img;

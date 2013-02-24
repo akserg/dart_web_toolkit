@@ -84,7 +84,7 @@ class DragSupportDetector {
   bool detectDragSupport() {
     dart_html.DivElement elem = new dart_html.DivElement();
     try {
-      dart_html.EventListenerList list = elem.on.dragStart.add((dart_html.Event evt){
+      elem.onDragStart.listen((dart_html.Event evt){
         return;
       });
     } on Exception catch(e) {

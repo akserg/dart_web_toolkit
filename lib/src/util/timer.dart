@@ -28,38 +28,28 @@ class Timer {
   static List<Timer> timers = new List<Timer>();
   static bool _initialised = false;
 
-  static void clearInterval(int id) {
-    dart_html.window.clearInterval(id);
+  static void clearInterval(dart_async.Timer timer) {
+    timer.cancel();
   }
 
-  static void clearTimeout(int id) {
-    dart_html.window.clearTimeout(id);
+  static void clearTimeout(dart_async.Timer timer) {
+    timer.cancel();
   }
 
-  static int createInterval(Timer timer, int period) {
-    return dart_html.window.setInterval(
-      (){
-        timer.fire();
-      }, period);
+  static dart_async.Timer createInterval(Timer timer, int period) {
+    return new dart_async.Timer.repeating(const Duration(milliseconds:period), (dart_async.Timer t){
+      timer.fire();
+    });
   }
 
-  static int createTimeout(Timer timer, int delay) {
-    return dart_html.window.setTimeout(
-      (){
-        timer.fire();
-      }, delay);
+  static dart_async.Timer createTimeout(Timer timer, int delay) {
+    return new dart_async.Timer(const Duration(milliseconds:delay), (){
+      timer.fire();
+    });
   }
 
   static void _hookWindowClosing() {
     // Catch the window closing event.
-//    Window.addCloseHandler(new CloseHandler<Window>() {
-//
-//      void onClose(CloseEvent<Window> event) {
-//        while (timers.size() > 0) {
-//          timers.get(0).cancel();
-//        }
-//      }
-//    });
     dart_html.window.onUnload.listen((dart_html.Event event) {
         while (timers.length > 0) {
           timers[0].cancel();
@@ -69,7 +59,7 @@ class Timer {
 
   bool isRepeating = false;
 
-  int timerId = -1;
+  dart_async.Timer _timer;
 
   Function _callback;
 
@@ -88,9 +78,9 @@ class Timer {
    */
   void cancel() {
     if (isRepeating) {
-      clearInterval(timerId);
+      clearInterval(_timer); //timerId);
     } else {
-      clearTimeout(timerId);
+      clearTimeout(_timer); //timerId);
     }
     int indx = timers.indexOf(this);
     if (indx != -1) {
@@ -118,7 +108,7 @@ class Timer {
     }
     cancel();
     isRepeating = false;
-    timerId = createTimeout(this, delayMillis);
+    _timer = createTimeout(this, delayMillis);
     timers.add(this);
   }
 
@@ -134,7 +124,7 @@ class Timer {
     }
     cancel();
     isRepeating = true;
-    timerId = createInterval(this, periodMillis);
+    _timer = createInterval(this, periodMillis);
     timers.add(this);
   }
 

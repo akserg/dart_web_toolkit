@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 24, 2013
+
+* Migrate project code to follow Dart SDK version 0.3.7.6_r18717
+* Updated AnimationSchedulerImplWebkit, DragDropEventBase, DomImpl, DomImplStandard, SchedulerImpl, Image, ClippedImage, ElementMapperImpl, Timer.
+
 **February 21, 2013
 
 * Added SelectionHandlerAdapter, BeforeSelectionAdapter.

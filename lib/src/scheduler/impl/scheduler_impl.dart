@@ -48,10 +48,10 @@ class SchedulerImpl extends Scheduler {
     caleer.timeoutHandler = () {
       print("_scheduleFixedDelayImpl");
       if (cmd.execute()) {
-        dart_html.window.setTimeout(caleer.timeoutHandler, delayMs);
+        new dart_async.Timer(const Duration(milliseconds:delayMs), caleer.timeoutHandler);
       }
     };
-    caleer.handle = dart_html.window.setTimeout(caleer.timeoutHandler, delayMs);
+    caleer.handle = new dart_async.Timer(const Duration(milliseconds:delayMs), caleer.timeoutHandler);
   }
 
   static void _scheduleFixedPeriodImpl(RepeatingCommand cmd, int delayMs) {
@@ -60,10 +60,12 @@ class SchedulerImpl extends Scheduler {
       print("_scheduleFixedPeriodImpl");
       if (!cmd.execute()) {
         // Either canceled or threw an exception
-        dart_html.window.clearInterval(caleer.handle);
+        caleer.handle.cancel();
       }
     };
-    caleer.handle = dart_html.window.setInterval(caleer.timeoutHandler, delayMs);
+    caleer.handle = new dart_async.Timer.repeating(const Duration(milliseconds:delayMs), (dart_async.Timer t){
+      caleer.timeoutHandler();
+    });
   }
 
   //***************
@@ -364,5 +366,6 @@ class SchedulerImpl extends Scheduler {
 
 class Caleer {
   dart_html.TimeoutHandler timeoutHandler;
-  int handle = -1;
+  //int handle = -1;
+  dart_async.Timer handle;
 }

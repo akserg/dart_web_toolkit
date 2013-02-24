@@ -78,7 +78,7 @@ abstract class DomImpl {
 
   int _getEventBits(dart_html.Element elem) {
     assert(elem != null);
-    String eventBits = elem.dataAttributes["eventBits"];
+    String eventBits = elem.dataset["eventBits"];
     if (eventBits != null) {
       try {
         return int.parse(eventBits);
@@ -90,7 +90,7 @@ abstract class DomImpl {
   void _setEventBits(dart_html.Element elem, int bits) {
     assert(elem != null);
     assert(bits != null);
-    elem.dataAttributes["eventBits"] = bits.toRadixString(16);
+    elem.dataset["eventBits"] = bits.toRadixString(16);
   }
 
   dart_html.Element eventGetToElement(dart_html.Event evt);

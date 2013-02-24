@@ -13,19 +13,19 @@ class ElementMapperImpl<T> {
   static const String UI_OBJECT_ID = "uiObjectID";
 
   static void clearIndex(dart_html.Element elem) {
-    elem.dataAttributes[UI_OBJECT_ID] = null;
+    elem.dataset[UI_OBJECT_ID] = null;
   }
 
   static int getIndex(dart_html.Element elem) {
-    if (elem.dataAttributes[UI_OBJECT_ID] == null) {
+    if (elem.dataset[UI_OBJECT_ID] == null) {
       return -1;
     } else {
-      return int.parse(elem.dataAttributes[UI_OBJECT_ID]);
+      return int.parse(elem.dataset[UI_OBJECT_ID]);
     }
   }
 
   static void setIndex(dart_html.Element elem, int index) {
-    elem.dataAttributes[UI_OBJECT_ID] = index.toString();
+    elem.dataset[UI_OBJECT_ID] = index.toString();
   }
 
   FreeNode freeList = null;

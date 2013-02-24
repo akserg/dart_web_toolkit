@@ -173,7 +173,7 @@ class DomImplStandard extends DomImpl {
 
     dispatchUnhandledEvent = (dart_html.Event evt) {
       if (evt.target is dart_html.ImageElement) {
-        (evt.target as dart_html.ImageElement).dataAttributes[DomImpl.UNHANDLED_EVENT_ATTR] = evt.type;
+        (evt.target as dart_html.ImageElement).dataset[DomImpl.UNHANDLED_EVENT_ATTR] = evt.type;
       }
       dispatchEvent(evt);
     };
@@ -256,6 +256,8 @@ class DomImplStandard extends DomImpl {
     sinkEventsImpl(elem, bits);
   }
 
+  Map<String, dart_async.StreamSubscription> _subscription = new Map<String, dart_async.StreamSubscription>();
+
   void sinkEventsImpl(dart_html.Element elem, int bits) {
     int chMask = _getEventBits(elem) ^ bits;
     if (chMask == 0) {
@@ -263,43 +265,44 @@ class DomImplStandard extends DomImpl {
     }
     _setEventBits(elem, chMask);
     //
-    _applyDispatcher(elem, bits, chMask, "click", 0x00001, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "dblclick", 0x00002, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "mousedown", 0x00004, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "mouseup", 0x00008, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "mouseover", 0x00010, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "mouseout", 0x00020, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "mousemove", 0x00040, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "keydown", 0x00080, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "keypress", 0x00100, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "keyup", 0x00200, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "change", 0x00400, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "focus", 0x00800, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "blur", 0x01000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "losecapture", 0x02000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "scroll", 0x04000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "load", 0x08000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "error", 0x10000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "mousewheel", 0x20000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "contextmenu", 0x40000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "paste", 0x80000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "touchstart", 0x100000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "touchmove", 0x200000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "touchend", 0x400000, dispatchEvent);
-    _applyDispatcher(elem, bits, chMask, "touchcancel", 0x800000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.clickEvent,  bits, chMask, "click",   0x00001, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.doubleClickEvent, bits, chMask, "dblclick", 0x00002, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.mouseDownEvent, bits, chMask, "mousedown", 0x00004, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.mouseUpEvent, bits, chMask, "mouseup", 0x00008, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.mouseOverEvent, bits, chMask, "mouseover", 0x00010, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.mouseOutEvent, bits, chMask, "mouseout", 0x00020, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.mouseMoveEvent, bits, chMask, "mousemove", 0x00040, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.keyDownEvent, bits, chMask, "keydown", 0x00080, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.keyPressEvent, bits, chMask, "keypress", 0x00100, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.keyUpEvent, bits, chMask, "keyup", 0x00200, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.changeEvent, bits, chMask, "change", 0x00400, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.focusEvent, bits, chMask, "focus", 0x00800, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.blurEvent, bits, chMask, "blur", 0x01000, dispatchEvent);
+    //_applyDispatcher(elem, bits, chMask, "losecapture", 0x02000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.scrollEvent, bits, chMask, "scroll", 0x04000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.loadEvent, bits, chMask, "load", 0x08000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.errorEvent, bits, chMask, "error", 0x10000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.mouseWheelEvent, bits, chMask, "mousewheel", 0x20000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.contextMenuEvent, bits, chMask, "contextmenu", 0x40000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.pasteEvent, bits, chMask, "paste", 0x80000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.touchStartEvent, bits, chMask, "touchstart", 0x100000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.touchMoveEvent, bits, chMask, "touchmove", 0x200000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.touchEndEvent, bits, chMask, "touchend", 0x400000, dispatchEvent);
+    _applyDispatcher(elem, dart_html.Element.touchCancelEvent, bits, chMask, "touchcancel", 0x800000, dispatchEvent);
 //    _applyDispatcher(elem, bits, chMask, "gesturestart", 0x1000000, dispatchEvent);
 //    _applyDispatcher(elem, bits, chMask, "gesturechange", 0x2000000, dispatchEvent);
 //    _applyDispatcher(elem, bits, chMask, "gestureend", 0x4000000, dispatchEvent);
   }
 
-  void _applyDispatcher(dart_html.Element elem, int bits, int chMask, String eventName, int mask, dart_html.EventListener handler, [bool useCapture = false]) {
-    if ((chMask & mask) != 0) {
-      if ((bits & mask) != 0) {
-        elem.on[eventName].add(handler, useCapture);
+  void _applyDispatcher(dart_html.Element elem, dart_html.EventStreamProvider provider, int bits, int chMask, String eventName, int mask, dart_html.EventListener handler, [bool useCapture = false]) {
+    if ((chMask & 0x00001) != 0) {
+      if ((bits & 0x00001) != 0) {
+        _subscription["click"] = provider.forTarget(elem, useCapture:useCapture).listen(dispatchEvent);
       } else {
-        elem.on[eventName].remove(handler);
+        _subscription["click"].cancel();
       }
     }
+
   }
 
   dart_html.Element eventGetToElement(dart_html.Event evt) {

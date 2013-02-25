@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 25, 2013
+
+* Updated UmbrellaException, BidiFormatterBase, DateRecord, Attribute and HtmlPanel.
+
 **February 24, 2013
 
 * Migrate project code to follow Dart SDK version 0.3.7.6_r18717

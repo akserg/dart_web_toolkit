@@ -165,7 +165,7 @@ class DateRecord {
       //defaultCenturyStart.year = defaultCenturyStart.year - 80;
       defaultCenturyStart = new DateTime(defaultCenturyStart.year - 80, defaultCenturyStart.month, defaultCenturyStart.day, defaultCenturyStart.hour, defaultCenturyStart.minute, defaultCenturyStart.second, defaultCenturyStart.millisecond);
 
-      if (date < defaultCenturyStart) {
+      if (date.isBefore(defaultCenturyStart)) {
         //date.year = defaultCenturyStart.year + 100;
         date = new DateTime(defaultCenturyStart.year + 100, _month, _day, _hour, _minute, _second, _millisecond);
       }

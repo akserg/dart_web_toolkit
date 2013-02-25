@@ -34,19 +34,19 @@ abstract class BidiFormatterBase {
 
     StringBuffer result = new StringBuffer();
     if (alwaysSpan || dirCondition) {
-      result.add("<span");
+      result.write("<span");
       if (dirCondition) {
-        result.add(" ");
-        result.add(dir == Direction.RTL ? "dir=rtl" : "dir=ltr");
+        result.write(" ");
+        result.write(dir == Direction.RTL ? "dir=rtl" : "dir=ltr");
       }
-      result.add(">");
-      result.add(str);
-      result.add("</span>");
+      result.write(">");
+      result.write(str);
+      result.write("</span>");
     } else {
-      result.add(str);
+      result.write(str);
     }
     // origStr is passed (more efficient when isHtml is false).
-    result.add(dirResetIfNeeded(origStr, dir, isHtml, dirReset));
+    result.write(dirResetIfNeeded(origStr, dir, isHtml, dirReset));
     return result.toString();
   }
 

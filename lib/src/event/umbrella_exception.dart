@@ -32,9 +32,9 @@ class UmbrellaException implements Exception {
     StringBuffer b = new StringBuffer();
     for (Exception t in causes) {
       if (b.length > 0) {
-        b.add("; ");
+        b.write("; ");
       }
-      b.add(t.toString());
+      b.write(t.toString());
     }
 
     return b.toString();

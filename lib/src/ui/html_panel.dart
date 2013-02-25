@@ -96,13 +96,13 @@ class HtmlPanel extends ComplexPanel {
      * IE robustification.
      */
     StringBuffer b = new StringBuffer();
-    b.add('<');
-    b.add(tag);
-    b.add('>');
-    b.add(html);
-    b.add("</");
-    b.add(tag);
-    b.add('>');
+    b.write('<');
+    b.write(tag);
+    b.write('>');
+    b.write(html);
+    b.write("</");
+    b.write(tag);
+    b.write('>');
 
     // We could use the static hiddenDiv, but that thing is attached
     // to the document. The caller might not want that.

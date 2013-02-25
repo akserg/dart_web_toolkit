@@ -93,8 +93,8 @@ abstract class Attribute<T> {
     if (value is Collection) {
       StringBuffer buf = new StringBuffer();
       for (T item in (value as Collection)) {
-        buf.add(getSingleValue(item));
-        buf.add(" ");
+        buf.write(getSingleValue(item));
+        buf.write(" ");
       }
       return buf.toString().trim();
     } else {

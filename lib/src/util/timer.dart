@@ -37,13 +37,13 @@ class Timer {
   }
 
   static dart_async.Timer createInterval(Timer timer, int period) {
-    return new dart_async.Timer.repeating(const Duration(milliseconds:period), (dart_async.Timer t){
+    return new dart_async.Timer.repeating(period, (dart_async.Timer t){
       timer.fire();
     });
   }
 
   static dart_async.Timer createTimeout(Timer timer, int delay) {
-    return new dart_async.Timer(const Duration(milliseconds:delay), (){
+    return new dart_async.Timer(delay, (){
       timer.fire();
     });
   }
@@ -77,14 +77,16 @@ class Timer {
    * Cancels this timer.
    */
   void cancel() {
-    if (isRepeating) {
-      clearInterval(_timer); //timerId);
-    } else {
-      clearTimeout(_timer); //timerId);
-    }
-    int indx = timers.indexOf(this);
-    if (indx != -1) {
-      timers.removeAt(indx);
+    if (_timer != null) {
+      if (isRepeating) {
+        clearInterval(_timer); //timerId);
+      } else {
+        clearTimeout(_timer); //timerId);
+      }
+      int indx = timers.indexOf(this);
+      if (indx != -1) {
+        timers.removeAt(indx);
+      }
     }
   }
 

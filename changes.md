@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 26, 2013
+
+* Fixed bug Dart Timer calling with Duration. Modified SchedulerImpl and Timer.
+
 **February 25, 2013
 
 * Updated UmbrellaException, BidiFormatterBase, DateRecord, Attribute and HtmlPanel.

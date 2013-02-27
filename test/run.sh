@@ -6,23 +6,16 @@ set -e
 # Type Analysis
 ###############
 
-#echo
-#echo "dart_analyzer lib/*.dart"
+echo
+echo "dart_analyzer lib/*.dart"
 
-#results=$(dart_analyzer --extended-exit-code lib/*.dart)
+results=$(dart_analyzer --extended-exit-code lib/*.dart)
 
-#echo "!!!! Results: !!!!"
-#echo "$results"
-#echo "!!!! Exit code: !!!!"
-#echo "$?"
-
-#echo "!!!! End !!!!"
-
-#if [ -n "$results" ]; then
-#    exit 1
-#else
-#    echo "Passed analysis."
-#fi
+if [ -n "$results" ]; then
+    exit 1
+else
+    echo "Passed analysis."
+fi
 
 ############
 # Unit Tests

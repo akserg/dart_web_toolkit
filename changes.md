@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**February 27, 2013
+
+* Restored dart code analyzer in run.sh
+
 **February 26, 2013
 
 * Fixed bug Dart Timer calling with Duration. Modified SchedulerImpl and Timer.

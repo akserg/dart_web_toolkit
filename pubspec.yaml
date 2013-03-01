@@ -6,5 +6,5 @@ authors:
 - Sergey Akopkokhyants <akserg@gmail.com>
 homepage: http://www.dartwebtoolkit.com
 dependencies:
-  browser: ">=0.4"
-  unittest: ">=0.4"
+  browser: 0.4.0
+  unittest: 0.4.0

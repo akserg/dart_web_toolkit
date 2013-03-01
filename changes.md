@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 1, 2013
+
+* Fixed Tree: Tree items does not show hand cursor
+
 **February 27, 2013
 
 * Restored dart code analyzer in run.sh

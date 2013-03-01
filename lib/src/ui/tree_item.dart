@@ -752,7 +752,7 @@ class TreeItemImpl {
     tdContent.style.verticalAlign = "middle";
     tdContent.append(contentElem);
     contentElem.style.display = "inline";
-    UiObject.setElementStyleName(contentElem, "gwt-TreeItem");
+    UiObject.setElementStyleName(contentElem, "dwt-TreeItem");
     TreeItem._BASE_INTERNAL_ELEM.style.whiteSpace = "nowrap";
 
     // Create the base element that will be cloned

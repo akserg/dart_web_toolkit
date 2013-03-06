@@ -13,7 +13,6 @@ class ClippedImageImpl {
     img.src = clearImage;
     //
     String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
-    print("background: ${style}");
     img.style.background = style;
     img.style.width = "${width}px";
     img.style.height = "${height}px";

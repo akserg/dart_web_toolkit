@@ -97,7 +97,7 @@ class TimeZone {
    * when offset == 480, it should output GMT-08:00.
    */
   static String _composeGMTString(int offset) {
-    List<int> data = 'GMT-00:00'.charCodes;
+    List<int> data = 'GMT-00:00'.codeUnits;
     if (offset <= 0) {
       data[3] = '+'.codeUnitAt(0);
       offset = -offset; // suppress the '-' sign for text display.
@@ -194,7 +194,7 @@ class TimeZone {
   String getISOTimeZoneString(DateTime date) {
     int offset = -getOffset(date);
     //
-    List<int> data = '+00:00'.charCodes;
+    List<int> data = '+00:00'.codeUnits;
     if (offset < 0) {
       data[0] = '-'.codeUnitAt(0);
       offset = -offset; // suppress the '-' sign for text display.
@@ -226,7 +226,7 @@ class TimeZone {
   String getRFCTimeZoneString(DateTime date) {
     int offset = -getOffset(date);
     //
-    List<int> data = '+0000'.charCodes;
+    List<int> data = '+0000'.codeUnits;
     if (offset < 0) {
       data[0] = '-'.codeUnitAt(0);
       offset = -offset; // suppress the '-' sign for text display.

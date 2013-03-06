@@ -46,24 +46,22 @@ class SchedulerImpl extends Scheduler {
   static void _scheduleFixedDelayImpl(RepeatingCommand cmd, int delayMs) {
     Caleer caleer = new Caleer();
     caleer.timeoutHandler = () {
-      print("_scheduleFixedDelayImpl");
       if (cmd.execute()) {
-        new dart_async.Timer(delayMs, caleer.timeoutHandler);
+        new dart_async.Timer(new Duration(milliseconds:delayMs), caleer.timeoutHandler);
       }
     };
-    caleer.handle = new dart_async.Timer(delayMs, caleer.timeoutHandler);
+    caleer.handle = new dart_async.Timer(new Duration(milliseconds:delayMs), caleer.timeoutHandler);
   }
 
   static void _scheduleFixedPeriodImpl(RepeatingCommand cmd, int delayMs) {
     Caleer caleer = new Caleer();
     caleer.timeoutHandler = () {
-      print("_scheduleFixedPeriodImpl");
       if (!cmd.execute()) {
         // Either canceled or threw an exception
         caleer.handle.cancel();
       }
     };
-    caleer.handle = new dart_async.Timer.repeating(delayMs, (dart_async.Timer t){
+    caleer.handle = new dart_async.Timer.repeating(new Duration(milliseconds:delayMs), (dart_async.Timer t){
       caleer.timeoutHandler();
     });
   }

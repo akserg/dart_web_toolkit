@@ -6,20 +6,20 @@ part of dart_web_toolkit_http;
 /**
  * An HTTP request that is waiting for a response. Requests can be queried for
  * their pending status or they can be canceled.
- * 
+ *
  * <h3>Required Module</h3> Modules that use this class should inherit
  * <code>com.google.gwt.http.HTTP</code>.
- * 
+ *
  * {@gwt.include
  * com/google/gwt/examples/http/InheritsExample.gwt.xml}
- * 
+ *
  */
 class Request {
-  
+
   /**
    * Creates a {@link Response} instance for the given JavaScript XmlHttpRequest
    * object.
-   * 
+   *
    * @param xmlHttpRequest xmlHttpRequest object for which we need a response
    * @return a {@link Response} object instance
    */
@@ -32,7 +32,7 @@ class Request {
   /**
    * Returns an array of headers built by parsing the string of headers returned
    * by the JavaScript <code>XmlHttpRequest</code> object.
-   * 
+   *
    * @param xmlHttpRequest
    * @return array of Header items
    */
@@ -67,7 +67,7 @@ class Request {
     return xhr.readyState == dart_html.HttpRequest.DONE;
   }
 
-  
+
   /**
    * The number of milliseconds to wait for this HTTP request to complete.
    */
@@ -94,11 +94,11 @@ class Request {
 
   /**
    * Constructs an instance of the Request object.
-   * 
+   *
    * @param xmlHttpRequest JavaScript XmlHttpRequest object instance
    * @param timeoutMillis number of milliseconds to wait for a response
    * @param callback callback interface to use for notification
-   * 
+   *
    * @throws IllegalArgumentException if timeoutMillis &lt; 0
    * @throws NullPointerException if xmlHttpRequest, or callback are null
    */
@@ -121,7 +121,7 @@ class Request {
 
     if (timeoutMillis > 0) {
       // create and start a Timer
-      _timer = new dart_async.Timer(timeoutMillis, (dart_async.Timer t){
+      _timer = new dart_async.Timer(new Duration(milliseconds:timeoutMillis), (){
         _fireOnTimeout(callback);
       });
     } else {
@@ -142,7 +142,7 @@ class Request {
      * has been deleted and during the call to XmlHttpRequest.abort(). So we
      * null the xmlHttpRequest here and that will prevent the
      * fireOnResponseReceived method from calling the callback function.
-     * 
+     *
      * Setting the onreadystatechange handler to null gives us the correct
      * behavior in Mozilla but crashes IE. That is why we have chosen to fixed
      * this in Java by nulling out our reference to the XmlHttpRequest object.
@@ -161,7 +161,7 @@ class Request {
 
   /**
    * Returns true if this request is waiting for a response.
-   * 
+   *
    * @return true if this request is waiting for a response
    */
   bool isPending() {
@@ -229,7 +229,7 @@ class Request {
 
   /*
    * Method called when this request times out.
-   * 
+   *
    * NOTE: this method is called from JSNI
    */
   void _fireOnTimeout(RequestCallback callback) {
@@ -246,7 +246,7 @@ class Request {
   /**
    * Tests if the JavaScript <code>XmlHttpRequest.status</code> property is
    * readable. This can return failure in two different known scenarios:
-   * 
+   *
    * <ol>
    * <li>On Mozilla, after a network error, attempting to read the status code
    * results in an exception being thrown. See <a
@@ -257,7 +257,7 @@ class Request {
    * href="http://bugs.webkit.org/show_bug.cgi?id=3810">http://bugs.webkit.org
    * /show_bug.cgi?id=3810</a>.</li>
    * </ol>
-   * 
+   *
    * @param xhr the JavaScript <code>XmlHttpRequest</code> object to test
    * @return a String message containing an error message if the
    *         <code>XmlHttpRequest.status</code> code is unreadable or null if
@@ -276,12 +276,12 @@ class Request {
 }
 
 class _RequestHeader implements Header {
-  
+
   String _name;
   String _value;
-  
+
   _RequestHeader(this._name, this._value);
-  
+
   String getName() {
     return _name;
   }
@@ -292,15 +292,15 @@ class _RequestHeader implements Header {
 
   String toString() {
     return _name.concat(" : ").concat(_value);
-  } 
+  }
 }
 
 class _Response implements Response {
- 
+
   dart_html.HttpRequest _xmlHttpRequest;
-  
+
   _Response(this._xmlHttpRequest);
-  
+
   String getHeader(String header) {
     StringValidator.throwIfEmptyOrNull("header", header);
 

@@ -50,7 +50,6 @@ class Widget extends UiObject
    * TODO
    */
   void onBrowserEvent(dart_html.Event event) {
-//    print("onBrowserEvent: ${event}");
     switch (Dom.eventGetType(event)) {
       case Event.ONMOUSEOVER:
         // Only fire the mouse over event if it's coming from outside this

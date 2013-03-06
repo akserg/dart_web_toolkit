@@ -37,13 +37,13 @@ class Timer {
   }
 
   static dart_async.Timer createInterval(Timer timer, int period) {
-    return new dart_async.Timer.repeating(period, (dart_async.Timer t){
+    return new dart_async.Timer.repeating(new Duration(milliseconds:period), (dart_async.Timer t){
       timer.fire();
     });
   }
 
   static dart_async.Timer createTimeout(Timer timer, int delay) {
-    return new dart_async.Timer(delay, (){
+    return new dart_async.Timer(new Duration(milliseconds:delay), (){
       timer.fire();
     });
   }

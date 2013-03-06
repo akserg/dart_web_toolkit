@@ -1,6 +1,12 @@
 Dart Web Toolkit Changes
 ========================
 
+**March, 6, 2013
+
+* Migrate project code to follow Dart SDK version 0.4.1.0_r19425
+* Fixed migration bugs in Request, SchedulerImpl, TimeZone, Timer
+* Removed all print to console in AttachDetachException, ClippedImageImpl, UiObject, Widget, 
+
 **March 1, 2013
 
 * Fixed Tree: Tree items does not show hand cursor

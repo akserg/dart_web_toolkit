@@ -213,7 +213,6 @@ abstract class UiObject implements HasVisibility {
    */
   static void setElementStyleName(dart_html.Element elem, String styleName) {
     elem.$dom_className = styleName;
-    //print("setElementStyleName: ${elem.$dom_className}");
   }
 
 
@@ -348,8 +347,6 @@ abstract class UiObject implements HasVisibility {
         elem.$dom_className = newClassName;
       }
     }
-
-    print("manageElementStyleName: '$style', '$add': '$old' -> '${elem.$dom_className}'");
   }
 
   /**

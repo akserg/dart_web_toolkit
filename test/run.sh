@@ -7,7 +7,7 @@ set -e
 ###############
 
 echo
-echo "dart_analyzer lib/*.dart"
+echo "dart_analyzer --extended-exit-code lib/*.dart"
 
 results=$(dart_analyzer --extended-exit-code lib/*.dart)
 

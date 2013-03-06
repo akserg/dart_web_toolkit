@@ -6,6 +6,7 @@ Dart Web Toolkit Changes
 * Migrate project code to follow Dart SDK version 0.4.1.0_r19425
 * Fixed migration bugs in Request, SchedulerImpl, TimeZone, Timer
 * Removed all print to console in AttachDetachException, ClippedImageImpl, UiObject, Widget, 
+* Fixed bug in Tree: Could not add elements in non extendable array
 
 **March 1, 2013
 

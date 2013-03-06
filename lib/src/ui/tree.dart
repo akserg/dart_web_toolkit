@@ -396,8 +396,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
 
 
   Iterator<Widget> iterator() {
-    List<Widget> widgets = new List<Widget>(_childWidgets.length);
-    widgets.addAll(_childWidgets.keys);
+    List<Widget> widgets = new List<Widget>.from(_childWidgets.keys);
     return WidgetIterators.createWidgetIterator(this, widgets);
   }
 

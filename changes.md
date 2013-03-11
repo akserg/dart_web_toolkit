@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+March 11, 2013
+
+* Fixed bug: History doesn't use HistoryImpl.
+* Changed History. Example updated.
+
 **March, 6, 2013
 
 * Migrate project code to follow Dart SDK version 0.4.1.0_r19425

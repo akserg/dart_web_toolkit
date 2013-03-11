@@ -40,6 +40,28 @@ part of dart_web_toolkit_ui;
 class History {
   static HistoryImpl _impl;
 
+  static bool _initialized = false;
+  
+  static void init() {
+    if (!_initialized) {
+      _initialized = true;
+      //
+      _impl = new HistoryImpl();
+      if (!_impl.init()) {
+        // Set impl to null as a flag to no-op future calls
+        _impl = null;
+        
+        // Tell the user
+        print('''Unable to initialise the history subsystem; did you
+include the history frame in you host page? Try  
+<iframe src=\"javascript:''\" id='__dwt_historyFrame' 
+style='position:absolute;width:0'height:0;border:0'>
+</iframe>
+''');
+      }
+    }
+  }
+  
   /**
    * Adds a {@link com.google.gwt.event.logical.shared.ValueChangeEvent} handler
    * to be informed of changes to the browser's history stack.
@@ -48,6 +70,7 @@ class History {
    * @return the registration used to remove this value change handler
    */
   static HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> handler) {
+    init();
     return _impl != null ? _impl.addValueChangeHandler(handler) : null;
   }
 
@@ -57,6 +80,7 @@ class History {
    * Note that this does not work correctly on Safari 2.
    */
   static void back() {
+    init();
     dart_html.window.history.back();
   }
 
@@ -65,6 +89,7 @@ class History {
    * button.
    */
   static void forward() {
+    init();
     dart_html.window.history.forward();
   }
 
@@ -75,18 +100,20 @@ class History {
    * @return the encoded token, suitable for use as part of a URI
    */
   static String encodeHistoryToken(String historyToken) {
+    init();
     return _impl != null ? _impl.encodeFragment(historyToken) : historyToken;
   }
 
   /**
    * Fire
    * {@link ValueChangeHandler#onValueChange(com.google.gwt.event.logical.shared.ValueChangeEvent)}
-   * events with the current history state. This is most often called at the end
+   * events with the current history state. This is most often called at the end 
    * of an application's
    * {@link com.google.gwt.core.client.EntryPoint#onModuleLoad()} to inform
    * history handlers of the initial application state.
    */
   static void fireCurrentHistoryState() {
+    init();
     if (_impl != null) {
       String token = getToken();
       _impl.fireHistoryChangedImpl(token);
@@ -103,6 +130,7 @@ class History {
    * @return the initial token, or the empty string if none is present.
    */
   static String getToken() {
+    init();
     return _impl != null ? HistoryImpl.getToken() : "";
   }
 
@@ -117,6 +145,7 @@ class History {
    *          event should be issued
    */
   static void newItem(String historyToken, [bool issueEvent = true]) {
+    init();
     if (_impl != null) {
       _impl.newItem(historyToken, issueEvent);
     }

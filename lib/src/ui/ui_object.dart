@@ -112,7 +112,7 @@ abstract class UiObject implements HasVisibility {
   void replaceElement(dart_html.Element elem) {
     if (_element != null && _element.parent != null) {
       // replace this.element in its parent with elem.
-      _element.parent.replaceWith(elem);
+      _element.replaceWith(elem);
     }
 
     this._element = elem;

@@ -12,7 +12,8 @@ class ClippedImageImpl {
     dart_html.ImageElement img = new dart_html.ImageElement();
     img.src = clearImage;
     //
-    String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
+    //String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
+    String style = "url(\"${url.asString()}\") no-repeat ${-left}px ${-top}px";
     img.style.background = style;
     img.style.width = "${width}px";
     img.style.height = "${height}px";
@@ -25,7 +26,8 @@ class ClippedImageImpl {
 
   SafeHtml getSafeHtml(SafeUri url, int left, int top, int width, int height) {
 
-    String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
+    //String style = "url(\"${DWT.getModuleBaseURL().concat(url.asString())}\") no-repeat ${-left}px ${-top}px";
+    String style = "url(\"${url.asString()}\") no-repeat ${-left}px ${-top}px";
 
     String res = "<img onload='this.data-${DomImpl.UNHANDLED_EVENT_ATTR}=\"load\";' src='${clearImage}' style='background:${style}; width: ${width}px; height: ${height}px' border='0'>";
 

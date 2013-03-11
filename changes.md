@@ -5,6 +5,7 @@ March 11, 2013
 
 * Fixed bug: History doesn't use HistoryImpl.
 * Changed History. Example updated.
+* Fixed bug: Image clip doesn't work. Example updated.
 
 **March, 6, 2013
 

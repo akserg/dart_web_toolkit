@@ -1,7 +1,12 @@
 Dart Web Toolkit Changes
 ========================
 
-March 11, 2013
+**March 14, 2013
+
+* Fixed bug: Not finding image file.
+* Changed files Tree, ClippedImageImpl. Hello file updated.
+
+**March 11, 2013
 
 * Fixed bug: History doesn't use HistoryImpl.
 * Changed History. Example updated.

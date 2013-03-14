@@ -1187,7 +1187,9 @@ class TreeResources implements TreeResource {
   }
 
   ImageResourcePrototype _getTreeImageResourcePrototype(String name, int left) {
-    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString("resource/images/tree.png"), left, 0, 16, 16, false, false);
+    String uri = DWT.getModuleBaseURL().concat("resource/images/tree.png");
+    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, 
+        UriUtils.fromTrustedString(uri), left, 0, 16, 16, false, false);
     return imageResource;
   }
 }

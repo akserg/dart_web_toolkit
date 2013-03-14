@@ -16,22 +16,13 @@ import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 
 // Clipped Image
 void main() {
-  ui.Label lbl = new ui.Label();
   ui.Button btn = new ui.Button("Clip this image");
   ui.Button btn2 = new ui.Button("Restore image");
+  String imgUrl = "http://www.google.com/images/logo.gif";
   
   // Create an image, not yet referencing a URL. We make it final so that we
   // can manipulate the image object within the ClickHandlers for the buttons.
-  ui.Image image = new ui.Image("http://www.google.com/images/logo.gif");
-
-  // Hook up an error handler, so that we can be informed if the image fails
-  // to load.
-  image.addErrorHandler(new event.ErrorHandlerAdapter((event.ErrorEvent evt) {
-    lbl.text = "An error occurred while loading.";
-  }));
-
-  // Point the image at a real URL.
-  //image.setUrl("http://www.google.com/images/logo.gif");
+  ui.Image image = new ui.Image(imgUrl);
 
   // When the user clicks this button, we want to clip the image.
   btn.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent evt) {
@@ -42,13 +33,12 @@ void main() {
   // When the user clicks this button, we want to restore the image to its
   // unclipped state.
   btn2.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent evt) {
-    image.setUrl("http://www.google.com/images/logo.gif");
+    image.setUrl(imgUrl);
   }));
   btn2.setWidth("120px");
 
   // Add the image, label, and clip/restore buttons to the root panel.
   ui.VerticalPanel panel = new ui.VerticalPanel();
-  panel.add(lbl);
   panel.add(image);
 
   ui.HorizontalPanel buttonPanel = new ui.HorizontalPanel();

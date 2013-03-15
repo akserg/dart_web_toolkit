@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 15, 2013
+
+* Fixed bug: Dart to Js compilation issue in animation_scheduler_impl_timer.dart
+* Changed animation_scheduler_impl_timer.dart.
+* Changed relative path to Menu.png in menu_bar.dart.
+* Changed access level to variable timers in Timer class.
+
 **March 14, 2013
 
 * Fixed bug: Not finding image file.

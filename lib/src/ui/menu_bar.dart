@@ -1181,7 +1181,8 @@ class MenuResources implements MenuResource {
   }
 
   ImageResourcePrototype _getMenuImageResourcePrototype(String name, int left) {
-    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString("resource/images/menu.png"), left, 0, 5, 9, false, false);
+    String uri = DWT.getModuleBaseURL().concat("resource/images/menu.png");
+    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString(uri), left, 0, 5, 9, false, false);
     return imageResource;
   }
 }

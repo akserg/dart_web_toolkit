@@ -25,7 +25,7 @@ part of dart_web_toolkit_util;
  * </p>
  */
 class Timer {
-  static List<Timer> timers = new List<Timer>();
+  static List<Timer> _timers = new List<Timer>();
   static bool _initialised = false;
 
   static void clearInterval(dart_async.Timer timer) {
@@ -51,8 +51,8 @@ class Timer {
   static void _hookWindowClosing() {
     // Catch the window closing event.
     dart_html.window.onUnload.listen((dart_html.Event event) {
-        while (timers.length > 0) {
-          timers[0].cancel();
+        while (_timers.length > 0) {
+          _timers[0].cancel();
         }
     });
   }
@@ -83,9 +83,9 @@ class Timer {
       } else {
         clearTimeout(_timer); //timerId);
       }
-      int indx = timers.indexOf(this);
+      int indx = _timers.indexOf(this);
       if (indx != -1) {
-        timers.removeAt(indx);
+        _timers.removeAt(indx);
       }
     }
   }
@@ -111,7 +111,7 @@ class Timer {
     cancel();
     isRepeating = false;
     _timer = createTimeout(this, delayMillis);
-    timers.add(this);
+    _timers.add(this);
   }
 
   /**
@@ -127,7 +127,7 @@ class Timer {
     cancel();
     isRepeating = true;
     _timer = createInterval(this, periodMillis);
-    timers.add(this);
+    _timers.add(this);
   }
 
   /*
@@ -137,9 +137,9 @@ class Timer {
     // If this is a one-shot timer, remove it from the timer list. This will
     // allow it to be garbage collected.
     if (!isRepeating) {
-      int indx = timers.indexOf(this);
+      int indx = _timers.indexOf(this);
       if (indx != -1) {
-        timers.removeAt(indx);
+        _timers.removeAt(indx);
       }
     }
 

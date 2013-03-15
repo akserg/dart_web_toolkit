@@ -26,13 +26,13 @@ class AnimationSchedulerImplTimer extends AnimationSchedulerImpl {
   List<AnimationHandleImplTimer> animationRequests = new List<AnimationHandleImplTimer>();
 
   /**
-   * The singleton timer that updates all animations.
+   * The timer that updates all animations.
    */
-  Timer timer = new Timer.get(() {
-    updateAnimations();
-  });
+  Timer timer;
 
-  AnimationSchedulerImplTimer();
+  AnimationSchedulerImplTimer() {
+    timer = new Timer.get(updateAnimations);
+  }
 
   AnimationHandle requestAnimationFrame(AnimationCallback callback, [dart_html.Element element = null]) {
     // Save the animation frame request.
@@ -82,7 +82,8 @@ class AnimationSchedulerImplTimer extends AnimationSchedulerImpl {
       }
 
       // Execute the callback.
-      requestId.getCallback().execute(duration.inMilliseconds); //getStartMillis());
+      //cduration.inMilliseconds); //getStartMillis());
+      requestId.getCallback().execute(new DateTime.now().millisecondsSinceEpoch);
     }
 
     // Reschedule the timer if there are more animation requests.

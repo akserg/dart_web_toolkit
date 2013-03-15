@@ -15,7 +15,7 @@ import 'package:dart_web_toolkit/text.dart' as text;
 import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 
 // Clipped Image
-void main() {
+void main_48() {
   ui.Button btn = new ui.Button("Clip this image");
   ui.Button btn2 = new ui.Button("Restore image");
   String imgUrl = "http://www.google.com/images/logo.gif";
@@ -103,7 +103,7 @@ void main_46() {
 }
 
 // MenuBar
-void main_45() {
+void main() { //_45() {
 
   // Create a command that will execute on menu item selection
   MenuCommand menuCommand = new MenuCommand();

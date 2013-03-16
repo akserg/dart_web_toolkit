@@ -103,7 +103,7 @@ void main_46() {
 }
 
 // MenuBar
-void main() { //_45() {
+void main_45() {
 
   // Create a command that will execute on menu item selection
   MenuCommand menuCommand = new MenuCommand();
@@ -174,7 +174,7 @@ class MenuCommand implements scheduler.ScheduledCommand {
   }
 }
 
-void main_44() {
+void main() { //_44() {
   // Create a static tree and a container to hold it
   ui.Tree staticTree = createStaticTree();
   staticTree.setAnimationEnabled(true);

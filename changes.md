@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 16, 2013
+
+* Fixed bug: Dart to Js compilation issue in tree.dart
+* Changed tree.dart.
+
 **March 15, 2013
 
 * Fixed bug: Dart to Js compilation issue in animation_scheduler_impl_timer.dart
@@ -15,9 +20,9 @@ Dart Web Toolkit Changes
 
 **March 11, 2013
 
-* Fixed bug: History doesn't use HistoryImpl.
+* Fixed bug: History does not use HistoryImpl.
 * Changed History. Example updated.
-* Fixed bug: Image clip doesn't work. Example updated.
+* Fixed bug: Image clip does not work. Example updated.
 
 **March, 6, 2013
 

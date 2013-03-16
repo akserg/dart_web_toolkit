@@ -1144,13 +1144,22 @@ abstract class TreeResource extends ClientBundle {
 
 class TreeResources implements TreeResource {
 
-  final Map<String, ImageResource> resources = new Map<String, ImageResource>();
+  final Map<String, ImageResource> _resources;
 
   const String TREE_CLOSED = "treeClosed";
   const String TREE_LEAF = "treeLeaf";
   const String TREE_OPEN = "treeOpen";
 
-  const TreeResources();
+  TreeResources() : _resources = new Map<String, ImageResource>();
+  
+  static TreeResources _instance;
+  
+  static TreeResources get DEFAULT_RESOURCES {
+    if (_instance == null) {
+      _instance = new TreeResources();
+    }
+    return _instance;
+  }
 
   Source get source {
     return new TreeSource();
@@ -1160,30 +1169,30 @@ class TreeResources implements TreeResource {
    * An image indicating a closed branch.
    */
   ImageResource treeClosed() {
-    if (!resources.containsKey(TREE_CLOSED)) {
-      resources[TREE_CLOSED] = _getTreeImageResourcePrototype(TREE_CLOSED, 32);
+    if (!_resources.containsKey(TREE_CLOSED)) {
+      _resources[TREE_CLOSED] = _getTreeImageResourcePrototype(TREE_CLOSED, 32);
     }
-    return resources[TREE_CLOSED];
+    return _resources[TREE_CLOSED];
   }
 
   /**
    * An image indicating a leaf.
    */
   ImageResource treeLeaf() {
-    if (!resources.containsKey(TREE_LEAF)) {
-      resources[TREE_LEAF] = _getTreeImageResourcePrototype(TREE_LEAF, 16);
+    if (!_resources.containsKey(TREE_LEAF)) {
+      _resources[TREE_LEAF] = _getTreeImageResourcePrototype(TREE_LEAF, 16);
     }
-    return resources[TREE_LEAF];
+    return _resources[TREE_LEAF];
   }
 
   /**
    * An image indicating an open branch.
    */
   ImageResource treeOpen() {
-    if (!resources.containsKey(TREE_OPEN)) {
-      resources[TREE_OPEN] = _getTreeImageResourcePrototype(TREE_OPEN, 0);
+    if (!_resources.containsKey(TREE_OPEN)) {
+      _resources[TREE_OPEN] = _getTreeImageResourcePrototype(TREE_OPEN, 0);
     }
-    return resources[TREE_OPEN];
+    return _resources[TREE_OPEN];
   }
 
   ImageResourcePrototype _getTreeImageResourcePrototype(String name, int left) {
@@ -1210,12 +1219,14 @@ class TreeSource implements Source {
  * deprecated APIs.
  */
 class ImageAdapter {
-  static const TreeResource _DEFAULT_RESOURCES = const TreeResources();
   AbstractImagePrototype _treeClosed;
   AbstractImagePrototype _treeLeaf;
   AbstractImagePrototype _treeOpen;
 
-  ImageAdapter([TreeResource resources = _DEFAULT_RESOURCES]) {
+  ImageAdapter([TreeResource resources = null]) {
+    if (resources == null) {
+      resources = TreeResources.DEFAULT_RESOURCES;
+    }
     _treeClosed = AbstractImagePrototype.create(resources.treeClosed());
     _treeLeaf = AbstractImagePrototype.create(resources.treeLeaf());
     _treeOpen = AbstractImagePrototype.create(resources.treeOpen());

@@ -7,12 +7,12 @@ import 'dart:html' as dart_html;
 import 'dart:math' as dart_math;
 import 'dart:async' as dart_async;
 
-import 'package:dart_web_toolkit/event.dart' as event;
-import 'package:dart_web_toolkit/ui.dart' as ui;
-import 'package:dart_web_toolkit/util.dart' as util;
-import 'package:dart_web_toolkit/i18n.dart' as i18n;
-import 'package:dart_web_toolkit/text.dart' as text;
-import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
+import '../../lib/event.dart' as event;
+import '../../lib/ui.dart' as ui;
+import '../../lib/util.dart' as util;
+import '../../lib/i18n.dart' as i18n;
+import '../../lib/text.dart' as text;
+import '../../lib/scheduler.dart' as scheduler;
 
 // Clipped Image
 void main_48() {
@@ -174,7 +174,7 @@ class MenuCommand implements scheduler.ScheduledCommand {
   }
 }
 
-void main() { //_44() {
+void main_44() {
   // Create a static tree and a container to hold it
   ui.Tree staticTree = createStaticTree();
   staticTree.setAnimationEnabled(true);
@@ -920,7 +920,7 @@ void main_25() {
 }
 
 // CtackPanel
-void main_24() {
+void main() { //_24() {
   ui.StackPanel panel = new ui.StackPanel();
   panel.setSize("400px", "200px");
 

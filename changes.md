@@ -3,8 +3,10 @@ Dart Web Toolkit Changes
 
 **March 16, 2013
 
-* Fixed bug: Dart to Js compilation issue in tree.dart
+* Fixed bug: Dart to Js compilation issue in tree.dart.
 * Changed tree.dart.
+* Fixed bug: Dart to Js compilation issue StackPanel.
+* Changed stack_panel.dart.
 
 **March 15, 2013
 

@@ -296,11 +296,15 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     // Show/hide the contained widget.
     _setStackContentVisible(index, visible);
 
-    // Set the style of the next header
-    dart_html.Element trNext = _body.children[(index + 1) * 2]; //DOM.getChild(_body, ((index + 1) * 2));
-    if (trNext != null) {
-      dart_html.Element tdNext = trNext.$dom_firstElementChild; //DOM.getFirstChild(trNext);
-      UiObject.manageElementStyleName(tdNext, _DEFAULT_ITEM_STYLENAME.concat("-below-selected"), visible);
+    // We must check is next header available before make any changes with his style
+    int nextIndex = (index + 1) * 2;
+    if (_body.children.length > nextIndex) {
+      // Set the style of the next header
+      dart_html.Element trNext = _body.children[nextIndex]; //DOM.getChild(_body, ((index + 1) * 2));
+      if (trNext != null) {
+        dart_html.Element tdNext = trNext.$dom_firstElementChild; //DOM.getFirstChild(trNext);
+        UiObject.manageElementStyleName(tdNext, _DEFAULT_ITEM_STYLENAME.concat("-below-selected"), visible);
+      }
     }
   }
 

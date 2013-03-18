@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Fixed bug: Change parameters UnclippedState constructor.
 * Changed image.dart
+* Example code migration finished. Example folder removed.
 
 **March 16, 2013
 

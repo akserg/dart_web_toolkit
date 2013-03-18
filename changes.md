@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 18, 2013
+
+* Fixed bug: Change parameters UnclippedState constructor.
+* Changed image.dart
+
 **March 16, 2013
 
 * Fixed bug: Dart to Js compilation issue in tree.dart.

@@ -747,8 +747,8 @@ class _ClippedState extends _State {
  */
 class _UnclippedState extends _State {
 
-  _UnclippedState({dart_html.Element element, Image image, SafeUri url}) {
-    if (?image) {
+  _UnclippedState({dart_html.Element element:null, Image image:null, SafeUri url:null}) {
+    if (image != null) {
       image.replaceElement(new dart_html.ImageElement());
       // We are working around an IE race condition that can make the image
       // incorrectly cache itself if the load event is assigned at the same time
@@ -759,7 +759,7 @@ class _UnclippedState extends _State {
       image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
           | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
 
-      if (?url) {
+      if (url != null) {
         setUrl(image, url);
       }
     } else if (element != null){

@@ -148,6 +148,10 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 //    add(child, html.asString(), true);
 //  }
 
+  void add(Widget w) {
+    throw new Exception("A tabText parameter must be specified with add().");
+  }
+  
   /**
    * Adds a widget to the panel. If the Widget is already attached, it will be
    * moved to the right-most index.
@@ -156,7 +160,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
    * @param text the text to be shown on its tab
    * @param asHtml <code>true</code> to treat the specified text as HTML
    */
-  void add(Widget child, [String text = "", bool asHtml = false]) {
+  void addTabText(Widget child, [String text = "", bool asHtml = false]) {
     insert(child, getWidgetCount(), text, asHtml);
   }
 

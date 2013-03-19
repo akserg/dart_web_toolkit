@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 19, 2013
+
+* Fixed bug: TabLayoutPanel does not implemented add method from HasWidgets interface.
+* Changed tab_layout_panel.dart.
+
 **March 18, 2013
 
 * Fixed bug: Change parameters UnclippedState constructor.

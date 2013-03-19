@@ -123,7 +123,7 @@ class TimeZone {
     } else {
       str = "Etc/GMT+";
     }
-    return str.concat( _offsetDisplay(offset));
+    return str +  _offsetDisplay(offset);
   }
 
   static String _composeUTCString(int offset) {
@@ -137,7 +137,7 @@ class TimeZone {
     } else {
       str = "UTC-";
     }
-    return str.concat( _offsetDisplay(offset));
+    return str +  _offsetDisplay(offset);
   }
 
   static String _offsetDisplay(int offset) {
@@ -146,7 +146,7 @@ class TimeZone {
     if (mins == 0) {
       return hour.toString();
     }
-    return hour.toString().concat(":").concat(mins.toString());
+    return hour.toString() + ":" + mins.toString();
   }
 
   String _timezoneID;

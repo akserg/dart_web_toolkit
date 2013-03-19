@@ -63,7 +63,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the mouse x-position
    */
   int getClientX() {
-    return getMouseEvent().clientX;
+    return getMouseEvent().client.x;
   }
 
   /**
@@ -72,7 +72,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the mouse y-position
    */
   int getClientY() {
-    return getMouseEvent().clientY;
+    return getMouseEvent().client.y;
   }
 
   /**
@@ -94,7 +94,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the relative x-position
    */
   int getRelativeX(dart_html.Element target) {
-    return getMouseEvent().clientX - Dom.getAbsoluteLeft(target) + target.scrollLeft + target.document.documentElement.scrollLeft;
+    return getMouseEvent().client.x - Dom.getAbsoluteLeft(target) + target.scrollLeft + target.document.documentElement.scrollLeft;
   }
 
   /**
@@ -104,7 +104,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the relative y-position
    */
   int getRelativeY(dart_html.Element target) {
-    return getMouseEvent().clientY - Dom.getAbsoluteTop(target) + target.scrollTop + target.document.documentElement.scrollTop;
+    return getMouseEvent().client.y - Dom.getAbsoluteTop(target) + target.scrollTop + target.document.documentElement.scrollTop;
   }
 
   /**
@@ -113,7 +113,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the mouse x-position
    */
   int getScreenX() {
-    return getMouseEvent().screenX;
+    return getMouseEvent().screen.x;
   }
 
   /**
@@ -122,7 +122,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the mouse y-position
    */
   int getScreenY() {
-    return getMouseEvent().screenY;
+    return getMouseEvent().screen.y;
   }
 
   /**

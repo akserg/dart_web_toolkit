@@ -51,22 +51,22 @@ class DefaultDateTimeFormatInfo implements DateTimeFormatInfo {
 
 
   String dateTimeFull(String timePattern, String datePattern) {
-    return datePattern.concat(" ").concat(timePattern);
+    return datePattern + " " + timePattern;
   }
 
 
   String dateTimeLong(String timePattern, String datePattern) {
-    return datePattern.concat(" ").concat(timePattern);
+    return datePattern + " " + timePattern;
   }
 
 
   String dateTimeMedium(String timePattern, String datePattern) {
-    return datePattern.concat(" ").concat(timePattern);
+    return datePattern + " " + timePattern;
   }
 
 
   String dateTimeShort(String timePattern, String datePattern) {
-    return datePattern.concat(" ").concat(timePattern);
+    return datePattern + " " + timePattern;
   }
 
 

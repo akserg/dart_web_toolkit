@@ -130,7 +130,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     Dom.setElementProperty(tdh, "height", "1px");
 
     // _body styling
-    UiObject.manageElementStyleName(tdb, _DEFAULT_STYLENAME.concat("Content"), true);
+    UiObject.manageElementStyleName(tdb, _DEFAULT_STYLENAME + "Content", true);
     Dom.setElementProperty(tdb, "height", "100%");
     Dom.setElementProperty(tdb, "vAlign", "top");
 
@@ -291,7 +291,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
 
     // Style the stack selector item.
     dart_html.Element td = tr.$dom_firstElementChild; //DOM.getFirstChild(tr);
-    UiObject.manageElementStyleName(td, _DEFAULT_ITEM_STYLENAME.concat("-selected"), visible);
+    UiObject.manageElementStyleName(td, _DEFAULT_ITEM_STYLENAME + "-selected", visible);
 
     // Show/hide the contained widget.
     _setStackContentVisible(index, visible);
@@ -303,7 +303,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
       dart_html.Element trNext = _body.children[nextIndex]; //DOM.getChild(_body, ((index + 1) * 2));
       if (trNext != null) {
         dart_html.Element tdNext = trNext.$dom_firstElementChild; //DOM.getFirstChild(trNext);
-        UiObject.manageElementStyleName(tdNext, _DEFAULT_ITEM_STYLENAME.concat("-below-selected"), visible);
+        UiObject.manageElementStyleName(tdNext, _DEFAULT_ITEM_STYLENAME + "-below-selected", visible);
       }
     }
   }
@@ -316,9 +316,9 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
 
       // Update the special style on the first element
       if (beforeIndex == 0) {
-        UiObject.manageElementStyleName(childTD, _DEFAULT_ITEM_STYLENAME.concat("-first"), true);
+        UiObject.manageElementStyleName(childTD, _DEFAULT_ITEM_STYLENAME + "-first", true);
       } else {
-        UiObject.manageElementStyleName(childTD, _DEFAULT_ITEM_STYLENAME.concat("-first"), false);
+        UiObject.manageElementStyleName(childTD, _DEFAULT_ITEM_STYLENAME + "-first", false);
       }
     }
   }

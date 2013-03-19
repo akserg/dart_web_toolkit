@@ -33,13 +33,13 @@ class LayoutImpl {
 
     // Position the ruler off the top edge, double the size just to be
     // extra sure it doesn't show up on the screen.
-    ruler.style.top = "-20".concat(heightUnit.value);
+    ruler.style.top = "-20" + heightUnit.value;
 
     // Note that we are making the ruler element 10x10, because some browsers
     // generate non-integral ratios (e.g., 1em == 13.3px), so we need a little
     // extra precision.
-    ruler.style.width = "10".concat(widthUnit.value);
-    ruler.style.height = "10".concat(heightUnit.value);
+    ruler.style.width = "10" + widthUnit.value;
+    ruler.style.height = "10" + heightUnit.value;
     return ruler;
   }
 
@@ -54,10 +54,10 @@ class LayoutImpl {
     container.style.position = Position.ABSOLUTE.value;
     container.style.overflow = Overflow.HIDDEN.value;
     // I have added that code here because without it it doesn't show itself and child elements
-    container.style.left = "0".concat(Unit.PX.value);
-    container.style.top = "0".concat(Unit.PX.value);
-    container.style.right = "0".concat(Unit.PX.value);
-    container.style.bottom = "0".concat(Unit.PX.value);
+    container.style.left = "0" + Unit.PX.value;
+    container.style.top = "0" + Unit.PX.value;
+    container.style.right = "0" + Unit.PX.value;
+    container.style.bottom = "0" + Unit.PX.value;
     //
     fillParent(child);
 
@@ -72,10 +72,10 @@ class LayoutImpl {
 
   void fillParent(dart_html.Element elem) {
     elem.style.position = Position.ABSOLUTE.value;
-    elem.style.left = "0".concat(Unit.PX.value);
-    elem.style.top = "0".concat(Unit.PX.value);
-    elem.style.right = "0".concat(Unit.PX.value);
-    elem.style.bottom = "0".concat(Unit.PX.value);
+    elem.style.left = "0" + Unit.PX.value;
+    elem.style.top = "0" + Unit.PX.value;
+    elem.style.right = "0" + Unit.PX.value;
+    elem.style.bottom = "0" + Unit.PX.value;
   }
 
   /**
@@ -91,21 +91,21 @@ class LayoutImpl {
 
     switch (unit) {
       case Unit.PCT:
-        return (vertical ? parent.clientHeight : parent.clientWidth) / 100.0;
+        return (vertical ? parent.client.height : parent.client.width) / 100.0;
       case Unit.EM:
-        return relativeRuler.offsetWidth / 10.0;
+        return relativeRuler.offset.width / 10.0;
       case Unit.EX:
-        return relativeRuler.offsetHeight / 10.0;
+        return relativeRuler.offset.height / 10.0;
       case Unit.CM:
-        return fixedRuler.offsetWidth * 0.1; // 1.0 cm / cm
+        return fixedRuler.offset.width * 0.1; // 1.0 cm / cm
       case Unit.MM:
-        return fixedRuler.offsetWidth * 0.01; // 0.1 cm / mm
+        return fixedRuler.offset.width * 0.01; // 0.1 cm / mm
       case Unit.IN:
-        return fixedRuler.offsetWidth * 0.254; // 2.54 cm / in
+        return fixedRuler.offset.width * 0.254; // 2.54 cm / in
       case Unit.PT:
-        return fixedRuler.offsetWidth * 0.00353; // 0.0353 cm / pt
+        return fixedRuler.offset.width * 0.00353; // 0.0353 cm / pt
       case Unit.PC:
-        return fixedRuler.offsetWidth * 0.0423; // 0.423 cm / pc
+        return fixedRuler.offset.width * 0.0423; // 0.423 cm / pc
 
       case Unit.PX:
       default:
@@ -125,40 +125,40 @@ class LayoutImpl {
       layer.container.style.display = Display.NONE.value;
     }
 
-    layer.container.style.left = layer.setLeft ? (layer.left.toString().concat(layer.leftUnit.value)) : "";
-    layer.container.style.top = layer.setTop ? (layer.top.toString().concat(layer.topUnit.value)) : "";
-    layer.container.style.right = layer.setRight ? (layer.right.toString().concat(layer.rightUnit.value)) : "";
-    layer.container.style.bottom = layer.setBottom ? (layer.bottom.toString().concat(layer.bottomUnit.value)) : "";
-    layer.container.style.width = layer.setWidth ? (layer.width.toString().concat(layer.widthUnit.value)) : "";
-    layer.container.style.height = layer.setHeight ? (layer.height.toString().concat(layer.heightUnit.value)) : "";
+    layer.container.style.left = layer.setLeft ? (layer.left.toString() + layer.leftUnit.value) : "";
+    layer.container.style.top = layer.setTop ? (layer.top.toString() + layer.topUnit.value) : "";
+    layer.container.style.right = layer.setRight ? (layer.right.toString() + layer.rightUnit.value) : "";
+    layer.container.style.bottom = layer.setBottom ? (layer.bottom.toString() + layer.bottomUnit.value) : "";
+    layer.container.style.width = layer.setWidth ? (layer.width.toString() + layer.widthUnit.value) : "";
+    layer.container.style.height = layer.setHeight ? (layer.height.toString() + layer.heightUnit.value) : "";
 
     switch (layer.hPos) {
       case Alignment.BEGIN:
-        layer.child.style.left = "0".concat(Unit.PX.value);
+        layer.child.style.left = "0" + Unit.PX.value;
         layer.child.style.right = "";
         break;
       case Alignment.END:
         layer.child.style.left = "";
-        layer.child.style.right = "0".concat(Unit.PX.value);
+        layer.child.style.right = "0" + Unit.PX.value;
         break;
       case Alignment.STRETCH:
-        layer.child.style.left = "0".concat(Unit.PX.value);
-        layer.child.style.right = "0".concat(Unit.PX.value);
+        layer.child.style.left = "0" + Unit.PX.value;
+        layer.child.style.right = "0" + Unit.PX.value;
         break;
     }
 
     switch (layer.vPos) {
       case Alignment.BEGIN:
-        layer.child.style.top = "0".concat(Unit.PX.value);
+        layer.child.style.top = "0" + Unit.PX.value;
         layer.child.style.bottom = "";
         break;
       case Alignment.END:
         layer.child.style.top = "";
-        layer.child.style.bottom = "0".concat(Unit.PX.value);
+        layer.child.style.bottom = "0" + Unit.PX.value;
         break;
       case Alignment.STRETCH:
-        layer.child.style.top = "0".concat(Unit.PX.value);
-        layer.child.style.bottom = "0".concat(Unit.PX.value);
+        layer.child.style.top = "0" + Unit.PX.value;
+        layer.child.style.bottom = "0" + Unit.PX.value;
         break;
     }
   }

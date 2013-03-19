@@ -53,7 +53,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
     getElement().append(container);
 
     // The order of these methods is very important. In order to preserve
-    // backward compatibility, the offsetWidth and offsetHeight of the child
+    // backward compatibility, the offsetWidth and height of the child
     // widget should be defined (greater than zero) when w.onLoad() is called.
     // As a result, we first initialize the container with a height of 0px, then
     // we attach the child widget to the container. See Issue 2321 for more
@@ -255,15 +255,15 @@ class _SlideAnimation extends Animation {
     if (animate) {
       // Figure out if the deck panel has a fixed height
       dart_html.Element deckElem = container1.parent;
-      int deckHeight = deckElem.offsetHeight;
+      int deckHeight = deckElem.offset.height;
       if (growing) {
-        fixedHeight = container2.offsetHeight;
-        container2.style.height = (dart_math.max(1, fixedHeight - 1)).toString().concat(Unit.PX.value);
+        fixedHeight = container2.offset.height;
+        container2.style.height = (dart_math.max(1, fixedHeight - 1)).toString() + Unit.PX.value;
       } else {
-        fixedHeight = container1.offsetHeight;
-        container1.style.height = (dart_math.max(1, fixedHeight - 1)).toString().concat(Unit.PX.value);
+        fixedHeight = container1.offset.height;
+        container1.style.height = (dart_math.max(1, fixedHeight - 1)).toString() + Unit.PX.value;
       }
-      if (deckElem.offsetHeight != deckHeight) {
+      if (deckElem.offset.height != deckHeight) {
         fixedHeight = -1;
       }
 
@@ -334,8 +334,8 @@ class _SlideAnimation extends Animation {
       height2 = 1;
       height1 = dart_math.max(1, height1 - 1);
     }
-    container1.style.height = height1.toString().concat("px");
-    container2.style.height = height2.toString().concat("px");
+    container1.style.height = height1.toString() + "px";
+    container2.style.height = height2.toString() + "px";
   }
 
   /**

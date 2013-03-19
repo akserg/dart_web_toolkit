@@ -291,7 +291,7 @@ class _RequestHeader implements Header {
   }
 
   String toString() {
-    return _name.concat(" : ").concat(_value);
+    return _name + " : " + _value;
   }
 }
 

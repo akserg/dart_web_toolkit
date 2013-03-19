@@ -419,8 +419,8 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
       glass.$dom_className = glassStyleName;
 
       glass.style.position = Position.ABSOLUTE.value;
-      glass.style.left = "0".concat(Unit.PX.value);
-      glass.style.top = "0".concat(Unit.PX.value);
+      glass.style.left = "0" + Unit.PX.value;
+      glass.style.top = "0" + Unit.PX.value;
     }
   }
 
@@ -485,15 +485,15 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 
     // Account for the difference between absolute position and the
     // body's positioning context.
-    left -= dart_html.document.body.offsetLeft;
-    top -= dart_html.document.body.offsetTop;
+    left -= dart_html.document.body.offset.left;
+    top -= dart_html.document.body.offset.top;
 
     // Set the popup's position manually, allowing setPopupPosition() to be
     // called before show() is called (so a popup can be positioned without it
     // 'jumping' on the screen).
     dart_html.Element elem = getElement();
-    elem.style.left = left.toString().concat(Unit.PX.value);
-    elem.style.top = top.toString().concat(Unit.PX.value);
+    elem.style.left = left.toString() + Unit.PX.value;
+    elem.style.top = top.toString() + Unit.PX.value;
   }
 
   /**
@@ -1324,16 +1324,16 @@ class _WindowResizeHandler implements ResizeHandler {
     // Hide the glass while checking the document size. Otherwise it would
     // interfere with the measurement.
     _panel.glass.style.display = Display.NONE.value;
-    _panel.glass.style.width = "0".concat(Unit.PX.value);
-    _panel.glass.style.height = "0".concat(Unit.PX.value);
+    _panel.glass.style.width = "0" + Unit.PX.value;
+    _panel.glass.style.height = "0" + Unit.PX.value;
 
     int width = Dom.getScrollWidth();
     int height = Dom.getScrollHeight();
 
     // Set the glass size to the larger of the window's client size or the
     // document's scroll size.
-    _panel.glass.style.width = dart_math.max(width, winWidth).toString().concat(Unit.PX.value);
-    _panel.glass.style.height = dart_math.max(height, winHeight).toString().concat(Unit.PX.value);
+    _panel.glass.style.width = dart_math.max(width, winWidth).toString() + Unit.PX.value;
+    _panel.glass.style.height = dart_math.max(height, winHeight).toString() + Unit.PX.value;
 
     // The size is set. Show the glass again.
     _panel.glass.style.display = Display.BLOCK.value;

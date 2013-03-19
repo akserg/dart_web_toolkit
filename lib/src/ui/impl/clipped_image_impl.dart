@@ -12,7 +12,7 @@ part of dart_web_toolkit_ui;
  */
 class ClippedImageImpl {
 
-  String clearImage = DWT.getModuleBaseURL().concat("resource/images/clear.gif");
+  String clearImage = DWT.getModuleBaseURL() + "resource/images/clear.gif";
 
   dart_html.Element createStructure(SafeUri url, int left, int top, int width, int height) {
     dart_html.ImageElement img = new dart_html.ImageElement();
@@ -42,7 +42,7 @@ class ClippedImageImpl {
   void adjust(dart_html.ImageElement img, SafeUri url, int left, int top, int width, int height) {
     String style = "url(\"${url.asString()}\") no-repeat -${left}px -${top}px";
     img.style.background = style;
-    img.style.width = width.toString().concat(Unit.PX.value);
-    img.style.height = height.toString().concat(Unit.PX.value);
+    img.style.width = width.toString() + Unit.PX.value;
+    img.style.height = height.toString() + Unit.PX.value;
   }
 }

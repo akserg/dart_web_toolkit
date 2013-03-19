@@ -199,8 +199,8 @@ class AbsolutePanel extends ComplexPanel implements InsertPanelForIsWidget{
       _changeToStaticPositioning(h);
     } else {
       h.style.position = "absolute";
-      h.style.left = left.toString().concat("px");
-      h.style.top = top.toString().concat("px");
+      h.style.left = left.toString() + "px";
+      h.style.top = top.toString() + "px";
     }
   }
 

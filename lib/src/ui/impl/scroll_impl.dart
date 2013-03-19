@@ -26,7 +26,7 @@ class ScrollImpl {
    * @return the maximum scroll position
    */
   int getMaximumHorizontalScrollPosition(dart_html.Element scrollable) {
-    return isRtl(scrollable) ? 0 : scrollable.scrollWidth - scrollable.clientWidth;
+    return isRtl(scrollable) ? 0 : scrollable.scrollWidth - scrollable.client.width;
   }
 
   /**
@@ -36,7 +36,7 @@ class ScrollImpl {
    * @return the minimum scroll position
    */
   int getMinimumHorizontalScrollPosition(dart_html.Element scrollable) {
-    return isRtl(scrollable) ? scrollable.clientWidth - scrollable.scrollWidth : 0;
+    return isRtl(scrollable) ? scrollable.client.width - scrollable.scrollWidth : 0;
   }
 
   /**

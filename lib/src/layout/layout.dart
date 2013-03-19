@@ -181,8 +181,8 @@ class Layout {
     }
 
     // Deal with constraint changes (e.g. left-width => right-width, etc)
-    int parentWidth = parentElem.clientWidth;
-    int parentHeight = parentElem.clientHeight;
+    int parentWidth = parentElem.client.width;
+    int parentHeight = parentElem.client.height;
     for (Layer l in layers) {
       adjustHorizontalConstraints(parentWidth, l);
       adjustVerticalConstraints(parentHeight, l);

@@ -5,6 +5,8 @@ Dart Web Toolkit Changes
 
 * Fixed bug: TabLayoutPanel does not implemented add method from HasWidgets interface.
 * Changed tab_layout_panel.dart.
+* Migrate project code to follow Dart SDK version 0.4.2_r20193
+* Fixed migration broken changes.
 
 **March 18, 2013
 

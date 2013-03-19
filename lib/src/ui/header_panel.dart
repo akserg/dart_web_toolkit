@@ -37,21 +37,21 @@ class HeaderPanel extends Panel implements RequiresResize {
 
     // Create the header container.
     _headerContainer = _createContainer();
-    _headerContainer.style.top = "0.0".concat(Unit.PX.value);
+    _headerContainer.style.top = "0.0" + Unit.PX.value;
     _headerImpl.init(_headerContainer, resizeDelegate);
     elem.append(_headerContainer);
 
     // Create the footer container.
     _footerContainer = _createContainer();
-    _footerContainer.style.bottom = "0.0".concat(Unit.PX.value);
+    _footerContainer.style.bottom = "0.0" + Unit.PX.value;
     _footerImpl.init(_footerContainer, resizeDelegate);
     elem.append(_footerContainer);
 
     // Create the content container.
     _contentContainer = _createContainer();
     _contentContainer.style.overflow = Overflow.HIDDEN.value;
-    _contentContainer.style.top = "0.0".concat(Unit.PX.value);
-    _contentContainer.style.height = "0.0".concat(Unit.PX.value);
+    _contentContainer.style.top = "0.0" + Unit.PX.value;
+    _contentContainer.style.height = "0.0" + Unit.PX.value;
     elem.append(_contentContainer);
   }
 
@@ -213,8 +213,8 @@ class HeaderPanel extends Panel implements RequiresResize {
     dart_html.DivElement container = new dart_html.DivElement();
     container.style.position = Position.ABSOLUTE.value;
     container.style.display = Display.NONE.value;
-    container.style.left = "0.0".concat(Unit.PX.value);
-    container.style.width = "100.0".concat(Unit.PX.value);
+    container.style.left = "0.0" + Unit.PX.value;
+    container.style.width = "100.0" + Unit.PX.value;
     return container;
   }
 
@@ -310,18 +310,18 @@ class HeaderPanel extends Panel implements RequiresResize {
     }
 
     // Resize the content area to fit between the header and footer.
-    int remainingHeight = getElement().clientHeight;
+    int remainingHeight = getElement().client.height;
     if (_header != null) {
-      int height = dart_math.max(0, _headerContainer.offsetHeight);
+      int height = dart_math.max(0, _headerContainer.offset.height);
       remainingHeight -= height;
-      _contentContainer.style.top = height.toString().concat(Unit.PX.value);
+      _contentContainer.style.top = height.toString() + Unit.PX.value;
     } else {
-      _contentContainer.style.top = "0.0".concat(Unit.PX.value);
+      _contentContainer.style.top = "0.0" + Unit.PX.value;
     }
     if (_footer != null) {
-      remainingHeight -= _footerContainer.offsetHeight;
+      remainingHeight -= _footerContainer.offset.height;
     }
-    _contentContainer.style.height = dart_math.max(0, remainingHeight).toString().concat(Unit.PX.value);
+    _contentContainer.style.height = dart_math.max(0, remainingHeight).toString() + Unit.PX.value;
 
     // Provide resize to child.
     if (_content is RequiresResize) {

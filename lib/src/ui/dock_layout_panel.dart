@@ -454,11 +454,11 @@ class DockLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   }
 
   double getCenterHeight() {
-    return getElement().clientHeight / _layout.getUnitSize(_unit, true) - _filledHeigh;
+    return getElement().client.height / _layout.getUnitSize(_unit, true) - _filledHeigh;
   }
 
   double getCenterWidth() {
-    return getElement().clientWidth / _layout.getUnitSize(_unit, false) - _filledWidth;
+    return getElement().client.width / _layout.getUnitSize(_unit, false) - _filledWidth;
   }
 
   /**

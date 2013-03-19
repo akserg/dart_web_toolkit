@@ -86,7 +86,7 @@ class DomImplStandard extends DomImpl {
       curr = curr.parent;
     }
     while (elem != null) {
-      left += elem.offsetLeft;
+      left += elem.offset.left;
       elem = elem.offsetParent;
     }
     return left;
@@ -101,7 +101,7 @@ class DomImplStandard extends DomImpl {
       curr = curr.parentNode;
     }
     while (elem != null) {
-      top += elem.offsetTop;
+      top += elem.offset.top;
       elem = elem.offsetParent;
     }
     return top;

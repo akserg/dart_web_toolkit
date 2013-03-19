@@ -185,7 +185,7 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
     this._targetHistoryToken = token;
     String hash = History.encodeHistoryToken(_targetHistoryToken);
     //DOM.setElementProperty(anchorElem, "href", "#" + hash);
-    _anchorElem.href = "#".concat(hash);
+    _anchorElem.href = "#" + hash;
   }
 
   String get text => directionalTextHelper.getTextOrHtml(false);

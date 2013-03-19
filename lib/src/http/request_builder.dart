@@ -328,9 +328,9 @@ class RequestBuilder {
 
     try {
       if (_user != null && _password != null) {
-        xmlHttpRequest.open(_httpMethod, _url, true, _user, _password);
+        xmlHttpRequest.open(_httpMethod, _url, async:true, user:_user, password:_password);
       } else if (_user != null) {
-        xmlHttpRequest.open(_httpMethod, _url, true, _user);
+        xmlHttpRequest.open(_httpMethod, _url, async:true, user:_user);
       } else {
         xmlHttpRequest.open(_httpMethod, _url);
       }

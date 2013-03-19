@@ -45,9 +45,9 @@ class NotificationMole extends Composite {
     HtmlPanel widget = new HtmlPanel("");
     widget.clearAndSetStyleName("container");
     widget.getElement().style.position = Position.ABSOLUTE.value;
-    widget.getElement().style.height = "0".concat(Unit.PX.value);
+    widget.getElement().style.height = "0" + Unit.PX.value;
     widget.getElement().style.textAlign = TextAlign.CENTER.value;
-    widget.getElement().style.width = "100".concat(Unit.PCT.value);
+    widget.getElement().style.width = "100" + Unit.PCT.value;
     //
     borderElement = new dart_html.DivElement();
     borderElement.style.marginLeft = "auto";
@@ -81,7 +81,7 @@ class NotificationMole extends Composite {
       --showAttempts;
     }
     if (showAttempts == 0) {
-      _animation.animateMole(heightMeasure.offsetHeight, 0, _animationDuration);
+      _animation.animateMole(heightMeasure.offset.height, 0, _animationDuration);
       return;
     }
   }
@@ -91,7 +91,7 @@ class NotificationMole extends Composite {
    */
   void hideNow() {
     showAttempts = 0;
-    _animation.animateMole(heightMeasure.offsetHeight, 0, _animationDuration);
+    _animation.animateMole(heightMeasure.offset.height, 0, _animationDuration);
   }
 
   /**
@@ -143,8 +143,8 @@ class NotificationMole extends Composite {
 
   void _showImpl() {
     borderElement.style.display = Display.BLOCK.value;
-    borderElement.style.width = notificationText.offsetWidth.toString().concat(Unit.PX.value);
-    _animation.animateMole(0, heightMeasure.offsetHeight, _animationDuration);
+    borderElement.style.width = notificationText.offset.width.toString() + Unit.PX.value;
+    _animation.animateMole(0, heightMeasure.offset.height, _animationDuration);
   }
 }
 
@@ -173,13 +173,13 @@ class _MoleAnimation extends Animation {
       _mole.borderElement.style.display = Display.NONE.value;
       return;
     }
-    _mole.borderElement.style.height = _endSize.toString().concat(Unit.PX.value);
+    _mole.borderElement.style.height = _endSize.toString() + Unit.PX.value;
   }
 
   void onUpdate(double progress) {
     double delta = (_endSize - _startSize) * progress;
     double newSize = _startSize + delta;
-    _mole.borderElement.style.height = newSize.toString().concat(Unit.PX.value);
+    _mole.borderElement.style.height = newSize.toString() + Unit.PX.value;
   }
 
   void animateMole(int startSize, int endSize, int duration) {

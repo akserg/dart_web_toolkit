@@ -91,13 +91,13 @@ class DecoratorPanel extends SimplePanel {
     dart_html.Element trElem = new dart_html.TableRowElement();
     UiObject.setElementStyleName(trElem, styleName);
     if (LocaleInfo.getCurrentLocale().isRTL()) {
-      trElem.append(createTD(styleName.concat("Right")));
-      trElem.append(createTD(styleName.concat("Center")));
-      trElem.append(createTD(styleName.concat("Left")));
+      trElem.append(createTD(styleName + "Right"));
+      trElem.append(createTD(styleName + "Center"));
+      trElem.append(createTD(styleName + "Left"));
     } else {
-      trElem.append(createTD(styleName.concat("Left")));
-      trElem.append(createTD(styleName.concat("Center")));
-      trElem.append(createTD(styleName.concat("Right")));
+      trElem.append(createTD(styleName + "Left"));
+      trElem.append(createTD(styleName + "Center"));
+      trElem.append(createTD(styleName + "Right"));
     }
     return trElem;
   }
@@ -113,7 +113,7 @@ class DecoratorPanel extends SimplePanel {
     dart_html.Element inner = new dart_html.DivElement();
     tdElem.append(inner);
     UiObject.setElementStyleName(tdElem, styleName);
-    UiObject.setElementStyleName(inner, styleName.concat("Inner"));
+    UiObject.setElementStyleName(inner, styleName + "Inner");
     return tdElem;
   }
 

@@ -447,7 +447,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
 
       panel.insertWidget(delWidget, beforeIndex + 1);
 
-      UiObject.manageElementStyleName(delWidget.getElement().parent, STYLENAME_DEFAULT.concat("-wrapper"), true);
+      UiObject.manageElementStyleName(delWidget.getElement().parent, STYLENAME_DEFAULT + "-wrapper", true);
     }
 
     /**

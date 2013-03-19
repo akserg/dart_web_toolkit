@@ -43,8 +43,8 @@ class ResizeLayoutPanelImplStandard extends ResizeLayoutPanelImpl implements Eve
     _expandable = new dart_html.DivElement();
     _expandable.style.visibility = Visibility.HIDDEN.value;
     _expandable.style.position = Position.ABSOLUTE.value;
-    _expandable.style.height = "100".concat(Unit.PCT.value);
-    _expandable.style.width = "100".concat(Unit.PCT.value);
+    _expandable.style.height = "100" + Unit.PCT.value;
+    _expandable.style.width = "100" + Unit.PCT.value;
     _expandable.style.overflow = Overflow.SCROLL.value;
     elem.append(_expandable);
     _expandableInner = new dart_html.DivElement();
@@ -63,13 +63,13 @@ class ResizeLayoutPanelImplStandard extends ResizeLayoutPanelImpl implements Eve
     _collapsible = new dart_html.DivElement();
     _collapsible.style.visibility = Visibility.HIDDEN.value;
     _collapsible.style.position = Position.ABSOLUTE.value;
-    _collapsible.style.height = "100".concat(Unit.PCT.value);
-    _collapsible.style.width = "100".concat(Unit.PCT.value);
+    _collapsible.style.height = "100" + Unit.PCT.value;
+    _collapsible.style.width = "100" + Unit.PCT.value;
     _collapsible.style.overflow = Overflow.SCROLL.value;
     elem.append(_collapsible);
     _collapsibleInner = new dart_html.DivElement();
-    _collapsibleInner.style.width = "200".concat(Unit.PCT.value);
-    _collapsibleInner.style.height = "200".concat(Unit.PCT.value);
+    _collapsibleInner.style.width = "200" + Unit.PCT.value;
+    _collapsibleInner.style.height = "200" + Unit.PCT.value;
     _collapsible.append(_collapsibleInner);
     Dom.sinkEvents(_collapsible, Event.ONSCROLL);
   }
@@ -136,12 +136,12 @@ class ResizeLayoutPanelImplStandard extends ResizeLayoutPanelImpl implements Eve
      * small, so we need to set the dimensions of the inner div to a value
      * greater than the offsetWidth/Height.
      */
-    int offsetHeight = parent.offsetHeight;
-    int offsetWidth = parent.offsetWidth;
+    int offsetHeight = parent.offset.height;
+    int offsetWidth = parent.offset.width;
     int height = offsetHeight + 100;
     int width = offsetWidth + 100;
-    _expandableInner.style.height = height.toString().concat(Unit.PX.value);
-    _expandableInner.style.width = width.toString().concat(Unit.PX.value);
+    _expandableInner.style.height = height.toString() + Unit.PX.value;
+    _expandableInner.style.width = width.toString() + Unit.PX.value;
     _expandable.scrollTop = height;
     _expandable.scrollLeft = width;
 

@@ -986,10 +986,10 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
     _popup = new _MenuDecoratedPopupPanel(this, item, true, false, "menuPopup");
     _popup.setAnimationType(AnimationType.ONE_WAY_CORNER);
     _popup.setAnimationEnabled(_isAnimationEnabled);
-    _popup.clearAndSetStyleName(_STYLENAME_DEFAULT.concat("Popup"));
+    _popup.clearAndSetStyleName(_STYLENAME_DEFAULT + "Popup");
     String primaryStyleName = getStylePrimaryName();
     if (_STYLENAME_DEFAULT != primaryStyleName) {
-      _popup.addStyleName(primaryStyleName.concat("Popup"));
+      _popup.addStyleName(primaryStyleName + "Popup");
     }
     //_popup.addPopupListener(this);
     // Closes the menu bar.
@@ -1181,7 +1181,7 @@ class MenuResources implements MenuResource {
   }
 
   ImageResourcePrototype _getMenuImageResourcePrototype(String name, int left) {
-    String uri = DWT.getModuleBaseURL().concat("resource/images/menu.png");
+    String uri = DWT.getModuleBaseURL() + "resource/images/menu.png";
     ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString(uri), left, 0, 5, 9, false, false);
     return imageResource;
   }

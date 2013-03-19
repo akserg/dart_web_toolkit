@@ -78,7 +78,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
   }
 
   int getMaximumVerticalScrollPosition() {
-    return getScrollableElement().scrollHeight - getScrollableElement().clientHeight;
+    return getScrollableElement().scrollHeight - getScrollableElement().client.height;
   }
 
   int getMinimumHorizontalScrollPosition() {
@@ -270,11 +270,11 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
     dart_html.Element item = e;
     int realOffset = 0;
     while (item != null && (item != scroll)) {
-      realOffset += item.offsetTop;
+      realOffset += item.offset.top;
       item = item.offsetParent;
     }
 
-    scroll.scrollTop = realOffset - scroll.offsetHeight ~/ 2;
+    scroll.scrollTop = realOffset - scroll.offset.height ~/ 2;
   }
 
   /**

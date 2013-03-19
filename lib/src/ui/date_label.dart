@@ -26,7 +26,7 @@ part of dart_web_toolkit_ui;
  * <dt>timezoneOffset</dt><dd>the time zone offset in minutes.</dd>
  * </dl>
  */
-class DateLabel extends ValueLabel<Date> {
+class DateLabel extends ValueLabel<DateTime> {
 
   DateLabel([DateTimeFormat format = null, TimeZone timeZone = null]) : super(new DateTimeFormatRenderer(format, timeZone));
 }

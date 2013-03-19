@@ -180,8 +180,8 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
     clearAndSetStyleName(DEFAULT_STYLENAME);
 
     windowWidth = Dom.getClientWidth();
-    clientLeft = dart_html.document.body.offsetLeft ;// Document.get().getBodyOffsetLeft();
-    clientTop = dart_html.document.body.offsetTop; //Document.get().getBodyOffsetTop();
+    clientLeft = dart_html.document.body.offset.left ;// Document.get().getBodyOffsetLeft();
+    clientTop = dart_html.document.body.offset.top; //Document.get().getBodyOffsetTop();
 
 //    AllMouseHandlersAdapter mouseHandler = new AllMouseHandlersAdapter((DwtEvent event){
 //      if (event is MouseDownEvent) {

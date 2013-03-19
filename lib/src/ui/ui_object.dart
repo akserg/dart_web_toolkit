@@ -172,10 +172,10 @@ abstract class UiObject implements HasVisibility {
    */
   void setPixelSize(int width, int height) {
     if (width >= 0) {
-      setWidth(width.toString().concat("px"));
+      setWidth(width.toString() + "px");
     }
     if (height >= 0) {
-      setHeight(height.toString().concat("px"));
+      setHeight(height.toString() + "px");
     }
   }
 
@@ -305,10 +305,10 @@ abstract class UiObject implements HasVisibility {
       // Only add the style if it's not already present.
       if (idx == -1) {
         if (oldClassName.length > 0) {
-          oldClassName = oldClassName.concat(" ");
+          oldClassName = oldClassName + " ";
         }
         //setClassName(oldClassName + className);
-        elem.$dom_className = oldClassName.concat(style);
+        elem.$dom_className = oldClassName + style;
       }
     } else {
       // Get the current style string.
@@ -341,7 +341,7 @@ abstract class UiObject implements HasVisibility {
         } else if (end.length == 0) {
           newClassName = begin;
         } else {
-          newClassName = begin.concat(" ").concat(end);
+          newClassName = begin + " " + end;
         }
 
         elem.$dom_className = newClassName;
@@ -380,7 +380,7 @@ abstract class UiObject implements HasVisibility {
       if (name.length > oldPrimaryStyleLen
           && name[oldPrimaryStyleLen] == '-'
           && name.indexOf(oldPrimaryStyle) == 0) {
-        classes[i] = newPrimaryStyle.concat(name.substring(oldPrimaryStyleLen));
+        classes[i] = newPrimaryStyle + name.substring(oldPrimaryStyleLen);
       }
     }
     elem.$dom_className = classes.join(" ");
@@ -554,7 +554,7 @@ abstract class UiObject implements HasVisibility {
    * @see #removeStyleDependentName(String)
    */
   void setStyleDependentName(String styleSuffix, bool add) {
-    setStyleName(getStylePrimaryName().concat('-').concat(styleSuffix), add);
+    setStyleName(getStylePrimaryName() + '-' + styleSuffix, add);
   }
 
   /**
@@ -667,7 +667,7 @@ abstract class UiObject implements HasVisibility {
    * @return the object's offset height
    */
   int getOffsetHeight() {
-    return getElement().offsetHeight; // Dom.getElementPropertyInt(getElement(), "offsetHeight");
+    return getElement().offset.height; // Dom.getElementPropertyInt(getElement(), "offsetHeight");
   }
 
   /**
@@ -677,7 +677,7 @@ abstract class UiObject implements HasVisibility {
    * @return the object's offset width
    */
   int getOffsetWidth() {
-    return getElement().offsetWidth; // Dom.getElementPropertyInt(getElement(), "offsetWidth");
+    return getElement().offset.width; // Dom.getElementPropertyInt(getElement(), "offsetWidth");
   }
 
   /**

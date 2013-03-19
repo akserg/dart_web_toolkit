@@ -282,7 +282,7 @@ class HtmlPanel extends ComplexPanel {
    * element.query('#id');
    */
   dart_html.Element getElementById(String id) {
-    dart_html.Element elem = isAttached() ? dart_html.document.$dom_getElementById(id) : _attachToDomAndGetElement(id);
+    dart_html.Element elem = isAttached() ? dart_html.document.getElementById(id) : _attachToDomAndGetElement(id);
     return elem;
   }
 
@@ -312,7 +312,7 @@ class HtmlPanel extends ComplexPanel {
     hiddenDiv.append(getElement());
 
     // Now that we're attached to the DOM, we can use getElementById.
-    dart_html.Element child = dart_html.document.$dom_getElementById(id);
+    dart_html.Element child = dart_html.document.getElementById(id);
 
     // Put the panel's element back where it was.
     if (origParent != null) {

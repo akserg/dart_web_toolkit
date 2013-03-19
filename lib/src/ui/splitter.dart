@@ -42,8 +42,8 @@ abstract class Splitter extends Widget {
          */
         int width = dart_math.max(Dom.getClientWidth(), Dom.getScrollWidth());
         int height = dart_math.max(Dom.getClientHeight(), Dom.getScrollHeight());
-        SplitLayoutPanel.glassElem.style.height = height.toString().concat(Unit.PX.value);
-        SplitLayoutPanel.glassElem.style.width = width.toString().concat(Unit.PX.value);
+        SplitLayoutPanel.glassElem.style.height = height.toString() + Unit.PX.value;
+        SplitLayoutPanel.glassElem.style.width = width.toString() + Unit.PX.value;
         dart_html.document.body.append(SplitLayoutPanel.glassElem);
 
         _offset = getEventPosition(event) - getAbsolutePosition();
@@ -172,7 +172,7 @@ abstract class Splitter extends Widget {
 class HSplitter extends Splitter {
   HSplitter(SplitLayoutPanel splitLayoutPanel, Widget target, bool reverse) : super(splitLayoutPanel, target, reverse) {
     //getElement().getStyle().setPropertyPx("width", splitterSize);
-    getElement().style.width = this._splitLayoutPanel._splitterSize.toString().concat(Unit.PX.value);
+    getElement().style.width = this._splitLayoutPanel._splitterSize.toString() + Unit.PX.value;
     clearAndSetStyleName("dwt-SplitLayoutPanel-HDragger");
   }
 
@@ -188,7 +188,7 @@ class HSplitter extends Splitter {
 
 
   int getEventPosition(dart_html.MouseEvent event) {
-    return event.clientX;
+    return event.client.x;
   }
 
 
@@ -205,7 +205,7 @@ class HSplitter extends Splitter {
 class VSplitter extends Splitter {
   VSplitter(SplitLayoutPanel splitLayoutPanel, Widget target, bool reverse) : super(splitLayoutPanel, target, reverse) {
     //getElement().getStyle().setPropertyPx("height", splitterSize);
-    getElement().style.height = this._splitLayoutPanel._splitterSize.toString().concat(Unit.PX.value);
+    getElement().style.height = this._splitLayoutPanel._splitterSize.toString() + Unit.PX.value;
     clearAndSetStyleName("dwt-SplitLayoutPanel-VDragger");
   }
 
@@ -221,7 +221,7 @@ class VSplitter extends Splitter {
 
 
   int getEventPosition(dart_html.MouseEvent event) {
-    return event.clientY;
+    return event.client.y;
   }
 
 

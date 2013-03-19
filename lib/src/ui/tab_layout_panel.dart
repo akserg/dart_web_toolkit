@@ -103,7 +103,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 
     // Make the tab bar extremely wide so that _tabs themselves never wrap.
     // (Its layout container is overflow:hidden)
-    _tabBar.getElement().style.width = _BIG_ENOUGH_TO_NOT_WRAP.toString().concat(Unit.PX.value);
+    _tabBar.getElement().style.width = _BIG_ENOUGH_TO_NOT_WRAP.toString() + Unit.PX.value;
 
     _tabBar.clearAndSetStyleName("dwt-TabLayoutPanelTabs");
     clearAndSetStyleName("dwt-TabLayoutPanel");

@@ -61,7 +61,7 @@ class SchedulerImpl extends Scheduler {
         caleer.handle.cancel();
       }
     };
-    caleer.handle = new dart_async.Timer.repeating(new Duration(milliseconds:delayMs), (dart_async.Timer t){
+    caleer.handle = new dart_async.Timer.periodic(new Duration(milliseconds:delayMs), (dart_async.Timer t){
       caleer.timeoutHandler();
     });
   }

@@ -77,13 +77,13 @@ class DecoratedPopupPanel extends PopupPanel {
    * @param prefix the prefix applied to child style names
    */
   DecoratedPopupPanel([bool autoHide = false, bool modal = false, String prefix = "popup"]) : super(autoHide, modal) {
-    List<String> rowStyles = [prefix.concat("Top"), prefix.concat("Middle"), prefix.concat("Bottom")];
+    List<String> rowStyles = [prefix + "Top", prefix + "Middle", prefix + "Bottom"];
     _decPanel = new DecoratorPanel(rowStyles, 1);
     _decPanel.clearAndSetStyleName("");
     setStylePrimaryName(_DEFAULT_STYLENAME);
     super.setWidget(_decPanel);
     UiObject.manageElementStyleName(getContainerElement(), "popupContent", false);
-    UiObject.manageElementStyleName(_decPanel.getContainerElement(), prefix.concat("Content"), true);
+    UiObject.manageElementStyleName(_decPanel.getContainerElement(), prefix + "Content", true);
   }
 
 

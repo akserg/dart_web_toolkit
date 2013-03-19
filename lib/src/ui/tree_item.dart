@@ -300,9 +300,9 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     // Use no margin on top-most items.
     double margin = _isRoot ? 0.0 : TreeItem._CHILD_MARGIN;
     if (LocaleInfo.getCurrentLocale().isRTL()) {
-      item.getElement().style.marginRight = margin.toString().concat(Unit.PX.value);
+      item.getElement().style.marginRight = margin.toString() + Unit.PX.value;
     } else {
-      item.getElement().style.marginLeft = margin.toString().concat(Unit.PX.value);
+      item.getElement().style.marginLeft = margin.toString() + Unit.PX.value;
     }
 
     // Physical attach.

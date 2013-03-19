@@ -84,7 +84,7 @@ class RootPanel extends AbsolutePanel {
     dart_html.Element elem = null;
     if (id != null) {
       // Return null if the id is specified, but no element is found.
-      if (null == (elem = dart_html.document.$dom_getElementById(id))) {
+      if (null == (elem = dart_html.document.getElementById(id))) {
         return null;
       }
     }
@@ -221,8 +221,8 @@ class DefaultRootPanel extends RootPanel {
   void setWidgetPositionImpl(Widget w, int left, int top) {
     // Account for the difference between absolute position and the
     // body's positioning context.
-    left -= dart_html.document.body.offsetLeft; // getBodyOffsetLeft();
-    top -= dart_html.document.body.offsetTop; //.getBodyOffsetTop();
+    left -= dart_html.document.body.offset.left; // getBodyOffsetLeft();
+    top -= dart_html.document.body.offset.top; //.getBodyOffsetTop();
 
     super.setWidgetPositionImpl(w, left, top);
   }

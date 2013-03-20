@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 20, 2013
+
+* Fixed bug:TabPanel does not show content of selected tab. Changed TabBar, TabPanel and standard.css
+
 **March 19, 2013
 
 * Fixed bug: TabLayoutPanel does not implemented add method from HasWidgets interface.

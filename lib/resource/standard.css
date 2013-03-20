@@ -826,6 +826,7 @@ a, a:visited, a:hover {
   border-width: 3px 2px 2px;
   overflow: hidden;
   padding: 6px;
+  height: 100%;
 }
 
 .dwt-DecoratedTabBar {

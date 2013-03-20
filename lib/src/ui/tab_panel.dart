@@ -63,6 +63,10 @@ class TabPanel extends Composite implements HasWidgets,
     panel.setWidgetCellHeight(deck, "100%");
     tabBar.setWidth("100%");
 
+    _TabListener _tabListener = new _TabListener(this);
+    tabBar.addBeforeSelectionHandler(_tabListener);
+    tabBar.addSelectionHandler(_tabListener);
+    //
     initWidget(panel);
     clearAndSetStyleName("dwt-TabPanel");
     deck.clearAndSetStyleName("dwt-TabPanelBottom");
@@ -439,5 +443,19 @@ class _UnmodifiableTabBar extends TabBar {
 
   SimplePanel createTabTextWrapper() {
     return _panel.createTabTextWrapper();
+  }
+}
+
+class _TabListener implements SelectionHandler<int>, BeforeSelectionHandler<int> {
+
+  TabPanel _tabPanel;
+  
+  _TabListener(this._tabPanel);
+  
+  void onBeforeSelection(BeforeSelectionEvent<int> event) {
+  }
+
+  void onSelection(SelectionEvent<int> event) {
+    _tabPanel.deck.showWidgetAt(event.getSelectedItem());
   }
 }

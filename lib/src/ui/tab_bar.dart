@@ -37,7 +37,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
      */
     TabBar() {
       initWidget(panel);
-//      sinkEvents(Event.ONCLICK);
+      sinkEvents(Event.ONCLICK);
       clearAndSetStyleName("dwt-TabBar");
 
       // Add a11y role "tablist"
@@ -333,12 +333,12 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
     bool selectTab(int index, [bool fireEvents = true]) {
       checkTabIndex(index);
 
-//      if (fireEvents) {
-//        BeforeSelectionEvent event = BeforeSelectionEvent.fire(this, index);
-//        if (event != null && event.isCanceled()) {
-//          return false;
-//        }
-//      }
+      if (fireEvents) {
+        BeforeSelectionEvent event = BeforeSelectionEvent.fire(this, index);
+        if (event != null && event.isCanceled()) {
+          return false;
+        }
+      }
 
       // Check for -1.
       setSelectionStyle(selectedTab, false);

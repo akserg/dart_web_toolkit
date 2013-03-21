@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 21, 2013
+
+* Fixed bug:Fix InlineHyperlink constructor parameters. Changed InlineHyperlink.
+* Commentes have been changed in InlineHtmln 
+
 **March 20, 2013
 
 * Fixed bug:TabPanel does not show content of selected tab. Changed TabBar, TabPanel and standard.css

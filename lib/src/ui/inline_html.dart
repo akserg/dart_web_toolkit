@@ -54,12 +54,16 @@ class InlineHtml extends Html {
     return html;
   }
 
+  /**
+   * This constructor may be used by subclasses to explicitly use an existing
+   * element. This element must be either a div or span element.
+   */
   InlineHtml.fromElement(dart_html.Element element) : super.fromElement(element) {
     clearAndSetStyleName("dwt-InlineHTML");
   }
 
   /**
-   * Creates an empty label.
+   * Creates an HTML widget with the specified HTML contents.
    */
   InlineHtml([String html = null]) : super.fromElement(new dart_html.SpanElement()) {
     clearAndSetStyleName("dwt-InlineHTML");

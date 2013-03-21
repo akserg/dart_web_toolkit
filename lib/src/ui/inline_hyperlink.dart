@@ -27,7 +27,12 @@ class InlineHyperlink extends Hyperlink {
   /**
    * Creates an empty hyperlink.
    */
-  InlineHyperlink(String text, [String targetHistoryToken = null]) : super(null) {
+  InlineHyperlink(String text, [bool asHtml = false, String targetHistoryToken = null]) : super.fromElement(null) {
     clearAndSetStyleName("dwt-InlineHyperlink");
+    //
+    directionalTextHelper.setTextOrHtml(text, asHtml);
+    if (targetHistoryToken != null) {
+      this.targetHistoryToken = targetHistoryToken;
+    }
   }
 }

@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Fixed bug:Fix InlineHyperlink constructor parameters. Changed InlineHyperlink.
 * Commentes have been changed in InlineHtmln 
+* Fixed bug:Hidden widget does not update value field . Changed ValueBoxBase.
 
 **March 20, 2013
 

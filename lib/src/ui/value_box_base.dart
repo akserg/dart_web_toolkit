@@ -159,8 +159,11 @@ class ValueBoxBase<T> extends FocusWidget implements
     return _impl.getSelectionLength(getElement());
   }
 
-  String get text => Dom.getElementProperty(getElement(), "value");
-
+  String get text {
+    //Dom.getElementProperty(getElement(), "value");
+    return (getElement() as dart_html.InputElement).value;
+  }
+  
   /**
    * Sets this object's text. Note that some browsers will manipulate the text
    * before adding it to the widget. For example, most browsers will strip all
@@ -171,7 +174,8 @@ class ValueBoxBase<T> extends FocusWidget implements
    * @param text the object's new text
    */
   void set text(String val) {
-    Dom.setElementProperty(getElement(), "value", val != null ? val : "");
+    //Dom.setElementProperty(getElement(), "value", val != null ? val : "");
+    (getElement() as dart_html.InputElement).value = val != null ? val : "";
     _autoDirHandler.refreshDirection();
   }
 

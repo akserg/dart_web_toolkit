@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 22, 2013
+
+* Fixed bug:Fix DirectionEstimation problem in TextBox. Changed AutoDirectionalHandler, BidiUtils, DirectionEstimaor, DirectionalTextHelper amd WordDirectionEstimator.
+
 **March 21, 2013
 
 * Fixed bug:Fix InlineHyperlink constructor parameters. Changed InlineHyperlink.

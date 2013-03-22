@@ -78,6 +78,32 @@ class BidiUtils {
   static final RegExp LAST_STRONG_IS_LTR_RE = new RegExp("[${LTR_CHARS}][^${RTL_CHARS}]*");
 
   /**
+   * Regular expression to check if the first strongly directional character in
+   * a string is RTL.
+   */
+  static final RegExp FIRST_STRONG_IS_RTL_RE = new RegExp("^[^${LTR_CHARS}]*[${RTL_CHARS}]");
+
+  /**
+   * Regular expression to check if a string looks like something that must
+   * always be LTR even in RTL text, e.g. a URL. When estimating the
+   * directionality of text containing these, we treat these as weakly LTR, like
+   * numbers.
+   */
+  static final RegExp IS_REQUIRED_LTR_RE = new RegExp("^http://.*");
+
+  /**
+   * Regular expression to check if a string contains any numerals. Used to
+   * differentiate between completely neutral strings and those containing
+   * numbers, which are weakly LTR.
+   */
+  static final RegExp HAS_NUMERALS_RE = new RegExp("\\d");
+  
+  /**
+   * Regular expression to check if a string contains any LTR characters.
+   */
+  static final RegExp HAS_ANY_LTR_RE = new RegExp("[${LTR_CHARS}]");
+  
+  /**
    * Returns the input text with spaces instead of HTML tags or HTML escapes, if
    * isStripNeeded is true. Else returns the input as is.
    * Useful for text directionality estimation.
@@ -89,6 +115,17 @@ class BidiUtils {
     return isStripNeeded ? str.replaceAll(SKIP_HTML_RE, " ") : str;
   }
 
+  /**
+   * Regular expression to split a string into "words" for directionality
+   * estimation based on relative word counts.
+   */
+  static final RegExp WORD_SEPARATOR_RE = new RegExp("\\s+");
+  
+  /**
+   * This constant defines the threshold of RTL directionality.
+   */
+  static final double RTL_DETECTION_THRESHOLD = 0.4;
+  
   /**
    * Gets the directionality of an element.
    *
@@ -159,5 +196,74 @@ class BidiUtils {
       str = stripHtmlIfNeeded(str, isHtml);
     }
     return LAST_STRONG_IS_RTL_RE.hasMatch(str);
+  }
+  
+  /**
+   * Check whether the first strongly-directional character in the string is
+   * RTL.
+   * @param str the string to check
+   * @param isHtml whether {@code str} is HTML / HTML-escaped
+   * @return whether RTL exit directionality was detected
+   */
+  bool startsWithRtl(String str, [bool isHtml = false]) {
+    if (isHtml) {
+      str = stripHtmlIfNeeded(str, isHtml);
+    }
+    return FIRST_STRONG_IS_RTL_RE.hasMatch(str);
+  }
+  
+  /**
+   * Checks if the given string has any LTR characters in it.
+   * @param str the string to be tested
+   * @param isHtml whether str is HTML / HTML-escaped
+   * @return whether the string contains any LTR characters
+   */
+  bool hasAnyLtr(String str, [bool isHtml = false]) {
+    if (isHtml) {
+      str = stripHtmlIfNeeded(str, isHtml);
+    }
+    return HAS_ANY_LTR_RE.hasMatch(str);
+  }
+  
+  /**
+   * Estimates the directionality of a string based on relative word counts.
+   * If the number of RTL words is above a certain percentage of the total
+   * number of strongly directional words, returns RTL.
+   * Otherwise, if any words are strongly or weakly LTR, returns LTR.
+   * Otherwise, returns DEFAULT, which is used to mean "neutral".
+   * Numbers are counted as weakly LTR.
+   * @param str the string to check
+   * @param isHtml whether {@code str} is HTML / HTML-escaped. Use this to
+   *        ignore HTML tags and escapes that would otherwise be mistaken for
+   *        LTR text.
+   * @return the string's directionality
+   */
+  Direction estimateDirection(String str, [bool isHtml = false]) {
+    if (isHtml) {
+      str = stripHtmlIfNeeded(str, isHtml);
+    }
+    //
+    int rtlCount = 0;
+    int total = 0;
+    bool hasWeaklyLtr = false;
+    Iterable<Match> tokens = WORD_SEPARATOR_RE.allMatches(str);
+    for (int i = 0; i < tokens.length; i++) {
+      Match match = tokens.elementAt(i);
+      String token = match.str;
+      if (startsWithRtl(token)) {
+        rtlCount++;
+        total++;
+      } else if (IS_REQUIRED_LTR_RE.hasMatch(token)) {
+        hasWeaklyLtr = true;
+      } else if (hasAnyLtr(token)) {
+        total++;
+      } else if (HAS_NUMERALS_RE.hasMatch(token)) {
+        hasWeaklyLtr = true;
+      }
+    }
+
+    return total == 0 ? (hasWeaklyLtr ? Direction.LTR : Direction.DEFAULT)
+        : (rtlCount / total > RTL_DETECTION_THRESHOLD ? Direction.RTL :
+        Direction.LTR);
   }
 }

@@ -148,7 +148,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
         BidiUtils.setDirectionOnElement(element, initialElementDir);
       }
     } else {
-      setTextOrHtmlWithDirection(content, directionEstimator.estimateDirection(content, isHtml), isHtml);
+      setTextOrHtmlWithDirection(content, directionEstimator.estimateStringDirection(content, isHtml), isHtml);
     }
     isDirectionExplicitlySet = false;
   }

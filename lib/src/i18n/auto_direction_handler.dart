@@ -100,7 +100,7 @@ class AutoDirectionHandler implements KeyUpHandler, HasDirectionEstimator {
    */
   void refreshDirection() {
     if (directionEstimator != null) {
-      Direction dir = directionEstimator.estimateDirection(target.text);
+      Direction dir = directionEstimator.estimateStringDirection(target.text);
       if (dir != target.direction) {
         target.direction = dir;
       }

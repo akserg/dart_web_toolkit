@@ -31,7 +31,7 @@ class WordCountDirectionEstimator extends DirectionEstimator {
    * @param str Input string.
    * @return Direction The estimated direction of {@code str}.
    */
-//  Direction estimateDirection(String str, [bool isHtml = false]) {
-//    return BidiUtils.get().estimateDirection(str);
-//  }
+  Direction estimateDirection(String str, [bool isHtml = false]) {
+    return BidiUtils.get().estimateDirection(str);
+  }
 }

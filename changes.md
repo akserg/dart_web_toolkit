@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 23, 2013
+
+* Added Activity and Place libraries.
+
 **March 22, 2013
 
 * Fixed bug:Fix DirectionEstimation problem in TextBox. Changed AutoDirectionalHandler, BidiUtils, DirectionEstimaor, DirectionalTextHelper amd WordDirectionEstimator.

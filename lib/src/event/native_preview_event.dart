@@ -26,7 +26,7 @@ class NativePreviewEvent extends DwtEvent implements HasNativeEvent {
    * @return true to fire the event normally, false to cancel the event
    */
   static bool fire(EventBus handlers, dart_html.Event nativeEvent) {
-    if (TYPE != null && handlers != null && handlers.isEventHandled(TYPE)) {
+    if (TYPE != null && handlers != null) { // && handlers.isEventHandled(TYPE)) {
       // Cache the current values in the singleton in case we are in the
       // middle of handling another event.
       bool lastIsCanceled = singleton._isCanceled;

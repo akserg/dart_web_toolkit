@@ -16,10 +16,10 @@ part of dart_web_toolkit_event;
  */
 abstract class EventBus<H> {
 
-  /**
-   * @deprecated required by legacy features in GWT's old HandlerManager
-   */
-  bool isEventHandled(EventType<H> type);
+//  /**
+//   * @deprecated required by legacy features in GWT's old HandlerManager
+//   */
+//  bool isEventHandled(EventType<H> type);
   
   /**
    * Invokes [dispatch] with [handler].

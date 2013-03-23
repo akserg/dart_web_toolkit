@@ -13,6 +13,7 @@ part 'src/event/event.dart';
 part 'src/event/handler_registration.dart';
 part 'src/event/command.dart';
 part 'src/event/event_bus.dart';
+part 'src/event/resettable_event_bus.dart';
 part 'src/event/simple_event_bus.dart';
 part 'src/event/umbrella_exception.dart';
 
@@ -29,6 +30,8 @@ part 'src/event/attach_event.dart';
 part 'src/event/event_handler.dart';
 part 'src/event/close_event.dart';
 part 'src/event/close_handler.dart';
+part 'src/event/closing_event.dart';
+part 'src/event/closing_handler.dart';
 part 'src/event/value_change_event.dart';
 part 'src/event/value_change_handler.dart';
 
@@ -256,6 +259,7 @@ part 'src/event/adapter/touch_move_handler_adapter.dart';
 part 'src/event/adapter/touch_start_handler_adapter.dart';
 part 'src/event/adapter/open_handler_adapter.dart';
 part 'src/event/adapter/close_handler_adapter.dart';
+part 'src/event/adapter/closing_handler_adapter.dart';
 part 'src/event/adapter/native_preview_handler_adapter.dart';
 part 'src/event/adapter/selection_handler_adapter.dart';
 part 'src/event/adapter/before_selection_handler_adapter.dart';

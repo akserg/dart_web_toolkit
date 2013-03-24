@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 24, 2013
+
+* Assigned version 0.2.67.
+
 **March 23, 2013
 
 * Added Activity and Place libraries.

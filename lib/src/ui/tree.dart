@@ -1138,17 +1138,16 @@ abstract class TreeResource extends ClientBundle {
   ImageResource treeOpen();
 }
 
-//*****
-// Temporary solution for work with image prototypies
-//*****
-
+/**
+ * Default tree resources
+ */
 class TreeResources implements TreeResource {
 
   final Map<String, ImageResource> _resources;
 
-  const String TREE_CLOSED = "treeClosed";
-  const String TREE_LEAF = "treeLeaf";
-  const String TREE_OPEN = "treeOpen";
+  const String TREE_CLOSED = "treeClosed.gif";
+  const String TREE_LEAF = "treeLeaf.gif";
+  const String TREE_OPEN = "treeOpen.gif";
 
   TreeResources() : _resources = new Map<String, ImageResource>();
   
@@ -1170,7 +1169,7 @@ class TreeResources implements TreeResource {
    */
   ImageResource treeClosed() {
     if (!_resources.containsKey(TREE_CLOSED)) {
-      _resources[TREE_CLOSED] = _getTreeImageResourcePrototype(TREE_CLOSED, 32);
+      _resources[TREE_CLOSED] = _getTreeImageResourcePrototype(TREE_CLOSED);
     }
     return _resources[TREE_CLOSED];
   }
@@ -1180,7 +1179,7 @@ class TreeResources implements TreeResource {
    */
   ImageResource treeLeaf() {
     if (!_resources.containsKey(TREE_LEAF)) {
-      _resources[TREE_LEAF] = _getTreeImageResourcePrototype(TREE_LEAF, 16);
+      _resources[TREE_LEAF] = _getTreeImageResourcePrototype(TREE_LEAF);
     }
     return _resources[TREE_LEAF];
   }
@@ -1190,15 +1189,15 @@ class TreeResources implements TreeResource {
    */
   ImageResource treeOpen() {
     if (!_resources.containsKey(TREE_OPEN)) {
-      _resources[TREE_OPEN] = _getTreeImageResourcePrototype(TREE_OPEN, 0);
+      _resources[TREE_OPEN] = _getTreeImageResourcePrototype(TREE_OPEN);
     }
     return _resources[TREE_OPEN];
   }
 
-  ImageResourcePrototype _getTreeImageResourcePrototype(String name, int left) {
-    String uri = DWT.getModuleBaseURL() + "resource/images/tree.png";
+  ImageResourcePrototype _getTreeImageResourcePrototype(String name) {
+    String uri = DWT.getModuleBaseURL() + "resource/images/" + name;
     ImageResourcePrototype imageResource = new ImageResourcePrototype(name, 
-        UriUtils.fromTrustedString(uri), left, 0, 16, 16, false, false);
+        UriUtils.fromTrustedString(uri), 0, 0, 16, 16, false, false);
     return imageResource;
   }
 }

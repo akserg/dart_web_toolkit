@@ -1,0 +1,1104 @@
+/**
+ * The file contains styles for GWT widgets in the dark theme.
+ *
+ * In order to maintain cross-browser compatibility, the following syntax is
+ * used to create IE6 specific style rules:
+ *    .dwt-Widget {
+ *      property: rule applies to all browsers
+ *      -property: rule applies only to IE6 (overrides previous rule)
+ *    }
+ *    * html .dwt-Widget {
+ *      property: rule applies to all versions of IE
+ *    }
+ */
+
+body, table td, select {
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  font-size: small;
+  color: #bec7cc;
+}
+select {
+  color: #000;
+}
+pre {
+  font-family: "courier new", courier;
+  font-size: small;
+}
+body {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  background: #4d4d4d;
+  direction: ltr;
+}
+a, a:visited, a:hover {
+  color: #ccf;
+}
+
+/**
+ * The reference theme can be used to determine when this style sheet has
+ * loaded.  Create a hidden div element with absolute position, assign the style
+ * name below, and attach it to the DOM.  Use a timer to detect when the
+ * element's height and width are set to 5px.
+ */
+.dwt-Reference-dark {
+  height: 5px;
+  width: 5px;
+  zoom: 1;
+}
+
+.dwt-Button {
+  margin: 0;
+  padding: 3px 5px;
+  text-decoration: none;
+  font-size: small;
+  cursor: pointer;
+  cursor: hand;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+  border: 1px outset #000;
+}
+.dwt-Button:active {
+  border: 1px inset #000;
+}
+.dwt-Button:hover {
+  border: 1px outset #24d3ff;
+}
+.dwt-Button[disabled] {
+  cursor: default;
+  color: #777;
+}
+.dwt-Button[disabled]:hover {
+  border: 1px outset #000;
+}
+
+.dwt-CheckBox {
+}
+.dwt-CheckBox-disabled {
+  color: #888;
+}
+
+.dwt-DecoratorPanel {
+}
+.dwt-DecoratorPanel .topCenter,
+.dwt-DecoratorPanel .bottomCenter,
+.dwt-DecoratorPanel .middleLeft,
+.dwt-DecoratorPanel .middleRight,
+.dwt-DecoratorPanel .topLeft,
+.dwt-DecoratorPanel .topRight,
+.dwt-DecoratorPanel .bottomLeft,
+.dwt-DecoratorPanel .bottomRight {
+  background: #00CCFF;
+  zoom: 1;
+}
+.dwt-DecoratorPanel .topLeftInner,
+.dwt-DecoratorPanel .topRightInner,
+.dwt-DecoratorPanel .bottomLeftInner,
+.dwt-DecoratorPanel .bottomRightInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+
+.dwt-DialogBox .Caption {
+  background: #222222;
+  padding: 4px 4px 4px 8px;
+  color: #00CCFF;
+  cursor: default;
+  border-bottom: 1px solid #888888;
+  border-top: 5px solid #00CCFF;
+}
+.dwt-DialogBox .dialogContent {
+}
+.dwt-DialogBox .dialogMiddleCenter {
+  padding: 3px;
+  background: #666666;
+}
+.dwt-DialogBox .dialogBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+}
+.dwt-DialogBox .dialogMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+}
+.dwt-DialogBox .dialogMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+}
+.dwt-DialogBox .dialogTopLeftInner {
+  width: 5px;
+  zoom: 1;
+}
+.dwt-DialogBox .dialogTopRightInner {
+  width: 8px;
+  zoom: 1;
+}
+.dwt-DialogBox .dialogBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-DialogBox .dialogBottomRightInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-DialogBox .dialogTopLeft {
+  background: url(images/corner.png) no-repeat -13px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -13px 0px;
+}
+.dwt-DialogBox .dialogTopRight {
+  background: url(images/corner.png) no-repeat -18px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -18px 0px;
+}
+.dwt-DialogBox .dialogBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -15px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -15px;
+}
+.dwt-DialogBox .dialogBottomRight {
+  background: url(images/corner.png) no-repeat -5px -15px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -15px;
+}
+* html .dwt-DialogBox .dialogTopLeftInner {
+  width: 5px;
+  overflow: hidden;
+}
+* html .dwt-DialogBox .dialogTopRightInner {
+  width: 8px;
+  overflow: hidden;
+}
+* html .dwt-DialogBox .dialogBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .dwt-DialogBox .dialogBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.dwt-DisclosurePanel {
+}
+.dwt-DisclosurePanel-open {
+}
+.dwt-DisclosurePanel-closed {
+}
+.dwt-DisclosurePanel .header,
+.dwt-DisclosurePanel .header a,
+.dwt-DisclosurePanel .header td {
+  text-decoration: none;  /* Remove underline from header */
+  color: #bec7cc; 
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-DisclosurePanel .content {
+  border-left: 3px solid #00CCFF;
+  padding: 4px 0px 4px 8px;
+  margin-left: 6px;
+}
+
+.dwt-FileUpload {
+}
+
+.dwt-Frame {
+  border-top: 2px solid #666;
+  border-left: 2px solid #666;
+  border-right: 2px solid #bbb;
+  border-bottom: 2px solid #bbb;
+}
+
+.dwt-HorizontalSplitPanel {
+}
+.dwt-HorizontalSplitPanel .hsplitter {
+  cursor: move;
+  border: 0px; 
+  background: #00CCFF;
+  line-height: 0px;
+}
+.dwt-VerticalSplitPanel {
+}
+.dwt-VerticalSplitPanel .vsplitter {
+  cursor: move;
+  border: 0px; 
+  background: #00CCFF;
+  line-height: 0px;
+}
+
+.dwt-HTML {
+}
+
+.dwt-Hyperlink {
+  cursor: pointer;
+}
+
+.dwt-Image {
+}
+
+.dwt-Label {
+}
+
+.dwt-ListBox {
+}
+
+.dwt-MenuBar {
+  cursor: default;
+}
+.dwt-MenuBar .dwt-MenuItem {
+  cursor: default;
+}
+.dwt-MenuBar .dwt-MenuItem-selected {
+  background: #666;
+  color: #0cf;
+}
+.dwt-MenuBar .dwt-MenuItem-disabled {
+  color: #ccc;
+}
+.dwt-MenuBar-horizontal {
+  background: #222222;
+  border: 1px solid #777;
+}
+.dwt-MenuBar-horizontal .dwt-MenuItem {
+  padding: 0px 10px;
+  vertical-align: bottom;
+  font-weight: bold;
+}
+.dwt-MenuBar-horizontal .dwt-MenuItemSeparator {
+  width: 1px;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  border-left: 1px solid #bec7cc;
+  background: #000;
+}
+.dwt-MenuBar-horizontal .dwt-MenuItemSeparator .menuSeparatorInner {
+  width: 1px;
+  height: 1px;
+  background: #000; 
+}
+.dwt-MenuBar-vertical {
+  margin-top: 0px;
+  margin-left: 0px;
+  background: #4D4D4D;
+}
+.dwt-MenuBar-vertical table {
+  border-collapse: collapse;
+}
+.dwt-MenuBar-vertical .dwt-MenuItem {
+  padding: 4px 14px 4px 1px;
+}
+.dwt-MenuBar-vertical .dwt-MenuItemSeparator {
+  padding: 2px 0px;
+}
+.dwt-MenuBar-vertical .dwt-MenuItemSeparator .menuSeparatorInner {
+  height: 1px;
+  padding: 0px;
+  border: 0px;
+  border-top: 1px solid #bec7cc;
+  background: #222;
+  overflow: hidden;
+}
+.dwt-MenuBar-vertical .subMenuIcon {
+  padding-right: 4px;
+}
+.dwt-MenuBar-vertical .subMenuIcon-selected {
+  background: #666;
+}
+.dwt-MenuBarPopup {
+  margin: 0px 0px 0px 3px;
+}
+.dwt-MenuBarPopup .menuPopupTopCenter {
+  background: url(images/hborder.png) 0px -12px repeat-x;
+}
+.dwt-MenuBarPopup .menuPopupBottomCenter {
+  background: url(images/hborder.png) 0px -13px repeat-x;
+  -background: url(images/hborder_ie6.png) 0px -13px repeat-x;
+}
+.dwt-MenuBarPopup .menuPopupMiddleLeft {
+  background: url(images/vborder.png) -12px 0px repeat-y;
+  -background: url(images/vborder_ie6.png) -12px 0px repeat-y;
+}
+.dwt-MenuBarPopup .menuPopupMiddleRight {
+  background: url(images/vborder.png) -13px 0px repeat-y;
+  -background: url(images/vborder_ie6.png) -13px 0px repeat-y;
+}
+.dwt-MenuBarPopup .menuPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+.dwt-MenuBarPopup .menuPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+.dwt-MenuBarPopup .menuPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-MenuBarPopup .menuPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-MenuBarPopup .menuPopupTopLeft {
+  background: url(images/corner.png) no-repeat 0px -36px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -36px;
+}
+.dwt-MenuBarPopup .menuPopupTopRight {
+  background: url(images/corner.png) no-repeat -5px -36px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -36px;
+}
+.dwt-MenuBarPopup .menuPopupBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -41px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -41px;
+}
+.dwt-MenuBarPopup .menuPopupBottomRight {
+  background: url(images/corner.png) no-repeat -5px -41px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -41px;
+}
+* html .dwt-MenuBarPopup .menuPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .dwt-MenuBarPopup .menuPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .dwt-MenuBarPopup .menuPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .dwt-MenuBarPopup .menuPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.dwt-PasswordTextBox {
+  padding: 2px;
+}
+.dwt-PasswordTextBox-readonly {
+  color: #888;
+}
+
+.dwt-PopupPanel {
+  border: 3px solid #00CCFF;
+  padding: 3px;
+  background: #4D4D4D;
+}
+
+.dwt-DecoratedPopupPanel .popupContent {
+}
+.dwt-DecoratedPopupPanel .popupMiddleCenter {
+  padding: 3px;
+  background: #00CCFF;
+  color: black;
+}
+.dwt-DecoratedPopupPanel .popupTopCenter {
+  background: url(images/hborder.png) repeat-x;
+}
+.dwt-DecoratedPopupPanel .popupBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+}
+.dwt-DecoratedPopupPanel .popupMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+}
+.dwt-DecoratedPopupPanel .popupMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+}
+.dwt-DecoratedPopupPanel .popupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+.dwt-DecoratedPopupPanel .popupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+.dwt-DecoratedPopupPanel .popupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-DecoratedPopupPanel .popupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-DecoratedPopupPanel .popupTopLeft {
+  background: url(images/corner.png) no-repeat 0px -10px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -10px;
+}
+.dwt-DecoratedPopupPanel .popupTopRight {
+  background: url(images/corner.png) no-repeat -5px -10px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -10px;
+}
+.dwt-DecoratedPopupPanel .popupBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -15px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -15px;
+}
+.dwt-DecoratedPopupPanel .popupBottomRight {
+  background: url(images/corner.png) no-repeat -5px -15px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -15px;
+}
+* html .dwt-DecoratedPopupPanel .popupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .dwt-DecoratedPopupPanel .popupTopRightInner {
+  width: 8px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .dwt-DecoratedPopupPanel .popupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .dwt-DecoratedPopupPanel .popupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.dwt-PopupPanelGlass {
+  background-color: #0cf;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+.dwt-PushButton-up,
+.dwt-PushButton-up-hovering,
+.dwt-PushButton-up-disabled,
+.dwt-PushButton-down,
+.dwt-PushButton-down-hovering,
+.dwt-PushButton-down-disabled {
+  margin: 0;
+  text-decoration: none;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+}
+.dwt-PushButton-up,
+.dwt-PushButton-up-hovering,
+.dwt-PushButton-up-disabled {
+  padding: 3px 5px 3px 5px;
+}
+.dwt-PushButton-up {
+  border: 1px outset #000;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-PushButton-up-hovering {
+  border: 1px outset #24d3ff;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-PushButton-up-disabled {
+  cursor: default;
+  border: 1px outset #888;
+  color: #888;
+  opacity: .5;
+  filter: alpha(opacity=40);
+  zoom: 1;
+}
+.dwt-PushButton-down,
+.dwt-PushButton-down-hovering,
+.dwt-PushButton-down-disabled {
+  padding: 4px 4px 2px 6px;
+}
+.dwt-PushButton-down {
+  border: 1px inset #000;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-PushButton-down-hovering {
+  border: 1px inset #24d3ff;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-PushButton-down-disabled {
+  border: 1px outset #ccc;
+  cursor: default;
+  opacity: 0.5;
+  filter: alpha(opacity=40);
+  zoom: 1;
+}
+.dwt-PushButton .html-face {
+  color: #000;
+}
+
+.dwt-RadioButton {
+}
+.dwt-RadioButton-disabled {
+  color: #888;
+}
+
+.dwt-RichTextArea {
+}
+.hasRichTextToolbar {
+  border: 0px;
+}
+.dwt-RichTextToolbar {
+  background: #222222;
+  border-bottom: 1px solid #BBBBBB;
+  padding: 3px;
+  margin: 0px;
+}
+.dwt-RichTextToolbar .dwt-PushButton-up {
+  padding: 0px 1px 0px 0px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border-width: 1px; 
+}
+.dwt-RichTextToolbar .dwt-PushButton-up-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px; 
+}
+.dwt-RichTextToolbar .dwt-PushButton-down {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px; 
+}
+.dwt-RichTextToolbar .dwt-PushButton-down-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px; 
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-up {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-up-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-down {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-down-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+
+.dwt-StackPanel {
+  border-bottom: 1px solid #00CCFF;
+}
+.dwt-StackPanel .dwt-StackPanelItem {
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 4px;
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #222;
+}
+.dwt-StackPanel .dwt-StackPanelContent {
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #666;
+  padding: 2px 2px 10px 5px;
+}
+
+.dwt-DecoratedStackPanel {
+  border-bottom: 1px solid #00CCFF;
+}
+.dwt-DecoratedStackPanel .dwt-StackPanelContent {
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #666;
+  padding: 2px 2px 10px 5px;
+}
+.dwt-DecoratedStackPanel .dwt-StackPanelItem {
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 4px;
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #222;
+}
+.dwt-DecoratedStackPanel .stackItemTopLeft,
+.dwt-DecoratedStackPanel .stackItemTopRight,
+.dwt-DecoratedStackPanel .stackItemTopLeftInner,
+.dwt-DecoratedStackPanel .stackItemTopRightInner {
+  display: none;
+}
+
+.dwt-SuggestBox {
+  padding: 2px;
+}
+.dwt-SuggestBoxPopup {
+  margin-left: 3px;
+}
+.dwt-SuggestBoxPopup .item {
+  padding: 2px 6px;
+  color: #424242;
+  cursor: default;
+}
+.dwt-SuggestBoxPopup .item-selected {
+  background: #b7d6f6;
+}
+.dwt-SuggestBoxPopup .suggestPopupContent {
+  background: #ddd;
+}
+.dwt-SuggestBoxPopup .suggestPopupTopCenter {
+  background: url(images/hborder.png) repeat-x;
+}
+.dwt-SuggestBoxPopup .suggestPopupBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+}
+.dwt-SuggestBoxPopup .suggestPopupMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+}
+.dwt-SuggestBoxPopup .suggestPopupMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+}
+.dwt-SuggestBoxPopup .suggestPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;  
+}
+.dwt-SuggestBoxPopup .suggestPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+.dwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-SuggestBoxPopup .suggestPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+.dwt-SuggestBoxPopup .suggestPopupTopLeft {
+  background: url(images/corner.png) no-repeat 0px -23px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -23px;
+}
+.dwt-SuggestBoxPopup .suggestPopupTopRight {
+  background: url(images/corner.png) no-repeat -5px -23px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -23px;
+}
+.dwt-SuggestBoxPopup .suggestPopupBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -28px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -28px;
+}
+.dwt-SuggestBoxPopup .suggestPopupBottomRight {
+  background: url(images/corner.png) no-repeat -5px -28px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -28px;
+}
+* html .dwt-SuggestBoxPopup .suggestPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .dwt-SuggestBoxPopup .suggestPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .dwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .dwt-SuggestBoxPopup .suggestPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.dwt-TabBar {
+}
+.dwt-TabBar .dwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.dwt-TabBar .dwt-TabBarRest {
+}
+.dwt-TabBar .dwt-TabBarItem {
+  margin-left: 6px;
+  padding: 4px 6px;
+  cursor: pointer;
+  cursor: hand;
+  color: #bec7cc;
+  font-weight: bold;
+  text-align: center;
+  background: #222222;
+}
+.dwt-TabBar .dwt-TabBarItem-selected {
+  cursor: default;
+  color: black;
+  background: #00CCFF;
+} 
+.dwt-TabBar .dwt-TabBarItem-disabled {
+  cursor: default;
+  color: #777777;
+}
+.dwt-TabPanel {
+}
+.dwt-TabPanelBottom {
+  border-color: #00CCFF;
+  border-style: solid;
+  border-width: 3px 2px 2px;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.dwt-DecoratedTabBar {
+}
+.dwt-DecoratedTabBar .dwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.dwt-DecoratedTabBar .dwt-TabBarRest {
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem {
+  border-collapse: collapse;
+  margin-left: 6px;
+}
+.dwt-DecoratedTabBar .tabTopCenter {
+  padding: 0px;
+  background: #222222;
+}
+.dwt-DecoratedTabBar .tabTopLeft,
+.dwt-DecoratedTabBar .tabTopRight {
+  padding: 0px;
+  zoom: 1;
+}
+.dwt-DecoratedTabBar .tabTopLeftInner,
+.dwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+}
+.dwt-DecoratedTabBar .tabTopLeft {
+  background: url(images/corner.png) no-repeat 0px -55px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -55px;
+}
+.dwt-DecoratedTabBar .tabTopRight {
+  background: url(images/corner.png) no-repeat -6px -55px;
+  -background: url(images/corner_ie6.png) no-repeat -6px -55px;
+}
+* html .dwt-DecoratedTabBar .tabTopLeftInner,
+* html .dwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+  overflow: hidden;
+}
+.dwt-DecoratedTabBar .tabMiddleLeft,
+.dwt-DecoratedTabBar .tabMiddleRight {
+  width: 6px;
+  padding: 0px;
+  background: #222222;
+}
+.dwt-DecoratedTabBar .tabMiddleLeftInner,
+.dwt-DecoratedTabBar .tabMiddleRightInner {
+  width: 1px;
+  height: 1px;
+}
+.dwt-DecoratedTabBar .tabMiddleCenter {
+  padding: 0px 4px 2px 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  text-align: center;
+  background: #222222;
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopCenter {
+  background: #00CCFF;
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopLeft {
+  background-position: 0px -61px;
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopRight {
+  background-position: -6px -61px;
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleLeft,
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleRight {
+  background: #00CCFF;
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleCenter {
+  cursor: default;
+  color: black;
+  background: #00CCFF;
+}
+.dwt-DecoratedTabBar .dwt-TabBarItem-disabled .tabMiddleCenter {
+  cursor: default;
+  color: #777777;
+}
+
+.dwt-TextArea {
+  padding: 2px;
+}
+.dwt-TextArea-readonly {
+  color: #888;
+}
+
+.dwt-TextBox {
+  padding: 2px;
+}
+.dwt-TextBox-readonly {
+  color: #888;
+}
+
+.dwt-ToggleButton-up,
+.dwt-ToggleButton-up-hovering,
+.dwt-ToggleButton-up-disabled,
+.dwt-ToggleButton-down,
+.dwt-ToggleButton-down-hovering,
+.dwt-ToggleButton-down-disabled {
+  margin: 0;
+  text-decoration: none;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+}
+.dwt-ToggleButton-up,
+.dwt-ToggleButton-up-hovering,
+.dwt-ToggleButton-up-disabled {
+  padding: 3px 5px 3px 5px;
+}
+.dwt-ToggleButton-up {
+  border: 1px outset #ccc;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-ToggleButton-up-hovering {
+  border: 1px outset;
+  border-color: #9cf #69e #69e #7af;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-ToggleButton-up-disabled {
+  border: 1px outset #ccc;
+  cursor: default;
+  opacity: .5;
+  zoom: 1;
+  filter: alpha(opacity=40);
+}
+.dwt-ToggleButton-down,
+.dwt-ToggleButton-down-hovering,
+.dwt-ToggleButton-down-disabled {
+  padding: 4px 4px 2px 6px;
+}
+.dwt-ToggleButton-down {
+  background-position: 0 -513px;
+  border: 1px inset #ccc;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-ToggleButton-down-hovering {
+  background-position: 0 -513px;
+  border: 1px inset;
+  border-color: #9cf #69e #69e #7af;
+  cursor: pointer;
+  cursor: hand;
+}
+.dwt-ToggleButton-down-disabled {
+  background-position: 0 -513px;
+  border: 1px inset #ccc;
+  cursor: default;
+  opacity: .5;
+  zoom: 1;
+  filter: alpha(opacity=40);
+}
+.dwt-ToggleButton .html-face {
+  color: #000;
+}
+
+.dwt-Tree .dwt-TreeItem {
+  padding: 1px 0px;
+  margin: 0px;
+  white-space: nowrap;
+  cursor: hand;
+  cursor: pointer;
+}
+.dwt-Tree .dwt-TreeItem-selected {
+  color: #0cf;
+  background: #1c1c1c;
+}
+.dwt-TreeItem .dwt-RadioButton input,
+.dwt-TreeItem .dwt-CheckBox input {
+  margin-left: 0px;
+}
+* html .dwt-TreeItem .dwt-RadioButton input,
+* html .dwt-TreeItem .dwt-CheckBox input {
+  margin-left: -4px;
+}
+
+.dwt-DateBox input {
+  width: 8em;
+}
+.dateBoxFormatError {
+  background: #a8eeff;
+  color: red;
+}
+.dateBoxPopup {
+}
+
+.dwt-DatePicker {
+  border: 1px solid #00CCFF;
+  cursor: default;
+}
+.dwt-DatePicker td,
+.datePickerMonthSelector td:focus {
+  outline: none
+}
+.datePickerDays {
+  width: 100%;
+  background: #4d4d4d;
+}
+.datePickerDay,
+.datePickerWeekdayLabel,
+.datePickerWeekendLabel {
+  font-size: 75%;
+  text-align: center;
+  padding: 4px;
+  outline: none;
+  color: #dddddd;
+}
+.datePickerWeekdayLabel,
+.datePickerWeekendLabel {
+  background: #222222;
+  padding: 0px 4px 2px;
+  cursor: default;
+}
+.datePickerDay {
+  padding: 4px;
+  cursor: hand;
+  cursor: pointer;
+}
+.datePickerDayIsToday {
+  border: 1px solid #00CCFF;
+  padding: 3px;
+}
+.datePickerDayIsWeekend {
+  background: #333333;
+}
+.datePickerDayIsFiller {
+  color: #959595;
+}
+.datePickerDayIsValue {
+  background: #1C1C1C;
+  color: #00CCFF;
+}
+.datePickerDayIsDisabled {
+  color: #AAAAAA;
+  font-style: italic;
+}
+.datePickerDayIsHighlighted {
+  background: #00CCFF;
+  color: #1C1C1C;
+}
+.datePickerDayIsValueAndHighlighted {
+  background: #1C1C77;
+  color: #00CCFF;
+}
+.datePickerMonthSelector {
+  background: #222222;
+  width: 100%;
+}
+td.datePickerMonth {
+  text-align: center;
+  vertical-align: center;
+  white-space: nowrap;
+  font-size: 70%;
+  font-weight: bold;
+  color: #dddddd;
+}
+.datePickerPreviousButton,
+.datePickerNextButton {
+  font-size: 120%;
+  line-height: 1em;
+  cursor: hand;
+  cursor: pointer;
+  padding: 0px 4px;
+  color: #dddddd;
+}
+
+.dwt-StackLayoutPanel {
+  border-bottom: 1px solid #00CCFF;
+}
+.dwt-StackLayoutPanel .dwt-StackLayoutPanelHeader {
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 4px;
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #222;
+}
+.dwt-StackLayoutPanel .dwt-StackLayoutPanelHeader-hovering {
+  background: #444;
+}
+.dwt-StackLayoutPanel .dwt-StackLayoutPanelContent {
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #666;
+  padding: 2px 2px 10px 5px;
+}
+
+.dwt-TabLayoutPanel {
+}
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelTabs {
+}
+.dwt-TabLayoutPanelContentContainer {
+  border-color: #00CCFF;
+  border-style: solid;
+  border-width: 2px 1px 1px;
+}
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelContent {
+  border-color: #00CCFF;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  padding: 6px;
+}
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelTab {
+  margin-left: 6px;
+  padding: 4px 6px;
+  cursor: pointer;
+  cursor: hand;
+  color: #bec7cc;
+  font-weight: bold;
+  text-align: center;
+  background: #222222;
+}
+.dwt-TabLayoutPanel .dwt-TabLayoutPanelTab-selected {
+  cursor: default;
+  color: black;
+  background: #00CCFF;
+} 
+
+.dwt-SplitLayoutPanel-HDragger {
+  background: #00CCFF url(images/splitPanelThumb.png) center center no-repeat;
+  cursor: col-resize;
+}
+
+.dwt-SplitLayoutPanel-VDragger {
+  background: #00CCFF url(images/splitPanelThumb.png) center center no-repeat;
+  cursor: row-resize;
+}

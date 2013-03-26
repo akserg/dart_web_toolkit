@@ -70,7 +70,7 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
     _init(element);
   }
 
-  void _init(dart_html.Element element, [String text, bool asHtml = false, String token = null]) {
+  void _init(dart_html.Element element, [String text = "", bool asHtml = false, String token = null]) {
     if (element == null) {
       setElement(_anchorElem);
     } else {

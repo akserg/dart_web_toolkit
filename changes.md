@@ -1,6 +1,14 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 26, 2013
+
+* Fixed bug:Hyperlink.fromElement generates null pointer exception. Changed Hyperlink.
+* Aligned styles. Added clean, dark, standard and chrome themes.
+* Added treeOpen, TreeClose and treeLeaf images and changed Tree.
+* Added menuBarSubMenuIcon and menuBarSubMenuIcon_rtl and changed MenuBar.
+* Added disclosurePanelClosed, disclosurePanelClosed_rtl and disclosurePanelOpen to prepare to implementation of DisclosurePanel inrelease  0.3.
+
 **March 24, 2013
 
 * Assigned version 0.2.67.

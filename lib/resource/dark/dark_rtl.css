@@ -1,5 +1,5 @@
 /**
- * The file contains styles for DWT widgets in the standard theme.
+ * The file contains styles for GWT widgets in the dark theme, in RTL mode.
  *
  * In order to maintain cross-browser compatibility, the following syntax is
  * used to create IE6 specific style rules:
@@ -15,21 +15,24 @@
 body, table td, select {
   font-family: Arial Unicode MS, Arial, sans-serif;
   font-size: small;
+  color: #bec7cc;
+}
+select {
+  color: #000;
 }
 pre {
   font-family: "courier new", courier;
   font-size: small;
 }
 body {
-  color: black;
   margin: 0px;
   border: 0px;
   padding: 0px;
-  background: #fff;
-  direction: ltr;
+  background: #4d4d4d;
+  direction: rtl;
 }
 a, a:visited, a:hover {
-  color: #0000AA;
+  color: #ccf;
 }
 
 /**
@@ -38,7 +41,7 @@ a, a:visited, a:hover {
  * name below, and attach it to the DOM.  Use a timer to detect when the
  * element's height and width are set to 5px.
  */
-.dwt-Reference-standard {
+.dwt-Reference-dark-rtl {
   height: 5px;
   width: 5px;
   zoom: 1;
@@ -52,20 +55,20 @@ a, a:visited, a:hover {
   cursor: pointer;
   cursor: hand;
   background: url("images/hborder.png") repeat-x 0px -27px;
-  border: 1px outset #ccc;
+  border: 1px outset #000;
 }
 .dwt-Button:active {
-  border: 1px inset #ccc;
+  border: 1px inset #000;
 }
 .dwt-Button:hover {
-  border-color: #9cf #69e #69e #7af;
+  border: 1px outset #24d3ff;
 }
 .dwt-Button[disabled] {
   cursor: default;
-  color: #888;
+  color: #777;
 }
 .dwt-Button[disabled]:hover {
-  border: 1px outset #ccc;
+  border: 1px outset #000;
 }
 
 .dwt-CheckBox {
@@ -77,12 +80,15 @@ a, a:visited, a:hover {
 .dwt-DecoratorPanel {
 }
 .dwt-DecoratorPanel .topCenter,
-.dwt-DecoratorPanel .bottomCenter {
-  background: url(images/hborder.png) repeat-x;
-}
+.dwt-DecoratorPanel .bottomCenter,
 .dwt-DecoratorPanel .middleLeft,
-.dwt-DecoratorPanel .middleRight {
-  background: url(images/vborder.png) repeat-y;
+.dwt-DecoratorPanel .middleRight,
+.dwt-DecoratorPanel .topLeft,
+.dwt-DecoratorPanel .topRight,
+.dwt-DecoratorPanel .bottomLeft,
+.dwt-DecoratorPanel .bottomRight {
+  background: #00CCFF;
+  zoom: 1;
 }
 .dwt-DecoratorPanel .topLeftInner,
 .dwt-DecoratorPanel .topRightInner,
@@ -90,45 +96,22 @@ a, a:visited, a:hover {
 .dwt-DecoratorPanel .bottomRightInner {
   width: 5px;
   height: 5px;
-  zoom: 1;
-}
-.dwt-DecoratorPanel .topLeft {
-  background: url(images/corner.png) no-repeat 0px 0px;
-  -background: url(images/corner_ie6.png) no-repeat 0px 0px;
-}
-.dwt-DecoratorPanel .topRight {
-  background: url(images/corner.png) no-repeat -5px 0px;
-  -background: url(images/corner_ie6.png) no-repeat -5px 0px;
-}
-.dwt-DecoratorPanel .bottomLeft {
-  background: url(images/corner.png) no-repeat 0px -5px;
-  -background: url(images/corner_ie6.png) no-repeat 0px -5px;
-}
-.dwt-DecoratorPanel .bottomRight {
-  background: url(images/corner.png) no-repeat -5px -5px;
-  -background: url(images/corner_ie6.png) no-repeat -5px -5px;
-}
-* html .dwt-DecoratorPanel .topLeftInner,
-* html .dwt-DecoratorPanel .topRightInner,
-* html .dwt-DecoratorPanel .bottomLeftInner,
-* html .dwt-DecoratorPanel .bottomRightInner {
-  width: 5px;
-  height: 5px;
   overflow: hidden;
 }
 
 .dwt-DialogBox .Caption {
-  background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
-  padding: 4px 4px 4px 8px;
+  background: #222222;
+  padding: 4px 8px 4px 4px;
+  color: #00CCFF;
   cursor: default;
-  border-bottom: 1px solid #bbbbbb;
-  border-top: 5px solid #d0e4f6;
+  border-bottom: 1px solid #888888;
+  border-top: 5px solid #00CCFF;
 }
 .dwt-DialogBox .dialogContent {
 }
 .dwt-DialogBox .dialogMiddleCenter {
   padding: 3px;
-  background: white;
+  background: #666666;
 }
 .dwt-DialogBox .dialogBottomCenter {
   background: url(images/hborder.png) repeat-x 0px -4px;
@@ -204,14 +187,14 @@ a, a:visited, a:hover {
 .dwt-DisclosurePanel .header a,
 .dwt-DisclosurePanel .header td {
   text-decoration: none;  /* Remove underline from header */
-  color: black;
+  color: #bec7cc; 
   cursor: pointer;
   cursor: hand;
 }
 .dwt-DisclosurePanel .content {
-  border-left: 3px solid #e8eef7;
-  padding: 4px 0px 4px 8px;
-  margin-left: 6px;
+  border-right: 3px solid #00CCFF;
+  padding: 4px 8px 4px 0px;
+  margin-right: 6px;
 }
 
 .dwt-FileUpload {
@@ -228,16 +211,16 @@ a, a:visited, a:hover {
 }
 .dwt-HorizontalSplitPanel .hsplitter {
   cursor: move;
-  border: 0px;
-  background: #91c0ef url(images/vborder.png) repeat-y;
+  border: 0px; 
+  background: #00CCFF;
   line-height: 0px;
 }
 .dwt-VerticalSplitPanel {
 }
 .dwt-VerticalSplitPanel .vsplitter {
   cursor: move;
-  border: 0px;
-  background: #91c0ef url(images/hborder.png) repeat-x;
+  border: 0px; 
+  background: #00CCFF;
   line-height: 0px;
 }
 
@@ -264,19 +247,19 @@ a, a:visited, a:hover {
   cursor: default;
 }
 .dwt-MenuBar .dwt-MenuItem-selected {
-  background: #E0EDFE;
+  background: #666;
+  color: #0cf;
 }
 .dwt-MenuBar .dwt-MenuItem-disabled {
-  color: #c0c0c0;
+  color: #ccc;
 }
 .dwt-MenuBar-horizontal {
-  background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
-  border: 1px solid #BBBBBB;
+  background: #222222;
+  border: 1px solid #777;
 }
 .dwt-MenuBar-horizontal .dwt-MenuItem {
   padding: 0px 10px;
   vertical-align: bottom;
-  color: #666666;
   font-weight: bold;
 }
 .dwt-MenuBar-horizontal .dwt-MenuItemSeparator {
@@ -284,24 +267,24 @@ a, a:visited, a:hover {
   padding: 0px;
   margin: 0px;
   border: 0px;
-  border-left: 1px solid #888888;
-  background: white;
+  border-right: 1px solid #bec7cc;
+  background: #000;
 }
 .dwt-MenuBar-horizontal .dwt-MenuItemSeparator .menuSeparatorInner {
   width: 1px;
   height: 1px;
-  background: white;
+  background: #000; 
 }
 .dwt-MenuBar-vertical {
   margin-top: 0px;
-  margin-left: 0px;
-  background: white;
+  margin-right: 0px;
+  background: #4D4D4D;
 }
 .dwt-MenuBar-vertical table {
   border-collapse: collapse;
 }
 .dwt-MenuBar-vertical .dwt-MenuItem {
-  padding: 4px 14px 4px 1px;
+  padding: 4px 1px 4px 14px;
 }
 .dwt-MenuBar-vertical .dwt-MenuItemSeparator {
   padding: 2px 0px;
@@ -310,18 +293,18 @@ a, a:visited, a:hover {
   height: 1px;
   padding: 0px;
   border: 0px;
-  border-top: 1px solid #777777;
-  background: #ddddee;
+  border-top: 1px solid #bec7cc;
+  background: #222;
   overflow: hidden;
 }
 .dwt-MenuBar-vertical .subMenuIcon {
-  padding-right: 4px;
+  padding-left: 4px;
 }
 .dwt-MenuBar-vertical .subMenuIcon-selected {
-  background: #E0EDFE;
+  background: #666;
 }
 .dwt-MenuBarPopup {
-  margin: 0px 0px 0px 3px;
+  margin: 0px 3px 0px 0px;
 }
 .dwt-MenuBarPopup .menuPopupTopCenter {
   background: url(images/hborder.png) 0px -12px repeat-x;
@@ -403,16 +386,17 @@ a, a:visited, a:hover {
 }
 
 .dwt-PopupPanel {
-  border: 3px solid #C3D9FF;
+  border: 3px solid #00CCFF;
   padding: 3px;
-  background: white;
+  background: #4D4D4D;
 }
 
 .dwt-DecoratedPopupPanel .popupContent {
 }
 .dwt-DecoratedPopupPanel .popupMiddleCenter {
   padding: 3px;
-  background: #d0e4f6;
+  background: #00CCFF;
+  color: black;
 }
 .dwt-DecoratedPopupPanel .popupTopCenter {
   background: url(images/hborder.png) repeat-x;
@@ -486,7 +470,7 @@ a, a:visited, a:hover {
 }
 
 .dwt-PopupPanelGlass {
-  background-color: #000;
+  background-color: #0cf;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
@@ -507,19 +491,19 @@ a, a:visited, a:hover {
   padding: 3px 5px 3px 5px;
 }
 .dwt-PushButton-up {
-  border: 1px outset #ccc;
+  border: 1px outset #000;
   cursor: pointer;
   cursor: hand;
 }
 .dwt-PushButton-up-hovering {
-  border: 1px outset;
-  border-color: #9cf #69e #69e #7af;
+  border: 1px outset #24d3ff;
   cursor: pointer;
   cursor: hand;
 }
 .dwt-PushButton-up-disabled {
-  border: 1px outset #ccc;
   cursor: default;
+  border: 1px outset #888;
+  color: #888;
   opacity: .5;
   filter: alpha(opacity=40);
   zoom: 1;
@@ -530,13 +514,12 @@ a, a:visited, a:hover {
   padding: 4px 4px 2px 6px;
 }
 .dwt-PushButton-down {
-  border: 1px inset #666;
+  border: 1px inset #000;
   cursor: pointer;
   cursor: hand;
 }
 .dwt-PushButton-down-hovering {
-  border: 1px inset;
-  border-color: #9cf #69e #69e #7af;
+  border: 1px inset #24d3ff;
   cursor: pointer;
   cursor: hand;
 }
@@ -546,6 +529,9 @@ a, a:visited, a:hover {
   opacity: 0.5;
   filter: alpha(opacity=40);
   zoom: 1;
+}
+.dwt-PushButton .html-face {
+  color: #000;
 }
 
 .dwt-RadioButton {
@@ -560,156 +546,111 @@ a, a:visited, a:hover {
   border: 0px;
 }
 .dwt-RichTextToolbar {
-  background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
+  background: #222222;
   border-bottom: 1px solid #BBBBBB;
   padding: 3px;
   margin: 0px;
 }
 .dwt-RichTextToolbar .dwt-PushButton-up {
-  padding: 0px 1px 0px 0px;
-  margin-right: 4px;
+  padding: 0px 0px 0px 1px;
+  margin-left: 4px;
   margin-bottom: 4px;
-  border-width: 1px;
+  border-width: 1px; 
 }
 .dwt-RichTextToolbar .dwt-PushButton-up-hovering {
-  margin-right: 4px;
+  margin-left: 4px;
   margin-bottom: 4px;
-  padding: 0px 1px 0px 0px;
-  border-width: 1px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px; 
 }
 .dwt-RichTextToolbar .dwt-PushButton-down {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 0px 0px 1px;
-  border-width: 1px;
-}
-.dwt-RichTextToolbar .dwt-PushButton-down-hovering {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 0px 0px 1px;
-  border-width: 1px;
-}
-.dwt-RichTextToolbar .dwt-ToggleButton-up {
-  margin-right: 4px;
+  margin-left: 4px;
   margin-bottom: 4px;
   padding: 0px 1px 0px 0px;
+  border-width: 1px; 
+}
+.dwt-RichTextToolbar .dwt-PushButton-down-hovering {
+  margin-left: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px; 
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-up {
+  margin-left: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
   border-width: 1px;
 }
 .dwt-RichTextToolbar .dwt-ToggleButton-up-hovering {
-  margin-right: 4px;
+  margin-left: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+.dwt-RichTextToolbar .dwt-ToggleButton-down {
+  margin-left: 4px;
   margin-bottom: 4px;
   padding: 0px 1px 0px 0px;
   border-width: 1px;
 }
-.dwt-RichTextToolbar .dwt-ToggleButton-down {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  padding: 0px 0px 0px 1px;
-  border-width: 1px;
-}
 .dwt-RichTextToolbar .dwt-ToggleButton-down-hovering {
-  margin-right: 4px;
+  margin-left: 4px;
   margin-bottom: 4px;
-  padding: 0px 0px 0px 1px;
+  padding: 0px 1px 0px 0px;
   border-width: 1px;
 }
 
 .dwt-StackPanel {
-  border-bottom: 1px solid #bbbbbb;
+  border-bottom: 1px solid #00CCFF;
 }
 .dwt-StackPanel .dwt-StackPanelItem {
   cursor: pointer;
   cursor: hand;
   font-weight: bold;
   font-size: 1.3em;
-  padding: 3px;
-  border: 1px solid #bbbbbb;
+  padding: 4px;
+  border: 1px solid #00CCFF;
   border-bottom: 0px;
-  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+  background: #222;
 }
 .dwt-StackPanel .dwt-StackPanelContent {
-  border: 1px solid #bbbbbb;
+  border: 1px solid #00CCFF;
   border-bottom: 0px;
-  background: white;
-  padding: 2px 2px 10px 5px;
+  background: #666;
+  padding: 2px 5px 10px 2px;
 }
 
 .dwt-DecoratedStackPanel {
-  border-bottom: 1px solid #bbbbbb;
+  border-bottom: 1px solid #00CCFF;
 }
 .dwt-DecoratedStackPanel .dwt-StackPanelContent {
-  border: 1px solid #bbbbbb;
+  border: 1px solid #00CCFF;
   border-bottom: 0px;
-  background: white;
-  padding: 2px 2px 10px 5px;
+  background: #666;
+  padding: 2px 5px 10px 2px;
 }
 .dwt-DecoratedStackPanel .dwt-StackPanelItem {
   cursor: pointer;
   cursor: hand;
-}
-.dwt-DecoratedStackPanel .stackItemTopLeft,
-.dwt-DecoratedStackPanel .stackItemTopRight {
-  height: 6px;
-  width: 6px;
-  zoom: 1;
-}
-.dwt-DecoratedStackPanel .stackItemTopLeft {
-  border-left: 1px solid #bbbbbb;
-  background: #d3def6 url(images/corner.png) no-repeat 0px -49px;
-  -background: #d3def6 url(images/corner_ie6.png) no-repeat 0px -49px;
-}
-.dwt-DecoratedStackPanel .stackItemTopRight {
-  border-right: 1px solid #bbbbbb;
-  background: #d3def6 url(images/corner.png) no-repeat -6px -49px;
-  -background: #d3def6 url(images/corner_ie6.png) no-repeat -6px -49px;
-}
-.dwt-DecoratedStackPanel .stackItemTopLeftInner,
-.dwt-DecoratedStackPanel .stackItemTopRightInner {
-  width: 1px;
-  height: 1px;
-}
-* html .dwt-DecoratedStackPanel .stackItemTopLeftInner,
-* html .dwt-DecoratedStackPanel .stackItemTopRightInner {
-  width: 6px;
-  height: 6px;
-  overflow: hidden;
-}
-.dwt-DecoratedStackPanel .stackItemTopCenter {
-  background: url(images/hborder.png) 0px -21px repeat-x;
-}
-.dwt-DecoratedStackPanel .stackItemMiddleLeft {
-  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
-  border-left: 1px solid #bbbbbb;
-}
-.dwt-DecoratedStackPanel .stackItemMiddleLeftInner,
-.dwt-DecoratedStackPanel .stackItemMiddleRightInner {
-  width: 1px;
-  height: 1px;
-}
-.dwt-DecoratedStackPanel .stackItemMiddleRight {
-  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
-  border-right: 1px solid #bbbbbb;
-}
-.dwt-DecoratedStackPanel .stackItemMiddleCenter {
   font-weight: bold;
   font-size: 1.3em;
-  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+  padding: 4px;
+  border: 1px solid #00CCFF;
+  border-bottom: 0px;
+  background: #222;
 }
-.dwt-DecoratedStackPanel .dwt-StackPanelItem-first .stackItemTopRight,
-.dwt-DecoratedStackPanel .dwt-StackPanelItem-first .stackItemTopLeft {
-  border: 0px;
-  background-color: white;
-}
-.dwt-DecoratedStackPanel .dwt-StackPanelItem-below-selected .stackItemTopLeft,
-.dwt-DecoratedStackPanel .dwt-StackPanelItem-below-selected .stackItemTopRight {
-  background-color: white;
+.dwt-DecoratedStackPanel .stackItemTopLeft,
+.dwt-DecoratedStackPanel .stackItemTopRight,
+.dwt-DecoratedStackPanel .stackItemTopLeftInner,
+.dwt-DecoratedStackPanel .stackItemTopRightInner {
+  display: none;
 }
 
 .dwt-SuggestBox {
   padding: 2px;
 }
 .dwt-SuggestBoxPopup {
-  margin-left: 3px;
+  margin-right: 3px;
 }
 .dwt-SuggestBoxPopup .item {
   padding: 2px 6px;
@@ -720,7 +661,7 @@ a, a:visited, a:hover {
   background: #b7d6f6;
 }
 .dwt-SuggestBoxPopup .suggestPopupContent {
-  background: white;
+  background: #ddd;
 }
 .dwt-SuggestBoxPopup .suggestPopupTopCenter {
   background: url(images/hborder.png) repeat-x;
@@ -739,7 +680,7 @@ a, a:visited, a:hover {
 .dwt-SuggestBoxPopup .suggestPopupTopLeftInner {
   width: 5px;
   height: 5px;
-  zoom: 1;
+  zoom: 1;  
 }
 .dwt-SuggestBoxPopup .suggestPopupTopRightInner {
   width: 8px;
@@ -801,32 +742,32 @@ a, a:visited, a:hover {
 .dwt-TabBar .dwt-TabBarRest {
 }
 .dwt-TabBar .dwt-TabBarItem {
-  margin-left: 6px;
-  padding: 3px 6px 3px 6px;
+  margin-right: 6px;
+  padding: 4px 6px;
   cursor: pointer;
   cursor: hand;
-  color: black;
+  color: #bec7cc;
   font-weight: bold;
   text-align: center;
-  background: #d0e4f6;
+  background: #222222;
 }
 .dwt-TabBar .dwt-TabBarItem-selected {
   cursor: default;
-  background: #92c1f0;
-}
+  color: black;
+  background: #00CCFF;
+} 
 .dwt-TabBar .dwt-TabBarItem-disabled {
   cursor: default;
-  color: #999999;
+  color: #777777;
 }
 .dwt-TabPanel {
 }
 .dwt-TabPanelBottom {
-  border-color: #92c1f0;
+  border-color: #00CCFF;
   border-style: solid;
   border-width: 3px 2px 2px;
   overflow: hidden;
   padding: 6px;
-  height: 100%;
 }
 
 .dwt-DecoratedTabBar {
@@ -838,11 +779,11 @@ a, a:visited, a:hover {
 }
 .dwt-DecoratedTabBar .dwt-TabBarItem {
   border-collapse: collapse;
-  margin-left: 6px;
+  margin-right: 6px;
 }
 .dwt-DecoratedTabBar .tabTopCenter {
   padding: 0px;
-  background: #d0e4f6;
+  background: #222222;
 }
 .dwt-DecoratedTabBar .tabTopLeft,
 .dwt-DecoratedTabBar .tabTopRight {
@@ -872,7 +813,7 @@ a, a:visited, a:hover {
 .dwt-DecoratedTabBar .tabMiddleRight {
   width: 6px;
   padding: 0px;
-  background: #d0e4f6;
+  background: #222222;
 }
 .dwt-DecoratedTabBar .tabMiddleLeftInner,
 .dwt-DecoratedTabBar .tabMiddleRightInner {
@@ -883,13 +824,12 @@ a, a:visited, a:hover {
   padding: 0px 4px 2px 4px;
   cursor: pointer;
   cursor: hand;
-  color: black;
   font-weight: bold;
   text-align: center;
-  background: #d0e4f6;
+  background: #222222;
 }
 .dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopCenter {
-  background: #92c1f0;
+  background: #00CCFF;
 }
 .dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabTopLeft {
   background-position: 0px -61px;
@@ -899,15 +839,16 @@ a, a:visited, a:hover {
 }
 .dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleLeft,
 .dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleRight {
-  background: #92c1f0;
+  background: #00CCFF;
 }
 .dwt-DecoratedTabBar .dwt-TabBarItem-selected .tabMiddleCenter {
   cursor: default;
-  background: #92c1f0;
+  color: black;
+  background: #00CCFF;
 }
 .dwt-DecoratedTabBar .dwt-TabBarItem-disabled .tabMiddleCenter {
   cursor: default;
-  color: #999999;
+  color: #777777;
 }
 
 .dwt-TextArea {
@@ -983,6 +924,9 @@ a, a:visited, a:hover {
   zoom: 1;
   filter: alpha(opacity=40);
 }
+.dwt-ToggleButton .html-face {
+  color: #000;
+}
 
 .dwt-Tree .dwt-TreeItem {
   padding: 1px 0px;
@@ -990,30 +934,33 @@ a, a:visited, a:hover {
   white-space: nowrap;
   cursor: hand;
   cursor: pointer;
+  zoom: 1;
 }
 .dwt-Tree .dwt-TreeItem-selected {
-  background: #93c2f1 url(images/hborder.png) repeat-x 0px -1463px;
+  color: #0cf;
+  background: #1c1c1c;
 }
 .dwt-TreeItem .dwt-RadioButton input,
 .dwt-TreeItem .dwt-CheckBox input {
-  margin-left: 0px;
+  margin-right: 0px;
 }
 * html .dwt-TreeItem .dwt-RadioButton input,
 * html .dwt-TreeItem .dwt-CheckBox input {
-  margin-left: -4px;
+  margin-right: -4px;
 }
 
 .dwt-DateBox input {
   width: 8em;
 }
 .dateBoxFormatError {
-  background: #ffcccc;
+  background: #a8eeff;
+  color: red;
 }
 .dateBoxPopup {
 }
 
 .dwt-DatePicker {
-  border: 1px solid #A2BBDD;
+  border: 1px solid #00CCFF;
   cursor: default;
 }
 .dwt-DatePicker td,
@@ -1022,7 +969,7 @@ a, a:visited, a:hover {
 }
 .datePickerDays {
   width: 100%;
-  background: white;
+  background: #4d4d4d;
 }
 .datePickerDay,
 .datePickerWeekdayLabel,
@@ -1031,10 +978,11 @@ a, a:visited, a:hover {
   text-align: center;
   padding: 4px;
   outline: none;
+  color: #dddddd;
 }
 .datePickerWeekdayLabel,
 .datePickerWeekendLabel {
-  background: #C3D9FF;
+  background: #222222;
   padding: 0px 4px 2px;
   cursor: default;
 }
@@ -1044,30 +992,33 @@ a, a:visited, a:hover {
   cursor: pointer;
 }
 .datePickerDayIsToday {
-  border: 1px solid black;
+  border: 1px solid #00CCFF;
   padding: 3px;
 }
 .datePickerDayIsWeekend {
-  background: #EEEEEE;
+  background: #333333;
 }
 .datePickerDayIsFiller {
-  color: #888888;
+  color: #959595;
 }
 .datePickerDayIsValue {
-  background: #aaccee;
+  background: #1C1C1C;
+  color: #00CCFF;
 }
 .datePickerDayIsDisabled {
   color: #AAAAAA;
   font-style: italic;
 }
 .datePickerDayIsHighlighted {
-  background: #F0E68C;
+  background: #00CCFF;
+  color: #1C1C1C;
 }
 .datePickerDayIsValueAndHighlighted {
-  background: #bbddd9;
+  background: #1C1C77;
+  color: #00CCFF;
 }
 .datePickerMonthSelector {
-  background: #C3D9FF;
+  background: #222222;
   width: 100%;
 }
 td.datePickerMonth {
@@ -1076,39 +1027,39 @@ td.datePickerMonth {
   white-space: nowrap;
   font-size: 70%;
   font-weight: bold;
-  color: blue;
+  color: #dddddd;
 }
 .datePickerPreviousButton,
 .datePickerNextButton {
   font-size: 120%;
   line-height: 1em;
-  color: blue;
   cursor: hand;
   cursor: pointer;
   padding: 0px 4px;
+  color: #dddddd;
 }
 
 .dwt-StackLayoutPanel {
-  border-bottom: 1px solid #bbbbbb;
+  border-bottom: 1px solid #00CCFF;
 }
 .dwt-StackLayoutPanel .dwt-StackLayoutPanelHeader {
   cursor: pointer;
   cursor: hand;
   font-weight: bold;
   font-size: 1.3em;
-  padding: 3px;
-  border: 1px solid #bbbbbb;
+  padding: 4px;
+  border: 1px solid #00CCFF;
   border-bottom: 0px;
-  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+  background: #222;
 }
 .dwt-StackLayoutPanel .dwt-StackLayoutPanelHeader-hovering {
-  background: #d3def6 url(images/hborder.png) repeat-x 0px -1464px;
+  background: #444;
 }
 .dwt-StackLayoutPanel .dwt-StackLayoutPanelContent {
-  border: 1px solid #bbbbbb;
+  border: 1px solid #00CCFF;
   border-bottom: 0px;
-  background: white;
-  padding: 2px 2px 10px 5px;
+  background: #666;
+  padding: 2px 5px 10px 2px;
 }
 
 .dwt-TabLayoutPanel {
@@ -1116,12 +1067,12 @@ td.datePickerMonth {
 .dwt-TabLayoutPanel .dwt-TabLayoutPanelTabs {
 }
 .dwt-TabLayoutPanelContentContainer {
-  border-color: #92c1f0;
+  border-color: #00CCFF;
   border-style: solid;
   border-width: 2px 1px 1px;
 }
 .dwt-TabLayoutPanel .dwt-TabLayoutPanelContent {
-  border-color: #92c1f0;
+  border-color: #00CCFF;
   border-style: solid;
   border-width: 1px;
   overflow: hidden;
@@ -1129,25 +1080,26 @@ td.datePickerMonth {
 }
 .dwt-TabLayoutPanel .dwt-TabLayoutPanelTab {
   margin-left: 6px;
-  padding: 3px 6px 3px 6px;
+  padding: 4px 6px;
   cursor: pointer;
   cursor: hand;
-  color: black;
+  color: #bec7cc;
   font-weight: bold;
   text-align: center;
-  background: #d0e4f6;
+  background: #222222;
 }
 .dwt-TabLayoutPanel .dwt-TabLayoutPanelTab-selected {
   cursor: default;
-  background: #92c1f0;
-}
+  color: black;
+  background: #00CCFF;
+} 
 
 .dwt-SplitLayoutPanel-HDragger {
-  background: #d0e4f6 url(images/splitPanelThumb.png) center center no-repeat;
+  background: #00CCFF url(images/splitPanelThumb.png) center center no-repeat;
   cursor: col-resize;
 }
 
 .dwt-SplitLayoutPanel-VDragger {
-  background: #d0e4f6 url(images/splitPanelThumb.png) center center no-repeat;
+  background: #00CCFF url(images/splitPanelThumb.png) center center no-repeat;
   cursor: row-resize;
 }

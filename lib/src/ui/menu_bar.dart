@@ -1153,15 +1153,15 @@ abstract class MenuResource extends ClientBundle {
   ImageResource menuBarSubMenuIcon();
 }
 
-//*****
-// Temporary solution for work with image prototypies
-//*****
-
+/**
+ * Default menu resources.
+ */
 class MenuResources implements MenuResource {
 
   ImageResource _resource;
 
-  const String MENU_RESOURCE = "menu";
+  const String MENU_RESOURCE = "menuBarSubMenuIcon.gif";
+  const String MENU_RESOURCE_RTL = "menuBarSubMenuIcon_rtl.gif";
 
   MenuResources();
 
@@ -1172,17 +1172,18 @@ class MenuResources implements MenuResource {
   /**
    * An image indicating a {@link MenuItem} has an associated submenu.
    */
-//  @ImageOptions(flipRtl = true)
   ImageResource menuBarSubMenuIcon() {
     if (_resource == null) {
-      _resource = _getMenuImageResourcePrototype(MENU_RESOURCE, 0);
+      // We must check is left or right based locales we using here.
+      _resource = _getMenuImageResourcePrototype(MENU_RESOURCE);
     }
     return _resource;
   }
 
-  ImageResourcePrototype _getMenuImageResourcePrototype(String name, int left) {
-    String uri = DWT.getModuleBaseURL() + "resource/images/menu.png";
-    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, UriUtils.fromTrustedString(uri), left, 0, 5, 9, false, false);
+  ImageResourcePrototype _getMenuImageResourcePrototype(String name) {
+    String uri = DWT.getModuleBaseURL() + "resource/images/" + name;
+    ImageResourcePrototype imageResource = new ImageResourcePrototype(name, 
+        UriUtils.fromTrustedString(uri), 0, 0, 5, 9, false, false);
     return imageResource;
   }
 }

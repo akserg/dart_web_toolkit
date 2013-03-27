@@ -160,8 +160,15 @@ class ValueBoxBase<T> extends FocusWidget implements
   }
 
   String get text {
-    //Dom.getElementProperty(getElement(), "value");
-    return (getElement() as dart_html.InputElement).value;
+    // Because bug http://code.google.com/p/dart/issues/detail?id=9356
+    // we can't read directly from attributes
+    if (getElement() is dart_html.InputElement) {
+      return (getElement() as dart_html.InputElement).value;
+    } else if (getElement() is dart_html.TextAreaElement) {
+      return (getElement() as dart_html.TextAreaElement).value;
+    } else {
+      return Dom.getElementProperty(getElement(), "value");
+    }
   }
   
   /**
@@ -174,8 +181,15 @@ class ValueBoxBase<T> extends FocusWidget implements
    * @param text the object's new text
    */
   void set text(String val) {
-    //Dom.setElementProperty(getElement(), "value", val != null ? val : "");
-    (getElement() as dart_html.InputElement).value = val != null ? val : "";
+    // Because bug http://code.google.com/p/dart/issues/detail?id=9356
+    // we can't write directly into attributes
+    if (getElement() is dart_html.InputElement) {
+      (getElement() as dart_html.InputElement).value = val != null ? val : "";
+    } else if (getElement() is dart_html.TextAreaElement) {
+      (getElement() as dart_html.TextAreaElement).value = val != null ? val : "";
+    } else {
+      Dom.setElementProperty(getElement(), "value", val != null ? val : "");
+    }
     _autoDirHandler.refreshDirection();
   }
 

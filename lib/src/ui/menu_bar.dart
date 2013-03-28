@@ -1166,7 +1166,7 @@ class MenuResources implements MenuResource {
   MenuResources();
 
   Source get source {
-    return new TreeSource();
+    return null;
   }
 
   /**

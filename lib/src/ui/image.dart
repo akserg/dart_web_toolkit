@@ -176,6 +176,13 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   }
 
   /**
+   * Creates an image whose size and content are defined by an ImageResource.
+   * 
+   * @param resource the ImageResource to be displayed
+   */
+  Image.fromImageResource(ImageResource resource) : this.clippedSafe(resource.url, resource.left, resource.top, resource.width, resource.height);
+  
+  /**
    * Creates a clipped image with a specified URL and visibility rectangle. The
    * visibility rectangle is declared relative to the the rectangle which
    * encompasses the entire image, which has an upper-left vertex of (0,0). The
@@ -527,6 +534,20 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
     if (_state != null) {
       _state.getImageElement(this).dataset[DomImpl.UNHANDLED_EVENT_ATTR] = "";
     }
+  }
+  
+  /**
+   * Sets the url and the visibility rectangle for the image at the same time,
+   * based on an ImageResource instance. A single load event will be fired if
+   * either the incoming url or visiblity rectangle co-ordinates differ from the
+   * image's current url or current visibility rectangle co-ordinates. If the
+   * image is currently in the unclipped state, a call to this method will cause
+   * a transition to the clipped state.
+   * 
+   * @param resource the ImageResource to display
+   */
+  void setResource(ImageResource resource) {
+    setUrlAndVisibleRect(resource.url.asString(), resource.left, resource.top, resource.width, resource.height);
   }
 }
 

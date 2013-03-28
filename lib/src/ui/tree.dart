@@ -98,7 +98,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
 
   dart_html.Element _focusable;
 
-  ImageAdapter _images;
+  _ImageAdapter _images;
 
   String _indentValue = "";
 
@@ -118,11 +118,11 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    * @param resources a bundle that provides tree specific images
    * @param useLeafImages use leaf images from bundle
    */
-  Tree([TreeResource resources = null, bool useLeafImages = false]) {
+  Tree([_TreeResource resources = null, bool useLeafImages = false]) {
     if (resources == null) {
-      _init(new ImageAdapter(), useLeafImages);
+      _init(new _ImageAdapter(), useLeafImages);
     } else {
-      _init(new ImageAdapter(resources), useLeafImages);
+      _init(new _ImageAdapter(resources), useLeafImages);
     }
   }
 
@@ -659,7 +659,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     return _childWidgets;
   }
 
-  ImageAdapter getImages() {
+  _ImageAdapter getImages() {
     return _images;
   }
 
@@ -807,7 +807,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     return topClosedParent;
   }
 
-  void _init(ImageAdapter images, bool useLeafImages) {
+  void _init(_ImageAdapter images, bool useLeafImages) {
     _setImages(images, useLeafImages);
     setElement(new dart_html.DivElement());
 
@@ -1026,7 +1026,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     }
   }
 
-  void _setImages(ImageAdapter images, bool useLeafImages) {
+  void _setImages(_ImageAdapter images, bool useLeafImages) {
     this._images = images;
     this._useLeafImages = useLeafImages;
 
@@ -1120,7 +1120,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
 /**
  * A ClientBundle that provides images for this widget.
  */
-abstract class TreeResource extends ClientBundle {
+abstract class _TreeResource extends ClientBundle {
 
   /**
    * An image indicating a closed branch.
@@ -1141,7 +1141,7 @@ abstract class TreeResource extends ClientBundle {
 /**
  * Default tree resources
  */
-class TreeResources implements TreeResource {
+class _TreeResources implements _TreeResource {
 
   final Map<String, ImageResource> _resources;
 
@@ -1149,19 +1149,19 @@ class TreeResources implements TreeResource {
   const String TREE_LEAF = "treeLeaf.gif";
   const String TREE_OPEN = "treeOpen.gif";
 
-  TreeResources() : _resources = new Map<String, ImageResource>();
+  _TreeResources() : _resources = new Map<String, ImageResource>();
   
-  static TreeResources _instance;
+  static _TreeResources _instance;
   
-  static TreeResources get DEFAULT_RESOURCES {
+  static _TreeResources get DEFAULT_RESOURCES {
     if (_instance == null) {
-      _instance = new TreeResources();
+      _instance = new _TreeResources();
     }
     return _instance;
   }
 
   Source get source {
-    return new TreeSource();
+    return new _TreeSource();
   }
 
   /**
@@ -1207,7 +1207,7 @@ class TreeResources implements TreeResource {
  * Specifies the classpath location of the resource or resources associated
  * with the {@link ResourcePrototype}.
  */
-class TreeSource implements Source {
+class _TreeSource implements Source {
   List<String> value() {
 
   }
@@ -1217,14 +1217,14 @@ class TreeSource implements Source {
  * There are several ways of configuring images for the Tree widget due to
  * deprecated APIs.
  */
-class ImageAdapter {
+class _ImageAdapter {
   AbstractImagePrototype _treeClosed;
   AbstractImagePrototype _treeLeaf;
   AbstractImagePrototype _treeOpen;
 
-  ImageAdapter([TreeResource resources = null]) {
+  _ImageAdapter([_TreeResource resources = null]) {
     if (resources == null) {
-      resources = TreeResources.DEFAULT_RESOURCES;
+      resources = _TreeResources.DEFAULT_RESOURCES;
     }
     _treeClosed = AbstractImagePrototype.create(resources.treeClosed());
     _treeLeaf = AbstractImagePrototype.create(resources.treeLeaf());

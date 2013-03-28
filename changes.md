@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+**March 28, 2013
+
+* Implemented DisclosurePanel. Cleaned code of MenuBar, Tree.
+* To Image class added constructor fromImageResource and method setImageResource.
+
 **March 27, 2013
 
 * Because bug in Dart http://code.google.com/p/dart/issues/detail?id=9356 the logic of set/get text in ValueBoxBase has been changed.

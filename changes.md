@@ -4,6 +4,7 @@ Dart Web Toolkit Changes
 **March 31, 2013
 
 * Migrate project code to follow Dart SDK version 0.4.3.5_r20602
+* Fixed background color of chrome theme.
 
 **March 28, 2013
 

@@ -25,7 +25,7 @@ body {
   margin: 0px;
   border: 0px;
   padding: 0px;
-  background: #fff;
+  background: #eee;
   direction: ltr;
 }
 a, a:visited, a:hover {
@@ -1143,11 +1143,11 @@ td.datePickerMonth {
 }
 
 .dwt-SplitLayoutPanel-HDragger {
-  background: white url(images/splitPanelThumb.png) center center no-repeat;
+  background: #e3e3e3 url(images/splitPanelThumb.png) center center no-repeat;
   cursor: col-resize;
 }
 
 .dwt-SplitLayoutPanel-VDragger {
-  background: white url(images/splitPanelThumb.png) center center no-repeat;
+  background: #e3e3e3 url(images/splitPanelThumb.png) center center no-repeat;
   cursor: row-resize;
 }

@@ -122,11 +122,7 @@ abstract class UiObject implements HasVisibility {
    * Sets the element's title.
    */
   void set title(String value) {
-    if (title == null || title.length == 0) {
-      Dom.removeElementAttribute(getElement(), "title");
-    } else {
-      Dom.setElementAttribute(getElement(), "title", title);
-    }
+    getElement().title = value;
   }
 
   /**
@@ -135,7 +131,7 @@ abstract class UiObject implements HasVisibility {
    *
    * @return the object's title
    */
-  String get title => Dom.getElementProperty(getElement(), "title");
+  String get title => getElement().title;
 
   /**
    * Sets the object's height. This height does not include decorations such as

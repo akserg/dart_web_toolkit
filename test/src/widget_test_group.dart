@@ -12,6 +12,31 @@ class WidgetTestGroup extends TestGroup {
     this.testGroupName = "Widget";
 
     this.testList["verify"] = verifyTest;
+/*    
+    onBrowserEvent
+    asWidget
+    fireEvent
+    addAttachHandler
+    addHandler
+    ensureHandlers
+    getEventBus
+    addBitlessDomHandler 
+    addDomHandler
+    sinkEvents
+    createEventBus
+    isAttached
+    getLayoutData
+    setLayoutData
+    getParent
+    setParent
+    removeFromParent
+    replaceElement
+    delegateEvent
+    onAttach
+    onDetach
+    isOrWasAttached
+     
+*/  
   }
 
   /**

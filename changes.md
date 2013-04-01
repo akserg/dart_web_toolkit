@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**April 1, 2013
+
+* Unittests for UiObject.
+
 **March 31, 2013
 
 * Migrate project code to follow Dart SDK version 0.4.3.5_r20602

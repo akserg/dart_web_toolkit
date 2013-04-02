@@ -71,6 +71,9 @@ class Widget extends UiObject
   // Implementation of IsWidget
   //***************************
 
+  /**
+   * Returns the [Widget] aspect of the receiver.
+   */
   Widget asWidget() {
     return this;
   }
@@ -153,6 +156,9 @@ class Widget extends UiObject
     return _eventBus == null ? _eventBus = createEventBus() : _eventBus;
   }
 
+  /**
+   * Return EventBus.
+   */
   EventBus getEventBus() {
     return _eventBus;
   }

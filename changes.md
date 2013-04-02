@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**April 2, 2013
+
+* Unittests for Widget.
+
 **April 1, 2013
 
 * Unittests for UiObject.

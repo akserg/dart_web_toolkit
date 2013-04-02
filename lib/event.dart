@@ -27,6 +27,7 @@ part 'src/event/event_listener.dart';
 part 'src/event/dwt_event.dart';
 part 'src/event/dom_event.dart';
 part 'src/event/attach_event.dart';
+part 'src/event/attach_event_handler.dart';
 part 'src/event/event_handler.dart';
 part 'src/event/close_event.dart';
 part 'src/event/close_handler.dart';
@@ -263,5 +264,6 @@ part 'src/event/adapter/closing_handler_adapter.dart';
 part 'src/event/adapter/native_preview_handler_adapter.dart';
 part 'src/event/adapter/selection_handler_adapter.dart';
 part 'src/event/adapter/before_selection_handler_adapter.dart';
+part 'src/event/adapter/attach_event_handler_adapter.dart';
 
 part 'src/event/adapter/all_mouse_handlers_adapter.dart';

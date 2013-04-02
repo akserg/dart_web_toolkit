@@ -50,10 +50,3 @@ class AttachEvent extends DwtEvent {
     }
   }
 }
-
-/**
- * Implemented by objects that handle {@link AttachEvent}.
- */
-abstract class AttachEventHandler extends EventHandler {
-  void onAttachOrDetach(AttachEvent event);
-}

@@ -38,11 +38,7 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>Dart Web Toolkit</h1>
-
-<p>Dart Web Toolkit (or DWT) is a development toolkit for building and optimizing complex browser-based applications.</p>
-
-<p><a href="https://drone.io/github.com/akserg/dart_web_toolkit/latest"><img src="https://drone.io/github.com/akserg/dart_web_toolkit/status.png" alt="Build Status"></a></p>
+        <p><a href="https://drone.io/github.com/akserg/dart_web_toolkit/latest"><img src="https://drone.io/github.com/akserg/dart_web_toolkit/status.png" alt="Build Status"></a></p>
 
 <h2>What is the DWT?</h2>
 
@@ -53,22 +49,38 @@
 <p>DWT is a set of libraries:</p>
 
 <ul>
-<li>Activity library helps organise navigation applications with activities;</li>
-<li>Animation library provides animation support for variety of the DWT components;</li>
-<li>Core library contains a small number of core classes;</li>
-<li>Data library contains classes for working with the data;</li>
-<li>Editor library helps editing bean-like objects;</li>
-<li>Event library sharing both browser and non-browser events, adapters and event handlers;</li>
-<li>Http library helps to build HTTP requests;</li>
-<li>I18n library helps with the internalisation, text alignment and direction;</li>
-<li>Layout library knows how laying out a container elements and its children;</li>
-<li>Place library contains classes for working with the bookmark location in the web application;</li>
-<li>Resource library helps to provide access to resources at runtime;</li>
-<li>Role library allows ARIA Accessibility attributes to be added to widgets so that they can be identified by assistive technology;</li>
-<li>Scheduler library provides low-level task scheduling primitives;</li>
-<li>Text library helps organise rendering objects into plain-text form;</li>
-<li>UI library is user-interface objects;</li>
-<li>Util library is a small set of utility classes;</li>
+<li>
+<strong>Activity</strong> library helps organise navigation applications with activities;</li>
+<li>
+<strong>Animation</strong> library provides animation support for variety of the DWT components;</li>
+<li>
+<strong>Core</strong> library contains a small number of core classes;</li>
+<li>
+<strong>Data</strong> library contains classes for working with the data;</li>
+<li>
+<strong>Editor</strong> library helps editing bean-like objects;</li>
+<li>
+<strong>Event</strong> library sharing both browser and non-browser events, adapters and event handlers;</li>
+<li>
+<strong>Http</strong> library helps to build HTTP requests;</li>
+<li>
+<strong>I18n</strong> library helps with the internalisation, text alignment and direction;</li>
+<li>
+<strong>Layout</strong> library knows how laying out a container elements and its children;</li>
+<li>
+<strong>Place</strong> library contains classes for working with the bookmark location in the web application;</li>
+<li>
+<strong>Resource</strong> library helps to provide access to resources at runtime;</li>
+<li>
+<strong>Role</strong> library allows ARIA Accessibility attributes to be added to widgets so that they can be identified by assistive technology;</li>
+<li>
+<strong>Scheduler</strong> library provides low-level task scheduling primitives;</li>
+<li>
+<strong>Text</strong> library helps organise rendering objects into plain-text form;</li>
+<li>
+<strong>UI</strong> library is user-interface objects;</li>
+<li>
+<strong>Util</strong> library is a small set of utility classes;</li>
 </ul><p>The current version (0.3) has a rich set of components:</p>
 
 <h3>Widgets:</h3>
@@ -131,24 +143,24 @@
 
 <h2>How to create a brand new web application on the DWT?</h2>
 
-<p>Note: If you are just beginning to study the Dart language please read the <a href="http://www.dartlang.org/docs/tutorials">tutorial</a> first. You need to have latest version of the DartEditor with the Dart SDK installed on your computer. </p>
+<p><em>Note: If you are just beginning to study the Dart language please read the <a href="http://www.dartlang.org/docs/tutorials">tutorial</a> first. You need to have latest version of the DartEditor with the Dart SDK installed on your computer.</em> </p>
 
 <ul>
 <li>Create a new web application <code>hello_world</code>.</li>
-<li>Open pubspec.yaml and add the Dart Web Toolkit into "Dependencies":</li>
+<li>Open <code>pubspec.yaml</code> and add the Dart Web Toolkit into <code>Dependencies</code>:</li>
 </ul><div class="highlight"><pre><span class="nx">dependencies</span><span class="o">:</span>
   <span class="nx">dart_web_toolkit</span><span class="o">:</span> <span class="s2">"&gt;=0.3.0"</span>
 </pre></div>
 
 <ul>
-<li>Save pubspec.yaml and the DartEditor automatically runs pub install, which recursively installs the Dart libraries from the packages in the dependencies list.</li>
-<li>Open "hello_world.html" file from the "web" folder and add a link reference to the Dart Web Toolkit "clean" theme.</li>
+<li>Save <code>pubspec.yaml</code> and the DartEditor automatically runs <code>pub install</code>, which recursively installs the Dart libraries from the packages in the dependencies list.</li>
+<li>Open <code>hello_world.html</code> file from the <code>web</code> folder and add a link reference to the Dart Web Toolkit <code>clean</code> theme.</li>
 </ul><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span> 
     <span class="nx">href</span><span class="o">=</span><span class="s2">"packages/dart_web_toolkit/resource/clean/clean.css"</span><span class="o">&gt;</span>
 </pre></div>
 
 <ul>
-<li>Open "hello_world.dart" and modify it as follows:</li>
+<li>Open <code>hello_world.dart</code> and modify it as follows:</li>
 </ul><div class="highlight"><pre><span class="nx">library</span> <span class="nx">dwt_hello_world</span><span class="p">;</span>
 
 <span class="kr">import</span> <span class="s1">'package:dart_web_toolkit/ui.dart'</span> <span class="nx">as</span> <span class="nx">ui</span><span class="p">;</span>
@@ -161,9 +173,10 @@
 
 <ul>
 <li>Check how the application works in Dartium.</li>
-<li>Check how the application works in JavaScript within FireFox or IE.
-Congratulations you have just created your first application on the DWT!</li>
-</ul><h2>What's next?</h2>
+<li>Check how the application works in JavaScript within FireFox or IE.</li>
+</ul><p>Congratulations you have just created your first application on the DWT!</p>
+
+<h2>What's next?</h2>
 
 <ul>
 <li>Continue to develop components are not included in current release;</li>

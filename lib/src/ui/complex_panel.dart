@@ -247,7 +247,9 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
     if (domInsert) {
       //DOM.insertChild(container, child.getElement(), beforeIndex);
       dart_html.Element refChild = container.$dom_childNodes[beforeIndex];
-      container.insertBefore(child.getElement(), refChild);
+      if (refChild != null) {
+        container.insertBefore(child.getElement(), refChild);
+      }
     } else {
       //DOM.appendChild(container, child.getElement());
       container.append(child.getElement());

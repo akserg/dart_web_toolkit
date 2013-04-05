@@ -1,7 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
-**April 4444, 2013
+**April 5, 2013
+
+* Fixed null pointer exception happed in ComplexPanel in IE.
+
+**April 4, 2013
 
 * Milestone 0.3 reached.
 

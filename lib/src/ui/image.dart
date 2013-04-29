@@ -431,7 +431,7 @@ class Image extends Widget implements HasLoadHandlers, HasErrorHandlers,
   void onBrowserEvent(dart_html.Event event) {
     // We have to clear the unhandled event before firing handlers because the
     // handlers could trigger onLoad, which would refire the event.
-    if (Dom.eventGetType(event) == Event.ONLOAD) {
+    if (Dom.eventGetType(event) == IEvent.ONLOAD) {
       clearUnhandledEvent();
       _state.onLoadEvent(this);
     }
@@ -682,8 +682,8 @@ class _ClippedState extends _State {
     image.replaceElement(impl.createStructure(url, left, top, width, height));
     // Todo(ecc) This is wrong, we should not be sinking these here on such a
     // common widget.After the branch is stable, this should be fixed.
-    image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONMOUSEWHEEL
-        | Event.ONLOAD | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
+    image.sinkEvents(IEvent.ONCLICK | IEvent.ONDBLCLICK | IEvent.MOUSEEVENTS | IEvent.ONMOUSEWHEEL
+        | IEvent.ONLOAD | IEvent.TOUCHEVENTS | IEvent.GESTUREEVENTS);
   }
 
   int getHeight(Image image) {
@@ -774,11 +774,11 @@ class _UnclippedState extends _State {
       // We are working around an IE race condition that can make the image
       // incorrectly cache itself if the load event is assigned at the same time
       // as the image is added to the dom.
-      Event.sinkEvents(image.getElement(), Event.ONLOAD);
+      IEvent.sinkEvents(image.getElement(), IEvent.ONLOAD);
 
       // Todo(ecc) this could be more efficient overall.
-      image.sinkEvents(Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
-          | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
+      image.sinkEvents(IEvent.ONCLICK | IEvent.ONDBLCLICK | IEvent.MOUSEEVENTS | IEvent.ONLOAD
+          | IEvent.ONERROR | IEvent.ONMOUSEWHEEL | IEvent.TOUCHEVENTS | IEvent.GESTUREEVENTS);
 
       if (url != null) {
         setUrl(image, url);
@@ -786,8 +786,8 @@ class _UnclippedState extends _State {
     } else if (element != null){
       // This case is relatively unusual, in that we swapped a clipped image
       // out, so does not need to be efficient.
-      Event.sinkEvents(element, Event.ONCLICK | Event.ONDBLCLICK | Event.MOUSEEVENTS | Event.ONLOAD
-          | Event.ONERROR | Event.ONMOUSEWHEEL | Event.TOUCHEVENTS | Event.GESTUREEVENTS);
+      IEvent.sinkEvents(element, IEvent.ONCLICK | IEvent.ONDBLCLICK | IEvent.MOUSEEVENTS | IEvent.ONLOAD
+          | IEvent.ONERROR | IEvent.ONMOUSEWHEEL | IEvent.TOUCHEVENTS | IEvent.GESTUREEVENTS);
     }
   }
 

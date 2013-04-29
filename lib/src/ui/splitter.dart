@@ -27,13 +27,13 @@ abstract class Splitter extends Widget {
   Splitter(this._splitLayoutPanel, this.target, this.reverse) {
 
     setElement(new dart_html.DivElement());
-    sinkEvents(Event.ONMOUSEDOWN | Event.ONMOUSEUP | Event.ONMOUSEMOVE | Event.ONDBLCLICK);
+    sinkEvents(IEvent.ONMOUSEDOWN | IEvent.ONMOUSEUP | IEvent.ONMOUSEMOVE | IEvent.ONDBLCLICK);
   }
 
 
   void onBrowserEvent(dart_html.Event event) {
     switch (Dom.eventGetType(event)) {
-      case Event.ONMOUSEDOWN:
+      case IEvent.ONMOUSEDOWN:
         _mouseDown = true;
 
         /*
@@ -47,11 +47,11 @@ abstract class Splitter extends Widget {
         dart_html.document.body.append(SplitLayoutPanel.glassElem);
 
         _offset = getEventPosition(event) - getAbsolutePosition();
-        Event.setCapture(getElement());
+        IEvent.setCapture(getElement());
         event.preventDefault();
         break;
 
-      case Event.ONMOUSEUP:
+      case IEvent.ONMOUSEUP:
         _mouseDown = false;
 
         SplitLayoutPanel.glassElem.remove();
@@ -79,11 +79,11 @@ abstract class Splitter extends Widget {
           this._lastClick = now;
         }
 
-        Event.releaseCapture(getElement());
+        IEvent.releaseCapture(getElement());
         event.preventDefault();
         break;
 
-      case Event.ONMOUSEMOVE:
+      case IEvent.ONMOUSEMOVE:
         if (_mouseDown) {
           int size;
           if (reverse) {

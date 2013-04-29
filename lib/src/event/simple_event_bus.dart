@@ -194,7 +194,7 @@ class SimpleEventBus<H> extends EventBus<H> {
    *
    * @param event the event to fire
    */
-  void fireEvent(Event event) {
+  void fireEvent(IEvent event) {
     _doFire(event, null);
   }
 
@@ -210,13 +210,13 @@ class SimpleEventBus<H> extends EventBus<H> {
    *
    * @param event the event to fire
    */
-  void fireEventFromSource(Event event, Object source) {
+  void fireEventFromSource(IEvent event, Object source) {
     assert(source != null);
     _doFire(event, source);
   }
 
 
-  void _doFire(Event event, Object source) {
+  void _doFire(IEvent event, Object source) {
     assert(event != null);
     try {
       _firingDepth++;

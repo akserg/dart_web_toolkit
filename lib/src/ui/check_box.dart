@@ -365,7 +365,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
   // its wrapper
   void sinkEvents(int eventBitsToAdd) {
     if (isOrWasAttached()) {
-      Event.sinkEvents(inputElem, eventBitsToAdd | Event.getEventsSunk(inputElem));
+      IEvent.sinkEvents(inputElem, eventBitsToAdd | IEvent.getEventsSunk(inputElem));
     } else {
       super.sinkEvents(eventBitsToAdd);
     }
@@ -411,7 +411,7 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     String _formValue = formValue;
     String _uid = inputElem.id;
     //String accessKey = inputElem.getAccessKey();
-    int sunkEvents = Event.getEventsSunk(inputElem);
+    int sunkEvents = IEvent.getEventsSunk(inputElem);
 
     // Clear out the old input element
     setEventListener(inputElem, null);
@@ -420,12 +420,12 @@ class CheckBox extends ButtonBase implements HasName, HasValue<bool>,
     inputElem.replaceWith(newInputElem);
 
     // Sink events on the new element
-    Event.sinkEvents(newInputElem, Event.getEventsSunk(inputElem));
-    Event.sinkEvents(inputElem, 0);
+    IEvent.sinkEvents(newInputElem, IEvent.getEventsSunk(inputElem));
+    IEvent.sinkEvents(inputElem, 0);
     inputElem = newInputElem;
 
     // Setup the new element
-    Event.sinkEvents(inputElem, sunkEvents);
+    IEvent.sinkEvents(inputElem, sunkEvents);
     inputElem.id = _uid;
 //    if (!"".equals(accessKey)) {
 //      inputElem.setAccessKey(accessKey);

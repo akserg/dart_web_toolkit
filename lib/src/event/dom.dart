@@ -460,7 +460,7 @@ class Dom {
     // If this element has capture...
     if (elem == _sCaptureElem) {
       // ... and it's losing capture, clear sCaptureElem.
-      if (eventGetType(evt) == Event.ONLOSECAPTURE) {
+      if (eventGetType(evt) == IEvent.ONLOSECAPTURE) {
         _sCaptureElem = null;
       }
     }
@@ -490,7 +490,7 @@ class Dom {
    */
   static bool previewEvent(dart_html.Event evt) {
     // Fire a NativePreviewEvent to NativePreviewHandlers
-    bool ret = Event.fireNativePreviewEvent(evt);
+    bool ret = IEvent.fireNativePreviewEvent(evt);
 
     // If the preview cancels the event, stop it from bubbling and performing
     // its default action. Check for a null evt to allow unit tests to run.

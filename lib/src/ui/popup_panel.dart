@@ -941,28 +941,28 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     }
 
     // Switch on the event type
-    int type = Event.getTypeInt(nativeEvent.type);
+    int type = IEvent.getTypeInt(nativeEvent.type);
     switch (type) {
-//      case Event.ONKEYDOWN:
+//      case IEvent.ONKEYDOWN:
 //        if (!onKeyDownPreview((char) nativeEvent.getKeyCode(),
 //            KeyboardListenerCollection.getKeyboardModifiers(nativeEvent))) {
 //          event.cancel();
 //        }
 //        return;
-//      case Event.ONKEYUP:
+//      case IEvent.ONKEYUP:
 //        if (!onKeyUpPreview((char) nativeEvent.getKeyCode(),
 //            KeyboardListenerCollection.getKeyboardModifiers(nativeEvent))) {
 //          event.cancel();
 //        }
 //        return;
-//      case Event.ONKEYPRESS:
+//      case IEvent.ONKEYPRESS:
 //        if (!onKeyPressPreview((char) nativeEvent.getKeyCode(),
 //            KeyboardListenerCollection.getKeyboardModifiers(nativeEvent))) {
 //          event.cancel();
 //        }
 //        return;
 //
-      case Event.ONMOUSEDOWN:
+      case IEvent.ONMOUSEDOWN:
         // Don't eat events if event capture is enabled, as this can
         // interfere with dialog dragging, for example.
         if (Dom.getCaptureElement() != null) {
@@ -975,10 +975,10 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
           return;
         }
         break;
-      case Event.ONMOUSEUP:
-      case Event.ONMOUSEMOVE:
-      case Event.ONCLICK:
-      case Event.ONDBLCLICK:
+      case IEvent.ONMOUSEUP:
+      case IEvent.ONMOUSEMOVE:
+      case IEvent.ONCLICK:
+      case IEvent.ONDBLCLICK:
         // Don't eat events if event capture is enabled, as this can
         // interfere with dialog dragging, for example.
         if (Dom.getCaptureElement() != null) {
@@ -987,7 +987,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
         }
         break;
 
-      case Event.ONFOCUS:
+      case IEvent.ONFOCUS:
         dart_html.Element target = nativeEvent.target as dart_html.Element;
         if (modal && !eventTargetsPopupOrPartner && (target != null)) {
           blur(target);
@@ -1014,7 +1014,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
 
     // Create handlers if showing.
     if (showing) {
-      nativePreviewHandlerRegistration = Event.addNativePreviewHandler(new NativePreviewHandlerAdapter((NativePreviewEvent event) {
+      nativePreviewHandlerRegistration = IEvent.addNativePreviewHandler(new NativePreviewHandlerAdapter((NativePreviewEvent event) {
         previewNativeEvent(event);
       }));
       historyHandlerRegistration = History.addValueChangeHandler(new HistoryValueChangeHandler(this));

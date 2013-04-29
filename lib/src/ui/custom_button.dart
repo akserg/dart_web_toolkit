@@ -263,7 +263,7 @@ class CustomButton extends ButtonBase {
   void _init() {
     // Use FocusPanel.impl rather than FocusWidget because only FocusPanel.impl
     // works across browsers to create a focusable element.
-    sinkEvents(Event.ONCLICK | Event.MOUSEEVENTS | Event.FOCUSEVENTS | Event.KEYEVENTS);
+    sinkEvents(IEvent.ONCLICK | IEvent.MOUSEEVENTS | IEvent.FOCUSEVENTS | IEvent.KEYEVENTS);
     //
     setUpFace(_createFace(null, "up", _UP));
     clearAndSetStyleName(_STYLENAME_DEFAULT);
@@ -413,7 +413,7 @@ class CustomButton extends ButtonBase {
 
     int type = Dom.eventGetType(event);
     switch (type) {
-      case Event.ONCLICK:
+      case IEvent.ONCLICK:
         // If clicks are currently disallowed, keep it from bubbling or being
         // passed to the superclass.
         if (!_allowClick) {
@@ -421,8 +421,8 @@ class CustomButton extends ButtonBase {
           return;
         }
         break;
-      case Event.ONMOUSEDOWN:
-        if (getMouseEvent(event).button == Event.BUTTON_LEFT) {
+      case IEvent.ONMOUSEDOWN:
+        if (getMouseEvent(event).button == IEvent.BUTTON_LEFT) {
           setFocus(true);
           onClickStart();
           Dom.setCapture(getElement());
@@ -431,22 +431,22 @@ class CustomButton extends ButtonBase {
           event.preventDefault();
         }
         break;
-      case Event.ONMOUSEUP:
+      case IEvent.ONMOUSEUP:
         if (_isCapturing) {
           _isCapturing = false;
           Dom.releaseCapture(getElement());
-          if (isHovering() && getMouseEvent(event).button == Event.BUTTON_LEFT) {
+          if (isHovering() && getMouseEvent(event).button == IEvent.BUTTON_LEFT) {
             onClick();
           }
         }
         break;
-      case Event.ONMOUSEMOVE:
+      case IEvent.ONMOUSEMOVE:
         if (_isCapturing) {
           // Prevent dragging (on other browsers);
           event.preventDefault();
         }
         break;
-      case Event.ONMOUSEOUT:
+      case IEvent.ONMOUSEOUT:
         dart_html.Element to = Dom.eventGetToElement(event);
         if (Dom.isOrHasChild(getElement(), event.target)
             && (to == null || !Dom.isOrHasChild(getElement(), to))) {
@@ -456,7 +456,7 @@ class CustomButton extends ButtonBase {
           setHovering(false);
         }
         break;
-      case Event.ONMOUSEOVER:
+      case IEvent.ONMOUSEOVER:
         if (Dom.isOrHasChild(getElement(), event.target)) {
           setHovering(true);
           if (_isCapturing) {
@@ -464,13 +464,13 @@ class CustomButton extends ButtonBase {
           }
         }
         break;
-      case Event.ONBLUR:
+      case IEvent.ONBLUR:
         if (_isFocusing) {
           _isFocusing = false;
           onClickCancel();
         }
         break;
-      case Event.ONLOSECAPTURE:
+      case IEvent.ONLOSECAPTURE:
         if (_isCapturing) {
           _isCapturing = false;
           onClickCancel();
@@ -480,23 +480,23 @@ class CustomButton extends ButtonBase {
 
     super.onBrowserEvent(event);
 
-    // Synthesize clicks based on keyboard events AFTER the normal key handling.
-    if ((Event.getTypeInt(event.type) & Event.KEYEVENTS) != 0) {
-      int keyCode = getMouseEvent(event).$dom_keyCode;
+    // Synthent is size clicks based on keyboard events AFTER the normal key handling.
+    if ((event is dart_html.KeyboardEvent) && (IEvent.getTypeInt(event.type) & IEvent.KEYEVENTS) != 0) {
+      int keyCode = (event as dart_html.KeyboardEvent).keyCode;
       switch (type) {
-        case Event.ONKEYDOWN:
+        case IEvent.ONKEYDOWN:
           if (keyCode == ' '.codeUnitAt(0)) {
             _isFocusing = true;
             onClickStart();
           }
           break;
-        case Event.ONKEYUP:
+        case IEvent.ONKEYUP:
           if (_isFocusing && keyCode == ' '.codeUnitAt(0)) {
             _isFocusing = false;
             onClick();
           }
           break;
-        case Event.ONKEYPRESS:
+        case IEvent.ONKEYPRESS:
           if (keyCode == '\n'.codeUnitAt(0) || keyCode == '\r'.codeUnitAt(0)) {
             onClickStart();
             onClick();

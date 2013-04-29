@@ -60,10 +60,10 @@ class RadioButton extends CheckBox {
         text = label;
       }
     }
-    sinkEvents(Event.ONCLICK);
-    sinkEvents(Event.ONMOUSEUP);
-    sinkEvents(Event.ONBLUR);
-    sinkEvents(Event.ONKEYDOWN);
+    sinkEvents(IEvent.ONCLICK);
+    sinkEvents(IEvent.ONMOUSEUP);
+    sinkEvents(IEvent.ONBLUR);
+    sinkEvents(IEvent.ONKEYDOWN);
   }
 
   /**
@@ -132,8 +132,8 @@ class RadioButton extends CheckBox {
     // make sure onBrowserEvent is able to record value changes
     // initiated by label events
     if (isOrWasAttached()) {
-      Event.sinkEvents(inputElem, eventBitsToAdd | Event.getEventsSunk(inputElem));
-      Event.sinkEvents(labelElem, eventBitsToAdd | Event.getEventsSunk(labelElem));
+      IEvent.sinkEvents(inputElem, eventBitsToAdd | IEvent.getEventsSunk(inputElem));
+      IEvent.sinkEvents(labelElem, eventBitsToAdd | IEvent.getEventsSunk(labelElem));
     } else {
       super.sinkEvents(eventBitsToAdd);
     }

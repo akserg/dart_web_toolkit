@@ -20,5 +20,5 @@ abstract class HasConstrainedValue<T> extends HasValue<T> {
    * 
    * @param values the acceptible values
    */
-  void setAcceptableValues(Collection<T> values);
+  void setAcceptableValues(Iterable<T> values);
 }

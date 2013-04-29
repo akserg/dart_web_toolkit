@@ -173,7 +173,7 @@ class RootPanel extends AbsolutePanel {
     element = element.parent;
     dart_html.BodyElement body = dart_html.document.body;
     while ((element != null) && (body != element)) {
-      if (Event.getEventListener(element) != null) {
+      if (IEvent.getEventListener(element) != null) {
         return true;
       }
       element = element.parent;

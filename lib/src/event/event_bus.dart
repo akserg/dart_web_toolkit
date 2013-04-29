@@ -22,7 +22,7 @@ abstract class EventBus<H> {
    * Protected to allow EventBus implementations in different packages to
    * dispatch events even though the [dispatch] method is protected.
    */
-  static void dispatchEvent(Event event, handler) {
+  static void dispatchEvent(IEvent event, handler) {
     event.dispatch(handler);
   }
 
@@ -32,7 +32,7 @@ abstract class EventBus<H> {
    * Protected to allow EventBus implementations in different packages to set an
    * event source even though the {@code event.setSource} method is protected.
    */
-  static void setSourceOfEvent(Event event, source) {
+  static void setSourceOfEvent(IEvent event, source) {
     event.setSource(source);
   }
 
@@ -79,7 +79,7 @@ abstract class EventBus<H> {
    *
    * @param event the event to fire
    */
-  void fireEvent(Event event);
+  void fireEvent(IEvent event);
 
   /**
    * Fires the given event to the handlers listening to the event's type.
@@ -93,5 +93,5 @@ abstract class EventBus<H> {
    *
    * @param event the event to fire
    */
-  void fireEventFromSource(Event event, Object source);
+  void fireEventFromSource(IEvent event, Object source);
 }

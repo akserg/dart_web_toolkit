@@ -77,7 +77,7 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
       setElement(element);
       getElement().append(_anchorElem);
     }
-    sinkEvents(Event.ONCLICK);
+    sinkEvents(IEvent.ONCLICK);
     directionalTextHelper = new DirectionalTextHelper(_anchorElem, /* is inline */ true);
     //
     directionalTextHelper.setTextOrHtml(text, asHtml);
@@ -208,7 +208,7 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
 
   void onBrowserEvent(dart_html.Event event) {
     super.onBrowserEvent(event);
-    if (Dom.eventGetType(event) == Event.ONCLICK && _impl.handleAsClick(event)) {
+    if (Dom.eventGetType(event) == IEvent.ONCLICK && _impl.handleAsClick(event)) {
       History.newItem(targetHistoryToken);
       event.preventDefault();
     }

@@ -395,7 +395,7 @@ class _ClickableHeader extends SimplePanel {
     // Avoids layout problems from having blocks in inlines.
     //DOM.setStyleAttribute(elem, "display", "block");
     Dom.setElementProperty(elem, "display", "block");
-    sinkEvents(Event.ONCLICK);
+    sinkEvents(IEvent.ONCLICK);
     //setStyleName(_STYLENAME_HEADER);
     clearAndSetStyleName(DisclosurePanel._STYLENAME_HEADER);
   }
@@ -404,7 +404,7 @@ class _ClickableHeader extends SimplePanel {
     // no need to call super.
     //switch (DOM.eventGetType(event)) {
     switch (Dom.eventGetType(event)) {
-      case Event.ONCLICK:
+      case IEvent.ONCLICK:
         // Prevent link default action.
         //DOM.eventPreventDefault(event);
         event.preventDefault();

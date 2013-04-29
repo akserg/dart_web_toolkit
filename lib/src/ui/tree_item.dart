@@ -317,7 +317,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     // Logical attach.
     // Explicitly set top-level items' parents to null if this is root.
     item.setParentItem(_isRoot ? null : this);
-    _children.insertRange(beforeIndex, 1, item);
+    _children.insert(beforeIndex, item);
 
     // Adopt.
     item.setTree(_tree);

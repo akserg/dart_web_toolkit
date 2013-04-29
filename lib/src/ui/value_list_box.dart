@@ -59,7 +59,7 @@ class ValueListBox<T> extends Composite implements HasConstrainedValue<T>, IsEdi
     return _value;
   }
 
-  void setAcceptableValues(Collection<T> newValues) {
+  void setAcceptableValues(Iterable<T> newValues) {
     _values.clear();
     _valueKeyToIndex.clear();
     ListBox listBox = _getListBox();

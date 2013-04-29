@@ -244,12 +244,12 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
   void onBrowserEvent(dart_html.Event event) {
     // If we're not yet dragging, only trigger mouse events if the event occurs
     // in the caption wrapper
-    switch (Event.getTypeInt(event.type)) {
-      case Event.ONMOUSEDOWN:
-      case Event.ONMOUSEUP:
-      case Event.ONMOUSEMOVE:
-      case Event.ONMOUSEOVER:
-      case Event.ONMOUSEOUT:
+    switch (IEvent.getTypeInt(event.type)) {
+      case IEvent.ONMOUSEDOWN:
+      case IEvent.ONMOUSEUP:
+      case IEvent.ONMOUSEMOVE:
+      case IEvent.ONMOUSEOVER:
+      case IEvent.ONMOUSEOUT:
         if (!dragging && !isCaptionEvent(event)) {
           return;
         }
@@ -414,7 +414,7 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
     // is dragged.
     dart_html.Event nativeEvent = event.getNativeEvent();
 
-    if (!event.isCanceled() && (Event.getTypeInt(nativeEvent.type) == Event.ONMOUSEDOWN)
+    if (!event.isCanceled() && (IEvent.getTypeInt(nativeEvent.type) == IEvent.ONMOUSEDOWN)
         && isCaptionEvent(nativeEvent)) {
       nativeEvent.preventDefault();
     }

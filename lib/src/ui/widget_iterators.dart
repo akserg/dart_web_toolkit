@@ -25,7 +25,7 @@ class WidgetIterators {
 }
 
 
-class _WidgetsIterator implements Iterator {
+class _WidgetsIterator<Widget> implements Iterator<Widget> {
 
   HasWidgets _container;
   List<Widget> _contained;

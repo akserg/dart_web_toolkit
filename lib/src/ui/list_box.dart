@@ -248,8 +248,9 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
       select.children.add(option);
     } else {
       //dart_html.OptionElement before = select.options[index];
-      select.children.insertRange(index, 1);
-      select.children[index] = option;
+//      select.children.insertRange(index, 1);
+//      select.children[index] = option;
+      select.children.insert(index, option);
     }
   }
 

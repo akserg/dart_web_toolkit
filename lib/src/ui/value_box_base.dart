@@ -239,7 +239,7 @@ class ValueBoxBase<T> extends FocusWidget implements
 
   void onBrowserEvent(dart_html.Event event) {
     int type = Dom.eventGetType(event);
-    if ((type & Event.KEYEVENTS) != 0) {
+    if ((type & IEvent.KEYEVENTS) != 0) {
       // Fire the keyboard event. Hang on to the current event object so that
       // cancelKey() and setKey() can be implemented.
       _currentEvent = event;

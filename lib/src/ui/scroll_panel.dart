@@ -48,7 +48,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
      * Sink the event on the scrollable element, which may not be the root
      * element.
      */
-    Event.sinkEvents(getScrollableElement(), Event.ONSCROLL);
+    IEvent.sinkEvents(getScrollableElement(), IEvent.ONSCROLL);
     return addHandler(handler, ScrollEvent.TYPE);
   }
 
@@ -248,7 +248,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
      * root element, then we set the event listener twice (once in
      * super.onAttach() and once here), which is fine.
      */
-    Event.setEventListener(getScrollableElement(), this);
+    IEvent.setEventListener(getScrollableElement(), this);
   }
 
 
@@ -257,7 +257,7 @@ class ScrollPanel extends SimplePanel implements RequiresResize, ProvidesResize,
      * Detach the event listener in onDetach instead of onUnload so users cannot
      * accidentally override it.
      */
-    Event.setEventListener(getScrollableElement(), null);
+    IEvent.setEventListener(getScrollableElement(), null);
 
     super.onDetach();
   }

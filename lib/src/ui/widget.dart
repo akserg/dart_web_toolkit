@@ -51,10 +51,10 @@ class Widget extends UiObject
    */
   void onBrowserEvent(dart_html.Event event) {
     switch (Dom.eventGetType(event)) {
-      case Event.ONMOUSEOVER:
+      case IEvent.ONMOUSEOVER:
         // Only fire the mouse over event if it's coming from outside this
         // widget.
-      case Event.ONMOUSEOUT:
+      case IEvent.ONMOUSEOUT:
         // Only fire the mouse over event if it's coming from outside this widget.
         // Only fire the mouse out event if it's leaving this widget.
         dart_html.Element related = (event as dart_html.MouseEvent).relatedTarget as dart_html.Element;
@@ -197,7 +197,7 @@ class Widget extends UiObject
   HandlerRegistration addDomHandler(EventHandler handler, DomEventType type) {
     assert (handler != null); // : "handler must not be null";
     assert (type != null); // : "type must not be null";
-    int typeInt = Event.getTypeInt(type.eventName);
+    int typeInt = IEvent.getTypeInt(type.eventName);
     if (typeInt == -1) {
       sinkBitlessEvent(type.eventName);
     } else {

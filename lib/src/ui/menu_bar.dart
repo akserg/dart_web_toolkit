@@ -300,14 +300,16 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
     }
 
     // Add to the list of items
-    _allItems.insertRange(beforeIndex, 1, item);
+//    _allItems.insertRange(beforeIndex, 1, item);
+    _allItems.insert(beforeIndex, item);
     int itemsIndex = 0;
     for (int i = 0; i < beforeIndex; i++) {
       if (_allItems[i] is MenuItem) {
         itemsIndex++;
       }
     }
-    _items.insertRange(itemsIndex, 1, item);
+//    _items.insertRange(itemsIndex, 1, item);
+    _items.insert(itemsIndex, item);
 
     // Setup the menu item
     _addItemElement(beforeIndex, item.getElement());
@@ -342,7 +344,8 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
     }
     _addItemElement(beforeIndex, separator.getElement());
     separator.setParentMenu(this);
-    _allItems.insertRange(beforeIndex, 1, separator);
+//    _allItems.insertRange(beforeIndex, 1, separator);
+    _allItems.insert(beforeIndex, separator);
     return separator;
   }
 
@@ -412,7 +415,7 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
   void onBrowserEvent(dart_html.Event event) {
     MenuItem item = _findItem(event.target);
     switch (Dom.eventGetType(event)) {
-      case Event.ONCLICK:
+      case IEvent.ONCLICK:
         FocusPanel.impl.focus(getElement());
         // Fire an item's command when the user clicks on it.
         if (item != null) {
@@ -420,23 +423,23 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
         }
         break;
 
-      case Event.ONMOUSEOVER:
+      case IEvent.ONMOUSEOVER:
         if (item != null) {
           itemOver(item, true);
         }
         break;
 
-      case Event.ONMOUSEOUT:
+      case IEvent.ONMOUSEOUT:
         if (item != null) {
           itemOver(null, true);
         }
         break;
 
-      case Event.ONFOCUS:
+      case IEvent.ONFOCUS:
         _selectFirstItemIfNoneSelected();
         break;
 
-      case Event.ONKEYDOWN:
+      case IEvent.ONKEYDOWN:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         int keyCode = kEvent.keyCode;
         switch (keyCode) {
@@ -887,8 +890,8 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
 
     //Roles.getMenubarRole().set(getElement());
 
-    sinkEvents(Event.ONCLICK | Event.ONMOUSEOVER | Event.ONMOUSEOUT
-        | Event.ONFOCUS | Event.ONKEYDOWN);
+    sinkEvents(IEvent.ONCLICK | IEvent.ONMOUSEOVER | IEvent.ONMOUSEOUT
+        | IEvent.ONFOCUS | IEvent.ONKEYDOWN);
 
     clearAndSetStyleName(_STYLENAME_DEFAULT);
     if (_vertical) {
@@ -1205,8 +1208,8 @@ class _MenuDecoratedPopupPanel extends DecoratedPopupPanel {
     // auto-hiding when the parent menu is clicked.
     if (!event.isCanceled()) {
 
-      switch (Event.getTypeInt(event.getNativeEvent().type)) {
-        case Event.ONMOUSEDOWN:
+      switch (IEvent.getTypeInt(event.getNativeEvent().type)) {
+        case IEvent.ONMOUSEDOWN:
           // If the event target is part of the parent menu, suppress the
           // event altogether.
           dart_html.EventTarget target = event.getNativeEvent().target;

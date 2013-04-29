@@ -49,7 +49,7 @@ class ResizeLayoutPanelImplStandard extends ResizeLayoutPanelImpl implements Eve
     elem.append(_expandable);
     _expandableInner = new dart_html.DivElement();
     _expandable.append(_expandableInner);
-    Dom.sinkEvents(_expandable, Event.ONSCROLL);
+    Dom.sinkEvents(_expandable, IEvent.ONSCROLL);
 
     /*
      * Detect collapse. In order to detect a decrease in the size of the
@@ -71,7 +71,7 @@ class ResizeLayoutPanelImplStandard extends ResizeLayoutPanelImpl implements Eve
     _collapsibleInner.style.width = "200" + Unit.PCT.value;
     _collapsibleInner.style.height = "200" + Unit.PCT.value;
     _collapsible.append(_collapsibleInner);
-    Dom.sinkEvents(_collapsible, Event.ONSCROLL);
+    Dom.sinkEvents(_collapsible, IEvent.ONSCROLL);
   }
 
   
@@ -88,7 +88,7 @@ class ResizeLayoutPanelImplStandard extends ResizeLayoutPanelImpl implements Eve
   }
 
   void onBrowserEvent(dart_html.Event event) {
-    if (!_resettingScrollables && Event.ONSCROLL == Dom.eventGetType(event)) {
+    if (!_resettingScrollables && IEvent.ONSCROLL == Dom.eventGetType(event)) {
       dart_html.EventTarget eventTarget = event.target;
       if (eventTarget is! dart_html.Element) {
         return;

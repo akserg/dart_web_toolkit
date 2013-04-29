@@ -406,7 +406,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     int eventType = Dom.eventGetType(event);
 
     switch (eventType) {
-      case Event.ONKEYDOWN:
+      case IEvent.ONKEYDOWN:
         // If nothing's selected, select the first item.
         if (_curSelection == null) {
           if (_root.getChildCount() > 0) {
@@ -417,8 +417,8 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
         }
         break;
         // Intentional fallthrough.
-      case Event.ONKEYPRESS:
-      case Event.ONKEYUP:
+      case IEvent.ONKEYPRESS:
+      case IEvent.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         // Issue 1890: Do not block history navigation via alt+left/right
 
@@ -430,7 +430,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     }
 
     switch (eventType) {
-      case Event.ONCLICK:
+      case IEvent.ONCLICK:
         dart_html.Element e = event.target as dart_html.Element;
         if (shouldTreeDelegateFocusToElement(e)) {
           // The click event should have given focus to this element already.
@@ -441,29 +441,29 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
         }
         break;
 
-      case Event.ONMOUSEDOWN:
+      case IEvent.ONMOUSEDOWN:
         // Currently, the way we're using image bundles causes extraneous events
         // to be sunk on individual items' open/close images. This leads to an
         // extra event reaching the Tree, which we will ignore here.
         // Also, ignore middle and right clicks here.
         dart_html.MouseEvent mEvent = event as dart_html.MouseEvent;
-        if (mEvent.currentTarget == getElement() && mEvent.button == Event.BUTTON_LEFT) {
+        if (mEvent.currentTarget == getElement() && mEvent.button == IEvent.BUTTON_LEFT) {
           _elementClicked(event.target as dart_html.Element);
         }
         break;
-      case Event.ONKEYDOWN:
+      case IEvent.ONKEYDOWN:
         _keyboardNavigation(event);
         _lastWasKeyDown = true;
         break;
 
-      case Event.ONKEYPRESS:
+      case IEvent.ONKEYPRESS:
         if (!_lastWasKeyDown) {
           _keyboardNavigation(event);
         }
         _lastWasKeyDown = false;
         break;
 
-      case Event.ONKEYUP:
+      case IEvent.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         if (kEvent.keyCode == KeyCodes.KEY_TAB) {
           List<dart_html.Element> chain = new List<dart_html.Element>();
@@ -478,8 +478,8 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     }
 
     switch (eventType) {
-      case Event.ONKEYDOWN:
-      case Event.ONKEYUP:
+      case IEvent.ONKEYDOWN:
+      case IEvent.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         if (isArrowKey(kEvent.keyCode)) {
           event.cancelBubble = true;
@@ -831,8 +831,8 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
     Dom.setIntStyleAttribute(_focusable, "zIndex", -1);
     getElement().append(_focusable);
 
-    sinkEvents(Event.ONMOUSEDOWN | Event.ONCLICK | Event.KEYEVENTS);
-    Dom.sinkEvents(_focusable, Event.FOCUSEVENTS);
+    sinkEvents(IEvent.ONMOUSEDOWN | IEvent.ONCLICK | IEvent.KEYEVENTS);
+    Dom.sinkEvents(_focusable, IEvent.FOCUSEVENTS);
 
     // The 'root' item is invisible and serves only as a container
     // for all top-level items.

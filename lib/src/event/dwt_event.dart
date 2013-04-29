@@ -14,7 +14,7 @@ part of dart_web_toolkit_event;
  *
  * @param <H> handler type
  */
-abstract class DwtEvent<H> extends Event<H> {
+abstract class DwtEvent<H> extends IEvent<H> {
 
   bool _dead = false;
 

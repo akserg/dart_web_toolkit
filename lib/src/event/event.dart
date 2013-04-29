@@ -8,14 +8,14 @@ part of dart_web_toolkit_event;
  *
  * @param <H> interface implemented by handlers of this kind of event
  */
-abstract class Event<H> {
+abstract class IEvent<H> {
 
   dynamic _source;
 
   /**
    * Constructor.
    */
-  Event();
+  IEvent();
 
   /**
    * Returns the [EventType] used to register this event, allowing an

@@ -26,12 +26,12 @@ class ResettableEventBus extends EventBus {
   }
 
   
-  void fireEvent(Event event) {
+  void fireEvent(IEvent event) {
     _wrapped.fireEvent(event);
   }
 
   
-  void fireEventFromSource(Event event, Object source) {
+  void fireEventFromSource(IEvent event, Object source) {
     _wrapped.fireEventFromSource(event, source);
   }
 

@@ -398,8 +398,9 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
 
     _LayoutData data = new _LayoutData(child, header, headerSize);
     if (beforeIndex < _layoutData.length) {
-      _layoutData.insertRange(beforeIndex, 1);
-      _layoutData[beforeIndex] = data;
+//      _layoutData.insertRange(beforeIndex, 1);
+//      _layoutData[beforeIndex] = data;
+      _layoutData.insert(beforeIndex, data);
     } else {
       _layoutData.add(data);
     }

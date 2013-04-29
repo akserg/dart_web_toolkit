@@ -49,7 +49,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     Dom.setElementPropertyInt(table, "cellSpacing", 0);
     Dom.setElementPropertyInt(table, "cellPadding", 0);
 
-    Dom.sinkEvents(table, Event.ONCLICK);
+    Dom.sinkEvents(table, IEvent.ONCLICK);
     clearAndSetStyleName(_DEFAULT_STYLENAME);
   }
 
@@ -114,11 +114,13 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
 
     if (effectiveIndex + 1 < _body.children.length) {
       // this ordering puts the _body below the header
-      _body.children.insertRange(effectiveIndex, 2);
+//      _body.children.insertRange(effectiveIndex, 2);
       //Dom.insertChild(_body, trb, effectiveIndex);
       //Dom.insertChild(_body, trh, effectiveIndex);
-      _body.children[effectiveIndex] = trh;
-      _body.children[effectiveIndex + 1] = trb;
+//      _body.children[effectiveIndex] = trh;
+      _body.children.insert(effectiveIndex, trh);
+//      _body.children[effectiveIndex + 1] = trb;
+      _body.children.insert(effectiveIndex + 1, trb);
     } else {
       _body.children.add(trh);
       _body.children.add(trb);
@@ -155,7 +157,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   }
 
   void onBrowserEvent(dart_html.Event event) {
-    if (Dom.eventGetType(event) == Event.ONCLICK) {
+    if (Dom.eventGetType(event) == IEvent.ONCLICK) {
       dart_html.Element target = (event as dart_html.MouseEvent).target;
       int index = _findDividerIndex(target);
       if (index != -1) {

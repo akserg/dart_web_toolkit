@@ -37,7 +37,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
      */
     TabBar() {
       initWidget(panel);
-      sinkEvents(Event.ONCLICK);
+      sinkEvents(IEvent.ONCLICK);
       clearAndSetStyleName("dwt-TabBar");
 
       // Add a11y role "tablist"
@@ -554,7 +554,7 @@ class _ClickDelegatePanel extends Composite implements Tab {
       initWidget(wrapperWidget);
     }
 
-   sinkEvents(Event.ONCLICK | Event.ONKEYDOWN);
+   sinkEvents(IEvent.ONCLICK | IEvent.ONKEYDOWN);
   }
 
 
@@ -614,12 +614,12 @@ class _ClickDelegatePanel extends Composite implements Tab {
 
     // No need for call to super.
     switch (Dom.eventGetType(event)) {
-      case Event.ONCLICK:
+      case IEvent.ONCLICK:
         _tabBar.selectTabByTabWidget(this);
 //        _tabBar.onClick(this);
         break;
 
-      case Event.ONKEYDOWN:
+      case IEvent.ONKEYDOWN:
         dart_html.KeyboardEvent keyEvent = event as dart_html.KeyboardEvent;
         if (keyEvent.charCode == KeyCodes.KEY_ENTER) {
           _tabBar.selectTabByTabWidget(this);

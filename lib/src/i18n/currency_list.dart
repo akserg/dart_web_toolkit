@@ -7,7 +7,7 @@ part of dart_web_toolkit_i18n;
  * Generated class containing all the CurrencyImpl instances.  This is just
  * the fallback in case the I18N module is not included.
  */
-class CurrencyList extends Iterable<CurrencyData> {
+class CurrencyList extends dart_collection.IterableBase<CurrencyData> {
 
   /**
    * Return the singleton instance of CurrencyList.

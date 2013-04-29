@@ -16,7 +16,7 @@ part of dart_web_toolkit_ui;
  * supports removal of widgets.
  * </p>
  */
-class WidgetCollection extends Iterable<Widget> {
+class WidgetCollection extends dart_collection.IterableBase<Widget> {
 
   static int _INITIAL_SIZE = 4;
 

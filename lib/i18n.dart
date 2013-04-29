@@ -8,6 +8,7 @@ library dart_web_toolkit_i18n;
 
 import 'dart:html' as dart_html;
 import 'dart:math' as dart_math;
+import 'dart:collection' as dart_collection;
 //import 'dart:fixnum' as dart_fixnum;
 
 import 'util.dart';

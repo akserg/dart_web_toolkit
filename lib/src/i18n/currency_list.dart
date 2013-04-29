@@ -7,7 +7,7 @@ part of dart_web_toolkit_i18n;
  * Generated class containing all the CurrencyImpl instances.  This is just
  * the fallback in case the I18N module is not included.
  */
-class CurrencyList extends dart_collection.IterableBase<CurrencyData> {
+class CurrencyList extends Iterable<CurrencyData> {
 
   /**
    * Return the singleton instance of CurrencyList.
@@ -274,6 +274,32 @@ class CurrencyList extends dart_collection.IterableBase<CurrencyData> {
       }
 //    }
   }
+  
+//**********************
+  int get length { throw new UnsupportedError("");}
+  bool contains(CurrencyData element) { throw new UnsupportedError("");}
+  bool get isEmpty { throw new UnsupportedError("");}
+  CurrencyData get first { throw new UnsupportedError("");}
+  CurrencyData get last { throw new UnsupportedError("");}
+  CurrencyData get single { throw new UnsupportedError("");}
+  Iterable map(f(CurrencyData element)) { throw new UnsupportedError("");}
+  Iterable<CurrencyData> where(bool f(CurrencyData element)) { throw new UnsupportedError("");}
+  Iterable expand(Iterable f(CurrencyData element)) { throw new UnsupportedError("");}
+  void forEach(void f(CurrencyData element)) { throw new UnsupportedError("");}
+  CurrencyData reduce(CurrencyData combine(CurrencyData value, CurrencyData element)) { throw new UnsupportedError("");}
+  dynamic fold(var initialValue, dynamic combine(var previousValue, CurrencyData element)) { throw new UnsupportedError("");}
+  bool every(bool f(CurrencyData element)) { throw new UnsupportedError("");}
+  bool any(bool f(CurrencyData element)) { throw new UnsupportedError("");}
+  List<CurrencyData> toList({ bool growable: true }) { throw new UnsupportedError("");}
+  Set<CurrencyData> toSet() { throw new UnsupportedError("");}
+  Iterable<CurrencyData> take(int n) { throw new UnsupportedError("");}
+  Iterable<CurrencyData> takeWhile(bool test(CurrencyData value)) { throw new UnsupportedError("");}
+  Iterable<CurrencyData> skip(int n) { throw new UnsupportedError("");}
+  Iterable<CurrencyData> skipWhile(bool test(CurrencyData value)) { throw new UnsupportedError("");}
+  CurrencyData firstWhere(bool test(CurrencyData value), { CurrencyData orElse() }) { throw new UnsupportedError("");}
+  CurrencyData lastWhere(bool test(CurrencyData value), {CurrencyData orElse()}) { throw new UnsupportedError("");}
+  CurrencyData singleWhere(bool test(CurrencyData value)) { throw new UnsupportedError("");}
+  CurrencyData elementAt(int index) { throw new UnsupportedError("");}
 }
 
 /**

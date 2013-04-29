@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 * Migrate project code to follow Dart SDK version 0.5.0.1_r21823.
 * Fixed bugs after migration.
 * Fiexed currency_list.dart and widget_collection.dart because Collection interface removed.
+* Fixed physical attache inside insert method of ComplexPanel 
 
 **April 5, 2013
 

@@ -8,7 +8,6 @@ library dart_web_toolkit_ui;
 
 import 'dart:html' as dart_html;
 import 'dart:math' as dart_math;
-import 'dart:collection' as dart_collection;
 
 import 'event.dart';
 import 'i18n.dart';

@@ -44,7 +44,11 @@ class DomImplStandard extends DomImpl {
       child = child.nextNode; //nextSibling;
     }
 
-    parent.insertBefore(toAdd, before);
+//    if (before == null) {
+//      parent.append(toAdd);
+//    } else {
+      parent.insertBefore(toAdd, before);
+//    }
   }
 
   dart_html.Element getChild(dart_html.Element elem, int index) {

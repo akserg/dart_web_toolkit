@@ -16,7 +16,7 @@ part of dart_web_toolkit_ui;
  * supports removal of widgets.
  * </p>
  */
-class WidgetCollection extends dart_collection.IterableBase<Widget> {
+class WidgetCollection extends Iterable<Widget> {
 
   static int _INITIAL_SIZE = 4;
 
@@ -170,6 +170,33 @@ class WidgetCollection extends dart_collection.IterableBase<Widget> {
   int size() {
     return _size;
   }
+  
+  
+  //**********************
+  int get length { throw new UnsupportedError("");}
+  bool get isEmpty { throw new UnsupportedError("");}
+  Widget get first { throw new UnsupportedError("");}
+  Widget get last { throw new UnsupportedError("");}
+  Widget get single { throw new UnsupportedError("");}
+  Iterable map(f(Widget element)) { throw new UnsupportedError("");}
+  Iterable<Widget> where(bool f(Widget element)) { throw new UnsupportedError("");}
+  Iterable expand(Iterable f(Widget element)) { throw new UnsupportedError("");}
+  void forEach(void f(Widget element)) { throw new UnsupportedError("");}
+  Widget reduce(Widget combine(Widget value, Widget element)) { throw new UnsupportedError("");}
+  dynamic fold(var initialValue, dynamic combine(var previousValue, Widget element)) { throw new UnsupportedError("");}
+  bool every(bool f(Widget element)) { throw new UnsupportedError("");}
+  bool any(bool f(Widget element)) { throw new UnsupportedError("");}
+  List<Widget> toList({ bool growable: true }) { throw new UnsupportedError("");}
+  Set<Widget> toSet() { throw new UnsupportedError("");}
+  Iterable<Widget> take(int n) { throw new UnsupportedError("");}
+  Iterable<Widget> takeWhile(bool test(Widget value)) { throw new UnsupportedError("");}
+  Iterable<Widget> skip(int n) { throw new UnsupportedError("");}
+  Iterable<Widget> skipWhile(bool test(Widget value)) { throw new UnsupportedError("");}
+  Widget firstWhere(bool test(Widget value), { Widget orElse() }) { throw new UnsupportedError("");}
+  Widget lastWhere(bool test(Widget value), {Widget orElse()}) { throw new UnsupportedError("");}
+  Widget singleWhere(bool test(Widget value)) { throw new UnsupportedError("");}
+  Widget elementAt(int index) { throw new UnsupportedError("");}
+  
 }
 
 class WidgetIterator implements RemoveIterator<Widget> {

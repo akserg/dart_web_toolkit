@@ -1,5 +1,11 @@
 Dart Web Toolkit Changes
 ========================
+
+**April 30, 2013
+
+* dart2js: Fixed NPE inside insert method of ComplexPanel.
+* dart2js: Implemented method forEach of WidgetCollection
+
 **April 29, 2013
 
 * Migrate project code to follow Dart SDK version 0.5.0.1_r21823.

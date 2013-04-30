@@ -173,15 +173,19 @@ class WidgetCollection extends Iterable<Widget> {
   
   
   //**********************
-  int get length { throw new UnsupportedError("");}
-  bool get isEmpty { throw new UnsupportedError("");}
+  int get length { return _size;}
+  bool get isEmpty { return _size == 0;}
   Widget get first { throw new UnsupportedError("");}
   Widget get last { throw new UnsupportedError("");}
   Widget get single { throw new UnsupportedError("");}
   Iterable map(f(Widget element)) { throw new UnsupportedError("");}
   Iterable<Widget> where(bool f(Widget element)) { throw new UnsupportedError("");}
   Iterable expand(Iterable f(Widget element)) { throw new UnsupportedError("");}
-  void forEach(void f(Widget element)) { throw new UnsupportedError("");}
+  void forEach(void f(Widget element)) { 
+    for (int i = 0; i < _size; ++i) {
+      f(_array[i]);
+    }
+  }
   Widget reduce(Widget combine(Widget value, Widget element)) { throw new UnsupportedError("");}
   dynamic fold(var initialValue, dynamic combine(var previousValue, Widget element)) { throw new UnsupportedError("");}
   bool every(bool f(Widget element)) { throw new UnsupportedError("");}

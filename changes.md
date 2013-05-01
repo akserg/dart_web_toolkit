@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+**May 1, 2013
+
+* Path to resources has been changed in the core.
+
 **April 30, 2013
 
 * dart2js: Fixed NPE inside insert method of ComplexPanel.

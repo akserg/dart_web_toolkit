@@ -13,18 +13,23 @@ class ElementMapperImpl<T> {
   static const String UI_OBJECT_ID = "uiObjectID";
 
   static void clearIndex(dart_html.Element elem) {
-    elem.dataset[UI_OBJECT_ID] = null;
+    assert(elem != null);
+    elem.dataset.remove(UI_OBJECT_ID);
   }
 
   static int getIndex(dart_html.Element elem) {
-    if (elem.dataset[UI_OBJECT_ID] == null) {
-      return -1;
-    } else {
+    assert(elem != null);
+    if (elem.dataset.containsKey(UI_OBJECT_ID)) { 
       return int.parse(elem.dataset[UI_OBJECT_ID]);
+    } else {
+      return -1;
     }
   }
 
   static void setIndex(dart_html.Element elem, int index) {
+    assert(elem != null);
+    assert(index != null);
+    assert(index >= 0);
     elem.dataset[UI_OBJECT_ID] = index.toString();
   }
 

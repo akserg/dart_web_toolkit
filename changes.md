@@ -4,6 +4,8 @@ Dart Web Toolkit Changes
 **May 3, 2013
 
 * Use Map nature of Elements dataset to manage attributes in ElementMapperImpl.
+* Migrate project code to follow Dart SDK version 0.5.3.0_r22223.
+* Fixed bugs after migration.
 
 **May 1, 2013
 

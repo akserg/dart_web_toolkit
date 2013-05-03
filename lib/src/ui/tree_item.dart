@@ -63,7 +63,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
   /**
    * Indicates that this item is a root item in a tree.
    */
-  bool _isRoot = false;
+  bool isRoot = false;
 
   bool _open = false;
   TreeItem _parent;
@@ -75,7 +75,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
 
   Widget _widget;
 
-  TreeItem({this._isRoot : false, SafeHtml html, Widget widget}) {
+  TreeItem({this.isRoot : false, SafeHtml html, Widget widget}) {
     if (_impl == null) {
       _impl = new TreeItemImpl();
     }
@@ -86,7 +86,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     Dom.setElementAttribute(_contentElem, "id", Dom.createUniqueId());
 
     // The root item always has children.
-    if (_isRoot) {
+    if (isRoot) {
       initChildren();
     }
 
@@ -298,7 +298,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
 
     // Set the margin.
     // Use no margin on top-most items.
-    double margin = _isRoot ? 0.0 : TreeItem._CHILD_MARGIN;
+    double margin = isRoot ? 0.0 : TreeItem._CHILD_MARGIN;
     if (LocaleInfo.getCurrentLocale().isRTL()) {
       item.getElement().style.marginRight = margin.toString() + Unit.PX.value;
     } else {
@@ -306,7 +306,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     }
 
     // Physical attach.
-    dart_html.Element childContainer = _isRoot ? _tree.getElement() : _childSpanElem;
+    dart_html.Element childContainer = isRoot ? _tree.getElement() : _childSpanElem;
     if (beforeIndex == childCount) {
       childContainer.append(item.getElement());
     } else {
@@ -316,13 +316,13 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
 
     // Logical attach.
     // Explicitly set top-level items' parents to null if this is root.
-    item.setParentItem(_isRoot ? null : this);
+    item.setParentItem(isRoot ? null : this);
     _children.insert(beforeIndex, item);
 
     // Adopt.
     item.setTree(_tree);
 
-    if (!_isRoot && _children.length == 1) {
+    if (!isRoot && _children.length == 1) {
       updateState(false, false);
     }
   }
@@ -398,7 +398,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     item.setTree(null);
 
     // Physical detach.
-    if (_isRoot) {
+    if (isRoot) {
       //oldTree.getElement().removeChild(item.getElement());
       item.getElement().remove();
     } else {
@@ -410,7 +410,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     item.setParentItem(null);
     _children.remove(item);
 
-    if (!_isRoot && _children.length == 0) {
+    if (!isRoot && _children.length == 0) {
       updateState(false, false);
     }
   }

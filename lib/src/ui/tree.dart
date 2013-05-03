@@ -836,7 +836,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
 
     // The 'root' item is invisible and serves only as a container
     // for all top-level items.
-    _root = new TreeItem(_isRoot:true);
+    _root = new TreeItem(isRoot:true);
     _root.setTree(this);
     clearAndSetStyleName("dwt-Tree");
 

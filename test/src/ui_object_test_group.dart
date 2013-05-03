@@ -615,7 +615,7 @@ class UiObjectTestGroup extends TestGroup {
   }
   
   /**
-   * Check method [UiObject.getTitle].
+   * Check method [UiObject.title].
    * 
    * Gets the title associated with this object. The title is the 'tool-tip'
    * displayed to users when they hover over the object.
@@ -631,7 +631,7 @@ class UiObjectTestGroup extends TestGroup {
   }
   
   /**
-   * Check method [UiObject.setTitle].
+   * Check method [UiObject.title].
    * 
    * Sets the element's title.
    */
@@ -646,7 +646,7 @@ class UiObjectTestGroup extends TestGroup {
   }
   
   /**
-   * Check method [UiObject.getVisible].
+   * Check method [UiObject.visible].
    * 
    * Determines whether or not this object is visible.
    */

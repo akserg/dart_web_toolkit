@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Minor bugs fixing.
 * Added script to generate API Documentation.
+* Changed library minor version number.
 
 **May 3, 2013
 

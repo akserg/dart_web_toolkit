@@ -4,6 +4,7 @@ Dart Web Toolkit Changes
 **May 6, 2013
 
 * Minor bugs fixing.
+* Added script to generate API Documentation.
 
 **May 3, 2013
 

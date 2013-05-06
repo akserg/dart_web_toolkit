@@ -38,5 +38,5 @@ function doHtml {
 	done
 }
 
-doHtml ../tools/html.sed
+doHtml ../tool/html.sed
 cd ..

@@ -9,7 +9,7 @@ ver=$(grep version: $yaml)
 ver=${ver#version: }
 
 outdir=docs
-dartdoc --out $outdir --exclude-lib unittest lib/*.dart
+dartdoc --out $outdir --exclude-lib unittest,metadata lib/*.dart
 if [ ! -f $outdir/index.html ] ; then
 	echo $outdir/index.html not found. Failed?
 	exit 1

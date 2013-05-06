@@ -1,7 +1,6 @@
 s|<title>Dart Documentation / Dart Documentation</title>|<title>API Reference / Dart Web Toolkit</title>|
 s|Dart Documentation</title>|API Reference / Dart Web Toolkit</title>|
 s|<h2>Dart Documentation</h2>|<h2>Dart Web Toolkit API Reference</h2>|
-s|<a href=".*index.html">|<a href="http://www.dartwebtoolkit.com">|
 s|Dart Documentation</a>|API Reference {{{version}}}</a>|
 s|</head>|<script type="text/javascript">\
   var _gaq = _gaq \|\| [];\

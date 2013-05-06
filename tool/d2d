@@ -15,7 +15,7 @@ if [ ! -f $outdir/index.html ] ; then
 	exit 1
 fi
 
-cp tools/dwt-small-logo.png $outdir/dart-logo-small.png
+cp tool/dwt-small-logo.png $outdir/dart-logo-small.png
 cd $outdir
 echo Process HTML files at $(pwd)
 function doHtml {

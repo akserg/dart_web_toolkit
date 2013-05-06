@@ -1,7 +1,7 @@
 s|<title>Dart Documentation / Dart Documentation</title>|<title>API Reference / Dart Web Toolkit</title>|
 s|Dart Documentation</title>|API Reference / Dart Web Toolkit</title>|
 s|<h2>Dart Documentation</h2>|<h2>Dart Web Toolkit API Reference</h2>|
-s|<a href=".*index.html"><div class="logo"></div></a>|<a href="http://www.dartwebtoolkit.com"><img src="https://github.com/akserg/dart_web_toolkit/tree/master/tools/dwt.png" align="center" border="0"/></a>|
+s|<a href=".*index.html">|<a href="http://www.dartwebtoolkit.com">|
 s|Dart Documentation</a>|API Reference {{{version}}}</a>|
 s|</head>|<script type="text/javascript">\
   var _gaq = _gaq \|\| [];\

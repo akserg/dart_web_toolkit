@@ -56,7 +56,7 @@ class _WidgetsIterator<Widget> implements Iterator<Widget> {
   }
 
   bool _hasNext() {
-    return (index < _contained.length);
+    return (index < (_contained.length-1));
   }
 
   Widget _next() {

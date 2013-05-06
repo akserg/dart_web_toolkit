@@ -1,0 +1,41 @@
+#!/bin/bash
+
+yaml=pubspec.yaml
+if [ ! -f $yaml ] ; then
+	echo $yaml not found
+	exit 1
+fi
+ver=$(grep version: $yaml)
+ver=${ver#version: }
+
+outdir=docs
+dartdoc --out $outdir --exclude-lib unittest lib/*.dart
+if [ ! -f $outdir/index.html ] ; then
+	echo $outdir/index.html not found. Failed?
+	exit 1
+fi
+
+cd $outdir
+echo Process HTML files at $(pwd)
+function doHtml {
+	sedfl=$1
+	if [ ! -f $sedfl ] ; then
+		echo $sedfl not found
+		exit
+	fi
+	for f in *; do
+		if [ -d $f ] ; then
+			(
+			echo Process $f
+			cd $f
+			doHtml ../$sedfl
+			)
+		elif [ ${f%.html} != $f ] ; then
+			sed -f $sedfl -e "s/{{{version}}}/$ver/" $f > dd.tmp
+			mv -f dd.tmp $f
+		fi
+	done
+}
+
+doHtml ../tools/html.sed
+cd ..

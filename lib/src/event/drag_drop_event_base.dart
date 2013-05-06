@@ -72,7 +72,7 @@ abstract class DragDropEventBase extends MouseEvent {
  */
 class DragSupportDetector {
 
-  bool _isSupported = detectDragSupport();
+  bool _isSupported;
 
   /**
    * Using a run-time check, return true if drag events are supported.
@@ -81,6 +81,10 @@ class DragSupportDetector {
    */
   bool get isSupported => _isSupported;
 
+  DragSupportDetector() {
+    _isSupported = detectDragSupport();
+  }
+  
   bool detectDragSupport() {
     dart_html.DivElement elem = new dart_html.DivElement();
     try {

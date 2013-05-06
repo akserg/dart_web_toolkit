@@ -82,12 +82,16 @@ abstract class TouchEvent extends DomEvent {
  */
 class TouchSupportDetector {
 
-  bool _isSupported = detectTouchSupport();
+  bool _isSupported;
 
   bool isSupported() {
     return _isSupported;
   }
 
+  TouchSupportDetector() {
+    _isSupported = detectTouchSupport();
+  }
+  
   bool detectTouchSupport() {
     dart_html.DivElement elem = new dart_html.DivElement();
     try {

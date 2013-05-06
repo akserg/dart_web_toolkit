@@ -20,7 +20,7 @@ class DateRecord {
 
   static final int _JS_START_YEAR = 1900;
 
-  const int MIN_VALUE = -2147483648;
+  static const int MIN_VALUE = -2147483648;
 
   int era = -1;
   int year = MIN_VALUE;

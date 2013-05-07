@@ -131,7 +131,7 @@ class FileUpload extends Widget implements HasName, HasChangeHandlers, HasEnable
 class FileUploadImpl {
 
   /**
-   * Create instance of [DomHelper] depends on broswer.
+   * Create instance of DomHelper depends on broswer.
    */
   factory FileUploadImpl.browserDependent() {
     return new FileUploadImpl._internal();

@@ -7,7 +7,7 @@ part of dart_web_toolkit_event;
  * Receives low-level browser events. The implementer registers for DOM events
  * using [DOM#setEventListener(Element, EventListener)].
  *
- * Only subclasses of [Widget] should attempt to listen to browser events.
+ * Only subclasses of Widget should attempt to listen to browser events.
  */
 abstract class EventListener {
 

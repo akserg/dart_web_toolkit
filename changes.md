@@ -1,6 +1,12 @@
 Dart Web Toolkit Changes
 ========================
 
+**May 7, 2013
+
+* Migrate project code to follow Dart SDK version 0.5.5_r22416.
+* Fixed minor fug in uri_utils.dart
+* Cleaned comments.
+
 **May 6, 2013
 
 * Minor bugs fixing.

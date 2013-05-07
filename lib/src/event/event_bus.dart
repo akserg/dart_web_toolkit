@@ -17,10 +17,10 @@ part of dart_web_toolkit_event;
 abstract class EventBus<H> {
 
   /**
-   * Invokes [dispatch] with [handler].
+   * Invokes [IEvent.dispatch] with [handler].
    *
    * Protected to allow EventBus implementations in different packages to
-   * dispatch events even though the [dispatch] method is protected.
+   * dispatch events even though the [IEvent.dispatch] method is protected.
    */
   static void dispatchEvent(IEvent event, handler) {
     event.dispatch(handler);

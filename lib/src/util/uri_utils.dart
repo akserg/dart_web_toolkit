@@ -126,7 +126,7 @@ class UriUtils {
 //      return null;
 //    }
 //    return scheme;
-    Uri u = new Uri.fromString(uri);
+    Uri u = new Uri(uri);
     return u.scheme;
   }
 

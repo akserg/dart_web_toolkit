@@ -83,7 +83,7 @@ class Grid extends HtmlTable {
   int numRows = 0;
 
   /**
-   * Constructor for <code>Grid</code>. If [rows] and [cols] specified grid will
+   * Constructor for <code>Grid</code>. If [rows] and [columns] specified grid will
    * constructs with the requested size.
    */
   Grid([int rows = null, int columns = null]) : super() {

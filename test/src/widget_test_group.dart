@@ -153,7 +153,7 @@ class WidgetTestGroup extends TestGroup {
    * Check method [Widget.getLayoutData] and [Widget.setLayoutData].
    * 
    * Returns whether or not the receiver is attached to the
-   * [Document]'s [BodyElement].
+   * Document's BodyElement.
    * Sets the panel-defined layout data associated with this widget.
    */
   void getSetLayoutDataTest() {
@@ -224,7 +224,7 @@ class WidgetTestGroup extends TestGroup {
    * This method is called when a widget is detached from the browser's
    * document.
    * Returns whether or not the receiver is attached to the
-   * [Document]'s [BodyElement].
+   * Document's BodyElement.
    */
   void onAttachDetachTest() {
     ui.Widget widget = new ui.Widget();

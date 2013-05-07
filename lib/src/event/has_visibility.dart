@@ -12,7 +12,7 @@ abstract class HasVisibility {
    * Determines whether or not this object is visible. Note that this does not
    * necessarily take into account whether or not the receiver's parent is
    * visible, or even if it is attached to the
-   * [Document]. The default implementation of this trait in [UIObject] is
+   * Document. The default implementation of this trait in UIObject is
    * based on the value of a dom element's style object's display attribute.
    *
    * @return <code>true</code> if the object is visible

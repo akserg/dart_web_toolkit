@@ -227,7 +227,7 @@ class Dom {
    * @param value the style attribute's new value
    */
   static void setStyleAttribute(dart_html.Element elem, String attr, String value) {
-    elem.style.setProperty(attr, value);
+    elem.style.setProperty(attr, value, "");
   }
 
   /**
@@ -241,7 +241,7 @@ class Dom {
     assert(elem != null);
     assert(attr != null);
     assert(value != null);
-    elem.style.setProperty(attr, value.toString());
+    elem.style.setProperty(attr, value.toString(), "");
   }
 
   static int uniqueId = 0;

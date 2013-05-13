@@ -7,6 +7,7 @@ Dart Web Toolkit Changes
 * HasHorizontalAlign and HasVerticalAlign constans now.
 * Implemented Safe Style utility classes.
 * Fixed Safe Html classes.
+* Migrate project code to follow Dart SDK version 0.5.7.2_r22611.
 
 **May 7, 2013
 

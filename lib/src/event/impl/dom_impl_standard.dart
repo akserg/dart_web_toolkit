@@ -146,7 +146,7 @@ class DomImplStandard extends DomImpl {
   
   void setStyleProperty(dart_html.Element elem, String name, String value) {
     dart_html.CssStyleDeclaration style = elem.style;
-    style.setProperty(name, value);
+    style.setProperty(name, value, "");
   }
   
   //*******

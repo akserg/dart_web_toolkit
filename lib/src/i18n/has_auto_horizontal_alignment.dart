@@ -14,14 +14,14 @@ abstract class HasAutoHorizontalAlignment extends HasHorizontalAlignment {
    * content, right for RTL content, and if the content's direction is DEFAULT,
    * like {@link #ALIGN_LOCALE_START}.
    */
-  static AutoHorizontalAlignmentConstant ALIGN_CONTENT_START = new AutoHorizontalAlignmentConstant.internal();
+  static const AutoHorizontalAlignmentConstant ALIGN_CONTENT_START = const AutoHorizontalAlignmentConstant.internal();
 
   /**
    * Specifies that the widget's contents should be aligned right for LTR
    * content, left for RTL content, and if the content's direction is DEFAULT,
    * like {@link #ALIGN_LOCALE_END}.
    */
-  static AutoHorizontalAlignmentConstant ALIGN_CONTENT_END = new AutoHorizontalAlignmentConstant.internal();
+  static const AutoHorizontalAlignmentConstant ALIGN_CONTENT_END = const AutoHorizontalAlignmentConstant.internal();
 
   /**
    * Gets the horizontal auto-alignment setting. This may be one of the

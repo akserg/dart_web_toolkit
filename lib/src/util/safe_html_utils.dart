@@ -9,6 +9,11 @@ part of dart_web_toolkit_util;
 class SafeHtmlUtils {
 
   /**
+   * An empty String.
+   */
+  static final SafeHtml EMPTY_SAFE_HTML = new SafeHtmlString("");
+  
+  /**
    * Returns a {@link SafeHtml} containing the escaped string.
    *
    * @param s the input String

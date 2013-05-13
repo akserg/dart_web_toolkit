@@ -399,6 +399,30 @@ class Dom {
     return elem.clone(deep);
   }
 
+  //******
+  // Style
+  //******
+  
+  static String getStyleProperty(dart_html.Element elem, String name) {
+    return impl.getStyleProperty(elem, name);
+  }
+  
+  static void setStyleProperty(dart_html.Element elem, String name, String value) {
+    impl.setStyleProperty(elem, name, value);
+  }
+  
+  static void cssSetOpacity(dart_html.Element elem, double value) {
+    elem.style.opacity = value.toString();
+  }
+  
+  static void cssClearOpacity(dart_html.Element elem) {
+    elem.style.opacity = "";
+  }
+  
+  static String cssFloatPropertyName() {
+    return impl.cssFloatPropertyName;
+  }
+  
   //*******
   // Events
   //*******

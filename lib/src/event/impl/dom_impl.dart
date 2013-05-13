@@ -50,6 +50,18 @@ abstract class DomImpl {
 
   void setCapture(dart_html.Element elem);
 
+  //******
+  // Style
+  //******
+  
+  String getStyleProperty(dart_html.Element elem, String name);
+  
+  void setStyleProperty(dart_html.Element elem, String name, String value);
+  
+  String get cssFloatPropertyName {
+    return "cssFloat";
+  }
+  
   //*******
   // Events
   //*******

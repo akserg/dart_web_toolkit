@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+**May 13, 2013
+
+* Dom and DomImpl supports style properties.
+* HasHorizontalAlign and HasVerticalAlign constans now.
+* Implemented Safe Style utility classes.
+* Fixed Safe Html classes.
+
 **May 7, 2013
 
 * Migrate project code to follow Dart SDK version 0.5.5_r22416.

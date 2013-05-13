@@ -28,41 +28,41 @@ abstract class HasHorizontalAlignment {
   /**
    * Specifies that the widget's contents should be aligned in the center.
    */
-  static HorizontalAlignmentConstant ALIGN_CENTER = new HorizontalAlignmentConstant(TextAlign.CENTER.value);
+  static const HorizontalAlignmentConstant ALIGN_CENTER = const HorizontalAlignmentConstant(TextAlign.CENTER);
 
   /**
    * Specifies that the widget's contents should be aligned as justify.
    */
-  static HorizontalAlignmentConstant ALIGN_JUSTIFY = new HorizontalAlignmentConstant(TextAlign.JUSTIFY.value);
+  static const HorizontalAlignmentConstant ALIGN_JUSTIFY = const HorizontalAlignmentConstant(TextAlign.JUSTIFY);
 
   /**
    * Specifies that the widget's contents should be aligned to the left.
    */
-  static HorizontalAlignmentConstant ALIGN_LEFT = new HorizontalAlignmentConstant(TextAlign.LEFT.value);
+  static const HorizontalAlignmentConstant ALIGN_LEFT = const HorizontalAlignmentConstant(TextAlign.LEFT);
 
   /**
    * Specifies that the widget's contents should be aligned to the right.
    */
-  static HorizontalAlignmentConstant ALIGN_RIGHT = new HorizontalAlignmentConstant(TextAlign.RIGHT.value);
+  static const HorizontalAlignmentConstant ALIGN_RIGHT = const HorizontalAlignmentConstant(TextAlign.RIGHT);
 
   /**
    * In a RTL layout, specifies that the widget's contents should be aligned to
    * the right. In a LTR layout, specifies that the widget's constants should be
    * aligned to the left.
    */
-  static HorizontalAlignmentConstant ALIGN_LOCALE_START = LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_RIGHT : HasHorizontalAlignment.ALIGN_LEFT;
+  static const HorizontalAlignmentConstant ALIGN_LOCALE_START = HasHorizontalAlignment.ALIGN_RIGHT; //LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_RIGHT : HasHorizontalAlignment.ALIGN_LEFT;
 
   /**
    * In a RTL layout, specifies that the widget's contents should be aligned to
    * the left. In a LTR layout, specifies that the widget's constants should be
    * aligned to the right.
    */
-  static HorizontalAlignmentConstant ALIGN_LOCALE_END = LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_LEFT : HasHorizontalAlignment.ALIGN_RIGHT;
+  static const HorizontalAlignmentConstant ALIGN_LOCALE_END = HasHorizontalAlignment.ALIGN_LEFT ; //LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_LEFT : HasHorizontalAlignment.ALIGN_RIGHT;
 
   /**
    * Synonym of {@link #ALIGN_LOCALE_START}.
    */
-  static HorizontalAlignmentConstant ALIGN_DEFAULT = HasHorizontalAlignment.ALIGN_LOCALE_START;
+  static const HorizontalAlignmentConstant ALIGN_DEFAULT = HasHorizontalAlignment.ALIGN_LOCALE_START;
 
   /**
    * Gets the horizontal alignment.
@@ -104,7 +104,7 @@ abstract class HasHorizontalAlignment {
 class AutoHorizontalAlignmentConstant{
   // The constructor is package-private to prevent uncontrolled inheritance
   // and instantiation of this class.
-  AutoHorizontalAlignmentConstant.internal();
+  const AutoHorizontalAlignmentConstant.internal();
 }
 
 /**
@@ -121,9 +121,9 @@ class HorizontalAlignmentConstant extends AutoHorizontalAlignmentConstant {
     return direction == Direction.LTR ? HasHorizontalAlignment.ALIGN_LEFT : direction == Direction.RTL ? HasHorizontalAlignment.ALIGN_RIGHT : HasHorizontalAlignment.ALIGN_LOCALE_START;
   }
 
-  final String _textAlignString;
+  final TextAlign _textAlign;
 
-  HorizontalAlignmentConstant(this._textAlignString) : super.internal();
+  const HorizontalAlignmentConstant(this._textAlign) : super.internal();
 
   /**
    * Gets the CSS 'text-align' string associated with this constant.
@@ -131,6 +131,6 @@ class HorizontalAlignmentConstant extends AutoHorizontalAlignmentConstant {
    * @return the CSS 'text-align' value
    */
   String getTextAlignString() {
-    return _textAlignString;
+    return _textAlign.value;
   }
 }

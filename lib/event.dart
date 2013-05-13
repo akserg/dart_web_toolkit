@@ -9,6 +9,8 @@ library dart_web_toolkit_event;
 import 'dart:html' as dart_html;
 import 'dart:async' as dart_async;
 
+import 'util.dart' as util;
+
 part 'src/event/event.dart';
 part 'src/event/handler_registration.dart';
 part 'src/event/command.dart';

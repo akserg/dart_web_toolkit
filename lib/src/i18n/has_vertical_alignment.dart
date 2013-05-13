@@ -29,17 +29,17 @@ abstract class HasVerticalAlignment {
   /**
    * Specifies that the widget's contents should be aligned to the bottom.
    */
-  static VerticalAlignmentConstant ALIGN_BOTTOM = new VerticalAlignmentConstant("bottom");
+  static const VerticalAlignmentConstant ALIGN_BOTTOM = const VerticalAlignmentConstant("bottom");
 
   /**
    * Specifies that the widget's contents should be aligned in the middle.
    */
-  static VerticalAlignmentConstant ALIGN_MIDDLE = new VerticalAlignmentConstant("middle");
+  static const VerticalAlignmentConstant ALIGN_MIDDLE = const VerticalAlignmentConstant("middle");
 
   /**
    * Specifies that the widget's contents should be aligned to the top.
    */
-  static VerticalAlignmentConstant ALIGN_TOP = new VerticalAlignmentConstant("top");
+  static const VerticalAlignmentConstant ALIGN_TOP = const VerticalAlignmentConstant("top");
 
   /**
    * Gets the vertical alignment.
@@ -66,7 +66,7 @@ class VerticalAlignmentConstant {
 
   final String _verticalAlignString;
 
-  VerticalAlignmentConstant(this._verticalAlignString);
+  const VerticalAlignmentConstant(this._verticalAlignString);
 
   /**
    * Gets the CSS 'vertical-align' string associated with this constant.

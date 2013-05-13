@@ -135,6 +135,20 @@ class DomImplStandard extends DomImpl {
     captureElem = elem;
   }
 
+  //******
+  // Style
+  //******
+  
+  String getStyleProperty(dart_html.Element elem, String name) {
+    dart_html.CssStyleDeclaration style = elem.style;
+    return style.getPropertyValue(name); 
+  }
+  
+  void setStyleProperty(dart_html.Element elem, String name, String value) {
+    dart_html.CssStyleDeclaration style = elem.style;
+    style.setProperty(name, value);
+  }
+  
   //*******
   // Events
   //*******

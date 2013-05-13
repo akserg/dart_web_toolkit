@@ -50,14 +50,14 @@ abstract class HasHorizontalAlignment {
    * the right. In a LTR layout, specifies that the widget's constants should be
    * aligned to the left.
    */
-  static const HorizontalAlignmentConstant ALIGN_LOCALE_START = HasHorizontalAlignment.ALIGN_RIGHT; //LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_RIGHT : HasHorizontalAlignment.ALIGN_LEFT;
+  static const HorizontalAlignmentConstant ALIGN_LOCALE_START = HasHorizontalAlignment.ALIGN_LEFT; //LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_RIGHT : HasHorizontalAlignment.ALIGN_LEFT;
 
   /**
    * In a RTL layout, specifies that the widget's contents should be aligned to
    * the left. In a LTR layout, specifies that the widget's constants should be
    * aligned to the right.
    */
-  static const HorizontalAlignmentConstant ALIGN_LOCALE_END = HasHorizontalAlignment.ALIGN_LEFT ; //LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_LEFT : HasHorizontalAlignment.ALIGN_RIGHT;
+  static const HorizontalAlignmentConstant ALIGN_LOCALE_END = HasHorizontalAlignment.ALIGN_RIGHT ; //LocaleInfo.getCurrentLocale().isRTL() ? HasHorizontalAlignment.ALIGN_LEFT : HasHorizontalAlignment.ALIGN_RIGHT;
 
   /**
    * Synonym of {@link #ALIGN_LOCALE_START}.

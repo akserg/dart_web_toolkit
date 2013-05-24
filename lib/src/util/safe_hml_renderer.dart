@@ -13,7 +13,12 @@ part of dart_web_toolkit_util;
 abstract class SafeHtmlRenderer<T> {
 
   /**
+   * Renders {@code object} as safe HTML.
+   */
+  SafeHtml renderAsSafeHtml(T object);
+  
+  /**
    * Renders {@code object} as safe HTML, appended directly to {@code builder}.
    */
-  void render(T object, [SafeHtmlBuilder builder = null]);
+  void render(T object, SafeHtmlBuilder builder);
 }

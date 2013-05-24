@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** May 24, 2013
+
+* Improved SafeHtmlRenderer.
+
 ** May 21, 2013
 
 * Migrate project code to follow Dart SDK version 0.5.9.0_r22879

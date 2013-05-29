@@ -14,7 +14,6 @@ import 'package:dart_web_toolkit/util.dart' as util;
 import 'package:dart_web_toolkit/i18n.dart' as i18n;
 
 part 'test_group.dart';
-part 'src/mock_element.dart';
 part 'src/solid_ui_object.dart';
 part 'src/ui_object_test_group.dart';
 part 'src/widget_test_group.dart';

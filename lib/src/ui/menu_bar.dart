@@ -849,7 +849,7 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
   }
 
   void _eatEvent(dart_html.Event event) {
-    event.cancelBubble = true;
+//    event.cancelBubble = true;
     event.preventDefault();
   }
 

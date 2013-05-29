@@ -285,7 +285,7 @@ class UiObjectTestGroup extends TestGroup {
     // Create UiObject
     _uiObject = new SolidUiObject();
     // Create element
-    _element = new MockElement();
+    _element = new dart_html.DivElement();
     // Set element
     _uiObject.setElement(_element);
     // Check it
@@ -302,7 +302,7 @@ class UiObjectTestGroup extends TestGroup {
     // Create UiObject
     _uiObject = new SolidUiObject();
     // Create element
-    _element = new MockElement();
+    _element = new dart_html.DivElement();
     // Set element
     _uiObject.setElement(_element);
     // Check it
@@ -318,7 +318,7 @@ class UiObjectTestGroup extends TestGroup {
     // Create UiObject
     _uiObject = new SolidUiObject();
     // Create element
-    _element = new MockElement();
+    _element = new dart_html.DivElement();
     // Set element
     _uiObject.setElement(_element);
     //
@@ -335,7 +335,7 @@ class UiObjectTestGroup extends TestGroup {
     // Create UiObject
     _uiObject = new SolidUiObject();
     // Create element
-    _element = new MockElement();
+    _element = new dart_html.DivElement();
     // Set element
     _uiObject.setElement(_element);
     // Check it
@@ -352,7 +352,7 @@ class UiObjectTestGroup extends TestGroup {
     // Create UiObject
     _uiObject = new SolidUiObject();
     // Create element
-    _element = new MockElement();
+    _element = new dart_html.DivElement();
     // Set element
     _uiObject.setElement(_element);
     // Check it
@@ -370,7 +370,7 @@ class UiObjectTestGroup extends TestGroup {
     // Create UiObject
     _uiObject = new SolidUiObject();
     // Create element
-    _element = new MockElement();
+    _element = new dart_html.DivElement();
     // Set element
     _uiObject.setElement(_element);
     //

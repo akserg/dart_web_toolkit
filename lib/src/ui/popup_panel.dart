@@ -156,7 +156,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     autoHidePartners.add(partner);
   }
 
-  HandlerRegistration addCloseHandler(CloseHandler<PopupPanel> handler) {
+  HandlerRegistration addCloseHandler(CloseHandler handler) {
     return addHandler(handler, CloseEvent.TYPE);
   }
 

@@ -152,7 +152,7 @@ class Request {
       _xmlHttpRequest = null;
 
       //xmlHttp.onReadyStateChange. readyStateChangeEvent.addListener(listener); // clearOnReadyStateChange();
-      xmlHttp.onReadyStateChange.listen(null, onError:null, onDone:null, unsubscribeOnError:true);
+      xmlHttp.onReadyStateChange.listen(null, onError:null, onDone:null, cancelOnError:true);
       xmlHttp.abort();
 
       _cancelTimer();

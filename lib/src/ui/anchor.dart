@@ -129,13 +129,13 @@ class Anchor extends FocusWidget implements HasHorizontalAlignment,
    */
   void set name(String value) {
     assert(value != null);
-    getAnchorElement().name = value;
+    //getAnchorElement().name = value;
   }
 
   /**
    * Get the anchor's name.
    */
-  String get name => getAnchorElement().name;
+  String get name => ""; //getAnchorElement().name;
 
   /**
    * Sets the anchor's target.

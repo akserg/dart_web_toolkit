@@ -345,7 +345,7 @@ class RequestBuilder {
     // Must set the onreadystatechange handler before calling send().
     xmlHttpRequest.onReadyStateChange.listen((dart_html.Event evt){
       if (xmlHttpRequest.readyState == dart_html.HttpRequest.DONE) {
-        xmlHttpRequest.onReadyStateChange.listen(null, onError:null, onDone:null, unsubscribeOnError:true);
+        xmlHttpRequest.onReadyStateChange.listen(null, onError:null, onDone:null, cancelOnError:true);
         request.fireOnResponseReceived(callback);
       }
     });

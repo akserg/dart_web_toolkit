@@ -482,7 +482,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
       case IEvent.ONKEYUP:
         dart_html.KeyboardEvent kEvent = event as dart_html.KeyboardEvent;
         if (isArrowKey(kEvent.keyCode)) {
-          event.cancelBubble = true;
+//          event.cancelBubble = true;
           event.preventDefault();
           return;
         }

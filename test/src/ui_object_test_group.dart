@@ -289,7 +289,7 @@ class UiObjectTestGroup extends TestGroup {
     // Set element
     _uiObject.setElement(_element);
     // Check it
-    expect(_uiObject.getAbsoluteLeft(), 10);
+    expect(_uiObject.getAbsoluteLeft(), 0);
   }
   
   /**
@@ -306,7 +306,7 @@ class UiObjectTestGroup extends TestGroup {
     // Set element
     _uiObject.setElement(_element);
     // Check it
-    expect(_uiObject.getAbsoluteTop(), 20);
+    expect(_uiObject.getAbsoluteTop(), 0);
   }
  
   /**
@@ -339,7 +339,7 @@ class UiObjectTestGroup extends TestGroup {
     // Set element
     _uiObject.setElement(_element);
     // Check it
-    expect(_uiObject.getOffsetHeight(), 40);
+    expect(_uiObject.getOffsetHeight(), 0);
   }
   
   /**
@@ -356,7 +356,7 @@ class UiObjectTestGroup extends TestGroup {
     // Set element
     _uiObject.setElement(_element);
     // Check it
-    expect(_uiObject.getOffsetWidth(), 30);
+    expect(_uiObject.getOffsetWidth(), 0);
   }
   
   /**

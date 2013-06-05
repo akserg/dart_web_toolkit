@@ -9,13 +9,22 @@ set -e
 echo
 echo "dart_analyzer --extended-exit-code lib/*.dart"
 
-results=$(dart_analyzer --extended-exit-code lib/*.dart)
+output=$(dart_analyzer --extended-exit-code lib/*.dart 2>&1)
+results=$?
 
-if [ -n "$results" ]; then
+if [ "$results" -ne 0 ]; then
     exit 1
 else
     echo "Passed analysis."
 fi
+
+#results=$(dart_analyzer --extended-exit-code lib/*.dart)
+#
+#if [ -n "$results" ]; then
+#    exit 1
+#else
+#    echo "Passed analysis."
+#fi
 
 ############
 # Unit Tests

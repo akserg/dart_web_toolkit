@@ -23,7 +23,7 @@ fi
 ############
 
 echo "Run tests..."
-results="DumpRenderTree test/index.html 2>&1"
+results=$(DumpRenderTree test/index.html 2>&1)
 
 echo "------------------"
 echo "$results"

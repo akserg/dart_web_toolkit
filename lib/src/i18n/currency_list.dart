@@ -279,6 +279,7 @@ class CurrencyList extends Iterable<CurrencyData> {
   int get length { throw new UnsupportedError("");}
   bool contains(CurrencyData element) { throw new UnsupportedError("");}
   bool get isEmpty { throw new UnsupportedError("");}
+  bool get isNotEmpty { throw new UnsupportedError("");}
   CurrencyData get first { throw new UnsupportedError("");}
   CurrencyData get last { throw new UnsupportedError("");}
   CurrencyData get single { throw new UnsupportedError("");}

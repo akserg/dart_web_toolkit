@@ -175,6 +175,7 @@ class WidgetCollection extends Iterable<Widget> {
   //**********************
   int get length { return _size;}
   bool get isEmpty { return _size == 0;}
+  bool get isNotEmpty { return _size != 0; }
   Widget get first { throw new UnsupportedError("");}
   Widget get last { throw new UnsupportedError("");}
   Widget get single { throw new UnsupportedError("");}

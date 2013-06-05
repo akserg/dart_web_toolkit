@@ -8,7 +8,6 @@ library dart_web_toolkit_util;
 
 import 'dart:html' as dart_html;
 import 'dart:async' as dart_async;
-import 'dart:uri';
 
 import 'event.dart' as event;
 

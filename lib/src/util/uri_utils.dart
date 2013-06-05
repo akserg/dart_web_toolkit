@@ -61,7 +61,7 @@ class UriUtils {
 //      }
 //    }
 //    return sb.toString();
-    return encodeUri(uri);
+    return Uri.encodeFull(uri);
   }
 
   /**
@@ -99,7 +99,7 @@ class UriUtils {
 //      }
 //    }
 //    return escaped.toString();
-    return encodeUriComponent(uri);
+    return Uri.encodeComponent(uri);
   }
 
   /**
@@ -126,7 +126,7 @@ class UriUtils {
 //      return null;
 //    }
 //    return scheme;
-    Uri u = new Uri(uri);
+    Uri u = Uri.parse(uri);
     return u.scheme;
   }
 

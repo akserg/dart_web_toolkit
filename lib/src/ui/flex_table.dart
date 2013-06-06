@@ -22,7 +22,7 @@ class FlexTable extends HtmlTable {
       table = table.parent as dart_html.TableElement;
     }
     assert (table is dart_html.TableElement);
-    dart_html.TableRowElement rowElem = table.rows[row];
+    dart_html.TableRowElement rowElem = (table as dart_html.TableElement).rows[row];
     for(int i = 0; i < num; i++) {
       rowElem.append(new dart_html.TableCellElement());
     }

@@ -1039,7 +1039,7 @@ class CellFormatter {
       table = table.parent as dart_html.TableElement;
     }
     assert (table is dart_html.TableElement);
-    return (table.rows[row] as dart_html.TableRowElement).cells[col];
+    return ((table as dart_html.TableElement).rows[row] as dart_html.TableRowElement).cells[col];
   }
 
   /**

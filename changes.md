@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** June 6, 2013
+
+* Fixed class cast warnings in FlexTable and HtmlTable.
+
 ** June 5, 2013
 
 * Migrate project code to follow Dart SDK version 0.5.13.1_r23552

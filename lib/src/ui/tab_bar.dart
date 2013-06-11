@@ -62,12 +62,12 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
     }
 
 
-    HandlerRegistration addBeforeSelectionHandler(BeforeSelectionHandler<int> handler) {
+    HandlerRegistration addBeforeSelectionHandler(BeforeSelectionHandler handler) {
       return addHandler(handler, BeforeSelectionEvent.TYPE);
     }
 
 
-    HandlerRegistration addSelectionHandler(SelectionHandler<int> handler) {
+    HandlerRegistration addSelectionHandler(SelectionHandler handler) {
       return addHandler(handler, SelectionEvent.TYPE);
     }
 

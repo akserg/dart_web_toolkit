@@ -4,6 +4,7 @@ Dart Web Toolkit Changes
 ** June 11, 2013
 
 * Migrate project code to follow Dart SDK version 0.5.16.0_r23799
+* Fixed TabBar class.
 
 ** June 6, 2013
 

@@ -1163,8 +1163,8 @@ class MenuResources implements MenuResource {
 
   ImageResource _resource;
 
-  const String MENU_RESOURCE = "menuBarSubMenuIcon.gif";
-  const String MENU_RESOURCE_RTL = "menuBarSubMenuIcon_rtl.gif";
+  static const String MENU_RESOURCE = "menuBarSubMenuIcon.gif";
+  static const String MENU_RESOURCE_RTL = "menuBarSubMenuIcon_rtl.gif";
 
   MenuResources();
 

@@ -62,7 +62,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
    * @param asHTML <code>true</code> to treat the specified text as HTML
    */
   void add(Widget w, [String stackText = null, bool asHtml = false]) {
-    insertWidget(w, getWidgetCount());
+    insertAt(w, getWidgetCount());
     if (stackText != null) {
       setStackText(getWidgetCount() - 1, stackText, asHtml);
     }
@@ -78,7 +78,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertWidget(asWidgetOrNull(w), beforeIndex);
+    insertAt(asWidgetOrNull(w), beforeIndex);
   }
 
   /**
@@ -96,7 +96,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
    *          <code>container</code> at <code>beforeIndex</code>; otherwise
    *          append <code>child</code> to the end of <code>container</code>.
    */
-  void insertWidget(Widget w, int beforeIndex) {
+  void insertAt(Widget w, int beforeIndex) {
     // header
     dart_html.TableRowElement trh = new dart_html.TableRowElement();
     dart_html.TableCellElement tdh = new dart_html.TableCellElement();

@@ -338,9 +338,9 @@ class _DefaultImages implements DisclosureResource {
 
   Map<String, ImageResource> _resources = new Map<String, ImageResource>();
 
-  const String CLOSED_RESOURCE = "disclosurePanelClosed.png";
-  const String CLOSED_RESOURCE_RTL = "disclosurePanelClosed_rtl.png";
-  const String OPEN_RESOURCE = "disclosurePanelOpen.png";
+  static const String CLOSED_RESOURCE = "disclosurePanelClosed.png";
+  static const String CLOSED_RESOURCE_RTL = "disclosurePanelClosed_rtl.png";
+  static const String OPEN_RESOURCE = "disclosurePanelOpen.png";
 
   _DefaultImages();
 

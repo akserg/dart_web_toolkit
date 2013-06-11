@@ -537,7 +537,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
     _deckPanel._insertProtected(child, beforeIndex);
 //    _tabs.insertRange(beforeIndex, 1, tab);
     _tabs.insert(beforeIndex, tab);
-    _tabBar.insertWidget(tab, beforeIndex);
+    _tabBar.insertAt(tab, beforeIndex);
     tab.addClickHandler(new ClickHandlerAdapter((ClickEvent event) {
       selectTabWidget(child);
     }));
@@ -655,7 +655,7 @@ class _TabbedDeckLayoutPanel extends DeckLayoutPanel {
   }
 
   void _insertProtected(Widget w, int beforeIndex) {
-    super.insertWidget(w, beforeIndex);
+    super.insertAt(w, beforeIndex);
   }
 
   void _removeProtected(Widget w) {

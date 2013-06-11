@@ -41,7 +41,7 @@ class FlowPanel extends ComplexPanel implements InsertPanelForIsWidget {
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertWidget(asWidgetOrNull(w), beforeIndex);
+    insertAt(asWidgetOrNull(w), beforeIndex);
   }
 
   /**
@@ -52,7 +52,7 @@ class FlowPanel extends ComplexPanel implements InsertPanelForIsWidget {
    * @throws IndexOutOfBoundsException if <code>beforeIndex</code> is out of
    *           range
    */
-  void insertWidget(Widget w, int beforeIndex) {
+  void insertAt(Widget w, int beforeIndex) {
     insert(w, getElement(), beforeIndex, true);
   }
 }

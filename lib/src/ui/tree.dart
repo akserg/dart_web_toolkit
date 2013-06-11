@@ -1145,9 +1145,9 @@ class _TreeResources implements _TreeResource {
 
   final Map<String, ImageResource> _resources;
 
-  const String TREE_CLOSED = "treeClosed.gif";
-  const String TREE_LEAF = "treeLeaf.gif";
-  const String TREE_OPEN = "treeOpen.gif";
+  static const String TREE_CLOSED = "treeClosed.gif";
+  static const String TREE_LEAF = "treeLeaf.gif";
+  static const String TREE_OPEN = "treeOpen.gif";
 
   _TreeResources() : _resources = new Map<String, ImageResource>();
   

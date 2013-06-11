@@ -41,7 +41,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   }
 
   void add(Widget w) {
-    insertWidget(w, getWidgetCount());
+    insertAt(w, getWidgetCount());
   }
 
   //*********************************
@@ -111,10 +111,10 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertWidget(asWidgetOrNull(w), beforeIndex);
+    insertAt(asWidgetOrNull(w), beforeIndex);
   }
 
-  void insertWidget(Widget widget, int beforeIndex) {
+  void insertAt(Widget widget, int beforeIndex) {
     Widget before = (beforeIndex < getWidgetCount()) ? getWidget(beforeIndex)
         : null;
     insertBefore(widget, before);

@@ -23,7 +23,7 @@ abstract class InsertPanel extends IndexedPanel {
    * @throws IndexOutOfBoundsException if <code>beforeIndex</code> is out of
    *           range
    */
-  void insert(Widget w, int beforeIndex);
+  void insertAt(Widget w, int beforeIndex);
 }
 
 /**

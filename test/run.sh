@@ -8,7 +8,7 @@ set -e
 
 echo "Analyse code..."
 
-output=$(dart_analyzer --extended-exit-code lib/*.dart 2>&1)
+output=$(dartanalyzer lib/*.dart 2>&1)
 results=$?
 
 if [ "$results" -ne 0 ]; then

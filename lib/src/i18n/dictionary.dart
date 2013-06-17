@@ -42,6 +42,8 @@ class Dictionary {
     if (target == null) {
       target = new Dictionary._internal(completer, url);
       _cache[url] = target;
+    } else {
+      completer.complete(target);
     }
     return completer.future;
   }

@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Implemented Dictionary for i18n.
 * Added UiBinder annotations.
+* Fixed problem in Dictionary class.
 
 ** June 11, 2013
 

@@ -8,6 +8,8 @@ library dart_web_toolkit_i18n;
 
 import 'dart:html' as dart_html;
 import 'dart:math' as dart_math;
+import 'dart:async';
+import 'dart:json' as json;
 
 import 'util.dart';
 import 'event.dart';
@@ -32,6 +34,7 @@ part 'src/i18n/direction.dart';
 part 'src/i18n/direction_estimator.dart';
 part 'src/i18n/word_count_direction_estimator.dart';
 part 'src/i18n/bidi_policy.dart';
+part 'src/i18n/dictionary.dart';
 
 part 'src/i18n/has_direction.dart';
 part 'src/i18n/has_text_direction.dart';
@@ -51,4 +54,3 @@ part 'src/i18n/impl/locale_info_impl.dart';
 part 'src/i18n/impl/date_time_format_info_impl.dart';
 part 'src/i18n/impl/date_record.dart';
 part 'src/i18n/impl/currency_data_impl.dart';
-

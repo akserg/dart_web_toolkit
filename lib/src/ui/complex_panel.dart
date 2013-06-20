@@ -87,7 +87,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
    * @param index the child widget's index
    * @return the child widget
    */
-  Widget getWidget(int index) {
+  Widget getWidgetAt(int index) {
     return getChildren().get(index);
   }
 
@@ -118,7 +118,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
    * @return <code>false</code> if the widget is not present
    */
   bool removeAt(int index) {
-    return remove(getWidget(index));
+    return remove(getWidgetAt(index));
   }
 
   //******************************************

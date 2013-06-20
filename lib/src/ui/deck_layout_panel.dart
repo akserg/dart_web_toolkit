@@ -115,7 +115,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
   }
 
   void insertAt(Widget widget, int beforeIndex) {
-    Widget before = (beforeIndex < getWidgetCount()) ? getWidget(beforeIndex)
+    Widget before = (beforeIndex < getWidgetCount()) ? getWidgetAt(beforeIndex)
         : null;
     insertBefore(widget, before);
   }
@@ -247,7 +247,7 @@ class DeckLayoutPanel extends ComplexPanel implements AnimatedLayout, RequiresRe
    */
   void showWidgetAt(int index) {
     checkIndexBoundsForAccess(index);
-    showWidget(getWidget(index));
+    showWidget(getWidgetAt(index));
   }
 
   /**

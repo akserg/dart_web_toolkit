@@ -16,7 +16,7 @@ abstract class IndexedPanel {
    * @param index the child widget's index
    * @return the child widget
    */
-  Widget getWidget(int index);
+  Widget getWidgetAt(int index);
 
   /**
    * Gets the number of child widgets in this panel.

@@ -148,8 +148,15 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
 //    add(child, html.asString(), true);
 //  }
 
+  /**
+   * Adds a widget to the panel. If the Widget is already attached, it will be
+   * moved to the right-most index.
+   *
+   * @param child the widget to be added
+   * @param html the html to be shown on its tab
+   */
   void add(Widget w) {
-    throw new Exception("A tabText parameter must be specified with add().");
+    insert(w, getWidgetCount());
   }
   
   /**
@@ -245,14 +252,14 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
    */
   Widget getTabWidget(Widget child) {
     checkChild(child);
-    return getWidgetById(getWidgetIndex(child));
+    return getTabWidgetById(getWidgetIndex(child));
   }
 
   /**
    * Returns the widget at the given index.
    */
-  Widget getWidgetById(int index) {
-    return _deckPanel.getWidget(index);
+  Widget getWidgetAt(int index) {
+    return _deckPanel.getWidgetAt(index);
   }
 
   /**
@@ -366,7 +373,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
       return false;
     }
 
-    Widget child = getWidgetById(index);
+    Widget child = getWidgetAt(index);
     _tabBar.removeAt(index);
     _deckPanel._removeProtected(child);
     child.removeStyleName(_CONTENT_STYLE);

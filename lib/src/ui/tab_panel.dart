@@ -173,7 +173,7 @@ class TabPanel extends Composite implements HasWidgets,
 
 
   Widget getWidgetAt(int index) {
-    return deck.getWidget(index);
+    return deck.getWidgetAt(index);
   }
 
 

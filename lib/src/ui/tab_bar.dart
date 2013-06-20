@@ -143,7 +143,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       if (index >= getTabCount()) {
         return null;
       }
-      _ClickDelegatePanel p = panel.getWidget(index + 1) as _ClickDelegatePanel;
+      _ClickDelegatePanel p = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       return p;
     }
 
@@ -166,7 +166,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       if (index >= getTabCount()) {
         return null;
       }
-      _ClickDelegatePanel delPanel = panel.getWidget(index + 1) as _ClickDelegatePanel;
+      _ClickDelegatePanel delPanel = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       SimplePanel focusablePanel = delPanel.getFocusablePanel();
       Widget widget = focusablePanel.getWidget();
       if (widget is Html) {
@@ -239,7 +239,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
      */
     bool isTabEnabled(int index) {
       assert ((index >= 0) && (index < getTabCount())); // : "Tab index out of bounds";
-      _ClickDelegatePanel delPanel = panel.getWidget(index + 1) as _ClickDelegatePanel;
+      _ClickDelegatePanel delPanel = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       return delPanel.enabled;
     }
 
@@ -292,7 +292,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       checkTabIndex(index);
 
       // (index + 1) to account for 'first' placeholder widget.
-      Widget toRemove = panel.getWidget(index + 1);
+      Widget toRemove = panel.getWidgetAt(index + 1);
       if (toRemove == selectedTab) {
         selectedTab = null;
       }
@@ -347,7 +347,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
         return true;
       }
 
-      selectedTab = panel.getWidget(index + 1);
+      selectedTab = panel.getWidgetAt(index + 1);
       setSelectionStyle(selectedTab, true);
       if (fireEvents) {
         SelectionEvent.fire(this, index);
@@ -365,7 +365,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       assert ((index >= 0) && (index < getTabCount())); // : "Tab index out of bounds";
 
       // Style the wrapper
-      _ClickDelegatePanel delPanel = panel.getWidget(index + 1) as _ClickDelegatePanel;
+      _ClickDelegatePanel delPanel = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       delPanel.setEnabled(enabled);
       manageElementStyleName(delPanel.getElement(), "dwt-TabBarItem-disabled", !enabled);
       manageElementStyleName(delPanel.getElement().parent, "dwt-TabBarItem-wrapper-disabled", !enabled);
@@ -385,7 +385,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
     void setTabHtml(int index, String html) {
       assert ((index >= 0) && (index < getTabCount())); // : "Tab index out of bounds";
 
-      _ClickDelegatePanel delPanel = panel.getWidget(index + 1) as _ClickDelegatePanel;
+      _ClickDelegatePanel delPanel = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       SimplePanel focusablePanel = delPanel.getFocusablePanel();
       focusablePanel.setWidget(new Html(html, false));
     }
@@ -409,7 +409,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
     void setTabText(int index, String text) {
       assert ((index >= 0) && (index < getTabCount())); // : "Tab index out of bounds";
 
-      _ClickDelegatePanel delPanel = panel.getWidget(index + 1) as _ClickDelegatePanel;
+      _ClickDelegatePanel delPanel = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       SimplePanel focusablePanel = delPanel.getFocusablePanel();
 
       // It is not safe to check if the current widget is an instanceof Label and
@@ -464,7 +464,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
 
       int numTabs = getTabCount();
       for (int i = 0; i < numTabs; i++) {
-        _ClickDelegatePanel delPanel = panel.getWidget(i + 1) as _ClickDelegatePanel;
+        _ClickDelegatePanel delPanel = panel.getWidgetAt(i + 1) as _ClickDelegatePanel;
         SimplePanel focusablePanel = delPanel.getFocusablePanel();
       }
     }
@@ -494,7 +494,7 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       int numTabs = panel.getWidgetCount() - 1;
 
       for (int i = 1; i < numTabs; ++i) {
-        if (panel.getWidget(i) == tabWidget) {
+        if (panel.getWidgetAt(i) == tabWidget) {
           return selectTab(i - 1);
         }
       }

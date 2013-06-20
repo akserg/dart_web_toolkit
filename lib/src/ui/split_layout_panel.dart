@@ -97,7 +97,7 @@ class SplitLayoutPanel extends DockLayoutPanel {
       // Now that the widget is removed, idx is the index of the splitter.
       if (idx < getWidgetCount()) {
         // Call super.remove(), or we'll end up recursing.
-        super.remove(getWidget(idx));
+        super.remove(getWidgetAt(idx));
       }
       return true;
     }
@@ -171,7 +171,7 @@ class SplitLayoutPanel extends DockLayoutPanel {
     // no associated splitter.
     int idx = getWidgetIndex(child);
     if (idx > -1 && idx < getWidgetCount() - 1) {
-      Widget splitter = getWidget(idx + 1);
+      Widget splitter = getWidgetAt(idx + 1);
       assert (splitter is Splitter); // : "Expected child widget to be splitter";
       return splitter as Splitter;
     }

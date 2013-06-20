@@ -119,7 +119,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
   void showWidgetAt(int index) {
     checkIndexBoundsForAccess(index);
     Widget oldWidget = _visibleWidget;
-    _visibleWidget = getWidget(index);
+    _visibleWidget = getWidgetAt(index);
 
     if (_visibleWidget != oldWidget) {
       if (_slideAnimation == null) {

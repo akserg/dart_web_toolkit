@@ -168,7 +168,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   }
 
   bool removeAt(int index) {
-    return _remove(getWidget(index), index);
+    return _remove(getWidgetAt(index), index);
   }
 
   bool remove(Widget child) {
@@ -281,7 +281,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   void _setStackContentVisible(int index, bool visible) {
     dart_html.Element tr = _body.children[(index * 2) + 1]; //  DOM.getChild(_body, (index * 2) + 1);
     UiObject.setVisible(tr, visible);
-    getWidget(index).visible = visible;
+    getWidgetAt(index).visible = visible;
   }
 
   void _setStackVisible(int index, bool visible) {

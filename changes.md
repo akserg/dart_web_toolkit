@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** June 20, 2013
+
+* Migrate project code to follow Dart SDK version 0.5.20.2_r24160.
+* Fixed incorrect overriding of method getWidgetAt in ComplexPanel, DeckLayoutPanel, DeckPanel, IndexPanel, SplitLayouPanel, StackLayoutPanel, StackPanel, TabBar, TabLayouPanel, TabPanel.
+
 ** June 17, 2013
 
 * Implemented Dictionary for i18n.

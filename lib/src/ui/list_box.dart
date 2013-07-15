@@ -141,8 +141,8 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
    *
    * @param item the text of the item to be added
    */
-  void addItem(String item, [String value]) {
-    if (?value) {
+  void addItem(String item, [String value = null]) {
+    if (value != null) {
       insertItem(item, null, value, INSERT_AT_END);
     } else {
       insertItem(item, null, item, INSERT_AT_END);

@@ -43,8 +43,8 @@ class FileUpload extends Widget implements HasName, HasChangeHandlers, HasEnable
   /**
    * Constructs a new file upload widget.
    */
-  FileUpload([dart_html.InputElement element]) {
-    if (?element) {
+  FileUpload([dart_html.InputElement element = null]) {
+    if (element != null) {
       setElement(element);
     } else {
       element = new dart_html.InputElement();

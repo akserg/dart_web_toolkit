@@ -568,7 +568,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    * @return returns whether a widget was cleared
    */
   bool internalClearCell(dart_html.Element td, bool clearInnerHTML) {
-    var maybeChild = td.$dom_firstChild;
+    var maybeChild = td.firstChild;
     Widget widget = null;
     if (maybeChild != null && maybeChild is dart_html.Element) {
       widget = widgetMap.get(maybeChild as dart_html.Element);
@@ -705,7 +705,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    */
   Widget getWidgetImpl(int row, int column) {
     dart_html.Element e = cellFormatter.getRawElement(row, column);
-    dart_html.Element child = e.$dom_firstChild;
+    dart_html.Element child = e.firstChild;
     if (child == null) {
       return null;
     } else {
@@ -1176,7 +1176,7 @@ class ColumnFormatter {
       }
     } else if (!growOnly && num > columns) {
       for (int i = num; i > columns; i--) {
-        columnGroup.$dom_lastChild.remove();
+        columnGroup.lastChild.remove();
       }
     }
   }

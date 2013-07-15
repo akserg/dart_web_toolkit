@@ -1,6 +1,14 @@
 Dart Web Toolkit Changes
 ========================
 
+** July 15, 2013
+
+** Migrate project code to follow Dart SDK version 0.6.3.3_r24898.
+** Breaking changes in Element:
+** Element.$dom_firstChild -> Element.firstChild: CaptionPanel, DomImplStandard, HtmlTable, PopupPanel
+** Element.$dom_lastChild -> Element.lastChild: HtmlTable
+** The argument definition test ('?' operator) has been deprecated and moved away from: FileUpload, ListBox, TreeItem
+
 ** June 20, 2013
 
 * Migrate project code to follow Dart SDK version 0.5.20.2_r24160.

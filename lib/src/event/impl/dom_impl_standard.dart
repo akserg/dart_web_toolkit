@@ -31,7 +31,7 @@ class DomImplStandard extends DomImpl {
 
   void insertChild(dart_html.Element parent, dart_html.Element toAdd, int index) {
     int count = 0;
-    dart_html.Node child = parent.$dom_firstChild;
+    dart_html.Node child = parent.firstChild;
     dart_html.Node before;
     while (child != null) {
       if (child.nodeType == 1) { // dart_html.Node.ELEMENT_NODE

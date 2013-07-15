@@ -772,7 +772,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
    * @return the dart_html.Element that {@link PopupImpl} creates and expects
    */
   dart_html.Element getPopupImplElement() {
-    return super.getContainerElement().$dom_firstChild;
+    return super.getContainerElement().firstChild;
   }
 
   /**

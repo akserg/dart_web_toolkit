@@ -75,7 +75,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
 
   Widget _widget;
 
-  TreeItem({this.isRoot : false, SafeHtml html, Widget widget}) {
+  TreeItem({this.isRoot : false, SafeHtml html, Widget widget:null}) {
     if (_impl == null) {
       _impl = new TreeItemImpl();
     }
@@ -91,7 +91,7 @@ class TreeItem extends UiObject implements IsTreeItem, HasTreeItems, HasHtml, Ha
     }
 
     // Check widget
-    if (?widget) {
+    if (widget != null) {
       setWidget(widget);
     }
   }

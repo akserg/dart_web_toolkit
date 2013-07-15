@@ -191,7 +191,7 @@ class CaptionPanelImpl {
       // This is formulated to become an append (if there's no widget), an
       // insertion at index 0 (if there is a widget but no legend already), or
       // a no-op (if the legend is already in place).
-      fieldset.insertBefore(legend, fieldset.$dom_firstChild);
+      fieldset.insertBefore(legend, fieldset.firstChild);
     } else if (legend.parent != null) {
       // We remove the legend from the DOM because leaving it in with an empty
       // string renders as an ugly gap in the top border on some browsers.

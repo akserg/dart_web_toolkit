@@ -72,7 +72,7 @@ class UiChild {
 
   final String tagname;
   
-  UiChild([this.tagname = "", this.limit = -1]);
+  const UiChild([this.tagname = "", this.limit = -1]);
 }
 
 
@@ -91,7 +91,9 @@ class UiConstructor {}
  * It is an error to apply this annotation to more than one method of a given
  * return type.
  */
-class UiFactory {}
+class UiFactory {
+  const UiFactory();
+}
 
 /**
  * Marks fields in a UiBinder client that must be filled by the binder's
@@ -106,7 +108,7 @@ class UiField {
    */
   final bool provided;
   
-  UiField([this.provided = false]);
+  const UiField([this.provided = false]);
 }
 
 /**
@@ -119,7 +121,7 @@ class UiField {
 class UiHandler {
   final List<String> value;
   
-  UiHandler([this.value = null]);
+  const UiHandler([this.value = null]);
 }
 
 /**
@@ -149,5 +151,5 @@ class UiTemplate {
    */
   final String value;
   
-  UiTemplate([this.value = null]);
+  const UiTemplate([this.value = null]);
 }

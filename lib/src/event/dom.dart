@@ -85,8 +85,7 @@ class Dom {
     assert(elem != null);
     assert(prop != null);
     //
-    String eProp = elem.attributes[prop];
-    return eProp == null ? null : eProp;
+    return elem.$dom_getAttribute(prop);
   }
 
   /**
@@ -132,7 +131,7 @@ class Dom {
     assert(prop != null);
     assert(value != null);
     //
-    elem.attributes[prop] = value.toString();
+    elem.$dom_setAttribute(prop, value.toString());
   }
 
   /**
@@ -147,7 +146,7 @@ class Dom {
     assert(prop != null);
     assert(value != null);
     //
-    elem.attributes[prop] = value;
+    elem.$dom_setAttribute(prop, value);
   }
 
   /**
@@ -162,7 +161,7 @@ class Dom {
     assert(prop != null);
     assert(value != null);
     //
-    elem.attributes[prop] = value.toString();
+    elem.$dom_setAttribute(prop, value.toString());
   }
 
   /**
@@ -173,7 +172,7 @@ class Dom {
    * @param value the value to which the attribute should be set
    */
   static void setElementAttribute(dart_html.Element elem, String attr, String value) {
-    elem.attributes[attr] = value;
+    elem.$dom_setAttribute(attr, value);
   }
 
   /**
@@ -183,7 +182,7 @@ class Dom {
    * @param attr the name of the element to remove
    */
   static void removeElementAttribute(dart_html.Element elem, String attr) {
-    elem.attributes.remove(attr);
+    elem.$dom_removeAttribute(attr);
   }
 
   /**

@@ -39,7 +39,11 @@ abstract class FocusWidget extends Widget implements
    *          to disable it
    */
   void set enabled(bool value) {
-    Dom.setElementPropertyBoolean(getElement(), "disabled", !value);
+    if (value && !enabled) {
+      Dom.removeElementAttribute(getElement(), "disabled");
+    } else if (!value && enabled) {
+      Dom.setElementPropertyBoolean(getElement(), "disabled", true);
+    }
   }
 
   //****************************

@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** July 25, 2013
+
+* Fixed bug dom_className property removed from Element.
+* Migrate project code to follow Dart SDK version 0.6.9.2_r25388.
+
 ** July 16, 2013
 
 * Fixed bug with set/get properties in Dom class.

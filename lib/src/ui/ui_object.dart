@@ -198,7 +198,7 @@ abstract class UiObject implements HasVisibility {
    * @return the objects's space-separated style names
    */
   static String getElementStyleName(dart_html.Element elem) {
-    return elem.$dom_className;
+    return elem.className;
   }
 
   /**
@@ -208,7 +208,7 @@ abstract class UiObject implements HasVisibility {
    * @param styleName the new style name
    */
   static void setElementStyleName(dart_html.Element elem, String styleName) {
-    elem.$dom_className = styleName;
+    elem.className = styleName;
   }
 
 
@@ -278,11 +278,11 @@ abstract class UiObject implements HasVisibility {
     }
 
     // Keep it only for print
-    String old = elem.$dom_className;
+    String old = elem.className;
 
     if (add) {
       // Get the current style string.
-      String oldClassName = elem.$dom_className;
+      String oldClassName = elem.className;
       int idx = oldClassName.indexOf(style);
 
       // Calculate matching index.
@@ -304,11 +304,11 @@ abstract class UiObject implements HasVisibility {
           oldClassName = oldClassName + " ";
         }
         //setClassName(oldClassName + className);
-        elem.$dom_className = oldClassName + style;
+        elem.className = oldClassName + style;
       }
     } else {
       // Get the current style string.
-      String oldStyle = elem.$dom_className;
+      String oldStyle = elem.className;
       int idx = oldStyle.indexOf(style);
 
       // Calculate matching index.
@@ -340,7 +340,7 @@ abstract class UiObject implements HasVisibility {
           newClassName = begin + " " + end;
         }
 
-        elem.$dom_className = newClassName;
+        elem.className = newClassName;
       }
     }
   }
@@ -350,7 +350,7 @@ abstract class UiObject implements HasVisibility {
    */
   static void _updatePrimaryAndDependentStyleNames(dart_html.Element elem,
       String newPrimaryStyle) {
-    List<String> classes = elem.$dom_className.split(new RegExp("\s+"));
+    List<String> classes = elem.className.split(new RegExp("\s+"));
     if (classes.length == 0) {
       return;
     }
@@ -379,7 +379,7 @@ abstract class UiObject implements HasVisibility {
         classes[i] = newPrimaryStyle + name.substring(oldPrimaryStyleLen);
       }
     }
-    elem.$dom_className = classes.join(" ");
+    elem.className = classes.join(" ");
   }
 
   /**

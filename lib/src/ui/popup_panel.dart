@@ -416,7 +416,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     this._isGlassEnabled = enabled;
     if (enabled && glass == null) {
       glass = new dart_html.DivElement();
-      glass.$dom_className = glassStyleName;
+      glass.className = glassStyleName;
 
       glass.style.position = Position.ABSOLUTE.value;
       glass.style.left = "0" + Unit.PX.value;
@@ -433,7 +433,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
   void setGlassStyleName(String glassStyleName) {
     this.glassStyleName = glassStyleName;
     if (glass != null) {
-      glass.$dom_className = glassStyleName;
+      glass.className = glassStyleName;
     }
   }
 

@@ -140,9 +140,9 @@ class UiObjectTestGroup extends TestGroup {
   void getElementStylePrimaryNameTest() {
     dart_html.Element element = new dart_html.DivElement();
     // By default element's style names empty.
-    expect(element.$dom_className, isEmpty);
+    expect(element.className, isEmpty);
     // Set element's style names
-    element.$dom_className = 'ui-Object selected';
+    element.className = 'ui-Object selected';
     // The primary style name is always the first token of the full CSS class
     // name.
     expect(ui.UiObject.getElementStylePrimaryName(element), equals('ui-Object'));
@@ -157,12 +157,12 @@ class UiObjectTestGroup extends TestGroup {
   void setElementStylePrimaryNameTest() {
     dart_html.Element element = new dart_html.DivElement();
     // By default element's style names empty.
-    expect(element.$dom_className, isEmpty);
+    expect(element.className, isEmpty);
     // Set element's style names
     ui.UiObject.setElementStylePrimaryName(element, 'ui-Object');  
     // The primary style name is always the first token of the full CSS class
     // name.
-    expect(element.$dom_className, equals('ui-Object'));
+    expect(element.className, equals('ui-Object'));
   }
   
   /**
@@ -173,21 +173,21 @@ class UiObjectTestGroup extends TestGroup {
   void manageElementStyleNameTest() {
     dart_html.Element element = new dart_html.DivElement();
     // By default element's style names empty.
-    expect(element.$dom_className, isEmpty);
+    expect(element.className, isEmpty);
     // Add primary style name
-    element.$dom_className = "ui-Object";
+    element.className = "ui-Object";
     // Add secondary style
     ui.UiObject.manageElementStyleName(element, "selected", true);
     // Check it
-    expect(element.$dom_className.split(" ")[1], equals("selected"));
+    expect(element.className.split(" ")[1], equals("selected"));
     // Remove secondary style
     ui.UiObject.manageElementStyleName(element, "selected", false);
     // Check it
-    expect(element.$dom_className, equals("ui-Object"));
+    expect(element.className, equals("ui-Object"));
     // Remove secondary element's style without exception again
     ui.UiObject.manageElementStyleName(element, "selected", false);
     // Check it again
-    expect(element.$dom_className, equals("ui-Object"));
+    expect(element.className, equals("ui-Object"));
   }
   
   //***********************
@@ -219,13 +219,13 @@ class UiObjectTestGroup extends TestGroup {
   void addStyleDependentNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set primary style name
-    _element.$dom_className = "ui-Object";
+    _element.className = "ui-Object";
     // Add name suffix
     _uiObject.addStyleDependentName("selected");
     // Check style
-    expect(_element.$dom_className, equals("ui-Object ui-Object-selected"));
+    expect(_element.className, equals("ui-Object ui-Object-selected"));
   }
   
   
@@ -238,13 +238,13 @@ class UiObjectTestGroup extends TestGroup {
   void addStyleNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set primary style name
-    _element.$dom_className = "ui-Object";
+    _element.className = "ui-Object";
     // Add style
     _uiObject.addStyleName("selected");
     // Check style
-    expect(_element.$dom_className, equals("ui-Object selected"));
+    expect(_element.className, equals("ui-Object selected"));
   }
   
   /**
@@ -255,11 +255,11 @@ class UiObjectTestGroup extends TestGroup {
   void clearAndSetStyleNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set new style
     _uiObject.clearAndSetStyleName("ui-Object");
     // Check it
-    expect(_element.$dom_className, equals("ui-Object"));
+    expect(_element.className, equals("ui-Object"));
   }
   
   /**
@@ -400,9 +400,9 @@ class UiObjectTestGroup extends TestGroup {
   void getStylePrimaryNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set element's style names
-    _element.$dom_className = 'ui-Object selected';
+    _element.className = 'ui-Object selected';
     // The primary style name is always the first token of the full CSS class
     // name.
     expect(_uiObject.getStylePrimaryName(), equals('ui-Object'));
@@ -416,17 +416,17 @@ class UiObjectTestGroup extends TestGroup {
   void removeStyleDependentNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set primary style name
-    _element.$dom_className = "ui-Object";
+    _element.className = "ui-Object";
     // Add name suffix
     _uiObject.addStyleDependentName("selected");
     // Check style
-    expect(_element.$dom_className, equals("ui-Object ui-Object-selected"));
+    expect(_element.className, equals("ui-Object ui-Object-selected"));
     // Remove
     _uiObject.removeStyleDependentName("selected");
     // Check style
-    expect(_element.$dom_className, equals("ui-Object"));
+    expect(_element.className, equals("ui-Object"));
   }
   
   /**
@@ -439,17 +439,17 @@ class UiObjectTestGroup extends TestGroup {
   void removeStyleNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set primary style name
-    _element.$dom_className = "ui-Object";
+    _element.className = "ui-Object";
     // Add style
     _uiObject.addStyleName("selected");
     // Check style
-    expect(_element.$dom_className, equals("ui-Object selected"));
+    expect(_element.className, equals("ui-Object selected"));
     // Remove
     _uiObject.removeStyleName("selected");
     // Check style
-    expect(_element.$dom_className, equals("ui-Object"));
+    expect(_element.className, equals("ui-Object"));
   }
   
   /**
@@ -543,17 +543,17 @@ class UiObjectTestGroup extends TestGroup {
   void setStyleDependentNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set primary style name
-    _element.$dom_className = "ui-Object";
+    _element.className = "ui-Object";
     // Add name suffix
     _uiObject.setStyleDependentName("selected", true);
     // Check style
-    expect(_element.$dom_className, equals("ui-Object ui-Object-selected"));
+    expect(_element.className, equals("ui-Object ui-Object-selected"));
     // Remove name suffix
     _uiObject.setStyleDependentName("selected", false);
     // Check style
-    expect(_element.$dom_className, equals("ui-Object"));
+    expect(_element.className, equals("ui-Object"));
   }
   
   /**
@@ -566,17 +566,17 @@ class UiObjectTestGroup extends TestGroup {
   void setStyleNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set primary style name
-    _element.$dom_className = "ui-Object";
+    _element.className = "ui-Object";
     // Add style
     _uiObject.setStyleName("selected", true);
     // Check style
-    expect(_element.$dom_className, equals("ui-Object selected"));
+    expect(_element.className, equals("ui-Object selected"));
     // Remove style
     _uiObject.setStyleName("selected", false);
     // Check style
-    expect(_element.$dom_className, equals("ui-Object"));
+    expect(_element.className, equals("ui-Object"));
   }
   
   /**
@@ -587,9 +587,9 @@ class UiObjectTestGroup extends TestGroup {
   void setStylePrimaryNameTest() {
     _initTest();
     // By default element's style names empty.
-    expect(_element.$dom_className, isEmpty);
+    expect(_element.className, isEmpty);
     // Set element's style names
-    _element.$dom_className = 'ui-Object selected';
+    _element.className = 'ui-Object selected';
     // Check it
     expect(_uiObject.getStylePrimaryName(), equals('ui-Object'));
     // Set primary style name

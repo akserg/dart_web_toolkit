@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** July 29, 2013
+
+* Fixed bug History class does not fire ValueChangeEvent.
+
 ** July 25, 2013
 
 * Fixed bug dom_className property removed from Element.

@@ -14,8 +14,25 @@ import 'package:dart_web_toolkit/i18n.dart' as i18n;
 import 'package:dart_web_toolkit/text.dart' as text;
 import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 
-// Teddies example
 void main() {
+  ui.TextBox normalText = new ui.TextBox.wrap(dart_html.query("#new-todo"));
+  normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
+    dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
+    print("Key Up ${kEvent.keyCode}");
+  }));
+}
+
+void main_93() {
+  ui.TextBox normalText = new ui.TextBox();
+  normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
+    dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
+    print("Key Up ${kEvent.keyCode}");
+  }));
+  ui.RootPanel.get("testId").add(normalText);
+}
+
+// Teddies example
+void main_92() {
   dart_html.query("#loading").remove();
   // Create grid
   ui.Grid grid = new ui.Grid(1, 2);

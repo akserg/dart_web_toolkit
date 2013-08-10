@@ -15,8 +15,28 @@ import 'package:dart_web_toolkit/text.dart' as text;
 import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 import 'package:dart_web_toolkit/validation.dart' as validation;
 
-
 void main() {
+  dart_html.query("#loading").remove();
+  // Create a panel to layout the widgets
+  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
+  vpanel1.spacing = 5;
+
+  ui.IntegerBox iBox = new ui.IntegerBox();
+  validation.IntegerBoxValidator iBoxValidator = new validation.IntegerBoxValidator(iBox, onSuccess:(ui.IntegerBox iBox){
+    iBox.removeStyleName("error-field");
+  }, onError:(ui.IntegerBox iBox, Exception ex){
+    iBox.addStyleName("error-field");
+  });
+  iBox.setMaxLength(10);
+  iBox.setVisibleLength(5);
+  iBox.setValue(123123);
+  vpanel1.add(iBox);
+  
+  ui.RootPanel.get("testId").add(vpanel1);
+}
+
+
+void main_94() {
   ui.TextBox normalText = new ui.TextBox.wrap(dart_html.query("#new-todo"));
   normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
     dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();

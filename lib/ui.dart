@@ -165,7 +165,7 @@ class UI {
    * in a plain JVM.
    */
   static bool isProdMode() {
-    // Replaced with "true" by GWT compiler.
+    // Replaced with "true" by DWT compiler.
     return false;
   }
 }

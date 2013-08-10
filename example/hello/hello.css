@@ -20,6 +20,10 @@ p {
   color: #333;
 }
 
+.error-field {
+  border: 1px solid #ff0000;
+}
+
 #container {
   width: 100%;
   height: 400px;

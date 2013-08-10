@@ -91,7 +91,7 @@ class HistoryImpl implements HasValueChangeHandlers<String> {
         token = decodeFragment(hash.substring(1));
       }
 
-      HistoryImpl.setToken(token);
+      newItemOnEvent(token);
 
 //      if (oldHandler) {
 //        oldHandler();

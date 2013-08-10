@@ -17,6 +17,24 @@ import 'package:dart_web_toolkit/validation.dart' as validation;
 
 
 void main() {
+  ui.TextBox normalText = new ui.TextBox.wrap(dart_html.query("#new-todo"));
+  normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
+    dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
+    print("Key Up ${kEvent.keyCode}");
+  }));
+}
+
+void main_93() {
+  ui.TextBox normalText = new ui.TextBox();
+  normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
+    dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
+    print("Key Up ${kEvent.keyCode}");
+  }));
+  ui.RootPanel.get("testId").add(normalText);
+}
+
+// Teddies example
+void main_92() {
   dart_html.query("#loading").remove();
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();

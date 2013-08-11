@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 11, 2013
+
+* Added validation library
+* Updated UI Binder. Code not ready to use.
+
 ** July 29, 2013
 
 * Fixed bug History class does not fire ValueChangeEvent.

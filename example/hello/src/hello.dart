@@ -15,7 +15,40 @@ import 'package:dart_web_toolkit/text.dart' as text;
 import 'package:dart_web_toolkit/scheduler.dart' as scheduler;
 import 'package:dart_web_toolkit/validation.dart' as validation;
 
+import 'package:dart_web_toolkit/uibinder.dart';
+
 void main() {
+  
+  ui.RootPanel.get().add(new TestPanel());
+}
+
+class TestPanel extends ui.Composite {
+  
+  UiBinder<ui.Widget, TestPanel> binder = new UiBinder<ui.Widget, TestPanel>();
+  
+  @UiField
+  ui.Label message;
+  
+  @UiField
+  ui.Button recalculateFleet;
+  
+  TestPanel() {
+    
+    // load the template e.g. from service ...
+    binder.viewTemplate = "<div class='dyn-panel'><div ui:field='message' class='dyn-message'>Status messages are shown here</div><button ui:field='recalculateFleet'>Recalculate fleet</button></div>";
+
+    // known from GWT UiBinder - initialize
+    binder.createAndBindUi(this);
+//    initWidget(binder.createAndBindUi(this));
+    
+//    recalculateFleet.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent evt){
+//      message.text = "Clicked";
+//    }));
+  }
+}
+
+
+void main_97() {
   dart_html.query("#loading").remove();
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
@@ -36,7 +69,7 @@ void main() {
 }
 
 
-void main_94() {
+void main_96() {
   ui.TextBox normalText = new ui.TextBox.wrap(dart_html.query("#new-todo"));
   normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
     dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
@@ -44,7 +77,7 @@ void main_94() {
   }));
 }
 
-void main_93() {
+void main_95() {
   ui.TextBox normalText = new ui.TextBox();
   normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
     dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
@@ -54,7 +87,7 @@ void main_93() {
 }
 
 // Teddies example
-void main_92() {
+void main_94() {
   dart_html.query("#loading").remove();
   // Create a panel to layout the widgets
   ui.VerticalPanel vpanel1 = new ui.VerticalPanel();

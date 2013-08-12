@@ -21,9 +21,11 @@ part of metadata;
  * @param <O> The type of the object that will own the generated UI
  */
 class UiBinder<U, O> {
+  static const Symbol WRAP_SYMBOL = const Symbol("wrap");
   
   String viewTemplate;
-  Iterable<VariableMirror> _fieldAnnotations;
+  Map<String, VariableMirror> _variables;
+  InstanceMirror _ownerInstanceMirror;
   
   /**
    * Creates and returns the root object of the UI, and fills any fields of owner
@@ -35,13 +37,12 @@ class UiBinder<U, O> {
     // Parse owner to find annotations
     _parse(owner);
     // Create dummy widget
-//    Widget html2 = new Widget();
-//    html2.getElement().innerHtml = viewTemplate;
-//    document.body.append(html2.getElement());
-//    _parseTemplate(html2.getElement(), owner);
-//    html2.getElement().remove();
-//    return html2 as U;
-    return null;
+    SimplePanel html2 = new SimplePanel();
+    html2.getElement().innerHtml = viewTemplate;
+    document.body.append(html2.getElement());
+    _parseTemplate(html2.getElement(), owner);
+    html2.getElement().remove();
+    return html2 as U;
   }
   
   /**
@@ -67,7 +68,7 @@ class UiBinder<U, O> {
   void _assign(Element child, O owner) {
     String fieldName = _getFieldName(child);
     if (fieldName != null) {
-      _instantiateVariables(fieldName, child);
+      _instantiateVariable(fieldName, child);
     }
   }
   
@@ -75,53 +76,52 @@ class UiBinder<U, O> {
     return element.$dom_getAttribute("ui:field");
   }
   
-  voi _parse(O owner) {
+  void _parse(O owner) {
     Map fields = new Map();
     //
-    InstanceMirror instanceMirror = reflect(owner);
-    _findVariables(instanceMirror);
+    _ownerInstanceMirror = reflect(owner);
+    _findVariables(_ownerInstanceMirror);
   }
   
   void _findVariables(InstanceMirror instanceMirror) {
-    _fieldAnnotations = _uiFieldVariables(instanceMirror.type);
+    _variables = new Map<String, VariableMirror>();
+    _uiFieldVariables(instanceMirror.type).forEach((VariableMirror variable){
+      _variables[symbolAsString(variable.simpleName)] = variable;
+    });
   }
   
-  void _instantiateVariables(InstanceMirror instanceMirror) {
-    var variables = _uiFieldVariables(instanceMirror.type);
-    variables.forEach((VariableMirror variable) { 
-      var instanceToInject = _getInstanceFor(variable.type);
-//      // set the resolved injection on the instance mirror we are injecting into
-//      instanceMirror.setField(variable.simpleName, instanceToInject); 
-    });
+  void _instantiateVariable(String fieldName, Element element) {
+    VariableMirror variableMirror = _variables[fieldName];
+    if (variableMirror != null) {
+       dynamic variable = _instantiateAndWrap(variableMirror.type, element);
+       _ownerInstanceMirror.setField(variableMirror.simpleName, variable);
+    }
   }
   
   /** Returns variables that need injection */
   Iterable<VariableMirror> _uiFieldVariables(ClassMirror classMirror) => classMirror.variables.values.where(_testUiField);
   
   /** Returns true if the declared [element] is injectable */
-  bool _testUiField(DeclarationMirror element) => element.metadata.any((InstanceMirror im) => im.reflectee is UiField);
+  bool _testUiField(DeclarationMirror element) => element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
   
-  dynamic _getInstanceFor(TypeMirror tm) {
+  dynamic _instantiateAndWrap(TypeMirror tm, Element element) {
     
-    InstanceMirror im = _newInstance(tm);
-    return _resolveInjections(im);
+    InstanceMirror im = _newInstance(tm, element);
+    return im.reflectee; //_resolveInjections(im);
   }
   
   // create a new instance of classMirror and inject it
-  InstanceMirror _newInstance(ClassMirror classMirror) {
-    // Look for an injectable constructor
-    var constructors = injectableConstructors(classMirror).toList();
-    // that has the greatest number of parameters to inject, optional included
-    MethodMirror constructor = constructors.fold(null, (MethodMirror p, MethodMirror e) => 
-            p == null || _injectableParameters(p).length < _injectableParameters(e).length ? e : p);
-    var constructorArgs = constructor.parameters.map((pm) => _getInstanceFor(pm.type)).toList();  
-    
-    return classMirror.newInstance(constructor.constructorName, constructorArgs);
+  InstanceMirror _newInstance(ClassMirror classMirror, Element child) {
+    // Instantiate Widget
+    return classMirror.newInstance(WRAP_SYMBOL, [child]);
   }
   
-  dynamic _resolveInjections(InstanceMirror im) {
-    im = _injectSetters(im);
-    im = _injectVariables(im);
-    return im.reflectee;
+  Iterable<MethodMirror> _wrapableConstructor(ClassMirror classMirror) {
+    return classMirror.constructors.values.where(_testWrapConstructor);
   }
+  
+  /** Returns true if the declared [element] is injectable */
+  bool _testWrapConstructor(MethodMirror method) => method.simpleName.toString().contains("wrap");
+  
+  String symbolAsString(Symbol symbol) => MirrorSystem.getName(symbol);
 }

@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 12, 2013
+
+* Implemented UiField support in UiBinder. Added example into hello.dart.
+
 ** August 11, 2013
 
 * Added validation library

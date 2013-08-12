@@ -1,19 +1,11 @@
 //Copyright (C) 2012 Sergey Akopkokhyants. All Rights Reserved.
 //Author: akserg
 
-part of metadata;
+part of uibinder;
 
 /**
- * Interface implemented by classes that generate DOM or Widget structures from
- * ui.xml template files, and which inject portions of the generated UI into the
- * fields of an owner.
- * <p>
- * The generated UiBinder implementation will be based on an xml file resource
- * in the same package as the owner class, with the same name and a "ui.xml"
- * suffix. For example, a UI owned by class {@code bar.baz.Foo} will be sought
- * in {@code /bar/baz/Foo.ui.xml}. (To use a different template file, put the
- * {@link UiTemplate} annotation on your UiBinder interface declaration to point
- * the code generator at it.)
+ * Class that generate DOM or Widget structures from string template, 
+ * and which inject portions of the generated UI into the fields of an owner.
  *
  * @param <U> The type of the root object of the generated UI, typically a
  *          subclass of {@link com.google.gwt.dom.client.Element Element} or
@@ -37,12 +29,14 @@ class UiBinder<U, O> {
     // Parse owner to find annotations
     _parse(owner);
     // Create dummy widget
-    SimplePanel html2 = new SimplePanel();
-    html2.getElement().innerHtml = viewTemplate;
-    document.body.append(html2.getElement());
-    _parseTemplate(html2.getElement(), owner);
-    html2.getElement().remove();
-    return html2 as U;
+    //SimplePanel html2 = new SimplePanel();
+    ClassMirror uClassMirror = reflectClass(U);
+    U html2 = uClassMirror.newInstance(new Symbol(""), []).reflectee as U;
+    (html2 as Widget).getElement().innerHtml = viewTemplate;
+    document.body.append((html2 as Widget).getElement());
+    _parseTemplate((html2 as Widget).getElement(), owner);
+    (html2 as Widget).getElement().remove();
+    return html2;
   }
   
   /**
@@ -99,10 +93,12 @@ class UiBinder<U, O> {
   }
   
   /** Returns variables that need injection */
-  Iterable<VariableMirror> _uiFieldVariables(ClassMirror classMirror) => classMirror.variables.values.where(_testUiField);
+  Iterable<VariableMirror> _uiFieldVariables(ClassMirror classMirror) => 
+      classMirror.variables.values.where(_testUiField);
   
   /** Returns true if the declared [element] is injectable */
-  bool _testUiField(DeclarationMirror element) => element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
+  bool _testUiField(DeclarationMirror element) => 
+      element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
   
   dynamic _instantiateAndWrap(TypeMirror tm, Element element) {
     
@@ -121,7 +117,8 @@ class UiBinder<U, O> {
   }
   
   /** Returns true if the declared [element] is injectable */
-  bool _testWrapConstructor(MethodMirror method) => method.simpleName.toString().contains("wrap");
+  bool _testWrapConstructor(MethodMirror method) => 
+      method.simpleName.toString().contains("wrap");
   
   String symbolAsString(Symbol symbol) => MirrorSystem.getName(symbol);
 }

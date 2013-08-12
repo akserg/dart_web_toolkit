@@ -33,7 +33,7 @@ class TestPanel extends ui.Composite {
   
   TestPanel() {
 
-    UiBinder<ui.Widget, TestPanel> binder = new UiBinder<ui.Widget, TestPanel>();
+    UiBinder<ui.SimplePanel, TestPanel> binder = new UiBinder<ui.SimplePanel, TestPanel>();
     
     // load the template e.g. from service ...
     binder.viewTemplate = "<div class='dyn-panel'><div ui:field='message' class='dyn-message'>Status messages are shown here</div><button ui:field='recalculateFleet'>Recalculate fleet</button></div>";

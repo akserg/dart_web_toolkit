@@ -4,6 +4,7 @@ Dart Web Toolkit Changes
 ** August 12, 2013
 
 * Implemented UiField support in UiBinder. Added example into hello.dart.
+* Method createAndBindUi of UiBinder returns correct instance.
 
 ** August 11, 2013
 

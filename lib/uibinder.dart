@@ -4,7 +4,7 @@
 /**
  * Dart Web Toolkit UiBinder library.
  */
-library metadata;
+library uibinder;
 
 import 'dart:html';
 import 'dart:mirrors';

@@ -19,7 +19,7 @@ part of dart_web_toolkit_util;
  */
 class SafeStylesString implements SafeStyles {
 
-  String _css;
+  String _css = "";
 
   /**
    * Constructs a {@link SafeStylesString} from a string. Callers are
@@ -49,5 +49,21 @@ class SafeStylesString implements SafeStyles {
       return false;
     }
     return _css == (obj as SafeStyles).asString();
+  }
+  
+  /**
+   * Get a hash code for this object.
+   *
+   * All objects have hash codes. Hash codes are guaranteed to be the
+   * same for objects that are equal when compared using the equality
+   * operator [:==:]. Other than that there are no guarantees about
+   * the hash codes. They will not be consistent between runs and
+   * there are no distribution guarantees.
+   *
+   * If a subclass overrides [hashCode] it should override the
+   * equality operator as well to maintain consistency.
+   */
+  int get hashCode {
+    return _css == null ? 0 : _css.hashCode;
   }
 }

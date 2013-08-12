@@ -17,6 +17,13 @@ import 'package:dart_web_toolkit/validation.dart' as validation;
 
 import 'package:dart_web_toolkit/uibinder.dart';
 
+void main_99() {
+  dart_html.query("#loading").remove();
+  //
+  ui.RootPanel.get().add(new ui.IntegerBox());
+  ui.RootPanel.get().add(new ui.DoubleBox());
+}
+
 void main() {
   dart_html.query("#loading").remove();
   //
@@ -24,6 +31,8 @@ void main() {
 }
 
 class TestPanel extends ui.Composite {
+
+  UiBinder<ui.FlowPanel, TestPanel> binder = new UiBinder<ui.FlowPanel, TestPanel>();
   
   @UiField
   ui.Label message;
@@ -32,11 +41,12 @@ class TestPanel extends ui.Composite {
   ui.Button recalculateFleet;
   
   TestPanel() {
-
-    UiBinder<ui.SimplePanel, TestPanel> binder = new UiBinder<ui.SimplePanel, TestPanel>();
-    
     // load the template e.g. from service ...
-    binder.viewTemplate = "<div class='dyn-panel'><div ui:field='message' class='dyn-message'>Status messages are shown here</div><button ui:field='recalculateFleet'>Recalculate fleet</button></div>";
+    binder.viewTemplate = """
+<div class='dyn-panel'>
+  <div ui:field='message' class='dyn-message'>Status messages are shown here</div>
+  <button ui:field='recalculateFleet'>Recalculate fleet</button>
+</div>""";
 
     // known from GWT UiBinder - initialize
     initWidget(binder.createAndBindUi(this));

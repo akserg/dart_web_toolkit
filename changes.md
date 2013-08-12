@@ -5,6 +5,8 @@ Dart Web Toolkit Changes
 
 * Implemented UiField support in UiBinder. Added example into hello.dart.
 * Method createAndBindUi of UiBinder returns correct instance.
+* Added validation into IntegerBox and DoubleBox.
+* Added wrap method to Hyperlink, FlowPanel.
 
 ** August 11, 2013
 

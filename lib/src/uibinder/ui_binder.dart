@@ -13,8 +13,6 @@ part of uibinder;
  * @param <O> The type of the object that will own the generated UI
  */
 class UiBinder<U, O> {
-  static const Symbol WRAP_SYMBOL = const Symbol("wrap");
-  
   String viewTemplate;
   Map<String, VariableMirror> _variables;
   InstanceMirror _ownerInstanceMirror;
@@ -31,7 +29,7 @@ class UiBinder<U, O> {
     // Create dummy widget
     //SimplePanel html2 = new SimplePanel();
     ClassMirror uClassMirror = reflectClass(U);
-    U html2 = uClassMirror.newInstance(new Symbol(""), []).reflectee as U;
+    U html2 = uClassMirror.newInstance(const Symbol(""), []).reflectee as U;
     (html2 as Widget).getElement().innerHtml = viewTemplate;
     document.body.append((html2 as Widget).getElement());
     _parseTemplate((html2 as Widget).getElement(), owner);
@@ -85,10 +83,12 @@ class UiBinder<U, O> {
   }
   
   void _instantiateVariable(String fieldName, Element element) {
-    VariableMirror variableMirror = _variables[fieldName];
-    if (variableMirror != null) {
+    try {
+      VariableMirror variableMirror = _variables[fieldName];
        dynamic variable = _instantiateAndWrap(variableMirror.type, element);
        _ownerInstanceMirror.setField(variableMirror.simpleName, variable);
+    } on Exception catch(ex) {
+      print(ex);
     }
   }
   
@@ -109,7 +109,8 @@ class UiBinder<U, O> {
   // create a new instance of classMirror and inject it
   InstanceMirror _newInstance(ClassMirror classMirror, Element child) {
     // Instantiate Widget
-    return classMirror.newInstance(WRAP_SYMBOL, [child]);
+    print("Instantiate ${symbolAsString(classMirror.simpleName)}");
+    return classMirror.newInstance(const Symbol("wrap"), [child]);
   }
   
   Iterable<MethodMirror> _wrapableConstructor(ClassMirror classMirror) {

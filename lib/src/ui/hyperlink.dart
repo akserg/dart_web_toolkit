@@ -55,6 +55,28 @@ class Hyperlink extends Widget implements HasHtml, HasClickHandlers,
   String _targetHistoryToken;
 
   /**
+   * Creates a Hyperlink widget that wraps an existing [AhncorElement].
+   *
+   * This element must already be attached to the document. If the element is
+   * removed from the document, you must call
+   * {@link RootPanel#detachNow(Widget)}.
+   *
+   * @param element the element to be wrapped
+   */
+  factory Hyperlink.wrap(dart_html.Element element) {
+    // Assert that the element is attached.
+    //assert (Document.get().getBody().isOrHasChild(element));
+
+    Hyperlink hyperlink = new Hyperlink.fromElement(element);
+
+    // Mark it attached and remember it for cleanup.
+    hyperlink.onAttach();
+    RootPanel.detachOnWindowClose(hyperlink);
+
+    return hyperlink;
+  }
+  
+  /**
    * Creates a hyperlink with its text and target history token specified.
    *
    * @param text the hyperlink's text

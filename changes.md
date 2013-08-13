@@ -5,6 +5,7 @@ Dart Web Toolkit Changes
 
 * Improved IntegerBox and DoubleBox validation.
 * Created issue 12410 about JsTypeMirror problem.
+* Added UiBinder example.
 
 ** August 12, 2013
 

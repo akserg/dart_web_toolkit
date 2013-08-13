@@ -11,11 +11,11 @@ class IntegerBox extends ValueBox<int> {
 
   // [-+]?[0-9]+
   //static RegExp DIGITS_ONLY = new RegExp(r"(0|-?[1-9][0-9]*)");
-  RegExp DIGITS_ONLY = new RegExp(r"^\d+$");
+  static const String DIGITS = r"^-?\d+$";
   
   IntegerBox() : super.fromElement(new dart_html.TextInputElement(), new IntegerRenderer.instance(), new IntegerParser.instance()) {
     addKeyPressHandler(new KeyPressHandlerAdapter((KeyPressEvent evt){
-      if (isReadOnly || !enabled) {
+      if (isReadOnly() || !enabled) {
         return;
       }
   
@@ -31,15 +31,22 @@ class IntegerBox extends ValueBox<int> {
           return;
         }
   
-        String charCode = new String.fromCharCode(evt.getKeyboardEvent().charCode);
-        
-        // filter out non-digits
-        if (DIGITS_ONLY.hasMatch(charCode)) {
-        //if (charCode.contains(IntegerBox.DIGITS_ONLY)) {
-          return;
-        }
-  
-        cancelKey();
+      String charCode = new String.fromCharCode(evt.getKeyboardEvent().charCode);
+      
+      if (charCode == "-") {
+        print("Minus");
+      }
+      
+      String string = this.text + charCode;
+
+      RegExp onlyDidits = new RegExp(DIGITS);
+      
+      // filter out non-digits
+      if (onlyDidits.hasMatch(string)) {
+        return;
+      }
+
+      cancelKey();
     }));
   }
 }

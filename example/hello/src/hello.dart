@@ -6,6 +6,7 @@ library hello;
 import 'dart:html' as dart_html;
 import 'dart:math' as dart_math;
 import 'dart:async' as dart_async;
+import 'dart:mirrors';
 
 import 'package:dart_web_toolkit/event.dart' as event;
 import 'package:dart_web_toolkit/ui.dart' as ui;
@@ -17,14 +18,58 @@ import 'package:dart_web_toolkit/validation.dart' as validation;
 
 import 'package:dart_web_toolkit/uibinder.dart';
 
-void main_99() {
+void main_100() {
+  dart_html.query("#loading").remove();
+  //
+  A a = new A();
+  Map<String, ClassMirror> vms = new Map<String, ClassMirror>();
+  // Get instance mirror 
+  InstanceMirror unitIM = reflect(a);
+  // Get mirror of each variable
+  ClassMirror unitCM = reflectClass(A);
+  for (VariableMirror vm in unitCM.variables.values) {
+    vms[symbolAsString(vm.simpleName)] = vm.type;
+  }
+  // Get 'b' variable ClassMirror
+  ClassMirror cm = vms["b"];
+  // Instantiate
+  //InstanceMirror im = cm.newInstance(const Symbol("wrap"), [1]);
+  InstanceMirror im = cm.newInstance(const Symbol(""), []);
+  // Assign it to 'b' from a
+  unitIM.setField(const Symbol("b"),im.reflectee);
+  // Check our 'b'
+  a.printOut();
+}
+
+String symbolAsString(Symbol symbol) => MirrorSystem.getName(symbol);
+
+class A {
+  
+  B b;
+  
+  void printOut() {
+    print(b.name);
+  }
+}
+
+class B {
+  factory B.wrap(int i) {
+    return new B()..name = "Name ${i.toString()}";
+  }
+  
+  String name = "Unknown";
+  
+  B();
+}
+
+void main() {
   dart_html.query("#loading").remove();
   //
   ui.RootPanel.get().add(new ui.IntegerBox());
   ui.RootPanel.get().add(new ui.DoubleBox());
 }
 
-void main() {
+void main_98() {
   dart_html.query("#loading").remove();
   //
   ui.RootPanel.get().add(new TestPanel());

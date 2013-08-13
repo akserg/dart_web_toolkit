@@ -10,11 +10,12 @@ part of dart_web_toolkit_ui;
 class DoubleBox extends ValueBox<double> {
 
   // [-+]?[0-9]*\.?[0-9]+
-  static RegExp DIGITS_ONLY = new RegExp(r"[-+]?\d*(\.,\,)?d+");
+  //static RegExp DIGITS_ONLY = new RegExp(r"^[-+]?\d*(\.,\,)?d+$");
+  static RegExp DIGITS_ONLY = new RegExp(r"^\d+$");
   
   DoubleBox() : super.fromElement(new dart_html.TextInputElement(), new DoubleRenderer.instance(), new DoubleParser.instance()) {
     addKeyPressHandler(new KeyPressHandlerAdapter((KeyPressEvent evt){
-      if (isReadOnly || !enabled) {
+      if (isReadOnly() || !enabled) {
         return;
       }
   
@@ -33,7 +34,7 @@ class DoubleBox extends ValueBox<double> {
         String charCode = new String.fromCharCode(evt.getKeyboardEvent().charCode);
         
         // filter out non-digits
-        if (charCode.contains(DoubleBox.DIGITS_ONLY)) {
+        if (DoubleBox.DIGITS_ONLY.hasMatch(charCode)) {
           return;
         }
   

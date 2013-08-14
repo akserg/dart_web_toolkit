@@ -12,10 +12,42 @@ part of uibinder;
  *          {@link com.google.gwt.user.client.ui.UIObject UiObject}
  * @param <O> The type of the object that will own the generated UI
  */
-class UiBinder<U, O> {
+class UiBinder<U extends Widget, O> {
+  
   String viewTemplate;
   Map<String, VariableMirror> _variables;
   InstanceMirror _ownerInstanceMirror;
+  
+  /**
+   * Instantiate UiBinder.
+   * We check is that instance was annotated with @UiTemplate and read 
+   * information into viewTemplate here.
+   */
+  UiBinder() {
+    InstanceMirror mineIM = reflect(this);
+    ClassMirror mineCM = mineIM.type;
+    InstanceMirror templateIM = mineCM.metadata.firstWhere((InstanceMirror im) { 
+      return im.reflectee is UiTemplate;
+    }, orElse:() {
+      return null;
+    });
+    if (templateIM != null) {
+      UiTemplate tmpl = templateIM.reflectee as UiTemplate;
+      //
+      var httpRequest = new HttpRequest();
+      httpRequest
+        ..open('GET', tmpl.path)
+        ..onLoadEnd.listen((){
+          if (httpRequest.status == 200) {
+            viewTemplate = httpRequest.responseText;
+          } else {
+            // Can't load specified template
+            throw new Exception("Can't load template from ${tmpl.path}.\nError status: ${httpRequest.status}");
+          }
+        })
+        ..send();
+    }
+  }
   
   /**
    * Creates and returns the root object of the UI, and fills any fields of owner
@@ -26,15 +58,14 @@ class UiBinder<U, O> {
   U createAndBindUi(O owner) {
     // Parse owner to find annotations
     _parse(owner);
-    // Create dummy widget
-    //SimplePanel html2 = new SimplePanel();
+    // Create an instance of main widget
     ClassMirror uClassMirror = reflectClass(U);
-    U html2 = uClassMirror.newInstance(const Symbol(""), []).reflectee as U;
-    (html2 as Widget).getElement().innerHtml = viewTemplate;
-    document.body.append((html2 as Widget).getElement());
-    _parseTemplate((html2 as Widget).getElement(), owner);
-    (html2 as Widget).getElement().remove();
-    return html2;
+    U widget = uClassMirror.newInstance(const Symbol(""), []).reflectee as U;
+    widget.getElement().innerHtml = viewTemplate;
+    document.body.append(widget.getElement());
+    _parseTemplate(widget.getElement(), owner);
+    widget.getElement().remove();
+    return widget;
   }
   
   /**
@@ -58,28 +89,10 @@ class UiBinder<U, O> {
   }
   
   void _assign(Element child, O owner) {
-    String fieldName = _getFieldName(child);
+    String fieldName = child.$dom_getAttribute("ui:field");
     if (fieldName != null) {
       _instantiateVariable(fieldName, child);
     }
-  }
-  
-  String _getFieldName(Element element) {
-    return element.$dom_getAttribute("ui:field");
-  }
-  
-  void _parse(O owner) {
-    Map fields = new Map();
-    //
-    _ownerInstanceMirror = reflect(owner);
-    _findVariables(_ownerInstanceMirror);
-  }
-  
-  void _findVariables(InstanceMirror instanceMirror) {
-    _variables = new Map<String, VariableMirror>();
-    _uiFieldVariables(instanceMirror.type).forEach((VariableMirror variable){
-      _variables[symbolAsString(variable.simpleName)] = variable;
-    });
   }
   
   void _instantiateVariable(String fieldName, Element element) {
@@ -91,19 +104,11 @@ class UiBinder<U, O> {
       print(ex);
     }
   }
-  
-  /** Returns variables that need injection */
-  Iterable<VariableMirror> _uiFieldVariables(ClassMirror classMirror) => 
-      classMirror.variables.values.where(_testUiField);
-  
-  /** Returns true if the declared [element] is injectable */
-  bool _testUiField(DeclarationMirror element) => 
-      element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
-  
+
   dynamic _instantiateAndWrap(TypeMirror tm, Element element) {
     
     InstanceMirror im = _newInstance(tm, element);
-    return im.reflectee; //_resolveInjections(im);
+    return im.reflectee;
   }
   
   // create a new instance of classMirror and inject it
@@ -117,9 +122,41 @@ class UiBinder<U, O> {
     return classMirror.constructors.values.where(_testWrapConstructor);
   }
   
-  /** Returns true if the declared [element] is injectable */
+  /** Returns true if the declared [element] has 'wrap' factory */
   bool _testWrapConstructor(MethodMirror method) => 
       method.simpleName.toString().contains("wrap");
   
   String symbolAsString(Symbol symbol) => MirrorSystem.getName(symbol);
+
+  //*******
+  // Parser
+  //*******
+  
+  /**
+   * Parse owner class to find UiFields.
+   */
+  void _parse(O owner) {
+    Map fields = new Map();
+    //
+    _ownerInstanceMirror = reflect(owner);
+    _findVariables(_ownerInstanceMirror);
+  }
+  
+  /**
+   * Find all UiField variables in [InstanceMirror]. 
+   */
+  void _findVariables(InstanceMirror instanceMirror) {
+    _variables = new Map<String, VariableMirror>();
+    _uiFieldVariables(instanceMirror.type).forEach((VariableMirror variable){
+      _variables[symbolAsString(variable.simpleName)] = variable;
+    });
+  }
+  
+  /** Returns ui field variables */
+  Iterable<VariableMirror> _uiFieldVariables(ClassMirror classMirror) => 
+      classMirror.variables.values.where(_testUiField);
+  
+  /** Returns true if the declared [element] is UiField */
+  bool _testUiField(DeclarationMirror element) => 
+      element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
 }

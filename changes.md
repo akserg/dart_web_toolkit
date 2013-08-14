@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 14, 2013
+
+* Added UiTemplate annotation to UiBinder.
+
 ** August 13, 2013
 
 * Improved IntegerBox and DoubleBox validation.

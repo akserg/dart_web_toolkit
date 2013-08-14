@@ -121,15 +121,15 @@ class _UiField {
 //   */
 //  bool isParentOrRenderer(Element parent) { return false; }
 //}
-//
-///**
-// * Indicates the template from which to generate a [UiBinder].
-// */
-//class UiTemplate {
-//  /**
-//   * Returns the template name.
-//   */
-//  final String value;
-//  
-//  const UiTemplate([this.value = null]);
-//}
+
+/**
+ * Indicates the template from which to generate a [UiBinder].
+ */
+class UiTemplate {
+  /**
+   * Path to the template.
+   */
+  final String path;
+  
+  const UiTemplate(this.path);
+}

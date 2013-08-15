@@ -87,7 +87,7 @@ class TestPanel extends ui.Composite {
   
   TestPanel() {
     // load the template e.g. from service ...
-    binder.viewTemplate = """
+    binder.template = """
 <div class='dyn-panel'>
   <div ui:field='message' class='dyn-message'>Status messages are shown here</div>
   <button ui:field='recalculateFleet'>Recalculate fleet</button>

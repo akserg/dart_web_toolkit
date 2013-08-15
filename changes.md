@@ -1,9 +1,9 @@
 Dart Web Toolkit Changes
 ========================
 
-** August 14, 2013
+** August 15, 2013
 
-* Added UiTemplate annotation to UiBinder.
+* UiBinder hase been decomposed to separate classes. Example changed.
 
 ** August 13, 2013
 

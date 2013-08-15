@@ -24,7 +24,7 @@ class LoginView extends ui.Composite {
   
   LoginView(String template) {
     // load the template e.g. from service ...
-    binder.viewTemplate = template;
+    binder.template = template;
 
     // known from GWT UiBinder - initialize
     initWidget(binder.createAndBindUi(this));

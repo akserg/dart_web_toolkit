@@ -6,9 +6,11 @@
  */
 library dart_web_toolkit_validation;
 
-import 'package:dart_web_toolkit/ui.dart' as ui;
-import 'event.dart' as event;
+import 'ui.dart';
+import 'event.dart';
 
 part 'src/validation/validator.dart';
-part 'src/validation/value_box_validator.dart';
+part 'src/validation/widget_validator.dart';
 
+part 'src/validation/string_validator.dart';
+part 'src/validation/number_validator.dart';

@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 16, 2013
+
+* Added Validation framework. Added StringValidator with example.
+
 ** August 15, 2013
 
 * UiBinder hase been decomposed to separate classes. Example changed.

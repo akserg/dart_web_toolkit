@@ -18,7 +18,28 @@ import 'package:dart_web_toolkit/validation.dart' as validation;
 
 import 'package:dart_web_toolkit/uibinder.dart';
 
-void main_100() {
+// Validation
+void main() {
+  dart_html.query("#loading").remove();
+  //
+  ui.TextBox textBox = new ui.TextBox();
+  ui.Label textArea = new ui.Label();
+  //
+  validation.Validator validator = new validation.StringValidator(textBox, minLength:2, maxLength:5);
+  validator.onValid = () {
+    textBox.removeStyleName("error-field");
+    textArea.text = "";
+  };
+  validator.onInvalid = (List<validation.ValidationResult> results) {
+    textBox.addStyleName("error-field");
+    textArea.text = results.join("\n"); 
+  };
+  
+  ui.RootPanel.get().add(textBox);
+  ui.RootPanel.get().add(textArea);
+}
+
+void main_99() {
   dart_html.query("#loading").remove();
   //
   A a = new A();
@@ -62,13 +83,6 @@ class B {
   B();
 }
 
-void main() {
-  dart_html.query("#loading").remove();
-  //
-  ui.RootPanel.get().add(new ui.IntegerBox());
-  ui.RootPanel.get().add(new ui.DoubleBox());
-}
-
 void main_98() {
   dart_html.query("#loading").remove();
   //
@@ -106,23 +120,23 @@ class TestPanel extends ui.Composite {
 // <input id="new-todo" placeholder="What needs to be done?" autofocus>
 //
 void main_97() {
-  dart_html.query("#loading").remove();
-  // Create a panel to layout the widgets
-  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
-  vpanel1.spacing = 5;
-
-  ui.IntegerBox iBox = new ui.IntegerBox();
-  validation.IntegerBoxValidator iBoxValidator = new validation.IntegerBoxValidator(iBox, onSuccess:(ui.IntegerBox iBox){
-    iBox.removeStyleName("error-field");
-  }, onError:(ui.IntegerBox iBox, Exception ex){
-    iBox.addStyleName("error-field");
-  });
-  iBox.setMaxLength(10);
-  iBox.setVisibleLength(5);
-  iBox.setValue(123123);
-  vpanel1.add(iBox);
-  
-  ui.RootPanel.get("testId").add(vpanel1);
+//  dart_html.query("#loading").remove();
+//  // Create a panel to layout the widgets
+//  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
+//  vpanel1.spacing = 5;
+//
+//  ui.IntegerBox iBox = new ui.IntegerBox();
+//  validation.IntegerBoxValidator iBoxValidator = new validation.IntegerBoxValidator(iBox, onSuccess:(ui.IntegerBox iBox){
+//    iBox.removeStyleName("error-field");
+//  }, onError:(ui.IntegerBox iBox, Exception ex){
+//    iBox.addStyleName("error-field");
+//  });
+//  iBox.setMaxLength(10);
+//  iBox.setVisibleLength(5);
+//  iBox.setValue(123123);
+//  vpanel1.add(iBox);
+//  
+//  ui.RootPanel.get("testId").add(vpanel1);
 }
 
 
@@ -145,23 +159,23 @@ void main_95() {
 
 // Teddies example
 void main_94() {
-  dart_html.query("#loading").remove();
-  // Create a panel to layout the widgets
-  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
-  vpanel1.spacing = 5;
-
-  ui.IntegerBox iBox = new ui.IntegerBox();
-  validation.IntegerBoxValidator iBoxValidator = new validation.IntegerBoxValidator(iBox, onSuccess:(ui.IntegerBox iBox){
-    iBox.removeStyleName("error-field");
-  }, onError:(ui.IntegerBox iBox, Exception ex){
-    iBox.addStyleName("error-field");
-  });
-  iBox.setMaxLength(10);
-  iBox.setVisibleLength(5);
-  iBox.setValue(123123);
-  vpanel1.add(iBox);
-  
-  ui.RootPanel.get("testId").add(vpanel1);
+//  dart_html.query("#loading").remove();
+//  // Create a panel to layout the widgets
+//  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
+//  vpanel1.spacing = 5;
+//
+//  ui.IntegerBox iBox = new ui.IntegerBox();
+//  validation.IntegerBoxValidator iBoxValidator = new validation.IntegerBoxValidator(iBox, onSuccess:(ui.IntegerBox iBox){
+//    iBox.removeStyleName("error-field");
+//  }, onError:(ui.IntegerBox iBox, Exception ex){
+//    iBox.addStyleName("error-field");
+//  });
+//  iBox.setMaxLength(10);
+//  iBox.setVisibleLength(5);
+//  iBox.setValue(123123);
+//  vpanel1.add(iBox);
+//  
+//  ui.RootPanel.get("testId").add(vpanel1);
 }
 
 void main_93() {

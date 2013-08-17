@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** Auust 17, 2013
+
+* Added history example.
+
 ** August 16, 2013
 
 * Added Validation framework. Added StringValidator with example.

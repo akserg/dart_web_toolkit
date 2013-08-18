@@ -1,7 +1,12 @@
 Dart Web Toolkit Changes
 ========================
 
-** Auust 17, 2013
+** August 18, 2013
+
+* Added RegExpValidator with example.
+* Added validation example shows how to use StringValidator, NumberValidator and RegExpValidator.
+
+** August 17, 2013
 
 * Added history example.
 

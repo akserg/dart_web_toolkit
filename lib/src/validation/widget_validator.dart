@@ -27,17 +27,14 @@ abstract class WidgetValidator extends Validator {
   static bool validateAll(List<WidgetValidator> validators) {
     assert(validators != null);
 
-    validators.forEach((WidgetValidator validator) {
+    return !validators.any((WidgetValidator validator){
       if (validator.enabled) {
         ValidationEvent resultEvent = validator._doValidate();
-        
-        if (resultEvent.type == ValidationEvent.INVALID)
-          return false;
+        if (resultEvent.type == ValidationEvent.INVALID) {
+          return true;
+        }
       }
-
+      return false;
     });
-    
-    return true;
   }
-
 }

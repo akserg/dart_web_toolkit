@@ -57,8 +57,6 @@ class StringValidator extends WidgetValidator {
       return results;
     else
       return _validateString(value);
-    
-    return results;
   }
   
   /**
@@ -70,9 +68,9 @@ class StringValidator extends WidgetValidator {
     
     String val = value != null ? value.toString() : "";
     if (maxLength != null && val.length > maxLength) {
-      results.add(new ValidationResult(true,  tooLongError.replaceFirst(new RegExp(r'{maxLength}'), maxLength.toString())));
+      results.add(new ValidationResult(true, substitute(tooLongError, '{maxLength}', maxLength)));
     } else if (minLength != null && val.length < minLength) {
-      results.add(new ValidationResult(true,  tooShortError.replaceFirst(new RegExp(r'{minLength}'), minLength.toString())));
+      results.add(new ValidationResult(true,  substitute(tooShortError, '{minLength}', minLength)));
     }
 
     return results;

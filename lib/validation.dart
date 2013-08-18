@@ -14,3 +14,4 @@ part 'src/validation/widget_validator.dart';
 
 part 'src/validation/string_validator.dart';
 part 'src/validation/number_validator.dart';
+part 'src/validation/reg_exp_validator.dart';

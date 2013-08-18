@@ -10,6 +10,16 @@ typedef void OnInvalid(List<ValidationResult> results);
 abstract class Validator {
   
   /**
+   *  A String containing the decimal digits 0 through 9.    
+   *  
+   *  @langversion 3.0
+   *  @playerversion Flash 9
+   *  @playerversion AIR 1.1
+   *  @productversion Flex 3
+   */ 
+  static const String DECIMAL_DIGITS = "0123456789";
+  
+  /**
    * Property to enable/disable validation process.
    * 
    * Setting this value to false will stop the validator from performing 
@@ -79,7 +89,13 @@ abstract class Validator {
    */
   ValidationEvent _processValidation(dynamic value) {
     List errorResults = doValidation(value);
-    return new ValidationEvent(errorResults.length > 0 ? 
+    bool invalid = errorResults.any((ValidationResult res){
+      if (res.isError) {
+        return true;
+      }
+      return false;
+    });
+    return new ValidationEvent(invalid ? 
         ValidationEvent.INVALID : 
         ValidationEvent.VALID, errorResults);
   }
@@ -175,4 +191,13 @@ class ValidationResult {
   String toString() {
     return message == null ? "" : message;
   }
+}
+
+/**
+ * Convinient method to substitute string with named parameters. Method find 
+ * the parameter [from] in curly brackets and change it [to] value converted to 
+ * string.
+ */
+String substitute(String input, String from, dynamic to) {
+  return input.replaceFirst(new RegExp(from), to.toString());
 }

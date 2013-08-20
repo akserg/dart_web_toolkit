@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 20, 2013
+
+* Added panel example.
+
 ** August 18, 2013
 
 * Added RegExpValidator with example.

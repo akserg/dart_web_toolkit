@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 21, 2013
+
+* Added Validation listeners example.
+
 ** August 20, 2013
 
 * Added panel example.

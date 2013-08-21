@@ -9,11 +9,11 @@ import 'package:dart_web_toolkit/validation.dart' as validation;
 void main() {
   dart_html.query("#loading").remove();
   
-  //******************
-  // String Validation
-  //******************
+  //********************************************
+  // String Validation based on callback methods
+  //********************************************
   
-  ui.Label stringLabel = new ui.Label("String validation (length between 2 and 5)");
+  ui.Label stringLabel = new ui.Label("String validation with callbacks (length between 2 and 5)");
   ui.TextBox stringInput = new ui.TextBox();
   ui.Label stringValidationMessage = new ui.Label();
   //
@@ -30,6 +30,33 @@ void main() {
   ui.RootPanel.get().add(stringLabel);
   ui.RootPanel.get().add(stringInput);
   ui.RootPanel.get().add(stringValidationMessage);
+  
+  ui.RootPanel.get().add(new ui.Html("<br/>"));
+  
+  
+  //*************************************
+  // String Validation based on Listeners
+  //*************************************
+  
+  ui.Label stringLabel2 = new ui.Label("String validation with listeners (length between 2 and 5)");
+  ui.TextBox stringInput2 = new ui.TextBox();
+  ui.Label stringValidationMessage2 = new ui.Label();
+  //
+  validation.Validator stringValidator2 = new validation.StringValidator(stringInput2, minLength:2, maxLength:5);
+  // Listeners
+  stringValidator2.listeners.add((validation.ValidationEvent evt){
+    if (evt.type == validation.ValidationEvent.VALID) {
+      stringInput2.removeStyleName("error-field");
+      stringValidationMessage2.text = "";
+    } else {
+      stringInput2.addStyleName("error-field");
+      stringValidationMessage2.text = evt.results.join("\n");
+    }
+  });
+  
+  ui.RootPanel.get().add(stringLabel2);
+  ui.RootPanel.get().add(stringInput2);
+  ui.RootPanel.get().add(stringValidationMessage2);
   
   ui.RootPanel.get().add(new ui.Html("<br/>"));
   

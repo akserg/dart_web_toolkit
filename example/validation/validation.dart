@@ -94,6 +94,8 @@ void main() {
   ui.TextBox regExpInput = new ui.TextBox();
   ui.Label regExpValidationMessage = new ui.Label();
   //
+  
+  ui.RootPanel.get().add(new ui.Html("<br/>"));
   validation.Validator regExpValidator = new validation.RegExpValidator(regExpInput, emailValidationString);
   regExpValidator.onValid = () {
     regExpInput.removeStyleName("error-field");
@@ -109,14 +111,64 @@ void main() {
   ui.RootPanel.get().add(regExpValidationMessage);
   
   ui.RootPanel.get().add(new ui.Html("<br/>"));
+
+  //**************************************************
+  // Phone Number Validation based on callback methods
+  //**************************************************
   
+  ui.Label phoneNumberLabel = new ui.Label("Phone Number validation (length more then 8 numbers)");
+  ui.TextBox phoneNumberInput = new ui.TextBox();
+  ui.Label phoneNumberValidationMessage = new ui.Label();
+  //
+  validation.Validator phoneNumberValidator = new validation.PhoneNumberValidator(phoneNumberInput, minDigits:8);
+  phoneNumberValidator.onValid = () {
+    phoneNumberInput.removeStyleName("error-field");
+    phoneNumberValidationMessage.text = "";
+  };
+  phoneNumberValidator.onInvalid = (List<validation.ValidationResult> results) {
+    phoneNumberInput.addStyleName("error-field");
+    phoneNumberValidationMessage.text = results.join("\n"); 
+  };
+  
+  ui.RootPanel.get().add(phoneNumberLabel);
+  ui.RootPanel.get().add(phoneNumberInput);
+  ui.RootPanel.get().add(phoneNumberValidationMessage);
+  
+  ui.RootPanel.get().add(new ui.Html("<br/>"));
+  
+  //************************************************
+  // SSN Number Validation based on callback methods
+  //************************************************
+  
+  ui.Label ssnNumberLabel = new ui.Label("SSN Number validation (XXXXXXXXX or XXX-XX-XXXX)");
+  ui.TextBox ssnNumberInput = new ui.TextBox();
+  ui.Label ssnNumberValidationMessage = new ui.Label();
+  //
+  validation.Validator ssnNumberValidator = new validation.SocialSecurityNumberValidator(ssnNumberInput);
+  ssnNumberValidator.onValid = () {
+    ssnNumberInput.removeStyleName("error-field");
+    ssnNumberValidationMessage.text = "";
+  };
+  ssnNumberValidator.onInvalid = (List<validation.ValidationResult> results) {
+    ssnNumberInput.addStyleName("error-field");
+    ssnNumberValidationMessage.text = results.join("\n"); 
+  };
+  
+  ui.RootPanel.get().add(ssnNumberLabel);
+  ui.RootPanel.get().add(ssnNumberInput);
+  ui.RootPanel.get().add(ssnNumberValidationMessage);
+  
+  ui.RootPanel.get().add(new ui.Html("<br/>"));
+
   //*****************
   // Group Validation
   //*****************
   
   ui.Button submitButton = new ui.Button("Validate & Submit");
   submitButton.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent evt){
-    if (validation.WidgetValidator.validateAll([stringValidator, numberValidator, regExpValidator])) {
+    if (validation.WidgetValidator.validateAll([stringValidator, numberValidator, 
+                                                regExpValidator, phoneNumberValidator,
+                                                ssnNumberValidator])) {
       dart_html.window.alert("Message sent because all fields valid.");
     }
   }));

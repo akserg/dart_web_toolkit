@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 23, 2013
+
+* Added PhoneNumber and SocialSecurityNumber validators.
+
 ** August 21, 2013
 
 * Added Validation listeners example.

@@ -137,7 +137,7 @@ class AbsolutePanel extends ComplexPanel implements InsertPanelForIsWidget{
    * Convenience overload to allow {@link IsWidget} to be used directly.
    */
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertAt(asWidgetOrNull(w), beforeIndex);
+    insertAt(Widget.asWidgetOrNull(w), beforeIndex);
   }
 
   /**

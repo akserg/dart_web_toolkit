@@ -405,7 +405,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    * @see #setWidget(int,int,Widget)
    */
   void setIsWidget(int row, int column, IsWidget widget) {
-    this.setWidget(row, column, asWidgetOrNull(widget));
+    this.setWidget(row, column, Widget.asWidgetOrNull(widget));
   }
 
   /**

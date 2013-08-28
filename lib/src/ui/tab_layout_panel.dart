@@ -241,7 +241,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
    * Convenience overload to allow {@link IsWidget} to be used directly.
    */
   Widget getTabIsWidget(IsWidget child) {
-    return getTabWidget(asWidgetOrNull(child));
+    return getTabWidget(Widget.asWidgetOrNull(child));
   }
 
   /**
@@ -273,7 +273,7 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
    * Convenience overload to allow {@link IsWidget} to be used directly.
    */
   int getWidgetIndexIsWidget(IsWidget child) {
-    return getWidgetIndex(asWidgetOrNull(child));
+    return getWidgetIndex(Widget.asWidgetOrNull(child));
   }
 
   /**

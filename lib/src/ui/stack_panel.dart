@@ -78,7 +78,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertAt(asWidgetOrNull(w), beforeIndex);
+    insertAt(Widget.asWidgetOrNull(w), beforeIndex);
   }
 
   /**

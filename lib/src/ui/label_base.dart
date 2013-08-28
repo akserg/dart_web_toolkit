@@ -142,7 +142,7 @@ class LabelBase<T> extends Widget implements HasWordWrap,
        * autoHorizontalAlignment is a truly automatic policy, i.e. either
        * ALIGN_CONTENT_START or ALIGN_CONTENT_END
        */
-      align = _autoHorizontalAlignment == ALIGN_CONTENT_START
+      align = _autoHorizontalAlignment == HasAutoHorizontalAlignment.ALIGN_CONTENT_START
           ? HorizontalAlignmentConstant.startOf(directionalTextHelper.getTextDirection())
           : HorizontalAlignmentConstant.endOf(directionalTextHelper.getTextDirection());
     }

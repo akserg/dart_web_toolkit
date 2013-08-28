@@ -57,7 +57,7 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
    * @see #add(Widget)
    */
   void addIsWidget(IsWidget w) {
-    this.add(asWidgetOrNull(w));
+    this.add(Widget.asWidgetOrNull(w));
   }
 
   /**
@@ -162,7 +162,7 @@ class CaptionPanel extends Composite implements HasWidgetsForIsWidget {
    * @see #remove(Widget)
    */
   bool removeIsWidget(IsWidget w) {
-    return this.remove(asWidgetOrNull(w));
+    return this.remove(Widget.asWidgetOrNull(w));
   }
 }
 

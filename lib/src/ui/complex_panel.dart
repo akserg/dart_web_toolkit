@@ -126,7 +126,7 @@ abstract class ComplexPanel extends Panel implements IndexedPanelForIsWidget {
   //******************************************
 
   int getWidgetIndexIsWidget(IsWidget child) {
-    return getWidgetIndex(asWidgetOrNull(child));
+    return getWidgetIndex(Widget.asWidgetOrNull(child));
   }
 
   //*********

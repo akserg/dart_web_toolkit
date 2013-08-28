@@ -144,7 +144,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    */
 
   void addIsWidget(IsWidget w) {
-    this.add(asWidgetOrNull(w));
+    this.add(Widget.asWidgetOrNull(w));
   }
 
 
@@ -211,7 +211,7 @@ class Tree extends Widget implements HasTreeItemsForIsWidget, HasWidgetsForIsWid
    */
 
   TreeItem addIsWidgetItem(IsWidget w) {
-    return this.addIsWidgetItem(asWidgetOrNull(w));
+    return this.addIsWidgetItem(Widget.asWidgetOrNull(w));
   }
 
   HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {

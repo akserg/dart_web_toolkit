@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** August 28, 2013
+
+* Migrate project code to follow Dart SDK version 0.6.21.3_r26639.
+* Fixed error: Static members from supertypes must be qualified by the name of the defining type.
+
 ** August 23, 2013
 
 * Added PhoneNumber and SocialSecurityNumber validators.
@@ -61,7 +66,7 @@ Dart Web Toolkit Changes
 
 * Fixed bug with set/get properties in Dom class.
 * Fixed bug with enabled property of FocusWidget.
-* All class constructor's are constants now in UIBinder.
+* All class constructors are constants now in UIBinder.
 
 ** July 15, 2013
 

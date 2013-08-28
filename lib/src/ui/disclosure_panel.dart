@@ -153,7 +153,7 @@ class DisclosurePanel
    * @see #add(Widget)
    */
   void addIsWidget(IsWidget w) {
-    this.add(asWidgetOrNull(w));
+    this.add(Widget.asWidgetOrNull(w));
   }
 
   HandlerRegistration addCloseHandler(CloseHandler<DisclosurePanel> handler) {
@@ -229,7 +229,7 @@ class DisclosurePanel
    * @see #remove(Widget)
    */
   bool removeIsWidget(IsWidget w) {
-    return this.remove(asWidgetOrNull(w));
+    return this.remove(Widget.asWidgetOrNull(w));
   }
 
 //  /**

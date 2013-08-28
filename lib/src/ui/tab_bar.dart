@@ -367,8 +367,8 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       // Style the wrapper
       _ClickDelegatePanel delPanel = panel.getWidgetAt(index + 1) as _ClickDelegatePanel;
       delPanel.setEnabled(enabled);
-      manageElementStyleName(delPanel.getElement(), "dwt-TabBarItem-disabled", !enabled);
-      manageElementStyleName(delPanel.getElement().parent, "dwt-TabBarItem-wrapper-disabled", !enabled);
+      UiObject.manageElementStyleName(delPanel.getElement(), "dwt-TabBarItem-disabled", !enabled);
+      UiObject.manageElementStyleName(delPanel.getElement().parent, "dwt-TabBarItem-wrapper-disabled", !enabled);
     }
 
     /**

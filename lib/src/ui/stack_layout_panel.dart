@@ -231,7 +231,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
   }
 
   int getWidgetIndexIsWidget(IsWidget child) {
-    return getWidgetIndex(asWidgetOrNull(child));
+    return getWidgetIndex(Widget.asWidgetOrNull(child));
   }
 
   int getWidgetIndex(Widget child) {

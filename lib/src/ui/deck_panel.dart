@@ -75,7 +75,7 @@ class DeckPanel extends ComplexPanel implements HasAnimation, InsertPanelForIsWi
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertAt(asWidgetOrNull(w), beforeIndex);
+    insertAt(Widget.asWidgetOrNull(w), beforeIndex);
   }
 
   void insertAt(Widget w, int beforeIndex) {

@@ -186,7 +186,7 @@ class TabPanel extends Composite implements HasWidgets,
    */
 
   int getWidgetIndexIsWidget(IsWidget child) {
-    return getWidgetIndex(asWidgetOrNull(child));
+    return getWidgetIndex(Widget.asWidgetOrNull(child));
   }
 
 

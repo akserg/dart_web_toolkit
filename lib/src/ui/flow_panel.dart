@@ -68,7 +68,7 @@ class FlowPanel extends ComplexPanel implements InsertPanelForIsWidget, HasClick
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertAt(asWidgetOrNull(w), beforeIndex);
+    insertAt(Widget.asWidgetOrNull(w), beforeIndex);
   }
 
   /**

@@ -102,7 +102,7 @@ class SimplePanel extends Panel implements HasOneWidget {
    * @see SimplePanel
    */
   void setWidgetIsWidget(IsWidget w) {
-    setWidget(asWidgetOrNull(w));
+    setWidget(Widget.asWidgetOrNull(w));
   }
 
   //*******************************

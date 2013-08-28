@@ -97,11 +97,11 @@ abstract class Panel extends Widget implements HasWidgetsForIsWidget {
   //****************************************
 
   void addIsWidget(IsWidget child) {
-    this.add(asWidgetOrNull(child));
+    this.add(Widget.asWidgetOrNull(child));
   }
 
   bool removeIsWidget(IsWidget child) {
-    return remove(asWidgetOrNull(child));
+    return remove(Widget.asWidgetOrNull(child));
   }
 
 

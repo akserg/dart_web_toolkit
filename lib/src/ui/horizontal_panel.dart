@@ -62,7 +62,7 @@ class HorizontalPanel extends CellPanel implements HasAlignment, InsertPanelForI
   }
 
   void insertIsWidget(IsWidget w, int beforeIndex) {
-    insertAt(asWidgetOrNull(w), beforeIndex);
+    insertAt(Widget.asWidgetOrNull(w), beforeIndex);
   }
 
   void insertAt(Widget w, int beforeIndex) {

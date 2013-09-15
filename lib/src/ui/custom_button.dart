@@ -572,9 +572,11 @@ class CustomButton extends ButtonBase {
     // caused by a keyboard event).
     //NativeEvent evt = Document.get().createClickEvent(1, 0, 0, 0, 0, false, false, false, false);
     // Create Dom CustomEvent
-    dart_html.CustomEvent evt = dart_html.document.$dom_createEvent('CustomEvent');
+//    dart_html.CustomEvent evt = dart_html.document.$dom_createEvent('CustomEvent');
     // After Dom CustomEvent instance has been created we can initialise it here
-    evt.$dom_initCustomEvent('CustomEvent', false, false, false);
+//    evt.$dom_initCustomEvent('CustomEvent', false, false, false);
+    dart_html.CustomEvent evt = new dart_html.CustomEvent('CustomEvent', 
+        canBubble: false, cancelable: false, detail: false);
     // Dispatch event
     getElement().dispatchEvent(evt);
 

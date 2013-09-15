@@ -80,9 +80,9 @@ class DecoratedStackPanel extends StackPanel {
   }
 
   dart_html.Element getHeaderTextElem(dart_html.Element headerElem) {
-    dart_html.Element tbody = headerElem.$dom_firstElementChild;
+    dart_html.Element tbody = headerElem.firstChild;
     dart_html.Element tr = tbody.children[1];
     dart_html.Element td = tr.children[1];
-    return td.$dom_firstElementChild;
+    return td.firstChild;
   }
 }

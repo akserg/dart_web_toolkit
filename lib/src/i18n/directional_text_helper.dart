@@ -119,7 +119,7 @@ class DirectionalTextHelper implements HasDirectionEstimator {
    * @return the text or html
    */
   String getTextOrHtml(bool isHtml) {
-    dart_html.Element elem = isSpanWrapped ? element.$dom_firstElementChild : element;
+    dart_html.Element elem = isSpanWrapped ? element.firstChild : element;
     return isHtml ? elem.innerHtml : elem.text;
   }
 

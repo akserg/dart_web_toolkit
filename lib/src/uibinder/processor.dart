@@ -31,23 +31,30 @@ class Processor<O> {
    * Process each [element] of owner.
    */
   void _process(Element element) {
-    Element child = element.$dom_firstElementChild;
+    Node child = element.firstChild;
+    // We only processing Eements
     while (child != null) {
-      _tryToAssign(child);
-
+      if (child is Element) {
+        _tryToAssign(child as Element);
+      }
+      
       if (child.hasChildNodes()) {
         _process(child);
       }
 
-      child = child.nextElementSibling;
-    }
+      if (child is Element) {
+        child = (child as Element).nextElementSibling;
+      } else {
+        child = child.nextNode;
+      }
+    } 
   }
   
   /**
    * Try to assign [element] to one of fields of owner.
    */
   void _tryToAssign(Element element) {
-    String field = element.$dom_getAttribute("ui:field");
+    String field = element.attributes["ui:field"]; //$dom_getAttribute("ui:field");
     if (field != null) {
       _tryToInstantiateVariable(field, element);
     }

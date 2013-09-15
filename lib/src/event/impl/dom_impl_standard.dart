@@ -53,7 +53,7 @@ class DomImplStandard extends DomImpl {
 
   dart_html.Element getChild(dart_html.Element elem, int index) {
     int count = 0;
-    dart_html.Element child = elem.$dom_firstElementChild;
+    dart_html.Element child = elem.firstChild;
     while (child != null) {
       if (child.nodeType == 1) {
         if (index == count)
@@ -68,11 +68,14 @@ class DomImplStandard extends DomImpl {
 
   int getChildCount(dart_html.Element elem) {
     int count = 0;
-    dart_html.Element child = elem.$dom_firstElementChild;
+    dart_html.Node child = elem.firstChild;
     while (child != null) {
-      if (child.nodeType == 1)
-        ++count;
-      child = child.nextElementSibling;
+      if (child.nodeType == 1) ++count;
+      if (child is dart_html.Element) {
+        child = (child as dart_html.Element).nextElementSibling;
+      } else {
+        child = child.nextNode;
+      }
     }
     return count;
   }
@@ -336,9 +339,10 @@ class DomImplStandard extends DomImpl {
   }
 
   dart_html.Event createHtmlEvent(String type, bool canBubble, bool cancelable) {
-    dart_html.CustomEvent evt = new dart_html.CustomEvent('HTMLEvents');
-    evt.$dom_initCustomEvent(type, canBubble, cancelable, null);
-
-    return evt;
+//    dart_html.CustomEvent evt = new dart_html.CustomEvent('HTMLEvents');
+//    evt.$dom_initCustomEvent(type, canBubble, cancelable, null);
+//    return evt;
+    return new dart_html.CustomEvent('HTMLEvents', 
+        canBubble:canBubble, cancelable:cancelable, detail:null);
   }
 }

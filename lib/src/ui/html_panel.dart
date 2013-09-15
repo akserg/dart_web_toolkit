@@ -109,7 +109,7 @@ class HtmlPanel extends ComplexPanel {
 
     dart_html.DivElement scratchDiv = new dart_html.DivElement();
     scratchDiv.innerHtml = b.toString();
-    setElement(scratchDiv.$dom_firstElementChild);
+    setElement(scratchDiv.firstChild);
     getElement().remove(); //FromParent();
   }
 

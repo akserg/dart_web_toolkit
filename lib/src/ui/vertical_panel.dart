@@ -91,7 +91,8 @@ class VerticalPanel extends CellPanel implements HasAlignment, InsertPanelForIsW
     bool removed = super.remove(w);
     if (removed) {
       //DOM.removeChild(getBody(), DOM.getParent(td));
-      getBody().$dom_removeChild(td.parent);
+      //getBody().$dom_removeChild(td.parent);
+      td.parent.remove();
     }
     return removed;
   }

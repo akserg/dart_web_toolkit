@@ -14,6 +14,8 @@ class UiBinder<U extends Widget, O> {
   
   String template;
   
+  NodeTreeSanitizer treeSanitizer;
+  
   /**
    * Creates and returns the root object of the UI fills any fields of owner 
    * tagged with [UiField].
@@ -23,7 +25,9 @@ class UiBinder<U extends Widget, O> {
     // Create an instance of main widget
     U widget = Creator.create(U);
     // Set template to innerHtml
-    widget.getElement().innerHtml = template;
+    widget.getElement().setInnerHtml(template, 
+        treeSanitizer: treeSanitizer != null ? treeSanitizer : new _NullTreeSanitizer());
+    print("Inner html: ${widget.getElement().innerHtml}");
     // Now assign our widget's element to body
     document.body.append(widget.getElement());
     // Parse template
@@ -32,5 +36,24 @@ class UiBinder<U extends Widget, O> {
     widget.getElement().remove();
     // This is it!
     return widget;
+  }
+  
+  
+}
+
+/**
+ * Dummy NodeTreeSanitizer.
+ */
+class _NullTreeSanitizer implements NodeTreeSanitizer {
+  
+  /**
+   * Called with the root of the tree which is to be sanitized.
+   *
+   * This method needs to walk the entire tree and either remove elements and
+   * attributes which are not recognized as safe or throw an exception which
+   * will mark the entire tree as unsafe.
+   */
+  void sanitizeTree(Node node) {
+    print("Sanitizing ${node.toString()}");
   }
 }

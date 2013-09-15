@@ -87,7 +87,8 @@ class HorizontalPanel extends CellPanel implements HasAlignment, InsertPanelForI
     dart_html.Element td = w.getElement().parent;
     bool removed = super.remove(w);
     if (removed) {
-      _tableRow.$dom_removeChild(td);
+      //_tableRow.$dom_removeChild(td);
+      td.remove();
     }
     return removed;
   }

@@ -215,7 +215,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
 
     dart_html.Element tr = _body.children[index * 2];
     dart_html.Element tdWrapper = tr.children[0]; //DOM.getChild(DOM.getChild(_body, index * 2), 0);
-    dart_html.Element headerElem = tdWrapper.$dom_firstElementChild; // DOM.getFirstChild(tdWrapper);
+    dart_html.Element headerElem = tdWrapper.firstChild; // DOM.getFirstChild(tdWrapper);
     if (asHtml) {
       getHeaderTextElem(headerElem).innerHtml = text; // Dom.setInnerHTML(getHeaderTextElem(headerElem), text);
     } else {
@@ -292,7 +292,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
     }
 
     // Style the stack selector item.
-    dart_html.Element td = tr.$dom_firstElementChild; //DOM.getFirstChild(tr);
+    dart_html.Element td = tr.firstChild; //DOM.getFirstChild(tr);
     UiObject.manageElementStyleName(td, _DEFAULT_ITEM_STYLENAME + "-selected", visible);
 
     // Show/hide the contained widget.
@@ -304,7 +304,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
       // Set the style of the next header
       dart_html.Element trNext = _body.children[nextIndex]; //DOM.getChild(_body, ((index + 1) * 2));
       if (trNext != null) {
-        dart_html.Element tdNext = trNext.$dom_firstElementChild; //DOM.getFirstChild(trNext);
+        dart_html.Element tdNext = trNext.firstChild; //DOM.getFirstChild(trNext);
         UiObject.manageElementStyleName(tdNext, _DEFAULT_ITEM_STYLENAME + "-below-selected", visible);
       }
     }
@@ -313,7 +313,7 @@ class StackPanel extends ComplexPanel implements InsertPanelForIsWidget {
   void _updateIndicesFrom(int beforeIndex) {
     for (int i = beforeIndex, c = getWidgetCount(); i < c; ++i) {
       dart_html.Element childTR = _body.children[i * 2]; //DOM.getChild(_body, i * 2);
-      dart_html.Element childTD = childTR.$dom_firstElementChild; ; //DOM.getFirstChild(childTR);
+      dart_html.Element childTD = childTR.firstChild; ; //DOM.getFirstChild(childTR);
       Dom.setElementPropertyInt(childTD, "__index", i);
 
       // Update the special style on the first element

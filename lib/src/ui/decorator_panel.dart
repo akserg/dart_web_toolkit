@@ -149,7 +149,7 @@ class DecoratorPanel extends SimplePanel {
       dart_html.Element row = createTR(rowStyles[i]);
       _tbody.append(row);
       if (i == containerIndex) {
-        _containerElem = row.children[1].$dom_firstElementChild; // Dom.getFirstChild(Dom.getChild(row, 1));
+        _containerElem = row.children[1].firstChild; // Dom.getFirstChild(Dom.getChild(row, 1));
       }
     }
 
@@ -167,7 +167,7 @@ class DecoratorPanel extends SimplePanel {
   dart_html.Element getCellElement(int row, int cell) {
     dart_html.Element tr = _tbody.children[row]; // Dom.getChild(tbody, row);
     dart_html.Element td = tr.children[cell]; // Dom.getChild(tr, cell);
-    return td.$dom_firstElementChild; // Dom.getFirstChild(td);
+    return td.firstChild; // Dom.getFirstChild(td);
   }
 
   dart_html.Element getContainerElement() {

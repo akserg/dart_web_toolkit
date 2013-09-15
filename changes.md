@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+** September 15, 2013
+
+* Migrate project code to follow Dart SDK version 0.7.2.1_r27268.
+* Code uses methods of class Element $dom_getAttribute, $dom_setAttribute, $dom_removeAttribute, $dom_firstElementChild changed to adequate methods.
+* Code uses CustomEvent changed to use CustomEvent factory method. 
+* Class Binder changed to use NodeTreeSanitizer when assign template to root widget through setInnerHtml method.
+
 ** August 28, 2013
 
 * Migrate project code to follow Dart SDK version 0.6.21.3_r26639.

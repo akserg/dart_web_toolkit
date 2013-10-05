@@ -46,8 +46,7 @@ class ValueBox<T> extends ValueBoxBase<T> {
     if (LocaleInfo.getCurrentLocale().isRTL()) {
       direction = Direction.LTR;
     }
-    assert ((element as dart_html.InputElement).type == "text");
-
+    assert (element.type == "text");
   }
 
   /**

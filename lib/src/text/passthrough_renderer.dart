@@ -24,6 +24,6 @@ class PassthroughRenderer extends AbstractRenderer<String> {
   PassthroughRenderer();
 
   String render(String object) {
-    return object as String;
+    return object;
   }
 }

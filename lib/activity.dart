@@ -7,8 +7,6 @@
  */
 library dart_web_toolkit_activity;
 
-import 'dart:html' as dart_html;
-import 'dart:math' as dart_math;
 import 'dart:collection' as dart_collection;
 
 import 'ui.dart';

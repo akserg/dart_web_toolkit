@@ -197,10 +197,9 @@ class TabLayoutPanel extends ResizeComposite implements HasWidgets, ProvidesResi
   }
 
   void clear() {
-    Iterator<Widget> it = iterator() as Iterator<Widget>;
+    Iterator<Widget> it = iterator();
     while (it.moveNext()) {
-      Widget widget = it.current;
-      widget.removeFromParent();
+      it.current.removeFromParent();
     }
   }
 

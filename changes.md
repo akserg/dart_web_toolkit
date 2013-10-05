@@ -1,6 +1,13 @@
 Dart Web Toolkit Changes
 ========================
 
+** October 5, 2013
+
+* Migrate project code to follow Dart SDK version 0.7.6.4_r28108.
+* Fixed warning Function execute RepeatingCommandAdapter must return bool type.
+* Removed unused imports in activity, dart_web_toolkit_test, event, layout, place, scheduler, text files.
+* Removed unnecessary casts in AnimationSchedulerImpl, AriaValueAttribute, Attribute, ElementMapperImpl, HtmlTable, _ClippedState, NumberFormat, ListBox, PassthroughParser, Panel, PassthroughRenderer, StackLayoutPanel, TabLayoutPanel, ValueBox
+
 ** September 15, 2013
 
 * Migrate project code to follow Dart SDK version 0.7.2.1_r27268.

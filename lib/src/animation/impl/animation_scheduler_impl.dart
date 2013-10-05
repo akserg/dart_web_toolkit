@@ -22,7 +22,7 @@ abstract class AnimationSchedulerImpl extends AnimationScheduler {
      * don't want to create a new AnimationSchedulerImplTimer in this case.
      */
     if (impl is AnimationSchedulerImpl) {
-      if (!(impl as AnimationSchedulerImpl).isNativelySupported()) {
+      if (!impl.isNativelySupported()) {
         impl = new AnimationSchedulerImplTimer();
       }
     }

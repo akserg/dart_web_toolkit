@@ -8,7 +8,7 @@ part of dart_web_toolkit_ui;
  *
  * @param <T> the type that the element is mapped to
  */
-class ElementMapperImpl<T> {
+class ElementMapperImpl<T extends UiObject> {
 
   static const String UI_OBJECT_ID = "uiObjectID";
 
@@ -84,7 +84,7 @@ class ElementMapperImpl<T> {
       uiObjectList[index] = uiObject;
       freeList = freeList.next;
     }
-    setIndex((uiObject as UiObject).getElement(), index);
+    setIndex(uiObject.getElement(), index);
   }
 
   /**

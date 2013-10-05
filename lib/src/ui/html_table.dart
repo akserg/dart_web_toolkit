@@ -16,7 +16,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
   /**
    * Table's body.
    */
-  dart_html.Element bodyElem;
+  dart_html.TableSectionElement bodyElem;
 
   /**
    * Current cell formatter.
@@ -454,7 +454,7 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    *
    * @return the TBODY element
    */
-  dart_html.Element getBodyElement() {
+  dart_html.TableSectionElement getBodyElement() {
     return bodyElem;
   }
 
@@ -467,9 +467,9 @@ abstract class HtmlTable extends Panel implements HasAllDragAndDropHandlers, Has
    */
   int getDomCellCount(int row, [dart_html.Element tableBody = null]) {
     if (tableBody == null) {
-      return ((bodyElem.parent as dart_html.TableElement).rows[row] as dart_html.TableRowElement).cells.length;
+      return (bodyElem.parent as dart_html.TableElement).rows[row].cells.length;
     } else {
-      return ((tableBody.parent as dart_html.TableElement).rows[row] as dart_html.TableRowElement).cells.length;
+      return (tableBody.parent as dart_html.TableElement).rows[row].cells.length;
     }
   }
 
@@ -1039,7 +1039,7 @@ class CellFormatter {
       table = table.parent as dart_html.TableElement;
     }
     assert (table is dart_html.TableElement);
-    return ((table as dart_html.TableElement).rows[row] as dart_html.TableRowElement).cells[col];
+    return (table as dart_html.TableElement).rows[row].cells[col];
   }
 
   /**

@@ -341,7 +341,7 @@ class NumberFormat {
   String format(num number) {
     if (number is int) {
       return formatInt(number as int);
-    } else if (number is double) {
+    } else {
       return formatDouble(number as double);
     }
     throw new Exception("Unknown type");

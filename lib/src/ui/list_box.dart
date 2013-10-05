@@ -197,7 +197,7 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
    */
   String getValue(int index) {
     _checkIndex(index);
-    return (_getSelectElement().options[index] as dart_html.OptionElement).value;
+    return _getSelectElement().options[index].value;
   }
 
   /**
@@ -263,7 +263,7 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
    */
   bool isItemSelected(int index) {
     _checkIndex(index);
-    return (_getSelectElement().options[index] as dart_html.OptionElement).selected;
+    return _getSelectElement().options[index].selected;
   }
 
   /**
@@ -291,7 +291,7 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
    */
   void setItemSelected(int index, bool selected) {
     _checkIndex(index);
-    (_getSelectElement().options[index] as dart_html.OptionElement).selected = selected;
+    _getSelectElement().options[index].selected = selected;
   }
 
   /**
@@ -339,7 +339,7 @@ class ListBox extends FocusWidget implements HasChangeHandlers, HasName,
    */
   void setValue(int index, String value) {
     _checkIndex(index);
-    (_getSelectElement().options[index] as dart_html.OptionElement).value = value;
+    _getSelectElement().options[index].value = value;
   }
 
   /**

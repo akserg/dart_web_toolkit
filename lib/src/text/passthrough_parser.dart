@@ -22,7 +22,7 @@ class PassthroughParser implements Parser<String> {
 
   PassthroughParser();
 
-  String parse(String text) { //CharSequence object) {
-    return text as String;
+  String parse(String text) {
+    return text;
   }
 }

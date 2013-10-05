@@ -92,7 +92,7 @@ abstract class Attribute<T> {
   String _getAriaValue(T value) {
     if (value is Iterable) {
       StringBuffer buf = new StringBuffer();
-      for (T item in (value as Iterable)) {
+      for (T item in value) {
         buf.write(getSingleValue(item));
         buf.write(" ");
       }

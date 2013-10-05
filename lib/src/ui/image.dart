@@ -691,7 +691,7 @@ class _ClippedState extends _State {
   }
 
   dart_html.ImageElement getImageElement(Image image) {
-    return impl.getImgElement(image) as dart_html.ImageElement;
+    return impl.getImgElement(image);
   }
 
   int getOriginLeft() {

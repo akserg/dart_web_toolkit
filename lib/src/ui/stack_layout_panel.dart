@@ -187,7 +187,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
    */
   Widget getHeaderWidgetAt(int index) {
     checkIndex(index);
-    return (_layoutData[index] as _LayoutData).header.getWidget();
+    return _layoutData[index].header.getWidget();
   }
 
   /**
@@ -294,7 +294,7 @@ class StackLayoutPanel extends ResizeComposite implements HasWidgets,
         if (_selectedIndex == i) {
           _selectedIndex = -1;
           if (_layoutData.length > 0) {
-            showWidgetAt(getWidgetIndex((_layoutData[0] as _LayoutData).widget));
+            showWidgetAt(getWidgetIndex(_layoutData[0].widget));
           }
         } else {
           if (i <= _selectedIndex) {
@@ -509,7 +509,7 @@ class _Iterator extends Iterator<Widget> {
     if (!moveNext()) {
       throw new Exception("NoSuchElement");
     }
-    return (_panel._layoutData[last = i++] as _LayoutData).widget;
+    return _panel._layoutData[last = i++].widget;
   }
 
   void remove() {
@@ -517,7 +517,7 @@ class _Iterator extends Iterator<Widget> {
       throw new Exception("IllegalState");
     }
 
-    _panel.remove((_panel._layoutData[last] as _LayoutData).widget);
+    _panel.remove(_panel._layoutData[last].widget);
     i = last;
     last = -1;
   }

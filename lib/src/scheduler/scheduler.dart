@@ -177,6 +177,6 @@ class RepeatingCommandAdapter implements RepeatingCommand {
    * Returns true if the RepeatingCommand should be invoked again.
    */
   bool execute() {
-    return _function();
+    return _function() as bool;
   }
 }

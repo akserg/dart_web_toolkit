@@ -6,8 +6,6 @@
  */
 library dart_web_toolkit_text;
 
-import 'dart:html' as dart_html;
-
 import 'i18n.dart';
 
 part 'src/text/passthrough_parser.dart';

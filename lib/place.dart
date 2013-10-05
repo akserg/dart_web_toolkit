@@ -7,7 +7,6 @@
 library dart_web_toolkit_place;
 
 import 'dart:html' as dart_html;
-import 'dart:math' as dart_math;
 import 'dart:async' as dart_async;
 
 import 'ui.dart';

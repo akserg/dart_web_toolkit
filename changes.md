@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** October 9, 2013
+
+* Fixed issue 95: Failed to load resource (any image in DWT).
+* Migrate project code to follow Dart SDK version 0.8.1.2_r28355.
+
 ** October 5, 2013
 
 * Migrate project code to follow Dart SDK version 0.7.6.4_r28108.

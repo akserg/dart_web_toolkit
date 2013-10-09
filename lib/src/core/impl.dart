@@ -9,11 +9,6 @@ part of dart_web_toolkit_core;
  */
 class Impl {
   static String getModuleBaseURL() {
-//    // Check to see if DevModeRedirectHook has set an alternate value.
-//    // The key should match DevModeRedirectHook.js.
-//    var key = "__gwtDevModeHook:" + $moduleName + ":moduleBase";
-//    var global = $wnd || self;
-//    return global[key] || $moduleBase;
-    return "src/packages/dart_web_toolkit/";
+    return "packages/dart_web_toolkit/";
   }
 }

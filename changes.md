@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** October 16, 2013
+
+* Added tree example.
+
 ** October 9, 2013
 
 * Fixed issue 95: Failed to load resource (any image in DWT).

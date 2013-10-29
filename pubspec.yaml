@@ -5,6 +5,6 @@ description: Dart Web Toolkit (DWT) is a development toolkit for building and op
 homepage: http://www.dartwebtoolkit.com
 dependencies:
   browser: '>=0.8.7'
-  json: any
+  json: '>=0.8.7'
   meta: '>=0.8.7'
   unittest: '>=0.8.7'

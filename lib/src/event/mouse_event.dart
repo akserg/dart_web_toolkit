@@ -94,7 +94,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the relative x-position
    */
   int getRelativeX(dart_html.Element target) {
-    return getMouseEvent().client.x - Dom.getAbsoluteLeft(target) + target.scrollLeft + target.document.documentElement.scrollLeft;
+    return getMouseEvent().client.x - Dom.getAbsoluteLeft(target) + target.scrollLeft + target.ownerDocument.documentElement.scrollLeft;
   }
 
   /**
@@ -104,7 +104,7 @@ abstract class MouseEvent extends DomEvent {
    * @return the relative y-position
    */
   int getRelativeY(dart_html.Element target) {
-    return getMouseEvent().client.y - Dom.getAbsoluteTop(target) + target.scrollTop + target.document.documentElement.scrollTop;
+    return getMouseEvent().client.y - Dom.getAbsoluteTop(target) + target.scrollTop + target.ownerDocument.documentElement.scrollTop;
   }
 
   /**

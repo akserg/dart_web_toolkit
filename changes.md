@@ -1,6 +1,14 @@
 Dart Web Toolkit Changes
 ========================
 
+** October 29, 2013
+
+* Migrate project code to follow Dart SDK version 0.8.7.0_r29341
+* Changes in MouseEvent class because of property named document renamed to ownerDocument of Node as per SDK changes.
+* Unused import json.dart removed from i18n library.
+* Changes in BidiUtils class because of Math.str renamed to Math.input.
+* Removed unused class casts.
+
 ** October 16, 2013
 
 * Added tree example.

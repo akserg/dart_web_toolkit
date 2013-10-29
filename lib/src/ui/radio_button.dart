@@ -78,7 +78,7 @@ class RadioButton extends CheckBox {
       _oldValue = getValue();
     } else if (event.type == BrowserEvents.CLICK) {
       dart_html.EventTarget target = (event as dart_html.MouseEvent).target;
-      if (target is  dart_html.Element && Dom.isOrHasChild(labelElem, target as dart_html.Element)) {
+      if (target is  dart_html.Element && Dom.isOrHasChild(labelElem, target)) {
 
         // They clicked the label. Note our pre-click value, and
         // short circuit event routing so that other click handlers

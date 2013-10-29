@@ -482,7 +482,7 @@ class CustomButton extends ButtonBase {
 
     // Synthent is size clicks based on keyboard events AFTER the normal key handling.
     if ((event is dart_html.KeyboardEvent) && (IEvent.getTypeInt(event.type) & IEvent.KEYEVENTS) != 0) {
-      int keyCode = (event as dart_html.KeyboardEvent).keyCode;
+      int keyCode = event.keyCode;
       switch (type) {
         case IEvent.ONKEYDOWN:
           if (keyCode == ' '.codeUnitAt(0)) {

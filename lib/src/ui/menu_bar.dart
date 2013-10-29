@@ -215,7 +215,7 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
     for (UiObject item in _allItems) {
       _setItemColSpan(item, 1);
       if (item is MenuItemSeparator) {
-        (item as MenuItemSeparator).setParentMenu(null);
+        item.setParentMenu(null);
       } else {
         (item as MenuItem).setParentMenu(null);
       }

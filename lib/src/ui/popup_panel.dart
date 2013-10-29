@@ -741,7 +741,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
     dart_html.EventTarget target = event.target;
     if (target is dart_html.Element) {
       for (dart_html.Element elem in autoHidePartners) {
-        if (Dom.isOrHasChild(elem, target as dart_html.Element)) {
+        if (Dom.isOrHasChild(elem, target)) {
           return true;
         }
       }
@@ -758,7 +758,7 @@ class PopupPanel extends SimplePanel implements /*EventPreview,*/ HasAnimation, 
   bool eventTargetsPopup(dart_html.Event event) {
     dart_html.EventTarget target = event.target;
     if (target is dart_html.Element) {
-      return Dom.isOrHasChild(getElement(), target as dart_html.Element);
+      return Dom.isOrHasChild(getElement(), target);
     }
     return false;
   }

@@ -249,7 +249,7 @@ class BidiUtils {
     Iterable<Match> tokens = WORD_SEPARATOR_RE.allMatches(str);
     for (int i = 0; i < tokens.length; i++) {
       Match match = tokens.elementAt(i);
-      String token = match.str;
+      String token = match.input;
       if (startsWithRtl(token)) {
         rtlCount++;
         total++;

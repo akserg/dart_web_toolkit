@@ -170,9 +170,9 @@ class TabBar extends Composite implements HasBeforeSelectionHandlers<int>, HasSe
       SimplePanel focusablePanel = delPanel.getFocusablePanel();
       Widget widget = focusablePanel.getWidget();
       if (widget is Html) {
-        return (widget as Html).html;
+        return widget.html;
       } else if (widget is Label) {
-        return (widget as Label).text;
+        return widget.text;
       } else {
         // This will be a focusable panel holding a user-supplied widget.
         return focusablePanel.getElement().parent.innerHtml;

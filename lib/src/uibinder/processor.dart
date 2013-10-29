@@ -35,7 +35,7 @@ class Processor<O> {
     // We only processing Eements
     while (child != null) {
       if (child is Element) {
-        _tryToAssign(child as Element);
+        _tryToAssign(child);
       }
       
       if (child.hasChildNodes()) {

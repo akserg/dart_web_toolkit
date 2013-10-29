@@ -340,7 +340,7 @@ class NumberFormat {
    */
   String format(num number) {
     if (number is int) {
-      return formatInt(number as int);
+      return formatInt(number);
     } else {
       return formatDouble(number as double);
     }

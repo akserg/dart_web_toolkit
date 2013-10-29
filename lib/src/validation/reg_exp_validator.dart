@@ -120,7 +120,7 @@ class RegExpValidator extends WidgetValidator {
       List result = _regExp.allMatches(value.toString()).toList();
       
       result.forEach((Match match){
-        results.add(new RegExpValidationResult(false, "", matchedString:match.str, matchedIndex:match.start));
+        results.add(new RegExpValidationResult(false, "", matchedString:match.input, matchedIndex:match.start));
         _foundMatch = true;
       });
       

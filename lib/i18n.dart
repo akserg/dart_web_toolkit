@@ -9,7 +9,7 @@ library dart_web_toolkit_i18n;
 import 'dart:html' as dart_html;
 import 'dart:math' as dart_math;
 import 'dart:async';
-import 'dart:json' as json;
+import 'package:json/json.dart' as json;
 
 import 'util.dart';
 import 'event.dart';

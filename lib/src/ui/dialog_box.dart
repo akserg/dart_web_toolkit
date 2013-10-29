@@ -425,7 +425,7 @@ class DialogBox extends DecoratedPopupPanel implements HasHtml, HasSafeHtml/*, M
   bool isCaptionEvent(dart_html.Event event) {
     dart_html.EventTarget target = event.target;
     if (target is dart_html.Element) {
-      return Dom.isOrHasChild(getCellElement(0, 1).parent, target as dart_html.Element);
+      return Dom.isOrHasChild(getCellElement(0, 1).parent, target);
     }
     return false;
   }

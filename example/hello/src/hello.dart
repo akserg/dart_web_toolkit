@@ -2126,7 +2126,7 @@ void _addAllHandlers(ui.Widget widget) {
 
 void _print(event.DwtEvent evt) {
   if (evt is event.DomEvent) {
-    event.DomEvent domEvent = evt as event.DomEvent;
+    event.DomEvent domEvent = evt;
     print("Source: ${domEvent.getRelativeElement().toString()} Event: ${domEvent.getNativeEvent().type} ID: ${domEvent.getRelativeElement().id != null ? domEvent.getRelativeElement().id : ''}");
   } else {
     if (evt.getSource() is dart_html.Element && (evt.getSource() as dart_html.Element).id != null) {

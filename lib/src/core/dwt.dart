@@ -24,7 +24,7 @@ class DWT {
   }
   
   // DWT Major version number
-  static String get majorVersion => "0.3";
+  static String get majorVersion => "0.4";
   // DWT Minor version number
-  static String get minorVersion => "25";
+  static String get minorVersion => "0";
 }

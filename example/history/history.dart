@@ -8,7 +8,7 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/event.dart' as event;
 
 void main() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.Label lbl = new ui.Label();
   // Create three hyperlinks that change the application's history.

@@ -12,7 +12,7 @@ import 'package:dart_web_toolkit/uibinder.dart';
 part 'login_view.dart';
 
 void main() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   String template = """
 <div class='ui-panel'>

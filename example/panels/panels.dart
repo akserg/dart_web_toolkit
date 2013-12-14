@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:dart_web_toolkit/ui.dart';
 
 void main() {
-  query("#loading").remove();
+  querySelector("#loading").remove();
   //
   RootLayoutPanel root = RootLayoutPanel.get(); 
   //

@@ -20,7 +20,7 @@ import 'package:dart_web_toolkit/uibinder.dart';
 
 // Validation
 void main() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.TextBox textBox = new ui.TextBox();
   ui.Label textArea = new ui.Label();
@@ -40,7 +40,7 @@ void main() {
 }
 
 void main_99() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   A a = new A();
   Map<String, ClassMirror> vms = new Map<String, ClassMirror>();
@@ -48,7 +48,7 @@ void main_99() {
   InstanceMirror unitIM = reflect(a);
   // Get mirror of each variable
   ClassMirror unitCM = reflectClass(A);
-  for (VariableMirror vm in unitCM.variables.values) {
+  for (VariableMirror vm in unitCM.declarations.values) {
     vms[symbolAsString(vm.simpleName)] = vm.type;
   }
   // Get 'b' variable ClassMirror
@@ -84,7 +84,7 @@ class B {
 }
 
 void main_98() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.RootPanel.get().add(new TestPanel());
 }
@@ -120,7 +120,7 @@ class TestPanel extends ui.Composite {
 // <input id="new-todo" placeholder="What needs to be done?" autofocus>
 //
 void main_97() {
-//  dart_html.query("#loading").remove();
+//  dart_html.querySelector("#loading").remove();
 //  // Create a panel to layout the widgets
 //  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
 //  vpanel1.spacing = 5;
@@ -141,7 +141,7 @@ void main_97() {
 
 
 void main_96() {
-  ui.TextBox normalText = new ui.TextBox.wrap(dart_html.query("#new-todo"));
+  ui.TextBox normalText = new ui.TextBox.wrap(dart_html.querySelector("#new-todo"));
   normalText.addKeyUpHandler(new event.KeyUpHandlerAdapter((event.KeyUpEvent evt){
     dart_html.KeyboardEvent kEvent = evt.getKeyboardEvent();
     print("Key Up ${kEvent.keyCode}");
@@ -159,7 +159,7 @@ void main_95() {
 
 // Teddies example
 void main_94() {
-//  dart_html.query("#loading").remove();
+//  dart_html.querySelector("#loading").remove();
 //  // Create a panel to layout the widgets
 //  ui.VerticalPanel vpanel1 = new ui.VerticalPanel();
 //  vpanel1.spacing = 5;
@@ -179,11 +179,11 @@ void main_94() {
 }
 
 void main_93() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.RootPanel.get("testId");
   //
-  dart_html.DivElement div = dart_html.query("#testId");
+  dart_html.DivElement div = dart_html.querySelector("#testId");
   //
   CheckBox _completed = new CheckBox();
   _completed.addStyleName("toggle");
@@ -321,7 +321,7 @@ class CheckBox extends ui.SimpleCheckBox implements event.HasValue<bool> {
 
 // Teddies example
 void main_92() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   // Create grid
   ui.Grid grid = new ui.Grid(1, 2);
   grid.setCellPadding(2);
@@ -412,7 +412,7 @@ class StringRenderer extends text.AbstractRenderer<String> {
 
 // Check is 'set visible' ans set enabled' methods works fine.
 void main_91() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.TextBox phoneField = new ui.TextBox();
   ui.Button btn = new ui.Button("Btn");
@@ -429,7 +429,7 @@ void main_91() {
 
 // TabBar
 void main_90() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.VerticalPanel vPanel = new ui.VerticalPanel();
   vPanel.spacing = 10;
@@ -464,7 +464,7 @@ void main_89() {
 }
 
 void main_88() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   ui.TextBox phoneField = new ui.TextBox();
 
   ui.RootPanel.get().add(phoneField);
@@ -482,7 +482,7 @@ void reformatPhone(ui.TextBox phoneField) {
 }
 
 void main_87() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   // Create a three-item tab panel, with the tab area 1.5em tall.
   ui.TabLayoutPanel tabPanel = new ui.TabLayoutPanel(1.5, util.Unit.EM);
@@ -684,7 +684,7 @@ class FlexTableErrorPanel extends ui.Composite {
 
 // TabPanel
 void main_47() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   String text1 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut sit amet pede eu nulla volutpat tempor. Vestibulum porttitor. Nulla ut augue. Morbi sollicitudin elit sit amet lectus. Nullam convallis condimentum dolor. Ut viverra. Suspendisse aliquet dui ullamcorper tellus. Vestibulum eros. Praesent nec justo vitae erat imperdiet gravida. Suspendisse non ante vitae leo eleifend auctor. In lacus nulla, posuere sit amet, fringilla ut, scelerisque et, risus. Nulla ornare, lorem tempor dictum aliquam, pede justo lacinia felis, vel mattis dui lorem quis eros.";
   String text2 = "Sed egestas, arcu nec accumsan placerat, libero augue imperdiet pede, quis pretium nisi est et sapien. Maecenas eu augue a lectus dictum gravida. Nam quis enim at nibh viverra tempus. Integer feugiat eros vitae purus. Integer varius. Nam ligula ipsum, tempus ut, rutrum non, malesuada ac, lorem. Donec nisl. Maecenas quis ante. Praesent vel lectus vitae velit bibendum sollicitudin. Donec posuere. Fusce fermentum congue tortor. Sed facilisis, leo in fringilla suscipit, justo eros mattis nisi, sit amet sollicitudin libero nisl sit amet augue. In ultrices imperdiet ipsum. Quisque varius est id pede. Sed felis sem, aliquet vel, suscipit sit amet, lobortis ac, nisl. Proin auctor imperdiet nisl. Sed quis enim. Cras mollis. Morbi nunc justo, feugiat a, bibendum sit amet, egestas sed, lectus.";
@@ -1016,7 +1016,7 @@ void _onDragStart(event.DragStartEvent evt){
 void _onDragEnd(event.DragEndEvent evt){
   dart_html.Element dragTarget = evt.getNativeEvent().target;
   dragTarget.classes.remove('moving');
-  var cols = dart_html.document.queryAll('#columns .column');
+  var cols = dart_html.document.querySelectorAll('#columns .column');
   for (dart_html.Element col in cols) {
     col.classes.remove('over');
   }
@@ -1215,7 +1215,7 @@ void main_38() {
 
 // StackLayoutPanel
 void main_37() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   // Create a new stack layout panel.
   ui.StackLayoutPanel stackPanel = new ui.StackLayoutPanel(util.Unit.PX);
@@ -1548,7 +1548,7 @@ void main_25() {
 
 // CtackPanel
 void main_24() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.StackPanel panel = new ui.StackPanel();
   panel.setSize("400px", "200px");
@@ -1602,7 +1602,7 @@ void main_21() {
 
 // SplitLayoutPanel
 void main_20() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.SplitLayoutPanel p = new ui.SplitLayoutPanel();
   p.addWest(new ui.Button("navigation"), 128.0);
@@ -1631,7 +1631,7 @@ void main_19() {
 
 // DeckPanel
 void main_18() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.DeckPanel panel = new ui.DeckPanel();
   panel.setSize("300px", "120px");
@@ -1686,7 +1686,7 @@ void main_18() {
 
 // DeckLayoutPanel
 void main_17() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   //
   ui.DeckLayoutPanel panel = new ui.DeckLayoutPanel();
   panel.setSize("300px", "120px");

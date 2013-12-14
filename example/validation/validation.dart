@@ -7,7 +7,7 @@ import 'package:dart_web_toolkit/event.dart' as event;
 import 'package:dart_web_toolkit/validation.dart' as validation;
 
 void main() {
-  dart_html.query("#loading").remove();
+  dart_html.querySelector("#loading").remove();
   
   //********************************************
   // String Validation based on callback methods

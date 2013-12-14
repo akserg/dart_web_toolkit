@@ -33,7 +33,7 @@ class Parser<O> {
    * Returns ui field variables from [clazz].
    */
   Iterable<VariableMirror> _uiFieldVariables(ClassMirror clazz) => 
-      clazz.variables.values.where(_testUiField);
+      clazz.declarations.values.where(_testUiField);
   
   /**
    * Test method returns true if the declared [element] is UiField

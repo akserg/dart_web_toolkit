@@ -1,6 +1,10 @@
 Dart Web Toolkit Changes
 ========================
 
+** December 14, 2013
+
+* Migrated project code to follow Dart SDK version 1.0.0.10_r30798
+
 ** October 29, 2013
 
 * Migrate project code to follow Dart SDK version 0.8.7.0_r29341

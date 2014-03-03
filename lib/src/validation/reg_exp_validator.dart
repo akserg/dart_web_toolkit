@@ -84,6 +84,7 @@ class RegExpValidator extends WidgetValidator {
     if (_expression != null) {
       _regExp = new RegExp(_expression, multiLine:multiLine, caseSensitive:caseSensitive);
     }
+    return _regExp;
   }
   
   /**

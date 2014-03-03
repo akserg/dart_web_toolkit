@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+** March 3, 2014
+
+* Migrate project code to follow Dart SDK version 1.2.0
+* Private property layoutData in Widget renamed to fix variable scope name problem in StackLayoutPanel.
+
 ** December 14, 2013
 
 * Migrated project code to follow Dart SDK version 1.0.0.10_r30798

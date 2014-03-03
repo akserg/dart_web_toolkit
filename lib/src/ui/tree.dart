@@ -1208,9 +1208,7 @@ class _TreeResources implements _TreeResource {
  * with the {@link ResourcePrototype}.
  */
 class _TreeSource implements Source {
-  List<String> value() {
-
-  }
+  List<String> value() => [];
 }
 
 /**

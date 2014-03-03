@@ -128,7 +128,7 @@ class Dictionary {
     Future<String> input = dart_html.HttpRequest.getString('$url');
     Future<Map<String, String>> data = input.then((String jsonString){
       // Parse input json string to map
-      return json.parse(jsonString);
+      return JSON.decode(jsonString);
     });
     return data;
   }

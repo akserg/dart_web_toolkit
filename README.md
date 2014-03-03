@@ -8,7 +8,7 @@ Dart Web Toolkit (DWT) is a development toolkit for building and optimizing comp
 * [Issues](https://github.com/akserg/dart_web_toolkit/issues)
 
 ##License
-Copyright (c) 2012-2013 Sergey Akopkokhyants Licensed under the Apache 2.0 License.
+Copyright (c) 2012-2014 Sergey Akopkokhyants Licensed under the Apache 2.0 License.
 
 ##Credits
 This makes use of a lot of ideas from the GWT source code, so big thanks to the Google GWT team!

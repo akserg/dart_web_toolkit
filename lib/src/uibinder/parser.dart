@@ -24,22 +24,24 @@ class Parser<O> {
    * Find all UiField variables. 
    */
   void _findVariables() {
-    _uiFieldVariables(ownerInstance.type).forEach((VariableMirror variable){
-      variables[_symbolAsString(variable.simpleName)] = variable;
+    _uiFieldVariables(ownerInstance.type).forEach((DeclarationMirror variable){
+      if (variable is VariableMirror) {
+        variables[_symbolAsString(variable.simpleName)] = variable;
+      }
     });
   }
   
   /**
    * Returns ui field variables from [clazz].
    */
-  Iterable<VariableMirror> _uiFieldVariables(ClassMirror clazz) => 
-      clazz.declarations.values.where(_testUiField);
+  Iterable<DeclarationMirror> _uiFieldVariables(ClassMirror clazz) =>
+    clazz.declarations.values.where(_testUiField);
   
   /**
    * Test method returns true if the declared [element] is UiField
    */
-  bool _testUiField(DeclarationMirror element) => 
-      element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
+  bool _testUiField(DeclarationMirror element) =>
+    element.metadata.any((InstanceMirror im) => im.reflectee is _UiField);
   
   //********
   // Utility

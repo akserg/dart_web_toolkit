@@ -36,7 +36,7 @@ class Widget extends UiObject
   int eventsToSink = 0;
   EventBus _eventBus;
   bool _attached = false;
-  Object _layoutData;
+  Object _widget_layoutData;
   Widget _parent;
 
   //********************************
@@ -261,7 +261,7 @@ class Widget extends UiObject
    * @see #setLayoutData
    */
   Object getLayoutData() {
-    return _layoutData;
+    return _widget_layoutData;
   }
 
   /**
@@ -273,7 +273,7 @@ class Widget extends UiObject
    * @param layoutData the widget's layout data
    */
   void setLayoutData(Object value) {
-    this._layoutData = value;
+    this._widget_layoutData = value;
   }
 
   /**

@@ -220,7 +220,8 @@ class CustomButton extends ButtonBase {
    *
    * @param upImage image for the default (up) face of the button
    */
-  CustomButton.fromImage(Image upImage, {Image downImage:null, ClickHandler handler:null}) : super(FocusPanel.impl.createFocusable()) {
+  CustomButton.fromImage(Image upImage, {Image downImage: null, ClickHandler handler: null}): super(
+      FocusPanel.impl.createFocusable()) {
     _init();
     //
     getUpFace().setImage(upImage);
@@ -239,7 +240,8 @@ class CustomButton extends ButtonBase {
    *
    * @param upText the text for the default (up) face of the button
    */
-  CustomButton.fromText(String upText, {String downText:null, ClickHandler handler:null}) : super(FocusPanel.impl.createFocusable()) {
+  CustomButton.fromText(String upText, {String downText: null, ClickHandler handler: null}): super(
+      FocusPanel.impl.createFocusable()) {
     _init();
     //
     getUpFace().text = upText;
@@ -253,7 +255,7 @@ class CustomButton extends ButtonBase {
     }
   }
 
-  CustomButton.internal() : super(FocusPanel.impl.createFocusable()) {
+  CustomButton.internal(): super(FocusPanel.impl.createFocusable()) {
     _init();
   }
 
@@ -448,8 +450,7 @@ class CustomButton extends ButtonBase {
         break;
       case IEvent.ONMOUSEOUT:
         dart_html.Element to = Dom.eventGetToElement(event);
-        if (Dom.isOrHasChild(getElement(), event.target)
-            && (to == null || !Dom.isOrHasChild(getElement(), to))) {
+        if (Dom.isOrHasChild(getElement(), event.target) && (to == null || !Dom.isOrHasChild(getElement(), to))) {
           if (_isCapturing) {
             onClickCancel();
           }
@@ -570,15 +571,18 @@ class CustomButton extends ButtonBase {
 
     // Mouse coordinates are not always available (e.g., when the click is
     // caused by a keyboard event).
-    //NativeEvent evt = Document.get().createClickEvent(1, 0, 0, 0, 0, false, false, false, false);
+    //NativeEvent evt = Document.get().createClickEvent(1, 0, 0, 0, 0, false,
+    //false, false, false);
+    // DI: need this in order to trigger the click-handlers that have been registered
+    dart_html.Event evt = new dart_html.MouseEvent('click');
+
     // Create Dom CustomEvent
-//    dart_html.CustomEvent evt = dart_html.document.$dom_createEvent('CustomEvent');
-    // After Dom CustomEvent instance has been created we can initialise it here
-//    evt.$dom_initCustomEvent('CustomEvent', false, false, false);
-    dart_html.CustomEvent evt = new dart_html.CustomEvent('CustomEvent', 
-        canBubble: false, cancelable: false, detail: false);
+    // DI: keeping this in for backwards compatibility with dwt < 0.4.2.
+    dart_html.CustomEvent customEvent = new dart_html.CustomEvent('CustomEvent', canBubble: false, cancelable: false,
+        detail: false);
     // Dispatch event
     getElement().dispatchEvent(evt);
+    getElement().dispatchEvent(customEvent);
 
     _allowClick = false;
   }
@@ -589,7 +593,7 @@ class CustomButton extends ButtonBase {
    * Subclasses that override {@link #onClickStart()} should override this
    * method to restore the normal widget display.
    */
-  void onClickCancel() { }
+  void onClickCancel() {}
 
   /**
    * Called when the user begins to click on this button. Subclasses may
@@ -600,7 +604,7 @@ class CustomButton extends ButtonBase {
    * <code>onClick</code> or <code>onClickCancel</code>, depending on whether
    * the click is completed.
    */
-  void onClickStart() { }
+  void onClickStart() {}
 
   /**
    * Sets whether this button is down.
@@ -965,7 +969,7 @@ class SimpleFace extends Face {
   String name;
   int faceID;
 
-  SimpleFace(CustomButton customButton, Face delegateTo, this.name, this.faceID) : super(customButton, delegateTo);
+  SimpleFace(CustomButton customButton, Face delegateTo, this.name, this.faceID): super(customButton, delegateTo);
 
   String getName() {
     return name;

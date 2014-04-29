@@ -6,5 +6,4 @@
 *.dart.js.map
 packages
 packages/
-pubspec.lock
 docs/

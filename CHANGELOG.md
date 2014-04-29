@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+### April 29, 2014 ###
+
+* Migrate project code to follow Dart SDK version 1.3.3
+* Sequence of code startup has changed on tests page.
+
 ### March 3, 2014 ###
 
 * Migrate project code to follow Dart SDK version 1.2.0

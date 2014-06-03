@@ -1,6 +1,11 @@
 Dart Web Toolkit Changes
 ========================
 
+### June 3, 2014 ###
+
+* Migrate project code to follow Dart SDK version 1.4.0
+* Added canvas example.
+
 ### April 29, 2014 ###
 
 * Migrate project code to follow Dart SDK version 1.3.3

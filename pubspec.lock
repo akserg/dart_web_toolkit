@@ -9,10 +9,6 @@ packages:
     description: matcher
     source: hosted
     version: "0.10.0"
-  mock:
-    description: mock
-    source: hosted
-    version: "0.10.0+1"
   path:
     description: path
     source: hosted
@@ -24,4 +20,4 @@ packages:
   unittest:
     description: unittest
     source: hosted
-    version: "0.10.1+2"
+    version: "0.11.0+1"

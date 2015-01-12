@@ -19,7 +19,7 @@ import 'package:dart_web_toolkit/validation.dart' as validation;
 import 'package:dart_web_toolkit/uibinder.dart';
 
 // Validation
-void main() {
+void main_100() {
   dart_html.querySelector("#loading").remove();
   //
   ui.TextBox textBox = new ui.TextBox();
@@ -729,8 +729,8 @@ void main_46() {
 }
 
 // MenuBar
-void main_45() {
-
+void main() { //_45() {
+  dart_html.querySelector("#loading").remove();
   // Create a command that will execute on menu item selection
   MenuCommand menuCommand = new MenuCommand();
 

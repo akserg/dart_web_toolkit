@@ -170,9 +170,10 @@ class DomImplStandard extends DomImpl {
     };
 
     dispatchEvent = (dart_html.Event event) {
+      
       EventListener listener;
       dart_html.Node curElem = event.currentTarget as dart_html.Node;
-
+      
       while (curElem != null && (listener = _listener[curElem]) == null) {
         curElem = curElem.parentNode;
       }
@@ -180,7 +181,7 @@ class DomImplStandard extends DomImpl {
       if (curElem != null && curElem.nodeType != 1) { // dart_html.Node.ELEMENT_NODE
         curElem = null;
       }
-
+      
       if (listener != null) {
         Dom.dispatchEvent(event, curElem, listener);
       }
@@ -259,9 +260,9 @@ class DomImplStandard extends DomImpl {
       case "dragenter": elem.onDragEnter.listen(dispatchDragEvent); break;
       case "dragover": elem.onDragOver.listen(dispatchDragEvent); break;
 
-      case "canplaythrough": dart_html.MediaElement.canPlayThroughEvent.forTarget(elem).listen(dispatchEvent); break;
-      case "ended": dart_html.MediaElement.endedEvent.forTarget(elem).listen(dispatchEvent); break;
-      case "progress": dart_html.MediaElement.progressEvent.forTarget(elem).listen(dispatchEvent); break;
+      case "canplaythrough": dart_html.Element.canPlayThroughEvent.forTarget(elem).listen(dispatchEvent); break;
+      case "ended": dart_html.Element.endedEvent.forTarget(elem).listen(dispatchEvent); break;
+      case "progress": dart_html.ApplicationCache.progressEvent.forTarget(elem).listen(dispatchEvent); break;
         // First call removeEventListener, so as not to add the same event listener more than once
 //        elem.on[eventTypeName].remove(dispatchEvent);
 //        elem.on[eventTypeName].add(dispatchEvent);
@@ -318,7 +319,7 @@ class DomImplStandard extends DomImpl {
   void _applyDispatcher(dart_html.Element elem, dart_html.EventStreamProvider provider, int bits, int chMask, String eventName, int mask, dart_html.EventListener handler, [bool useCapture = false]) {
     if ((chMask & 0x00001) != 0) {
       if ((bits & 0x00001) != 0) {
-        _subscription["click"] = provider.forTarget(elem, useCapture:useCapture).listen(dispatchEvent);
+        _subscription["click"] = provider.forElement(elem, useCapture:useCapture).listen(dispatchEvent);
       } else {
         _subscription["click"].cancel();
       }

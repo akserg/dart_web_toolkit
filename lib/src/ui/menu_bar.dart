@@ -1019,6 +1019,12 @@ class MenuBar extends Widget implements HasAnimation, HasCloseHandlers<PopupPane
     // Show the popup, ensuring that the menubar's event preview remains on top
     // of the popup's.
     _popup.setPopupPositionAndShow(new _PopupPanelPositionCallback(this, item));
+
+    // Add sub menu into parent menu as AutoHidePartner to fix problem
+    // with doesn't react second level of menu
+    if (_parentMenu != null) {
+      _parentMenu._popup.addAutoHidePartner(_popup.getElement());
+    }
   }
 
   /**
